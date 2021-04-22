@@ -1,19 +1,19 @@
-require(dotenv).config;
+require('dotenv').config;
 
 module.exports = {
 
   development: {
-    client: process.env.DATABASE_CLIENT,
+    client: 'pg',
     connection: {
       database: process.env.DATABASE_NAME, 
       user: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD, 
       port: process.env.DATABASE_PORT
+    },
+    migrations: {
+      tableName: 'migrations',
+      directory: `${__dirname}/src/database/migrations` //caminho do arquivo que vai ser criado
     }, 
-    migration: {
-      tableName: "users", 
-      directory: `${__dirname}/src/database/migrations`
-    }
   },
 
   staging: {
