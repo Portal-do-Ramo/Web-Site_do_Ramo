@@ -1,11 +1,10 @@
 const express = require('express');
 
-const router = express.Router();
-
 const commonController = require('../controllers/commonController');
 
+const router = express.Router();
 
-router.get('/', commonController.index);
 
+router.get(commonController.index);
 
 module.exports = router;
