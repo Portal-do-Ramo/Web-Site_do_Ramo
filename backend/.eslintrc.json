@@ -11,8 +11,8 @@
     "rules": {
         "indent": "off",
         "linebreak-style": [
-            "error",
-            "windows"
+            ["error",
+            "windows"]
         ],
         "quotes": [
             "error",
@@ -22,5 +22,5 @@
             "error",
             "always"
         ]
-    }
+    }    
 }
