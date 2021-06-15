@@ -1,30 +1,10 @@
 root = true
 
-# Unix-style newlines with a newline ending every file
-[*]
+[*] # As regras servem para todos os tipos de extenções de arquivos
+indent_style = tab # Tipo de indentação -> tab
+indent_size = 1 # Quantos tabs são necessários
 end_of_line = lf
-insert_final_newline = true
-
-# Matches multiple files with brace expansion notation
-# Set default charset
-[*.{js,py}]
-charset = utf-8
-
-# 4 space indentation
-[*.py]
-indent_style = space
-indent_size = 4
-
-# Tab indentation (no size specified)
-[Makefile]
-indent_style = tab
-
-# Indentation override for all JS under lib directory
-[lib/**.js]
-indent_style = space
-indent_size = 2
-
-# Matches the exact files either package.json or .travis.yml
-[{package.json,.travis.yml}]
-indent_style = space
-indent_size = 2
+tab_width =  4 # Tamanho do tab -> equivalente a 4 espaços
+charset = "utf-8"
+trim_trailing_whitespace = true # Tirar os espaços em branco na linha
+insert_final_newline = false # Inserir uma nova linha no final
