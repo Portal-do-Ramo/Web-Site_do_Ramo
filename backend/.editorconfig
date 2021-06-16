@@ -6,5 +6,4 @@ indent_size = 1 # Quantos tabs são necessários
 end_of_line = lf
 tab_width =  4 # Tamanho do tab -> equivalente a 4 espaços
 charset = "utf-8"
-trim_trailing_whitespace = true # Tirar os espaços em branco na linha
 insert_final_newline = false # Inserir uma nova linha no final
