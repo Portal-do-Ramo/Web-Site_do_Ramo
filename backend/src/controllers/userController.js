@@ -27,7 +27,6 @@ module.exports = {
 
     async index(req, res){
         const users = await knex('users').select('*');
-        return res
-            .json({'users': users});
+        return res.json({'users': users});
     }
 }
