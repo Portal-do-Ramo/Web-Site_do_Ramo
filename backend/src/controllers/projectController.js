@@ -14,7 +14,7 @@ module.exports = {
 	//pensar no fato de no futuro existirem projetos de várias equipes!!!! Teriamos problemas com o first -> pensar em uma solução
     async create(req, res){ 
         let { name, description, image, members, crew_name, beginning, ended } = req.body;
-        let status = false
+        let status = false //rever lógica depois
 
         if(ended === null ){
             status = true;
