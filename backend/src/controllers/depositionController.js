@@ -24,7 +24,6 @@ module.exports = {
         catch(err){
             return res.status(404).json({"message": "Something was wrong. Failed create operation."});
         }
-
     },
 
     async delete(req, res){

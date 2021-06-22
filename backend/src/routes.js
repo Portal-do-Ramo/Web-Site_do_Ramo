@@ -21,9 +21,7 @@ router
 	.get("/news", newsController.index)
 	.get("/sponsors", sponsorsController.index)
 	.get("/deposition", depositionController.index)
-    // .patch("/crew/:crew", crewController.update)
     .patch("/deposition/:deposition", depositionController.update)
-    //taigo -> taifo
     .post("/user", userController.create)
 	.post("/project", projectController.create)
     .post("/award", awardController.create)
