@@ -2,7 +2,7 @@ const knex = require('../database');
 const {v4} = require('uuid');
 
 module.exports = {
-    async createUser(req, res){
+    async create(req, res){
         const {name, email, password, role} = req.body;
 
         try {

@@ -13,7 +13,13 @@ module.exports = {
 	
 	//pensar no fato de no futuro existirem projetos de várias equipes!!!! Teriamos problemas com o first -> pensar em uma solução
     async create(req, res){ 
-        let { name, description, image, members, crew_name } = req.body;
+        let { name, description, image, members, crew_name, beginning, ended } = req.body;
+        let status = false
+
+        if(ended === null ){
+            status = true;
+        }
+
         let {id: crew_id} = await knex("crews").select("id").where({"name": crew_name}).first();
 		if(crew_id != null){
             try {
@@ -23,7 +29,10 @@ module.exports = {
                     description,
                     image,
                     members,
-                    crew_id
+                    beginning, 
+                    ended,
+                    crew_id, 
+                    status
                 });
                 return res.json({"message": "Projeto adicionado"});
             } catch(err) {
