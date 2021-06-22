@@ -2,24 +2,38 @@ const express = require("express");
 
 const router = express.Router();
 
-const commonController = require("./controllers/commonController.js");
-const crewController = require("./controllers/crewController.js");
-const userController = require("./controllers/userController.js");
-const projectController = require("./controllers/projectController.js");
-const awardController = require("./controllers/awardController")
+const commonController = require("./controllers/commonController");
+const crewController = require("./controllers/crewController");
+const userController = require("./controllers/userController");
+const projectController = require("./controllers/projectController");
+const awardController = require("./controllers/awardController");
+const depositionController = require("./controllers/depositionController");
+const newsController = require("./controllers/newsController")
+const sponsorsController = require("./controllers/sponsorController")
 
 router
     .get("/", commonController.index)
-    .get("/crews", crewController.index)
 	.get("/users", userController.index)
+    .get("/crews", crewController.index)
 	.get("/projects", projectController.index)
     .get("/awards", awardController.index)
     .get("/award/:id", awardController.show)
-    .post("/users", userController.createUser)
+	.get("/news", newsController.index)
+	.get("/sponsors", sponsorsController.index)
+	.get("/deposition", depositionController.index)
+    // .patch("/crew/:crew", crewController.update)
+    .patch("/deposition/:deposition", depositionController.update)
+    //taigo -> taifo
+    .post("/user", userController.create)
 	.post("/project", projectController.create)
     .post("/award", awardController.create)
+	.post("/news", newsController.create)
+	.post("/sponsor", sponsorsController.create)
+	.post("/deposition", depositionController.create)
 	.delete("/crew", crewController.delete)
     .delete("/project", projectController.delete)
     .delete("/award", awardController.delete)
+	.delete("/news", newsController.delete)
+	.delete("/sponsors", sponsorsController.delete)
 
 module.exports = router;
