@@ -1,6 +1,7 @@
 import styles from './styles.module.scss'
 import Link from 'next/link'
-export function Header() {
+
+export default function Header() {
   return (
     <header className={styles.headerContainer}>
       <img src="/Ramo_Branco 2.png" alt="logo" className={styles.logo} />
