@@ -10,9 +10,9 @@ function MyApp({ Component, pageProps }){
         <Header/>
         <Component {...pageProps}/>
       </main>
-      <Footer/>
     </div>
   )
 }
 
+/* <Footer/> */
 export default MyApp;

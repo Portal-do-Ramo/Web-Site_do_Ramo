@@ -1,18 +1,64 @@
-#page {
-    background-image: url("../../public/BG_Logos.svg");
-    height: 90rem;
-    display: block;
+#page_container {
+    height: 100rem;
+    font-family: 'Poppins';
 }
 
-
-#main_contender {
-    top: 20rem;
+#text_container {
+    background-image: url("../../public/BG_Logos.svg");
+    height: 40rem;
+    display: grid;
+    grid-template-rows: repeat(4 1fr);
+    grid-template-columns: 15rem 40rem 1fr;
+    color: var(--azul-ramo);
     
     h1 {
         font-size: 3rem;
+        grid-column-start: 2;
+        grid-row-start: 1;
+        margin: 10rem 0 0 0;
+        text-shadow: 0.05em 0.1em #ccc;
     }
 
-    p {
-        font-size: 1.0625rem;
+    p{
+        font-size: 1.063rem;
+        grid-column-start: 2;
+        text-indent: 3rem;
     }
+
+    #main_container{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        justify-content: center;
+        grid-column-start: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        
+        
+        #icon {
+            grid-column-start: 2;
+            margin: 0 0 0 0;
+        }
+        
+        #button {
+            grid-column-start: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0D5FAA;
+            width: 13rem;
+            height: 5rem;
+            border-radius: 2.5rem;
+            text-decoration: none;
+        }
+        
+        #button:hover {
+            cursor: pointer;
+        }
+    }
+
+    
+}
+
+#crew_content {
+    //background-color: var(--azul-ramo);
 }
