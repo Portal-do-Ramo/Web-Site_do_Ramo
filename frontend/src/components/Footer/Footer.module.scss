@@ -1,0 +1,30 @@
+.footer{
+  position: absolute;
+  height: 100% - 
+  display: flex;
+  justify-content: center;
+  background-color: #0D5FAA;
+  .ramo{
+    width: 100rem;
+    display: flex;
+
+    flex-wrap: wrap;
+    img{
+      width: auto;
+      height: 8rem;
+    }
+    h1{
+      margin-left: 5rem;
+      justify-content: end;
+    }
+    p{
+      margin-left: 2rem;
+    }
+  }
+  .equipes{
+    img{
+      width: auto;
+      height: 10rem;
+    }
+  }
+}
