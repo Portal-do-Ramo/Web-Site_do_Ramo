@@ -5,13 +5,13 @@ module.exports = {
 
     async index(req,res) { 
             let news = await knex("news");
-            return res.json(news);
+            return res.status(200).json(news);
     },
     
     async show(req,res) { //mostrar só um
-        let {id} = req.params;
+        let { id } = req.params;
 			let news = await knex("news").select().where({id});
-            return res.json(news);
+            return res.status(200).json(news);
     },
 	
     async create(req,res) {
@@ -27,7 +27,7 @@ module.exports = {
             });
             return res.status(201).json({"message": "Notícia criada"});
         } catch(err) {
-            return res.json({"message": err.message});
+            return res.status(422).json({"message": err.message});
         }
     },
 
@@ -46,9 +46,9 @@ module.exports = {
 		try{
 			let {news} = req.body;   
 			let confirmation = await knex('news').where({"name": news}).delete();
-			return res.json({'message': confirmation});
+			return res.status(200).json({'message': confirmation});
 		} catch(err) {
-			return res.json({"message": err.message})
+			return res.status(405).json({"message": err.message})
 		}
     }
 

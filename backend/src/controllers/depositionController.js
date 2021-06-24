@@ -1,55 +1,46 @@
 const knex = require("../database");
-const {v4} = require("uuid");
+const { v4 } = require("uuid");
 
 module.exports = {
 
-    async index(req, res){
+    async index(req, res) {
         let depositions = await knex("depositions");
-        return res.json(depositions);
+        return res.status(200).json(depositions);
     },
 
-    async create(req, res){
-        try{
-            let {name, crew, text} = req.body;
+    async create(req, res) {
+        try {
+            let { name, crew, text } = req.body;
             let deposition = knex("depositions").insert({
 
                 id: v4(),
                 name,
                 crew,
-                text 
+                text
             });
-
-            return res.status(200).json(deposition);
-        }
-        catch(err){
-            return res.status(404).json({"message": "Something was wrong. Failed create operation."});
+            return res.status(201).json(deposition);
+        } catch (err) {
+            return res.status(422).json({ "message": err.message });
         }
     },
 
-    async delete(req, res){
-        try{
-
-            let {id} = req.params;
-            let confirmation = await knex("depositions").where({id}).delete();
-            return res.status(200).json({"message": confirmation});
+    async update(req, res) {
+        try {
+            let { deposition, data, update } = req.body;
+            let confirmation = await knex("depositions").where({ deposition }).update({ data, update });
+            return res.status(200).json({ "message": confirmation });
+        } catch (err) {
+            return res.status(405).json({ "message": "Something was wrong. Failed patch operation." });
         }
-        catch(err){
-            return res.status(404).json({"message": "Something was wrong. Failed delete operation"});
+    }, 
+
+    async delete(req, res) {
+        try {
+            let { id } = req.params;
+            let confirmation = await knex("depositions").where({ id }).delete();
+            return res.status(200).json({ "message": confirmation });
+        } catch (err) {
+            return res.status(405).json({ "message": err.message });
         }
-    },
-
-    async update(req, res){
-
-        try{
-
-            let {deposition} = req.params;
-            let {data, update} = req.body;
-            let confirmation = await knex("depositions").where({deposition}).update({data, update});
-            return res.status(200).json({"message": confirmation});
-        }
-        catch(err){
-            return res.status(404).json({"message": "Something was wrong. Failed patch operation."});
-        }
-
     }
 }

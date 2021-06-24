@@ -1,15 +1,19 @@
 const knex = require("../database");
 const {v4} = require("uuid");
 
-
-
 //Fazer os tratamentos com try-catch e retornar os status codes corretos para cada situação.
 module.exports = {
 
     async index(req, res){
         let projects = await knex("projects");
-        return res.json({"projects": projects});
+        return res.status(200).json({"projects": projects});
     },
+
+	async show(req,res) {
+		let { id } = req.params;
+		let project = await knex("projects").select().where({id});
+		return res.status(200).json(project);
+	},
 	
 	//pensar no fato de no futuro existirem projetos de várias equipes!!!! Teriamos problemas com o first -> pensar em uma solução
     async create(req, res){ 
@@ -34,21 +38,34 @@ module.exports = {
                     crew_id, 
                     status
                 });
-                return res.json({"message": "Projeto adicionado"});
+                return res.status(201).json({"message": "Projeto adicionado"});
             } catch(err) {
-                return res.json({"message": err.message})
+                return res.status(422).json({"message": err.message})
             }
 	    } 
 		return res.json({"message": "Equipe necessária"});
     },
 
-
+    async update(req, res){
+        try{
+            let{ project, data, update } = req.body;
+            let confirmation = await knex("projects").where({project}).update();
+            return res.status(200).json({"message": confirmation});
+        } catch(err) {
+            return res.status(405).json({"message": err.message});
+        }  
+    },
+    
     async delete(req, res){
-        let {id} = req.body;
-        let confirmation = await knex("projects").where({id}).delete();
-        return res.json({"message": confirmation});
-    }
 
+        try{
+            let {id} = req.body;
+            let confirmation = await knex("projects").where({id}).delete();
+            return res.status(200).json({"message": confirmation});
+        } catch(err) {
+            return res.status(405).json({"message": err.message})
+        }
+    }
 }
 
 /*
