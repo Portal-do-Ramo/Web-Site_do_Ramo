@@ -3,8 +3,9 @@ exports.up = knex => {
         table.uuid("id").unique();
         table.string("name").notNullable().unique();
         table.text("about").notNullable();
+        table.text("image").notNullable();
         table.timestamps(true, true);
     });
 }
 
-exports.down = knex => knex.schema.droptable("crews");
+exports.down = knex => knex.schema.dropTable("crews");
