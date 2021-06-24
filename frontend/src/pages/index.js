@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+import styles from '../styles/index.module.scss';
+
 export default function Home() {
   return (
-    <div>
-      <div>
+    <div id={styles.page}>
+      <div id={styles.main_contender}>
         <h1>Nossa História</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
         odio elementum bibendum aliquam. Vel, tempor tincidunt enim, 
@@ -25,12 +27,12 @@ export default function Home() {
         mauris sed hendrerit cursus. Laoreet maecenas aenean facilisi 
         rhoncus. A mi, faucibus eu tortor iaculis fringilla nullam sed 
         platea. Et arcu sed auctor vel. Quis sagittis, eros dolor facilisi.</p>
-      </div>
-      <div>
-      <Link href="#">
-        <a>Saiba mais</a>
-      </Link>
-      <Image src="/../../public/right-arrow.png" width={50} height={50}/>
+        <div>
+          <Link href="#">
+            <a>Saiba mais</a>
+          </Link>
+          <Image src="/../../public/right-arrow.png" width={50} height={50}/>
+        </div>
       </div>
       <h3>Equipes</h3>
       <section>
