@@ -30,63 +30,63 @@ export default function Home() {
           Mi massa urna, commodo in dignissim. Varius neque quam in </p>
         </div>
         <div id={styles.main_container}>
-          <img id={styles.icon} src='/seu_pai.svg' width={400} height={500}/>
+          <Image id={styles.icon} src='/seu_pai.svg' width={500} height={600}/>
           <a href="#" id={styles.button}> 
             <p>Saiba mais</p>
-            <Image src='/right-arrow.png' width={50} height={50}/>
+            <Image src='/Group 5.svg' width={32} height={32}/>
           </a>
         </div>
       </div>
 
       <div className={styles.crew_content}>
         <h3>Equipes</h3>
-        <section>
-          <div>
-            <a>
-              <img src="../../WolfByte.png"/>
-              
+        <section className={styles.logo_content}>
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="wie.svg"/>
+              <p>WIE</p>
             </a>
           </div>
-          <div>
-            <a>
-              <img src="../../BotzLogo.png"/>
-              
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="../../wolfbyte.svg"/>
+              <p>WolfByte</p>
             </a>
           </div>
-          <div>
-            <a>
-              <img src="../../PowerLogo.png"/>
-              
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="../../Botz.svg"/>
+              <p>WolfBotz</p>
             </a>
           </div>
-          <div>
-            <a>
-              <img src="../../RocketLogo.png"/>
-              
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="../../Power.svg"/>
+              <p>WolfPower</p>
             </a>
           </div>
-          <div>
-            <a>
-              <img src="SocialLogo.png"/>
-              
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="../../Rocket.svg"/>
+              <p>RocketWolf</p>
             </a>
           </div>
-          <div>
-            <a>
-              <img src="WieLogo.png"/>
-              
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="../../Social.svg"/>
+              <p>SocialWolf</p>
             </a>
           </div>
-          <div>
-            <a>
-              <img src="GestaoLogo.png"/>
-              
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="../../Gestao.svg"/>
+              <p>Gestão</p>
             </a>
           </div>
-          <div>
-            <a>
-              <img src="MarketingLogo.png"/>
-              
+          <div className={styles.cards}>
+            <a href="#">
+              <img src="../../Marketing.svg"/>
+              <p>Marketing</p>
             </a>
           </div>
         </section>
