@@ -33,61 +33,62 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <div id={styles.crew_content}>
+      <div className={styles.crew_content}>
         <h3>Equipes</h3>
         <section>
           <div>
             <a>
               <img src="../../WolfByte.png"/>
-              <span>Wolfbyte</span>
+              
             </a>
           </div>
           <div>
             <a>
               <img src="../../BotzLogo.png"/>
-              <span>WolfBotz</span>
+              
             </a>
           </div>
           <div>
             <a>
               <img src="../../PowerLogo.png"/>
-              <span>WolfPower</span>
+              
             </a>
           </div>
           <div>
             <a>
               <img src="../../RocketLogo.png"/>
-              <span>WolfRocket</span>
+              
             </a>
           </div>
           <div>
             <a>
               <img src="SocialLogo.png"/>
-              <span>SocialWolf</span>
+              
             </a>
           </div>
           <div>
             <a>
               <img src="WieLogo.png"/>
-              <span>WIE</span>
+              
             </a>
           </div>
           <div>
             <a>
               <img src="GestaoLogo.png"/>
-              <span>Gestão</span>
+              
             </a>
           </div>
           <div>
             <a>
               <img src="MarketingLogo.png"/>
-              <span>Marketing</span>
+              
             </a>
           </div>
         </section>
       </div>
-      <section>
+      <section className={styles.parcerias}>
         <h3>Parcerias</h3>
+      
         <div>
           <a>
             <img src="#"></img>
