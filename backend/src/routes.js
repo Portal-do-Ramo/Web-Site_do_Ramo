@@ -8,8 +8,8 @@ const userController = require("./controllers/userController");
 const projectController = require("./controllers/projectController");
 const awardController = require("./controllers/awardController");
 const depositionController = require("./controllers/depositionController");
-const newsController = require("./controllers/newsController")
-const sponsorController = require("./controllers/sponsorController")
+const newsController = require("./controllers/newsController");
+const sponsorController = require("./controllers/sponsorController");
 
 router
     .get("/", commonController.index)
@@ -18,7 +18,7 @@ router
 	.get("/depositions", depositionController.index)
 	.get("/news", newsController.index)
 	.get("/projects", projectController.index)
-	.get("/sponsors", sponsorsController.index)
+	.get("/sponsors", sponsorController.index)
 	.get("/users", userController.index)
     .get("/award/:id", awardController.show)
 	.get("/crew/:id", crewController.show)
@@ -28,7 +28,7 @@ router
 	.patch("/crew", crewController.update)
     .patch("/deposition", depositionController.update)
 	.patch("/news", newsController.update)
-	.patch("/project", project.update)
+	.patch("/project", projectController.update)
 	.patch("/sponsor", sponsorController.update)
 	.patch("/user", userController.update)
     .post("/award", awardController.create)
@@ -36,14 +36,14 @@ router
 	.post("/deposition", depositionController.create)
 	.post("/news", newsController.create)
 	.post("/project", projectController.create)
-	.post("/sponsor", sponsorsController.create)
+	.post("/sponsor", sponsorController.create)
     .post("/user", userController.create)
     .delete("/award", awardController.delete)
 	.delete("/crew", crewController.delete)
 	.delete("/deposition", depositionController.delete)
 	.delete("/news", newsController.delete)
     .delete("/project", projectController.delete)
-	.delete("/sponsor", sponsorsController.delete)
+	.delete("/sponsor", sponsorController.delete)
 	.delete("/user", userController.delete)
 
 module.exports = router;
