@@ -1,10 +1,12 @@
 #page_container {
     height: 100rem;
     font-family: 'Poppins';
+    background-image: url("../../public/BG_Logos.svg");
+    background-size: contain;
 }
 
 #text_container {
-    background-image: url("../../public/BG_Logos.svg");
+    
     display: flex;
     flex-direction: row;
     color: var(--azul-ramo);
@@ -14,10 +16,10 @@
         font-size: 3rem;
         grid-column-start: 2;
         grid-row-start: 1;
-        margin: 10rem 0 0 0;
+        padding: 5rem 0 0 0;
         text-shadow: 0.05em 0.1em #ccc;
         font-weight: 800;
-        text-align: center;
+        text-align: left;
     }
 
     p {
@@ -31,6 +33,10 @@
         display: flex;
         flex: 1;
         flex-direction: column;
+
+        p{
+            padding: 0 0 10rem 0;
+        }
     }
 
     #main_container {
@@ -40,47 +46,89 @@
         justify-content: flex-end;
         align-items: center;
 
+        // #icon {
+            
+            //ID do SEU PAI, tem que puxar ele com a orelha no header.
 
-
-        #icon {
-            position: absolute;
-            top: 60px;
-        }
+        // }
 
         #button {
             display: flex;
-            //align-items: space-between;
-            justify-content: space-between;
-            background-color: #0D5FAA;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--azul-ramo);
             width: 13rem;
-            height: 5rem;
+            height: 4rem;
             border-radius: 2.5rem;
-            text-decoration: none;
             margin-bottom: 10%;
+            
+            p {
+                text-indent: 0;
+                margin: 0 1rem 0 0;
+                color: white;
+                text-decoration: none;
+            }
         }
-
+        
         #button:hover {
             cursor: pointer;
         }
-
     }
-
-
 }
 
 .crew_content {
     padding-left: 13rem;
     height: 53.75rem;
     background-color: #0D5FAA;
-    display: grid;
-    grid-template-rows: repeat(3, minmax(250px, 1fr));
+    
+    .logo_content{
+        display: grid;
+        margin: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 2fr));
+        grid-template-rows: repeat(auto-fit, minmax(350px, 1fr));
 
-    img {
-        height: 25rem;
-        margin-left: -2rem;
+        .cards{
+            width: 300px;
+            height: 325px;
+            background-color: var(--contraste);
+            border-radius: 30px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            margin-left: -2rem;
+            
 
+            a{
+                margin: 0;
+                padding: 0;
+                text-decoration: none;
+                display: grid;
+                height: 100%;
+                grid-template-rows: [logo-start] auto [logo-end nome-start] auto [nome-end];
+
+                img{
+                    max-width: 100%;
+                    max-height: 100%;
+                    grid-row: logo;
+                    display: inline;
+                    justify-self: center;
+                    margin: 2rem 0 0 0;
+                }
+
+                p{
+                    grid-row: nome;
+                    text-align: center;
+                    font-size: 36px;
+                    font-weight: 700;
+                    color: white;
+                }
+            }
+
+        }
+
+        .cards:first-child{
+            background-color: var(--wie);
+        }
     }
-
+    
     h3 {
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
@@ -91,7 +139,7 @@
 }
 
 .parcerias {
-    height: 25.813rem;
+    height: 26rem;
     display: grid;
     grid-row: 1;
 
