@@ -1,26 +1,32 @@
-.footer{
+.footer {
   display: flex;
   justify-content: center;
   background-color: #0D5FAA;
-  .ramo{
+
+  .ramo {
     width: 100rem;
     display: flex;
 
     flex-wrap: wrap;
-    img{
+
+    img {
       width: auto;
       height: 8rem;
     }
-    h1{
+
+    h1 {
       margin-left: 5rem;
       justify-content: end;
     }
-    p{
+
+    p {
       margin-left: 2rem;
+      display: inline-block;
     }
   }
-  .equipes{
-    img{
+
+  .equipes {
+    img {
       width: auto;
       height: 10rem;
     }
