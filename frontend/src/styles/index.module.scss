@@ -1,7 +1,7 @@
 #page_container {
     height: 100rem;
     font-family: 'Poppins';
-    background-image: url("../../public/BG_Logos.svg");
+    background-image: url("../../public/Background_Logos.svg");
     background-size: contain;
 }
 
@@ -61,12 +61,12 @@
             height: 4rem;
             border-radius: 2.5rem;
             margin-bottom: 10%;
+            text-decoration: none;
             
             p {
                 text-indent: 0;
                 margin: 0 1rem 0 0;
                 color: white;
-                text-decoration: none;
             }
         }
         

@@ -23,20 +23,20 @@ export default function Footer() {
       <div className={styles.equipes}>
         <table>
           <tr>
-            <img src="/wie.svg" />
-            <img src="/wolfbyte.svg" />
+            <img src="/WIE_logo.svg" />
+            <img src="/Wolfbyte_logo.svg" />
           </tr>
           <tr>
-            <img src="/Social.svg" />
-            <img src="/Rocket.svg" />
+            <img src="/Socialwolf_logo.svg" />
+            <img src="/Rocketwolf_logo.svg" />
           </tr>
           <tr>
-            <img src="/Power.svg" />
-            <img src="/Botz.svg" />
+            <img src="/WolfPower_logo.svg" />
+            <img src="/WolfBotz_logo.svg" />
           </tr>
           <tr>
-            <img src="/Gestao.svg"/>
-            <img src="/Marketing.svg"/>
+            <img src="/Gestao_logo.svg"/>
+            <img src="/Marketing_logo.svg"/>
           </tr>
         </table>
         
@@ -47,13 +47,13 @@ export default function Footer() {
         <p>0000-0000</p>
         <p>iadobitcoin@gmail.com</p>
         <a target="_blank" href="https://pt-br.facebook.com/ramocefet/">
-          <img src="/Facebook (2).svg"/>
+          <img src="/Facebook.svg"/>
         </a>
         <a target="_blank" href="https://www.instagram.com/ramocefet/">
-          <img src="/Instagram (2).svg"/>
+          <img src="/Instagram.svg"/>
         </a>
         <a target="_blank" href="https://www.linkedin.com/company/ramocefet/">
-          <img src="/Linkedin (2).svg"/>
+          <img src="/Linkedin.svg"/>
         </a>
 
 

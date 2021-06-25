@@ -33,7 +33,7 @@ export default function Home() {
           <Image id={styles.icon} src='/seu_pai.svg' width={500} height={600}/>
           <a href="#" id={styles.button}> 
             <p>Saiba mais</p>
-            <Image src='/Group 5.svg' width={32} height={32}/>
+            <Image src='/right-arrow.svg' width={32} height={32}/>
           </a>
         </div>
       </div>
@@ -43,49 +43,49 @@ export default function Home() {
         <section className={styles.logo_content}>
           <div className={styles.cards}>
             <a href="#">
-              <img src="wie.svg"/>
+              <img src="WIE_logo.svg"/>
               <p>WIE</p>
             </a>
           </div>
           <div className={styles.cards}>
             <a href="#">
-              <img src="../../wolfbyte.svg"/>
+              <img src="../../Wolfbyte_logo.svg"/>
               <p>WolfByte</p>
             </a>
           </div>
           <div className={styles.cards}>
             <a href="#">
-              <img src="../../Botz.svg"/>
+              <img src="../../Wolfbotz_logo.svg"/>
               <p>WolfBotz</p>
             </a>
           </div>
           <div className={styles.cards}>
             <a href="#">
-              <img src="../../Power.svg"/>
+              <img src="../../Wolfpower_logo.svg"/>
               <p>WolfPower</p>
             </a>
           </div>
           <div className={styles.cards}>
             <a href="#">
-              <img src="../../Rocket.svg"/>
+              <img src="../../Rocketwolf_logo.svg"/>
               <p>RocketWolf</p>
             </a>
           </div>
           <div className={styles.cards}>
             <a href="#">
-              <img src="../../Social.svg"/>
+              <img src="../../Socialwolf_logo.svg"/>
               <p>SocialWolf</p>
             </a>
           </div>
           <div className={styles.cards}>
             <a href="#">
-              <img src="../../Gestao.svg"/>
+              <img src="../../Gestao_logo.svg"/>
               <p>Gestão</p>
             </a>
           </div>
           <div className={styles.cards}>
             <a href="#">
-              <img src="../../Marketing.svg"/>
+              <img src="../../Marketing_logo.svg"/>
               <p>Marketing</p>
             </a>
           </div>
