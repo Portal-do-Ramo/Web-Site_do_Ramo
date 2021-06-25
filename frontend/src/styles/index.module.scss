@@ -9,7 +9,7 @@
     flex-direction: row;
     color: var(--azul-ramo);
     margin: 0 12% 15px 12%;
-    
+
     h1 {
         font-size: 3rem;
         grid-column-start: 2;
@@ -20,37 +20,37 @@
         text-align: center;
     }
 
-    p{
+    p {
         font-size: 1.063rem;
         grid-column-start: 2;
         text-indent: 3rem;
         font-weight: 600;
     }
 
-    #ourStory{
+    #ourStory {
         display: flex;
         flex: 1;
         flex-direction: column;
     }
 
-    #main_container{
+    #main_container {
         display: flex;
         flex: 1;
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
-        
-        
-        
+
+
+
         #icon {
             position: absolute;
             top: 60px;
         }
-        
+
         #button {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            //align-items: space-between;
+            justify-content: space-between;
             background-color: #0D5FAA;
             width: 13rem;
             height: 5rem;
@@ -58,46 +58,52 @@
             text-decoration: none;
             margin-bottom: 10%;
         }
-        
+
         #button:hover {
             cursor: pointer;
         }
+
     }
 
-    
+
 }
 
 .crew_content {
-    padding-left: 13rem ;
+    padding-left: 13rem;
     height: 53.75rem;
     background-color: #0D5FAA;
-    display: flex;
-    flex-direction: column;
-    img{
+    display: grid;
+    grid-template-rows: repeat(3, minmax(250px, 1fr));
+
+    img {
         height: 25rem;
         margin-left: -2rem;
-        float: left;
+
     }
-    h3{
-        font-family: 'Poppins', sans-serif  ;
+
+    h3 {
+        font-family: 'Poppins', sans-serif;
         font-weight: 800;
         font-size: 3rem;
         color: #FFFFFF;
         text-shadow: 2px 6px 2px rgba(0, 0, 0, 0.25);
     }
 }
-.parcerias{
+
+.parcerias {
     height: 25.813rem;
     display: grid;
     grid-row: 1;
-    h3{
+
+    h3 {
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
         color: #0876BE;
         font-size: 3rem;
         display: block;
     }
-    a{
+
+    a {
         float: left;
     }
 }
