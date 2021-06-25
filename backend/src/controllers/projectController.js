@@ -61,7 +61,10 @@ module.exports = {
         try{
             let {id} = req.body;
             let confirmation = await knex("projects").where({id}).delete();
-            return res.status(200).json({"message": confirmation});
+			if(confirmation > 1){
+				return res.status(200).json({"message": "Projetos deletados"});
+			}
+            return res.status(200).json({"message": "Projeto deletado"});
         } catch(err) {
             return res.status(405).json({"message": err.message})
         }

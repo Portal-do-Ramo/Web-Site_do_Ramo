@@ -9,12 +9,12 @@ module.exports = {
     },
 
     async create(req, res){
-        let { name, img, link } = req.body;
+        let { name, image, link } = req.body;
         try{
             await knex("sponsors").insert({
                 id: v4(), 
 				name,
-                img, 
+                image, 
                 link
             });
             return res.status(201).json({"message": "Patrocinador criado!!!"});
@@ -36,8 +36,11 @@ module.exports = {
 	async delete(req, res){
         let { sponsor } = req.body;
 		try {
-			let confirmation = await knex('sponsor').where({"name": sponsor}).delete();
-			return res.status(200).json({'message': confirmation});
+			let confirmation = await knex('sponsors').where({"name": sponsor}).delete();
+			if(confirmation > 1) {
+				return res.status(200).json({'message': "Patrocinadores deletados"});
+			}
+			return res.status(200).json({'message': "Patrocinador deletado"});
 		} catch(err) {
 			return res.status(405).json({"message": err.message});
 		}

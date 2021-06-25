@@ -9,10 +9,9 @@ module.exports = {
     },
 
     async create(req, res) {
+		let { name, crew, text } = req.body;
         try {
-            let { name, crew, text } = req.body;
-            let deposition = knex("depositions").insert({
-
+            let deposition = await knex("depositions").insert({
                 id: v4(),
                 name,
                 crew,
@@ -38,7 +37,10 @@ module.exports = {
         try {
             let { id } = req.params;
             let confirmation = await knex("depositions").where({ id }).delete();
-            return res.status(200).json({ "message": confirmation });
+			if(confirmation > 1){
+				return res.status(200).json({ "message": "Depoimentos deletados"});
+			}
+            return res.status(200).json({ "message": "Depoimento deletado"});
         } catch (err) {
             return res.status(405).json({ "message": err.message });
         }

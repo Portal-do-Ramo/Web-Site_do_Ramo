@@ -42,10 +42,13 @@ module.exports = {
     },
 
     async delete(req, res){
-        let {user} = req.body;
+        let {id} = req.body;
         try {
-            let confirmation = await knex("users").where({user}).delete();
-            return res.status(200).json({"message": confirmation});
+            let confirmation = await knex("users").where({id}).delete();
+			if(confirmation > 1) {
+				return res.status(200).json({"message": "Usuários deletados"});
+			}
+            return res.status(200).json({"message": "Usuário deletado"});
         } catch(err) {
             return res.status(405).json({"message": err.message});
         }

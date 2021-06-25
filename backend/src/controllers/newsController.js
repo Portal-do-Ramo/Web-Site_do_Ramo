@@ -15,7 +15,7 @@ module.exports = {
     },
 	
     async create(req,res) {
-		let { title, body, img} = req.body;
+		let { title, body, img, user_id} = req.body;
 
         try {
             await knex("news").insert({
@@ -23,7 +23,7 @@ module.exports = {
                 title,
                 body,
                 img,
-				user_id: v4() //teste
+				user_id
             });
             return res.status(201).json({"message": "Notícia criada"});
         } catch(err) {
@@ -45,10 +45,13 @@ module.exports = {
     async delete(req,res) {
 		try{
 			let {news} = req.body;   
-			let confirmation = await knex('news').where({"name": news}).delete();
-			return res.status(200).json({'message': confirmation});
+			let confirmation = await knex("news").where({"title": news}).delete();
+			if(confirmation > 1){
+				return res.status(200).json({"message": "Notícias deletadas"});
+			}
+			return res.status(200).json({"message": "Notícia deletada"});
 		} catch(err) {
-			return res.status(405).json({"message": err.message})
+			return res.status(405).json({"message": err.message});
 		}
     }
 

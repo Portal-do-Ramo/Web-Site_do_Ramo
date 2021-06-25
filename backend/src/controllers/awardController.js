@@ -2,7 +2,6 @@ const { v4 } = require("uuid");
 const knex = require("../database");
 const crewServices = require("../services/crewReferences");
 
-
 module.exports = {
 
     async index(req,res) { //
@@ -47,10 +46,13 @@ module.exports = {
     async delete(req,res) {
         let { award } = req.body;  
 		try{
-			let confirmation = await knex('awards').where({"name": award}).delete();
-			return res.status(200).json({'message': confirmation});
+			let confirmation = await knex("awards").where({"name": award}).delete();
+            if(confirmation > 1){
+                return res.status(200).json({"message": "Prêmios foram deletados"});
+            } 
+            return res.status(200).json({"message": "Prêmio foi deletado"});
 		} catch(err) {
-			return res.status(405).json({"message": err.message})
+			return res.status(405).json({"message": err.message});
 		}
     }
 
