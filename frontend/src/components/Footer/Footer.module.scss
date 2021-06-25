@@ -1,34 +1,57 @@
 .footer {
+  font-family: 'Poppins', sans-serif;
+  color: white;
   display: flex;
   justify-content: center;
   background-color: #0D5FAA;
+  height: 23.75rem;
+  padding-left: 3rem;
+  h1{
+    font-weight: 800;
+  }
+  p{
+    font-weight: 600;
+  }
 
   .ramo {
-    width: 100rem;
-    display: flex;
-
-    flex-wrap: wrap;
-
-    img {
-      width: auto;
-      height: 8rem;
+    width: 40%;
+    
+    img{
+      float: left;
+      height: 6rem;
     }
-
-    h1 {
-      margin-left: 5rem;
-      justify-content: end;
+    p{
+      margin-top: 1rem;
+      text-align: justify;
     }
-
-    p {
-      margin-left: 2rem;
-      display: inline-block;
-    }
+    
   }
 
   .equipes {
-    img {
-      width: auto;
-      height: 10rem;
+    width: 30%;
+    padding-left: 3.5rem;
+    table{
+      margin-top: 3rem;
+    }
+    img{
+      height: 3rem;
+      width: 3rem;
+      margin-left: 6rem;
+      margin-bottom: 1rem;
+     
+    }
+    
+  }
+  .info{
+    width: 30%;
+    h1{
+      margin-bottom: 1.5rem;
+    }
+    p{
+      margin-bottom: 1rem;
+    }
+    img{
+      margin-right: 1rem;
     }
   }
 }
