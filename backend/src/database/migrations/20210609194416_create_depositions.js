@@ -5,7 +5,7 @@ exports.up = knex => {
         table.string("name").notNullable();
         table.string("crew").notNullable();
         table.text("text").notNullable();
-        table.timestamp(true, true);
+        table.timestamps(true, true);
     });
 };
 
