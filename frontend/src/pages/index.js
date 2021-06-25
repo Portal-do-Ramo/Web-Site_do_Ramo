@@ -31,7 +31,8 @@ export default function Home() {
         </div>
         <div id={styles.main_container}>
           <img id={styles.icon} src='/seu_pai.svg' width={400} height={500}/>
-          <a href="#" id={styles.button}>
+          <a href="#" id={styles.button}> 
+            <p>Saiba mais</p>
             <Image src='/right-arrow.png' width={50} height={50}/>
           </a>
         </div>
