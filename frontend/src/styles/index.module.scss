@@ -140,18 +140,25 @@
 
 .parcerias {
     height: 26rem;
-    display: grid;
-    grid-row: 1;
+
 
     h3 {
+        padding-left: 13rem;
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
         color: #0876BE;
         font-size: 3rem;
-        display: block;
+        width: 100%;
     }
 
-    a {
-        float: left;
+    .images{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        img{
+            margin: 0 2rem;
+            height: 12rem;
+            width: 12rem;
+        }
     }
 }
