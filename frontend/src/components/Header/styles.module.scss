@@ -1,11 +1,14 @@
-  .headerContainer {
+.headerContainer {
   background-color: #0d5faa;
   display: flex;
   align-items: center;
   height: 6rem;
   padding-left: 1rem;
-  
-  .divRet{
+  .logo{
+    height: 5rem;
+  }
+
+  .divRet {
     box-sizing: border-box;
     height: 2rem;
     background-color: black;
@@ -59,6 +62,6 @@
   }
 }
 
-.border{
+.border {
   width: 100%;
 }

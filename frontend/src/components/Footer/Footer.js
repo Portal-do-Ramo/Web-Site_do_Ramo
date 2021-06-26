@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div className={styles.footer}>
       <div className={styles.ramo}>
-        <img src="/Ramo_Branco 2.png" alt="logo" />
+        <img src="/Ramo_logo.svg" alt="logo" />
         <h1>Ramo Estudantil <br/> IEEE CEFET-RJ</h1>
         
         <p>

@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <>
       <header className={styles.headerContainer}>
-        <img src="/Ramo_Branco 2.png" alt="logo" className={styles.logo} />
+        <img src="/Ramo_logo.svg" alt="logo" className={styles.logo} />
 
         <ul>
           <li>Ramo Estudantil Cefet-RJ</li>
