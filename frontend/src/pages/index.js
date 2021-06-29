@@ -1,15 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
+
 import "react-multi-carousel/lib/styles.css";
 
 import styles from "../styles/index.module.scss";
 
-export default function Home() {
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
+export default function Home() {
   return (
     <div id={styles.page_container}>
-      
       <div id={styles.text_container}>
         <div id={styles.ourStory}>
           <h1>Nossa História</h1>
@@ -99,8 +118,24 @@ export default function Home() {
       <section className={styles.parcerias}>
         <h3>Parcerias</h3>
 
-        <div className={styles.images}>
-          <div>
+        <div className={styles.dimensionamento}>
+        <Carousel responsive={responsive} className={styles.images}
+        additionalTransfrom={0}
+        arrows
+        autoPlaySpeed={3000}
+        autoPlay
+        centerMode={true}
+        draggable
+        focusOnSelect={true}
+        infinite
+        keyBoardControl
+        minimumTouchDrag={80}
+        renderButtonGroupOutside={false}
+        responsive={responsive}
+        showDots={false}
+        slidesToSlide={1}
+        swipeable>
+        <div>
             <a>
               <img src="/seu_pai.svg" />
             </a>
@@ -130,8 +165,11 @@ export default function Home() {
               <img src="/seu_pai.svg" />
             </a>
           </div>
+          
+        </Carousel>
         </div>
       </section>
+      ;
     </div>
   );
 }
