@@ -1,5 +1,6 @@
 import styles from './styles.module.scss'
 import Link from 'next/link'
+import { NavLink } from "../NavLink";
 
 export default function Header() {
   return (
@@ -13,7 +14,7 @@ export default function Header() {
         </ul>
         <div className={styles.linkContainer}>
           <div>
-            <Link href="">
+            <Link  href="">
               <a>Sobre</a>
             </Link>
           </div>
