@@ -1,11 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import styles from "../styles/index.module.scss";
 
 export default function Home() {
+
   return (
     <div id={styles.page_container}>
+      
       <div id={styles.text_container}>
         <div id={styles.ourStory}>
           <h1>Nossa História</h1>
@@ -26,7 +30,7 @@ export default function Home() {
             sed hendrerit cursus. Laoreet maecenas aenean facilisi rhoncus. A
             mi, faucibus eu tortor iaculis fringilla nullam sed platea. Et arcu
             sed auctor vel. Quis sagittis, eros dolor facilisi. Mi massa urna,
-            commodo in dignissim. Varius neque quam in{" "}
+            commodo in dignissim. Varius neque quam in.{" "}
           </p>
         </div>
         <div id={styles.main_container}>
@@ -37,7 +41,7 @@ export default function Home() {
           </a>
         </div>
       </div>
-
+      <img src="/Background.png" width="100%" />
       <div className={styles.crew_content}>
         <h3>Equipes</h3>
         <section className={styles.logo_content}>
@@ -91,6 +95,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <img src="/Background.png" width="100%" className={styles.rotate} />
       <section className={styles.parcerias}>
         <h3>Parcerias</h3>
 
@@ -98,37 +103,31 @@ export default function Home() {
           <div>
             <a>
               <img src="/seu_pai.svg" />
-              
             </a>
           </div>
           <div>
             <a>
               <img src="/seu_pai.svg" />
-              
             </a>
           </div>
           <div>
             <a>
               <img src="/seu_pai.svg" />
-              
             </a>
           </div>
           <div>
             <a>
               <img src="/seu_pai.svg" />
-              
             </a>
           </div>
           <div>
             <a>
               <img src="/seu_pai.svg" />
-              
             </a>
           </div>
           <div>
             <a>
               <img src="/seu_pai.svg" />
-              
             </a>
           </div>
         </div>
