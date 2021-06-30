@@ -6,6 +6,8 @@ import "react-multi-carousel/lib/styles.css";
 import styles from "../styles/equipes.module.scss";
 
 import { Projetos } from "../utils/projetos";
+import Modal from "../utils/modal";
+import { useState } from "react";
 
 const responsive = {
   superLargeDesktop: {
@@ -35,6 +37,7 @@ const projetos= [
 ]
 
 export default function Equipes() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <div className={styles.descrição}>
@@ -122,6 +125,7 @@ export default function Equipes() {
         <div className={styles.projetosatuais}>
           <h1>Projetos Finalizados</h1>
           <Projetos projetos={projetos}/>
+          
         </div>
         <div className={styles.premios}>
           <h1>Prêmios</h1>
@@ -130,7 +134,7 @@ export default function Equipes() {
           <img src="/Prem.svg"/>
           <p>1º Lugar Exposup 2018</p>
         </div>
-
+        
         </div>
     </>
   );
