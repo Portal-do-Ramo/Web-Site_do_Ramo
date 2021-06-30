@@ -12,6 +12,8 @@ const newsController = require("./controllers/newsController");
 const sponsorController = require("./controllers/sponsorController");
 const roleController = require("./controllers/roleController");
 
+const auth = require('./middleware/auth')
+
 router
     .get("/", commonController.index)
     .get("/awards", awardController.index)
@@ -42,12 +44,13 @@ router
 	
     .post("/award", awardController.create)
 	.post("/crew", crewController.create)
-	.post("/deposition", depositionController.create)
-	.post("/news", newsController.create)
-	.post("/project", projectController.create)
-	.post("/role", roleController.create)
-	.post("/sponsor", sponsorController.create)
-    .post("/user", userController.create)
+	.post("/deposition", auth,depositionController.create)
+	.post("/news", auth,newsController.create)
+	.post("/project", auth,projectController.create)
+	.post("/role", auth,roleController.create)
+	.post("/sponsor", auth,sponsorController.create)
+    .post("/user", auth, userController.create)
+	.post("/login", userController.login)
 
 
     .delete("/award", awardController.delete)
