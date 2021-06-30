@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Carousel from "react-multi-carousel";
+import Modal from "./modal";
 
 import "react-multi-carousel/lib/styles.css";
 
@@ -22,6 +24,7 @@ const responsive = {
 };
 
 export function Projetos(props) {
+  const [showModal, setShowModal] = useState(false);
   const projects = props.projetos;
   return(
     <Carousel
@@ -43,9 +46,21 @@ export function Projetos(props) {
     <div key={projetos.id}>
       <img src={projetos.img} />
       <h1>{projetos.title}</h1>
-      <a href={projetos.link}>
+      <button href={projetos.link} onClick = {() => setShowModal(true)}>
         <p>Saiba Mais</p>
-      </a>
+      </button>
+      /*<Modal
+      onClose={()=> setShowModal(false)}
+      show={showModal}
+      >
+         <div>
+            <img src={projetos.src} />
+            <p>{projetos.description}</p>
+          </div>
+          <div>
+            <p>{projetos.members}</p>
+          </div>
+      </Modal>*/
     </div>
     ))}
     </Carousel>

@@ -63,7 +63,7 @@ export default function Home() {
       <img src="/Background.png" width="100%" />
 
       <div className={styles.crew_content}>
-      <h3>Equipes</h3>
+        <h3>Equipes</h3>
         <section className={styles.logo_content}>
           <div className={styles.cards}>
             <a href="#">
@@ -120,7 +120,61 @@ export default function Home() {
         <h3>Parcerias</h3>
 
         <div className={styles.dimensionamento}>
-    
+          <Carousel
+            className={styles.carousel}
+            responsive={responsive}
+            autoPlay
+            autoPlaySpeed={2250}
+            className={styles.carousel}
+            additionalTransfrom={0}
+            arrows
+            centerMode={true}
+            draggable
+            infinite
+            keyBoardControl
+            minimumTouchDrag={80}
+            renderButtonGroupOutside={false}
+            responsive={responsive}
+            showDots={false}
+            slidesToSlide={1}
+            swipeable
+          >
+            <div>
+              <a>
+                <img src="/seu_pai.svg" />
+              </a>
+            </div>
+            <div>
+              <a>
+                <img src="/seu_pai.svg" />
+              </a>
+            </div>
+            <div>
+              <a>
+                <img src="/seu_pai.svg" />
+              </a>
+            </div>
+            <div>
+              <a>
+                <img src="/seu_pai.svg" />
+              </a>
+            </div>
+            <div>
+              <a>
+                <img src="/seu_pai.svg" />
+              </a>
+            </div>
+            <div>
+              <a>
+                <img src="/seu_pai.svg" />
+              </a>
+            </div>
+            <div>
+              <a>
+                <img src="/seu_pai.svg" />
+              </a>
+            </div>
+          </Carousel>
         </div>
       </section>
     </div>
