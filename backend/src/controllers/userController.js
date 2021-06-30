@@ -1,5 +1,6 @@
 const knex = require('../database');
 const {v4} = require('uuid');
+const authenticate = require('../services/authentication');
 
 module.exports = {
     
@@ -10,6 +11,7 @@ module.exports = {
 
     async create(req, res){
         const {name, email, password, role} = req.body;
+		
     
         try {
             await knex('users').insert({
@@ -19,10 +21,11 @@ module.exports = {
                 password,
                 role
             });
+
             return res
                 .status(201)
                 .json({
-                   "message": "Usuário Cadastrado"
+                   "message": "Usuário Cadastrado", 
                 });
         } catch (err) {
             return res
@@ -52,5 +55,30 @@ module.exports = {
         } catch(err) {
             return res.status(405).json({"message": err.message});
         }
-    }
+    },
+
+	async login(req, res){
+		const {email, password} = req.body;
+
+        try {
+            const user = await knex("users").where({email}).first();
+			if(!user.email) { 	// Verificar os status code.
+				return res.status(401).json({"message": "Email não existe"});
+			}
+			if(password !== user.password){ // implementar lógica do bcrypt
+				return res.status(401).json({"message": "Senha inválida"});
+			}
+			
+			const token = await authenticate(user.name, email, user.role); //ver se precisa de await 
+
+			return res
+				.status(200)
+                .header('auth-token', token) // ler sobre o método
+				.send("Usuario logado");
+
+        } catch(err) {
+            return res.json({"message": err.message});
+		}
+		
+	}
 }
