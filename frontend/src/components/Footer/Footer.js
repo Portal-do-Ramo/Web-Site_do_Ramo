@@ -2,14 +2,16 @@ import styles from "./Footer.module.scss";
 
 export default function Footer() {
   return (
-    <>
 
       <footer className={styles.footer}>
+
         <div className={styles.ramo}>
-          <img src="/Ramo_logo.svg" alt="logo" />
-          <h1>
-            Ramo Estudantil <br /> IEEE CEFET-RJ
-          </h1>
+          <div id="wrapper">
+            <img src="/Ramo_logo.svg" alt="logo" />
+            <h1>
+              Ramo Estudantil <br /> IEEE CEFET-RJ
+            </h1>
+        </div>
 
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio
@@ -24,6 +26,7 @@ export default function Footer() {
             tellus.
           </p>
         </div>
+
         <div className={styles.equipes}>
           <table>
             <tr>
@@ -44,6 +47,7 @@ export default function Footer() {
             </tr>
           </table>
         </div>
+
         <div className={styles.info}>
           <h1>Contatos </h1>
           <p>Av. Maracanã – Maracanã, Rio de Janeiro – RJ</p>
@@ -65,7 +69,5 @@ export default function Footer() {
           </p>
         </div>
       </footer>
-      
-    </>
   );
 }
