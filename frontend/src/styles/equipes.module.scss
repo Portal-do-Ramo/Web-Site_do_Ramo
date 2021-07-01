@@ -2,7 +2,7 @@
   margin-top: 3rem;
   width: auto;
   font-family: "Poppins";
-  
+
   .equipes {
     height: 48.2rem;
     display: flex;
@@ -29,6 +29,17 @@
       width: 55rem;
       background-color: var(--azul-ramo);
       border-radius: 40px 0 0 40px;
+
+      .atual {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      .sem {
+        transform: scale(0.5);
+        transition: transform 300ms;
+        opacity: 0.5;
+      }
+
       h2 {
         text-align: center;
         margin-top: 1rem;

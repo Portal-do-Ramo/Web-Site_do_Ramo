@@ -2,8 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 
+
 import "react-multi-carousel/lib/styles.css";
 import styles from "../styles/equipes.module.scss";
+
 
 import { Projetos } from "../utils/projetos";
 
@@ -68,8 +70,38 @@ const projetos = [
   },
 ];
 
+const equipes = [
+  {
+    id: 1,
+    title: "Wolfbyte",
+    img: "Wolfbyte_logo.svg",
+    description: "Wolfbyte text",
+  },
+  {
+    id: 2,
+    title: "Wolfpower",
+    img: "Wolfpower_logo.svg",
+    description: "wolfpower text",
+  },
+  {
+    id: 3,
+    title: "Wolfbotz",
+    img: "Wolfbotz_logo.svg",
+    description: "Wolfbotz text",
+  },
+  { id: 4, title: "WIE", img: "WIE_logo.svg", description: "WIE text" },
+  {
+    id: 5,
+    title: "Marketing",
+    img: "Marketing_logo.svg",
+    description: "Marketing text",
+  },
+];
+
 export default function Equipes() {
-  const [showModal, setShowModal] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
+  
+
   return (
     <div className={styles.all}>
       <div className={styles.equipes}>
@@ -99,7 +131,7 @@ export default function Equipes() {
         </div>
         <div className={styles.allcarousel}>
           <h2>Escolha sua equipe!</h2>
-          <Carousel
+          {<Carousel
             responsive={responsive}
             className={styles.carousel}
             additionalTransfrom={0}
@@ -114,43 +146,14 @@ export default function Equipes() {
             showDots={false}
             slidesToSlide={1}
             swipeable
+            beforeChange={( current, next) => setImageIndex(next)}
           >
-            <div>
-              <a>
-                <img src="/Marketing_logo.svg" />
-              </a>
-            </div>
-            <div>
-              <a>
-                <img src="/Socialwolf_logo.svg" />
-              </a>
-            </div>
-            <div>
-              <a>
-                <img src="/Rocketwolf_logo.svg" />
-              </a>
-            </div>
-            <div>
-              <a>
-                <img src="/Wolfbotz_logo.svg" />
-              </a>
-            </div>
-            <div>
-              <a>
-                <img src="/Wolfpower_logo.svg" />
-              </a>
-            </div>
-            <div>
-              <a>
-                <img src="/Wolfbyte_logo.svg" />
-              </a>
-            </div>
-            <div>
-              <a>
-                <img src="/WIE_logo.svg" />
-              </a>
-            </div>
-          </Carousel>
+            {equipes.map((equipes, index) => (
+              <div key={equipes.index} className={index == imageIndex ? styles.atual : styles.sem}>
+                <img src={equipes.img} />
+              </div>
+            ))}
+          </Carousel>}
           <h2>WOLFBYTE</h2>
         </div>
       </div>
@@ -171,9 +174,9 @@ export default function Equipes() {
           slidesToSlide={1}
           swipeable
         >
-           {projetos.map((projetos) => (
-          <Projetos projetos={projetos} />
-           ))}
+          {projetos.map((projetos) => (
+            <Projetos projetos={projetos} />
+          ))}
         </Carousel>
       </div>
       <div className={styles.projetosatuais}>
@@ -193,9 +196,9 @@ export default function Equipes() {
           slidesToSlide={1}
           swipeable
         >
-           {projetos.map((projetos) => (
-          <Projetos projetos={projetos} />
-           ))}
+          {projetos.map((projetos) => (
+            <Projetos projetos={projetos} />
+          ))}
         </Carousel>
       </div>
       <div className={styles.premios}>
