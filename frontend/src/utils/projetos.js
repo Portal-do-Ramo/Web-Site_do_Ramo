@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Carousel from "react-multi-carousel";
-import Modal from "./modal";
+import Modal from "../components/Modal/Modal";
+import styles from "./projetos.module.scss";
 
 import "react-multi-carousel/lib/styles.css";
 
@@ -25,46 +26,42 @@ const responsive = {
 
 export function Projetos(props) {
   const [showModal, setShowModal] = useState(false);
-  const projects = props.projetos;
-  return(
-    <Carousel
-      responsive={responsive}
-      additionalTransfrom={0}
-      arrows
-      centerMode={true}
-      draggable
-      infinite
-      keyBoardControl
-      minimumTouchDrag={80}
-      renderButtonGroupOutside={false}
-      responsive={responsive}
-      showDots={false}
-      slidesToSlide={1}
-      swipeable
-    >
-    {projects.map((projetos) => (
-    <div key={projetos.id}>
-      <img src={projetos.img} />
-      <h1>{projetos.title}</h1>
-      <button href={projetos.link} onClick = {() => setShowModal(true)}>
-        <p>Saiba Mais</p>
-      </button>
-      /*<Modal
-      onClose={()=> setShowModal(false)}
-      show={showModal}
-      >
-         <div>
-            <img src={projetos.src} />
-            <p>{projetos.description}</p>
-          </div>
-          <div>
-            <p>{projetos.members}</p>
-          </div>
-      </Modal>*/
-    </div>
-    ))}
-    </Carousel>
+  const [actualId, setActualId] = useState("");
+  const projetos = props.projetos;
+  function isID (projetos){
+    return projetos.id == actualId;
+  }
+  function englobe(projects){
+    setActualId(projects.id);
+    setShowModal(true);
     
-    );
+  }
   
+  return (
+      
+     
+        <div key={projetos.id}>
+          
+          <img src={projetos.img} />
+          <h1>{projetos.title}</h1>
+          <button href={projetos.link} onClick={englobe}>
+            <p>Saiba Mais</p>
+          </button>
+          <Modal onClose={() => setShowModal(false)} show={showModal}>
+
+            <div className={styles.modal} key={projetos.id}>
+              <div className={styles.projeto}>
+                <h1>{projetos.title}</h1>
+                <img src={projetos.src} />
+                <p>{projetos.description}</p>
+              </div>
+              <div className={styles.membros}>
+                <p>{projetos.members}</p>
+              </div>
+            </div>
+          </Modal>
+        </div>
+      
+    
+  );
 }
