@@ -1,0 +1,45 @@
+.all {
+  margin-top: 3rem;
+  width: auto;
+  font-family: "Poppins";
+  
+  .equipes {
+    height: 48.2rem;
+    display: flex;
+
+    .descrição {
+      margin-left: 1rem;
+      h1 {
+        font-weight: 700;
+        color: var(--azul-ramo);
+        font-size: 48px;
+      }
+      p {
+        font-weight: 500;
+        font-size: 15px;
+        color: var(--azul-ramo);
+        width: auto;
+        text-align: justify;
+      }
+    }
+    .allcarousel {
+      height: 34rem;
+      margin-top: 3.4rem;
+      margin-left: 5rem;
+      width: 55rem;
+      background-color: var(--azul-ramo);
+      border-radius: 40px 0 0 40px;
+      h2 {
+        text-align: center;
+        margin-top: 1rem;
+        font-weight: 700;
+        font-size: 40px;
+        color: white;
+      }
+      img {
+        width: 12rem;
+        height: 20rem;
+      }
+    }
+  }
+}

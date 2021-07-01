@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 import styles from "../styles/equipes.module.scss";
 
 import { Projetos } from "../utils/projetos";
-import Modal from "../utils/modal";
+
 import { useState } from "react";
 
 const responsive = {
@@ -29,39 +29,74 @@ const responsive = {
   },
 };
 
-const projetos= [
-  {id: 1,title: 'IA/Bot', img:"/Robo.svg", link:"" },
-  {id: 2,title: 'Jogos', img:"/Jogo.svg", link:"" },
-  {id: 3,title: 'Site do Ramo', img:"/Tela.svg", link:"" },
-  {id: 4,title: 'Console', img:"/Jogo.svg", link:"" },
-]
+const projetos = [
+  {
+    id: 1,
+    title: "IA/Bot",
+    img: "/Robo.svg",
+    link: "",
+    src: "seu_pai.svg",
+    description: "Projeto brabo",
+    members: "Natan , Arthur , Vinicius , Thiago",
+  },
+  {
+    id: 2,
+    title: "Jogos",
+    img: "/Jogo.svg",
+    link: "",
+    src: "seu_pai.svg",
+    description: "Projeto brabo",
+    members: "Natan , Arthur , Vinicius , Thiago",
+  },
+  {
+    id: 3,
+    title: "Site do Ramo",
+    img: "/Tela.svg",
+    link: "",
+    src: "seu_pai.svg",
+    description: "Projeto brabo",
+    members: "Natan , Arthur , Vinicius , Thiago",
+  },
+  {
+    id: 4,
+    title: "Console",
+    img: "/Jogo.svg",
+    link: "",
+    src: "seu_pai.svg",
+    description: "Projeto brabo",
+    members: "Natan , Arthur , Vinicius , Thiago",
+  },
+];
 
 export default function Equipes() {
   const [showModal, setShowModal] = useState(false);
   return (
-    <>
-      <div className={styles.descrição}>
-        <h1>WolfByte</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor,
-          eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis.
-          Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac
-          viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa
-          netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus
-          ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing
-          facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna
-          elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra
-          consectetur pulvinar auctor. Consequat, quis est fermentum parturient
-          proin tristique augue turpis. A amet, eleifend libero tincidunt at.
-          Praesent vestibulum sollicitudin ultrices viverra.
-          <br />
-          At mauris in amet, vitae aliquam consectetur tortor. Aliquam ultricies
-          purus elit, sem pharetra. Ornare netus tempor ornare dolor
-          scelerisque. Viverra ultrices vitae, consequat in. Adipiscing et,
-          nulla non faucibus metus consequat feugiat mollis faucibus. Commodo
-          semper quam sed diam. Tortor urna neque, in nam nulla scelerisque in
-          enim.
-        </p>
+    <div className={styles.all}>
+      <div className={styles.equipes}>
+        <div className={styles.descrição}>
+          <h1>WolfByte</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa
+            tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut
+            iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac
+            gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris,
+            vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi,
+            mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt
+            viverra adipiscing facilisis sed luctus. Odio sed elit, duis
+            vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem.
+            Malesuada viverra consectetur pulvinar auctor. Consequat, quis est
+            fermentum parturient proin tristique augue turpis. A amet, eleifend
+            libero tincidunt at. Praesent vestibulum sollicitudin ultrices
+            viverra.
+            <br />
+            At mauris in amet, vitae aliquam consectetur tortor. Aliquam
+            ultricies purus elit, sem pharetra. Ornare netus tempor ornare dolor
+            scelerisque. Viverra ultrices vitae, consequat in. Adipiscing et,
+            nulla non faucibus metus consequat feugiat mollis faucibus. Commodo
+            semper quam sed diam. Tortor urna neque, in nam nulla scelerisque in
+            enim.
+          </p>
+        </div>
         <div className={styles.allcarousel}>
           <h2>Escolha sua equipe!</h2>
           <Carousel
@@ -118,24 +153,58 @@ export default function Equipes() {
           </Carousel>
           <h2>WOLFBYTE</h2>
         </div>
-        <div className={styles.projetosatuais}>
-          <h1>Projetos Atuais</h1>
-          <Projetos projetos={projetos}/>
-        </div>
-        <div className={styles.projetosatuais}>
-          <h1>Projetos Finalizados</h1>
-          <Projetos projetos={projetos}/>
-          
-        </div>
-        <div className={styles.premios}>
-          <h1>Prêmios</h1>
-          <img src="/Prem.svg"/>
-          <p>1º Lugar Exposup 2019</p>
-          <img src="/Prem.svg"/>
-          <p>1º Lugar Exposup 2018</p>
-        </div>
-        
-        </div>
-    </>
+      </div>
+      <div className={styles.projetosatuais}>
+        <h1>Projetos Atuais</h1>
+        <Carousel
+          responsive={responsive}
+          additionalTransfrom={0}
+          arrows
+          centerMode={true}
+          draggable
+          infinite
+          keyBoardControl
+          minimumTouchDrag={80}
+          renderButtonGroupOutside={false}
+          responsive={responsive}
+          showDots={false}
+          slidesToSlide={1}
+          swipeable
+        >
+           {projetos.map((projetos) => (
+          <Projetos projetos={projetos} />
+           ))}
+        </Carousel>
+      </div>
+      <div className={styles.projetosatuais}>
+        <h1>Projetos Finalizados</h1>
+        <Carousel
+          responsive={responsive}
+          additionalTransfrom={0}
+          arrows
+          centerMode={true}
+          draggable
+          infinite
+          keyBoardControl
+          minimumTouchDrag={80}
+          renderButtonGroupOutside={false}
+          responsive={responsive}
+          showDots={false}
+          slidesToSlide={1}
+          swipeable
+        >
+           {projetos.map((projetos) => (
+          <Projetos projetos={projetos} />
+           ))}
+        </Carousel>
+      </div>
+      <div className={styles.premios}>
+        <h1>Prêmios</h1>
+        <img src="/Prem.svg" />
+        <p>1º Lugar Exposup 2019</p>
+        <img src="/Prem.svg" />
+        <p>1º Lugar Exposup 2018</p>
+      </div>
+    </div>
   );
 }
