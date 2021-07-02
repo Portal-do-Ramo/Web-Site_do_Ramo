@@ -26,22 +26,14 @@ const responsive = {
 
 export function Projetos(props) {
   const [showModal, setShowModal] = useState(false);
-  const [actualId, setActualId] = useState("");
   const projetos = props.projetos;
 
-  function isID(projetos) {
-    return projetos.id == actualId;
-  }
-  function englobe(projects) {
-    setActualId(projects.id);
-    setShowModal(true);
-  }
 
   return (
     <div key={projetos.id}>
       <img src={projetos.img} />
       <h1>{projetos.title}</h1>
-      <button href={projetos.link} onClick={englobe}>
+      <button href={projetos.link} onClick={()=> setShowModal(true)}>
         <p>Saiba Mais</p>
       </button>
       <Modal onClose={() => setShowModal(false)} show={showModal}>
