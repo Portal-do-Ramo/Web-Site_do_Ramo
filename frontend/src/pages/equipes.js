@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
-
+import Slider from "react-slick";
 
 import "react-multi-carousel/lib/styles.css";
 import styles from "../styles/equipes.module.scss";
 
-
 import { Projetos } from "../utils/projetos";
 
 import { useState } from "react";
+import next from "next";
 
 const responsive = {
   superLargeDesktop: {
@@ -39,7 +39,13 @@ const projetos = [
     link: "",
     src: "seu_pai.svg",
     description: "Projeto brabo",
-    members: "Natan , Arthur , Vinicius , Thiago",
+    members: [
+      {id: 1, name: "Julio", img:"Jogo.svg"},
+      {id: 2, name: "Arthur", img:"Jogo.svg"},
+      {id: 3, name: "Vinicius", img:"Jogo.svg"},
+      {id: 4, name: "Thiago", img:"Jogo.svg"},
+      {id: 5, name: "Gabriel", img:"Jogo.svg"},
+    ]
   },
   {
     id: 2,
@@ -48,7 +54,13 @@ const projetos = [
     link: "",
     src: "seu_pai.svg",
     description: "Projeto brabo",
-    members: "Natan , Arthur , Vinicius , Thiago",
+    members: [
+      {id: 1, name: "Julio", img:"Jogo.svg"},
+      {id: 2, name: "Arthur", img:"Jogo.svg"},
+      {id: 3, name: "Vinicius", img:"Jogo.svg"},
+      {id: 4, name: "Thiago", img:"Jogo.svg"},
+      {id: 5, name: "Gabriel", img:"Jogo.svg"},
+    ]
   },
   {
     id: 3,
@@ -57,7 +69,13 @@ const projetos = [
     link: "",
     src: "seu_pai.svg",
     description: "Projeto brabo",
-    members: "Natan , Arthur , Vinicius , Thiago",
+    members: [
+      {id: 1, name: "Julio", img:"Jogo.svg"},
+      {id: 2, name: "Arthur", img:"Jogo.svg"},
+      {id: 3, name: "Vinicius", img:"Jogo.svg"},
+      {id: 4, name: "Thiago", img:"Jogo.svg"},
+      {id: 5, name: "Gabriel", img:"Jogo.svg"},
+    ]
   },
   {
     id: 4,
@@ -66,7 +84,15 @@ const projetos = [
     link: "",
     src: "seu_pai.svg",
     description: "Projeto brabo",
-    members: "Natan , Arthur , Vinicius , Thiago",
+    members: [
+      {id: 1, name: "Julio", img:"Jogo.svg"},
+      {id: 2, name: "Arthur", img:"Jogo.svg"},
+      {id: 3, name: "Vinicius", img:"Jogo.svg"},
+      {id: 4, name: "Thiago", img:"Jogo.svg"},
+      {id: 5, name: "Gabriel", img:"Jogo.svg"},
+    ]
+      
+    ,
   },
 ];
 
@@ -99,8 +125,15 @@ const equipes = [
 ];
 
 export default function Equipes() {
-  const [imageIndex, setImageIndex] = useState(0);
+  const [index, setIndex] = useState(0);
   
+  function isEqual(idx, index) {
+    if (idx == index) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <div className={styles.all}>
@@ -131,12 +164,12 @@ export default function Equipes() {
         </div>
         <div className={styles.allcarousel}>
           <h2>Escolha sua equipe!</h2>
-          {<Carousel
+
+          <Carousel
             responsive={responsive}
-            className={styles.carousel}
             additionalTransfrom={0}
             arrows
-            centerMode={true}
+            centerMode
             draggable
             infinite
             keyBoardControl
@@ -146,15 +179,19 @@ export default function Equipes() {
             showDots={false}
             slidesToSlide={1}
             swipeable
-            beforeChange={( current, next) => setImageIndex(next)}
+            afterChange={(current, next) => { setTimeout(() => setIndex(next), 10);}}
           >
-            {equipes.map((equipes, index) => (
-              <div key={equipes.index} className={index == imageIndex ? styles.atual : styles.sem}>
-                <img src={equipes.img} />
+            {equipes.map((equipes, idx) => (
+              <div>
+                <div
+                  className={idx === index ? styles.atual : styles.sem}
+                >
+                  <img src={equipes.img} />
+                </div>
+                {idx === index ? <h2>{equipes.title}</h2> : null}
               </div>
             ))}
-          </Carousel>}
-          <h2>WOLFBYTE</h2>
+          </Carousel>
         </div>
       </div>
       <div className={styles.projetosatuais}>
