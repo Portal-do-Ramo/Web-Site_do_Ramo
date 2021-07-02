@@ -28,40 +28,40 @@ export function Projetos(props) {
   const [showModal, setShowModal] = useState(false);
   const [actualId, setActualId] = useState("");
   const projetos = props.projetos;
-  function isID (projetos){
+
+  function isID(projetos) {
     return projetos.id == actualId;
   }
-  function englobe(projects){
+  function englobe(projects) {
     setActualId(projects.id);
     setShowModal(true);
-    
   }
-  
-  return (
-      
-     
-        <div key={projetos.id}>
-          
-          <img src={projetos.img} />
-          <h1>{projetos.title}</h1>
-          <button href={projetos.link} onClick={englobe}>
-            <p>Saiba Mais</p>
-          </button>
-          <Modal onClose={() => setShowModal(false)} show={showModal}>
 
-            <div className={styles.modal} key={projetos.id}>
-              <div className={styles.projeto}>
-                <h1>{projetos.title}</h1>
-                <img src={projetos.src} />
-                <p>{projetos.description}</p>
-              </div>
-              <div className={styles.membros}>
-                <p>{projetos.members}</p>
+  return (
+    <div key={projetos.id}>
+      <img src={projetos.img} />
+      <h1>{projetos.title}</h1>
+      <button href={projetos.link} onClick={englobe}>
+        <p>Saiba Mais</p>
+      </button>
+      <Modal onClose={() => setShowModal(false)} show={showModal}>
+        <div className={styles.modal} key={projetos.id}>
+          <div className={styles.projeto}>
+            <h1>{projetos.title}</h1>
+            <img src={projetos.src} />
+            <p>{projetos.description}</p>
+          </div>
+
+          {projetos.members.map((members) => (
+            <div className={styles.membros}>
+              <div className={styles.gridItem}>
+                <img src={members.img} />
+                <p>{members.name}</p>
               </div>
             </div>
-          </Modal>
+          ))}
         </div>
-      
-    
+      </Modal>
+    </div>
   );
 }

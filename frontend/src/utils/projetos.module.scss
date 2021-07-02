@@ -1,6 +1,17 @@
-.modal{
-  img{
-    height: 20rem;
-    width: 20rem;
+.modal {
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  .projeto {
+    text-align: center;
+  }
+  .membros {
+    
+    .gridItem {
+      display: flex;
+    }
+    img {
+      width: 6rem;
+      height: 6rem;
+    }
   }
 }

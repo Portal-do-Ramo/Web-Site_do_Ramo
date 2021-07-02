@@ -11,10 +11,14 @@
   align-items: center;
   .body{
    
-    background-color: blue;
+    background-color: var(--azul-ramo);
     width: 60rem;
     height: 40rem;
     border-radius: 15px;
     padding: 15px;
+    img{
+      height: 20rem;
+      width: 20rem;
+    }
   }
 }
