@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import Carousel from "react-multi-carousel";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import "react-multi-carousel/lib/styles.css";
@@ -9,27 +11,8 @@ import styles from "../styles/equipes.module.scss";
 import { Projetos } from "../utils/projetos";
 
 import { useState } from "react";
-import next from "next";
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+
 
 const projetos = [
   {
@@ -40,12 +23,12 @@ const projetos = [
     src: "seu_pai.svg",
     description: "Projeto brabo",
     members: [
-      {id: 1, name: "Julio", img:"Jogo.svg"},
-      {id: 2, name: "Arthur", img:"Jogo.svg"},
-      {id: 3, name: "Vinicius", img:"Jogo.svg"},
-      {id: 4, name: "Thiago", img:"Jogo.svg"},
-      {id: 5, name: "Gabriel", img:"Jogo.svg"},
-    ]
+      { id: 1, name: "Julio", img: "Jogo.svg" },
+      { id: 2, name: "Arthur", img: "Jogo.svg" },
+      { id: 3, name: "Vinicius", img: "Jogo.svg" },
+      { id: 4, name: "Thiago", img: "Jogo.svg" },
+      { id: 5, name: "Gabriel", img: "Jogo.svg" },
+    ],
   },
   {
     id: 2,
@@ -55,12 +38,12 @@ const projetos = [
     src: "seu_pai.svg",
     description: "Projeto brabo",
     members: [
-      {id: 1, name: "Julio", img:"Jogo.svg"},
-      {id: 2, name: "Arthur", img:"Jogo.svg"},
-      {id: 3, name: "Vinicius", img:"Jogo.svg"},
-      {id: 4, name: "Thiago", img:"Jogo.svg"},
-      {id: 5, name: "Gabriel", img:"Jogo.svg"},
-    ]
+      { id: 1, name: "Julio", img: "Jogo.svg" },
+      { id: 2, name: "Arthur", img: "Jogo.svg" },
+      { id: 3, name: "Vinicius", img: "Jogo.svg" },
+      { id: 4, name: "Thiago", img: "Jogo.svg" },
+      { id: 5, name: "Gabriel", img: "Jogo.svg" },
+    ],
   },
   {
     id: 3,
@@ -70,12 +53,12 @@ const projetos = [
     src: "seu_pai.svg",
     description: "Projeto brabo",
     members: [
-      {id: 1, name: "Julio", img:"Jogo.svg"},
-      {id: 2, name: "Arthur", img:"Jogo.svg"},
-      {id: 3, name: "Vinicius", img:"Jogo.svg"},
-      {id: 4, name: "Thiago", img:"Jogo.svg"},
-      {id: 5, name: "Gabriel", img:"Jogo.svg"},
-    ]
+      { id: 1, name: "Julio", img: "Jogo.svg" },
+      { id: 2, name: "Arthur", img: "Jogo.svg" },
+      { id: 3, name: "Vinicius", img: "Jogo.svg" },
+      { id: 4, name: "Thiago", img: "Jogo.svg" },
+      { id: 5, name: "Gabriel", img: "Jogo.svg" },
+    ],
   },
   {
     id: 4,
@@ -85,14 +68,12 @@ const projetos = [
     src: "seu_pai.svg",
     description: "Projeto brabo",
     members: [
-      {id: 1, name: "Julio", img:"Jogo.svg"},
-      {id: 2, name: "Arthur", img:"Jogo.svg"},
-      {id: 3, name: "Vinicius", img:"Jogo.svg"},
-      {id: 4, name: "Thiago", img:"Jogo.svg"},
-      {id: 5, name: "Gabriel", img:"Jogo.svg"},
-    ]
-      
-    ,
+      { id: 1, name: "Julio", img: "Jogo.svg" },
+      { id: 2, name: "Arthur", img: "Jogo.svg" },
+      { id: 3, name: "Vinicius", img: "Jogo.svg" },
+      { id: 4, name: "Thiago", img: "Jogo.svg" },
+      { id: 5, name: "Gabriel", img: "Jogo.svg" },
+    ],
   },
 ];
 
@@ -125,118 +106,102 @@ const equipes = [
 ];
 
 export default function Equipes() {
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className={styles.next} onClick={onClick} >
+        <img src="/Vector (1).svg" />
+      </div>
+    );
+  };
+  const PNextArrow = ({ onClick }) => { //P..=Projeto
+    return (
+      <div className={styles.pnext} onClick={onClick}>
+        <img src="/Arrow_EquipesRight.svg"/>
+      </div>
+    );
+  };
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className={styles.prev} onClick={onClick}>
+        <img src="/Vector (2).svg" />
+      </div>
+    );
+  };
+  const PPrevArrow = ({ onClick }) => {
+    return (
+      <div className={styles.pprev} onClick={onClick}>
+        <img src="/Arrow_EquipesLeft.svg"/>
+      </div>
+    );
+  };
   const [index, setIndex] = useState(0);
-  
-  function isEqual(idx, index) {
-    if (idx == index) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
+  const settings = {
+    arrows: true,
+    infinite: true,
+    centerMode: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    beforeChange: (current, prox) => setIndex(prox),
+    className: styles.slider,
+  };
+  const psettings = {
+    arrows: true,
+    infinite: true,
+    centerMode:false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <PNextArrow />,
+    prevArrow: <PPrevArrow />,
+    
+    className: styles.slider,
+  };
   return (
     <div className={styles.all}>
       <div className={styles.equipes}>
         <div className={styles.descrição}>
-          <h1>WolfByte</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa
-            tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut
-            iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac
-            gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris,
-            vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi,
-            mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt
-            viverra adipiscing facilisis sed luctus. Odio sed elit, duis
-            vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem.
-            Malesuada viverra consectetur pulvinar auctor. Consequat, quis est
-            fermentum parturient proin tristique augue turpis. A amet, eleifend
-            libero tincidunt at. Praesent vestibulum sollicitudin ultrices
-            viverra.
-            <br />
-            At mauris in amet, vitae aliquam consectetur tortor. Aliquam
-            ultricies purus elit, sem pharetra. Ornare netus tempor ornare dolor
-            scelerisque. Viverra ultrices vitae, consequat in. Adipiscing et,
-            nulla non faucibus metus consequat feugiat mollis faucibus. Commodo
-            semper quam sed diam. Tortor urna neque, in nam nulla scelerisque in
-            enim.
-          </p>
+          {equipes.map((equipes, idx) => (
+            <div>
+              {idx === index ? <h1>{equipes.title}</h1> : null}
+              {idx === index ? <p>{equipes.description}</p> : null}
+            </div>
+          ))}
         </div>
         <div className={styles.allcarousel}>
-          <h2>Escolha sua equipe!</h2>
+          <h1>Escolha sua equipe!</h1>
 
-          <Carousel
-            responsive={responsive}
-            additionalTransfrom={0}
-            arrows
-            centerMode
-            draggable
-            infinite
-            keyBoardControl
-            minimumTouchDrag={80}
-            renderButtonGroupOutside={false}
-            responsive={responsive}
-            showDots={false}
-            slidesToSlide={1}
-            swipeable
-            afterChange={(current, next) => { setTimeout(() => setIndex(next), 10);}}
-          >
+          <Slider {...settings}>
             {equipes.map((equipes, idx) => (
-              <div>
-                <div
-                  className={idx === index ? styles.atual : styles.sem}
-                >
-                  <img src={equipes.img} />
+              <div className>
+                <div className={styles.carrosel}>
+                  <div className={idx === index ? styles.atual : styles.sem}>
+                    <img src={equipes.img} />
+                  </div>
+                  {idx === index ? <h2>{equipes.title}</h2> : null}
                 </div>
-                {idx === index ? <h2>{equipes.title}</h2> : null}
               </div>
             ))}
-          </Carousel>
+          </Slider>
         </div>
       </div>
       <div className={styles.projetosatuais}>
         <h1>Projetos Atuais</h1>
-        <Carousel
-          responsive={responsive}
-          additionalTransfrom={0}
-          arrows
-          centerMode={true}
-          draggable
-          infinite
-          keyBoardControl
-          minimumTouchDrag={80}
-          renderButtonGroupOutside={false}
-          responsive={responsive}
-          showDots={false}
-          slidesToSlide={1}
-          swipeable
-        >
+        <Slider {...psettings}>
           {projetos.map((projetos) => (
             <Projetos projetos={projetos} />
           ))}
-        </Carousel>
+        </Slider>
       </div>
       <div className={styles.projetosatuais}>
         <h1>Projetos Finalizados</h1>
-        <Carousel
-          responsive={responsive}
-          additionalTransfrom={0}
-          arrows
-          centerMode={true}
-          draggable
-          infinite
-          keyBoardControl
-          minimumTouchDrag={80}
-          renderButtonGroupOutside={false}
-          responsive={responsive}
-          showDots={false}
-          slidesToSlide={1}
-          swipeable
-        >
+        <Slider {...psettings}>
           {projetos.map((projetos) => (
             <Projetos projetos={projetos} />
           ))}
-        </Carousel>
+        </Slider>
       </div>
       <div className={styles.premios}>
         <h1>Prêmios</h1>
