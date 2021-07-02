@@ -1,14 +1,17 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 .all {
   margin-top: 3rem;
   width: auto;
   font-family: "Poppins";
-
   .equipes {
     height: 48.2rem;
     display: flex;
+    
 
     .descrição {
       margin-left: 1rem;
+      width: 30rem;
       h1 {
         font-weight: 700;
         color: var(--azul-ramo);
@@ -23,13 +26,39 @@
       }
     }
     .allcarousel {
+      right: 0;
       height: 34rem;
       margin-top: 3.4rem;
       margin-left: 5rem;
       width: 50rem;
       background-color: var(--azul-ramo);
       border-radius: 40px 0 0 40px;
-
+      
+      .prev {
+        color: white;
+        position: absolute;
+        cursor: pointer;
+        z-index: 10;
+        left: 0%;
+        top: 30%;
+        img{
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+      .next {
+        color: white;
+        position: absolute;
+        cursor: pointer;
+        z-index: 10;
+        right: 0%;
+        top: 30%;
+        img{
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+      
       .atual {
         transform: scale(1.1);
         opacity: 1;
@@ -39,7 +68,14 @@
         transition: transform 300ms;
         opacity: 0.5;
       }
-
+      h1 {
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        font-weight: 700;
+        font-size: 40px;
+        color: white;
+      }
       h2 {
         text-align: center;
         margin-top: 2rem;
@@ -48,9 +84,37 @@
         color: white;
       }
       img {
+        margin-left: 1rem;
         width: 12rem;
         height: 15rem;
       }
     }
+  }
+}
+
+.pprev {
+  
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  left: 0%;
+  top: 50%;
+  img{
+    color: var(--azul-ramo);
+    width: 2rem;
+    height: 2rem;
+  }
+}
+.pnext {
+  
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  right: 0%;
+  top: 50%;
+  img{
+    color: var(--azul-ramo);
+    width: 2rem;
+    height: 2rem;
   }
 }
