@@ -89,6 +89,32 @@
         height: 15rem;
       }
     }
+    
+  }
+  .projetos{
+    h1{
+      color: var(--azul-ramo);
+      text-align: center;
+      font-size: 45px;   
+    }
+  }
+  .premiosGeral{
+    margin-bottom: -20rem;
+    h1{
+      color: var(--azul-ramo);
+      font-weight: 700;
+      font-size: 45px;
+      text-align: center;
+    }
+    .premios{
+      margin-top: 4rem;
+      margin-left: 5rem;
+      h1{
+        font-size: 35px;
+        margin-left: 3rem ;
+      }
+      
+    }
   }
 }
 

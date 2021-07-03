@@ -1,13 +1,80 @@
+.card {
+  width: 18rem;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.24);
+  text-align: center;
+  height: 30rem;
+  margin: 2rem auto;
+
+  img {
+    padding-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h2 {
+    margin-top: 2rem;
+    color: var(--azul-ramo);
+    font-weight: 700;
+    font-size: 28px;
+  }
+  .bt {
+    margin-top: 8rem;
+    background-color: var(--azul-ramo);
+    width: 13rem;
+    height: 5.6rem;
+    text-decoration: none !important;
+    border-radius: 20px;
+    p {
+      font-family: "Poppins";
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
+}
 .modal {
   display: flex;
   font-family: "Poppins", sans-serif;
+  color: white;
+  
+
   .projeto {
-    text-align: center;
+    margin-left: 1.5rem;
+
+    .image {
+      background-color: white;
+      border-radius: 14px;
+    }
+    h1 {
+      margin-bottom: 2rem;
+      font-weight: 700;
+      font-size: 36px;
+    }
+    p {
+      margin-top: 2rem;
+      font-weight: 600;
+      font-size: 14px;
+    }
   }
   .membros {
     .gridItem {
-      display: flex;
+      margin-left: 2rem;
+      table{
+        border: 1px solid wheat;
+        width: 15rem;
+      }
+      
+      .item{
+        border: 3px solid white;
+        width: max-content;
+        border-radius: 150px;
+
+      }
+      
     }
+
     img {
       width: 6rem;
       height: 6rem;
