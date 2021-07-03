@@ -1,20 +1,24 @@
-import styles from './styles.module.scss'
-import Link from 'next/link'
+import styles from "./styles.module.scss";
+import Link from "next/link";
 import { NavLink } from "../NavLink";
 
 export default function Header() {
   return (
     <>
       <header className={styles.headerContainer}>
-        <img src="/Ramo_logo.svg" alt="logo" className={styles.logo} />
+        <Link href="/">
+          <img src="/Ramo_logo.svg" alt="logo" className={styles.logo} />
+        </Link>
 
         <ul>
           <li>Ramo Estudantil Cefet-RJ</li>
-          <li><p>Desenvolvendo pessoas através de projetos</p></li>
+          <li>
+            <p>Desenvolvendo pessoas através de projetos</p>
+          </li>
         </ul>
         <div className={styles.linkContainer}>
           <div>
-            <Link  href="">
+            <Link href="">
               <a>Sobre</a>
             </Link>
           </div>
@@ -48,15 +52,13 @@ export default function Header() {
               <a>IEEE</a>
             </Link>
           </div>
-          </div>
+        </div>
         <div className={styles.divRet}>
           <img src="/Rectangle.png" className={styles.ret} />
         </div>
-        
       </header>
-      
-      <img src="/curved-border.svg" width="100%"  />
-    
+
+      <img src="/curved-border.svg" width="100%" />
     </>
-  )
+  );
 }
