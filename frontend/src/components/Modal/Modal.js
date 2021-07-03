@@ -14,8 +14,8 @@ const Modal = ({ show, onClose, children, title }) => {
   const modalContent = show ? (
     <div className={styles.overlay}>
       <div className={styles.body}>
+        <a onClick={handleCloseClick}><img src="/close.svg"/> </a>
         {children}
-        <a onClick={handleCloseClick}> x </a>
       </div>
     </div>
   ) : null;
