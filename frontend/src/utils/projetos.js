@@ -28,27 +28,51 @@ export function Projetos(props) {
   const [showModal, setShowModal] = useState(false);
   const projetos = props.projetos;
 
-
   return (
     <div key={projetos.id}>
-      <img src={projetos.img} />
-      <h1>{projetos.title}</h1>
-      <button href={projetos.link} onClick={()=> setShowModal(true)}>
-        <p>Saiba Mais</p>
-      </button>
+      <div className={styles.card}>
+        <img src={projetos.img} />
+        <h2>{projetos.title}</h2>
+        <button
+          href={projetos.link}
+          onClick={() => setShowModal(true)}
+          className={styles.bt}
+        >
+          <p>Saiba Mais</p>
+        </button>
+      </div>
       <Modal onClose={() => setShowModal(false)} show={showModal}>
         <div className={styles.modal} key={projetos.id}>
           <div className={styles.projeto}>
             <h1>{projetos.title}</h1>
-            <img src={projetos.src} />
+            <div className={styles.image}>
+              <img src={projetos.src} />
+            </div>
+
             <p>{projetos.description}</p>
           </div>
 
           {projetos.members.map((members) => (
             <div className={styles.membros}>
               <div className={styles.gridItem}>
-                <img src={members.img} />
-                <p>{members.name}</p>
+                <table>
+                  <tr>
+                    <td>
+                    <div className={styles.item}>
+                      <img src={members.img} />
+                    </div>
+                    </td>
+                    <td>
+                    <div>
+                      <p>
+                        {members.name}
+                        <br />
+                        {members.cargo}
+                      </p>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           ))}
