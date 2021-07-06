@@ -1,0 +1,182 @@
+#container {
+    margin-left: 2rem;
+}
+
+#descriptionContainer {
+    margin-right: 2rem;
+    color: var(--azul-ramo);
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Poppins;
+    max-width: 75%;
+
+    h1 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 45px;
+        margin-bottom: 2rem;
+    }
+
+    p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+    }
+}
+
+#meetCrews {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+}
+
+#buttonContainer {
+    display: flex;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+
+    button {
+    background: var(--azul-ramo);
+    border-radius: 47px;
+    color: #FFFFFF;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    padding: 1.5rem;
+    }
+}
+
+#imageContainer {
+    display: flex;
+    flex:1;
+    justify-content: center;
+
+    img {
+        width: 40%;
+    }
+}
+
+#processSteps {
+    display: flex;
+   align-items: center;
+   flex-direction: column;
+    margin-top: 2rem;
+    color: var(--azul-ramo);
+
+    h1{
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 45px;
+        align-self: flex-start;
+        text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    #allStepsContainer {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+
+    #firstSteps {
+        display: flex;
+        align-self: flex-start;
+        flex-direction: row;
+        margin-left: 1rem;
+    }
+
+    #lastSteps {
+        display: flex;
+        align-self: flex-end;
+        flex-direction: row;
+        margin-left: 8rem;
+    }
+
+    .stepContainer {
+        display: flex;
+    }
+
+    .numberStep {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 7rem;
+        text-shadow: 13px 1px 8px rgba(13, 95, 170, 0.65);
+        margin-right: 20px;
+    }
+
+    .step {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 2rem;
+        align-self: center;
+    }
+
+    #incricaoStep{
+        margin-left: 4rem;
+    }
+    #faseTraineeStep {
+        margin-left: 5rem;
+    }
+}
+
+#descriptionSteps {
+    color: var(--azul-ramo);
+    h1{
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.8rem;
+        text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    p {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1rem;
+        margin-left: 4rem;
+    }
+
+    span {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.8rem;
+        margin-left: 1rem;
+        text-shadow: none;
+    }
+
+    #warning {
+        margin-top: 2.5rem;
+
+        h1 {
+            padding: 5px;
+            background: rgba(67, 172, 240, 0.33);
+            border-radius: 18px;
+            display: inline-block;
+            margin-bottom: 4px;
+            margin-left: 3rem;
+        }
+    }
+
+}
+
+#inscrevase {
+    margin-top: 5rem;
+
+    h1 {
+        font-family: Poppins;
+        font-style: normal;
+        color: var(--azul-ramo);
+        padding: 5px;
+        background: rgba(67, 172, 240, 0.33);
+        border-radius: 37px;
+        transform: matrix(1, 0, 0, 1, 0, 0);
+        display: inline-block;
+        margin-bottom: 4px;
+        text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+}
