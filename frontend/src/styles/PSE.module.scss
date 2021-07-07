@@ -1,7 +1,3 @@
-#container {
-    margin-left: 2rem;
-}
-
 #descriptionContainer {
     margin-right: 2rem;
     color: var(--azul-ramo);
@@ -249,5 +245,45 @@
         position: relative;
         bottom: 25px;
     }
+
+
+
+    #formcontainer {
+        background-color: var(--azul-ramo);
+        border-radius: 20px;
+        padding: 0.5rem;
+        font-family: Poppins;
+
+        fieldset {
+            height: 33vh;
+            width: 98%;
+            margin: 2rem auto 0 auto;
+            background-color: var(--contraste);
+            border-radius: 25px;
+            border: none;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+
+
+            legend {
+                color: white;
+                font-size: 2.2rem;
+                font-weight: bold;
+            }
+
+            label {
+                color: white;
+            }
+
+            input,
+            select {
+                border: none;
+                background-color: white;
+                border-radius: 25px;
+                padding: 0.5rem;
+            }
+        }
+
+    }
+
 
 }
