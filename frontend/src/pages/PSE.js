@@ -88,108 +88,128 @@ export default function PSE() {
 
             <section id={styles.inscrevase}>
                 
-                <h1>Inscreva-se</h1>
+                <h1 id={styles.inscrevaseTitle}>Inscreva-se</h1>
+                
                 <div id={styles.formcontainer}>
                     
                         <form method="POST" action="#" >
-                            <fieldset>
-                                <legend>1. Dados pessoais</legend>
+                            <div className={styles.fildsetWrapper}>
+                                <h1>1. Dados pessoais</h1>
+                                <fieldset>
+                                    <div className={styles.inputSection}>
+                                        <label for="fullname">Nome completo</label>
+                                        <input id="fullname" type="text" name="fullname" required></input>
 
-                                <label for="fullname">Nome completo</label>
-                                <input id="fullname" type="text" name="fullname" required></input>
+                                        <label for="birthdate">Data de nascimento</label>
+                                        <input id="birthdate" type="date" name="birthdate" required></input>
 
-                                <label for="birthdate">Data de nascimento</label>
-                                <input id="birthdate" type="date" name="birthdate" required></input>
+                                        <label for="contact">Celular</label>
+                                        <input id="contact" type="text" name="contact" required></input>
+                                    </div>
 
-                                <label for="contact">Celular</label>
-                                <input id="contact" type="text" name="contact" required></input>
+                                    <div className={styles.boxSizing} />
 
-                                <label for="email">Email</label>
-                                <input id="email" type="email" name="email" required></input>
+                                    <div className={styles.inputSection}>
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email" name="email" required></input>
 
-                                <label for="facebook">Facebook</label>
-                                <input id="facebook" type="text" name="facebook"></input>
+                                        <label for="facebook">Facebook</label>
+                                        <input id="facebook" type="text" name="facebook"></input>
 
-                                <label for="linkedin">Linkedin</label>
-                                <input id="linkedin" type="text" name="linkedin"></input>
+                                        <label for="linkedin">Linkedin</label>
+                                        <input id="linkedin" type="text" name="linkedin"></input>
 
-                                <label for="instagram">Instagram</label>
-                                <input id="instagram" type="text" name="instagram"></input>
-                            </fieldset>
+                                        <label for="instagram">Instagram</label>
+                                        <input id="instagram" type="text" name="instagram"></input>
+                                    </div>
+                                </fieldset>
+                            </div>
 
-                            <fieldset>
-                                <legend>2. Dados da matrícula</legend>
+                            <div className={styles.fildsetWrapper}>
+                                <h1>2. Dados da matrícula</h1>
+                                <fieldset>
+                                    <div className={styles.inputSection} id={styles.registrationSection}>
+                                        <label for="fullname">Matrícula</label>
+                                        <input id="fullname" type="text" name="fullname" required></input>
 
-                                <label for="matricula">Matrícula</label>
-                                <input id="matricula" type="text" name="matricula" required></input>
+                                        <label for="curso">Curso</label>
+                                        <select required name="curso" id="curso">
+                                            <option value="1" selected>Curso 1</option>
+                                            <option value="2">Curso 2</option>
+                                            <option value="3">Curso 3</option>
+                                            <option value="4">Curso 4</option>
+                                            <option value="5">Curso 5</option>
+                                            <option value="6">Curso 6</option>
+                                            <option value="7">Curso 7</option>
+                                            <option value="8">Curso 8</option>
+                                            <option value="9">Curso 9</option>
+                                            <option value="10">Curso 10</option>
+                                        </select>
 
-                                <label for="curso">Curso</label>
-                                <select required name="curso" id="curso">
-                                    <option value="1" selected>Curso 1</option>
-                                    <option value="2">Curso 2</option>
-                                    <option value="3">Curso 3</option>
-                                    <option value="4">Curso 4</option>
-                                    <option value="5">Curso 5</option>
-                                    <option value="6">Curso 6</option>
-                                    <option value="7">Curso 7</option>
-                                    <option value="8">Curso 8</option>
-                                    <option value="9">Curso 9</option>
-                                    <option value="10">Curso 10</option>
-                                </select>
+                                        <label for="periodo">Período atual</label>
+                                        <select required name="periodo" id="periodo"> 
+                                            <option  selected>1º Período</option>
+                                            <option>2º Período</option>
+                                            <option>3º Período</option>
+                                            <option>4º Período</option>
+                                            <option>5º Período</option>
+                                            <option>6º Período</option>
+                                            <option>7º Período</option>
+                                            <option>8º Período</option>
+                                            <option>9º Período</option>
+                                            <option>10º Período</option>
+                                        </select>
+                                    </div>
 
+                                </fieldset>
+                            </div>
 
-                                <label for="periodo">Período atual</label>
-                                <select required name="periodo" id="periodo"> 
-                                    <option  selected>1º Período</option>
-                                    <option>2º Período</option>
-                                    <option>3º Período</option>
-                                    <option>4º Período</option>
-                                    <option>5º Período</option>
-                                    <option>6º Período</option>
-                                    <option>7º Período</option>
-                                    <option>8º Período</option>
-                                    <option>9º Período</option>
-                                    <option>10º Período</option>
-                                </select>
+                            <div className={styles.fildsetWrapper}>
+                                <h1>3. Interesse</h1>
+                                <fieldset>
+                                    <div className={styles.inputSection} id={styles.interestsLeftSection}>
+                                        <label for="equipe">Equipe</label>
+                                        <select name="equipe" required>
+                                            <option selected>Marketing</option>
+                                            <option>WIE</option>
+                                            <option>Gestão</option>
+                                            <option>SocialWolf</option>
+                                            <option>RocketWolf</option>
+                                            <option>WolfPower</option>
+                                            <option>WolfBotz</option>
+                                            <option>WolfByte</option>
+                                        </select>
 
-                            </fieldset>
+                                        
+                                        <label for="area">Área</label>
+                                        <select name="area" required>
+                                            <option selected>Programação</option>
+                                            <option>Arte</option>
+                                        </select>
 
-                            <fieldset>
-                                <legend>3. Interesse</legend>
+                                        <label for="dinamica">Dia da dinâmica</label>
+                                        <select required name="dinamica">
+                                            <option>Opção 1</option>
+                                            <option>Opção 2</option>
+                                        </select>
+                                    </div>
 
-                                <label for="equipe">Equipe</label>
-                                <select name="equipe" required>
-                                    <option selected>Marketing</option>
-                                    <option>WIE</option>
-                                    <option>Gestão</option>
-                                    <option>SocialWolf</option>
-                                    <option>RocketWolf</option>
-                                    <option>WolfPower</option>
-                                    <option>WolfBotz</option>
-                                    <option>WolfByte</option>
-                                </select>
+                                    <div className={styles.boxSizing} />
 
-                                <label for="area">Área</label>
-                                <select name="area" required>
-                                    <option selected>Programação</option>
-                                    <option>Arte</option>
-                                </select>
+                                    <div className={styles.inputSection}>
+                                        <label for="motivacao">Por quais motivos gostaria de fazer parte do Ramo?</label>
+                                        <textarea name="motivacao"></textarea>
 
-                                <label for="dinamica">Dia da dinâmica</label>
-                                <select required name="dinamica">
-                                    <option>Opção 1</option>
-                                    <option>Opção 2</option>
-                                </select>
+                                        <label for="experiencia">Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo? Conte pra gente.</label>
+                                        <textarea name="experiencia"></textarea>
+                                    </div>
 
-                                <label for="motivacao">Por quais motivos gostaria de fazer parte do Ramo?</label>
-                                <textarea name="motivacao"></textarea>
+                                </fieldset>
+                            </div>
 
-                                <label for="experiencia">Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo? Conte pra gente.</label>
-                                <textarea name="experiencia"></textarea>
-
-                            </fieldset>
-
-                            <button type="submit">Enviar</button>
+                            <button type="submit">
+                                <p>Enviar</p>
+                            </button>
                         </form>
                 </div>
 
