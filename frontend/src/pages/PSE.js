@@ -89,9 +89,9 @@ export default function PSE() {
             <section id={styles.inscrevase}>
                 
                 <h1>Inscreva-se</h1>
-                <div>
+                <div id={styles.formcontainer}>
                     
-                        <form method="POST" action="#">
+                        <form method="POST" action="#" >
                             <fieldset>
                                 <legend>1. Dados pessoais</legend>
 
@@ -140,22 +140,53 @@ export default function PSE() {
 
                                 <label for="periodo">Período atual</label>
                                 <select required name="periodo" id="periodo"> 
-                                    <option value="1" selected>1º Período</option>
-                                    <option value="2">2º Período</option>
-                                    <option value="3">3º Período</option>
-                                    <option value="4">4º Período</option>
-                                    <option value="5">5º Período</option>
-                                    <option value="6">6º Período</option>
-                                    <option value="7">7º Período</option>
-                                    <option value="8">8º Período</option>
-                                    <option value="9">9º Período</option>
-                                    <option value="10">10º Período</option>
+                                    <option  selected>1º Período</option>
+                                    <option>2º Período</option>
+                                    <option>3º Período</option>
+                                    <option>4º Período</option>
+                                    <option>5º Período</option>
+                                    <option>6º Período</option>
+                                    <option>7º Período</option>
+                                    <option>8º Período</option>
+                                    <option>9º Período</option>
+                                    <option>10º Período</option>
                                 </select>
 
                             </fieldset>
 
                             <fieldset>
                                 <legend>3. Interesse</legend>
+
+                                <label for="equipe">Equipe</label>
+                                <select name="equipe" required>
+                                    <option selected>Marketing</option>
+                                    <option>WIE</option>
+                                    <option>Gestão</option>
+                                    <option>SocialWolf</option>
+                                    <option>RocketWolf</option>
+                                    <option>WolfPower</option>
+                                    <option>WolfBotz</option>
+                                    <option>WolfByte</option>
+                                </select>
+
+                                <label for="area">Área</label>
+                                <select name="area" required>
+                                    <option selected>Programação</option>
+                                    <option>Arte</option>
+                                </select>
+
+                                <label for="dinamica">Dia da dinâmica</label>
+                                <select required name="dinamica">
+                                    <option>Opção 1</option>
+                                    <option>Opção 2</option>
+                                </select>
+
+                                <label for="motivacao">Por quais motivos gostaria de fazer parte do Ramo?</label>
+                                <textarea name="motivacao"></textarea>
+
+                                <label for="experiencia">Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo? Conte pra gente.</label>
+                                <textarea name="experiencia"></textarea>
+
                             </fieldset>
 
                             <button type="submit">Enviar</button>
