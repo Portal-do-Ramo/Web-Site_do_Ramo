@@ -1,0 +1,91 @@
+.loginContainer h1, .loginContainer h3,  .loginContainer a,  .loginContainer button{
+    font-family: Helvetica;
+}
+.loginContainer h3, .loginContainer input{
+    font-weight: normal;
+}
+.loginContainer input,.loginContainer button{
+    outline: none;
+}
+.loginContainer{
+    display: flex;
+    justify-content: flex-start;
+    background-image: url("../../public/Background_Logos.svg");
+}
+.loginContainer > div{
+    height: 100vh;
+}
+.loginContainer > div:first-child{
+    width: 60%;
+    background-image: url("../../public/equipe_azul.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0 0 20px gray;
+}
+
+.loginContent{
+    padding: 10vh 0;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.loginContent img{ 
+    width: 100px; 
+}
+.Form{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 40px;
+    width: 430px;
+    height: 460px;
+    background-color: white;
+    box-shadow: 5px 0 20px 0 rgba(32, 31, 31, 0.2);
+}
+.Form input[type="email"],
+.Form input[type="password"]{
+    height: 50px;
+    width: 100%;
+    border:1px solid rgba(13, 95, 170, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(32, 31, 31, 0.2);
+    text-indent: 15px;
+    font-size: 16px;
+}
+.Form input[type="email"]{
+    margin-top: 50px;
+}
+.Form input[type="radio"]{
+    margin: 10px 5px;
+}
+.RadioContainer{ 
+    font-size: 16px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0;
+}
+.RadioContainer > span:first-child{ 
+    flex: 0.6;
+}
+.RadioContainer > span:last-child{
+    flex: 0.4;
+}
+.Form button{
+    width: 100%;
+    color: white;
+    background-color: var(--azul-ramo);
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    box-shadow:0 0 20px rgba(32, 31, 31, 0.2) ;
+    cursor: pointer;
+    transition: all .2s;
+    font-weight: bold;
+    font-size: 16px;
+}
+.Form button:hover{
+    background-color: var(--contraste);
+}
