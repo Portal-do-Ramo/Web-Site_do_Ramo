@@ -23,7 +23,7 @@ router
 	.get("/projects", projectController.index)
 	.get("/roles", roleController.index)
 	.get("/sponsors", sponsorController.index)
-	.get("/users", userController.index)
+	.get("/users", auth, userController.index)
 
 
     .get("/award/:id", awardController.show)
@@ -49,7 +49,7 @@ router
 	.post("/project", auth,projectController.create)
 	.post("/role", auth,roleController.create)
 	.post("/sponsor", auth,sponsorController.create)
-    .post("/user", auth, userController.create)
+    .post("/user", userController.create)
 	.post("/login", userController.login)
 
 
