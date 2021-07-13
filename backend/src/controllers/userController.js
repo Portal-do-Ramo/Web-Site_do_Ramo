@@ -9,6 +9,13 @@ module.exports = {
     
     async index(req, res){
         const users = await knex('users').select('*');
+		
+		//ver como tirar a senha nas consultas 
+
+        // user.forEach(user => {
+        //     user.password = undefined;
+        // });
+
         return res.status(200).json({'users': users});
     },
 
