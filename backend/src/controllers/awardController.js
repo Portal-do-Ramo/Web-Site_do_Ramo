@@ -16,14 +16,14 @@ module.exports = {
     },
 	
     async create(req,res) {
-		let { name, description, img, crew_name } = req.body;
+		let { name, description, image, crew_name } = req.body;
 		let { id: crew_id } = await crewServices.getCrew(crew_name).first();
         try {
             await knex("awards").insert({
 				id: v4(),
                 name,
                 description,
-                img,
+                image,
                 crew_id
             });
             return res.status(201).json({"message": "Prêmio Cadastrado!!"});
@@ -33,13 +33,13 @@ module.exports = {
     },
 
     async update(req, res) {
-        let { award, data, update } = req.body;
-        try {
-            await knex("award").where(award).update({data, update});
-            return res.status(200).json({"message": "Prêmio atualizado!!!"});
-        } catch(err) {
-            return res.status(405).json({"message": err.message});
-        }
+        let { id, award } = req.body; //talvez o award possa ser um json com todas as informações do objeto
+		try {
+			await knex("awards").update(award).select({id}); //trocar o timestamp do updated_at
+			return res.status(200).json({"message": "Prêmio atualizado!!"});
+		} catch(err){
+			return res.status(405).json({"message": err.message});
+		}
     },
 
     //Padronizar o parâmetro a ser passado para o delete. Alguns controllers estão utilizando ID's, outros o nome do objeto desejado

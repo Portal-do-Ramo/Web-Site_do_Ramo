@@ -26,12 +26,12 @@ module.exports = {
     },
 
 	async update(req,res) {
-		let { role, data, update } = req.body;
-		try{
-			await knex("roles").where(role).update({data,update});
-			return res.status(200).json({"message": "Cargo atualizado!"});
-		} catch(err) {
-			return res.status(405).json({"message": err.message})
+		let { id, role } = req.body;
+		try {
+			await knex("roles").update(role).select({id}); //trocar o timestamp do updated_at
+			return res.status(200).json({"message": "Cargos atualizados!!"});
+		} catch(err){
+			return res.status(405).json({"message": err.message});
 		}
 	},
 

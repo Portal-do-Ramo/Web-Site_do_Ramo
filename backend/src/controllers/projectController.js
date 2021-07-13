@@ -47,13 +47,13 @@ module.exports = {
     },
 
     async update(req, res){
-        try{
-            let{ project, data, update } = req.body;
-            let confirmation = await knex("projects").where({project}).update();
-            return res.status(200).json({"message": confirmation});
-        } catch(err) {
-            return res.status(405).json({"message": err.message});
-        }  
+		let { id, project } = req.body;
+		try {
+			await knex("projects").update(project).select({id}); //trocar o timestamp do updated_at
+			return res.status(200).json({"message": "Projeto atualizado!!"});
+		} catch(err){
+			return res.status(405).json({"message": err.message});
+		}
     },
     
     async delete(req, res){

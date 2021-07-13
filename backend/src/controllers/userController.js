@@ -35,13 +35,13 @@ module.exports = {
     },
 
     async update(req, res){
-        let {user, data, update} = req.body;
-        try {
-            await knex("users").where(user).update({data, update});
-            return res.status(200).json({"message": "Usuário atualizado"});
-        } catch(err) {
-           return res.status(405).json({"message": err.message}); 
-        }
+        let { id, user } = req.body;
+		try {
+			await knex("users").update(user).select({id}); //trocar o timestamp do updated_at
+			return res.status(200).json({"message": "Usuário atualizado!!"});
+		} catch(err){
+			return res.status(405).json({"message": err.message});
+		}
     },
 
     async delete(req, res){

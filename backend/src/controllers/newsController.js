@@ -3,18 +3,18 @@ const knex = require("../database");
 
 module.exports = {
 
-    async index(req,res) { 
+    async index(req, res) { 
             let news = await knex("news");
             return res.status(200).json(news);
     },
     
-    async show(req,res) { //mostrar só um
+    async show(req, res) { //mostrar só um
         let { id } = req.params;
 			let news = await knex("news").select().where({id});
             return res.status(200).json(news);
     },
 	
-    async create(req,res) {
+    async create(req, res) {
 		let { title, body, img, user_id} = req.body;
 
         try {
@@ -32,17 +32,17 @@ module.exports = {
     },
 
     async update(req, res) {
-        let { news, data, update } = req.body;
-        try{
-            await knex('news').where(news).update(data, update);
-            return res.status(200).json({"message": "Notícia atualizada"});
-        } catch(err){
-            return res.status(400).json({"message": err.message});
-        }
+        let { id, news } = req.body;
+		try {
+			await knex("news").update(news).select({id}); //trocar o timestamp do updated_at
+			return res.status(200).json({"message": "Notícia atualizada!!"});
+		} catch(err){
+			return res.status(405).json({"message": err.message});
+		}
     },
 
     //Padronizar o parâmetro a ser passado para o delete. Alguns controllers estão utilizando ID's, outros o nome do objeto desejado
-    async delete(req,res) {
+    async delete(req, res) {
 		try{
 			let {news} = req.body;   
 			let confirmation = await knex("news").where({"title": news}).delete();
