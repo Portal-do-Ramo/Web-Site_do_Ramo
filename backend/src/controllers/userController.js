@@ -8,7 +8,7 @@ const Joi = require("../services/validation");
 module.exports = {
     
     async index(req, res){
-        const users = await knex('users').select('*');
+        const users = await knex('users').select('name', 'email', 'role');
 		
 		//ver como tirar a senha nas consultas 
 
