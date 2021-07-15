@@ -28,7 +28,7 @@ export default function Header() {
             </Link>
           </div>
           <div>
-            <Link href="">
+            <Link href="/noticias">
               <a>Notícias</a>
             </Link>
           </div>
