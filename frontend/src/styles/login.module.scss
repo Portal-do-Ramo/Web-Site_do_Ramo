@@ -1,0 +1,119 @@
+.loginContainer{
+    display: flex;
+    justify-content: flex-start;
+    background-image: url("../../public/Background_Logos.svg");
+
+    h1,h3,span,label,input,button{
+        font-family: "Roboto", Helvetica, sans-serif;
+    }
+    input, button{
+        outline: none;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    > div{
+        height: 100vh;
+    }
+    > div:first-child{
+        width: 60%;
+        background-image: url("../../public/equipe_azul.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        box-shadow: 0 0 20px gray;
+    }
+    .loginContent{
+        padding: 10vh 0;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        img{ 
+            width: 100px; 
+        }
+        .form{ 
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px 40px;
+            width: 430px;
+            height: 480px;
+            background-color: white;
+            box-shadow: 5px 0 20px 0 rgba(32, 31, 31, 0.2);
+        
+            h1{
+                color: #1A202C;
+                font-weight: 700;
+                font-size: 1.87rem;
+                margin-top: 5px;
+                margin-bottom: 30px;
+            }
+            h3{
+                font-weight: 400;
+                color: #2D3748;
+                font-size: 1rem;
+            }
+            .inputsLabel{
+                width: 100%;
+                font-size: 1rem;
+                margin-bottom: 5px;
+                color: #4A5568;
+            }
+            input[type="email"],
+            input[type="password"]{
+                height: 50px;
+                width: 100%;
+                border:1px solid #0d5eaa81;
+                border-radius: 5px;
+                //box-shadow: 0 0 20px rgba(32, 31, 31, 0.2);
+                text-indent: 15px;
+                font-size: 14px;
+            }
+            button{
+                width: 100%;
+                color: white;
+                background-color: var(--azul-ramo);
+                height: 50px;
+                border-radius: 5px;
+                border: none;
+                box-shadow:0 0 20px rgba(32, 31, 31, 0.2) ;
+                cursor: pointer;
+                transition: all .2s;
+                font-weight: bold;
+                font-size: 16px;
+            }
+            button:hover{
+                background-color: var(--contraste);
+            }
+            .radioContainer{ 
+                align-self: flex-start;
+                width: 100%;
+                font-size: 14px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin: 10px 0;
+
+                > span:last-child{
+                    font-size: 14px;
+                    color: var(--contraste);
+                }
+
+                input[type="checkbox"]{ 
+                    vertical-align: -1px;
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+                label{
+                    cursor: pointer;
+                    font-size: 14px;
+                }
+            }
+            
+        }
+    }
+}

@@ -1,3 +1,6 @@
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+
 import { useState,useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -55,92 +58,97 @@ export default function Equipes() {
     className: styles.slider,
   };
   return (
-    <div className={styles.all}>
-      <div className={styles.equipes}>
-        <div className={styles.descrição}>
+    <div>
+      <Header/>
+      <div className={styles.all}>
+        <div className={styles.equipes}>
+          <div className={styles.descrição}>
+            {equipes.map((equipes, idx) => (
+              <div>
+                {idx === index ? <h1>{equipes.title}</h1> : null}
+                {idx === index ? <p>{equipes.description}</p> : null}
+              </div>
+            ))}
+          </div>
+          <div className={styles.allcarousel}>
+            <h1>Escolha sua equipe!</h1>
+
+            <Slider {...settings}>
+              {equipes.map((equipes, idx) => (
+                <div className>
+                  <div className={styles.carrosel}>
+                    <div className={idx === index ? styles.atual : styles.sem}>
+                      <img src={equipes.img} />
+                    </div>
+                    {idx === index ? <h2>{equipes.title}</h2> : null}
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
+        <div className={styles.projetos}>
+          <h1>Projetos Atuais</h1>
+
           {equipes.map((equipes, idx) => (
             <div>
-              {idx === index ? <h1>{equipes.title}</h1> : null}
-              {idx === index ? <p>{equipes.description}</p> : null}
+              {idx === index ? (
+                <div>
+                  <Slider {...psettings}>
+                    {equipes.projetosAtuais.map((projetos) => (
+                      <Projetos projetos={projetos} />
+                    ))}
+                  </Slider>
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
-        <div className={styles.allcarousel}>
-          <h1>Escolha sua equipe!</h1>
+        <div className={styles.projetos}>
+          <h1>Projetos Finalizados</h1>
 
-          <Slider {...settings}>
-            {equipes.map((equipes, idx) => (
-              <div className>
-                <div className={styles.carrosel}>
-                  <div className={idx === index ? styles.atual : styles.sem}>
-                    <img src={equipes.img} />
-                  </div>
-                  {idx === index ? <h2>{equipes.title}</h2> : null}
+          {equipes.map((equipes, idx) => (
+            <div>
+              {idx === index ? (
+                <div>
+                  <Slider {...psettings}>
+                    {equipes.projetosAtuais.map((projetos) => (
+                      <Projetos projetos={projetos} />
+                    ))}
+                  </Slider>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ) : null}
+            </div>
+          ))}
+        </div>
+        <div className={styles.premiosGeral}>
+          <h1>Prêmios</h1>
+          {equipes.map((equipes, idx) => (
+            <div>
+              {idx === index ? (
+                <div>
+                  {equipes.premios.map((premios) => (
+                    <div className={styles.premios}>
+                      <table>
+                        <tr>
+                          <td>
+                            <img src={premios.img} />
+                          </td>
+                          <td>
+                            <h1>{premios.title}</h1>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          ))}
         </div>
       </div>
-      <div className={styles.projetos}>
-        <h1>Projetos Atuais</h1>
-
-        {equipes.map((equipes, idx) => (
-          <div>
-            {idx === index ? (
-              <div>
-                <Slider {...psettings}>
-                  {equipes.projetosAtuais.map((projetos) => (
-                    <Projetos projetos={projetos} />
-                  ))}
-                </Slider>
-              </div>
-            ) : null}
-          </div>
-        ))}
-      </div>
-      <div className={styles.projetos}>
-        <h1>Projetos Finalizados</h1>
-
-        {equipes.map((equipes, idx) => (
-          <div>
-            {idx === index ? (
-              <div>
-                <Slider {...psettings}>
-                  {equipes.projetosAtuais.map((projetos) => (
-                    <Projetos projetos={projetos} />
-                  ))}
-                </Slider>
-              </div>
-            ) : null}
-          </div>
-        ))}
-      </div>
-      <div className={styles.premiosGeral}>
-        <h1>Prêmios</h1>
-        {equipes.map((equipes, idx) => (
-          <div>
-            {idx === index ? (
-              <div>
-                {equipes.premios.map((premios) => (
-                  <div className={styles.premios}>
-                    <table>
-                      <tr>
-                        <td>
-                          <img src={premios.img} />
-                        </td>
-                        <td>
-                          <h1>{premios.title}</h1>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                ))}
-              </div>
-            ) : null}
-          </div>
-        ))}
-      </div>
+      <Footer/>
     </div>
+    
   );
 }

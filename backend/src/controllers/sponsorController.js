@@ -24,13 +24,13 @@ module.exports = {
     },
 
     async update(req, res){
-        let { sponsor, data, update } = req.body;
-        try{
-            await knex("sponsors").where(sponsor).update({data, update});
-            return res.status(200).json({"message": "Patrocinador atualizado!!!"});
-        } catch(err){
-            return res.status(405).json({"message": err.message});
-        }
+		let { id, sponsor } = req.body;
+		try {
+			await knex("sponsors").update(sponsor).select({id}); //trocar o timestamp do updated_at
+			return res.status(200).json({"message": "Patrocinador atualizado!!"});
+		} catch(err){
+			return res.status(405).json({"message": err.message});
+		}
     },
 
 	async delete(req, res){

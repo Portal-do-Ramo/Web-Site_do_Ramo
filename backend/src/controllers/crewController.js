@@ -32,12 +32,12 @@ module.exports = {
     },
 
     async update(req, res) {
-        let { crew, data, update } = req.body;
-        try{
-            await knex("crews").where(crew).update({data, update});
-            return res.status(200).json({"message": "Equipe atualizada!!!"});
-        } catch(err) {
-            return res.status(405).json({"message": err.message});
+		let { id, crew } = req.body;
+		try {
+			await knex("crew").update(crew).select({id});
+			return res.status(200).json({"message": "Equipe atualizada!!"});
+		} catch(err){
+			return res.status(405).json({"message": err.message});
         }
     },
 

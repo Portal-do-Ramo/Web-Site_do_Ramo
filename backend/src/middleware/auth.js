@@ -2,11 +2,11 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 function auth(req, res, next){
-    let token = req.get("auth-token"); //organizar lógica -> não está funcionando	
+    let token = req.get("auth-token");
     if(!token) {
         return res
             .status(401)
-            .json({"message": "Não autenticado"}); //corrigir bugs
+            .json({"message": "Não autenticado"});
     }
 	
     try{
@@ -16,8 +16,8 @@ function auth(req, res, next){
 				.status(401)//ver status code certinho
 				.json({"message": "Não autenticado 1"});		
 		}
-        res.json({"message": "autenticado"});
 		next();
+        
 		
     } catch {
         return res
