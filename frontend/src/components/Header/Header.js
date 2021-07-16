@@ -18,7 +18,7 @@ export default function Header() {
         </ul>
         <div className={styles.linkContainer}>
           <div>
-            <Link href="">
+            <Link href="/sobre">
               <a>Sobre</a>
             </Link>
           </div>

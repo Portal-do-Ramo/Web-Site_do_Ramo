@@ -1,0 +1,19 @@
+.main{ 
+    
+    .banner{
+        background-image: url("../../public/galera_ramo_panoramica.jpg");
+        height: 60vh;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    .about{
+        height: 800px;
+        background-color: var(--contraste);
+        background-image: url(../../public/Ramo_cinza.svg);
+        background-size: 30rem;
+        background-repeat: no-repeat;
+        background-position: right bottom;
+    }
+}
