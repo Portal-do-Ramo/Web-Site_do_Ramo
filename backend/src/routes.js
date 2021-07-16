@@ -2,15 +2,17 @@ const express = require("express");
 
 const router = express.Router();
 
+const awardController = require("./controllers/awardController");
 const commonController = require("./controllers/commonController");
 const crewController = require("./controllers/crewController");
-const userController = require("./controllers/userController");
-const projectController = require("./controllers/projectController");
-const awardController = require("./controllers/awardController");
 const depositionController = require("./controllers/depositionController");
 const newsController = require("./controllers/newsController");
-const sponsorController = require("./controllers/sponsorController");
+const projectController = require("./controllers/projectController");
 const roleController = require("./controllers/roleController");
+const sponsorController = require("./controllers/sponsorController");
+const userController = require("./controllers/userController");
+
+const sendEmail = require('./services/nodemailer')
 
 const auth = require('./middleware/auth')
 
@@ -61,6 +63,5 @@ router
 	.delete("/role", roleController.delete)
 	.delete("/sponsor", sponsorController.delete)
 	.delete("/user", userController.delete)
-
 
 module.exports = router;
