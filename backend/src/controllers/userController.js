@@ -4,18 +4,12 @@ const {v4} = require("uuid");
 const knex = require("../database");
 const authenticate = require("../services/authentication");
 const Joi = require("../services/validation");
+const mailer = require("../services/nodemailer");
 
 module.exports = {
     
     async index(req, res){
         const users = await knex('users').select('name', 'email', 'role');
-		
-		//ver como tirar a senha nas consultas 
-
-        // user.forEach(user => {
-        //     user.password = undefined;
-        // });
-
         return res.status(200).json({'users': users});
     },
 
@@ -41,6 +35,8 @@ module.exports = {
                     password: hash,
                     role
                 });
+
+                await mailer("email_confirmacao", email);
 
                 return res
                     .status(201)
