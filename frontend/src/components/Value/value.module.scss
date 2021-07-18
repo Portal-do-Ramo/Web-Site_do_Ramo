@@ -1,0 +1,27 @@
+.valueContainer{
+    padding: 2.5rem 1rem;
+    width: 420px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: flex-start;
+    box-shadow: 0 0 30px lightgrey;
+
+    img{
+        width: 50%;
+        border-radius: 50%;
+    }
+
+    h3{
+        margin: 0.5rem 0;
+        color: var(--azul-ramo);
+        font-size: 1.875rem;
+    }
+
+    p{
+        color: var(--contraste);
+        font-size: 1.125rem;
+    }
+}
