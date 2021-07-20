@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import { convertDurationToTimeString } from "../utils/timeToString";
 import Header from "../components/Header/Header";
+import Link from "next/link";
 
 const noticias = [
   {
@@ -13,6 +14,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 2,
@@ -21,6 +24,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 3,
@@ -29,6 +34,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 4,
@@ -37,6 +44,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 5,
@@ -45,6 +54,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 6,
@@ -53,6 +64,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 7,
@@ -61,6 +74,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 8,
@@ -69,6 +84,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2000,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 9,
@@ -77,6 +94,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 10,
@@ -85,6 +104,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 11,
@@ -93,6 +114,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 12,
@@ -101,6 +124,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 13,
@@ -109,6 +134,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 14,
@@ -117,6 +144,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 15,
@@ -125,6 +154,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 16,
@@ -133,6 +164,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
   {
     id: 17,
@@ -141,6 +174,8 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    writer: "Xande",
+    shootby: "Pericles",
   },
 ];
 
@@ -183,7 +218,12 @@ export default function Noticias() {
                   <div className={styles.primeira}>
                     <img src={noticias.img} />
                     <div className={styles.info}>
-                      <h1>{noticias.title}</h1>
+                      <Link href={`/noticia/${noticias.id}`}>
+                        <a>
+                          <h1>{noticias.title}</h1>
+                        </a>
+                      </Link>
+
                       <p>{noticias.description}</p>
                     </div>
                   </div>
@@ -191,7 +231,11 @@ export default function Noticias() {
                   <div className={styles.noticiasRecentes}>
                     <img src={noticias.img} />
                     <div className={styles.info}>
-                      <h1>{noticias.title}</h1>
+                      <Link href={`/noticia/${noticias.id}`}>
+                        <a>
+                          <h1>{noticias.title}</h1>
+                        </a>
+                      </Link>
                       <p>{noticias.description}</p>
                     </div>
                   </div>
@@ -224,7 +268,11 @@ export default function Noticias() {
                         <img src={noticias.img} />
                       </td>
                       <td>
-                        <h1>{noticias.title}</h1>
+                        <Link href={`/noticia/${noticias.id}`}>
+                          <a>
+                            <h1>{noticias.title}</h1>
+                          </a>
+                        </Link>
                         <p>{noticias.description}</p>
                         <p className={styles.time}>
                           {" "}
