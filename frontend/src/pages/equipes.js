@@ -1,7 +1,7 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -11,27 +11,42 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-multi-carousel/lib/styles.css";
 
 import { Projetos } from "../utils/projetos";
-import { PrevArrow, NextArrow, ProjectPrevArrow, ProjectNextArrow } from "../components/Arrows";
+import {
+  PrevArrow,
+  NextArrow,
+  ProjectPrevArrow,
+  ProjectNextArrow,
+} from "../components/Arrows";
 
 import styles from "../styles/equipes.module.scss";
 
-import api from '../services/api'
+import api from "../services/api";
 
-import equipes from '../services/crewTestData'
+import equipes from "../services/crewTestData";
+
+{/*export const getStaticProps = async () => {
+    const res = await api.get('crews');
+    const data = await res.json();
+
+    return {
+      props: { equipes : data}  
+    }
+  }*/}
 
 export default function Equipes() {
-  const [equipesApi,setEquipes] = useState([])
+  const [equipesApi, setEquipes] = useState([]);
   const [index, setIndex] = useState(0);
 
-  // useEffect(async () => {
-  //   equipes = api.get('/api/crews').then((response) => {
-  //     setEquipes(response.data)
-  //   })
-  // },[])
+  
+  {/*useEffect(async () => {
+    equipes = api.get("/api/crews").then((response) => {
+      setEquipes(response.data);
+    });
+  }, []);
 
-  // useEffect(async () => {
-  //   console.log(equipesApi)
-  // },[equipesApi])
+  useEffect(async () => {
+    console.log(equipesApi);
+  }, [equipesApi]);*/}
 
   const settings = {
     arrows: true,
@@ -59,7 +74,7 @@ export default function Equipes() {
   };
   return (
     <div>
-      <Header/>
+      <Header />
       <div className={styles.all}>
         <div className={styles.equipes}>
           <div className={styles.descrição}>
@@ -147,8 +162,7 @@ export default function Equipes() {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-    
   );
 }
