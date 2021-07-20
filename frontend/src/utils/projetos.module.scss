@@ -8,6 +8,7 @@
   height: 30rem;
   margin: 2rem auto;
 
+
   img {
     padding-top: 2rem;
     margin-left: auto;
@@ -24,7 +25,7 @@
     background-color: var(--azul-ramo);
     width: 13rem;
     height: 5.6rem;
-    text-decoration: none !important;
+    border: none;
     border-radius: 20px;
     p {
       font-family: "Poppins";
