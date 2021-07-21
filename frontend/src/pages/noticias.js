@@ -2,9 +2,10 @@ import styles from "../styles/noticias.module.scss";
 import Image from "next/image";
 import SearchBar from "../components/SearchBar/SearchBar";
 import { useEffect, useState } from "react";
-import { convertDurationToTimeString } from "../utils/timeToString";
 import Header from "../components/Header/Header";
 import Link from "next/link";
+import NewsBox from "../components/NewsBox/NewsBox";
+import Footer from "../components/Footer/Footer";
 
 const noticias = [
   {
@@ -14,6 +15,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    publishedAt: "2021-07-11T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -24,6 +26,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    publishedAt: "2021-06-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -34,6 +37,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -44,16 +48,18 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    publishedAt: "2021-07-19T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
   {
     id: 5,
     img: "/botz1 1.svg",
-    title: "Bute",
+    title: "Julio dorme e acaba sonhando que ganhou campeonato de fliper",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2000,
+    publishedAt: "2021-07-11T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -64,6 +70,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2000,
+    publishedAt: "2021-07-20T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -74,6 +81,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 20000,
+    publishedAt: "2021-07-20T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -84,6 +92,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2000,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -94,6 +103,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-07-20T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -104,6 +114,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-07-20T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -114,6 +125,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -124,6 +136,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-07-20T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -134,6 +147,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -144,6 +158,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -154,6 +169,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -164,6 +180,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -174,6 +191,7 @@ const noticias = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
+    publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
     shootby: "Pericles",
   },
@@ -218,7 +236,7 @@ export default function Noticias() {
                   <div className={styles.primeira}>
                     <img src={noticias.img} />
                     <div className={styles.info}>
-                      <Link href={`/noticia/${noticias.id}`}>
+                      <Link href={`/post/${noticias.id}`}>
                         <a>
                           <h1>{noticias.title}</h1>
                         </a>
@@ -231,7 +249,7 @@ export default function Noticias() {
                   <div className={styles.noticiasRecentes}>
                     <img src={noticias.img} />
                     <div className={styles.info}>
-                      <Link href={`/noticia/${noticias.id}`}>
+                      <Link href={`/post/${noticias.id}`}>
                         <a>
                           <h1>{noticias.title}</h1>
                         </a>
@@ -247,12 +265,12 @@ export default function Noticias() {
             <span>Mais Recentes</span>
           </div>
           <div className={styles.triangulo}>
-            <img src="/Triangulo.svg" />
+            <img src="/triangulo.png" />
           </div>
         </div>
         <div className={styles.half}>
           <div className={styles.antigas}>
-            <h1>Notícias</h1>
+            <h1 className={styles.halfTitle}>Notícias</h1>
             <div className={styles.searchbar}>
               <SearchBar
                 searchQuery={searchQuery}
@@ -261,27 +279,7 @@ export default function Noticias() {
             </div>
             <div className={styles.total}>
               {filteredNot.map((noticias) => (
-                <div className={styles.noticias}>
-                  <table>
-                    <tr>
-                      <td>
-                        <img src={noticias.img} />
-                      </td>
-                      <td>
-                        <Link href={`/noticia/${noticias.id}`}>
-                          <a>
-                            <h1>{noticias.title}</h1>
-                          </a>
-                        </Link>
-                        <p>{noticias.description}</p>
-                        <p className={styles.time}>
-                          {" "}
-                          Há {convertDurationToTimeString(noticias.time)}{" "}
-                        </p>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+                <NewsBox noticias={noticias} />
               ))}
             </div>
             <div>
@@ -305,20 +303,21 @@ export default function Noticias() {
           </div>
           <div className={styles.social}>
             <a target="_blank" href="https://pt-br.facebook.com/ramocefet/">
-              <img src="/Facebook.svg" />
+              <img src="/FacebookBlue.svg" />
             </a>
             <a target="_blank" href="https://www.instagram.com/ramocefet/">
-              <img src="/Instagram.svg" />
+              <img src="/InstagramBlue.svg" />
             </a>
             <a
               target="_blank"
               href="https://www.linkedin.com/company/ramocefet/"
             >
-              <img src="/Linkedin.svg" />
+              <img src="/LinkedinBlue.svg" />
             </a>
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

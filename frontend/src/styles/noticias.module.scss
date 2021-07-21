@@ -1,20 +1,13 @@
 .all {
   font-family: "Poppins";
-  img {
-    width: 20rem;
-  }
+  margin-bottom: -28rem;
+  
   .recente {
     background-color: var(--azul-ramo);
     height: 64.5rem;
     padding-top: 3rem;
     color: white;
     margin-top: -3rem;
-    .triangulo {
-      img {
-        width: max-content;
-        height: max-content;
-      }
-    }
     .jornal {
       width: 28rem;
       background-color: var(--contraste);
@@ -54,6 +47,10 @@
         width: 34rem;
         margin-top: -7rem;
         color: white;
+        a{
+          text-decoration: none;
+          color: white;
+        }
       }
       img {
         filter: brightness(85%);
@@ -72,6 +69,8 @@
         font-size: 30px;
       }
     }
+    
+
   }
   .half {
     margin-top: 2rem;
@@ -80,10 +79,9 @@
     .antigas {
       width: 47rem;
       margin-left: 3rem;
-      h1{
-        
+      .halfTitle{
         font-weight: 800;
-        font-size: 3rem;
+        font-size: 48px;
       }
       .searchbar {
         margin-top: 3rem;
@@ -113,36 +111,7 @@
         width: 100% ;
         margin-top: 2.5rem;
         border-top: 1px solid rgba(0, 0, 0, 0.17);
-        .noticias{
-          border-bottom: 1px solid rgba(0, 0, 0, 0.17);
-          table{
-            td{
-              
-              img{
-                width: 18rem;
-                margin-top: 1rem ;
-                margin-bottom: 1rem ;
-                margin-right: 4rem;
-              }
-              h1{
-                
-                font-weight: 700;
-                font-size: 1.875rem;
-                
-              }
-              p{
-                font-weight: 500;
-                font-size: 1rem;
-                margin: 2rem 0;
-              }
-              .time{
-                color: black;
-                font-weight: 700;
-                font-size: 1.25rem;
-              }
-            }
-          } 
-        }
+        
       }
      .button{
       color:White;
@@ -153,7 +122,7 @@
       border-radius: 15px;
       margin-right: 5rem;
       margin-left: 20rem;
-      margin-top: 10px;
+      margin-top: 2rem;
       font-weight: bold;
       line-height: 28,6px;
      }
@@ -179,7 +148,7 @@
       img{
         height:5rem;
         width:5rem;
-        border: 2px solid rgba(0,0,0,0.75);
+        background-color: var(--azul-ramo);
         border-radius: 10px 10px 10px 10px;
       }
     }
