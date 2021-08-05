@@ -1,0 +1,70 @@
+#inputLabel {
+    font-family: Roboto, 'sans-serif';   
+    font-weight: normal;
+    font-size: 1.7rem;
+}
+
+#input {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.imageCard {
+    height: 150px;
+    width: 140px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.imageCard p {
+    margin-left: 10px;
+    font-family: Poppins;
+    font-size: 0.8rem;
+}
+
+.imageCard input[type=file] {
+    display: none;
+}
+
+.newImage {
+    background-color: #fff;
+    width: 120px;
+    height: 84px;
+    margin: 10px 10px;
+
+    border: 1px solid #C7B8B8;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    position: relative;
+}
+
+.newImage:hover {
+    cursor: pointer;
+}
+
+.cross1 {
+    position: absolute;
+    top: 17px;
+    left:60px;
+    height: 50px;
+    width: 1.5px;
+    background-color: rgba(211, 194, 194, 0.9);
+    Z-index: 1;
+}
+
+.cross2 {
+    position: absolute;
+    left:35px;
+    top: 42px;
+    height: 1.5px;
+    width: 50px;
+    background-color: rgba(211, 194, 194, 0.9);
+    Z-index: 1;
+}
