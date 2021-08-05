@@ -1,6 +1,7 @@
 .all{
-  width: 18rem;
+  width: 14vw;
   height: 100vh;
+  min-width: 195px;
   background-color: var(--azul-ramo);
   padding: 1rem 2rem;
   color: white;
@@ -14,14 +15,14 @@
     margin-bottom: 2rem;
     border-bottom: 1px solid white;
     .title2{
-      font-size: 24px;
+      font-size: 1.8rem;
       margin-top: 1rem;
       margin-bottom: 1rem;     
     }
   }
   .edit{
     h1{
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 400;
       margin: 1.8rem 0;
     }

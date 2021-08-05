@@ -21,7 +21,7 @@ export default function NavBar() {
   return (
     <div className={styles.all}>
       <div className={styles.title}>
-        <Image src="/Ramo_logo.svg" width={94} height={93} />
+        <Image src="/Ramo_logo.svg" width="auto" height="70%" />
         <div className={styles.title2}>
           <p>Admin</p>
           <p>Site do Ramo</p>
