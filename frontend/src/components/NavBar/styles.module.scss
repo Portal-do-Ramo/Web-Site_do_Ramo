@@ -1,0 +1,43 @@
+.all{
+  width: 18rem;
+  height: 100vh;
+  background-color: var(--azul-ramo);
+  padding: 1rem 2rem;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  .title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid white;
+    .title2{
+      font-size: 24px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;     
+    }
+  }
+  .edit{
+    h1{
+      font-size: 24px;
+      font-weight: 400;
+      margin: 1.8rem 0;
+    }
+    .options{
+      font-size: 18px;
+      opacity: 0.8;
+      margin-left: 1.2rem;
+      
+      p{
+        margin: 1rem 0;
+      }
+      
+    }
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
