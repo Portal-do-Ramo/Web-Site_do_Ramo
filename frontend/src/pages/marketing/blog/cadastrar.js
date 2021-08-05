@@ -9,7 +9,18 @@ export default function cadastrar(){
   const [images,setImages] = useState([])
   const [postText,setPostText] = useState('')
   
-  
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log({
+        title,
+        resume,
+        postText
+    }
+    )
+  }
+
+
+
   return(
     <div className={styles.container}>
       <NavBar/>
