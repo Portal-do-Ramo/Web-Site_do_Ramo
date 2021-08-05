@@ -19,7 +19,12 @@ export default function cadastrar(){
     )
   }
 
-
+  function handleSelectImages(event) {
+      if(!event.target.files) {
+          return
+      }
+      setImages(Array.from(event.target.files))
+  }
 
   return(
     <div className={styles.container}>
