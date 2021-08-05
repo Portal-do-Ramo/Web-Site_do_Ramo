@@ -1,10 +1,15 @@
+import {useState} from "react";
 import NavBar from "../../../components/NavBar/NavBar";
 import styles from '../../../styles/blogCadastrar.module.scss'
 
 
 export default function cadastrar(){
- 
-
+  const [title,setTitle] = useState('')
+  const [resume,setResume] = useState('')
+  const [images,setImages] = useState([])
+  const [postText,setPostText] = useState('')
+  
+  
   return(
     <div className={styles.container}>
       <NavBar/>
@@ -15,12 +20,12 @@ export default function cadastrar(){
             <legend id={styles.label} >Posts</legend>
 
             <h1 id={styles.inputLabel}>Título</h1>
-            <input id={styles.input}  
-             />
+            <input id={styles.input} value={title} 
+            onChange={event => setTitle(event.target.value)} />
 
             <h1 id={styles.inputLabel}>Resumo</h1>
-            <input id={styles.input} 
-            />
+            <input id={styles.input} value={resume} 
+            onChange={event => setResume(event.target.value)} />
 
             <h1 id={styles.inputLabel}>Imagens</h1>
 
@@ -30,7 +35,7 @@ export default function cadastrar(){
                     <div className={styles.cross2}></div>
                    </label>
 
-                   
+                   <input multiple onChange={handleSelectImages} type="file" id="image[]"  />
                    <p>capa</p>
                 </div>
 
