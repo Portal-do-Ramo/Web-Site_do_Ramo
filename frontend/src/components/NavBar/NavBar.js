@@ -37,7 +37,7 @@ export default function NavBar() {
                   <p>Cadastrar</p>
                 </a>
               </Link>
-              <Link href="/">
+              <Link href={`/marketing/gerenciar/${edit.title}`}>
                 <a>
                   <p>Gerenciar</p>
                 </a>
