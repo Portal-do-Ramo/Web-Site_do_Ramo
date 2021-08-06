@@ -7,7 +7,7 @@ export default function SearchBar ({searchQuery , setSearchQuery }){
     <div>
       <form  className={styles.form}>
         <input type="text" value={searchQuery} onChange={(event)=>setSearchQuery(event.target.value)}/>
-        <img src="search.svg"/>
+        <img src="/search.svg"/>
       </form>
     </div>
 
