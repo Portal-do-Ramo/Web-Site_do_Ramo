@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+
+    #content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    
+    #fieldset {
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        margin: 2rem;
+        padding: 2rem;
+        border: 1px solid rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+
+        #legend{
+            margin-left: 2.5rem;
+            border: 1px solid red;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.6);
+            font-family: Roboto, 'sans-serif';
+            font-weight: normal;
+            padding: 0.8rem 3.5rem;
+            font-size: 1.6rem;
+        }
+        
+        /* Input Section */
+        
+        .inputLabel {
+            font-family: Roboto, 'sans-serif';   
+            font-weight: normal;
+            font-size: 1.7rem;
+        }
+        
+        #inputTitle {
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+            border: none;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            text-indent: 15px;
+        }
+        
+        #inputTextarea {
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+            border: none;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            padding: 15px;
+            font-family: Roboto, 'sans-serif';
+            resize: none;
+            min-height: 200px;
+        }
+        
+        label#imgFileBtn{
+            background-color: #ECECEC;
+            padding: 12px 25px;
+            margin-top: 20px;
+            font-family: Roboto, 'sans-serif';
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.40);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        input[type=file].imgFile {
+            display: none;
+        }
+    }
+    
+    /* Buttons Section */
+    #btnContainer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 2rem;
+        margin-bottom: 10px;
+
+        p {
+            font-family: Poppins;
+            font-size: 1.2rem;
+            color: white;
+            
+        }
+
+        #cancelBtn {
+            background-color: #828282;
+            border-radius: 7px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        #saveBtn {
+            background: #0D5FAA;
+            border-radius: 7px;
+            padding: 5px 10px;
+            margin-left: 15px;
+            border: none;
+            cursor: pointer;
+        }
+    }
+    
+}
+
