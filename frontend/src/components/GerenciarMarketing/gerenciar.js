@@ -11,6 +11,30 @@ const ativos = [
     id: 2,
     name: "Aqui quem fala é edu",
   },
+  {
+    id: 1,
+    name: "Eae pessoal tudo bem",
+  },
+  {
+    id: 2,
+    name: "Aqui quem fala é edu",
+  },
+  {
+    id: 1,
+    name: "Eae pessoal tudo bem",
+  },
+  {
+    id: 2,
+    name: "Aqui quem fala é edu",
+  },
+  {
+    id: 1,
+    name: "Eae pessoal tudo bem",
+  },
+  {
+    id: 2,
+    name: "Aqui quem fala é edu",
+  },
   
 ];
 
@@ -61,10 +85,8 @@ export default function Gerenciar({name}) {
 
   return (
     <div className={styles.all}>
-      <div className={styles.title}>
-        <h1>{name}</h1>
-      </div>
-      <div className={styles.manager}>
+      <fieldset className={styles.manager}>
+      <legend id={styles.label}>{name}</legend>
         <div className={styles.search}>
           <div className={styles.searchBar}>
             <SearchBar
@@ -119,7 +141,7 @@ export default function Gerenciar({name}) {
             </div>
           )}
         </div>
-      </div>
+      </fieldset>
       <div className={styles.backButton}>
         <p>Voltar</p>
       </div>
