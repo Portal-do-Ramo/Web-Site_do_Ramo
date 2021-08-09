@@ -1,29 +1,16 @@
 import {useState} from "react";
 import NavBar from "../../../components/NavBar/NavBar";
+import SelectImage from "../../../components/SelectImage/SelectImage";
 import styles from '../../../styles/blogCadastrar.module.scss'
 
 
 export default function cadastrar(){
   const [title,setTitle] = useState('')
   const [resume,setResume] = useState('')
-  const [images,setImages] = useState([])
   const [postText,setPostText] = useState('')
   
   function handleSubmit(event) {
     event.preventDefault()
-    console.log({
-        title,
-        resume,
-        postText
-    }
-    )
-  }
-
-  function handleSelectImages(event) {
-      if(!event.target.files) {
-          return
-      }
-      setImages(Array.from(event.target.files))
   }
 
   return(
@@ -42,18 +29,13 @@ export default function cadastrar(){
             <h1 id={styles.inputLabel}>Resumo</h1>
             <input id={styles.input} value={resume} 
             onChange={event => setResume(event.target.value)} />
-
+   
             <h1 id={styles.inputLabel}>Imagens</h1>
-
-                <div className={styles.imageCard}>
-                   <label htmlFor="image[]" className={styles.newImage}>
-                    <div className={styles.cross1}></div>
-                    <div className={styles.cross2}></div>
-                   </label>
-
-                   <input multiple onChange={handleSelectImages} type="file" id="image[]"  />
-                   <p>capa</p>
-                </div>
+            <div id={styles.imagesContainer}>
+              <SelectImage />
+              <SelectImage />
+              <SelectImage />
+            </div>
 
             <h1 id={styles.inputLabel}>Texto do post</h1>
             <input id={styles.input} value={postText} 
@@ -73,3 +55,4 @@ export default function cadastrar(){
     </div>
   )
 }
+
