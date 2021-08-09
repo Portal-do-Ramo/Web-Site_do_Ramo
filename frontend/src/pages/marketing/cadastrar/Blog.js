@@ -22,23 +22,23 @@ export default function cadastrar(){
         <fieldset id={styles.fieldset}>
             <legend id={styles.label} >Posts</legend>
 
-            <h1 id={styles.inputLabel}>Título</h1>
-            <input id={styles.input} value={title} 
+            <h1 className={styles.inputLabel}>Título</h1>
+            <input id={styles.inputTitle} value={title} 
             onChange={event => setTitle(event.target.value)} />
 
-            <h1 id={styles.inputLabel}>Resumo</h1>
-            <input id={styles.input} value={resume} 
+            <h1 className={styles.inputLabel}>Resumo</h1>
+            <input id={styles.resumeInput} value={resume} 
             onChange={event => setResume(event.target.value)} />
    
-            <h1 id={styles.inputLabel}>Imagens</h1>
-            <div id={styles.imagesContainer}>
+            <h1 className={styles.inputLabel}>Imagens</h1>
+            <div className={styles.imagesContainer}>
               <SelectImage />
               <SelectImage />
               <SelectImage />
             </div>
 
-            <h1 id={styles.inputLabel}>Texto do post</h1>
-            <input id={styles.input} value={postText} 
+            <h1 className={styles.inputLabel}>Texto do post</h1>
+            <input id={styles.textPostInput} value={postText} 
             onChange={event => setPostText(event.target.value)} />
         </fieldset>
 

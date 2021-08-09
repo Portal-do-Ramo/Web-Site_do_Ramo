@@ -30,23 +30,43 @@
 
 /* Input Section */
 
-#inputLabel {
+.inputLabel {
     font-family: Roboto, 'sans-serif';   
     font-weight: normal;
     font-size: 1.7rem;
 }
 
-#input {
+#inputTitle {
     width: 100%;
-    height: 40px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
     margin-top: 1rem;
     margin-bottom: 2rem;
+    height: 3rem;
 }
 
-#imagesContainer {
+#resumeInput {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    height: 6rem;
+}
+
+#textPostInput {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    height: 14rem;
+}
+
+.imagesContainer {
     display: grid;
     grid-template-columns: repeat(3, 160px);
 }
@@ -58,6 +78,7 @@
     display: flex;
     justify-content: flex-end;
     padding: 0 2rem;
+    margin-bottom: 1rem;
 
     p {
         font-family: Poppins;
