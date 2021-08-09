@@ -15,12 +15,13 @@ module.exports = {
     },
 	
     async create(req, res) {
-		let { title, body, img, user_id} = req.body;
+		let { title, resume,  body, img, user_id} = req.body;
 
         try {
             await knex("news").insert({
 				id: v4(),
                 title,
+				resume,
                 body,
                 img,
 				user_id
