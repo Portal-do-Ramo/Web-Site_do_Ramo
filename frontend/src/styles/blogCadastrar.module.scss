@@ -39,6 +39,7 @@
 
 #input {
     width: 100%;
+    height: 40px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
@@ -46,62 +47,10 @@
     margin-bottom: 2rem;
 }
 
-.imageCard {
-    height: 150px;
-    width: 140px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+#imagesContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
 }
-
-.imageCard p {
-    margin-left: 10px;
-    font-family: Poppins;
-    font-size: 0.8rem;
-}
-
-.imageCard input[type=file] {
-    display: none;
-}
-
-.newImage {
-    background-color: #fff;
-    width: 120px;
-    height: 84px;
-    margin: 10px 10px;
-
-    border: 1px solid #C7B8B8;
-    box-sizing: border-box;
-    border-radius: 10px;
-
-    position: relative;
-}
-
-.newImage:hover {
-    cursor: pointer;
-}
-
-.cross1 {
-    position: absolute;
-    top: 17px;
-    left:60px;
-    height: 50px;
-    width: 1.5px;
-    background-color: rgba(211, 194, 194, 0.9);
-    Z-index: 1;
-}
-
-.cross2 {
-    position: absolute;
-    left:35px;
-    top: 42px;
-    height: 1.5px;
-    width: 50px;
-    background-color: rgba(211, 194, 194, 0.9);
-    Z-index: 1;
-}
-
 
 
 /* Buttons Section */
@@ -110,13 +59,13 @@
     display: flex;
     justify-content: flex-end;
     padding: 0 2rem;
-}
 
-#btnContainer p {
-    font-family: Poppins;
-    font-size: 1.2rem;
-    color: white;
-    
+    p {
+        font-family: Poppins;
+        font-size: 1.2rem;
+        color: white;
+        
+    }
 }
 
 #cancelBtn {
@@ -124,6 +73,7 @@
     border-radius: 7px;
     padding: 5px 10px;
     border: none;
+    cursor: pointer;
 }
 
 #saveBtn {
@@ -132,4 +82,5 @@
     padding: 5px 10px;
     margin-left: 15px;
     border: none;
+    cursor: pointer;
 }
