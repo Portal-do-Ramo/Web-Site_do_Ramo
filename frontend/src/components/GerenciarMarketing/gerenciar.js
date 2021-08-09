@@ -35,7 +35,6 @@ const ativos = [
     id: 2,
     name: "Aqui quem fala é edu",
   },
-  
 ];
 
 const excluidos = [
@@ -86,7 +85,7 @@ export default function Gerenciar({name}) {
   return (
     <div className={styles.all}>
       <fieldset className={styles.manager}>
-      <legend id={styles.label}>{name}</legend>
+      <legend className={styles.title}>{name}</legend>
         <div className={styles.search}>
           <div className={styles.searchBar}>
             <SearchBar
@@ -94,9 +93,9 @@ export default function Gerenciar({name}) {
               setSearchQuery={setSearchQuery}
             />
           </div>
-          {/*<div className={styles.searchButton}>
+          <div className={styles.searchButton}>
             <p>Buscar</p>
-          </div>*/}
+          </div>
         </div>
         <div className={styles.elementsManager}>
           <div className={styles.managingButtons}>

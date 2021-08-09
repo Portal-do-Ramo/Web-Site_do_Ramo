@@ -1,4 +1,5 @@
 .all {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   flex:1;
@@ -21,21 +22,13 @@
     padding-left: 2rem;
   }
   .title {
-    width: 12rem;
-    height: 3.5rem;
+    margin-left: 2.5rem;
     border-radius: 12px;
-    border: 1px solid gray;
-    text-align: center;
-    position: absolute;
-    top: 4%;
-    left: 20%;
-
-    background-color: white;
-    h1 {
-      margin-top: 0.5rem;
-      font-size: 30;
-      font-weight: 400;
-    }
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    font-family: Roboto, 'sans-serif';
+    font-weight: normal;
+    padding: 0.8rem 3.5rem;
+    font-size: 1.6rem;
   }
   .manager {
     display: flex;
@@ -45,35 +38,17 @@
     padding: 2rem;
     border: 1px solid rgba(0, 0, 0, 0.6);
     border-radius: 12px;
-    overflow-y: scroll;
-
-    
-    #label{
-      margin-left: 2.5rem;
-      border: 1px solid red;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 0, 0, 0.6);
-      font-family: Roboto, 'sans-serif';
-      font-weight: normal;
-      padding: 0.8rem 3.5rem;
-      font-size: 1.6rem;
-    }
 
     .search {
-      width: 95%;
       display: flex;
-      position: fixed;
+
       .searchBar {
         background-color: white;
-        margin-top: 6rem;
-        margin-left: 2rem;
-        width: 77%;
-        height: 2.5rem;
         border: 2px solid rgba(0, 0, 0, 0.27);
-        border-radius: 10px 10px 10px 10px;
+        border-radius: 10px;
+        display: flex;
+        flex: 1;
         input {
-          margin-left: 0.5rem;
-          width: 96%;
           border: transparent;
           font-family: "Poppins", sans-serif;
           font-weight: 500;
@@ -90,35 +65,37 @@
         }
       }
       .searchButton {
-        margin-left: 1rem;
-        margin-top: 6rem;
-        width: 12%;
         border-radius: 7px;
         background-color: var(--azul-ramo);
         text-align: center;
+        padding: 8px 15px;
+        margin-left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
         p {
           text-decoration: none;
           font-size: 20px;
-          margin-top: 0.5rem;
           color: white;
           font-weight: 700;
         }
       }
     }
     .elementsManager {
-      width: 95%;
-      margin: 3rem;
+      margin-top: 2rem;
+      margin-left: 1rem;
 
       .managingButtons {
         display: flex;
         flex-direction: row;
-        position: fixed;
         margin-bottom: 2rem;
         .button {
           width: 6.125rem;
           height: 2.125rem;
           text-align: center;
           border-radius: 5px;
+          cursor: pointer;
           p {
             font-weight: 500;
             margin-top: 0.5rem;
@@ -130,7 +107,7 @@
           text-align: center;
           border-radius: 5px;
           background-color: #9db0f2;
-
+          cursor: pointer;
           p {
             font-weight: 500;
             margin-top: 0.5rem;
@@ -138,43 +115,44 @@
         }
       }
       .scroll {
-        padding-top: 5rem;
+        overflow-y: scroll;
+        height: 55vh;
         .elements {
           display: flex;
-          width: 95%;
-          margin-top: 2rem;
+          justify-content: space-between;
+          align-items: flex-end;
           border-bottom: 1px solid gray;
-
+          padding-bottom: 10px;
+          padding-top: 15px;
           p {
-            padding-top: 1rem;
-            width: 91%;
-            font-size: 20px;
+            font-size: 1.1rem;
             font-weight: 400;
           }
           .edit{
             display: flex;
           }
           img {
-            padding-bottom: 1rem;
+            width: 30px;
             margin-left: 0.3rem;
-            margin-right: 0.3rem;
+            margin-right: 0.7rem;
           }
         }
       }
     }
   }
   .backButton {
-    padding: 0;
-    margin-left: auto;
-    margin-right: 1.8rem;
-    margin-bottom: 2rem;
-    width: 9rem;
-    height: 3.375rem;
+    display: flex;
+    align-self: flex-end;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
     background-color: var(--azul-ramo);
     border-radius: 7px;
     text-align: center;
+    cursor: pointer;
     p {
-      margin-top: 0.5rem;
       color: white;
       font-size: 24px;
       font-weight: 700;
