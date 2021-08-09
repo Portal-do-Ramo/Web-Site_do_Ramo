@@ -18,8 +18,29 @@
     width: 140px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin: 1rem 1rem 2rem 0;
+}
+
+.imageCard img {
+    width: 100%;
+    object-fit: cover;
+    width: 120px;
+    height: 84px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.new-image {
+    height: 96px;
+  background: #F5F8FA;
+  border: 1px dashed #96D2F0;
+  border-radius: 20px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imageCard p {
