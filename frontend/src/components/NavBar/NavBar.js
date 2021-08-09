@@ -24,7 +24,6 @@ export default function NavBar() {
         <Image src="/Ramo_logo.svg" width="auto" height="70%" />
         <div className={styles.title2}>
           <p>Admin</p>
-          <p>Site do Ramo</p>
         </div>
       </div>
       <div className={styles.edit}>
@@ -32,7 +31,7 @@ export default function NavBar() {
           <div key={edit.id}>
             <h1>{edit.title}</h1>
             <div className={styles.options}>
-              <Link href="/">
+              <Link href={`/marketing/cadastrar/${edit.title}/`}>
                 <a>
                   <p>Cadastrar</p>
                 </a>
