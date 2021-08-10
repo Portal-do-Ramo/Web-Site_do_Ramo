@@ -1,6 +1,9 @@
 const express = require("express");
+const multer = require('multer')
+const uploadConfig = require('./config/upload')
 
 const router = express.Router();
+const upload = multer(uploadConfig)
 
 const awardController = require("./controllers/awardController");
 const commonController = require("./controllers/commonController");
@@ -25,7 +28,7 @@ router
 	.get("/projects", projectController.index)
 	.get("/roles", roleController.index)
 	.get("/sponsors", sponsorController.index)
-	.get("/users", auth, userController.index)
+	.get("/users", userController.index)
 
 
     .get("/award/:id", awardController.show)
@@ -46,11 +49,11 @@ router
 	
     .post("/award", awardController.create)
 	.post("/crew", crewController.create)
-	.post("/deposition", auth,depositionController.create)
-	.post("/news", auth,newsController.create)
-	.post("/project", auth,projectController.create)
-	.post("/role", auth,roleController.create)
-	.post("/sponsor", auth,sponsorController.create)
+	.post("/deposition",depositionController.create)
+	.post("/news", upload.single('img'), newsController.create)
+	.post("/project",projectController.create)
+	.post("/role",roleController.create)
+	.post("/sponsor",sponsorController.create)
     .post("/user", userController.create)
 	.post("/login", userController.login)
 
