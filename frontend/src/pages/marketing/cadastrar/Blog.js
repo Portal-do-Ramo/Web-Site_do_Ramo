@@ -18,7 +18,7 @@ export default function cadastrar(){
     data.append('body', postText);
     data.append('img', 'teste.png');
     
-    await api.post('/news');
+    await api.post('/news', data);
   }
 
   return(
