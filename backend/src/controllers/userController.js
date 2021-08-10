@@ -87,13 +87,13 @@ module.exports = {
 			if(!await bcrypt.compare(password, user.password)){ // implementar lógica do bcrypt
 				return res.status(401).json({"message": "Senha inválida"});
 			}
-			
-			const token = await authenticate(user.name, email, user.role); //ver se precisa de await 
+	
+			const token = authenticate(user.name, email, user.role); //ver se precisa de await 
 
 			return res
 				.status(200)
                 .header('auth-token', token) // ler sobre o método
-				.send("Usuario logado");
+				.json({"token": token});
 
         } catch(err) {
             return res.json({"message": err.message});
