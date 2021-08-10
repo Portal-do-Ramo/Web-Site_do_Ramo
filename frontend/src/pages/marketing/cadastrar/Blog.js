@@ -2,15 +2,23 @@ import {useState} from "react";
 import NavBar from "../../../components/NavBar/NavBar";
 import SelectImage from "../../../components/SelectImage/SelectImage";
 import styles from '../../../styles/blogCadastrar.module.scss'
-
+import api from '../../../services/api'
 
 export default function cadastrar(){
-  const [title,setTitle] = useState('')
-  const [resume,setResume] = useState('')
-  const [postText,setPostText] = useState('')
+  const [title,setTitle] = useState('');
+  const [resume,setResume] = useState('');
+  const [postText,setPostText] = useState('');
   
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
+
+    const data = new FormData();
+    data.append('title', title);
+    data.append('resume', resume);
+    data.append('body', postText);
+    data.append('img', 'teste.png');
+    
+    await api.post('/news');
   }
 
   return(
@@ -27,7 +35,7 @@ export default function cadastrar(){
             onChange={event => setTitle(event.target.value)} />
 
             <h1 className={styles.inputLabel}>Resumo</h1>
-            <input id={styles.resumeInput} value={resume} 
+            <textarea id={styles.resumeInput} value={resume} 
             onChange={event => setResume(event.target.value)} />
    
             <h1 className={styles.inputLabel}>Imagens</h1>
@@ -38,7 +46,7 @@ export default function cadastrar(){
             </div>
 
             <h1 className={styles.inputLabel}>Texto do post</h1>
-            <input id={styles.textPostInput} value={postText} 
+            <textarea id={styles.textPostInput} value={postText} 
             onChange={event => setPostText(event.target.value)} />
         </fieldset>
 

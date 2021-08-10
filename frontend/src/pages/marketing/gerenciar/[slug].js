@@ -8,7 +8,6 @@ export default function Manage(){
   const name = router.query.slug;
   return (
     <div className={styles.all}>
-
       <NavBar/>
       <Gerenciar name = {name}/>
     </div>

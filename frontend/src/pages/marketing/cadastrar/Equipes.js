@@ -38,17 +38,17 @@ export default function Cadastrar(){
         <fieldset id={styles.fieldset}>
           <legend id={styles.legend} >Equipes</legend>
 
-          <label class={styles.inputLabel}>Nome da equipe</label>
+          <label className={styles.inputLabel}>Nome da equipe</label>
           <input id={styles.inputTitle} onChange={event => setTitle(event.target.value)} />
 
-          <label class={styles.inputLabel}>Texto</label>
+          <label className={styles.inputLabel}>Texto</label>
           <textarea id={styles.inputTextarea} onChange={event => setText(event.target.value)} />
 
-          <label class={styles.inputLabel}>Logo</label>
+          <label className={styles.inputLabel}>Logo</label>
           {previewImages.length != 0 ? <img id={styles.previewImage} src={previewImages[0]} /> : null}
           <div>
             <label htmlFor="imgFile[]" id={styles.imgFileBtn}>Escolher ficheiro</label>
-            <input onChange={handleSelectImages} type="file" id="imgFile[]" class={styles.imgFile} />
+            <input onChange={handleSelectImages} type="file" id="imgFile[]" className={styles.imgFile} />
           </div>
         </fieldset>
 
