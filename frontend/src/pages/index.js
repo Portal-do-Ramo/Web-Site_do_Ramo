@@ -1,9 +1,13 @@
+import { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import CrewsCard from "../components/CrewsCard/CrewCard";
 
 import Link from "next/link";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
+
+import api from '../services/api'
 
 import "react-multi-carousel/lib/styles.css";
 
@@ -30,6 +34,18 @@ const responsive = {
 };
 
 export default function Home() {
+
+  let [crews, setCrews ] = useState();
+  let [sponsors, setSponsors ] = useState();
+  
+  useEffect(async () => {
+    crews = await api.get("/crews");
+    sponsors = await api.get("/sponsors");
+
+    setCrews(crews)
+  }, []);
+  
+
   return (
     <div>
       <Header/>
@@ -70,9 +86,11 @@ export default function Home() {
         <div className={styles.crew_content}>
           <h3>Equipes</h3>
           <section className={styles.logo_content}>
+            {/* <CrewsCard name={crews[5].name} image="./WIE_logo.svg"/>
+            <Crewcard name="WolfByte" image="../../Wolfbotz_logo.svg" /> */}
             <div className={styles.cards}>
               <a href="#">
-                <img src="WIE_logo.svg" />
+                <img src="./WIE_logo.svg" />
                 <p>WIE</p>
               </a>
             </div>

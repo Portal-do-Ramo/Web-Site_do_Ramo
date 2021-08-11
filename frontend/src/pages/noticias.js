@@ -7,6 +7,8 @@ import Link from "next/link";
 import NewsBox from "../components/NewsBox/NewsBox";
 import Footer from "../components/Footer/Footer";
 
+import api from '../services/api'
+
 const noticias = [
   {
     id: 1,
@@ -198,15 +200,16 @@ const noticias = [
 ];
 
 export default function Noticias() {
+  let news;
   const noticiasAtuais = noticias.slice(0, 3);
-
+  
   const [click, setClick] = useState(1);
   function setNotLenght(click, noticias) {
     const newNot = noticias.slice(3, 3 + click * 5);
     return newNot;
   }
   const noticiasAntigas = setNotLenght(click, noticias);
-
+  
   const [searchQuery, setSearchQuery] = useState("");
   const filterNot = (noticiasAntigas, searchQuery) => {
     if (!searchQuery) {
@@ -218,8 +221,14 @@ export default function Noticias() {
     });
   };
   const filteredNot = filterNot(noticiasAntigas, searchQuery);
-
+  
   const tamanho = noticias.length;
+  
+  
+  useEffect(async () => {
+    news = await api.get('/news');
+    console.log(news);
+  }, [])
 
   return (
     <div>

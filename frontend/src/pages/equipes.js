@@ -47,7 +47,13 @@ export default function Equipes() {
   useEffect(async () => {
     console.log(equipesApi);
   }, [equipesApi]);*/}
-
+  
+  useEffect(async () => {
+    let equipesApi = await api.get("/crews");
+    setEquipes(equipesApi);
+    console.log(equipesApi);
+  }, []);
+  
   const settings = {
     arrows: true,
     infinite: true,

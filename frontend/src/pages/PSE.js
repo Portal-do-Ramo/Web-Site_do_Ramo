@@ -3,7 +3,16 @@ import Footer from "../components/Footer/Footer";
 
 import styles from "../styles/PSE.module.scss";
 
+import { useEffect } from "react";
+
+import api from '../services/api'
+
 export default function PSE() {
+
+    async function handleSubmit() {
+         //falta o controller no backend para submeter os dados e gerar o csv
+    }
+    
     return (
         <div>
             <Header/>
