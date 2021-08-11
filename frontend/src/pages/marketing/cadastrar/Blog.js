@@ -14,24 +14,28 @@ export default function cadastrar(){
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const data = new FormData();
-    data.append('title', title);
-    data.append('resume', resume);
-    data.append('body', postText);
-    //mudar o valor abaixo p/ id de um user cadastrado no seu bd
-    data.append('user_id', '7d16dae6-377c-40e5-a3a9-1ac33cda5921'); 
-    
-    images.forEach(image => {
-      data.append('img', image);
-    })
-    
-    await api.post('/news', data);
+    try {
+      const data = new FormData();
+      data.append('title', title);
+      data.append('resume', resume);
+      data.append('body', postText);
+      //mudar o valor abaixo p/ id de um user cadastrado no seu bd
+      data.append('user_id', '7d16dae6-377c-40e5-a3a9-1ac33cda5921'); 
+      
+      images.forEach(image => {
+        data.append('img', image);
+      })
+      
+      await api.post('/news', data);
 
-    setTitle('');
-    setResume('');
-    setPostText('');
-    setImages([]);
-    setPreviewImages([]);
+      setTitle('');
+      setResume('');
+      setPostText('');
+      setImages([]);
+      setPreviewImages([]);
+    } catch(err) {  
+      console.log(err);
+    }
   }
 
   return(

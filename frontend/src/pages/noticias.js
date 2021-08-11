@@ -226,8 +226,12 @@ export default function Noticias() {
   
   
   useEffect(async () => {
-    news = await api.get('/news');
-    console.log(news);
+    try{
+      news = await api.get('/news');
+      console.log(news);
+    } catch(err) {
+      console.log(err);
+    }
   }, [])
 
   return (

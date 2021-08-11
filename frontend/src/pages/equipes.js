@@ -36,22 +36,15 @@ import equipes from "../services/crewTestData";
 export default function Equipes() {
   const [equipesApi, setEquipes] = useState([]);
   const [index, setIndex] = useState(0);
-
-  
-  {/*useEffect(async () => {
-    equipes = api.get("/api/crews").then((response) => {
-      setEquipes(response.data);
-    });
-  }, []);
-
-  useEffect(async () => {
-    console.log(equipesApi);
-  }, [equipesApi]);*/}
   
   useEffect(async () => {
-    let equipesApi = await api.get("/crews");
-    setEquipes(equipesApi);
-    console.log(equipesApi);
+    try {
+      let equipesApi = await api.get("/crews");
+      setEquipes(equipesApi);
+      console.log(equipesApi);
+    } catch(err) {
+      console.log(err);
+    }
   }, []);
   
   const settings = {

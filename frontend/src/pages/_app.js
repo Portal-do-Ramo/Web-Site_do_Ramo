@@ -1,6 +1,5 @@
 import '../styles/global.scss'
 import { Provider } from '../contexts/Context'
-import { MktInputContext } from '../contexts/MktInputContext'
 
 function MyApp({ Component, pageProps }){
 

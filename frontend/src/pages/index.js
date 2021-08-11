@@ -39,10 +39,16 @@ export default function Home() {
   let [sponsors, setSponsors ] = useState();
   
   useEffect(async () => {
-    crews = await api.get("/crews");
-    sponsors = await api.get("/sponsors");
+    try{
+      crews = await api.get("/crews");
+      sponsors = await api.get("/sponsors");
+      console.log(crews);
+      console.log(sponsors);
 
-    setCrews(crews)
+      setCrews(crews)
+    } catch(err) {
+      console.log(err);
+    }
   }, []);
   
 
