@@ -15,7 +15,13 @@ module.exports = {
     },
 	
     async create(req, res) {
-		let { title, resume,  body, img, user_id} = req.body;
+		let { title, resume, body, user_id} = req.body;
+		
+		const requestImages = req.files;
+		
+		const img = requestImages.map(image => {
+            return { path:image.filename}
+        })
 
         try {
             await knex("news").insert({
