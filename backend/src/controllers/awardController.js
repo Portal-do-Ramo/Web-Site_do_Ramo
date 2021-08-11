@@ -55,5 +55,5 @@ module.exports = {
 			return res.status(405).json({"message": err.message});
 		}
     }
-
+	
 }
