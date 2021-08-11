@@ -1,14 +1,15 @@
 import '../styles/global.scss'
-import { AuthProvider } from '../contexts/AuthContext'
+import { Provider } from '../contexts/Context'
+import { MktInputContext } from '../contexts/MktInputContext'
 
 function MyApp({ Component, pageProps }){
 
   return (
     <div>
       <main>
-        <AuthProvider>
-          <Component {...pageProps}/>
-        </AuthProvider>
+        <Provider>   
+            <Component {...pageProps}/>
+        </Provider>
       </main>
     </div>
   )

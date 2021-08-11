@@ -1,15 +1,14 @@
 import styles from "../styles/login.module.scss";
 import { useForm } from 'react-hook-form'
 import { useContext, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { Context } from "../contexts/Context";
 
 export default function Login(){
     const { register, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext)
+    const { signIn } = useContext(Context)
     const [errMessage,setErrMessage] = useState(null)
 
     async function handleSignIn(data) {
-        console.log(data)
         try {
             await signIn(data);
         } catch(err) {
