@@ -1,13 +1,15 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import NavBar from "../../../components/NavBar/NavBar";
 import SelectImage from "../../../components/SelectImage/SelectImage";
 import styles from '../../../styles/blogCadastrar.module.scss'
 import api from '../../../services/api'
+import { Context } from "../../../contexts/Context";
 
 export default function cadastrar(){
   const [title,setTitle] = useState('');
   const [resume,setResume] = useState('');
   const [postText,setPostText] = useState('');
+  const {images,setImages,setPreviewImages} = useContext(Context);
   
   async function handleSubmit(event) {
     event.preventDefault()
@@ -16,9 +18,20 @@ export default function cadastrar(){
     data.append('title', title);
     data.append('resume', resume);
     data.append('body', postText);
-    data.append('img', 'teste.png');
+    //mudar o valor abaixo p/ id de um user cadastrado no seu bd
+    data.append('user_id', '7d16dae6-377c-40e5-a3a9-1ac33cda5921'); 
+    
+    images.forEach(image => {
+      data.append('img', image);
+    })
     
     await api.post('/news', data);
+
+    setTitle('');
+    setResume('');
+    setPostText('');
+    setImages([]);
+    setPreviewImages([]);
   }
 
   return(
@@ -40,9 +53,9 @@ export default function cadastrar(){
    
             <h1 className={styles.inputLabel}>Imagens</h1>
             <div className={styles.imagesContainer}>
-              <SelectImage />
-              <SelectImage />
-              <SelectImage />
+              <SelectImage index={0} />
+              <SelectImage index={1} />
+              <SelectImage index={2} />
             </div>
 
             <h1 className={styles.inputLabel}>Texto do post</h1>
