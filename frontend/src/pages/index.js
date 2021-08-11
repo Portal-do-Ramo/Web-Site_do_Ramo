@@ -35,26 +35,27 @@ const responsive = {
 
 export default function Home() {
 
-  let [crews, setCrews ] = useState();
-  let [sponsors, setSponsors ] = useState();
-  
-  useEffect(async () => {
-    try{
-      crews = await api.get("/crews");
-      sponsors = await api.get("/sponsors");
-      console.log(crews);
-      console.log(sponsors);
+  let [sponsors, setSponsors] = useState([]);
+  let [crews, setCrews] = useState([1,2,3,4,5,6,7,8]); 
+  let [dataIsFetched, setDataIsFetched] = useState(false);
 
-      setCrews(crews)
-    } catch(err) {
+  useEffect(async () => {
+    try {
+      const { data } = await api.get("/crews");
+      sponsors = await api.get("/sponsors");
+
+      setCrews(data);
+      console.log(crews[0].name)
+      setDataIsFetched(true);
+    } catch (err) {
       console.log(err);
     }
   }, []);
-  
+
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div id={styles.page_container}>
         <div id={styles.text_container}>
           <div id={styles.ourStory}>
@@ -81,7 +82,7 @@ export default function Home() {
           </div>
           <div id={styles.main_container}>
             <Image id={styles.icon} src="/seu_pai.svg" width={500} height={600} />
-            <a href="#" id={styles.button}>
+            <a href="/sobre" id={styles.button}>
               <p>Saiba mais</p>
               <Image src="/right-arrow.svg" width={32} height={32} />
             </a>
@@ -92,61 +93,22 @@ export default function Home() {
         <div className={styles.crew_content}>
           <h3>Equipes</h3>
           <section className={styles.logo_content}>
-            {/* <CrewsCard name={crews[5].name} image="./WIE_logo.svg"/>
-            <Crewcard name="WolfByte" image="../../Wolfbotz_logo.svg" /> */}
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="./WIE_logo.svg" />
-                <p>WIE</p>
-              </a>
-            </div>
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="../../Wolfbyte_logo.svg" />
-                <p>WolfByte</p>
-              </a>
-            </div>
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="../../Wolfbotz_logo.svg" />
-                <p>WolfBotz</p>
-              </a>
-            </div>
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="../../Wolfpower_logo.svg" />
-                <p>WolfPower</p>
-              </a>
-            </div>
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="../../Rocketwolf_logo.svg" />
-                <p>RocketWolf</p>
-              </a>
-            </div>
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="../../Socialwolf_logo.svg" />
-                <p>SocialWolf</p>
-              </a>
-            </div>
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="../../Gestao_logo.svg" />
-                <p>Gestão</p>
-              </a>
-            </div>
-            <div className={styles.cards}>
-              <a href="#">
-                <img src="../../Marketing_logo.svg" />
-                <p>Marketing</p>
-              </a>
-            </div>
+            {
+              crews.map(crew => {
+                if (dataIsFetched) {
+                  console.log(crew)
+                  return (<CrewsCard dataIsFetched={true} name={crew.name} image="./WIE_logo.svg" />)
+                }
+                else {
+                  return (<CrewsCard dataIsFetched={false} />) //retorna o card vazio
+                }
+              })
+            }
           </section>
         </div>
         <img src="/Background.png" width="100%" className={styles.rotate} />
         <section className={styles.parcerias}>
-          <h3>Parcerias</h3>
+          <h3>Parceiros</h3>
 
           <div className={styles.dimensionamento}>
             <Carousel
@@ -169,46 +131,46 @@ export default function Home() {
               swipeable
             >
               <div>
-                <a>
-                  <img src="/seu_pai.svg" />
+                <a  >
+                  <img src="/patrocinador1.png" />
                 </a>
               </div>
               <div>
                 <a>
-                  <img src="/seu_pai.svg" />
+                  <img src="/patrocinador2.png" />
                 </a>
               </div>
               <div>
                 <a>
-                  <img src="/seu_pai.svg" />
+                  <img src="/patrocinador3.png" />
                 </a>
               </div>
               <div>
                 <a>
-                  <img src="/seu_pai.svg" />
+                  <img src="/patrocinador4.png" />
                 </a>
               </div>
               <div>
                 <a>
-                  <img src="/seu_pai.svg" />
+                  <img src="/patrocinador1.png" />
                 </a>
               </div>
               <div>
                 <a>
-                  <img src="/seu_pai.svg" />
+                  <img src="/patrocinador2.png" />
                 </a>
               </div>
               <div>
                 <a>
-                  <img src="/seu_pai.svg" />
+                  <img src="/patrocinador3.png" />
                 </a>
               </div>
             </Carousel>
           </div>
         </section>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-    
+
   );
 }
