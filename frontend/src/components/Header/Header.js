@@ -18,6 +18,11 @@ export default function Header() {
         </ul>
         <div className={styles.linkContainer}>
           <div>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </div>
+          <div>
             <Link href="/sobre">
               <a>Sobre</a>
             </Link>
@@ -33,7 +38,7 @@ export default function Header() {
             </Link>
           </div>
           <div>
-            <Link href="">
+            <Link href="/PSE">
               <a>Processo seletivo</a>
             </Link>
           </div>
@@ -45,11 +50,6 @@ export default function Header() {
           <div>
             <Link href="">
               <a>Contato</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="">
-              <a>IEEE</a>
             </Link>
           </div>
         </div>
