@@ -50,7 +50,7 @@ router
     .post("/award", awardController.create)
 	.post("/crew", crewController.create)
 	.post("/deposition",depositionController.create)
-	.post("/news", upload.single('img'), newsController.create)
+	.post("/news", upload.array('img'), newsController.create)
 	.post("/project", auth, projectController.create)
 	.post("/role",roleController.create)
 	.post("/sponsor",sponsorController.create)

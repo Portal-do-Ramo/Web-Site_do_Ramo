@@ -36,7 +36,7 @@ module.exports = {
                     role
                 });
 
-                await mailer("email_confirmacao", email);
+                //await mailer("email_confirmacao", email);
 
                 return res
                     .status(201)

@@ -6,7 +6,7 @@ exports.up = knex => {
     table.string("body").notNullable();
     table.text("img").notNullable();
     table.timestamps(true, true);
-    table.uuid("user_id").references("id").inTable("users").onDelete("SET NULL");
+	table.uuid("user_id").references("id").inTable("users").onDelete("SET NULL");
   });
 };
 
