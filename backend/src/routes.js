@@ -14,6 +14,7 @@ const projectController = require("./controllers/projectController");
 const roleController = require("./controllers/roleController");
 const sponsorController = require("./controllers/sponsorController");
 const userController = require("./controllers/userController");
+const pseController = require("./controllers/pseController");
 
 const sendEmail = require('./services/nodemailer')
 
@@ -56,6 +57,7 @@ router
 	.post("/sponsor",sponsorController.create)
     .post("/user", userController.create)
 	.post("/login", userController.login)
+	.post("/pse", pseController.create)
 
 
     .delete("/award", awardController.delete)
