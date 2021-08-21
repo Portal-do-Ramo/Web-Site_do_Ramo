@@ -1,5 +1,5 @@
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Header from "../components/Header/index";
+import Footer from "../components/Footer/index";
 
 import styles from "../styles/PSE.module.scss";
 

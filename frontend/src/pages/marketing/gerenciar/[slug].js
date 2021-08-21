@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
-import Gerenciar from "../../../components/GerenciarMarketing/gerenciar"
-import NavBar from "../../../components/NavBar/NavBar"
+import Gerenciar from "../../../components/GerenciarMarketing/index"
+import NavBar from "../../../components/NavBar/index"
 import styles from "./styles.module.scss"
 
 export default function Manage(){
