@@ -1,4 +1,4 @@
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/NavBar/index";
 import styles from "../../styles/inicial.module.scss";
 
 export default function inicial() {

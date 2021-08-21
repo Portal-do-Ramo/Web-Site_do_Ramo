@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/index";
+import Header from "../../components/Header/index";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-import NewsBox from "../../components/NewsBox/NewsBox";
+import NewsBox from "../../components/NewsBox/index";
 
 const noticias = [
   {

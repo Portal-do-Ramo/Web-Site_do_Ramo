@@ -1,11 +1,11 @@
 import styles from "../styles/noticias.module.scss";
 import Image from "next/image";
-import SearchBar from "../components/SearchBar/SearchBar";
+import SearchBar from "../components/SearchBar/index";
 import { useEffect, useState } from "react";
-import Header from "../components/Header/Header";
+import Header from "../components/Header/index";
 import Link from "next/link";
-import NewsBox from "../components/NewsBox/NewsBox";
-import Footer from "../components/Footer/Footer";
+import NewsBox from "../components/NewsBox/index";
+import Footer from "../components/Footer/index";
 
 import api from '../services/api'
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Carousel from "react-multi-carousel";
-import Modal from "../components/Modal/Modal";
+import Modal from "../components/Modal/index";
 import styles from "./projetos.module.scss";
 
 import "react-multi-carousel/lib/styles.css";
