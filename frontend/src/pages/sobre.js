@@ -1,6 +1,6 @@
-import Header from '../components/index'
-import Footer from '../components/index'
-import Value from '../components/index'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Value from '../components/Value'
 import styles from "../styles/sobre.module.scss";
 
 export default function Sobre(){

@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
-import NavBar from "../../../components/NavBar/index";
-import SelectImage from "../../../components/SelectImage/index";
+import NavBar from "../../../components/NavBar";
+import SelectImage from "../../../components/SelectImage";
 import styles from '../../../styles/blogCadastrar.module.scss'
 import api from '../../../services/api'
 import { Context } from "../../../contexts/Context";

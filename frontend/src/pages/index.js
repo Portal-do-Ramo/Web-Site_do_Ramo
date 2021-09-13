@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header/index";
-import Footer from "../components/Footer/index";
-import CrewsCard from "../components/CrewsCard/index";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import CrewsCard from "../components/CrewsCard";
 
 import Link from "next/link";
 import Image from "next/image";
