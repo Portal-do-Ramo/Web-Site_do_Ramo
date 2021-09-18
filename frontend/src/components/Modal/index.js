@@ -1,2 +1,31 @@
-export {default} from './Modal'
-export * from './Modal'
+import React, { useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
+import styles from "./Modal.module.scss";
+
+const Modal = ({ show, onClose, children, title }) => {
+  const [isBrowser, setIsBrowser] = useState(false);
+  useEffect(() => {
+    setIsBrowser(true);
+  }, []);
+  const handleCloseClick = (e) => {
+    e.preventDefault();
+    onClose();
+  };
+  const modalContent = show ? (
+    <div className={styles.overlay}>
+      <div className={styles.body}>
+        <a onClick={handleCloseClick}><img src="/close.svg"/> </a>
+        {children}
+      </div>
+    </div>
+  ) : null;
+  if (isBrowser) {
+    return ReactDOM.createPortal(
+      modalContent,
+      document.getElementById("modal")
+    );
+  } else {
+    return null;
+  }
+};
+export default Modal;

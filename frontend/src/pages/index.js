@@ -97,7 +97,7 @@ export default function Home() {
               crews.map(crew => {
                 if (dataIsFetched) {
                   console.log(crew)
-                  return (<CrewsCard dataIsFetched={true} name={crew.name} image="./WIE_logo.svg" />)
+                  return (<CrewsCard key={crew.id} dataIsFetched={true} name={crew.name} image={crew.image} />)
                 }
                 else {
                   return (<CrewsCard dataIsFetched={false} />) //retorna o card vazio
