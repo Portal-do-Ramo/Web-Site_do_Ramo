@@ -36,17 +36,17 @@ import equipes from "../services/crewTestData";
 export default function Equipes() {
   const [equipesApi, setEquipes] = useState([]);
   const [index, setIndex] = useState(0);
-  
+
   useEffect(async () => {
     try {
       let equipesApi = await api.get("/crews");
       setEquipes(equipesApi);
       console.log(equipesApi);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }, []);
-  
+
   const settings = {
     arrows: true,
     infinite: true,
@@ -77,13 +77,10 @@ export default function Equipes() {
       <div className={styles.all}>
         <div className={styles.equipes}>
           <div className={styles.descrição}>
-            {equipes.map((equipes, idx) => (
-              <div>
-                {idx === index ? <h1>{equipes.title}</h1> : null}
-                {idx === index ? <p>{equipes.description}</p> : null}
-              </div>
-            ))}
+            <h1>{equipes[index].title}</h1>
+            <p>{equipes[index].description}</p>
           </div>
+
           <div className={styles.allcarousel}>
             <h1>Escolha sua equipe!</h1>
 
@@ -94,7 +91,7 @@ export default function Equipes() {
                     <div className={idx === index ? styles.atual : styles.sem}>
                       <img src={equipes.img} />
                     </div>
-                    {idx === index ? <h2>{equipes.title}</h2> : null}
+                   <p className={styles.crewLabel}> {idx === index ? <h2>{equipes.title}</h2> : null}</p>
                   </div>
                 </div>
               ))}

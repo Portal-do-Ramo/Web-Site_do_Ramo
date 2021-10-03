@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar";
 import { useState } from "react";
 
 const ativos = [
