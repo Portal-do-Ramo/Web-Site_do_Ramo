@@ -1,23 +1,23 @@
-import Header from '../components/index'
-import Footer from '../components/index'
-import Value from '../components/index'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Value from '../components/Value'
 import styles from "../styles/sobre.module.scss";
 
 export default function Sobre(){
 
     let values = [
         {
-            img: "/valor 1.svg",
+            img: "/valor 1.png",
             title: "Trabalho em equipe",
             description: "Trabalhar de maneira comunicativa e integrada prezando pelo respeito para agir em prol de um objetivo em comum."
         },
         {
-            img: "/valor 2.svg",
+            img: "/valor 2.png",
             title: "Pensamento disruptivo",
             description: "Pensar de maneira inovadora e criativa com objetivo de desenvolver projetos técnicos e/ou sociais para impactar positivamente as pessoas a sua volta."
         },
         {
-            img: "/valor 3.svg",
+            img: "/valor 3.png",
             title: "Aprendizagem evolutiva",
             description: "Capacitar os membros para que estes repassem o conhecimento de forma atenciosa e com segurança."
         },
