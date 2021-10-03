@@ -1,6 +1,6 @@
 import {useState} from "react";
-import NavBar from "../../../components/NavBar/index";
-import SelectImage from "../../../components/SelectImage/index";
+import NavBar from "../../../components/NavBar";
+import SelectImage from "../../../components/SelectImage";
 import styles from '../../../styles/equipesCadastrar.module.scss'
 
 export default function Cadastrar(){

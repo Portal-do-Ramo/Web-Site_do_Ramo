@@ -1,16 +1,44 @@
-import Header from "../components/Header/index";
-import Footer from "../components/Footer/index";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 import styles from "../styles/PSE.module.scss";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import api from '../services/api'
 
 export default function PSE() {
+    let [values, setValues] = useState({fullname: "", birthdate: "", contact: "", email: "", facebook: "", 
+    linkedin: "", instagram: "", registry: "", course: "Administração", period: "1º Período", crew: "WIE", 
+    motivation: "", area: "Programação", experience: "", dynamic: "Opção 1"});
 
-    async function handleSubmit() {
-         //falta o controller no backend para submeter os dados e gerar o csv
+    let [crews, setCrews] = useState([1,2,3,4,5,6,7,8]);
+
+    useEffect(async () =>{
+        try {
+            const { data } = await api.get("/crews");
+            setCrews(data);
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
+
+    async function handleSubmit(event) {
+        try {
+            event.preventDefault();
+            const { status } = await api.post("/pse", values);
+            if(status == 200){
+                alert("Cadastrado com sucesso");
+                window.location.href="/PSE";
+            }    
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async function handleChange(event) {
+        values[event.target.name] = event.target.value;
+        setValues(values);
     }
     
     return (
@@ -28,7 +56,7 @@ export default function PSE() {
 
                 <div id={styles.meetCrews}>
                     <div id={styles.buttonContainer}>
-                        <button>Conheça nossas equipes</button>
+                        <a href="/equipes">Conheça nossas equipes</a>
                     </div>
                     <div id={styles.imageContainer}>
                         <img src="/galerinha_ramo.png" />
@@ -106,35 +134,35 @@ export default function PSE() {
                     
                     <div id={styles.formcontainer}>
                         
-                            <form method="POST" action="#" >
+                            <form onSubmit={handleSubmit}>
                                 <div className={styles.fildsetWrapper}>
                                     <h1>1. Dados pessoais</h1>
                                     <fieldset>
                                         <div className={styles.inputSection}>
                                             <label for="fullname">Nome completo</label>
-                                            <input id="fullname" type="text" name="fullname" required></input>
+                                            <input id="fullname" type="text" name="fullname" onChange={handleChange} required></input>
 
                                             <label for="birthdate">Data de nascimento</label>
-                                            <input id="birthdate" type="date" name="birthdate" required></input>
+                                            <input id="birthdate" type="date" name="birthdate" onChange={handleChange} required></input>
 
                                             <label for="contact">Celular</label>
-                                            <input id="contact" type="text" name="contact" required></input>
+                                            <input id="contact" type="text" name="contact" onChange={handleChange} required></input>
                                         </div>
 
                                         <div className={styles.boxSizing} />
 
                                         <div className={styles.inputSection}>
                                             <label for="email">Email</label>
-                                            <input id="email" type="email" name="email" required></input>
+                                            <input id="email" type="email" name="email" onChange={handleChange} required></input>
 
                                             <label for="facebook">Facebook</label>
-                                            <input id="facebook" type="text" name="facebook"></input>
+                                            <input id="facebook" type="text" name="facebook" onChange={handleChange}></input>
 
                                             <label for="linkedin">Linkedin</label>
-                                            <input id="linkedin" type="text" name="linkedin"></input>
+                                            <input id="linkedin" type="text" name="linkedin" onChange={handleChange}></input>
 
                                             <label for="instagram">Instagram</label>
-                                            <input id="instagram" type="text" name="instagram"></input>
+                                            <input id="instagram" type="text" name="instagram" onChange={handleChange}></input>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -143,25 +171,25 @@ export default function PSE() {
                                     <h1>2. Dados da matrícula</h1>
                                     <fieldset>
                                         <div className={styles.inputSection} id={styles.registrationSection}>
-                                            <label for="fullname">Matrícula</label>
-                                            <input id="fullname" type="text" name="fullname" required></input>
+                                            <label for="registry">Matrícula</label>
+                                            <input id="registry" type="text" name="registry" onChange={handleChange} required></input>
 
-                                            <label for="curso">Curso</label>
-                                            <select required name="curso" id="curso">
-                                                <option value="1" selected>Curso 1</option>
-                                                <option value="2">Curso 2</option>
-                                                <option value="3">Curso 3</option>
-                                                <option value="4">Curso 4</option>
-                                                <option value="5">Curso 5</option>
-                                                <option value="6">Curso 6</option>
-                                                <option value="7">Curso 7</option>
-                                                <option value="8">Curso 8</option>
-                                                <option value="9">Curso 9</option>
-                                                <option value="10">Curso 10</option>
+                                            <label for="course">Curso</label>
+                                            <select name="course" id="course" onChange={handleChange} required>
+                                                <option selected>Administração</option>
+                                                <option>Ciência da Computação</option>
+                                                <option>Engenharia Ambiental</option>
+                                                <option>Engenharia Civil</option>
+                                                <option>Engenharia de Controle e Automação</option>
+                                                <option>Engenharia de Produção</option>
+                                                <option>Engenharia de Telecomunicações</option>
+                                                <option>Engenharia Elétrica</option>
+                                                <option>Engenharia Eletrônica</option>
+                                                <option>Engenharia Mecânica</option>
                                             </select>
 
-                                            <label for="periodo">Período atual</label>
-                                            <select required name="periodo" id="periodo"> 
+                                            <label for="period">Período atual</label>
+                                            <select name="period" id="period" onChange={handleChange} required> 
                                                 <option  selected>1º Período</option>
                                                 <option>2º Período</option>
                                                 <option>3º Período</option>
@@ -182,27 +210,20 @@ export default function PSE() {
                                     <h1>3. Interesse</h1>
                                     <fieldset>
                                         <div className={styles.inputSection} id={styles.interestsLeftSection}>
-                                            <label for="equipe">Equipe</label>
-                                            <select name="equipe" required>
-                                                <option selected>Marketing</option>
-                                                <option>WIE</option>
-                                                <option>Gestão</option>
-                                                <option>SocialWolf</option>
-                                                <option>RocketWolf</option>
-                                                <option>WolfPower</option>
-                                                <option>WolfBotz</option>
-                                                <option>WolfByte</option>
+                                            <label for="crew">Equipe</label>
+                                            <select name="crew" onChange={handleChange} required>
+                                                {crews.map(crew => (<option key={crew.id} value={crew.name}>{crew.name}</option>))}
                                             </select>
 
                                             
                                             <label for="area">Área</label>
-                                            <select name="area" required>
+                                            <select name="area" onChange={handleChange} required>
                                                 <option selected>Programação</option>
                                                 <option>Arte</option>
                                             </select>
 
-                                            <label for="dinamica">Dia da dinâmica</label>
-                                            <select required name="dinamica">
+                                            <label for="dynamic">Dia da dinâmica</label>
+                                            <select name="dynamic" onChange={handleChange} required>
                                                 <option>Opção 1</option>
                                                 <option>Opção 2</option>
                                             </select>
@@ -211,11 +232,11 @@ export default function PSE() {
                                         <div className={styles.boxSizing} />
 
                                         <div className={styles.inputSection}>
-                                            <label for="motivacao">Por quais motivos gostaria de fazer parte do Ramo?</label>
-                                            <textarea name="motivacao"></textarea>
+                                            <label for="motivation">Por quais motivos gostaria de fazer parte do Ramo?</label>
+                                            <textarea name="motivation" onChange={handleChange}></textarea>
 
-                                            <label for="experiencia">Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo? Conte pra gente.</label>
-                                            <textarea name="experiencia"></textarea>
+                                            <label for="experience">Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo? Conte pra gente.</label>
+                                            <textarea name="experience" onChange={handleChange}></textarea>
                                         </div>
 
                                     </fieldset>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header/index";
-import Footer from "../components/Footer/index";
-import CrewsCard from "../components/CrewsCard/index";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import CrewsCard from "../components/CrewsCard";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -97,7 +97,7 @@ export default function Home() {
               crews.map(crew => {
                 if (dataIsFetched) {
                   console.log(crew)
-                  return (<CrewsCard dataIsFetched={true} name={crew.name} image="./WIE_logo.svg" />)
+                  return (<CrewsCard key={crew.id} dataIsFetched={true} name={crew.name} image={crew.image} />)
                 }
                 else {
                   return (<CrewsCard dataIsFetched={false} />) //retorna o card vazio

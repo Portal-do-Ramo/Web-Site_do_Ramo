@@ -47,7 +47,7 @@
         justify-content: flex-start;
         align-items: center;
 
-        button {
+        a {
             background: var(--azul-ramo);
             border-radius: 47px;
             color: #FFFFFF;
@@ -58,9 +58,10 @@
             padding: 1.5rem;
             border: none;
             transition: background-color .5s ease;
+            text-decoration: none;
         }
 
-        button:hover {
+        a:hover {
             background-color: var(--logo_trasition);
             transition: background-color .5s ease;
             cursor: pointer;

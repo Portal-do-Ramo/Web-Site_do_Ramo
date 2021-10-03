@@ -1,9 +1,9 @@
 const express = require("express");
-const multer = require('multer')
+const multer = require('multer');
 const uploadConfig = require('./config/upload')
 
 const router = express.Router();
-const upload = multer(uploadConfig)
+const upload = multer(uploadConfig);
 
 const awardController = require("./controllers/awardController");
 const commonController = require("./controllers/commonController");
@@ -16,9 +16,9 @@ const sponsorController = require("./controllers/sponsorController");
 const userController = require("./controllers/userController");
 const pseController = require("./controllers/pseController");
 
-const sendEmail = require('./services/nodemailer')
+const sendEmail = require('./services/nodemailer');
 
-const auth = require('./middleware/auth')
+const auth = require('./middleware/auth');
 
 router
     .get("/", commonController.index)
