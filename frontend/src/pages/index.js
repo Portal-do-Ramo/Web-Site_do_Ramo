@@ -42,10 +42,12 @@ export default function Home() {
   useEffect(async () => {
     try {
       const { data } = await api.get("/crews");
-      sponsors = await api.get("/sponsors");
+      let sponsors = await api.get("/sponsors");
 
       setCrews(data);
-      console.log(crews[0].name)
+      console.log(crews[0].name);
+      setSponsors(sponsors.data);
+      
       setDataIsFetched(true);
     } catch (err) {
       console.log(err);
@@ -130,41 +132,17 @@ export default function Home() {
               slidesToSlide={1}
               swipeable
             >
-              <div>
-                <a  >
-                  <img src="/patrocinador1.png" />
-                </a>
-              </div>
-              <div>
-                <a>
-                  <img src="/patrocinador2.png" />
-                </a>
-              </div>
-              <div>
-                <a>
-                  <img src="/patrocinador3.png" />
-                </a>
-              </div>
-              <div>
-                <a>
-                  <img src="/patrocinador4.png" />
-                </a>
-              </div>
-              <div>
-                <a>
-                  <img src="/patrocinador1.png" />
-                </a>
-              </div>
-              <div>
-                <a>
-                  <img src="/patrocinador2.png" />
-                </a>
-              </div>
-              <div>
-                <a>
-                  <img src="/patrocinador3.png" />
-                </a>
-              </div>
+              {
+                sponsors.map(sponsor =>{
+                  return(
+                  <div>
+                    <a>
+                      <img src={sponsor.image} />
+                    </a>
+                  </div>
+                  )
+                })
+              }
             </Carousel>
           </div>
         </section>
