@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import api from '../services/api'
 import { setCookie } from 'nookies'
 import Router from 'next/router'
-import UpdateState from '../services/UpdateState'
+import UpdateState from '../services/updateState'
 
 export const Context = createContext({})
 
