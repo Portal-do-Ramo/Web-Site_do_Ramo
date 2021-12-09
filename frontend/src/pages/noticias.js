@@ -12,7 +12,7 @@ import api from '../services/api'
 const noticias = [
   {
     id: 1,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "Fliper ",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -23,7 +23,7 @@ const noticias = [
   },
   {
     id: 2,
-    img: "/botz2.svg",
+    img: "/botz_2.svg",
     title: " do Ramo",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -34,7 +34,7 @@ const noticias = [
   },
   {
     id: 3,
-    img: "/botz2.svg",
+    img: "/botz_2.svg",
     title: " Ramo",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -45,7 +45,7 @@ const noticias = [
   },
   {
     id: 4,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "Fiz um aplicativo pro ramo e olha no que deu",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -56,7 +56,7 @@ const noticias = [
   },
   {
     id: 5,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "Julio dorme e acaba sonhando que ganhou campeonato de fliper",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -67,7 +67,7 @@ const noticias = [
   },
   {
     id: 6,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "Bot",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -78,7 +78,7 @@ const noticias = [
   },
   {
     id: 7,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "Sla",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -89,7 +89,7 @@ const noticias = [
   },
   {
     id: 8,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "VemVemVem",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -100,7 +100,7 @@ const noticias = [
   },
   {
     id: 9,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "9",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -111,7 +111,7 @@ const noticias = [
   },
   {
     id: 10,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "10",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -122,7 +122,7 @@ const noticias = [
   },
   {
     id: 11,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "11",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -133,7 +133,7 @@ const noticias = [
   },
   {
     id: 12,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "12",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -144,7 +144,7 @@ const noticias = [
   },
   {
     id: 13,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "13",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -155,7 +155,7 @@ const noticias = [
   },
   {
     id: 14,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "V14",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -166,7 +166,7 @@ const noticias = [
   },
   {
     id: 15,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "15",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -177,7 +177,7 @@ const noticias = [
   },
   {
     id: 16,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "16",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
@@ -188,7 +188,7 @@ const noticias = [
   },
   {
     id: 17,
-    img: "/botz1 1.svg",
+    img: "/botz_1.svg",
     title: "17",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",

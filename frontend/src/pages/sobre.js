@@ -7,32 +7,32 @@ export default function Sobre(){
 
     let values = [
         {
-            img: "/valor 1.png",
+            img: "/valor_1.png",
             title: "Trabalho em equipe",
             description: "Trabalhar de maneira comunicativa e integrada prezando pelo respeito para agir em prol de um objetivo em comum."
         },
         {
-            img: "/valor 2.png",
+            img: "/valor_2.png",
             title: "Pensamento disruptivo",
             description: "Pensar de maneira inovadora e criativa com objetivo de desenvolver projetos técnicos e/ou sociais para impactar positivamente as pessoas a sua volta."
         },
         {
-            img: "/valor 3.png",
+            img: "/valor_3.png",
             title: "Aprendizagem evolutiva",
             description: "Capacitar os membros para que estes repassem o conhecimento de forma atenciosa e com segurança."
         },
         {
-            img: "/valor 4.svg",
+            img: "/valor_4.svg",
             title: "Empatia",
             description: "Prezamos a diversidade de pessoas e projetos com a responsabilidade de manter um ambiente confortável, acolhedor e divertido para todo."
         },
         {
-            img: "/valor 5.svg",
+            img: "/valor_5.svg",
             title: "Orgulho IEEE",
             description: "Sentimento universal de pertencimento no qual os membros prezam de forma apaixonada pelo desenvolvimento da extensão."
         },
         {
-            img: "/valor 6.svg",
+            img: "/valor_6.svg",
             title: "Espírito de liderança",
             description: "Desenvolver, influenciar e estimular a inteligência emocional de nossos membros, formando novos líderes."
         }
