@@ -19,38 +19,37 @@ import {
 } from "../components/Arrows";
 
 import styles from "../styles/equipes.module.scss";
-
-import api from "../services/api";
-
-import equipes from "../services/crewTestData";
-
-{/*export const getStaticProps = async () => {
-    const res = await api.get('crews');
-    const data = await res.json();
-
-    return {
-      props: { equipes : data}  
-    }
-  }*/}
+import equipesAPI from "../services/equipeAPI";
 
 export default function Equipes() {
-  const [equipesApi, setEquipes] = useState([]);
+  const [equipes, setEquipes] = useState([]);
   const [index, setIndex] = useState(0);
 
   useEffect(async () => {
     try {
-      let equipesApi = await api.get("/crews");
-      setEquipes(equipesApi);
-      console.log(equipesApi);
+      let equipes = await equipesAPI.getAllActive();
+      console.log(equipes);
+      setEquipes(equipes);
+      console.log(equipes);
     } catch (err) {
       console.log(err);
     }
   }, []);
+  
+  function wrapElIdx(i) { //Controla o index do carrossel de equipes, fazendo o loop de infinito
+    var n = equipes.length;
+    var r = Math.floor(n/2);
+    if((i-index)>r)i-=n;
+    if((i-index)<-r)i+=n;
+    return i;
+  }
 
   const settings = {
     arrows: true,
     infinite: true,
     centerMode: true,
+    adaptiveHeight: true,
+    variableWidth: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -71,27 +70,30 @@ export default function Equipes() {
 
     className: styles.slider,
   };
+
   return (
     <div>
       <Header />
       <div className={styles.all}>
         <div className={styles.equipes}>
-          <div className={styles.descrição}>
+
+          {equipes.length == 0 ? <div></div> : <div className={styles.descrição}>
             <h1>{equipes[index].title}</h1>
             <p>{equipes[index].description}</p>
           </div>
+          }
 
           <div className={styles.allcarousel}>
             <h1>Escolha sua equipe!</h1>
 
             <Slider {...settings}>
-              {equipes.map((equipes, idx) => (
+             {equipes.map((equipes, idx) => (
                 <div className>
                   <div className={styles.carrosel}>
-                    <div className={idx === index ? styles.atual : styles.sem}>
+                    <div className={idx === index ? styles.atual : styles.sem} style={{transform: "translateX("+(index-wrapElIdx(idx))*75+"px) scale("+(1.0-Math.abs(index-wrapElIdx(idx))*0.25)*140.0+"%)"}}>
                       <img src={equipes.img} />
+                      <p className={styles.crewLabel} style={{height: 10+"rem"}}> {idx === index ? <h2>{equipes.title}</h2> : null}</p>
                     </div>
-                   <p className={styles.crewLabel}> {idx === index ? <h2>{equipes.title}</h2> : null}</p>
                   </div>
                 </div>
               ))}
@@ -106,7 +108,7 @@ export default function Equipes() {
               {idx === index ? (
                 <div>
                   <Slider {...psettings}>
-                    {equipes.projetosAtuais.map((projetos) => (
+                    {(equipes.projetosAtuais || []).map((projetos) => (
                       <Projetos projetos={projetos} />
                     ))}
                   </Slider>
@@ -123,7 +125,7 @@ export default function Equipes() {
               {idx === index ? (
                 <div>
                   <Slider {...psettings}>
-                    {equipes.projetosAtuais.map((projetos) => (
+                    {(equipes.projetosAtuais || []).map((projetos) => (
                       <Projetos projetos={projetos} />
                     ))}
                   </Slider>
@@ -138,7 +140,7 @@ export default function Equipes() {
             <div>
               {idx === index ? (
                 <div>
-                  {equipes.premios.map((premios) => (
+                  { equipes.premios ? equipes.premios.map((premios) => (
                     <div className={styles.premios}>
                       <table>
                         <tr>
@@ -151,7 +153,10 @@ export default function Equipes() {
                         </tr>
                       </table>
                     </div>
-                  ))}
+                  )) 
+                : 
+                <div>Sem Premios</div>
+                } 
                 </div>
               ) : null}
             </div>

@@ -2,16 +2,16 @@
 @import "~slick-carousel/slick/slick-theme.css";
 .all {
   margin-top: 3rem;
-  width: auto;
+  width: 100%; // Não era pra ser sempre 100% da página?
   font-family: "Poppins";
   margin-bottom: 22rem;
   .equipes {
-    height: 48.2rem;
+    height: 48.2rem; //Os elementos que estão dentro não devem controlar o tamanho?
     display: flex;
     
 
     .descrição {
-      flex:1;
+      flex: 1;
       margin-left: 5rem;
       width: 30rem;
       h1 {
@@ -28,9 +28,9 @@
       }
     }
     .allcarousel {
-      flex:3;
+      flex: 3;
       right: 0;
-      height: 34rem;
+      height: 35rem;
       margin-top: 3.4rem;
       margin-left: 5rem;
       width: 50rem;
@@ -44,6 +44,7 @@
         z-index: 10;
         left: 0%;
         top: 30%;
+        margin-top: 2rem;
         img{
           width: 3rem;
           height: 3rem;
@@ -56,6 +57,7 @@
         z-index: 10;
         right: 0%;
         top: 30%;
+        margin-top: 2rem;
         img{
           width: 3rem;
           height: 3rem;
@@ -63,34 +65,41 @@
       }
 
       .carrosel {
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
         align-items: center;
+        height: fit-content;
+        margin-top: 4.5rem;
+        overflow: visible;
       }
       
       .atual {
-        transform: scale(1.1);
         opacity: 1;
+        transition: transform 300ms ease-in-out;
       }
       .sem {
-        transform: scale(0.5);
-        transition: transform 300ms;
-        opacity: 0.5;
+        position: relative;
+        transition: transform 300ms ease-in-out;
+        opacity: 0.65;       
       }
       h1 {
         text-align: center;
         margin-top: 2rem;
-        margin-bottom: 3rem;
         font-weight: 700;
         font-size: 40px;
         color: white;
       }
+      @keyframes TextEnter{
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
       h2 {
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 1.5rem;
         font-weight: 700;
         font-size: 40px;
         color: white;
+        animation: TextEnter 200ms ease-in;
       }
       img {
         margin-left: 1rem;
