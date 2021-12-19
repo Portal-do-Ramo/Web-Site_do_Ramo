@@ -7,21 +7,10 @@ import { useEffect, useState } from "react";
 
 import api from '../services/api'
 
-export default function PSE() {
+export default function PSE({ crews }) {
     let [values, setValues] = useState({fullname: "", birthdate: "", contact: "", email: "", facebook: "", 
     linkedin: "", instagram: "", registry: "", course: "Administração", period: "1º Período", crew: "WIE", 
     motivation: "", area: "Programação", experience: "", dynamic: "Opção 1"});
-
-    let [crews, setCrews] = useState([1,2,3,4,5,6,7,8]);
-
-    useEffect(async () =>{
-        try {
-            const { data } = await api.get("/crews");
-            setCrews(data);
-        } catch (err) {
-            console.log(err);
-        }
-    }, []);
 
     async function handleSubmit(event) {
         try {
@@ -260,3 +249,21 @@ export default function PSE() {
         
     )
 }
+
+export const getStaticProps = async () => {
+    let { data } = await api.get("/crews");
+    
+    let crews = data.map(crew => {
+      return {
+        id: crew.id,
+        name: crew.name,
+      }
+    });
+  
+    return {
+      props: {
+        crews
+      },
+      revalidate: 60 * 60 * 24 // 24 Horas
+    }
+  }

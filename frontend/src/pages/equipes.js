@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -19,22 +19,11 @@ import {
 } from "../components/Arrows";
 
 import styles from "../styles/equipes.module.scss";
-import equipesAPI from "../services/equipeAPI";
 
-export default function Equipes() {
-  const [equipes, setEquipes] = useState([]);
+import api from "../services/api";
+
+export default function Equipes({ equipes }) {
   const [index, setIndex] = useState(0);
-
-  useEffect(async () => {
-    try {
-      let equipes = await equipesAPI.getAllActive();
-      console.log(equipes);
-      setEquipes(equipes);
-      console.log(equipes);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
   
   function wrapElIdx(i) { //Controla o index do carrossel de equipes, fazendo o loop de infinito
     var n = equipes.length;
@@ -166,4 +155,24 @@ export default function Equipes() {
       <Footer />
     </div>
   );
+}
+
+export const getStaticProps = async () => {
+  let { data } = await api.get("/crews");
+  
+  let equipes = data.map(crew => {
+    return {
+      id: crew.id,
+      title: crew.name,
+      description: crew.about,
+      img: crew.image.replace('.', '')
+    }
+  });
+
+  return {
+    props: {
+      equipes
+    },
+    revalidate: 60 * 60 * 24 // 24 Horas
+  }
 }
