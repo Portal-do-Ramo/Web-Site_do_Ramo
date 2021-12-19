@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -19,18 +19,37 @@ import {
 } from "../components/Arrows";
 
 import styles from "../styles/equipes.module.scss";
+import equipesAPI from "../services/equipeAPI";
 
-import api from "../services/api";
-
-// import equipes from "../services/crewTestData";
-
-export default function Equipes({ equipes }) {
+export default function Equipes() {
+  const [equipes, setEquipes] = useState([]);
   const [index, setIndex] = useState(0);
+
+  useEffect(async () => {
+    try {
+      let equipes = await equipesAPI.getAllActive();
+      console.log(equipes);
+      setEquipes(equipes);
+      console.log(equipes);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+  
+  function wrapElIdx(i) { //Controla o index do carrossel de equipes, fazendo o loop de infinito
+    var n = equipes.length;
+    var r = Math.floor(n/2);
+    if((i-index)>r)i-=n;
+    if((i-index)<-r)i+=n;
+    return i;
+  }
 
   const settings = {
     arrows: true,
     infinite: true,
     centerMode: true,
+    adaptiveHeight: true,
+    variableWidth: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -51,27 +70,30 @@ export default function Equipes({ equipes }) {
 
     className: styles.slider,
   };
+
   return (
     <div>
       <Header />
       <div className={styles.all}>
         <div className={styles.equipes}>
-          <div className={styles.descrição}>
+
+          {equipes.length == 0 ? <div></div> : <div className={styles.descrição}>
             <h1>{equipes[index].title}</h1>
             <p>{equipes[index].description}</p>
           </div>
+          }
 
           <div className={styles.allcarousel}>
             <h1>Escolha sua equipe!</h1>
 
             <Slider {...settings}>
-              {equipes.map((equipes, idx) => (
+             {equipes.map((equipes, idx) => (
                 <div className>
                   <div className={styles.carrosel}>
-                    <div className={idx === index ? styles.atual : styles.sem}>
+                    <div className={idx === index ? styles.atual : styles.sem} style={{transform: "translateX("+(index-wrapElIdx(idx))*75+"px) scale("+(1.0-Math.abs(index-wrapElIdx(idx))*0.25)*140.0+"%)"}}>
                       <img src={equipes.img} />
+                      <p className={styles.crewLabel} style={{height: 10+"rem"}}> {idx === index ? <h2>{equipes.title}</h2> : null}</p>
                     </div>
-                   <p className={styles.crewLabel}> {idx === index ? <h2>{equipes.title}</h2> : null}</p>
                   </div>
                 </div>
               ))}
@@ -86,7 +108,7 @@ export default function Equipes({ equipes }) {
               {idx === index ? (
                 <div>
                   <Slider {...psettings}>
-                    {equipes.projetosAtuais && equipes.projetosAtuais.map((projetos) => (
+                    {(equipes.projetosAtuais || []).map((projetos) => (
                       <Projetos projetos={projetos} />
                     ))}
                   </Slider>
@@ -103,7 +125,7 @@ export default function Equipes({ equipes }) {
               {idx === index ? (
                 <div>
                   <Slider {...psettings}>
-                    {equipes.projetosAtuais && equipes.projetosAtuais.map((projetos) => (
+                    {(equipes.projetosAtuais || []).map((projetos) => (
                       <Projetos projetos={projetos} />
                     ))}
                   </Slider>
@@ -118,7 +140,7 @@ export default function Equipes({ equipes }) {
             <div>
               {idx === index ? (
                 <div>
-                  {equipes.premios && equipes.premios.map((premios) => (
+                  { equipes.premios ? equipes.premios.map((premios) => (
                     <div className={styles.premios}>
                       <table>
                         <tr>
@@ -131,7 +153,10 @@ export default function Equipes({ equipes }) {
                         </tr>
                       </table>
                     </div>
-                  ))}
+                  )) 
+                : 
+                <div>Sem Premios</div>
+                } 
                 </div>
               ) : null}
             </div>
@@ -141,24 +166,4 @@ export default function Equipes({ equipes }) {
       <Footer />
     </div>
   );
-}
-
-export const getStaticProps = async () => {
-  let { data } = await api.get("/crews");
-  
-  let equipes = data.map(crew => {
-    return {
-      id: crew.id,
-      title: crew.name,
-      description: crew.about,
-      img: crew.image.replace('.', '')
-    }
-  });
-
-  return {
-    props: {
-      equipes
-    },
-    revalidate: 60 * 60 * 24 // 24 Horas
-  }
 }
