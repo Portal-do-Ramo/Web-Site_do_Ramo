@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CrewsCard from "../components/CrewsCard";
@@ -8,7 +7,6 @@ import Image from "next/image";
 import Carousel from "react-multi-carousel";
 
 import api from '../services/api'
-import EquipeAPI from "../services/equipeAPI";
 
 import "react-multi-carousel/lib/styles.css";
 
@@ -34,26 +32,7 @@ const responsive = {
   },
 };
 
-export default function Home() {
-
-  let [sponsors, setSponsors] = useState([]);
-  let [equipes, setEquipes] = useState([1,2,3,4,5,6,7,8]); 
-  let [dataIsFetched, setDataIsFetched] = useState(false);
-
-  useEffect(async () => {
-    try {
-      let equipes = await EquipeAPI.getAllActive();
-      let sponsors = await api.get("/sponsors");
-
-      setEquipes(equipes);
-      setSponsors(sponsors.data);
-      
-      setDataIsFetched(true);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-
+export default function Home({ sponsors, crews }) {
 
   return (
     <div>
@@ -96,14 +75,8 @@ export default function Home() {
           <h3>Equipes</h3>
           <section className={styles.logo_content}>
             {
-              equipes.map(equipes => {
-                if (dataIsFetched) {
-                  console.log(equipes)
-                  return (<CrewsCard key={equipes.id} dataIsFetched={true} name={equipes.title} image={equipes.img} />)
-                }
-                else {
-                  return (<CrewsCard dataIsFetched={false} />) //retorna o card vazio
-                }
+              crews.map(crew => {
+                return (<CrewsCard key={crew.id} dataIsFetched={true} name={crew.name} image={crew.image} />)
               })
             }
           </section>
@@ -151,4 +124,17 @@ export default function Home() {
     </div>
 
   );
+}
+
+export const getStaticProps = async () => {
+  let {data : crews} = await api.get("/crews");
+  let {data : sponsors} = await api.get("/sponsors");
+
+  return {
+    props: {
+      crews,
+      sponsors
+    },
+    revalidate: 60 * 60 * 24 // 24 Horas
+  }
 }
