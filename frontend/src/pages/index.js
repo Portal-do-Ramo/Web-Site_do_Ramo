@@ -8,6 +8,7 @@ import Image from "next/image";
 import Carousel from "react-multi-carousel";
 
 import api from '../services/api'
+import EquipeAPI from "../services/equipeAPI";
 
 import "react-multi-carousel/lib/styles.css";
 
@@ -36,16 +37,15 @@ const responsive = {
 export default function Home() {
 
   let [sponsors, setSponsors] = useState([]);
-  let [crews, setCrews] = useState([1,2,3,4,5,6,7,8]); 
+  let [equipes, setEquipes] = useState([1,2,3,4,5,6,7,8]); 
   let [dataIsFetched, setDataIsFetched] = useState(false);
 
   useEffect(async () => {
     try {
-      const { data } = await api.get("/crews");
+      let equipes = await EquipeAPI.getAllActive();
       let sponsors = await api.get("/sponsors");
 
-      setCrews(data);
-      console.log(crews[0].name);
+      setEquipes(equipes);
       setSponsors(sponsors.data);
       
       setDataIsFetched(true);
@@ -96,10 +96,10 @@ export default function Home() {
           <h3>Equipes</h3>
           <section className={styles.logo_content}>
             {
-              crews.map(crew => {
+              equipes.map(equipes => {
                 if (dataIsFetched) {
-                  console.log(crew)
-                  return (<CrewsCard key={crew.id} dataIsFetched={true} name={crew.name} image={crew.image} />)
+                  console.log(equipes)
+                  return (<CrewsCard key={equipes.id} dataIsFetched={true} name={equipes.title} image={equipes.img} />)
                 }
                 else {
                   return (<CrewsCard dataIsFetched={false} />) //retorna o card vazio

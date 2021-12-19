@@ -2,6 +2,8 @@ import {useState} from "react";
 import NavBar from "../../../components/NavBar";
 import SelectImage from "../../../components/SelectImage";
 import styles from '../../../styles/equipesCadastrar.module.scss'
+import Equipes from "../../equipes";
+import EquipeAPI from "../../../services/equipeAPI";
 
 export default function Cadastrar(){
 
@@ -13,7 +15,7 @@ export default function Cadastrar(){
 
   function handleSubmit(event, form) {
     event.preventDefault()
-    console.log({ title, text, images })
+    console.log({ title, text, images }) 
   }
 
   function handleSelectImages(event) {
@@ -58,7 +60,7 @@ export default function Cadastrar(){
             <p>cancelar</p>
           </button>
           
-          <button type="submit" id={styles.saveBtn}>
+          <button type="submit" id={styles.saveBtn} onClick={() => EquipeAPI.add({active:true, title, text, images})}>
             <p>salvar</p>
           </button>
         </div>

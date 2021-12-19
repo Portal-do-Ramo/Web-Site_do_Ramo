@@ -5,16 +5,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "serve-json": "json-server --watch --port 5000 --routes routes.json equipes.json"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "date-fns": "^2.22.1",
-    "next": "10.2.3",
+    "next": "^10.2.3",
     "nookies": "^2.5.2",
     "react": "^17.0.2",
-    "react-dom": "17.0.2",
+    "react-dom": "^17.0.2",
     "react-hook-form": "^7.12.2",
     "react-icons": "^4.2.0",
     "react-multi-carousel": "^2.6.3",
@@ -23,5 +24,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "json-server": "^0.17.0"
+  }
 }

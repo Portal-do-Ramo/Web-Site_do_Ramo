@@ -1,8 +1,8 @@
 import styles from './CrewCard.module.scss'
 
-export default function Card({ dataIsFetched, image, name }) {
+export default function Card({ dataIsFetched, image, name}) {
     if(dataIsFetched) {
-        return (
+        return (           
             <div className={styles.cards}>
                 <a href="/equipes">
                     <img src={image}/>

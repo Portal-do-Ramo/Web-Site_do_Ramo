@@ -3,7 +3,7 @@ import styles from "../styles/equipes.module.scss";
 export const NextArrow = ({ onClick }) => {
     return (
       <div className={styles.next} onClick={onClick}>
-        <img src="/Vector (1).svg" />
+        <img src="/Vector_(1).svg" />
       </div>
     );
   };
@@ -11,7 +11,7 @@ export const NextArrow = ({ onClick }) => {
   export const PrevArrow = ({ onClick }) => {
     return (
       <div className={styles.prev} onClick={onClick}>
-        <img src="/Vector (2).svg" />
+        <img src="/Vector_(2).svg" />
       </div>
     );
   };

@@ -1,86 +1,43 @@
 import styles from "./styles.module.scss";
 import SearchBar from "../SearchBar";
-import { useState } from "react";
-
-const ativos = [
-  {
-    id: 1,
-    name: "Eae pessoal tudo bem",
-  },
-  {
-    id: 2,
-    name: "Aqui quem fala é edu",
-  },
-  {
-    id: 1,
-    name: "Eae pessoal tudo bem",
-  },
-  {
-    id: 2,
-    name: "Aqui quem fala é edu",
-  },
-  {
-    id: 1,
-    name: "Eae pessoal tudo bem",
-  },
-  {
-    id: 2,
-    name: "Aqui quem fala é edu",
-  },
-  {
-    id: 1,
-    name: "Eae pessoal tudo bem",
-  },
-  {
-    id: 2,
-    name: "Aqui quem fala é edu",
-  },
-];
-
-const excluidos = [
-  {
-    id: 1,
-    name: "A carta",
-  },
-  {
-    id: 2,
-    name: "Telegrama",
-  },
-  {
-    id: 3,
-    name: "Gamei",
-  },
-  {
-    id: 4,
-    name: "Nada vai separar",
-  },
-  {
-    id: 5,
-    name: "Só de olhar",
-  },
-  {
-    id: 6,
-    name: "Que situação",
-  },
-];
+import { useState, useEffect } from "react";
+import EquipeAPI from "../../services/equipeAPI";
 
 export default function Gerenciar({name}) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [equipes, setEquipes] = useState([]);
   
-
-  const filterElements = (elements, searchQuery) => {
-    if (!searchQuery) {
-      return elements;
+  useEffect(async () => {
+    try {
+      let equipes = await EquipeAPI.getAll();
+      setEquipes(equipes);
+      console.log(equipes);
+    } catch (err) {
+      console.log(err);
     }
-    return elements.filter((elements) => {
-      const notName = elements.name.toLowerCase();
-      return notName.includes(searchQuery);
+  }, []);
+
+  const filterElements = (elements, searchQuery, active) => {
+    const query = searchQuery.toLowerCase();
+    return elements.filter((el) => {
+      return el.title.toLowerCase().includes(query) && !el.active == !active;
     });
   };
-  const filteredActive = filterElements(ativos, searchQuery);
-  const filteredExcluded = filterElements(excluidos, searchQuery);
+  const filteredActive = filterElements(equipes, searchQuery, true);
+  const filteredExcluded = filterElements(equipes, searchQuery, false);
 
   const [isActive, setIsActive] = useState(true);
+
+  function toggleEquipeActive(equipe) {
+    equipe.active = !equipe.active;
+    setEquipes([...equipes]);
+    EquipeAPI.update(equipe.id, equipe);
+  }
+
+  function deleteEquipe(element) {
+    EquipeAPI.delete(element.id)
+    setEquipes([...equipes.filter((e)=>e.id != element.id)]);
+  }
 
   return (
     <div className={styles.all}>
@@ -117,10 +74,10 @@ export default function Gerenciar({name}) {
             <div className={styles.scroll}>
               {filteredActive.map((element) => (
                 <div className={styles.elements} key={element.id}>
-                  <p>{element.name}</p>
+                  <p>{element.title}</p>
                   <div className={styles.edit}>
-                    <img src="/edit.svg" />
-                    <img src="/delete.svg" />
+                    <img src="/edit.svg"/>
+                    <img src="/delete.svg" onClick={() => toggleEquipeActive(element)}/>
                   </div>
                 </div>
               ))}
@@ -129,11 +86,11 @@ export default function Gerenciar({name}) {
             <div className={styles.scroll}>
               {filteredExcluded.map((element) => (
                 <div className={styles.elements} key={element.id}>
-                  <p>{element.name}</p>
+                  <p>{element.title}</p>
                   <div className={styles.edit}>
                     <img src="/edit.svg" />
-                    <img src="/recover.svg"/>
-                    <img src="/delete.svg" />
+                    <img src="/recover.svg" onClick={() => toggleEquipeActive(element)}/>
+                    <img src="/delete.svg" onClick={() => deleteEquipe(element)}/>
                   </div>
                 </div>
               ))}
