@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -22,30 +22,10 @@ import styles from "../styles/equipes.module.scss";
 
 import api from "../services/api";
 
-import equipes from "../services/crewTestData";
+// import equipes from "../services/crewTestData";
 
-{/*export const getStaticProps = async () => {
-    const res = await api.get('crews');
-    const data = await res.json();
-
-    return {
-      props: { equipes : data}  
-    }
-  }*/}
-
-export default function Equipes() {
-  const [equipesApi, setEquipes] = useState([]);
+export default function Equipes({ equipes }) {
   const [index, setIndex] = useState(0);
-
-  useEffect(async () => {
-    try {
-      let equipesApi = await api.get("/crews");
-      setEquipes(equipesApi);
-      console.log(equipesApi);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
 
   const settings = {
     arrows: true,
@@ -106,7 +86,7 @@ export default function Equipes() {
               {idx === index ? (
                 <div>
                   <Slider {...psettings}>
-                    {equipes.projetosAtuais.map((projetos) => (
+                    {equipes.projetosAtuais && equipes.projetosAtuais.map((projetos) => (
                       <Projetos projetos={projetos} />
                     ))}
                   </Slider>
@@ -123,7 +103,7 @@ export default function Equipes() {
               {idx === index ? (
                 <div>
                   <Slider {...psettings}>
-                    {equipes.projetosAtuais.map((projetos) => (
+                    {equipes.projetosAtuais && equipes.projetosAtuais.map((projetos) => (
                       <Projetos projetos={projetos} />
                     ))}
                   </Slider>
@@ -138,7 +118,7 @@ export default function Equipes() {
             <div>
               {idx === index ? (
                 <div>
-                  {equipes.premios.map((premios) => (
+                  {equipes.premios && equipes.premios.map((premios) => (
                     <div className={styles.premios}>
                       <table>
                         <tr>
@@ -161,4 +141,24 @@ export default function Equipes() {
       <Footer />
     </div>
   );
+}
+
+export const getStaticProps = async () => {
+  let { data } = await api.get("/crews");
+  
+  let equipes = data.map(crew => {
+    return {
+      id: crew.id,
+      title: crew.name,
+      description: crew.about,
+      img: crew.image.replace('.', '')
+    }
+  });
+
+  return {
+    props: {
+      equipes
+    },
+    revalidate: 60 * 60 * 24 // 24 Horas
+  }
 }

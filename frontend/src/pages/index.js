@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CrewsCard from "../components/CrewsCard";
@@ -33,27 +32,7 @@ const responsive = {
   },
 };
 
-export default function Home() {
-
-  let [sponsors, setSponsors] = useState([]);
-  let [crews, setCrews] = useState([1,2,3,4,5,6,7,8]); 
-  let [dataIsFetched, setDataIsFetched] = useState(false);
-
-  useEffect(async () => {
-    try {
-      const { data } = await api.get("/crews");
-      let sponsors = await api.get("/sponsors");
-
-      setCrews(data);
-      console.log(crews[0].name);
-      setSponsors(sponsors.data);
-      
-      setDataIsFetched(true);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-
+export default function Home({ sponsors, crews }) {
 
   return (
     <div>
@@ -97,13 +76,7 @@ export default function Home() {
           <section className={styles.logo_content}>
             {
               crews.map(crew => {
-                if (dataIsFetched) {
-                  console.log(crew)
-                  return (<CrewsCard key={crew.id} dataIsFetched={true} name={crew.name} image={crew.image} />)
-                }
-                else {
-                  return (<CrewsCard dataIsFetched={false} />) //retorna o card vazio
-                }
+                return (<CrewsCard key={crew.id} dataIsFetched={true} name={crew.name} image={crew.image} />)
               })
             }
           </section>
@@ -151,4 +124,17 @@ export default function Home() {
     </div>
 
   );
+}
+
+export const getStaticProps = async () => {
+  let {data : crews} = await api.get("/crews");
+  let {data : sponsors} = await api.get("/sponsors");
+
+  return {
+    props: {
+      crews,
+      sponsors
+    },
+    revalidate: 60 * 60 * 24 // 24 Horas
+  }
 }
