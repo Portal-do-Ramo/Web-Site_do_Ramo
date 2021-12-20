@@ -31,7 +31,7 @@ export function Projetos(props) {
   return (
     <div key={projetos.id}>
       <div className={styles.card}>
-        <img src={projetos.img} />
+        <img src={projetos.img}/>
         <h2>{projetos.title}</h2>
         <button
           href={projetos.link}
@@ -52,30 +52,23 @@ export function Projetos(props) {
             <p>{projetos.description}</p>
           </div>
 
-          {projetos.members.map((members) => (
-            <div className={styles.membros}>
-              <div className={styles.gridItem}>
-                <table>
-                  <tr>
-                    <td>
-                    <div className={styles.item}>
-                      <img src={members.img} />
-                    </div>
-                    </td>
-                    <td>
-                    <div>
-                      <p>
-                        {members.name}
-                        <br />
-                        {members.cargo}
-                      </p>
-                    </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
+          <div className={styles.membros}>
+            <h1>Membros</h1>
+            <div className={styles.gridMember}>
+              {projetos.members.map((members) => (
+                <div className={styles.gridItem}>
+                  <div className={styles.item}>
+                        <img src={members.img} />
+                  </div>
+                  <p>
+                    {members.name}
+                    <br />
+                    {members.cargo}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </Modal>
     </div>
