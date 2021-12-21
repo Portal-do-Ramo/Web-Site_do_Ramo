@@ -2,7 +2,8 @@
   background-color: #0d5faa;
   display: flex;
   align-items: center;
-  height: 13vh;
+  min-height: 15vh;
+  min-width: 805px;
   padding-left: 1rem;
   .logo{
     height: 5rem;
@@ -36,7 +37,7 @@
   }
 
   .linkContainer {
-    height: 80%;
+    min-height: 10vh;
     display: flex;
     align-self: flex-start;
     align-items: center;
@@ -64,7 +65,12 @@
     a:hover {
       color:var(--logo_trasition);
     }
-  }
+  } 
+}
+
+.curvedBorder {
+  margin-top: -0.5rem;
+  min-width: 805px;
 }
 
 .border {

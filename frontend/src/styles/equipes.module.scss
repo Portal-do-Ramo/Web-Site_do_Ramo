@@ -1,23 +1,30 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+
+@keyframes TextEnter{
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .all {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   width: 100%; // Não era pra ser sempre 100% da página?
   font-family: "Poppins";
   margin-bottom: 22rem;
   .equipes {
-    height: 48.2rem; //Os elementos que estão dentro não devem controlar o tamanho?
     display: flex;
-    
 
     .descrição {
       flex: 1;
       margin-left: 5rem;
-      width: 30rem;
+      margin-right: 5rem;
+      min-width: 20rem;
+      max-height: 60rem;
+      overflow-y: hidden;
       h1 {
         font-weight: 700;
         color: var(--azul-ramo);
-        font-size: 48px;
+        font-size: 40px;
       }
       p {
         font-weight: 500;
@@ -28,14 +35,12 @@
       }
     }
     .allcarousel {
-      flex: 3;
-      right: 0;
-      height: 35rem;
-      margin-top: 3.4rem;
-      margin-left: 5rem;
-      width: 50rem;
+      flex: 2;
+      margin-top: 3rem;
+      max-height: 35rem;
+      min-width: 40rem;
       background-color: var(--azul-ramo);
-      border-radius: 40px 0 0 40px;
+      border-radius: 60px 0 0 60px;
       
       .prev {
         color: white;
@@ -46,8 +51,8 @@
         top: 30%;
         margin-top: 2rem;
         img{
-          width: 3rem;
-          height: 3rem;
+          max-width: 3rem;
+          max-height: 3rem;
         }
       }
       .next {
@@ -84,15 +89,12 @@
       }
       h1 {
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 1.5rem;
         font-weight: 700;
         font-size: 40px;
         color: white;
       }
-      @keyframes TextEnter{
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-      }
+     
       h2 {
         text-align: center;
         margin-top: 1.5rem;
@@ -109,7 +111,10 @@
     }
     
   }
+
   .projetos{
+    margin-top: 3rem;
+    margin-bottom: -3rem;
     h1{
       color: var(--azul-ramo);
       text-align: center;
@@ -117,6 +122,7 @@
     }
   }
   .premiosGeral{
+    margin-top: 3rem;
     margin-bottom: -20rem;
     h1{
       color: var(--azul-ramo);

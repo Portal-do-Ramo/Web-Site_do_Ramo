@@ -46,9 +46,8 @@ export function Projetos(props) {
           <div className={styles.projeto}>
             <h1>{projetos.title}</h1>
             <div className={styles.image}>
-              <img src={projetos.src} />
+              <img src={projetos.src}/>
             </div>
-
             <p>{projetos.description}</p>
           </div>
 
