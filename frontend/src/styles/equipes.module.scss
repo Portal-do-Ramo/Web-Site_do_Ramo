@@ -8,7 +8,8 @@
 
 .all {
   margin-top: 2.5rem;
-  width: 100%; // Não era pra ser sempre 100% da página?
+  width: 100%;
+  min-width: 900px;
   font-family: "Poppins";
   margin-bottom: 22rem;
   .equipes {

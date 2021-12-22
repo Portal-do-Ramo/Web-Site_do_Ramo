@@ -1,12 +1,12 @@
 .main{ 
     font-family: "Poppins";
+    min-width: 1050px;
     
     /* ----- Banner da foto dos membros ----- */
     .banner{
         margin-top: -3%;
         background-image: url("../../public/RG_auto_x2.jpg");
         height: 60vh;
-        width: 100%;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -23,8 +23,7 @@
 
         /* ----- Container ----- */
         .aboutContainer{
-            max-width: 1500px;
-            width: 90%;
+            min-width: 1050px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -56,11 +55,11 @@
                     background-image: url("../../public/Arrow_6.svg");
                     background-repeat: no-repeat;
                     background-size: contain;
-                    width: 25rem;
-                    height: 25rem;
+                    width: 23rem;
+                    height: 20rem;
                     position: absolute;
                     right: -25rem;
-                    top: -7.5rem;
+                    top: -6rem;
                 }
             }
             /* Nossa família */
@@ -71,10 +70,10 @@
                     background-image: url("../../public/Arrow_7.svg");
                     background-repeat: no-repeat;
                     background-size: contain;
-                    width: 15rem;
-                    height: 15rem;
+                    width: 14rem;
+                    height: 14rem;
                     position: absolute;
-                    right: -16rem;
+                    right: -13rem;
                     top: -11rem;
                 }
                 div.familyPicture{
@@ -98,14 +97,13 @@
 
     /* ----- Nossos valores ----- */
     .ourValues{
-        max-width: 1500px;
-        width: 95%;
-        margin: 0 auto;
-        padding: 2rem 0;
-        min-height: 1350px;
+        display: grid;
+        width: 100%;
+        min-width: 1000px;
+        padding: 2rem;
 
         h2{
-            font-size: 5rem;
+            font-size: 4rem;
             text-align: center;
             color: var(--azul-ramo);
             margin-bottom: 3rem;
@@ -113,27 +111,33 @@
 
         .valuesContainer{ 
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 7% 0;
+            grid-template-columns: repeat(3, minmax(330px, 1fr));
+            gap: 5% 1%;
             justify-items: center;
         }
     }
 
     /* ----- Fale conosco ----- */
     .contactUs{
-        padding: 2rem 0;
-        max-width: 1500px;
-        width: 95%;
-        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 5rem;
+        margin-top: 4rem;      
 
         h2{
             color: var(--azul-ramo);
-            font-size: 5rem;
+            font-size: 4rem;
+        }
+
+        img {
+            max-width: 90%;
+            min-width: 400px;
+            height: auto;
         }
 
         .contactUsContent{
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
         /* ----- Container do formulário ----- */
@@ -149,20 +153,22 @@
                 background-size: contain;
                 background-position: center right;
                 background-repeat: no-repeat;
-                width: 7rem; height: 7rem;
+                width: 6rem; height: 6rem;
                 margin-right: -1rem;
             }
 
             /* Form */
             form{
                 width: 100%;
-                border-radius: 4rem;
-                padding: 2rem 4rem;
+                max-width: 600px;
+                min-width: 400px;
+                border-radius: 3.5rem;
+                padding: 2rem 2.5rem;
                 background-color: var(--azul-ramo);
 
                 label{
                     color: white;
-                    font-size: 3rem;
+                    font-size: 2rem;
                     display: block;
                     font-weight: bold;
                 }
@@ -174,29 +180,29 @@
                     border: none;  
                     font-size: 1.5rem;
                     font-family: "Roboto";
-                    margin-bottom: 2rem;
+                    margin-bottom: 1rem;
                 }
                 input[type="text"],
                 input[type="email"]{
                     text-indent: 25px;
-                    height: 3rem;
+                    height: 2.5rem;
                 }
                 textarea{
                     resize: none;
                     padding: 0.8rem 1.5rem;
-                    height: 12rem;
+                    height: 10rem;
                 }
                 button{
                     width: 100%;
-                    height: 4rem;
-                    font-size: 2rem;
+                    height: 3rem;
+                    font-size: 1.5rem;
                     font-weight: bold;
                     color: white;
                     background-color: var(--azul-ramo);
                     border: 0.5px solid #FFFFFF;
                     border-radius: 25px;
                     cursor: pointer;
-                    transition: all .2s;
+                    transition: all .3s;
                     box-shadow:0 0 30px rgba(32, 31, 31, 0.555) ;
                 }
                 button:hover{

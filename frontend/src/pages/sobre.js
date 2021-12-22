@@ -165,8 +165,7 @@ export default function Sobre(){
                                 <textarea id="descriptionField"/>
                                 <button type="button">Enviar</button>
                             </form>
-                        </section>
-                        
+                        </section>                      
                     </div>
                 </section>
 
