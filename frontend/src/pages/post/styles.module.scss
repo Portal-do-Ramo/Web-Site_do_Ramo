@@ -2,7 +2,6 @@
   font-family: "Poppins", sans-serif;
   color: var(--azul-ramo);
   margin-left: 5rem;
-  margin-bottom: -30rem;
 
   h1 {
     font-weight: 800;
@@ -48,8 +47,10 @@
     
   }
   .socialMedia{
-    margin-left: 78%;
-    margin-top: 5rem;
+    display: flex;
+    width: 90%;
+    justify-content: end;
+    margin-top: 3rem;
     img{
       margin-left: 1rem;
     }

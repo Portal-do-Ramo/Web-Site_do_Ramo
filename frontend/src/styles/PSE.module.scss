@@ -116,7 +116,7 @@
         display: flex;
         flex-direction: column;
         width: 80%;
-        margin: 3rem auto;
+        margin: 3rem;
         grid-column: 1/-1;
         grid-row: 2/3;
 
@@ -131,7 +131,6 @@
             display: flex;
             align-self: flex-end;
             flex-direction: row;
-            margin-right: 15rem;
         }
     }
 
