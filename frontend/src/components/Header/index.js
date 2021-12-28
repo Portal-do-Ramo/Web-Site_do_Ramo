@@ -7,7 +7,7 @@ export default function Header() {
     <>
       <header className={styles.headerContainer}>
         <Link href="/">
-          <img src="/Ramo_logo.svg" alt="logo" className={styles.logo} />
+          <img src="/Ramo_logo.svg" alt="logo" className={styles.logo}/>
         </Link>
 
         <ul>
@@ -58,7 +58,7 @@ export default function Header() {
         </div>
       </header>
 
-      <img src="/curved-border.svg" width="100%" />
+      <img className={styles.curvedBorder} src="/curved-border.svg" width="100%" />
     </>
   );
 }

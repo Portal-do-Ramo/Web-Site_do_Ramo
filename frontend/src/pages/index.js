@@ -4,7 +4,7 @@ import CrewsCard from "../components/CrewsCard";
 
 import Link from "next/link";
 import Image from "next/image";
-import Carousel from "react-multi-carousel";
+import Slider from "react-slick";
 
 import api from '../services/api'
 import EquipeAPI from "../services/equipeAPI";
@@ -33,8 +33,41 @@ const responsive = {
   },
 };
 
-export default function Home({ sponsors, crews }) {
-  
+export default function Home() {
+
+  let [sponsors, setSponsors] = useState([]);
+  let [equipes, setEquipes] = useState([1,2,3,4,5,6,7,8]); 
+  let [dataIsFetched, setDataIsFetched] = useState(false);
+  let [index, setIndex] = useState(0);
+
+  useEffect(async () => {
+    try {
+      let equipes = await EquipeAPI.getAllActive();
+      let sponsors = await api.get("/sponsors");
+
+      setEquipes(equipes);
+      setSponsors(sponsors.data);
+      
+      setDataIsFetched(true);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  const settings = { //Configurações do Slider dos parceiros
+    autoplay: true,
+    autoPlaySpeed: 1000,
+    infinite: true,
+    centerMode: true,
+    adaptiveHeight: true,
+    variableWidth: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    beforeChange: (current, prox) => setIndex(prox),
+    className: styles.slider,
+  };
+
   return (
     <div>
       <Header />
@@ -63,7 +96,7 @@ export default function Home({ sponsors, crews }) {
             </p>
           </div>
           <div id={styles.main_container}>
-            <Image id={styles.icon} src="/seu_pai.svg" width={500} height={600} />
+            <img id={styles.icon} src="/seu_pai.svg"/>
             <a href="/sobre" id={styles.button}>
               <p>Saiba mais</p>
               <Image src="/right-arrow.svg" width={32} height={32} />
@@ -83,43 +116,21 @@ export default function Home({ sponsors, crews }) {
           </section>
         </div>
         <img src="/Background.png" width="100%" className={styles.rotate} />
-        <section className={styles.parcerias}>
+        <div className={styles.parcerias}>
           <h3>Parceiros</h3>
-
-          <div className={styles.dimensionamento}>
-            <Carousel
-              className={styles.carousel}
-              responsive={responsive}
-              autoPlay
-              autoPlaySpeed={2250}
-              className={styles.carousel}
-              additionalTransfrom={0}
-              arrows
-              centerMode={true}
-              draggable
-              infinite
-              keyBoardControl
-              minimumTouchDrag={80}
-              renderButtonGroupOutside={false}
-              responsive={responsive}
-              showDots={false}
-              slidesToSlide={1}
-              swipeable
-            >
-              {
-                sponsors.map(sponsor =>{
-                  return(
-                  <div>
-                    <a>
-                      <img src={sponsor.image} />
-                    </a>
-                  </div>
-                  )
-                })
-              }
-            </Carousel>
-          </div>
-        </section>
+          <Slider {...settings}>
+            {
+              sponsors.map((sponsor, idx) =>{
+                return(
+                <div className={idx === index ? styles.atual : styles.other}>
+                  <img src={sponsor.image} />
+                  <p>{idx === index ? sponsor.name : []}</p>
+                </div>
+                )
+              })
+            }
+          </Slider>
+        </div>
       </div>
       <Footer />
     </div>

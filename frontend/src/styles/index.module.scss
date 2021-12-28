@@ -1,9 +1,9 @@
 #page_container {
-    height: 100rem;
+    height: auto;
+    min-width: 900px;
     font-family: 'Poppins';
     background-image: url("../../public/Background_Logos.svg");
     background-size: contain;
-    margin-bottom: 35rem;
 }
 
 #text_container {
@@ -11,7 +11,7 @@
     flex-direction: row;
     color: var(--azul-ramo);
     margin: 0 12% 15px 12%;
-    height: 78vh;
+    height: auto;
 
     h1 {
         font-size: 3rem;
@@ -35,6 +35,7 @@
         flex: 1;
         flex-direction: column;
         justify-content: center;
+        min-width: 400px;
 
         p{
             padding: 0 0 10rem 0;
@@ -45,14 +46,15 @@
         display: flex;
         flex: 1;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
 
-        // #icon {
-            
-            //ID do SEU PAI, tem que puxar ele com a orelha no header.
-
-        // }
+        #icon {
+            //ID do SEU PAI, tem que puxar ele com a orelha no header. (???)
+            width: 80%;
+            min-width: 400px;
+            margin-left: 5rem;
+        }
 
         #button {
             display: flex;
@@ -95,7 +97,7 @@
 
     .logo_content{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 2fr));
+        grid-template-columns: repeat(auto-fit, minmax(275px, 2fr));
         width: 90%;
 
         .cards{
@@ -184,24 +186,43 @@
     }
 }
 
-.parcerias {
-    height: 26rem;
+.parcerias {  
+    height: auto;
 
     h3 {
-        padding-left: 13rem;
+        padding-left: 10rem;
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
         color: #0876BE;
         font-size: 3rem;
         width: 100%;
     }
-    .dimensionamento{
-        margin-top: 2rem;
-        .carousel{
-            img{
-                width: 15rem;
-                height: 15rem;
+    .slider{
+        padding: 0 5rem;
+        height: fit-content;
+
+        .atual { //Item centralizado no carrossel
+            text-align: center;
+            outline: none;
+            margin: 0;
+
+            img {
+                display: inline;
+                transform: scale(1);
+                margin-bottom: 2rem;
             }
+
+            p {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 800;
+                color: var(--logo_trasition);
+                font-size: 30px;
+            }
+        }
+
+        .other { //Item que não está no centro
+            transform: scale(0.7);
+            outline: none;
         }
     }
     

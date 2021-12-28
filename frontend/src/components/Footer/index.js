@@ -10,7 +10,6 @@ export default function Footer() {
             Ramo Estudantil <br /> IEEE CEFET-RJ
           </h1>
         </div>
-
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio
           elementum bibendum aliquam. Vel, tempor tincidunt enim, eu. Ut non dui
@@ -19,8 +18,7 @@ export default function Footer() {
           pulvinar velit. Aliquet tempor iaculis curabitur cursus libero. Cursus
           odio nunc ipsum ipsum nunc. Mauris mi fringilla nibh a. Cursus
           tincidunt fames faucibus id iaculis egestas malesuada dis sed. Aliquet
-          vel eu in arcu, adipiscing adipiscing luctus ligula tellus.Aliquet vel
-          eu in arcu, adipiscing adipiscing luctus ligula tellus.
+          vel eu in arcu, adipiscing adipiscing luctus ligula tellus.
         </p>
       </div>
 
@@ -64,7 +62,7 @@ export default function Footer() {
 
         <p>
           Desenvolvido por Ticoliro, Julioboladin2001, Thiaguin, Pedroza,
-          Vinicin, Japa, Natanzon, Gabrielzin do Violino
+          Vinicin, Japa, Natanzon, Gabrielzin do Violino, GuiGuiZin
         </p>
       </div>
     </footer>
