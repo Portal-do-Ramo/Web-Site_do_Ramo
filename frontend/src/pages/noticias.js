@@ -1,15 +1,16 @@
 import styles from "../styles/noticias.module.scss";
-import Image from "next/image";
+
 import SearchBar from "../components/SearchBar";
-import { useEffect, useState } from "react";
 import Header from "../components/Header";
-import Link from "next/link";
 import NewsBox from "../components/NewsBox";
 import Footer from "../components/Footer";
 
-import api from '../services/api'
+import api from '../services/api';
 
-const noticias = [
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+const news = [
   {
     id: 1,
     img: "/botz_1.svg",
@@ -156,7 +157,7 @@ const noticias = [
   {
     id: 14,
     img: "/botz_1.svg",
-    title: "V14",
+    title: "enxofre",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
@@ -178,7 +179,7 @@ const noticias = [
   {
     id: 16,
     img: "/botz_1.svg",
-    title: "16",
+    title: "curioso danado",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     time: 2,
@@ -189,9 +190,9 @@ const noticias = [
   {
     id: 17,
     img: "/botz_1.svg",
-    title: "17",
+    title: "easter egg do ramo",
     description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "Por que você veio até aqui?",
     time: 2,
     publishedAt: "2021-04-21T12:00:56Z",
     writer: "Xande",
@@ -200,37 +201,36 @@ const noticias = [
 ];
 
 export default function Noticias() {
-  let news;
-  const noticiasAtuais = noticias.slice(0, 3);
+  let News;
+  const currentNews = news.slice(0, 3);
   
   const [click, setClick] = useState(1);
-  function setNotLenght(click, noticias) {
-    const newNot = noticias.slice(3, 3 + click * 5);
+  function setNotLenght(click, news) {
+    const newNot = news.slice(3, 3 + click * 5);
     return newNot;
   }
-  const noticiasAntigas = setNotLenght(click, noticias);
+
+  const oldNews = setNotLenght(click, news);
   
   const [searchQuery, setSearchQuery] = useState("");
-  const filterNot = (noticiasAntigas, searchQuery) => {
+  const filterNot = (oldNews, searchQuery) => {
     if (!searchQuery) {
-      return noticiasAntigas;
+      return oldNews;
     }
-    return noticiasAntigas.filter((noticiasAntigas) => {
-      const notName = noticiasAntigas.title.toLowerCase();
+    return oldNews.filter((oldNews) => {
+      const notName = oldNews.title.toLowerCase();
       return notName.includes(searchQuery);
     });
   };
-  const filteredNot = filterNot(noticiasAntigas, searchQuery);
+  const filteredNot = filterNot(oldNews, searchQuery);
   
-  const tamanho = noticias.length;
+  const tamanho = news.length;
   
   
   useEffect(async () => {
     try{
       news = await api.get('/news');
-      console.log(news);
     } catch(err) {
-      console.log(err);
     }
   }, [])
 
@@ -243,31 +243,31 @@ export default function Noticias() {
             <h1>Jornal do Ramo</h1>
           </div>
           <div className={styles.grid}>
-            {noticiasAtuais.map((noticias, idx) => (
+            {currentNews.map((news, idx) => (
               <div>
                 {idx == 0 ? (
                   <div className={styles.primeira}>
-                    <img src={noticias.img} />
+                    <img src={news.img} />
                     <div className={styles.info}>
-                      <Link href={`/post/${noticias.id}`}>
+                      <Link href={`/post/${news.id}`}>
                         <a>
-                          <h1>{noticias.title}</h1>
+                          <h1>{news.title}</h1>
                         </a>
                       </Link>
 
-                      <p>{noticias.description}</p>
+                      <p>{news.description}</p>
                     </div>
                   </div>
                 ) : (
-                  <div className={styles.noticiasRecentes}>
-                    <img src={noticias.img} />
+                  <div className={styles.news}>
+                    <img src={news.img} />
                     <div className={styles.info}>
-                      <Link href={`/post/${noticias.id}`}>
+                      <Link href={`/post/${news.id}`}>
                         <a>
-                          <h1>{noticias.title}</h1>
+                          <h1>{news.name}</h1>
                         </a>
                       </Link>
-                      <p>{noticias.description}</p>
+                      <p>{news.description}</p>
                     </div>
                   </div>
                 )}
@@ -291,8 +291,8 @@ export default function Noticias() {
               />
             </div>
             <div className={styles.total}>
-              {filteredNot.map((noticias) => (
-                <NewsBox noticias={noticias} />
+              {filteredNot.map((news) => (
+                <NewsBox noticias={news} />
               ))}
             </div>
             <div>

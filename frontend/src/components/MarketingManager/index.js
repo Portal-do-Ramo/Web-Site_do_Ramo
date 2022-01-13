@@ -1,28 +1,18 @@
 import styles from "./styles.module.scss";
 import SearchBar from "../SearchBar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import EquipeAPI from "../../services/equipeAPI";
 
-export default function Gerenciar({name}) {
+export default function ManageContainer({name, equipes}) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [equipes, setEquipes] = useState([]);
-  
-  useEffect(async () => {
-    try {
-      let equipes = await EquipeAPI.getAll();
-      setEquipes(equipes);
-      console.log(equipes);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
 
   const filterElements = (elements, searchQuery, active) => {
     const query = searchQuery.toLowerCase();
     return elements.filter((el) => {
-      return el.title.toLowerCase().includes(query) && !el.active == !active;
+      return el.name.toLowerCase().includes(query) && !el.active == !active;
     });
   };
+  
   const filteredActive = filterElements(equipes, searchQuery, true);
   const filteredExcluded = filterElements(equipes, searchQuery, false);
 

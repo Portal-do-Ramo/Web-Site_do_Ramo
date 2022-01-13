@@ -1,14 +1,17 @@
 import '../styles/global.scss'
-import { Provider } from '../contexts/Context'
+import { AuthContextProvider } from '../contexts/AuthContext'
+import { ImageContextProvider } from '../contexts/ImageContext'
 
 function MyApp({ Component, pageProps }){
 
   return (
     <div>
       <main>
-        <Provider>   
+        <AuthContextProvider>
+          <ImageContextProvider>
             <Component {...pageProps}/>
-        </Provider>
+          </ImageContextProvider>
+        </AuthContextProvider>
       </main>
     </div>
   )

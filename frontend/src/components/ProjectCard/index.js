@@ -1,34 +1,15 @@
 import { useState } from "react";
-import Carousel from "react-multi-carousel";
-import Modal from "../components/Modal/index";
-import styles from "./projetos.module.scss";
+import ProjectModal from "../ProjectModal";
+import styles from "./styles.module.scss";
 
 import "react-multi-carousel/lib/styles.css";
 
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
-
-export function Projetos(props) {
+export function ProjectCard(props) {
   const [showModal, setShowModal] = useState(false);
   const projetos = props.projetos;
 
   return (
+
     <div key={projetos.id}>
       <div className={styles.card}>
         <img src={projetos.img}/>
@@ -41,7 +22,8 @@ export function Projetos(props) {
           <p>Saiba Mais</p>
         </button>
       </div>
-      <Modal onClose={() => setShowModal(false)} show={showModal}>
+
+      <ProjectModal onClose={() => setShowModal(false)} show={showModal}>
         <div className={styles.modal} key={projetos.id}>
           <div className={styles.projeto}>
             <h1>{projetos.title}</h1>
@@ -69,7 +51,8 @@ export function Projetos(props) {
             </div>
           </div>
         </div>
-      </Modal>
+      </ProjectModal>
+
     </div>
   );
 }

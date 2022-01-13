@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "./Modal.module.scss";
 
-const Modal = ({ show, onClose, children, title }) => {
+const ProjectModal = ({ show, onClose, children }) => {
   const [isBrowser, setIsBrowser] = useState(false);
   useEffect(() => {
     setIsBrowser(true);
@@ -28,4 +28,4 @@ const Modal = ({ show, onClose, children, title }) => {
     return null;
   }
 };
-export default Modal;
+export default ProjectModal;

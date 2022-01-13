@@ -1,6 +1,6 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Value from '../components/Value'
+import Value from '../components/ValueContainer'
 import styles from "../styles/sobre.module.scss";
 
 export default function Sobre(){
@@ -135,12 +135,12 @@ export default function Sobre(){
                     <h2>Nossos valores</h2>
 
                     <section className={styles.valuesContainer}>
-                        <Value props={values[0]}/>
-                        <Value props={values[1]}/>
-                        <Value props={values[2]}/>
-                        <Value props={values[3]}/>
-                        <Value props={values[4]}/>
-                        <Value props={values[5]}/>
+                        <ValueContainer props={values[0]}/>
+                        <ValueContainer props={values[1]}/>
+                        <ValueContainer props={values[2]}/>
+                        <ValueContainer props={values[3]}/>
+                        <ValueContainer props={values[4]}/>
+                        <ValueContainer props={values[5]}/>
                     </section>
                     
                 </section>

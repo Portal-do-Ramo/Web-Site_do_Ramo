@@ -1,8 +1,7 @@
 import React, { Children } from "react";
 import { useRouter } from "next/router";
 import cx from "classnames";
-import Link, { LinkProps } from "next/link";
-
+import Link from "next/link";
 
 export const NavLink = ({
   children,

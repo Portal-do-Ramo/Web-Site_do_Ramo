@@ -1,16 +1,16 @@
 {
-  "equipes": [
+  "crews": [
     {
       "id": 1,
       "active": true,
-      "title": "WIE",
-      "img": "WIE_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "WIE",
+      "image": "WIE_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "WIE",
-          "img": "/Robo.svg",
+          "name": "WIE",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -18,48 +18,48 @@
             {
               "id": 1,
               "name": "Manu",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Bruna",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Premio 8"
+          "image": "Prem.svg",
+          "name": "Premio 8"
         },
         {
-          "img": "Prem.svg",
-          "title": "Premio 9"
+          "image": "Prem.svg",
+          "name": "Premio 9"
         },
         {
-          "img": "Prem.svg",
-          "title": "Premio 10"
+          "image": "Prem.svg",
+          "name": "Premio 10"
         },
         {
-          "img": "Prem.svg",
-          "title": "Premio 11"
+          "image": "Prem.svg",
+          "name": "Premio 11"
         }
       ]
     },
     {
       "id": 2,
       "active": true,
-      "title": "Wolfbyte",
-      "img": "Wolfbyte_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "Wolfbyte",
+      "image": "Wolfbyte_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "IA/Bot",
-          "img": "/Robo.svg",
+          "name": "IA/Bot",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo 1",
@@ -67,39 +67,39 @@
             {
               "id": 1,
               "name": "Julio",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Arthur",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 3,
               "name": "Vinicius",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 4,
               "name": "Thiago",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 5,
               "name": "Gabriel",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         },
         {
           "id": 2,
-          "title": "Jogos",
-          "img": "/Jogo.svg",
+          "name": "Jogos",
+          "image": "/Jogo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo 2",
@@ -107,39 +107,39 @@
             {
               "id": 1,
               "name": "Julio",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Arthur",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 3,
               "name": "Vinicius",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 4,
               "name": "Thiago",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 5,
               "name": "Gabriel",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         },
         {
           "id": 3,
-          "title": "Site do Ramo",
-          "img": "/Tela.svg",
+          "name": "Site do Ramo",
+          "image": "/Tela.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo 3",
@@ -147,39 +147,39 @@
             {
               "id": 1,
               "name": "Julio",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Arthur",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 3,
               "name": "Vinicius",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 4,
               "name": "Thiago",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 5,
               "name": "Gabriel",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         },
         {
           "id": 4,
-          "title": "Console",
-          "img": "/Jogo.svg",
+          "name": "Console",
+          "image": "/Jogo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo 4",
@@ -187,58 +187,58 @@
             {
               "id": 1,
               "name": "Julio",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Arthur",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 3,
               "name": "Vinicius",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 4,
               "name": "Thiago",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 5,
               "name": "Gabriel",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Melhor equipe do ramo 2021 :)"
+          "image": "Prem.svg",
+          "name": "Melhor equipe do ramo 2021 :)"
         },
         {
-          "img": "Prem.svg",
-          "title": "Premio 2"
+          "image": "Prem.svg",
+          "name": "Premio 2"
         }
       ]
     },
     {
       "id": 3,
       "active": true,
-      "title": "Wolfpower",
-      "img": "Wolfpower_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "Wolfpower",
+      "image": "Wolfpower_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "Alimentador Solar",
-          "img": "/Robo.svg",
+          "name": "Alimentador Solar",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -246,27 +246,27 @@
             {
               "id": 1,
               "name": "Lyz",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Nicole",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 3,
               "name": "Leticia",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         },
         {
           "id": 2,
-          "title": "Doguinho",
-          "img": "/Jogo.svg",
+          "name": "Doguinho",
+          "image": "/Jogo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -274,40 +274,40 @@
             {
               "id": 1,
               "name": "Lyz",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Nicole",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Premio 3"
+          "image": "Prem.svg",
+          "name": "Premio 3"
         },
         {
-          "img": "Prem.svg",
-          "title": "Premio 4"
+          "image": "Prem.svg",
+          "name": "Premio 4"
         }
       ]
     },
     {
       "id": 4,
       "active": true,
-      "title": "Wolfbotz",
-      "img": "Wolfbotz_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "Wolfbotz",
+      "image": "Wolfbotz_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "Combate",
-          "img": "/Robo.svg",
+          "name": "Combate",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -315,21 +315,21 @@
             {
               "id": 1,
               "name": "Japa",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Erick",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         },
         {
           "id": 2,
-          "title": "Sumo",
-          "img": "/Jogo.svg",
+          "name": "Sumo",
+          "image": "/Jogo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -337,21 +337,21 @@
             {
               "id": 1,
               "name": "Julio",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             },
             {
               "id": 2,
               "name": "Japa",
-              "img": "Jogo.svg",
+              "image": "Jogo.svg",
               "cargo": "Front-End"
             }
           ]
         },
         {
           "id": 4,
-          "title": "Seguidor",
-          "img": "/Tela.svg",
+          "name": "Seguidor",
+          "image": "/Tela.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -359,47 +359,47 @@
             {
               "id": 1,
               "name": "Japa",
-              "img": "Jogo.svg"
+              "image": "Jogo.svg"
             },
             {
               "id": 2,
               "name": "Arthur",
-              "img": "Jogo.svg"
+              "image": "Jogo.svg"
             },
             {
               "id": 3,
               "name": "Vinicius",
-              "img": "Jogo.svg"
+              "image": "Jogo.svg"
             }
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Premio 5"
+          "image": "Prem.svg",
+          "name": "Premio 5"
         },
         {
-          "img": "Prem.svg",
-          "title": "Premio 6"
+          "image": "Prem.svg",
+          "name": "Premio 6"
         },
         {
-          "img": "Prem.svg",
-          "title": "Premio 7"
+          "image": "Prem.svg",
+          "name": "Premio 7"
         }
       ]
     },
     {
       "id": 5,
       "active": true,
-      "title": "Marketing",
-      "img": "Marketing_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "Marketing",
+      "image": "Marketing_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "Marketing",
-          "img": "/Robo.svg",
+          "name": "Marketing",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -408,24 +408,24 @@
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Premio 11"
+          "image": "Prem.svg",
+          "name": "Premio 11"
         }
       ]
     },
     {
       "id": 6,
       "active": true,
-      "title": "Rocketwolf",
-      "img": "Rocketwolf_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "Rocketwolf",
+      "image": "Rocketwolf_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "Marketing",
-          "img": "/Robo.svg",
+          "name": "Marketing",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -434,24 +434,24 @@
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Premio 11"
+          "image": "Prem.svg",
+          "name": "Premio 11"
         }
       ]
     },
     {
       "id": 7,
       "active": true,
-      "title": "Socialwolf",
-      "img": "Socialwolf_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "Socialwolf",
+      "image": "Socialwolf_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "Marketing",
-          "img": "/Robo.svg",
+          "name": "Marketing",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -460,24 +460,24 @@
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Premio 11"
+          "image": "Prem.svg",
+          "name": "Premio 11"
         }
       ]
     },
     {
       "id": 8,
       "active": true,
-      "title": "Gestão",
-      "img": "Gestao_logo.svg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
-      "projetosAtuais": [
+      "name": "Gestão",
+      "image": "Gestao_logo.svg",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit. Aliquet nulla nisl sed morbi lorem. Malesuada viverra consectetur pulvinar auctor. Consequat, quis est fermentum parturient proin tristique augue turpis. A amet, eleifend libero tincidunt at. Praesent vestibulum sollicitudin ultrices viverra.At mauris in amet, vitae aliquam Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa tempor, eu aenean nisi, tortor. Tellus, posuere diam nunc ac ut iaculis. Pharetra odio id netus eu a, volutpat porttitor urna. Ac gravida in ac viverra nibh. Nulla lectus amet, vel mattis. Mauris, vel et massa netus sollicitudin ligula. Ipsum aliquam a, sed nisi, mauris eu risus ut. Ullamcorper libero, lectus eleifend tincidunt viverra adipiscing facilisis sed luctus. Odio sed elit, duis vulputate nunc arcu magna elit",
+      "projects": [
         {
           "id": 1,
-          "title": "Marketing",
-          "img": "/Robo.svg",
+          "name": "Marketing",
+          "image": "/Robo.svg",
           "link": "",
           "src": "seu_pai.svg",
           "description": "Projeto brabo",
@@ -486,10 +486,10 @@
           ]
         }
       ],
-      "premios": [
+      "awards": [
         {
-          "img": "Prem.svg",
-          "title": "Premio 11"
+          "image": "Prem.svg",
+          "name": "Premio 11"
         }
       ]
     }

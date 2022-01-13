@@ -3,13 +3,13 @@ import NavBar from "../../../components/NavBar";
 import SelectImage from "../../../components/SelectImage";
 import styles from '../../../styles/blogCadastrar.module.scss'
 import api from '../../../services/api'
-import { Context } from "../../../contexts/Context";
+import { ImageContext } from "../../../contexts/ImageContext";
 
 export default function cadastrar(){
   const [title,setTitle] = useState('');
   const [resume,setResume] = useState('');
   const [postText,setPostText] = useState('');
-  const {images,setImages,setPreviewImages} = useContext(Context);
+  const {images,setImages,setPreviewImages} = useContext(ImageContext);
   
   async function handleSubmit(event) {
     event.preventDefault()

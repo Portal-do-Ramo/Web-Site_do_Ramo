@@ -1,16 +1,9 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-multi-carousel/lib/styles.css";
 
-import { Projetos } from "../utils/projetos";
+import Header from "../components/Header"; //Components
+import Footer from "../components/Footer";
 import {
   PrevArrow,
   NextArrow,
@@ -18,22 +11,27 @@ import {
   ProjectNextArrow,
 } from "../components/Arrows";
 
+import { useState } from "react";
+import Slider from "react-slick";
+
+import { ProjectCard } from "../components/ProjectCard";
+
 import styles from "../styles/equipes.module.scss";
 
 import api from "../services/api";
 
-export default function Equipes({ equipes }) {
+export default function Equipes({ crews }) {
   const [index, setIndex] = useState(0);
   
   function wrapElIdx(i) { //Controla o index do carrossel de equipes, fazendo o loop de infinito
-    var n = equipes.length;
+    var n = crews.length;
     var r = Math.floor(n/2);
     if((i-index)>r)i-=n;
     if((i-index)<-r)i+=n;
     return i;
   }
 
-  const settings = {
+  const crewsSliderSettings = {
     arrows: true,
     infinite: true,
     centerMode: true,
@@ -47,7 +45,8 @@ export default function Equipes({ equipes }) {
     beforeChange: (current, prox) => setIndex(prox),
     className: styles.slider,
   };
-  const psettings = {
+
+  const projectsSliderSettings = {
     arrows: true,
     infinite: false,
     centerMode: false,
@@ -56,32 +55,45 @@ export default function Equipes({ equipes }) {
     slidesToScroll: 1,
     nextArrow: <ProjectNextArrow />,
     prevArrow: <ProjectPrevArrow />,
-
     className: styles.slider,
   };
 
   return (
     <div>
       <Header />
+      
       <div className={styles.all}>
         <div className={styles.equipes}>
 
-          {equipes.length == 0 ? <div></div> : <div className={styles.descrição}>
-            <h1>{equipes[index].title}</h1>
-            <p>{equipes[index].description}</p>
-          </div>
+          { crews.length !== 0 && 
+            <div className={styles.descrição}>
+              <h1>{crews[index].name}</h1>
+              <p>{crews[index].about}</p>
+            </div>
           }
 
           <div className={styles.allcarousel}>
             <h1>Escolha sua equipe!</h1>
 
-            <Slider {...settings}>
-             {equipes.map((equipes, idx) => (
+            <Slider {...crewsSliderSettings}>
+              {crews.map((crew, idx) => (
                 <div className>
                   <div className={styles.carrosel}>
-                    <div className={idx === index ? styles.atual : styles.sem} style={{transform: "translateX("+(index-wrapElIdx(idx))*75+"px) scale("+(1.0-Math.abs(index-wrapElIdx(idx))*0.25)*140.0+"%)"}}>
-                      <img src={equipes.img} />
-                      <p className={styles.crewLabel} style={{height: 10+"rem"}}> {idx === index ? <h2>{equipes.title}</h2> : null}</p>
+                    <div className=
+                      {
+                        idx === index ? styles.atual : styles.sem} 
+                        style={{transform: 
+                          "translateX(" +
+                          (index-wrapElIdx(idx))*75 +
+                          "px) scale(" +
+                          (1.0-Math.abs(index-wrapElIdx(idx)) *
+                          0.25) * 140.0 + "%)"
+                        }
+                      }>
+                      <img src={crew.image} />
+                      <p className={styles.crewLabel} style={{height: 10+"rem"}}> 
+                        {idx === index && <h2>{crew.name}</h2>}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -89,65 +101,68 @@ export default function Equipes({ equipes }) {
             </Slider>
           </div>
         </div>
+        
         <div className={styles.projetos}>
           <h1>Projetos Atuais</h1>
 
-          {equipes.map((equipes, idx) => (
+          {crews.map((crew, idx) => (
             <div>
-              {idx === index ? (
+              {idx === index && (
                 <div>
-                  <Slider {...psettings}>
-                    {(equipes.projetosAtuais || []).map((projetos) => (
-                      <Projetos projetos={projetos} />
+                  <Slider {...projectsSliderSettings}>
+                    {(crew.projects || []).map((project) => (
+                      <ProjectCard projetos={project} />
                     ))}
                   </Slider>
                 </div>
-              ) : null}
+              )}
             </div>
           ))}
         </div>
+
         <div className={styles.projetos}>
           <h1>Projetos Finalizados</h1>
 
-          {equipes.map((equipes, idx) => (
+          { crews.map((crew, idx) => (
             <div>
-              {idx === index ? (
+              { idx === index && (
                 <div>
-                  <Slider {...psettings}>
-                    {(equipes.projetosAtuais || []).map((projetos) => (
-                      <Projetos projetos={projetos} />
+                  <Slider {...projectsSliderSettings}>
+                    {(crew.projetosAtuais || []).map((projetos) => (
+                      <ProjectCard projetos={projetos} />
                     ))}
                   </Slider>
                 </div>
-              ) : null}
+              )}
             </div>
           ))}
         </div>
+        
         <div className={styles.premiosGeral}>
           <h1>Prêmios</h1>
-          {equipes.map((equipes, idx) => (
+
+          { crews.map((crew, idx) => (
             <div>
-              {idx === index ? (
+              { idx === index && (
                 <div>
-                  { equipes.premios ? equipes.premios.map((premios) => (
+                  { crew.awards ? crew.awards.map((award) => (
                     <div className={styles.premios}>
                       <table>
                         <tr>
                           <td>
-                            <img src={premios.img} />
+                            <img src={award.image} />
                           </td>
                           <td>
-                            <h1>{premios.title}</h1>
+                            <h1>{award.name}</h1>
                           </td>
                         </tr>
                       </table>
                     </div>
-                  )) 
-                : 
-                <div>Sem Premios</div>
-                } 
+                  )) : 
+                    <div>Sem Prêmios</div>
+                  } 
                 </div>
-              ) : null}
+              )}
             </div>
           ))}
         </div>
@@ -160,19 +175,21 @@ export default function Equipes({ equipes }) {
 export const getStaticProps = async () => {
   let { data } = await api.get("/crews");
   
-  let equipes = data.map(crew => {
-    return {
-      id: crew.id,
-      title: crew.name,
-      description: crew.about,
-      img: crew.image.replace('.', '')
-    }
-  });
+  // let crews = data.map(crew => {
+  //   return {
+  //     id: crew.id,
+  //     title: crew.name,
+  //     description: crew.about,
+  //     image: crew.image.replace('.', '')
+  //   }
+  // });
+
+  let crews = data;
 
   return {
     props: {
-      equipes
+      crews
     },
-    revalidate: 60 * 60 * 24 // 24 Horas
+    revalidate: 1 // 24 Horas
   }
 }

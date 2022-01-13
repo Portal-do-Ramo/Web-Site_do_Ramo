@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 import styles from "../styles/PSE.module.scss";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import api from '../services/api'
 
@@ -251,14 +251,14 @@ export default function PSE({ crews }) {
 }
 
 export const getStaticProps = async () => {
-    let { data } = await api.get("/crews");
+    let { data: crews } = await api.get("/crews");
     
-    let crews = data.map(crew => {
-      return {
-        id: crew.id,
-        name: crew.name,
-      }
-    });
+    // let crews = data.map(crew => {
+    //   return {
+    //     id: crew.id,
+    //     name: crew.name,
+    //   }
+    // });
   
     return {
       props: {
