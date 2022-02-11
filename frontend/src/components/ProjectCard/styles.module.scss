@@ -8,18 +8,19 @@
   height: 30rem;
   margin: 2rem auto;
 
-
   img {
     padding-top: 2rem;
     margin-left: auto;
     margin-right: auto;
   }
+
   h2 {
     margin-top: 2rem;
     color: var(--azul-ramo);
     font-weight: 700;
     font-size: 28px;
   }
+
   .bt {
     margin-top: 8rem;
     background-color: var(--azul-ramo);
@@ -27,6 +28,9 @@
     height: 5.6rem;
     border: none;
     border-radius: 20px;
+    transition: .1s linear;
+    cursor: pointer;
+
     p {
       font-family: "Poppins";
       color: white;
@@ -34,7 +38,13 @@
       font-size: 20px;
     }
   }
+
+  .bt:hover {
+    transform: scale(1.05);
+  }
 }
+
+
 .modal {
   display: flex;
   font-family: "Poppins", sans-serif;

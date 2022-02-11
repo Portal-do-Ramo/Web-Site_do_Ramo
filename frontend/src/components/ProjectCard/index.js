@@ -12,8 +12,8 @@ export function ProjectCard(props) {
 
     <div key={projetos.id}>
       <div className={styles.card}>
-        <img src={projetos.img}/>
-        <h2>{projetos.title}</h2>
+        <img src={projetos.image}/>
+        <h2>{projetos.name}</h2>
         <button
           href={projetos.link}
           onClick={() => setShowModal(true)}
