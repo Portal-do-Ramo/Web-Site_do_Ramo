@@ -6,7 +6,6 @@ const router = express.Router();
 const upload = multer(uploadConfig);
 
 const awardController = require("./controllers/awardController");
-const commonController = require("./controllers/commonController");
 const crewController = require("./controllers/crewController");
 const newsController = require("./controllers/newsController");
 const projectController = require("./controllers/projectController");
@@ -20,7 +19,6 @@ const sendEmail = require('./services/nodemailer');
 const auth = require('./middleware/auth');
 
 router
-    .get("/", commonController.index)
     .get("/awards", awardController.index)
     .get("/crews", crewController.index)
 	.get("/news", newsController.index)
