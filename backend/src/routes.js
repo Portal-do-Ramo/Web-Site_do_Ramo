@@ -8,7 +8,6 @@ const upload = multer(uploadConfig);
 const awardController = require("./controllers/awardController");
 const commonController = require("./controllers/commonController");
 const crewController = require("./controllers/crewController");
-const depositionController = require("./controllers/depositionController");
 const newsController = require("./controllers/newsController");
 const projectController = require("./controllers/projectController");
 const roleController = require("./controllers/roleController");
@@ -24,7 +23,6 @@ router
     .get("/", commonController.index)
     .get("/awards", awardController.index)
     .get("/crews", crewController.index)
-	.get("/depositions", depositionController.index)
 	.get("/news", newsController.index)
 	.get("/projects", projectController.index)
 	.get("/roles", roleController.index)
@@ -40,7 +38,6 @@ router
 	
 	.patch("/award", awardController.update)
 	.patch("/crew", crewController.update)
-    .patch("/deposition", depositionController.update)
 	.patch("/news", newsController.update)
 	.patch("/project", projectController.update)
 	.patch("/role", roleController.update)
@@ -50,7 +47,6 @@ router
 	
     .post("/award", awardController.create)
 	.post("/crew", crewController.create)
-	.post("/deposition",depositionController.create)
 	.post("/news", upload.array('img'), newsController.create)
 	.post("/project", auth, projectController.create)
 	.post("/role",roleController.create)
@@ -62,7 +58,6 @@ router
 
     .delete("/award", awardController.delete)
 	.delete("/crew", crewController.delete)
-	.delete("/deposition", depositionController.delete)
 	.delete("/news", newsController.delete)
     .delete("/project", projectController.delete)
 	.delete("/role", roleController.delete)
