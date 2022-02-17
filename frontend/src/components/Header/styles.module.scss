@@ -1,26 +1,23 @@
 .headerContainer {
   background-color: #0d5faa;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  min-height: 15vh;
   min-width: 1000px;
   padding-left: 1rem;
-  .logo{
-    height: 5rem;
-    margin-top: 10px;
-  }
 
-  .divRet {
-    box-sizing: border-box;
-    height: 2rem;
-    background-color: black;
-    position: relative;
-    .ret {
-      position: absolute;
-      bottom: auto;
-      width: 100%;
+  .logoContainer {
+    display: flex;
+    margin-top: 15px;
+    margin-left: 20px;
+
+    .logo {
+      height: 5rem;
+      margin-top: 10px;
     }
   }
+
+
   ul {
     margin: 10px 4rem 0 2rem ;
     list-style: none;
@@ -37,17 +34,13 @@
   }
 
   .linkContainer {
-    min-height: 10vh;
+    background: #0F579A;
     display: flex;
     align-self: flex-start;
     align-items: center;
-    margin-left: auto;
     display: flex;
-    border-bottom: 5px;
-    box-shadow: 0px 3.63025px 3.63025px rgba(0, 0, 0, 0.25);
     border-radius: 21px 0px 0px 40px;
-    padding-left: 15px;
-    white-space: nowrap;
+    padding: 20px 0 0 30px;
 
     a {
       display: flex;
@@ -58,10 +51,14 @@
       font-size: 16;
       margin-right: 1rem;
       margin-left: 0.5rem;
-      margin-bottom: 1rem;
       color: #ffffff;
       margin-bottom: 1.4rem;
     }
+
+    .activeLink {
+      border-bottom: 3px solid white;
+    }
+    
     a:hover {
       color:var(--logo_trasition);
     }
@@ -71,6 +68,7 @@
 .curvedBorder {
   margin-top: -0.5rem;
   min-width: 805px;
+
 }
 
 .border {

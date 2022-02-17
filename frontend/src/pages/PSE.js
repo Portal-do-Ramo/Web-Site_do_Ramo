@@ -32,7 +32,7 @@ export default function PSE({ crews }) {
     
     return (
         <div>
-            <Header/>
+            <Header page="PSE"/>
             <div id={styles.container}>
                 <div id={styles.descriptionContainer}>
                     <h1>Lugar onde os projetos se tornam realidade!</h1>

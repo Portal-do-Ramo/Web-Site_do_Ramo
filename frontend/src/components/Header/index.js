@@ -1,60 +1,44 @@
+import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { NavLink } from "../NavLink";
 
-export default function Header() {
+export default function Header({page}) {
   return (
     <>
       <header className={styles.headerContainer}>
-        <Link href="/">
-          <img src="/Ramo_logo.svg" alt="logo" className={styles.logo}/>
-        </Link>
 
-        <ul>
-          <li>Ramo Estudantil Cefet-RJ</li>
-          <li>
-            <p>Desenvolvendo pessoas através de projetos</p>
-          </li>
-        </ul>
-        <div className={styles.linkContainer}>
-          <div>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/sobre">
-              <a>Sobre</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/equipes">
-              <a>Equipes</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/noticias">
-              <a>Notícias</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/PSE">
-              <a>Processo seletivo</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="">
-              <a>Parcerias</a>
-            </Link>
-          </div>
-          <div>
-            <Link href="">
-              <a>Contato</a>
-            </Link>
-          </div>
+        <div className={styles.logoContainer}>
+          <img src="/Ramo_logo.svg" alt="logo" className={styles.logo}/>
+
+          <ul>
+            <li>Ramo Estudantil Cefet-RJ</li>
+            <li>
+              <p>Desenvolvendo pessoas através de projetos</p>
+            </li>
+          </ul>
         </div>
-        <div className={styles.divRet}>
-          <img src="/Rectangle.png" className={styles.ret} />
+        <div className={styles.linkContainer}>
+          <Link href="/">
+            <a className={page === "inicio" && styles.activeLink}>Inicío</a>
+          </Link>
+
+          <Link href="/sobre" className={styles.activeLink}>
+            <a className={page === "sobre" && styles.activeLink}>Sobre</a>
+          </Link>
+
+          <Link href="/equipes">
+            <a className={page === "equipes" && styles.activeLink}>Equipes</a>
+          </Link>
+
+          <Link href="/PSE" className={page === "PSE" && styles.activeLink}>
+            <a className={page === "PSE" && styles.activeLink}>Processo Seletivo</a>
+          </Link>
+
+          <Link href="/login">
+            Marketing
+          </Link>
+
         </div>
       </header>
 

@@ -53,7 +53,7 @@ export default function Home({ crews, sponsors }) {
 
   return (
     <div>
-      <Header />
+      <Header page="inicio"/>
       <div id={styles.page_container}>
         <div id={styles.text_container}>
           <div id={styles.ourStory}>

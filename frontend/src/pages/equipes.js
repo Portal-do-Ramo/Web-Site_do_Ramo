@@ -60,7 +60,7 @@ export default function Equipes({ crews }) {
 
   return (
     <div>
-      <Header />
+      <Header page="equipes"/>
       
       <div className={styles.all}>
         <div className={styles.equipes}>

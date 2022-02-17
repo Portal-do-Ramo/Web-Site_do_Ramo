@@ -40,7 +40,7 @@ export default function Sobre(){
 
     return (
         <>
-            <Header/>
+            <Header page="sobre"/>
 
             <main className={styles.main}>
                 <div className={styles.banner}></div>
