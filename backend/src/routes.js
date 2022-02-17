@@ -1,13 +1,12 @@
 const express = require("express");
 const multer = require('multer');
-const uploadConfig = require('./config/upload')
+const uploadConfig = require('./middleware/imageUpload')
 
 const router = express.Router();
 const upload = multer(uploadConfig);
 
 const awardController = require("./controllers/awardController");
 const crewController = require("./controllers/crewController");
-const newsController = require("./controllers/newsController");
 const projectController = require("./controllers/projectController");
 const roleController = require("./controllers/roleController");
 const sponsorController = require("./controllers/sponsorController");
@@ -21,7 +20,6 @@ const auth = require('./middleware/auth');
 router
     .get("/awards", awardController.index)
     .get("/crews", crewController.index)
-	.get("/news", newsController.index)
 	.get("/projects", projectController.index)
 	.get("/roles", roleController.index)
 	.get("/sponsors", sponsorController.index)
@@ -30,13 +28,11 @@ router
 
     .get("/award/:id", awardController.show)
 	.get("/crew/:id", crewController.show)
-    .get("/news/:id", newsController.show)
     .get("/project/:id", projectController.show)
 	
 	
 	.patch("/award", awardController.update)
 	.patch("/crew", crewController.update)
-	.patch("/news", newsController.update)
 	.patch("/project", projectController.update)
 	.patch("/role", roleController.update)
 	.patch("/sponsor", sponsorController.update)
@@ -45,7 +41,6 @@ router
 	
     .post("/award", awardController.create)
 	.post("/crew", crewController.create)
-	.post("/news", upload.array('img'), newsController.create)
 	.post("/project", auth, projectController.create)
 	.post("/role",roleController.create)
 	.post("/sponsor",sponsorController.create)
@@ -56,7 +51,6 @@ router
 
     .delete("/award", awardController.delete)
 	.delete("/crew", crewController.delete)
-	.delete("/news", newsController.delete)
     .delete("/project", projectController.delete)
 	.delete("/role", roleController.delete)
 	.delete("/sponsor", sponsorController.delete)
