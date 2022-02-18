@@ -1,10 +1,25 @@
 const bcrypt = require("bcrypt");
 const {v4} = require("uuid");
-
 const knex = require("../database");
 const authenticate = require("../services/authentication");
-const Joi = require("../services/validation");
+const Joi = require("joi");
 const mailer = require("../services/nodemailer");
+
+
+const validation = (data) => {
+    const user = Joi.object({
+        name: Joi.string().min(3).required(),    
+        email: Joi.string().min(6).email().required(),
+        password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required(),
+        role: Joi.string().required()           
+    });
+
+    try {
+        return user.validate(data);
+    } catch(err) {
+        return err.message;
+    }
+}
 
 module.exports = {
     
@@ -20,9 +35,8 @@ module.exports = {
             return res.status(409).send({error:"User already exists"})
         }
 
-		
         try {
-			const {error} = Joi(req.body);
+			const {error} = validation(req.body);
             if(error == null){
 				
 				const hash = await bcrypt.hash(password, 10)
