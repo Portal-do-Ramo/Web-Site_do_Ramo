@@ -3,20 +3,17 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { NavLink } from "../NavLink";
 
-export default function Header({page}) {
+export default function Header({page, children}) {
   return (
     <>
-      <header className={styles.headerContainer}>
-
+      <header className={page === "inicio" ? styles.homeHeader : styles.headerContainer}>
         <div className={styles.logoContainer}>
           <img src="/Ramo_logo.svg" alt="logo" className={styles.logo}/>
 
-          <ul>
-            <li>Ramo Estudantil Cefet-RJ</li>
-            <li>
-              <p>Desenvolvendo pessoas através de projetos</p>
-            </li>
-          </ul>
+          <section>
+            <h1>Ramo Estudantil IEEE CEFET-RJ</h1>
+            <p>Desenvolvendo pessoas através de projetos</p>
+          </section>
         </div>
         <div className={styles.linkContainer}>
           <Link href="/">
@@ -40,6 +37,9 @@ export default function Header({page}) {
           </Link>
 
         </div>
+
+        {children}
+
       </header>
 
       <img className={styles.curvedBorder} src="/curved-border.svg" width="100%" />
