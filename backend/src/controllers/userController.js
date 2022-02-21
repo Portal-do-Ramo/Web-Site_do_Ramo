@@ -3,12 +3,11 @@ const {v4} = require("uuid");
 
 const knex = require("../database");
 const authenticate = require("../services/authentication");
-const Joi = require("../services/validation");
-const mailer = require("../services/nodemailer");
+const validation = require("../services/validation");
 
 module.exports = {
     
-    async index(req, res){
+    async get(req, res){
         const users = await knex('users').select('name', 'email', 'role');
         return res.status(200).json({'users': users});
     },
@@ -22,7 +21,7 @@ module.exports = {
 
 		
         try {
-			const {error} = Joi(req.body);
+			const {error} = validation(req.body);
             if(error == null){
 				
 				const hash = await bcrypt.hash(password, 10)

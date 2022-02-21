@@ -1,0 +1,13 @@
+FROM node:16-alpine
+#from scratch -> pelo amor de deus
+WORKDIR /user/app/frontend
+
+COPY frontend/package.json ./
+RUN yarn install
+
+COPY ./frontend .
+
+EXPOSE 3000
+
+ENTRYPOINT ["yarn"]
+CMD ["build"]
