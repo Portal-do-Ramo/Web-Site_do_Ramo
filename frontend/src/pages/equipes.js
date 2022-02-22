@@ -4,6 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import Header from "../components/Header"; //Components
 import Footer from "../components/Footer";
+
 import {
   PrevArrow,
   NextArrow,

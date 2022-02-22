@@ -41,34 +41,7 @@
       max-height: 35rem;
       min-width: 40rem;
       background-color: var(--azul-ramo);
-      border-radius: 60px 0 0 60px;
-      
-      .prev {
-        color: white;
-        position: absolute;
-        cursor: pointer;
-        z-index: 10;
-        left: 0%;
-        top: 30%;
-        margin-top: 2rem;
-        img{
-          max-width: 3rem;
-          max-height: 3rem;
-        }
-      }
-      .next {
-        color: white;
-        position: absolute;
-        cursor: pointer;
-        z-index: 10;
-        right: 0%;
-        top: 30%;
-        margin-top: 2rem;
-        img{
-          width: 3rem;
-          height: 3rem;
-        }
-      }
+      border-radius: 60px 0 0 60px;     
 
       .carrosel {
         display: inline-flex;
@@ -104,11 +77,6 @@
         color: white;
         animation: TextEnter 200ms ease-in;
       }
-      img {
-        margin-left: 1rem;
-        width: 12rem;
-        height: 15rem;
-      }
     }
     
   }
@@ -140,32 +108,5 @@
       }
       
     }
-  }
-}
-
-.pprev {
-  
-  position: absolute;
-  cursor: pointer;
-  z-index: 10;
-  left: 0%;
-  top: 50%;
-  img{
-    color: var(--azul-ramo);
-    width: 2rem;
-    height: 2rem;
-  }
-}
-.pnext {
-  
-  position: absolute;
-  cursor: pointer;
-  z-index: 10;
-  right: 0%;
-  top: 50%;
-  img{
-    color: var(--azul-ramo);
-    width: 2rem;
-    height: 2rem;
   }
 }

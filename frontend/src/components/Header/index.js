@@ -15,6 +15,7 @@ export default function Header({page, children}) {
             <p>Desenvolvendo pessoas através de projetos</p>
           </section>
         </div>
+
         <div className={styles.linkContainer}>
           <Link href="/">
             <a className={page === "inicio" && styles.activeLink}>Inicío</a>
@@ -35,7 +36,6 @@ export default function Header({page, children}) {
           <Link href="/login">
             Marketing
           </Link>
-
         </div>
 
         {children}

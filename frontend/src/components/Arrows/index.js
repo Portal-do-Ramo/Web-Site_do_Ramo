@@ -1,4 +1,4 @@
-import styles from "../styles/equipes.module.scss";
+import styles from "./Arrow.module.scss";
 
 export const NextArrow = ({ onClick }) => {
     return (
