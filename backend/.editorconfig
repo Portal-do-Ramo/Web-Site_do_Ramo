@@ -1,9 +1,0 @@
-root = true
-
-[*] # As regras servem para todos os tipos de extenções de arquivos
-indent_style = tab # Tipo de indentação -> tab
-indent_size = 1 # Quantos tabs são necessários
-end_of_line = lf
-tab_width =  4 # Tamanho do tab -> equivalente a 4 espaços
-charset = "utf-8"
-insert_final_newline = false # Inserir uma nova linha no final
