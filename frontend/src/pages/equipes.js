@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router'
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-multi-carousel/lib/styles.css";
 
-import Header from "../components/Header"; //Components
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 import {
@@ -12,7 +14,7 @@ import {
   ProjectNextArrow,
 } from "../components/Arrows";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import { ProjectCard } from "../components/ProjectCard";
@@ -22,7 +24,14 @@ import styles from "../styles/equipes.module.scss";
 import api from "../services/api";
 
 export default function Equipes({ crews }) {
+  const { query } = useRouter();
   const [index, setIndex] = useState(0);
+  
+  useEffect(() => { //Tem como função mudar o index para a equipe que foi selecionada na tela Home
+    if (query.crewIndex) {
+      setIndex(parseInt(query.crewIndex));
+    }
+  }, [query]);
   
   function wrapElIdx(i) { //Controla o index do carrossel de equipes, fazendo o loop de infinito
     var n = crews.length;

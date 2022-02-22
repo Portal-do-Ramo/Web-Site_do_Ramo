@@ -105,8 +105,8 @@ export default function Home({ crews, sponsors }) {
 
           <section className={styles.logo_content}>
             {
-              crews.map(crew => {
-                return (<CrewsCard key={crew.id} name={crew.name} image={crew.image} />)
+              crews.map((crew, index) => {
+                return (<CrewsCard key={crew.id} index={index} name={crew.name} image={crew.image} />)
               })
             }
           </section>
