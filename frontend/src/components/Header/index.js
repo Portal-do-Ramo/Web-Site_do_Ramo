@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import { NavLink } from "../NavLink";
 
 export default function Header({page, children}) {
   return (
