@@ -46,6 +46,7 @@
 
         p {
             padding: 1rem 0 10rem 0;
+            text-align: justify;
         }
     }
 
@@ -101,11 +102,11 @@
         width: 90%;
 
         .cards{
-            width: 300px;
-            height: 325px;
+            width: 260px;
+            height: 300px;
             background-color: var(--contraste);
-            border-radius: 30px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             margin: auto;
             margin-bottom: 20px;
             transition: background-color .7s ease;
