@@ -1,9 +1,6 @@
 const express = require("express");
-const multer = require('multer');
-const uploadConfig = require('./middleware/imageUpload')
 
 const router = express.Router();
-const upload = multer(uploadConfig);
 
 const awardController = require("./controllers/awardController");
 const crewController = require("./controllers/crewController");
