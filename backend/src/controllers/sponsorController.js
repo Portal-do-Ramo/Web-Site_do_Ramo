@@ -1,23 +1,17 @@
-const knex = require('../database');
-const {v4} = require('uuid');
+const sponsorService = require("../services/sponsorService");
 
 module.exports = {
 
    async index(req, res){
-		let sponsors = await knex('sponsors').select('*');
+		let sponsors = await sponsorService.index();
         return res.status(200).json(sponsors);
     },
 
     async create(req, res){
         let { name, image, link } = req.body;
         try{
-            await knex("sponsors").insert({
-                id: v4(), 
-				name,
-                image, 
-                link
-            });
-            return res.status(201).json({"message": "Patrocinador criado!!!"});
+            sponsorService.create(name, image, link);
+            return res.status(201).json({"message": "Patrocinador criado!!!"}); 
         } catch(err) {
             return res.status(422).json({"message": err.message});
         }
@@ -26,7 +20,7 @@ module.exports = {
     async update(req, res){
 		let { id, sponsor } = req.body;
 		try {
-			await knex("sponsors").update(sponsor).select({id}); //trocar o timestamp do updated_at
+			await sponsorService.update(id, sponsor);
 			return res.status(200).json({"message": "Patrocinador atualizado!!"});
 		} catch(err){
 			return res.status(405).json({"message": err.message});
@@ -36,7 +30,7 @@ module.exports = {
 	async delete(req, res){
         let { sponsor } = req.body;
 		try {
-			let confirmation = await knex('sponsors').where({"name": sponsor}).delete();
+			let confirmation = await sponsorService.delete(sponsor);
 			if(confirmation > 1) {
 				return res.status(200).json({'message': "Patrocinadores deletados"});
 			}
