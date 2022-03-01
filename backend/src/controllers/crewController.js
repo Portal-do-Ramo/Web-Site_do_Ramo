@@ -39,13 +39,10 @@ module.exports = {
 		let { crew } = req.body;
 		try {
 			let confirmation = await crewService.delete(crew);
-            if(confirmation > 0) {
+            if(confirmation > 1) {
                 return res.status(200).json({"message": "Equipes deletadas"});
             }
-            else{
-                return res.status(202).json({"message": "Equipe não existente"});
-            }
-            
+            return res.status(200).json({"message": "Equipe deletada"});
 		} catch(err) {
 			return res.status(405).json({"message": err.message});
 		}

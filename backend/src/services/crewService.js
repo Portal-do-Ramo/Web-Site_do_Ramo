@@ -3,7 +3,7 @@ const {v4} = require('uuid');
 
 module.exports = {
     async index() {
-        let crews = await knex('crews').select();
+        let crews = await knex("crews").select();
         return crews;
     },
 
@@ -22,7 +22,7 @@ module.exports = {
     },
 
     async update(id, crew) {
-        await knex("crew").update(crew).select({id});
+        await knex("crew").where({id}).update(crew);
     },
 
     async delete(crew) {
