@@ -28,6 +28,11 @@ module.exports = {
     async delete(crew) {
         let confirmation = await knex("crews").where({"name": crew}).delete();
         return confirmation;
-    }
+    },
 
+    getCrew(crew_name){
+		let crew = knex('crews').where({"name": crew_name}).select();
+		return crew;
+	}	
+    
 }
