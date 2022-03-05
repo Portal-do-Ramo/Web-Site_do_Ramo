@@ -1,31 +1,24 @@
-const { v4 } = require("uuid");
-const knex = require("../database");
-const crewServices = require("../services/crewReferences");
+const awardService = require("../services/awardService");
+const crewService = require("../services/crewService");
 
 module.exports = {
 
-    async index(req,res) { //
-        let awards = await knex("awards")
+    async index(req,res) {
+        let awards = await awardService.index();
         return res.status(200).json(awards);
     },
     
     async show(req,res) { //mostrar só um
         let { id } = req.params;
-		let award = await knex("awards").select().where({id});
+		let award = await awardService.show(id);
         return res.status(200).json(award);
     },
-	
+
     async create(req,res) {
-		let { name, description, image, crew_name } = req.body;
-		let { id: crew_id } = await crewServices.getCrew(crew_name).first();
+		let { name, description, crew_name } = req.body;
+		let { id: crew_id } = await crewService.getCrew(crew_name).first();
         try {
-            await knex("awards").insert({
-				id: v4(),
-                name,
-                description,
-                image,
-                crew_id
-            });
+            await awardService.create(name, description, crew_id);
             return res.status(201).json({"message": "Prêmio Cadastrado!!"});
         } catch(err) {
             return res.status(422).json({"message": err.message});
@@ -35,7 +28,7 @@ module.exports = {
     async update(req, res) {
         let { id, award } = req.body; //talvez o award possa ser um json com todas as informações do objeto
 		try {
-			await knex("awards").update(award).select({id}); //trocar o timestamp do updated_at
+			await awardService.update(id, award);
 			return res.status(200).json({"message": "Prêmio atualizado!!"});
 		} catch(err){
 			return res.status(405).json({"message": err.message});
@@ -46,7 +39,7 @@ module.exports = {
     async delete(req,res) {
         let { award } = req.body;  
 		try{
-			let confirmation = await knex("awards").where({"name": award}).delete();
+			let confirmation = await awardService.delete(award);
             if(confirmation > 1){
                 return res.status(200).json({"message": "Prêmios foram deletados"});
             } 
@@ -55,5 +48,5 @@ module.exports = {
 			return res.status(405).json({"message": err.message});
 		}
     }
-	
+
 }
