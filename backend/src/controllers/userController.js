@@ -1,17 +1,14 @@
 const bcrypt = require("bcrypt");
-const {v4} = require("uuid");
-const knex = require("../database");
+const userService = require("../services/userService");
 const authenticate = require("../services/authentication");
 const Joi = require("joi");
-const mailer = require("../services/nodemailer");
-
+//const mailer = require("../services/nodemailer");
 
 const validation = (data) => {
     const user = Joi.object({
         name: Joi.string().min(3).required(),    
         email: Joi.string().min(6).email().required(),
-        password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required(),
-        role: Joi.string().required()           
+        password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required(),      
     });
 
     try {
@@ -24,14 +21,14 @@ const validation = (data) => {
 module.exports = {
     
     async index(req, res){
-        const users = await knex('users').select('name', 'email', 'role');
+        const users = await userService.index();
         return res.status(200).json({'users': users});
     },
 
     async create(req, res){
-        const {name, email, password, role} = req.body;
-
-        if(await knex('users').where({email}).first()){
+        const {name, email, password} = req.body;
+        const user = await userService.show(email);
+        if(user){
             return res.status(409).send({error:"User already exists"})
         }
 
@@ -42,13 +39,7 @@ module.exports = {
 				const hash = await bcrypt.hash(password, 10)
 				
 				//tranformar -> senha
-                await knex('users').insert({
-                    id: v4(),
-                    name,
-                    email,
-                    password: hash,
-                    role
-                });
+                await userService.create(name, email, hash);
 
                 //await mailer("email_confirmacao", email);
 
@@ -69,7 +60,7 @@ module.exports = {
     async update(req, res){
         let { id, user } = req.body;
 		try {
-			await knex("users").update(user).select({id}); //trocar o timestamp do updated_at
+			await userService.update(id, user);
 			return res.status(200).json({"message": "Usuário atualizado!!"});
 		} catch(err){
 			return res.status(405).json({"message": err.message});
@@ -79,7 +70,7 @@ module.exports = {
     async delete(req, res){
         let {id} = req.body;
         try {
-            let confirmation = await knex("users").where({id}).delete();
+            let confirmation = await userService.delete(id);
 			if(confirmation > 1) {
 				return res.status(200).json({"message": "Usuários deletados"});
 			}
@@ -93,8 +84,9 @@ module.exports = {
 		const {email, password} = req.body;
 
         try {
-            const user = await knex("users").where({email}).first();
-			if(!user.email) { 	// Verificar os status code.
+            const user = await userService.show(email);
+            
+			if(!user) { 	// Verificar os status code.
 				return res.status(401).json({"message": "Email não existe"});
 			}
 
@@ -102,8 +94,7 @@ module.exports = {
 				return res.status(401).json({"message": "Senha inválida"});
 			}
 	
-			const token = authenticate(user.name, email, user.role); //ver se precisa de await 
-
+			const token = authenticate(user.name, email); //ver se precisa de await 
 			return res
 				.status(200)
                 .header('auth-token', token) // ler sobre o método
