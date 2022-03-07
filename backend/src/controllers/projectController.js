@@ -1,17 +1,17 @@
-const knex = require("../database");
-const {v4} = require("uuid");
+const projectService = require("../services/projectService");
+const crewService = require("../services/crewService");
 
 //Fazer os tratamentos com try-catch e retornar os status codes corretos para cada situação.
 module.exports = {
 
     async index(req, res){
-        let projects = await knex("projects");
+        let projects = await projectService.index();;
         return res.status(200).json({"projects": projects});
     },
 
 	async show(req,res) {
 		let { id } = req.params;
-		let project = await knex("projects").select().where({id});
+        let project = await projectService.show(id);
 		return res.status(200).json(project);
 	},
 	
@@ -23,21 +23,11 @@ module.exports = {
         if(ended === null ){
             status = true;
         }
-
-        let {id: crew_id} = await knex("crews").select("id").where({"name": crew_name}).first();
+        
+        let {id: crew_id} = await crewService.getCrew(crew_name).first();
 		if(crew_id != null){
             try {
-                await knex("projects").insert({
-                    id: v4(),
-                    name,
-                    description,
-                    image,
-                    members,
-                    beginning, 
-                    ended,
-                    crew_id, 
-                    status
-                });
+                await projectService.create(name, description, image, members, beginning, ended, crew_id, status);
                 return res.status(201).json({"message": "Projeto adicionado"});
             } catch(err) {
                 return res.status(422).json({"message": err.message})
@@ -49,7 +39,7 @@ module.exports = {
     async update(req, res){
 		let { id, project } = req.body;
 		try {
-			await knex("projects").update(project).select({id}); //trocar o timestamp do updated_at
+			await projectService.update(id, project);
 			return res.status(200).json({"message": "Projeto atualizado!!"});
 		} catch(err){
 			return res.status(405).json({"message": err.message});
@@ -60,7 +50,7 @@ module.exports = {
 
         try{
             let {id} = req.body;
-            let confirmation = await knex("projects").where({id}).delete();
+            let confirmation = await projectService.delete(id);
 			if(confirmation > 1){
 				return res.status(200).json({"message": "Projetos deletados"});
 			}
