@@ -21,8 +21,8 @@ module.exports = {
         });
     },
 
-    async update(id, user){
-        await knex("users").where({id}).update(user); //trocar o timestamp do updated_at
+    async update(id, name, password){
+        await knex("users").where({id}).update({name, password}); //trocar o timestamp do updated_at
     },
 
     async delete(id){

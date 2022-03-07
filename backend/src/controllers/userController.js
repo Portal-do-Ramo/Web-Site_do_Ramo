@@ -2,13 +2,13 @@ const bcrypt = require("bcrypt");
 const userService = require("../services/userService");
 const authenticate = require("../services/authentication");
 const Joi = require("joi");
-//const mailer = require("../services/nodemailer");
+const mailer = require("../services/nodemailer");
 
 const validation = (data) => {
     const user = Joi.object({
         name: Joi.string().min(3).required(),    
         email: Joi.string().min(6).email().required(),
-        password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required(),      
+        password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required()     
     });
 
     try {
@@ -29,14 +29,14 @@ module.exports = {
         const {name, email, password} = req.body;
         const user = await userService.show(email);
         if(user){
-            return res.status(409).send({error:"User already exists"})
+            return res.status(409).send({error:"User already exists"});
         }
 
         try {
 			const {error} = validation(req.body);
             if(error == null){
 				
-				const hash = await bcrypt.hash(password, 10)
+				const hash = await bcrypt.hash(password, 10);
 				
 				//tranformar -> senha
                 await userService.create(name, email, hash);
@@ -60,8 +60,14 @@ module.exports = {
     async update(req, res){
         let { id, user } = req.body;
 		try {
-			await userService.update(id, user);
-			return res.status(200).json({"message": "Usuário atualizado!!"});
+            const {error, value} = validation(user);
+            
+            if(error == null){
+                const hash = await bcrypt.hash(value.password, 10);
+                await userService.update(id, value.name, hash);
+                return res.status(200).json({"message": "Usuário atualizado!!"});
+            }
+            return res.status(406).json({"message": error.message});
 		} catch(err){
 			return res.status(405).json({"message": err.message});
 		}
