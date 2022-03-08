@@ -13,7 +13,13 @@ module.exports = {
         return project;
     },
 
-    async create(name, description, image, members, beginning, ended, crew_id, status){
+    async create(name, description, image, members, beginning, ended, crew_id){
+        let status = false //rever lógica depois
+
+        if(ended === null ){
+            status = true;
+        }
+        
         await knex("projects").insert({
             id: v4(),
             name,

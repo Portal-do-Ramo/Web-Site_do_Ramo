@@ -5,7 +5,7 @@ const crewService = require("../services/crewService");
 module.exports = {
 
     async index(req, res){
-        let projects = await projectService.index();;
+        let projects = await projectService.index();
         return res.status(200).json({"projects": projects});
     },
 
@@ -18,16 +18,12 @@ module.exports = {
 	//pensar no fato de no futuro existirem projetos de várias equipes!!!! Teriamos problemas com o first -> pensar em uma solução
     async create(req, res){ 
         let { name, description, image, members, crew_name, beginning, ended } = req.body;
-        let status = false //rever lógica depois
-
-        if(ended === null ){
-            status = true;
-        }
         
-        let {id: crew_id} = await crewService.getCrew(crew_name).first();
+        let {id: crew_id} = await crewService.getCrew(crew_name);
+
 		if(crew_id != null){
             try {
-                await projectService.create(name, description, image, members, beginning, ended, crew_id, status);
+                await projectService.create(name, description, image, members, beginning, ended, crew_id);
                 return res.status(201).json({"message": "Projeto adicionado"});
             } catch(err) {
                 return res.status(422).json({"message": err.message})
