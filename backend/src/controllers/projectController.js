@@ -1,58 +1,62 @@
 const projectService = require("../services/projectService");
 const crewService = require("../services/crewService");
 
-//Fazer os tratamentos com try-catch e retornar os status codes corretos para cada situação.
 module.exports = {
-
-    async index(req, res){
+    async index(req, res) {
         let projects = await projectService.index();
         return res.status(200).json({"projects": projects});
     },
 
-	async show(req,res) {
+	async show(req, res) {
 		let { id } = req.params;
-        let project = await projectService.show(id);
-		return res.status(200).json(project);
+
+        try {
+            let project = await projectService.show(id);
+            return res.status(200).json(project);
+        } catch (error) {
+            return res.status(400).json({message: error.message});
+        }
 	},
 	
 	//pensar no fato de no futuro existirem projetos de várias equipes!!!! Teriamos problemas com o first -> pensar em uma solução
     async create(req, res){ 
         let { name, description, image, members, crew_name, beginning, ended } = req.body;
         
-        let {id: crew_id} = await crewService.getCrew(crew_name);
+        try {
+            const response = await projectService.create(
+                name,
+                description,
+                image,
+                members,
+                beginning,
+                ended,
+                crew_id
+            );
 
-		if(crew_id != null){
-            try {
-                await projectService.create(name, description, image, members, beginning, ended, crew_id);
-                return res.status(201).json({"message": "Projeto adicionado"});
-            } catch(err) {
-                return res.status(422).json({"message": err.message})
-            }
-	    } 
-		return res.json({"message": "Equipe necessária"});
+            return res.status(200).json(response);
+        } catch (error) {
+            return res.status(400).json(error.message);
+        }
     },
 
     async update(req, res){
 		let { id, project } = req.body;
 		try {
-			await projectService.update(id, project);
-			return res.status(200).json({"message": "Projeto atualizado!!"});
+			const response = await projectService.update(id, project);
+			return res.status(200).json(response);
 		} catch(err){
-			return res.status(405).json({"message": err.message});
+			return res.status(405).json({message: err.message});
 		}
     },
     
     async delete(req, res){
-
+        let {id} = req.body;
+        
         try{
-            let {id} = req.body;
-            let confirmation = await projectService.delete(id);
-			if(confirmation > 1){
-				return res.status(200).json({"message": "Projetos deletados"});
-			}
-            return res.status(200).json({"message": "Projeto deletado"});
+            let response = await projectService.delete(id);
+            return res.status(200).json(response);
         } catch(err) {
-            return res.status(405).json({"message": err.message})
+            return res.status(405).json({message: err.message});
         }
     }
 }

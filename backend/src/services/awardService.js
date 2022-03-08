@@ -19,7 +19,7 @@ module.exports = {
 
     async create(name, description, crew_name) {
         try {
-            let { crew_id } = await crewService.getCrew(crew_name);
+            let { id: crew_id } = await crewService.getCrew(crew_name);
 
             if (!crew_id) {
                 throw new Error("Equipe não existe!");

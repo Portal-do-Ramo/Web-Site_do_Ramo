@@ -2,44 +2,72 @@ const knex = require("../database");
 const {v4} = require("uuid");
 
 module.exports = {
-
-    async index(){
+    async index() {
         let projects = await knex("projects").select();
         return projects;
     },
 
     async show(id){
-		let project = await knex("projects").select().where({id});
-        return project;
+        try {
+            let project = await knex("projects").select().where({id});
+            return project;
+        } catch (error) {
+            throw new Error(error.message);
+        }
     },
 
-    async create(name, description, image, members, beginning, ended, crew_id){
+    async create(name, description, image, members, beginning, ended, crew_name){
         let status = false //rever lógica depois
 
         if(ended === null ){
             status = true;
         }
-        
-        await knex("projects").insert({
-            id: v4(),
-            name,
-            description,
-            image,
-            members,
-            beginning, 
-            ended,
-            crew_id, 
-            status
-        });
+
+        try {
+            let {id: crew_id} = await crewService.getCrew(crew_name);
+            
+            if(crew_id != null){
+                await knex("projects").insert({
+                    id: v4(),
+                    name,
+                    description,
+                    image,
+                    members,
+                    beginning, 
+                    ended,
+                    crew_id, 
+                    status
+                });
+
+                return {message: "Projeto adicionado"};
+            } else {
+                throw new Error("Equipe necessária");
+            }
+        } catch (error) {
+            throw new Error(error.message);
+        }
     },
 
     async update(id, project){
-        await knex("projects").where({id}).update(project); //trocar o timestamp do updated_at
+        try {
+            await knex("projects").where({id}).update(project); //trocar o timestamp do updated_at
+            return {message: "Projeto atualizado!"}
+        } catch (error) {
+            throw new Error(error.message);
+        }
     },
 
     async delete(id){
-        let confirmation = await knex("projects").where({id}).delete();
-        return confirmation;
-    }
+        try {
+            let confirmation = await knex("projects").where({id}).delete();
 
+            if(confirmation > 1){
+				return res.status(200).json({"message": "Projetos deletados"});
+			}
+
+            return {message: "Projeto deletado"};
+        } catch (error) {
+                   
+        }
+    }
 }
