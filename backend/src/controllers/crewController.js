@@ -1,3 +1,4 @@
+const { response } = require("express");
 const crewService = require("../services/crewService");
 
 module.exports = {
@@ -11,40 +12,44 @@ module.exports = {
 
 	async show(req,res) {
 		let {id} = req.params;
-		let crew = await crewService.show(id);
-		return res.status(200).json(crew);
+
+        try {
+            let crew = await crewService.show(id);
+            return res.status(200).json(crew);
+        } catch (error) {
+            return res.status(400).json({message: error.message});
+        }
 	},
 
     async create(req, res) {
         let { name, about, image } = req.body;
+
         try{
-            await crewService.create(name, about, image);
-            return res.status(201).json({"message": "Equipe criada!!!"});
+            const response = await crewService.create(name, about, image);
+            return res.status(201).json(response);
         } catch(err){
-            return res.status(422).json({"message": err.message});
+            return res.status(422).json({message: err.message});
         }
     },
 
     async update(req, res) {
 		let { id, crew } = req.body;
+
 		try {
-            await crewService.update(id, crew);
-			return res.status(200).json({"message": "Equipe atualizada!!"});
+            const response = await crewService.update(id, crew);
+			return res.status(200).json(response);
 		} catch(err){
-			return res.status(405).json({"message": err.message});
+			return res.status(405).json({message: err.message});
         }
     },
 
 	async delete(req, res) {
 		let { crew } = req.body;
 		try {
-			let confirmation = await crewService.delete(crew);
-            if(confirmation > 1) {
-                return res.status(200).json({"message": "Equipes deletadas"});
-            }
-            return res.status(200).json({"message": "Equipe deletada"});
+			let response = await crewService.delete(crew);
+            return res.status(200).json(response);
 		} catch(err) {
-			return res.status(405).json({"message": err.message});
+			return res.status(405).json({message: err.message});
 		}
 	} 
 }
