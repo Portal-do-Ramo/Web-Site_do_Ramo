@@ -1,33 +1,74 @@
 const {v4} = require("uuid");
 const knex = require("../database");
+const Joi = require("joi");
 
 module.exports = {
-    async index(){
+    async index() {
         const users = await knex("users").select("name", "email");
         return users;
     },
-    
-    async show(email){
-        const user = await knex("users").where({email}).first()
-        return user;
+
+    async create(name, email, password) {
+        try {
+            const userValidation = Joi.object({
+                name: Joi.string().min(3).required(),    
+                email: Joi.string().min(6).email().required(),
+                password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required()     
+            });
+        
+            userValidation.validate({name, email, password});
+            
+            const user = await userService.show(email);
+            
+            if (user) {
+                throw new Error("User already exists");
+            }
+            
+            const hash = await bcrypt.hash(password, 10);
+            
+            await knex("users").insert({
+                id: v4(),
+                name,
+                email,
+                password: hash,
+            });
+
+            return {message: "Usuário Cadastrado"};
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
     },
 
-    async create(name, email, hash){
-        await knex("users").insert({
-            id: v4(),
-            name,
-            email,
-            password: hash,
-        });
+    async update(id, name, password) {
+        try {
+            const userValidation = Joi.object({
+                name: Joi.string().min(3),
+                password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$"))    
+            });
+        
+            userValidation.validate({name, password});
+
+            const hash = await bcrypt.hash(password, 10);
+
+            await knex("users").where({id}).update({name, hash}); //trocar o timestamp do updated_at
+            return {message: "Usuário atualizado!"};
+        } catch (error) {
+            throw new Error(error.message);
+        }
     },
 
-    async update(id, name, password){
-        await knex("users").where({id}).update({name, password}); //trocar o timestamp do updated_at
-    },
+    async delete(id) {
+        try {
+            let confirmation = await knex("users").where({id}).delete();
+            
+            if (confirmation > 1) {
+				return {message: "Usuários deletados"};
+			}
 
-    async delete(id){
-        let confirmation = await knex("users").where({id}).delete()
-        return confirmation;
+            return {message: "Usuário deletado"};
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
-
 }
