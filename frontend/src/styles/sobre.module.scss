@@ -34,7 +34,7 @@
             margin-bottom: 1.2rem;
         }
         p{
-            font-size: 1.25rem;
+            font-size: 1.063rem;
             margin-bottom: 1rem;
             text-align: justify;
         }
@@ -73,7 +73,7 @@
                     width: 14rem;
                     height: 14rem;
                     position: absolute;
-                    right: -13rem;
+                    right: -15rem;
                     top: -11rem;
                 }
                 div.familyPicture{
@@ -101,9 +101,10 @@
         width: 100%;
         min-width: 1000px;
         padding: 2rem;
+        margin-top: 6rem;
 
         h2{
-            font-size: 4rem;
+            font-size: 3rem;
             text-align: center;
             color: var(--azul-ramo);
             margin-bottom: 3rem;
@@ -111,104 +112,33 @@
 
         .valuesContainer{ 
             display: grid;
-            grid-template-columns: repeat(3, minmax(330px, 1fr));
-            gap: 5% 1%;
+            justify-self: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
             justify-items: center;
         }
     }
 
     /* ----- Fale conosco ----- */
-    .contactUs{
+
+    .contactUs {
         display: flex;
         flex-direction: column;
-        padding: 1rem 5rem;
-        margin-top: 4rem;      
-
-        h2{
+        align-items: center;
+    
+        padding: 1rem 0;
+        margin-top: 4rem;
+    
+        h2 {
             color: var(--azul-ramo);
-            font-size: 4rem;
+            font-size: 3rem;
         }
-
-        img {
-            max-width: 90%;
-            min-width: 400px;
-            height: auto;
-        }
-
-        .contactUsContent{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        /* ----- Container do formulário ----- */
-        .contactUsForm{
-            width: 60%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-
-            /* Triângulo ao lado esquerdo do form */
-            .triangleForm{
-                background-image: url("../../public/triangulo_form.svg");
-                background-size: contain;
-                background-position: center right;
-                background-repeat: no-repeat;
-                width: 6rem; height: 6rem;
-                margin-right: -1rem;
-            }
-
-            /* Form */
-            form{
-                width: 100%;
-                max-width: 600px;
-                min-width: 400px;
-                border-radius: 3.5rem;
-                padding: 2rem 2.5rem;
-                background-color: var(--azul-ramo);
-
-                label{
-                    color: white;
-                    font-size: 2rem;
-                    display: block;
-                    font-weight: bold;
-                }
-
-                input, textarea{
-                    width: 100%;
-                    outline: none;
-                    border-radius: 25px;
-                    border: none;  
-                    font-size: 1.5rem;
-                    font-family: "Roboto";
-                    margin-bottom: 1rem;
-                }
-                input[type="text"],
-                input[type="email"]{
-                    text-indent: 25px;
-                    height: 2.5rem;
-                }
-                textarea{
-                    resize: none;
-                    padding: 0.8rem 1.5rem;
-                    height: 10rem;
-                }
-                button{
-                    width: 100%;
-                    height: 3rem;
-                    font-size: 1.5rem;
-                    font-weight: bold;
-                    color: white;
-                    background-color: var(--azul-ramo);
-                    border: 0.5px solid #FFFFFF;
-                    border-radius: 25px;
-                    cursor: pointer;
-                    transition: all .3s;
-                    box-shadow:0 0 30px rgba(32, 31, 31, 0.555) ;
-                }
-                button:hover{
-                    background-color: var(--contraste);
-                }
-            }
+    
+        .subtitle {
+            color: var(--azul-ramo);
+            font-size: 1.4rem;
+            font-weight: lighter;
+            text-align: center;
         }
     }
 }

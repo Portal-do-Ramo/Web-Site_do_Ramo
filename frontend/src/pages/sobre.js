@@ -1,10 +1,10 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ValueContainer from '../components/ValueContainer'
-import styles from "../styles/sobre.module.scss";
+import ContactOptions from '../components/ContactOptions'
+import styles from "../styles/sobre.module.scss"
 
 export default function Sobre(){
-
     let values = [
         {
             img: "/valor_1.png",
@@ -146,27 +146,10 @@ export default function Sobre(){
                 </section>
 
                 <section className={styles.contactUs}>
-                    <h2>Fale conosco</h2>
+                    <h2>Fale conosco!</h2>
+                    <p className={styles.subtitle}>Mande uma mensagem de dúvida, <br/> nos ajude com uma idéia!</p>
 
-                    <div className={styles.contactUsContent}>
-
-                        <section className={styles.contactUsImg}>
-                            <img src="/seu_pai.svg"/>
-                        </section>
-
-                        <section className={styles.contactUsForm}>
-                            <div className={styles.triangleForm}></div>
-                            <form>
-                                <label for="nameField">Nome</label>
-                                <input id="nameField" type="text"/>
-                                <label for="emailField">E-mail</label>
-                                <input id="emailField" type="email"/>
-                                <label for="descriptionField">Descrição</label>
-                                <textarea id="descriptionField"/>
-                                <button type="button">Enviar</button>
-                            </form>
-                        </section>                      
-                    </div>
+                    <ContactOptions/>
                 </section>
 
             </main>

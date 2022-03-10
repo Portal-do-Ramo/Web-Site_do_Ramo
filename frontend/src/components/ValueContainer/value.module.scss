@@ -1,29 +1,31 @@
 .valueContainer{
-    padding: 2.5rem 1rem;
-    width: 100%;
-    height: 100%;
-    max-width: 400px;
-    max-height: 500px;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+
+    width: 330px;
+    height: 360px;
+    padding: 2.5rem 1rem;
+    border-radius: 20px;
+    
     text-align: center;
     justify-content: flex-start;
-    box-shadow: 0 0 60px lightgrey;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
     img{
-        width: 50%;
+        width: 36%;
         border-radius: 50%;
     }
 
     h3{
         margin: 0.5rem 0;
         color: var(--azul-ramo);
-        font-size: 1.875rem;
+        font-size: 20px;
     }
 
     p{
         color: var(--contraste);
-        font-size: 1.125rem;
+        font-size: 15px;
+        width: 85%;
     }
 }
