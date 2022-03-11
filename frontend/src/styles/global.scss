@@ -17,9 +17,26 @@
 
 body {
   background-color: #FFFFFF;
+  min-width: 100vw;
   overflow-x: hidden;
 }
 
 label {
   display: inline-block;
+}
+
+ /* width */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #919191;
 }
