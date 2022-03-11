@@ -16,7 +16,7 @@ export default function Header({page, children}) {
 
         <div className={styles.linkContainer}>
           <Link href="/">
-            <a className={page === "inicio" && styles.activeLink}>Inicío</a>
+            <a className={page === "inicio" && styles.activeLink}>Inicio</a>
           </Link>
 
           <Link href="/sobre" className={styles.activeLink}>
@@ -40,7 +40,9 @@ export default function Header({page, children}) {
 
       </header>
 
-      <img className={styles.curvedBorder} src="/curved-border.svg" width="100%" />
+      {page === "inicio" && 
+        <img className={styles.curvedBorder} src="/curved-border.svg" width="100%" />
+      }
     </>
   );
 }

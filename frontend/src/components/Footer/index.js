@@ -12,7 +12,7 @@ export default function Footer() {
 
       <div className={styles.addressContainer}>
         <span> Endereço </span>
-        <p> Av. Maracanã – Maracanã, Rio de Janeiro – RJ </p>
+        <p> Rua Gen. Canabarro, 485 – Maracanã, Rio de Janeiro – RJ </p>
         <p> (21) 4002-8922 </p>
       </div>
 
