@@ -1,6 +1,6 @@
 .main{ 
     font-family: "Poppins";
-    min-width: 1050px;
+    width: 100vw;
     
     /* ----- Banner da foto dos membros ----- */
     .banner{
@@ -19,7 +19,7 @@
         background-image: url(../../public/Ramo_cinza.svg);
         background-size: 50%;
         background-repeat: no-repeat;
-        background-position: right bottom;
+        background-position: 120% 110%;
 
         /* ----- Container ----- */
         .aboutContainer{
