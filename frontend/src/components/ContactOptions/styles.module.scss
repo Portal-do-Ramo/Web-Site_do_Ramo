@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 
     .buttonContainer {
         display: flex;
@@ -26,7 +26,7 @@
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         border: 0;
-        background-color: white;
+        background-color: #fff;
         cursor: pointer;
         font-size: 1.125rem;
         color: var(--azul-ramo);
@@ -35,11 +35,11 @@
     .buttonContainer:hover {
         background-color: var(--azul-ramo);
         transition: 0.2s ease;
-        color: white;
+        color: #fff;
         transition: 0.2s ease;
 
         svg {
-            color: white;
+            color: #fff;
             transition: .2s ease;
         }
     }
@@ -52,10 +52,10 @@
 
     #activedButton {
         background-color: var(--azul-ramo);
-        color: white;
+        color: #fff;
     
         svg {
-            color: white;
+            color: #fff;
             transition: .2s ease;
         }
     }
@@ -65,46 +65,47 @@
     display: flex;
     position: relative;
     top: 0;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
+
     opacity: 100%;
-    justify-content: center;
-    gap: 50px;
+    margin-top: 0;
     
-    margin-top: 3rem;
-
     animation: enable .5s;
-
+    
+    margin-top: 2rem;
+    gap: 80px;
+    
     .socialButton {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        padding: 1rem;
-        background-color: white;
+        
+        background-color: #fff;
         border: 0;
-        cursor: pointer;
-        font-size: 1.438rem;
+        font-size: 1.1rem;
         font-family: 'Poppins';
         color: var(--azul-ramo);
-
+        
         span {
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
 
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             padding: 2rem;
             margin-bottom: .5rem;
             border-radius: 100%;
+
+            &:hover {
+                filter: brightness(0.9);
+            }
         }
 
         .icon {
-            font-size: 50px;
-            color: white;
+            font-size: 30px;
+            color: #fff;
         }
 
         #linkedin {
@@ -121,52 +122,94 @@
     }
 }
 
-@keyframes disable {
-    from {
-      opacity: 100%;
-      top: 0;
-      height: 100%;
-  
-    }
-    
-    to {
-      opacity: 0%;
-      top: -500px;
-      height: 0;
-  
-    }
-}
-  
-@keyframes enable {
-    from {
-        opacity: 0%;
-        right: -500px;
-        height: 0;
-    }
-
-    to {
-        opacity: 100%;
-        right: 0;
-        height: 100%;
-    }
-}
-
 .mail {
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
     width: 900px;
-    height: 500px;
 
-    margin-top: 3rem;
-
+    display: flex;
+    opacity: 100%;
+    
+    animation: enable .5s;
+    
     border-radius: 20px;
     background-color: var(--azul-ramo);
 }
 
-.mapContainer {
-    display: none;
+#disableSocial {
+    height: 0;
+    overflow: hidden;
+    opacity: 0%;
+    z-index: -1;
+    padding: 0;
+    margin: 0;
+    animation: disable .25s;
 }
 
-.disabled {
-    opacity: 0;
-    animation: disable .1s;
+#disableMail {
     height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0%;
+    z-index: -1;
+    animation: disableMail .25s;
+}
+
+@keyframes disableMail {
+    from {
+        opacity: 100%;
+        height: 100%;
+        top: 0;
+        padding: 50px;
+    }
+    
+    to {
+        opacity: 0;
+        height: 0;
+        top: -100px;
+        padding: 50px;
+    }
+}
+
+@keyframes disable {
+    from {
+        opacity: 100%;
+        height: 100%;
+        top: 0;
+    }
+    
+    to {
+        opacity: 0;
+        height: 0;
+        top: -100px;
+        padding: 50px;
+    }
+}
+  
+@keyframes enable {
+    0% {
+        opacity: 0%;
+        height: 0;
+        top: -100px;
+        z-index: -1;
+    }
+    
+    50% {
+        opacity: 0%;
+        height: 0;
+        top: -100px;
+        z-index: -1;
+    }
+      
+    100% {
+        opacity: 100%;
+        height: 100%;
+        top: 0;
+        z-index: -1;
+    }
 }

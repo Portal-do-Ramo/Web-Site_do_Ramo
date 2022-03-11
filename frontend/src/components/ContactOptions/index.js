@@ -1,11 +1,13 @@
-import styles from './styles.module.scss'
 import { useState } from 'react'
 
 import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import { FiMail, FiMapPin, FiUsers } from 'react-icons/fi';
-import { BsFacebook, BsInstagram, BsLinkedin } from 'react-icons/bs';
-import 'mapbox-gl/dist/mapbox-gl.css'
+import { BsInstagram } from 'react-icons/bs';
+
 import Map from '../Map'
+
+import styles from './styles.module.scss'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default function ContactButton({ text, image }) {
     const [buttonSelected, setButtonSelected] = useState(0);
@@ -43,7 +45,7 @@ export default function ContactButton({ text, image }) {
 
             <Map actived={buttonSelected === 0 ? true : false}/>
 
-            <div className={buttonSelected === 1 ? styles.social : styles.disabled}>
+            <div className={styles.social} id={buttonSelected !== 1 && styles.disableSocial}>
                 <button className={styles.socialButton}>
                     <span id={styles.linkedin}>
                         <FaLinkedinIn className={styles.icon}/>
@@ -60,15 +62,15 @@ export default function ContactButton({ text, image }) {
 
                 <button className={styles.socialButton}>
                     <span id={styles.instagram}>
-                        <BsInstagram className={styles.icon} id='instagram'/>
+                        <BsInstagram className={styles.icon}/>
                     </span>   
                     Instagram
                 </button>
             </div>
 
-            <div className={buttonSelected === 2 ? styles.mail : styles.disabled}>
-                
-            </div>
+            <section className={styles.mail} id={buttonSelected !== 2 && styles.disableMail}>
+                <p>AINDA NÃO DEFINIDO</p>
+            </section>
         </div>
         
     )

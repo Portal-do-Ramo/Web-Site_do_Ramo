@@ -1,9 +1,7 @@
 import Map, { AttributionControl, FullscreenControl, Marker } from 'react-map-gl'
 import styles from "./styles.module.scss"
 
-export default function MapGL({actived}) {
-  console.log(actived);
-  
+export default function MapGL({actived}) {  
   return (
     <div className={styles.mapContainer} id={!actived && styles.disabled}>
       <Map

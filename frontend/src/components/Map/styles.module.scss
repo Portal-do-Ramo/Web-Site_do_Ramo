@@ -1,48 +1,44 @@
 .mapContainer {
-  display: flex;
   position: relative;
-  width: 100vw;
-  height: 100%;
-  overflow: hidden;
   top: 0;
-  z-index: -1;
+  display: flex;
   opacity: 100%;
-  justify-content: center;
-  animation: enableMap .5s;
+  margin-top: 0;
+  animation: enable .25s;
 }
 
 #disabled {
-  opacity: 0;
-  animation: disableMap .5s;
   height: 0;
+  overflow: hidden;
+  opacity: 0%;
+  animation: disable .25s;
+  z-index: -1;
 }
 
-@keyframes disableMap {
+@keyframes disable {
   from {
-    opacity: 100%;
     top: 0;
+    opacity: 100%;
     height: 100%;
-
   }
   
   to {
-    opacity: 0%;
-    top: -500px;
+    top: -100px;
     height: 0;
-
+    opacity: 0%;
   }
 }
 
-@keyframes enableMap {
+@keyframes enable {
   from {
+    top: -100px;
     opacity: 0%;
-    top: -500px;
-    height: 0;
+    z-index: -1;
   }
   
   to {
+    z-index: -1;
+    top: 0px;
     opacity: 100%;
-    top: 0;
-    height: 100%;
   }
 }
