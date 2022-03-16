@@ -18,7 +18,7 @@ module.exports = {
         }
 	},
 	
-	//pensar no fato de no futuro existirem projetos de várias equipes!!!! Teriamos problemas com o first -> pensar em uma solução
+	//pensar no fato de no futuro existirem projetos de várias equipes! Teriamos problemas com o first -> pensar em uma solução
     async create(req, res){ 
         let { name, description, image, members, crew_name, beginning, ended } = req.body;
         
@@ -28,14 +28,14 @@ module.exports = {
                 description,
                 image,
                 members,
+                crew_name,
                 beginning,
-                ended,
-                crew_id
+                ended
             );
 
             return res.status(200).json(response);
         } catch (error) {
-            return res.status(400).json(error.message);
+            return res.status(400).json({message: error.message});
         }
     },
 

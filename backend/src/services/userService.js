@@ -19,9 +19,9 @@ module.exports = {
         
             userValidation.validate({name, email, password});
             
-            const user = await knex("users").select("name").where({email});
-            
-            if (user[0]) {
+            const user = await knex("users").select("name").where({email}).first();
+
+            if (user) {
                 throw new Error("Usuário já existe!");
             }
             

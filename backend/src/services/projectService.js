@@ -1,5 +1,7 @@
-const knex = require("../database");
 const {v4} = require("uuid");
+const knex = require("../database");
+const Joi = require("joi");
+const crewService = require("./crewService");
 
 module.exports = {
     async index() {
@@ -16,33 +18,52 @@ module.exports = {
         }
     },
 
-    async create(name, description, image, members, beginning, ended, crew_name){
-        let status = false //rever lógica depois
-
-        if(ended === null ){
-            status = true;
-        }
-
+    // Talvez tenha que existir uma tabela só pra membros de projetos, com uma lógica de 1 membro para muitos projetos.
+    async create(name, description, image, members, crew_name, beginning, ended) { //Repensar a lógica dos members
         try {
-            let {id: crew_id} = await crewService.getCrew(crew_name);
+            const projectValidation = Joi.object({
+                name: Joi.string().required(),    
+                description: Joi.string().required(),
+                image: Joi.string().required(),
+                members: Joi.string().required(),
+                beginning: Joi.date().timestamp(),
+                ended: Joi.date().timestamp(),
+                crew_name: Joi.string(),
+            });
+        
+            projectValidation.validate({name, description, image, members, beginning, ended, crew_name});
             
-            if(crew_id != null){
-                await knex("projects").insert({
-                    id: v4(),
-                    name,
-                    description,
-                    image,
-                    members,
-                    beginning, 
-                    ended,
-                    crew_id, 
-                    status
-                });
-
-                return {message: "Projeto adicionado"};
-            } else {
-                throw new Error("Equipe necessária");
+            let status = false
+    
+            if(ended === null){
+                status = true;
             }
+
+            const crew = await knex("crews").select("id").where({name: crew_name}).first();
+
+            if (!crew) {
+                throw new Error("Equipe não existe!");
+            }
+            
+            const project = await knex("projects").select("id").where({name, crew_id: crew.id}).first();
+
+            if (project) {
+                throw new Error("Projeto já existe!");
+            }
+            
+            await knex("projects").insert({
+                id: v4(),
+                name,
+                description,
+                image,
+                members,
+                beginning, 
+                ended,
+                crew_id: crew.id, 
+                status
+            });
+
+            return {message: "Projeto adicionado"};
         } catch (error) {
             throw new Error(error.message);
         }

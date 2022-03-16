@@ -56,7 +56,7 @@ module.exports = {
 
     getCrew(crew_name){
         try {
-            let crew = knex('crews').where({"name": crew_name}).select().first();
+            let crew = knex('crews').select().where({"name": crew_name}).first();
             return crew;
         } catch (error) {
             throw new Error(error.message);

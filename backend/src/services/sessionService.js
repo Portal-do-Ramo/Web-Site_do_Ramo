@@ -13,18 +13,18 @@ module.exports = {
 
       userValidation.validate({email, password});
 
-      const user = await knex("users").select("email", "password", "name").where({email});
+      const user = await knex("users").select("email", "password", "name").where({email}).first();
       
-      if(!user[0]) {
+      if(!user) {
         throw new Error("Email não existe!");
       }
 
-      if (!(compareSync(password, user[0].password))) {
-        throw new Error('Password does not match!');
+      if (!(compareSync(password, user.password))) {
+        throw new Error('Senha incorreta!');
       }
 
       const token = jwt.sign(
-        {name: user[0].name, email: user[0].email},
+        {name: user.name, email: user.email},
         process.env.TOKEN_HASH, 
         {expiresIn: '48h'}
       );
