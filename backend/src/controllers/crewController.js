@@ -1,4 +1,3 @@
-const { response } = require("express");
 const crewService = require("../services/crewService");
 
 module.exports = {

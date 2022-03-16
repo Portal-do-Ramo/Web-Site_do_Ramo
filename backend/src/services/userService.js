@@ -1,6 +1,7 @@
 const {v4} = require("uuid");
 const knex = require("../database");
 const Joi = require("joi");
+const bcrypt = require("bcrypt");
 
 module.exports = {
     async index() {
@@ -18,10 +19,10 @@ module.exports = {
         
             userValidation.validate({name, email, password});
             
-            const user = await userService.show(email);
+            const user = await knex("users").select("name").where({email});
             
-            if (user) {
-                throw new Error("User already exists");
+            if (user[0]) {
+                throw new Error("Usuário já existe!");
             }
             
             const hash = await bcrypt.hash(password, 10);
@@ -51,7 +52,7 @@ module.exports = {
 
             const hash = await bcrypt.hash(password, 10);
 
-            await knex("users").where({id}).update({name, hash}); //trocar o timestamp do updated_at
+            await knex("users").update({name, password: hash}).where({id});
             return {message: "Usuário atualizado!"};
         } catch (error) {
             throw new Error(error.message);

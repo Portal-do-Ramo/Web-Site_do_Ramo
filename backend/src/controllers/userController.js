@@ -21,10 +21,10 @@ module.exports = {
 
     async update(req, res){
         let { id, name, password } = req.body;
-        
+
 		try {
             await userService.update(id, name, password);
-            return res.status(200).json({message: "Usuário atualizado!!"});
+            return res.status(200).json({message: "Usuário atualizado!"});
 		} catch(err){
 			return res.status(405).json({message: err.message});
 		}
