@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 
 const router = express.Router();
 
@@ -9,22 +10,23 @@ const sponsorController = require("./controllers/sponsorController");
 const userController = require("./controllers/userController");
 const pseController = require("./controllers/pseController");
 const sessionController = require("./controllers/sessionController");
+const imageController = require("./controllers/imageController");
 
 const sendEmail = require('./services/nodemailer');
 
 const auth = require('./middleware/auth');
+const uploadImage = require("./middleware/UploadImage");
+
+const upload = multer(uploadImage.getConfig);
 
 router
 	.get("/awards", awardController.index)
 	.get("/crews", crewController.index)
+	.get("/crewsAllData", crewController.getCrewsAllData)
 	.get("/projects", projectController.index)
 	.get("/sponsors", sponsorController.index)
 	.get("/users", userController.index)
-
-
-	.get("/award/:id", awardController.show)
-	.get("/crew/:id", crewController.show)
-	.get("/project/:id", projectController.show)
+	.get("/uploads/:name", imageController.getByName)
 	
 	
 	.patch("/award", awardController.update)
@@ -33,7 +35,7 @@ router
 	.patch("/sponsor", sponsorController.update)
 	.patch("/user", userController.update)
 
-	
+
 	.post("/award", awardController.create)
 	.post("/crew", crewController.create)
 	.post("/project", auth, projectController.create)
@@ -41,6 +43,7 @@ router
 	.post("/user", userController.create)
 	.post("/login", sessionController.create)
 	.post("/pse", pseController.create)
+	.post("/image/:name", upload.single('picture'), imageController.uploadOne)
 
 
 	.delete("/award", awardController.delete)

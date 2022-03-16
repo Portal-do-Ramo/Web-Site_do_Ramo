@@ -3,18 +3,9 @@ const {v4} = require('uuid');
 
 module.exports = {
     async index() {
-        let crews = await knex("crews").select();
+        let crews = await knex("crews").select("id", "name", "about", "imageURL");
         return crews;
     },
-
-    async show(id) {
-        try {
-            let crew = await knex("crews").select().where({id});
-            return crew;
-        } catch (error) {
-            return new Error(error.message);
-        }
-    }, 
 
     async create(name, about, image) {
         try {
@@ -54,7 +45,7 @@ module.exports = {
         }
     },
 
-    getCrew(crew_name){
+    getCrewByName(crew_name){
         try {
             let crew = knex('crews').select().where({"name": crew_name}).first();
             return crew;
@@ -62,5 +53,4 @@ module.exports = {
             throw new Error(error.message);
         }
 	}	
-    
 }

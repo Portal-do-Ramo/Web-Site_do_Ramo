@@ -6,17 +6,6 @@ module.exports = {
         return res.status(200).json(awards);
     },
     
-    async show(req,res) {
-        let { id } = req.params;
-
-        try {
-            let award = await awardService.show(id);
-            return res.status(200).json(award);
-        } catch (error) {
-            return res.status(400).json({ message: error.message });
-        }
-    },
-
     async create(req,res) {
 		let { name, description, crew_name } = req.body;
 

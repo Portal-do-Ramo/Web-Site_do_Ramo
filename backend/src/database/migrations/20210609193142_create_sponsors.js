@@ -2,7 +2,7 @@ exports.up = knex => {
     return knex.schema.createTable("sponsors", (table) => {
         table.uuid("id");
         table.string("name").notNullable().unique();
-        table.text("image").notNullable();
+        table.text("imageURL").notNullable();
         table.text("link").notNullable();
         table.timestamps(true, true);
     });

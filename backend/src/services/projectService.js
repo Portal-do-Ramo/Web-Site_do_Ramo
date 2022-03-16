@@ -5,41 +5,56 @@ const crewService = require("./crewService");
 
 module.exports = {
     async index() {
-        let projects = await knex("projects").select();
+        let projects = await knex("projects")
+        .select (
+            "id", 
+            "name", 
+            "description", 
+            "imageURL", 
+            "logoURL", 
+            "members", 
+            "beginning", 
+            "ended",
+            "crew_id"
+        );
         return projects;
     },
 
-    async show(id){
-        try {
-            let project = await knex("projects").select().where({id});
-            return project;
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    },
-
+    async getByCrewId(crew_id) {
+        
+        let projects = await knex("projects")
+        .select (
+            "id", 
+            "name", 
+            "description", 
+            "imageURL", 
+            "logoURL", 
+            "members", 
+            "beginning", 
+            "ended",
+            "crew_id"
+            ).where({crew_id});
+            
+            return projects;
+        },
+        
     // Talvez tenha que existir uma tabela só pra membros de projetos, com uma lógica de 1 membro para muitos projetos.
-    async create(name, description, image, members, crew_name, beginning, ended) { //Repensar a lógica dos members
+    async create(name, description, imageURL, logoURL, members, crew_name, beginning, ended) { //Repensar a lógica dos members
         try {
             const projectValidation = Joi.object({
                 name: Joi.string().required(),    
                 description: Joi.string().required(),
-                image: Joi.string().required(),
-                members: Joi.string().required(),
+                imageURL: Joi.string().required(),
+                logoURL: Joi.string().required(),
+                members: Joi.array().items(Joi.string()).required(),
                 beginning: Joi.date().timestamp(),
                 ended: Joi.date().timestamp(),
                 crew_name: Joi.string(),
             });
-        
-            projectValidation.validate({name, description, image, members, beginning, ended, crew_name});
             
-            let status = false
-    
-            if(ended === null){
-                status = true;
-            }
-
-            const crew = await knex("crews").select("id").where({name: crew_name}).first();
+            projectValidation.validate({name, description, imageURL, logoURL, members, beginning, ended, crew_name});
+            
+            const crew = await crewService.getCrewByName(crew_name);
 
             if (!crew) {
                 throw new Error("Equipe não existe!");
@@ -51,16 +66,18 @@ module.exports = {
                 throw new Error("Projeto já existe!");
             }
             
+            const membersString = members.join();
+
             await knex("projects").insert({
                 id: v4(),
                 name,
                 description,
-                image,
-                members,
+                imageURL,
+                logoURL,
+                members: membersString,
                 beginning, 
                 ended,
-                crew_id: crew.id, 
-                status
+                crew_id: crew.id
             });
 
             return {message: "Projeto adicionado"};

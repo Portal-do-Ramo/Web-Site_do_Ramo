@@ -1,24 +1,13 @@
 const crewService = require("../services/crewService");
+const projectService = require("../services/projectService");
+const awardService = require("../services/awardService");
 
 module.exports = {
-
-    /* O carrossel precisa de dinamismo na lógica do Back-end, a ideia é colocar um argumento obrigatório para conseguir realizar a troca das informações de acordo com a equipe escolhida no carrossel */
 
    async index(req, res) {
         let crews = await crewService.index();
         return res.status(200).json(crews);
     },
-
-	async show(req,res) {
-		let {id} = req.params;
-
-        try {
-            let crew = await crewService.show(id);
-            return res.status(200).json(crew);
-        } catch (error) {
-            return res.status(400).json({message: error.message});
-        }
-	},
 
     async create(req, res) {
         let { name, about, image } = req.body;
@@ -50,5 +39,23 @@ module.exports = {
 		} catch(err) {
 			return res.status(405).json({message: err.message});
 		}
-	} 
+	},
+
+    async getCrewsAllData(req, res) {
+        try {
+            const response = [];
+            const crews = await crewService.index();
+            
+            for (const crew of crews) {
+                const projects = await projectService.getByCrewId(crew.id);
+                const awards = await awardService.getByCrewId(crew.id)
+                response.push({crew, projects, awards});
+            }
+            
+            return res.json(response);
+            
+        } catch (error) {
+            return res.status(400).json({ message: error.message })
+        }
+    }
 }

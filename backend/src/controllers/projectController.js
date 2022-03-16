@@ -1,32 +1,20 @@
 const projectService = require("../services/projectService");
-const crewService = require("../services/crewService");
 
 module.exports = {
     async index(req, res) {
         let projects = await projectService.index();
         return res.status(200).json({"projects": projects});
     },
-
-	async show(req, res) {
-		let { id } = req.params;
-
-        try {
-            let project = await projectService.show(id);
-            return res.status(200).json(project);
-        } catch (error) {
-            return res.status(400).json({message: error.message});
-        }
-	},
 	
-	//pensar no fato de no futuro existirem projetos de várias equipes! Teriamos problemas com o first -> pensar em uma solução
     async create(req, res){ 
-        let { name, description, image, members, crew_name, beginning, ended } = req.body;
+        let { name, description, imageURL, logoURL, members, crew_name, beginning, ended } = req.body;
         
         try {
             const response = await projectService.create(
                 name,
                 description,
-                image,
+                imageURL,
+                logoURL,
                 members,
                 crew_name,
                 beginning,

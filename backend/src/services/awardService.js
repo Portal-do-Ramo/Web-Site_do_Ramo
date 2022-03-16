@@ -4,22 +4,13 @@ const crewService = require("./crewService");
 
 module.exports = {
     async index() {
-        const awards = await knex("awards").select();
+        const awards = await knex("awards").select("id", "name", "description", "crew_id");
         return awards;
-    },
-
-    async show(id) {
-        try {
-            const award = await knex("awards").select().where({id});
-            return award;
-        } catch (error) {
-            throw new Error(error.message);
-        }
     },
 
     async create(name, description, crew_name) {
         try {
-            let { id: crew_id } = await crewService.getCrew(crew_name);
+            let { id: crew_id } = await crewService.getCrewByName(crew_name);
 
             if (!crew_id) {
                 throw new Error("Equipe não existe!");
@@ -54,6 +45,11 @@ module.exports = {
         } catch (error) {
             throw new Error(error.message);
         }
+    },
+    
+    async getByCrewId(crew_id) {
+        let awards = await knex("awards").select("id", "name", "description", "crew_id").where({crew_id});
+        return awards;
     }
 
 }

@@ -3,7 +3,7 @@ exports.up = knex => {
         table.uuid("id").unique();
         table.string("name").notNullable().unique();
         table.text("about").notNullable();
-        table.text("image").notNullable();
+        table.text("imageURL").notNullable();
         table.timestamps(true, true);
     });
 }
