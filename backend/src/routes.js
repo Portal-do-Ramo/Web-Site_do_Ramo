@@ -8,6 +8,7 @@ const projectController = require("./controllers/projectController");
 const sponsorController = require("./controllers/sponsorController");
 const userController = require("./controllers/userController");
 const pseController = require("./controllers/pseController");
+const sessionController = require("./controllers/sessionController");
 
 const sendEmail = require('./services/nodemailer');
 
@@ -38,7 +39,7 @@ router
 	.post("/project", auth, projectController.create)
 	.post("/sponsor",sponsorController.create)
 	.post("/user", userController.create)
-	.post("/login", userController.login)
+	.post("/login", sessionController.create)
 	.post("/pse", pseController.create)
 
 
