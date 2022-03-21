@@ -12,6 +12,7 @@
   min-width: 900px;
   font-family: "Poppins";
   margin-bottom: 22rem;
+
   .equipes {
     display: flex;
 
@@ -36,10 +37,13 @@
       }
     }
     .allcarousel {
-      flex: 2;
-      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      padding: 5rem 3rem;
+
       max-height: 35rem;
       min-width: 40rem;
+
       background-color: var(--azul-ramo);
       border-radius: 60px 0 0 60px;     
 
@@ -47,8 +51,9 @@
         display: inline-flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+
         height: fit-content;
-        margin-top: 4.5rem;
         overflow: visible;
       }
       
@@ -57,15 +62,13 @@
         transition: transform 300ms ease-in-out;
       }
       .sem {
-        position: relative;
+        opacity: 0;
         transition: transform 300ms ease-in-out;
-        opacity: 0.65;       
       }
       h1 {
         text-align: center;
-        margin-top: 1.5rem;
         font-weight: 700;
-        font-size: 40px;
+        font-size: 2.3rem;
         color: white;
       }
      
@@ -73,7 +76,7 @@
         text-align: center;
         margin-top: 1.5rem;
         font-weight: 700;
-        font-size: 40px;
+        font-size: 1.5rem;
         color: white;
         animation: TextEnter 200ms ease-in;
       }

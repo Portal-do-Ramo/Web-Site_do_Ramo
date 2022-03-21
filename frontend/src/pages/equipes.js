@@ -10,8 +10,6 @@ import Footer from "../components/Footer";
 import {
   PrevArrow,
   NextArrow,
-  ProjectPrevArrow,
-  ProjectNextArrow,
 } from "../components/Arrows";
 
 import { useEffect, useState } from "react";
@@ -32,14 +30,6 @@ export default function Equipes({ crews }) {
       setIndex(parseInt(query.crewIndex));
     }
   }, [query]);
-  
-  function wrapElIdx(i) { //Controla o index do carrossel de equipes, fazendo o loop de infinito
-    var n = crews.length;
-    var r = Math.floor(n/2);
-    if((i-index)>r)i-=n;
-    if((i-index)<-r)i+=n;
-    return i;
-  }
 
   const crewsSliderSettings = {
     arrows: true,
@@ -48,23 +38,11 @@ export default function Equipes({ crews }) {
     adaptiveHeight: true,
     variableWidth: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     beforeChange: (current, prox) => setIndex(prox),
-    className: styles.slider,
-  };
-
-  const projectsSliderSettings = {
-    arrows: true,
-    infinite: false,
-    centerMode: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    nextArrow: <ProjectNextArrow />,
-    prevArrow: <ProjectPrevArrow />,
     className: styles.slider,
   };
 
@@ -89,19 +67,9 @@ export default function Equipes({ crews }) {
               {crews.map((crew, idx) => (
                 <div className>
                   <div className={styles.carrosel}>
-                    <div className=
-                      {
-                        idx === index ? styles.atual : styles.sem} 
-                        style={{transform: 
-                          "translateX(" +
-                          (index-wrapElIdx(idx))*75 +
-                          "px) scale(" +
-                          (1.0-Math.abs(index-wrapElIdx(idx)) *
-                          0.25) * 140.0 + "%)"
-                        }
-                      }>
+                    <div className={idx === index ? styles.atual : styles.sem} >
                       <img src={crew.image} />
-                      <p className={styles.crewLabel} style={{height: 10+"rem"}}> 
+                      <p className={styles.crewLabel}> 
                         {idx === index && <h2>{crew.name}</h2>}
                       </p>
                     </div>
@@ -118,13 +86,9 @@ export default function Equipes({ crews }) {
           {crews.map((crew, idx) => (
             <div>
               {idx === index && (
-                <div>
-                  <Slider {...projectsSliderSettings}>
-                    {(crew.projects || []).map((project) => (
-                      <ProjectCard projetos={project} />
-                    ))}
-                  </Slider>
-                </div>
+                (crew.projects || []).map((project) => (
+                  <ProjectCard projetos={project} />
+                ))
               )}
             </div>
           ))}
@@ -136,13 +100,9 @@ export default function Equipes({ crews }) {
           { crews.map((crew, idx) => (
             <div>
               { idx === index && (
-                <div>
-                  <Slider {...projectsSliderSettings}>
-                    {(crew.projetosAtuais || []).map((projetos) => (
-                      <ProjectCard projetos={projetos} />
-                    ))}
-                  </Slider>
-                </div>
+                (crew.projetosAtuais || []).map((projetos) => (
+                    <ProjectCard projetos={projetos} />
+                  ))
               )}
             </div>
           ))}
