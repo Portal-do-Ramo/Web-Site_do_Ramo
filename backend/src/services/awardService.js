@@ -33,11 +33,11 @@ module.exports = {
         await knex("awards").where({id}).update(award); //trocar o timestamp do updated_at 
     },
 
-    async delete(award) {
+    async delete(id) {
         try {
-            let confirmation = await knex("awards").where({"name": award}).delete();
+            let confirmation = await knex("awards").where({id}).delete();
 
-            if(confirmation > 1){
+            if (confirmation > 1) {
                 return {message: "Prêmios foram deletados"};
             } 
             

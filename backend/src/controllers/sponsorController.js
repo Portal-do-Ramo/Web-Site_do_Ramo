@@ -7,10 +7,10 @@ module.exports = {
 	},
 
 	async create(req, res) {
-		let { name, image, link } = req.body;
+		let { name, imageURL, link } = req.body;
 
 		try {
-			const response = await sponsorService.create(name, image, link);
+			const response = await sponsorService.create(name, imageURL, link);
 			return res.status(201).json(response);
 		} catch (err) {
 			return res.status(422).json({ message: err.message });
@@ -18,7 +18,8 @@ module.exports = {
 	},
 
 	async update(req, res) {
-		let { id, sponsor } = req.body;
+		let { sponsor } = req.body;
+		let { id } = req.params;
 
 		try {
 			const response = await sponsorService.update(id, sponsor);
@@ -29,10 +30,10 @@ module.exports = {
 	},
 
 	async delete(req, res) {
-		let { sponsor } = req.body;
+		let { id } = req.params;
 
 		try {
-			let response = await sponsorService.delete(sponsor);
+			let response = await sponsorService.delete(id);
 			return res.status(200).json(response);
 		} catch (err) {
 			return res.status(405).json({ message: err.message });

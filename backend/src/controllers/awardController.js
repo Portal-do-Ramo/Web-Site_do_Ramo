@@ -18,8 +18,9 @@ module.exports = {
     },
 
     async update(req, res) {
-        let { id, award } = req.body; //talvez o award possa ser um json com todas as informações do objeto
-		
+        let { award } = req.body;
+		let { id } = req.params;
+
         try {
 			await awardService.update(id, award);
 			return res.status(200).json({message: "Prêmio atualizado!!"});
@@ -28,12 +29,11 @@ module.exports = {
 		}
     },
 
-    //Padronizar o parâmetro a ser passado para o delete. Alguns controllers estão utilizando ID's, outros o nome do objeto desejado
     async delete(req,res) {
-        let { award } = req.body;  
+        let { id } = req.params;  
 		
         try {
-			let response = await awardService.delete(award);
+			let response = await awardService.delete(id);
             return res.status(200).json(response);
 		} catch(err) {
 			return res.status(405).json({"message": err.message});

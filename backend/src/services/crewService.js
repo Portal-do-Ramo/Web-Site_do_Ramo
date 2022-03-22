@@ -31,9 +31,9 @@ module.exports = {
         }
     },
 
-    async delete(crew) {
+    async delete(id) {
         try {
-            let confirmation = await knex("crews").where({"name": crew}).delete();
+            let confirmation = await knex("crews").where({id}).delete();
 
             if(confirmation > 1) {
                 return {message: "Equipes deletadas!"};

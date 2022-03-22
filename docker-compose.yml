@@ -8,18 +8,18 @@ services:
             POSTGRES_PASSWORD: senha
         ports:
             - "5432:5432"
-    node:
-        image: node
-        container_name: app-backend
-        ports:
-            - "5000:5000"
-        depends_on:
-            - db
+    # node:
+    #     image: node
+    #     container_name: app-backend
+    #     ports:
+    #         - "5000:5000"
+    #     depends_on:
+    #         - db
     
-    next: 
-        image: node 
-        container_name: app-frontend
-        ports: 
-            - "3000:3000"
-        depends_on:
-            - node
+    # next: 
+    #     image: node 
+    #     container_name: app-frontend
+    #     ports: 
+    #         - "3000:3000"
+    #     depends_on:
+    #         - node

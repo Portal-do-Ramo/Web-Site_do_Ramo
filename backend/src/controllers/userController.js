@@ -20,7 +20,8 @@ module.exports = {
     },
 
     async update(req, res){
-        let { id, name, password } = req.body;
+        let { name, password } = req.body;
+        let { id } = req.params;
 
 		try {
             await userService.update(id, name, password);
@@ -31,7 +32,8 @@ module.exports = {
     },
 
     async delete(req, res){
-        let {id} = req.body;
+        let {id} = req.params;
+        
         try {
             let response = await userService.delete(id);
             return res.json(response);

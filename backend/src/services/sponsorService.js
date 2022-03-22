@@ -7,12 +7,12 @@ module.exports = {
         return sponsors;
     },
 
-    async create(name, image, link) {
+    async create(name, imageURL, link) {
         try {
             await knex("sponsors").insert({
                 id: v4(), 
                 name,
-                image, 
+                imageURL, 
                 link
             });
 
@@ -31,13 +31,13 @@ module.exports = {
         }
     },
 
-    async delete(sponsor){
+    async delete(id){
         try {
-            let confirmation = await knex('sponsors').where({"name": sponsor}).delete();
+            let confirmation = await knex('sponsors').where({id}).delete();
 
-            if (confirmation > 1) {
-				return { message: "Patrocinadores deletados" };
-			}
+            if(confirmation > 1){
+                return {message: "Prêmios foram deletados"};
+            } 
 
             return {message: "Patrocinador deletado!"};
         } catch (error) {

@@ -1,6 +1,7 @@
 const crewService = require("../services/crewService");
 const projectService = require("../services/projectService");
 const awardService = require("../services/awardService");
+const knex = require('../database');
 
 module.exports = {
 
@@ -21,7 +22,8 @@ module.exports = {
     },
 
     async update(req, res) {
-		let { id, crew } = req.body;
+		let { crew } = req.body;
+        let { id } = req.params;
 
 		try {
             const response = await crewService.update(id, crew);
@@ -32,9 +34,10 @@ module.exports = {
     },
 
 	async delete(req, res) {
-		let { crew } = req.body;
-		try {
-			let response = await crewService.delete(crew);
+		let { id } = req.params;
+		
+        try {
+			let response = await crewService.delete(id);
             return res.status(200).json(response);
 		} catch(err) {
 			return res.status(405).json({message: err.message});

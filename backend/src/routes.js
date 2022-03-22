@@ -29,27 +29,27 @@ router
 	.get("/uploads/:name", imageController.getByName)
 	
 	
-	.patch("/award", awardController.update)
-	.patch("/crew", crewController.update)
-	.patch("/project", projectController.update)
-	.patch("/sponsor", sponsorController.update)
-	.patch("/user", userController.update)
+	.patch("/award/:id", awardController.update)
+	.patch("/crew/:id", crewController.update)
+	.patch("/project/:id", projectController.update)
+	.patch("/sponsor/:id", sponsorController.update)
+	.patch("/user/:id", userController.update)
 
-
-	.post("/award", awardController.create)
-	.post("/crew", crewController.create)
+	//Fazer rota para encerrar PSE
+	.post("/award", auth, awardController.create)
+	.post("/crew", auth, crewController.create)
 	.post("/project", auth, projectController.create)
-	.post("/sponsor",sponsorController.create)
-	.post("/user", userController.create)
+	.post("/sponsor", auth, sponsorController.create)
+	.post("/user", auth, userController.create)
 	.post("/login", sessionController.create)
-	.post("/pse", pseController.create)
-	.post("/image/:name", upload.single('picture'), imageController.uploadOne)
+	.post("/pse", auth, pseController.create) 
+	.post("/image/:name", auth, upload.single('picture'), imageController.uploadOne)
 
 
-	.delete("/award", awardController.delete)
-	.delete("/crew", crewController.delete)
-	.delete("/project", projectController.delete)
-	.delete("/sponsor", sponsorController.delete)
-	.delete("/user", userController.delete)
+	.delete("/award/:id", awardController.delete)
+	.delete("/crew/:id", crewController.delete)
+	.delete("/project/:id", projectController.delete)
+	.delete("/sponsor/:id", sponsorController.delete)
+	.delete("/user/:id", userController.delete)
 
 module.exports = router;

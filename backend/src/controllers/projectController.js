@@ -28,7 +28,9 @@ module.exports = {
     },
 
     async update(req, res){
-		let { id, project } = req.body;
+		let { project } = req.body;
+        let { id } = req.params;
+
 		try {
 			const response = await projectService.update(id, project);
 			return res.status(200).json(response);
@@ -38,7 +40,7 @@ module.exports = {
     },
     
     async delete(req, res){
-        let {id} = req.body;
+        let {id} = req.params;
         
         try{
             let response = await projectService.delete(id);
@@ -48,17 +50,3 @@ module.exports = {
         }
     }
 }
-
-/*
-
-    Conteúdo dos projetos:
-
-    "id": 1,
-    "name": "Site do Ramo",
-    "description": "site boladao",
-    "image": "link foto do ben 10 com a cabeça amassada",
-    "members": "Eu, Tu e ele",
-    "created_at" = "30 de fevereiro",
-    "updated_at" = "32 de Dezembro"
-
-*/
