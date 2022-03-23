@@ -1,22 +1,25 @@
-.all{
+.all {
   display: flex;
   font-family: 'Roboto',sans-serif;
   color: var(--gray);
-  .container{
+
+  .container {
     width: 70%;
     height: 20vh;
     margin: 10%;
     text-align: center;
     border: 1px solid gray;
     border-radius: 5px;
-    h1{
+
+    h1 {
       padding-top: 0.8rem;
       height: 4rem;
       background-color: #E5E0FF;
       font-size: 30px;
       font-weight: 500;
     }
-    p{
+
+    p {
       padding-top: 2rem;
       font-size: 22px;
       font-weight: 400;

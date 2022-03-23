@@ -4,8 +4,8 @@
   position: absolute;
   cursor: pointer;
   z-index: 10;
-  top: 40%;
-  img{
+
+  img {
     width: 2rem;
     height: 2rem;
   }
@@ -20,22 +20,14 @@
 
 
 .pprev, .pnext {
-  position: absolute;
   cursor: pointer;
-  z-index: 10;
-  top: 40%;
-  img{
+  margin: 0 30px;
+
+  img {
     color: var(--azul-ramo);
     width: 2rem;
     height: 2rem;
   }
-}
-
-.pprev {
-  left: 0%;
-}
-.pnext {  
-  right: 0%;
 }
 
   

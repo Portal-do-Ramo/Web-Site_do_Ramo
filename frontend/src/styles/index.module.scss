@@ -105,14 +105,13 @@
 
     .logo_content { 
         display: grid;
-        justify-items: center;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 24px;
     }
     
     h3 {
         align-self: flex-start;
-        margin: 0 0 4rem 10%;
+        margin: 0 0 4rem 130px;
 
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
@@ -124,47 +123,51 @@
 
 .parcerias {  
     height: auto;
-    padding: 6rem 10%;
+    padding: 6rem 130px 12rem 130px;
 
     h3 {
-        margin: 0 0 4rem 0;
+        margin: 0 0 5rem 0;
         color: #0876BE;
 
         font-size: 40px;
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
     }
-    .slider{
+    
+    .slider {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 0 5rem;
         height: fit-content;
-
-        .atual { //Item centralizado no carrossel
+        
+        .current { //Item centralizado no carrossel
             text-align: center;
             outline: none;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 
             img {
                 display: inline;
-                transform: scale(1);
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
             }
 
             p {
                 font-family: 'Poppins', sans-serif;
                 font-weight: 800;
                 color: var(--logo_trasition);
-                font-size: 30px;
+                font-size: 25px;
             }
         }
 
         .other { //Item que não está no centro
-            transform: scale(0.7);
+            transform: scale(0.6);
             outline: none;
         }
     }
     
 }
 
-.rotate{
+.rotate {
     margin-top: -1px;
     transform: rotateX(180deg);
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import { FiMail, FiMapPin, FiUsers } from 'react-icons/fi';
+import { MdCopyAll, MdDone } from 'react-icons/md';
 import { BsInstagram } from 'react-icons/bs';
 
 import Map from '../Map'
@@ -11,6 +12,17 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default function ContactButton({ text, image }) {
     const [buttonSelected, setButtonSelected] = useState(0);
+    const [isEmailCopied, setIsEmailCopied] = useState(false);
+
+    function handleCopyEmail() {
+        navigator.clipboard.writeText("sitedoramo@gmail.com");
+
+        setIsEmailCopied(true);
+        
+        setTimeout(() => {
+            setIsEmailCopied(false);
+        }, 2000);
+    }
 
     return (           
         <div className={styles.contactUsContent}>
@@ -69,7 +81,11 @@ export default function ContactButton({ text, image }) {
             </div>
 
             <section className={styles.mail} id={buttonSelected !== 2 && styles.disableMail}>
-                <p>AINDA NÃO DEFINIDO</p>
+                <article className={styles.copyEmailButton} onClick={() => handleCopyEmail()}>
+                    <img src="/Envelope.svg" alt="Envelope Illustration" />
+                    <p>sitedoramo@gmail.com</p>
+                    {isEmailCopied ? <MdDone size={30}/> : <MdCopyAll size={30}/>}
+                </article>
             </section>
         </div>
         

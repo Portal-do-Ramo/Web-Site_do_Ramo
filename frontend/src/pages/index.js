@@ -45,10 +45,8 @@ export default function Home({ crews, sponsors }) {
     autoPlaySpeed: 1000,
     infinite: true,
     centerMode: true,
-    adaptiveHeight: true,
     variableWidth: true,
     speed: 500,
-    slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <ProjectNextArrow />,
     prevArrow: <ProjectPrevArrow />,
@@ -118,10 +116,10 @@ export default function Home({ crews, sponsors }) {
           <h3>Parceiros</h3>
           <Slider {...settings}>
             {
-              sponsors.map((sponsor, idx) =>{
-                return(
-                <div className={idx === index ? styles.atual : styles.other}>
-                  <img src={sponsor.image} />
+              sponsors.map((sponsor, idx) => {
+                return (
+                <div className={idx === index ? styles.current : styles.other}>
+                  <img src={sponsor.image} height={180}/>
                   <p>{idx === index ? sponsor.name : []}</p>
                 </div>
                 )

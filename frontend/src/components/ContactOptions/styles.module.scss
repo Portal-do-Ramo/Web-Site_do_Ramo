@@ -5,7 +5,7 @@
 
     width: 100%;
 
-    margin: 3rem 0;
+    margin: 3rem 0 6rem 0;
 }
 
 .contactOptions {
@@ -47,7 +47,7 @@
     svg {
         color: var(--azul-ramo);
         font-size: 2.188rem;
-        margin-bottom: .4rem;
+        margin-bottom: .6rem;
     }
 
     #activedButton {
@@ -123,21 +123,39 @@
 }
 
 .mail {
-    position: relative;
-    top: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 50px;
-    width: 900px;
+    width: 850px;
 
     display: flex;
     opacity: 100%;
     
     animation: enable .5s;
     
-    border-radius: 20px;
-    background-color: var(--azul-ramo);
+    background: var(--azul-ramo) url("/Paper_Plane.svg") no-repeat;
+    background-position: 80% 50%;
+    background-size: 500px;
+
+    .copyEmailButton {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 25px 30px;
+        border-radius: 25px;
+        background: #07559C;
+        
+        p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #fff;
+            margin-left: 25px;
+        }
+
+        svg {
+            margin-left: 40px;
+            color: #83AACE;
+        }
+    }
 }
 
 #disableSocial {
