@@ -1,110 +1,36 @@
 .card {
-  width: 18rem;
-  margin-left: auto;
-  margin-right: auto;
-  -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.24);
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.24);
-  text-align: center;
-  height: 30rem;
-  margin: 2rem auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  width: 33.125rem;
+  padding: 2rem;
+
+  border-radius: 13px;
+  background-color: #F2F3F4;
+  cursor: pointer;
 
   img {
-    padding-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
+    width: 3.625rem;
   }
 
-  h2 {
-    margin-top: 2rem;
-    color: var(--azul-ramo);
-    font-weight: 700;
-    font-size: 28px;
-  }
-
-  .bt {
-    margin-top: 8rem;
-    background-color: var(--azul-ramo);
-    width: 13rem;
-    height: 5.6rem;
-    border: none;
-    border-radius: 20px;
-    transition: .1s linear;
-    cursor: pointer;
-
-    p {
-      font-family: "Poppins";
-      color: white;
+  .projectinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    
+    margin-left: 1rem;
+    h2 {
+      color: var(--azul-ramo);
       font-weight: 700;
-      font-size: 20px;
+      font-size: 28px;
+      
     }
-  }
-
-  .bt:hover {
-    transform: scale(1.05);
   }
 }
 
-
-.modal {
-  display: flex;
-  font-family: "Poppins", sans-serif;
-  color: white;
-  
-  .projeto {
-    margin-left: 1.5rem;
-
-    .image {
-      background-color: white;
-      border-radius: 14px;
-    }
-    h1 {
-      margin-bottom: 2rem;
-      font-weight: 700;
-      font-size: 36px;
-    }
-    p {
-      margin-top: 2rem;
-      font-weight: 600;
-      font-size: 14px;
-    }
-  }
-  .membros {
-    margin-left: 4rem;
-
-    .gridMember {
-      display: grid;
-      grid-template-columns: 230px 230px;
-      column-gap: 10px;
-    }
-
-    .gridItem {  
-      display: inline-flex;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      align-items: center;
-      
-      .item{
-        border: 3px solid white;
-        display: flex;
-        border-radius: 100rem;
-        width: fit-content;
-        margin-right: 20px;     
-      }     
-    }
-
-    h1 {
-      margin-top: 3rem;
-      font-weight: 700;
-      font-size: 22px;
-    }
-
-    img {
-      width: 5rem;
-      height: 5rem;
-    }
-
-    p {
-      font-size: 20px;
-    }
-  }
+.card:hover {
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: .3s ease;
 }

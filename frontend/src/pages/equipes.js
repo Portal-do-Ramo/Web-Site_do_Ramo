@@ -51,14 +51,13 @@ export default function Equipes({ crews }) {
       <Header page="equipes"/>
       
       <div className={styles.all}>
-        <div className={styles.equipes}>
 
-          { crews.length !== 0 && 
-            <div className={styles.descrição}>
-              <h1>{crews[index].name}</h1>
-              <p>{crews[index].about}</p>
-            </div>
-          }
+        <section className={styles.apresentation}>
+          <div className={styles.descrição}>
+            <h1>{crews[index].name}</h1>
+            <p>{crews[index].about}</p>
+          </div>
+          
 
           <div className={styles.allcarousel}>
             <h1>Escolha sua equipe!</h1>
@@ -78,12 +77,15 @@ export default function Equipes({ crews }) {
               ))}
             </Slider>
           </div>
-        </div>
+        </section>
         
-        <div className={styles.projetos}>
-          <h1>Projetos Atuais</h1>
-
-          {crews.map((crew, idx) => (
+        <section className={styles.projetos}>
+          
+          <div className={styles.leftcontainer}>
+            <h1>Projetos</h1>
+            <p>Conheça todos os projetos da equipe WolfByte</p>
+            
+            {crews.map((crew, idx) => (
             <div>
               {idx === index && (
                 (crew.projects || []).map((project) => (
@@ -92,10 +94,15 @@ export default function Equipes({ crews }) {
               )}
             </div>
           ))}
-        </div>
+            
+          </div>
+
+          <div className={styles.rightcontainer}>
+
+          </div>
+        </section>
 
         <div className={styles.projetos}>
-          <h1>Projetos Finalizados</h1>
 
           { crews.map((crew, idx) => (
             <div>

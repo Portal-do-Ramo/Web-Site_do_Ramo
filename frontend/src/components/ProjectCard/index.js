@@ -5,7 +5,6 @@ import styles from "./styles.module.scss";
 import "react-multi-carousel/lib/styles.css";
 
 export function ProjectCard(props) {
-  const [showModal, setShowModal] = useState(false);
   const projetos = props.projetos;
 
   return (
@@ -13,17 +12,18 @@ export function ProjectCard(props) {
     <div key={projetos.id}>
       <div className={styles.card}>
         <img src={projetos.image}/>
-        <h2>{projetos.name}</h2>
-        <button
-          href={projetos.link}
-          onClick={() => setShowModal(true)}
-          className={styles.bt}
-        >
-          <p>Saiba Mais</p>
-        </button>
+        <div className={styles.projectinfo}>
+          <h2>{projetos.name}</h2>
+          <p>{projetos.description}</p>
+        </div>
       </div>
+    </div>
+  );
+}
 
-      <ProjectModal onClose={() => setShowModal(false)} show={showModal}>
+
+/*
+<ProjectModal onClose={() => setShowModal(false)} show={showModal}>
         <div className={styles.modal} key={projetos.id}>
           <div className={styles.projeto}>
             <h1>{projetos.title}</h1>
@@ -52,7 +52,4 @@ export function ProjectCard(props) {
           </div>
         </div>
       </ProjectModal>
-
-    </div>
-  );
-}
+*/

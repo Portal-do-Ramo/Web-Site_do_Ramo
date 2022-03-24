@@ -7,23 +7,30 @@
 }
 
 .all {
-  margin-top: 2.5rem;
   width: 100%;
   min-width: 900px;
   font-family: "Poppins";
-  margin-bottom: 22rem;
 
-  .equipes {
+  .apresentation {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    padding: 7rem 0;
 
     .descrição {
-      flex: 1;
-      margin-left: 5rem;
-      margin-right: 5rem;
-      min-width: 20rem;
-      max-height: 60rem;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+   
+      margin-left: 7rem;
+      margin-right: 10rem;
+      
       overflow-y: hidden;
+      
       h1 {
+        margin-bottom: 2rem;
+        letter-spacing: 2px;
         font-weight: 700;
         color: var(--azul-ramo);
         font-size: 40px;
@@ -32,28 +39,27 @@
         font-weight: 500;
         font-size: 15px;
         color: var(--azul-ramo);
-        width: auto;
         text-align: justify;
       }
     }
     .allcarousel {
       display: flex;
       flex-direction: column;
+      justify-self: right;
+      max-width: 600px;
       padding: 5rem 3rem;
 
-      max-height: 35rem;
-      min-width: 40rem;
+      max-height: 30rem;
+     
 
       background-color: var(--azul-ramo);
       border-radius: 60px 0 0 60px;     
 
       .carrosel {
-        display: inline-flex;
+        display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
 
-        height: fit-content;
         overflow: visible;
       }
       
@@ -85,14 +91,39 @@
   }
 
   .projetos{
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+
+    padding: 7rem 0;
     margin-top: 3rem;
     margin-bottom: -3rem;
-    h1{
-      color: var(--azul-ramo);
-      text-align: center;
-      font-size: 45px;   
+
+    background-color: #F6F8FA;
+
+    .leftcontainer {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+
+      h1{
+        color: var(--azul-ramo);
+        font-size: 2.5rem;   
+      }
+    }
+
+    .rightcontainer {
+      display: flex;
+
+      width: 590px;
+      height: 595px;
+
+      border-radius: 14px;
+      background-color: #F2F3F4;
     }
   }
+
   .premiosGeral{
     margin-top: 3rem;
     margin-bottom: -20rem;
