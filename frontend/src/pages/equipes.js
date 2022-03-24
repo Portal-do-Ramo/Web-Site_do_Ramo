@@ -60,16 +60,16 @@ export default function Equipes({ crews }) {
           
 
           <div className={styles.allcarousel}>
-            <h1>Escolha sua equipe!</h1>
+            <h2>Escolha sua equipe!</h2>
 
             <Slider {...crewsSliderSettings}>
               {crews.map((crew, idx) => (
                 <div className>
                   <div className={styles.carrosel}>
-                    <div className={idx === index ? styles.atual : styles.sem} >
+                    <div className={idx === index ? styles.current : styles.none} >
                       <img src={crew.image} />
                       <p className={styles.crewLabel}> 
-                        {idx === index && <h2>{crew.name}</h2>}
+                        {idx === index && crew.name}
                       </p>
                     </div>
                   </div>
@@ -130,7 +130,7 @@ export default function Equipes({ crews }) {
                             <img src={award.image} />
                           </td>
                           <td>
-                            <h1>{award.name}</h1>
+                            <span>{award.name}</span>
                           </td>
                         </tr>
                       </table>
@@ -144,6 +144,7 @@ export default function Equipes({ crews }) {
           ))}
         </div>
       </div>
+
       <Footer />
     </div>
   );

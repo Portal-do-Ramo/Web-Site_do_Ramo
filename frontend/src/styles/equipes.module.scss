@@ -1,11 +1,6 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-@keyframes TextEnter{
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
 .all {
   width: 100%;
   min-width: 900px;
@@ -14,7 +9,7 @@
   .apresentation {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 100vw;
 
     padding: 7rem 0;
 
@@ -35,6 +30,7 @@
         color: var(--azul-ramo);
         font-size: 40px;
       }
+
       p {
         font-weight: 500;
         font-size: 15px;
@@ -45,52 +41,63 @@
     
     .allcarousel {
       display: flex;
+      padding: 0 100px;
+      justify-content: center;
       flex-direction: column;
-      justify-self: right;
-      max-width: 600px;
-      padding: 5rem 3rem;
-
-      max-height: 30rem;
-     
-
+      width: 700px;
+      height: 550px;
+      
       background-color: var(--azul-ramo);
       border-radius: 60px 0 0 60px;     
-
+      
       .slider {
+        margin-bottom: 70px;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+
+        :nth-child(2) {
+          margin-bottom: -70px;
+        }
       }
       
-      .atual {
+      .current {
         opacity: 1;
         transition: transform 300ms ease-in-out;
       }
-      .sem {
+
+      .none {
         opacity: 0;
         transition: transform 300ms ease-in-out;
       }
+
+      .crewLabel {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 50px;
+      }
+
       h1 {
         text-align: center;
         font-weight: 700;
-        font-size: 2.3rem;
+        font-size: 2.5rem;
         color: white;
       }
      
       h2 {
         text-align: center;
-        margin-top: 1.5rem;
+        margin-bottom: 3rem;
         font-weight: 700;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         color: white;
-        animation: TextEnter 200ms ease-in;
       }
     }
-    
   }
 
-  .projetos{
+  .projetos {
     display: flex;
     justify-content: space-evenly;
 
@@ -124,19 +131,30 @@
     }
   }
 
-  .premiosGeral{
+  .premiosGeral {
     margin-top: 3rem;
-    margin-bottom: -20rem;
-    h1{
+    margin-bottom: 50px;
+    
+    h1 {
+      color: var(--azul-ramo);
+      font-weight: 700;
+      font-size: 45px;
+      text-align: center;
+      margin-top: 100px;
+    }
+    
+    span {
       color: var(--azul-ramo);
       font-weight: 700;
       font-size: 45px;
       text-align: center;
     }
-    .premios{
+
+    .premios {
       margin-top: 4rem;
       margin-left: 5rem;
-      h1{
+
+      h1 {
         font-size: 35px;
         margin-left: 3rem ;
       }
