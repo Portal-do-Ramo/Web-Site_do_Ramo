@@ -1,23 +1,13 @@
 
 .prev, .next {
   color: white;
-  position: absolute;
   cursor: pointer;
-  z-index: 10;
 
   img {
     width: 2rem;
     height: 2rem;
   }
 }
-
-.prev {
-  left: 0%;
-}
-.next {
-  right: 0%;
-}
-
 
 .pprev, .pnext {
   cursor: pointer;

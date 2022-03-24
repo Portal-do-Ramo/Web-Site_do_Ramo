@@ -42,6 +42,7 @@
         text-align: justify;
       }
     }
+    
     .allcarousel {
       display: flex;
       flex-direction: column;
@@ -55,12 +56,11 @@
       background-color: var(--azul-ramo);
       border-radius: 60px 0 0 60px;     
 
-      .carrosel {
+      .slider {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
-
-        overflow: visible;
+        align-items: center;
       }
       
       .atual {
