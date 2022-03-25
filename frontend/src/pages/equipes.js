@@ -33,16 +33,38 @@ export default function Equipes({ crews }) {
     }
   }, [query]);
 
-  function handleChangeCrewSelected(index) {
-    if (index === -1) {
-      setCrewIndex(crews.length - 1);
-      setProjectIndex(0);
-    } else if (index === crews.length) {
-      setCrewIndex(0);
-      setProjectIndex(0);
+  function handleChangeCrewSelected(operation) {
+    if (operation === 1) {
+      document.getElementById("currentImage").style.transform = "translateX(-220px)";
+      document.getElementById("nextImage").style.transform = "translateX(-220px)";
+      
+      setTimeout(() => {
+        document.getElementById("currentImage").style.transition = "none";
+        document.getElementById("nextImage").style.transition = "none";
+        document.getElementById("currentImage").style.transform = "translateX(0)";
+        document.getElementById("nextImage").style.transform = "translateX(0)";
+        setCrewIndex(crewIndex + 1 === crews.length ? 0 : crewIndex + 1);
+        setProjectIndex(0);
+      }, 500);
+
+      document.getElementById("currentImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
+      document.getElementById("nextImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
+    
     } else {
-      setCrewIndex(index);
-      setProjectIndex(0);
+      document.getElementById("currentImage").style.transform = "translateX(220px)";
+      document.getElementById("previousImage").style.transform = "translateX(220px)";
+      
+      setTimeout(() => {
+        document.getElementById("currentImage").style.transition = "none";
+        document.getElementById("previousImage").style.transition = "none";
+        document.getElementById("currentImage").style.transform = "translateX(0)";
+        document.getElementById("previousImage").style.transform = "translateX(0)";
+        setCrewIndex(crewIndex - 1 === -1 ? crews.length - 1 : crewIndex - 1);
+        setProjectIndex(0);
+      }, 500);
+
+      document.getElementById("currentImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
+      document.getElementById("previousImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
     }
   }
 
@@ -62,21 +84,21 @@ export default function Equipes({ crews }) {
             <h2>Escolha sua equipe!</h2>
 
             <section className={styles.carousel}>
-              <PrevArrow onClick={() => handleChangeCrewSelected(crewIndex - 1)}/>
+              <PrevArrow onClick={() => handleChangeCrewSelected(-1)}/>
               
               <article className={styles.crewSelected}>
 
-                <div>
+                <div className={styles.imagesCarouselContainer}>
                   { crewIndex === 0
-                    ? <img src={crews[crews.length - 1].image} className={styles.previusImage}/>
-                    : <img src={crews[crewIndex - 1].image} className={styles.previusImage}/>
+                    ? <img src={crews[crews.length - 1].image} className={styles.previousImage} id="previousImage"/>
+                    : <img src={crews[crewIndex - 1].image} className={styles.previousImage} id="previousImage"/>
                   }
                   
-                  <img src={crews[crewIndex].image} />
+                  <img src={crews[crewIndex].image} className={styles.currentImage} id="currentImage" />
 
-                  { crewIndex === crews.lengh - 1
-                    ? <img src={crews[0].image} className={styles.previusImage}/>
-                    : <img src={crews[crewIndex + 1].image} className={styles.previusImage}/>
+                  { crewIndex === crews.length - 1
+                    ? <img src={crews[0].image} className={styles.nextImage} id="nextImage"/>
+                    : <img src={crews[crewIndex + 1].image} className={styles.nextImage} id="nextImage"/>
                   }
                 </div>
                 
@@ -84,7 +106,7 @@ export default function Equipes({ crews }) {
                 <p> {crews[crewIndex].name} </p>
               </article>
 
-              <NextArrow onClick={() => handleChangeCrewSelected(crewIndex + 1)}/>
+              <NextArrow onClick={() => handleChangeCrewSelected(+1)}/>
             </section>
           </div>
         </section>

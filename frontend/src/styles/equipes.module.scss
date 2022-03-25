@@ -1,6 +1,16 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+@keyframes carouselChange {
+  from {
+    right: 0px;
+  }
+  
+  to {
+    right: 200px;
+  }
+}
+
 .all {
   width: 100%;
   min-width: 900px;
@@ -45,6 +55,7 @@
       justify-content: center;
       align-items: center;
       padding: 70px 70px 70px 80px;
+      height: 100%;
       
       background-color: var(--azul-ramo);
       border-radius: 60px 0 0 60px;     
@@ -62,6 +73,36 @@
         align-items: center;
         justify-content: center;
         gap: 90px;
+
+        .imagesCarouselContainer {
+          width: 200px;
+          gap: 20px;
+
+          img {
+            min-width: 200px;
+          }
+          
+          display: flex;
+          overflow: hidden;
+
+          .currentImage {
+            position: relative;
+            right: 220px;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+          }
+          
+          .previousImage {
+            position: relative;
+            right: 220px;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+          }
+          
+          .nextImage {
+            position: relative;
+            right: 220px;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+          }
+        }
         
         .crewSelected {
           p {
@@ -133,7 +174,6 @@
         font-size: 35px;
         margin-left: 3rem ;
       }
-      
     }
   }
 }
