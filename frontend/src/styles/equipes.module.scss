@@ -39,60 +39,39 @@
       }
     }
     
-    .allcarousel {
+    .carouselContainer {
       display: flex;
-      padding: 0 100px;
-      justify-content: center;
       flex-direction: column;
-      width: 700px;
-      height: 550px;
+      justify-content: center;
+      align-items: center;
+      padding: 70px 70px 70px 80px;
       
       background-color: var(--azul-ramo);
       border-radius: 60px 0 0 60px;     
       
-      .slider {
-        margin-bottom: 70px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-
-        :nth-child(2) {
-          margin-bottom: -70px;
-        }
-      }
-      
-      .current {
-        opacity: 1;
-        transition: transform 300ms ease-in-out;
-      }
-
-      .none {
-        opacity: 0;
-        transition: transform 300ms ease-in-out;
-      }
-
-      .crewLabel {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: white;
-        margin-top: 50px;
-      }
-
-      h1 {
-        text-align: center;
-        font-weight: 700;
-        font-size: 2.5rem;
-        color: white;
-      }
-     
       h2 {
         text-align: center;
         margin-bottom: 3rem;
         font-weight: 700;
         font-size: 1.8rem;
-        color: white;
+        color: #fff;
+      }
+      
+      .carousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 90px;
+        
+        .crewSelected {
+          p {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 50px;
+          }
+        }
       }
     }
   }
@@ -114,20 +93,16 @@
       flex-direction: column;
       row-gap: 2rem;
 
+      .crewproject {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+      }
+
       h1{
         color: var(--azul-ramo);
         font-size: 2.5rem;   
       }
-    }
-
-    .rightcontainer {
-      display: flex;
-
-      width: 590px;
-      height: 595px;
-
-      border-radius: 14px;
-      background-color: #F2F3F4;
     }
   }
 

@@ -2,14 +2,18 @@
 .prev, .next {
   color: white;
   cursor: pointer;
+  margin-bottom: 80px;
 
-  svg {
-    color: #000;
-  }
-
-  img {
-    width: 2rem;
-    height: 2rem;
+  > img {
+    width: 2.7rem;
+    height: 2.7rem;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background .1s linear;
+    
+    &:hover {
+      background: rgba(0,0,0,0.3);
+    }
   }
 }
 

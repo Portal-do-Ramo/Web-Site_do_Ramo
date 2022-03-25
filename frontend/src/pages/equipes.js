@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import { ProjectCard } from "../components/ProjectCard";
+import { ProjectDetail } from "../components/ProjectDetail";
 
 import styles from "../styles/equipes.module.scss";
 
@@ -23,28 +24,27 @@ import api from "../services/api";
 
 export default function Equipes({ crews }) {
   const { query } = useRouter();
-  const [index, setIndex] = useState(0);
+  const [crewIndex, setCrewIndex] = useState(0);
+  const [projectIndex, setProjectIndex] = useState(0);
   
   useEffect(() => { //Tem como função mudar o index para a equipe que foi selecionada na tela Home
     if (query.crewIndex) {
-      setIndex(parseInt(query.crewIndex));
+      setCrewIndex(parseInt(query.crewIndex));
     }
   }, [query]);
 
-  const crewsSliderSettings = {
-    arrows: true,
-    infinite: true,
-    centerMode: true,
-    adaptiveHeight: true,
-    variableWidth: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    beforeChange: (current, prox) => setIndex(prox),
-    className: styles.slider,
-  };
+  function handleChangeCrewSelected(index) {
+    if (index === -1) {
+      setCrewIndex(crews.length - 1);
+      setProjectIndex(0);
+    } else if (index === crews.length) {
+      setCrewIndex(0);
+      setProjectIndex(0);
+    } else {
+      setCrewIndex(index);
+      setProjectIndex(0);
+    }
+  }
 
   return (
     <div>
@@ -54,28 +54,38 @@ export default function Equipes({ crews }) {
 
         <section className={styles.apresentation}>
           <div className={styles.descrição}>
-            <h1>{crews[index].name}</h1>
-            <p>{crews[index].about}</p>
+            <h1>{crews[crewIndex].name}</h1>
+            <p>{crews[crewIndex].about}</p>
           </div>
-          
 
-          <div className={styles.allcarousel}>
+          <div className={styles.carouselContainer}>
             <h2>Escolha sua equipe!</h2>
 
-            <Slider {...crewsSliderSettings}>
-              {crews.map((crew, idx) => (
-                <div className>
-                  <div className={styles.carrosel}>
-                    <div className={idx === index ? styles.current : styles.none} >
-                      <img src={crew.image} />
-                      <p className={styles.crewLabel}> 
-                        {idx === index && crew.name}
-                      </p>
-                    </div>
-                  </div>
+            <section className={styles.carousel}>
+              <PrevArrow onClick={() => handleChangeCrewSelected(crewIndex - 1)}/>
+              
+              <article className={styles.crewSelected}>
+
+                <div>
+                  { crewIndex === 0
+                    ? <img src={crews[crews.length - 1].image} className={styles.previusImage}/>
+                    : <img src={crews[crewIndex - 1].image} className={styles.previusImage}/>
+                  }
+                  
+                  <img src={crews[crewIndex].image} />
+
+                  { crewIndex === crews.lengh - 1
+                    ? <img src={crews[0].image} className={styles.previusImage}/>
+                    : <img src={crews[crewIndex + 1].image} className={styles.previusImage}/>
+                  }
                 </div>
-              ))}
-            </Slider>
+                
+
+                <p> {crews[crewIndex].name} </p>
+              </article>
+
+              <NextArrow onClick={() => handleChangeCrewSelected(crewIndex + 1)}/>
+            </section>
           </div>
         </section>
         
@@ -84,64 +94,27 @@ export default function Equipes({ crews }) {
           <div className={styles.leftcontainer}>
             <h1>Projetos</h1>
             <p>Conheça todos os projetos da equipe WolfByte</p>
-            
-            {crews.map((crew, idx) => (
-            <div>
-              {idx === index && (
-                (crew.projects || []).map((project) => (
-                  <ProjectCard projetos={project} />
-                ))
-              )}
-            </div>
-          ))}
-            
+
+            {crews[crewIndex].projects.map((project, idx) => {
+              return (
+                <ProjectCard 
+                  project={project}
+                  key={project.id} 
+                  onCLick={() => setProjectIndex(idx)}/>
+              )
+            })}
           </div>
-
+          
           <div className={styles.rightcontainer}>
-
+            <ProjectDetail 
+              project={crews[crewIndex].projects[projectIndex]} 
+              key={crews[crewIndex].projects[projectIndex].id}
+            />
           </div>
         </section>
-
-        <div className={styles.projetos}>
-
-          { crews.map((crew, idx) => (
-            <div>
-              { idx === index && (
-                (crew.projetosAtuais || []).map((projetos) => (
-                    <ProjectCard projetos={projetos} />
-                  ))
-              )}
-            </div>
-          ))}
-        </div>
         
         <div className={styles.premiosGeral}>
-          <h1>Prêmios</h1>
 
-          { crews.map((crew, idx) => (
-            <div>
-              { idx === index && (
-                <div>
-                  { crew.awards ? crew.awards.map((award) => (
-                    <div className={styles.premios}>
-                      <table>
-                        <tr>
-                          <td>
-                            <img src={award.image} />
-                          </td>
-                          <td>
-                            <span>{award.name}</span>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  )) : 
-                    <div>Sem Prêmios</div>
-                  } 
-                </div>
-              )}
-            </div>
-          ))}
         </div>
       </div>
 
