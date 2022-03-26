@@ -8,6 +8,7 @@
   border: 1px solid #E1E1E1;
   border-radius: 14px;
   background-color: #F2F3F4;
+  transition: .2s ease;
 
   .imageholder {
     display: flex;
@@ -35,6 +36,7 @@
     .members {
       display: flex;
       width: 100%;
+      column-gap: 6px;
 
       margin-top: -25px;
   

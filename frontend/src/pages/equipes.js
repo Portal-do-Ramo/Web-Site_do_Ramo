@@ -13,7 +13,6 @@ import {
 } from "../components/Arrows";
 
 import { useEffect, useState } from "react";
-import Slider from "react-slick";
 
 import { ProjectCard } from "../components/ProjectCard";
 import { ProjectDetail } from "../components/ProjectDetail";
@@ -118,8 +117,11 @@ export default function Equipes({ crews }) {
             <p>Conheça todos os projetos da equipe WolfByte</p>
 
             {crews[crewIndex].projects.map((project, idx) => {
+              console.log("ProjectIndex : " + projectIndex)
+              console.log("idx : " + idx)
               return (
                 <ProjectCard 
+                  id={projectIndex === idx && styles.active}
                   project={project}
                   key={project.id} 
                   onCLick={() => setProjectIndex(idx)}/>
@@ -135,8 +137,11 @@ export default function Equipes({ crews }) {
           </div>
         </section>
         
-        <div className={styles.premiosGeral}>
-
+        <div className={styles.awards}>
+          <h1>Prêmios</h1>
+          <div>
+            
+          </div>
         </div>
       </div>
 

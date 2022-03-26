@@ -147,16 +147,21 @@
     }
   }
 
-  .premiosGeral {
-    margin-top: 3rem;
-    margin-bottom: 50px;
+  .awards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--azul-ramo);
+
+    margin-bottom: 150px;
     
     h1 {
-      color: var(--azul-ramo);
+      color: white;
       font-weight: 700;
       font-size: 45px;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 70px;
     }
     
     span {
@@ -175,5 +180,14 @@
         margin-left: 3rem ;
       }
     }
+  }
+
+  #aaa {
+    background-color: black;
+  }
+
+  #active {
+    background-color: white;
+    border: 1px solid #E1E1E1;
   }
 }
