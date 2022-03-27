@@ -22,7 +22,6 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
-        box-shadow: 0 0 20px gray;
     }
     .loginContent{
         padding: 10vh 0;
@@ -43,8 +42,9 @@
             width: 430px;
             height: 480px;
             background-color: white;
-            box-shadow: 5px 0 20px 0 rgba(32, 31, 31, 0.2);
-        
+            border: 1px solid #D6D6D6;
+            border-radius: 15px;
+
             h1{
                 color: #1A202C;
                 font-weight: 700;
