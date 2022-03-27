@@ -6,7 +6,7 @@ export function ProjectCard({ project, onCLick, id }) {
       <div className={styles.card} id={id}>
         <img src={project.image}/>
         <div className={styles.projectinfo}>
-          <h2>{project.name}</h2>
+          <span>{project.name}</span>
           <p>{project.description}</p>
         </div>
       </div>

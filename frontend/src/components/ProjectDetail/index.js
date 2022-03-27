@@ -14,12 +14,12 @@ export function ProjectDetail({ project }) {
             (<AiOutlinePicture/>) : <img src={project.image}></img>
           }
         </div>
-        <div className={styles.projectdescription}>
+        <div className={styles.projectDescription}>
           <p>
             {project.description}
           </p>
-          <h4>Status: Em Andamento</h4>
-          <h4>Membros</h4>
+          <span>Status: <strong>Em Andamento</strong></span>
+          <span>Membros</span>
           <div className={styles.members}>
             {
               project.members.map(member => {

@@ -3,11 +3,11 @@
   flex-direction: column;
 
   width: 590px;
-  height: 595px;
+  min-height: 595px;
 
   border: 1px solid #E1E1E1;
   border-radius: 14px;
-  background-color: #F2F3F4;
+  background-color: #EFEFF2;
   transition: .2s ease;
 
   .imageholder {
@@ -21,22 +21,41 @@
 
     border-bottom: 1px solid #E1E1E1;
     border-radius: 14px 14px 0 0;
-    background-color: white;
+    background-color: #fff;
     color: #BBBBBB;
   }
 
-  .projectdescription {
+  .projectDescription {
     display: flex;
     flex-direction: column;
+    overflow-wrap: break-word;
+    padding: 10px 20px;
 
     margin: 34px 1.5rem;
 
     row-gap: 40px;
 
+    p {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    span {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2d2f35;
+
+      strong {
+        color: var(--azul-ramo);
+        font-size: 1rem;
+      }
+    }
+
     .members {
       display: flex;
       width: 100%;
       column-gap: 6px;
+      font-size: .9rem;
 
       margin-top: -25px;
   
