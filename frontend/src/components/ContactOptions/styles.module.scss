@@ -24,8 +24,7 @@
         height: 155px;
     
         border-radius: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        border: 0;
+        border: 1px solid #CED3D9;
         background-color: #fff;
         cursor: pointer;
         font-size: 1.125rem;
@@ -52,6 +51,7 @@
 
     #activedButton {
         background-color: var(--azul-ramo);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         color: #fff;
     
         svg {

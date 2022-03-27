@@ -12,10 +12,10 @@
         background-position: center center;
     }
     /* ----- Sobre o ramo ----- */
-    .about{        
+    .about {        
         padding: 5rem 0;
         color: white;
-        background-color: var(--contraste);
+        background-color: var(--azul-ramo);
         background-image: url(../../public/Ramo_cinza.svg);
         background-size: 50%;
         background-repeat: no-repeat;
@@ -96,7 +96,7 @@
     }
 
     /* ----- Nossos valores ----- */
-    .ourValues{
+    .ourValues {
         display: grid;
         width: 100%;
         min-width: 1000px;
