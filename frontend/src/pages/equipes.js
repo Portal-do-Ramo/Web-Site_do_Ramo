@@ -33,6 +33,8 @@ export default function Equipes({ crews }) {
   }, [query]);
 
   function handleChangeCrewSelected(operation) {
+    setProjectIndex(0);
+
     if (operation === 1) {
       document.getElementById("currentImage").style.transform = "translateX(-220px)";
       document.getElementById("nextImage").style.transform = "translateX(-220px)";
@@ -43,7 +45,6 @@ export default function Equipes({ crews }) {
         document.getElementById("currentImage").style.transform = "translateX(0)";
         document.getElementById("nextImage").style.transform = "translateX(0)";
         setCrewIndex(crewIndex + 1 === crews.length ? 0 : crewIndex + 1);
-        setProjectIndex(0);
       }, 500);
 
       document.getElementById("currentImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
@@ -59,7 +60,6 @@ export default function Equipes({ crews }) {
         document.getElementById("currentImage").style.transform = "translateX(0)";
         document.getElementById("previousImage").style.transform = "translateX(0)";
         setCrewIndex(crewIndex - 1 === -1 ? crews.length - 1 : crewIndex - 1);
-        setProjectIndex(0);
       }, 500);
 
       document.getElementById("currentImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
