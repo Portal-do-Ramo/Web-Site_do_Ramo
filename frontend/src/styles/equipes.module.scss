@@ -90,7 +90,7 @@
             right: 220px;
             transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
           }
-          
+
           .previousImage {
             position: relative;
             right: 220px;
@@ -147,44 +147,57 @@
     }
   }
 
-  .awards {
+  .awards_section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--azul-ramo);
+    width: 100%;
 
-    margin-bottom: 150px;
-    
-    h1 {
-      color: white;
-      font-weight: 700;
-      font-size: 45px;
-      text-align: center;
-      margin-top: 70px;
-    }
-    
-    span {
-      color: var(--azul-ramo);
-      font-weight: 700;
-      font-size: 45px;
-      text-align: center;
+    .topwave {
+      background-color: #F4F4F6;
     }
 
-    .premios {
-      margin-top: 4rem;
-      margin-left: 5rem;
+    .bottomwave {
+      background-color: var(--azul-ramo);
+    }
 
+    .awards {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--azul-ramo);
+  
+      padding-top: 20px;
+      padding-bottom: 90px;
+      
       h1 {
-        font-size: 35px;
-        margin-left: 3rem ;
+        color: white;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-size: 45px;
+        text-align: center;
       }
+  
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 80px;
+  
+        .placehold {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 40px;
+          width: 546px;
+          height: 152px;
+          background-color: orange;
+        }
+      } 
     }
   }
 
-  #aaa {
-    background-color: black;
-  }
+  
 
   #active {
     background-color: white;

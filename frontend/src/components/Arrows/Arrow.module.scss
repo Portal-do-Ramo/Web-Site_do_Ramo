@@ -1,5 +1,8 @@
 
 .prev, .next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   cursor: pointer;
   margin-bottom: 80px;
@@ -18,14 +21,30 @@
 }
 
 .pprev, .pnext {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
   cursor: pointer;
-  margin: 0 30px;
 
-  img {
-    color: var(--azul-ramo);
-    width: 2rem;
-    height: 2rem;
+  > img {
+    width: 2.7rem;
+    height: 2.7rem;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background .1s linear;
+    
+    &:hover {
+      background: rgba(0,0,0,0.3);
+    }
   }
 }
 
+.pprev {
+  margin-right: 70px;
+}
+
+.pnext {
+  margin-left: 70px;
+}
   

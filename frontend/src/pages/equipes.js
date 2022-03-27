@@ -10,6 +10,8 @@ import Footer from "../components/Footer";
 import {
   PrevArrow,
   NextArrow,
+  ProjectNextArrow,
+  ProjectPrevArrow,
 } from "../components/Arrows";
 
 import { useEffect, useState } from "react";
@@ -83,7 +85,7 @@ export default function Equipes({ crews }) {
             <h2>Escolha sua equipe!</h2>
 
             <section className={styles.carousel}>
-              <PrevArrow onClick={() => handleChangeCrewSelected(-1)}/>
+              <PrevArrow style={styles.prevArrow} onClick={() => handleChangeCrewSelected(-1)}/>
               
               <article className={styles.crewSelected}>
 
@@ -100,12 +102,11 @@ export default function Equipes({ crews }) {
                     : <img src={crews[crewIndex + 1].image} className={styles.nextImage} id="nextImage"/>
                   }
                 </div>
-                
 
                 <p> {crews[crewIndex].name} </p>
               </article>
 
-              <NextArrow onClick={() => handleChangeCrewSelected(+1)}/>
+              <NextArrow style={styles.nextArrow} onClick={() => handleChangeCrewSelected(+1)}/>
             </section>
           </div>
         </section>
@@ -136,13 +137,19 @@ export default function Equipes({ crews }) {
             />
           </div>
         </section>
-        
-        <div className={styles.awards}>
-          <h1>Prêmios</h1>
-          <div>
-            
+
+        <section className={styles.awards_section}>
+          <img className={styles.topwave} src='/wave.svg'></img>
+          <div className={styles.awards}>
+            <h1>Prêmios</h1>
+            <div className={styles.container}>
+              <ProjectPrevArrow/>
+              <div className={styles.placehold}>Carrossel safado</div>
+              <ProjectNextArrow/>
+            </div>
           </div>
-        </div>
+          <img className={styles.bottomwave} src='/wave1.svg'></img>
+        </section>
       </div>
 
       <Footer />

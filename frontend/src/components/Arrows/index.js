@@ -19,7 +19,7 @@ export const NextArrow = ({ onClick }) => {
 export const ProjectNextArrow = ({ onClick }) => {
     return (
       <div className={styles.pnext} onClick={onClick}>
-        <img src="/Arrow_EquipesRight.svg" />
+        <img src="/Vector_(1).svg" />
       </div>
     );
   };
@@ -27,7 +27,7 @@ export const ProjectNextArrow = ({ onClick }) => {
 export const ProjectPrevArrow = ({ onClick }) => {
     return (
       <div className={styles.pprev} onClick={onClick}>
-        <img src="/Arrow_EquipesLeft.svg" />
+        <img src="/Vector_(2).svg" />
       </div>
     );
   };
