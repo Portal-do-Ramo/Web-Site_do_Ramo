@@ -7,8 +7,7 @@ import styles from "./Modal.module.scss";
 export function ProjectDetail({ project }) {
     return (
       <div className={styles.main}>
-        
-        <div className={styles.imageholder}>
+        <div className={styles.imageHolder}>
           {
             project.image === null ? 
             (<AiOutlinePicture/>) : <img src={project.image}></img>

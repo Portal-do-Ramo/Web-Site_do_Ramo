@@ -118,7 +118,7 @@ export default function Home({ crews, sponsors }) {
             {
               sponsors.map((sponsor, idx) => {
                 return (
-                <div className={idx === index ? styles.current : styles.other}>
+                <div className={idx === index ? styles.current : styles.other} key={sponsor.id}>
                   <img src={sponsor.image} height={180}/>
                   <p>{idx === index ? sponsor.name : []}</p>
                 </div>

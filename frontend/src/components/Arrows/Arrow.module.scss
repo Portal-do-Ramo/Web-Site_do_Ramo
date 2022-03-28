@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
   margin-bottom: 80px;
 
@@ -24,10 +24,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
   cursor: pointer;
-
+  
   > img {
+    color: var(--azul-ramo);
     width: 2.7rem;
     height: 2.7rem;
     padding: 10px;
@@ -35,7 +35,7 @@
     transition: background .1s linear;
     
     &:hover {
-      background: rgba(0,0,0,0.3);
+      background: rgba(71, 121, 228, 0.3);
     }
   }
 }

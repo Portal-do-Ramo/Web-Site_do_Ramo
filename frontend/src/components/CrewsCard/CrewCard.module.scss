@@ -1,4 +1,4 @@
-.cards{
+.cards {
     width: 260px;
     height: 280px;
     border-radius: 10px;
@@ -8,7 +8,7 @@
     
     transition: background-color .7s ease;
 
-    a{
+    a {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -17,7 +17,7 @@
 
         text-decoration: none;
 
-        img{
+        img {
             width: 140px;
             display: inline;
             justify-self: center;
@@ -25,7 +25,7 @@
             margin-bottom: 25px;
         }
 
-        p{
+        p {
             letter-spacing: 1px;
             text-align: center;
             font-size: 20px;
@@ -36,17 +36,16 @@
 
 }
 
-.cards:hover{
-    background-color: var(--logo_trasition);
-    transition: background-color .7s ease;
+.cards:hover {
+    background: #0a467a;
+    transition: background-color .2s ease;
 }
 
-.cards:first-child{
+.cards:first-child {
     background-color: var(--wie);
-    transition: background-color .7s ease;
 }
 
-.cards:first-child:hover{
+.cards:first-child:hover {
     background-color: var(--wie-trasition);
-    transition: background-color .7s ease;
+    transition: background-color .2s ease;
 }

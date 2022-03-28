@@ -33,19 +33,24 @@
       "awards": [
         {
           "image": "Prem.svg",
-          "name": "Premio 8"
+          "name": "Premio 8",
+          "year": "2018"
         },
         {
           "image": "Prem.svg",
-          "name": "Premio 9"
+          "name": "Premio 9",
+          "year": "2018"
+          
         },
         {
           "image": "Prem.svg",
-          "name": "Premio 10"
+          "name": "Premio 10",
+          "year": "2018"
         },
         {
           "image": "Prem.svg",
-          "name": "Premio 11"
+          "name": "Premio 11",
+          "year": "2018"
         }
       ]
     },
@@ -220,11 +225,13 @@
       "awards": [
         {
           "image": "Prem.svg",
-          "name": "Melhor equipe do ramo 2021 :)"
+          "name": "Melhor equipe do ramo 2021 :)",
+          "year": "2018"
         },
         {
           "image": "Prem.svg",
-          "name": "Premio 2"
+          "name": "Premio 2",
+          "year": "2018"
         }
       ]
     },

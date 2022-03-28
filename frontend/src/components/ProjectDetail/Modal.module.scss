@@ -10,7 +10,7 @@
   background-color: #EFEFF2;
   transition: .2s ease;
 
-  .imageholder {
+  .imageHolder {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,10 +33,11 @@
 
     margin: 34px 1.5rem;
 
-    row-gap: 40px;
+    gap: 40px;
 
     p {
       font-size: .9rem;
+      line-height: 150%;
       font-weight: 500;
     }
 
@@ -54,7 +55,7 @@
     .members {
       display: flex;
       width: 100%;
-      column-gap: 6px;
+      gap: 6px;
       font-size: .9rem;
 
       margin-top: -25px;
@@ -67,7 +68,6 @@
         padding: 3px 1rem;
   
         font-weight: 700;
-        letter-spacing: 1px;
         border-radius: 50px;
         background-color: var(--azul-ramo);
         color: white;

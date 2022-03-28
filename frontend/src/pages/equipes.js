@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,8 +11,6 @@ import Footer from "../components/Footer";
 import {
   PrevArrow,
   NextArrow,
-  ProjectNextArrow,
-  ProjectPrevArrow,
 } from "../components/Arrows";
 
 import { useEffect, useState } from "react";
@@ -27,6 +26,19 @@ export default function Equipes({ crews }) {
   const { query } = useRouter();
   const [crewIndex, setCrewIndex] = useState(0);
   const [projectIndex, setProjectIndex] = useState(0);
+  const [awardIndex, setAwardIndex] = useState(0);
+
+  const settings = { //Configurações do Slider dos parceiros
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    variableWidth: true,
+    centerMode: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    beforeChange: (current, prox) => setAwardIndex(prox),
+    className: styles.awardSlider,
+  };
   
   useEffect(() => { //Tem como função mudar o index para a equipe que foi selecionada na tela Home
     if (query.crewIndex) {
@@ -75,7 +87,7 @@ export default function Equipes({ crews }) {
       
       <div className={styles.all}>
 
-        <section className={styles.apresentation}>
+        <section className={styles.presentation}>
           <div className={styles.descrição}>
             <h1>{crews[crewIndex].name}</h1>
             <p>{crews[crewIndex].about}</p>
@@ -112,14 +124,11 @@ export default function Equipes({ crews }) {
         </section>
         
         <section className={styles.projetos}>
-          
           <div className={styles.leftcontainer}>
             <h1>Projetos</h1>
             <p>Conheça todos os projetos da equipe WolfByte</p>
 
             {crews[crewIndex].projects.map((project, idx) => {
-              console.log("ProjectIndex : " + projectIndex)
-              console.log("idx : " + idx)
               return (
                 <ProjectCard 
                   id={projectIndex === idx && styles.active}
@@ -139,16 +148,24 @@ export default function Equipes({ crews }) {
         </section>
 
         <section className={styles.awards_section}>
-          <img className={styles.topwave} src='/wave.svg'></img>
+          <img className={styles.topWave} src='/Background.png'></img>
           <div className={styles.awards}>
             <h1>Prêmios</h1>
-            <div className={styles.container}>
-              <ProjectPrevArrow/>
-              <div className={styles.placehold}>Carrossel safado</div>
-              <ProjectNextArrow/>
-            </div>
+            <Slider {...settings}>
+              {
+                crews[crewIndex].awards.map((award, idx) => {
+                  return (
+                  <div className={styles.awardContainer}>
+                    <img src="award.svg" alt="award image" className={styles.awardImage} />
+                    <span>{award.name}</span>
+                    <p>{award.year && award.year}</p>
+                  </div>
+                  )
+                })
+              }
+            </Slider>
           </div>
-          <img className={styles.bottomwave} src='/wave1.svg'></img>
+          <img className={styles.bottomWave} src='/Background.png'></img>
         </section>
       </div>
 

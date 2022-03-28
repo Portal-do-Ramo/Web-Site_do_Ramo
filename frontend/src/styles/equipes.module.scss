@@ -16,7 +16,7 @@
   min-width: 900px;
   font-family: "Poppins";
 
-  .apresentation {
+  .presentation {
     display: flex;
     justify-content: space-between;
     width: 100vw;
@@ -123,11 +123,11 @@
 
     width: 100%;
 
-    padding: 7rem 0;
+    padding: 7rem 0 12rem;
     margin-top: 3rem;
     margin-bottom: -3rem;
 
-    background-color: #F4F4F6;
+    background: #F4F4F6;
 
     .leftcontainer {
       display: flex;
@@ -151,13 +151,15 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-
-    .topwave {
-      background-color: #F4F4F6;
+    margin-bottom: 180px;
+    
+    .topWave {
+      margin-top: -1px;
     }
 
-    .bottomwave {
-      background-color: var(--azul-ramo);
+    .bottomWave {
+      margin-top: -1px;
+      transform: rotateX(180deg);
     }
 
     .awards {
@@ -167,33 +169,59 @@
       align-items: center;
       background-color: var(--azul-ramo);
   
-      padding-top: 20px;
-      padding-bottom: 90px;
+      padding-top: 200px;
+      padding-bottom: 250px;
       
       h1 {
         color: white;
         font-weight: 700;
         letter-spacing: 1px;
-        font-size: 45px;
+        font-size: 2.5rem;
         text-align: center;
       }
-  
-      .container {
+      
+      .awardSlider {
+        background: tomato;
         display: flex;
+        width: 605px;
         justify-content: center;
         align-items: center;
-        margin-top: 80px;
-  
-        .placehold {
+        margin-top: 70px;
+
+        img {
+          padding: 0 15px;
+        }
+
+        .awardContainer {
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 40px;
-          width: 546px;
-          height: 152px;
-          background-color: orange;
+          margin: 0 15px;
+          max-width: 144px;
+          text-align: center;
+          
+          span {
+            display: block;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 700;
+            margin-top: 15px;
+          }
+          
+          p {
+            margin-top: 5px;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 500;
+          }
         }
-      } 
+
+        .awardImage {
+          padding: 25px;
+          border-radius: 35px;
+          background: var(--contraste);
+        }
+      }
     }
   }
 
