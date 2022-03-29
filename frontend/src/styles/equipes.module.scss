@@ -77,27 +77,26 @@
         .imagesCarouselContainer {
           width: 200px;
           gap: 20px;
+          display: flex;
+          overflow: hidden;
 
           img {
             min-width: 200px;
           }
           
-          display: flex;
-          overflow: hidden;
-
-          .currentImage {
+          .currentProjectImage {
             position: relative;
             right: 220px;
             transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
           }
 
-          .previousImage {
+          .previousProjectImage {
             position: relative;
             right: 220px;
             transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
           }
           
-          .nextImage {
+          .nextProjectImage {
             position: relative;
             right: 220px;
             transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
@@ -169,10 +168,10 @@
       align-items: center;
       background-color: var(--azul-ramo);
   
-      padding-top: 200px;
-      padding-bottom: 250px;
+      padding-top: 150px;
+      padding-bottom: 200px;
       
-      h1 {
+      h2 {
         color: white;
         font-weight: 700;
         letter-spacing: 1px;
@@ -181,45 +180,58 @@
       }
       
       .awardSlider {
-        background: tomato;
         display: flex;
-        width: 605px;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         margin-top: 70px;
-
-        img {
-          padding: 0 15px;
-        }
-
-        .awardContainer {
+        gap: 50px;
+        
+        .awardsContainer {
           display: flex;
-          justify-content: center;
-          align-items: center;
-          margin: 0 15px;
-          max-width: 144px;
-          text-align: center;
+          max-width: 512px;
+          overflow: hidden;
+          max-width: 512px;
           
-          span {
-            display: block;
-            font-size: 1.2rem;
-            color: #fff;
-            font-weight: 700;
-            margin-top: 15px;
+          #awardsImagesContainer {
+            display: flex;
+            justify-content: start;
+            align-items: baseline;
+            gap: 40px;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
           }
           
-          p {
-            margin-top: 5px;
-            font-size: 1.2rem;
-            color: #fff;
-            font-weight: 500;
-          }
-        }
+          .award {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            word-wrap: break-word;
+            text-align: center;
 
-        .awardImage {
-          padding: 25px;
-          border-radius: 35px;
-          background: var(--contraste);
+            img {
+              padding: 25px;
+              border-radius: 35px;
+              background: var(--contraste);
+            }
+            
+            span {
+              max-width: 110px;
+              display: block;
+              font-size: 1.2rem;
+              color: #fff;
+              font-weight: 700;
+              margin-top: 15px;
+            }
+            
+            p {
+              max-width: 130px;
+              margin-top: 5px;
+              font-size: 1.2rem;
+              color: #fff;
+              font-weight: 500;
+            }
+          }
         }
       }
     }

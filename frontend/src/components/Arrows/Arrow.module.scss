@@ -47,4 +47,41 @@
 .pnext {
   margin-left: 70px;
 }
+
+.awardNext, .awardPrev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 60px;
+
+  > img {
+    width: 2.7rem;
+    height: 2.7rem;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background .1s linear;
+    
+    &:hover {
+      background: rgba(0,0,0,0.3);
+    }
+  }
+}
+
+.awardNextDisabled, .awardPrevDisabled {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 60px;
+  
+  > img {
+    width: 2.7rem;
+    height: 2.7rem;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: not-allowed;
+  }
+}
   

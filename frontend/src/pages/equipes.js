@@ -1,9 +1,4 @@
 import { useRouter } from 'next/router';
-import Slider from "react-slick";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "react-multi-carousel/lib/styles.css";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -11,6 +6,8 @@ import Footer from "../components/Footer";
 import {
   PrevArrow,
   NextArrow,
+  AwardPrevArrow,
+  AwardNextArrow,
 } from "../components/Arrows";
 
 import { useEffect, useState } from "react";
@@ -26,19 +23,7 @@ export default function Equipes({ crews }) {
   const { query } = useRouter();
   const [crewIndex, setCrewIndex] = useState(0);
   const [projectIndex, setProjectIndex] = useState(0);
-  const [awardIndex, setAwardIndex] = useState(0);
-
-  const settings = { //Configurações do Slider dos parceiros
-    infinite: true,
-    speed: 500,
-    slidesToScroll: 1,
-    variableWidth: true,
-    centerMode: true,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-    beforeChange: (current, prox) => setAwardIndex(prox),
-    className: styles.awardSlider,
-  };
+  const [awardTranslateX, setAwardTranslateX] = useState(0);
   
   useEffect(() => { //Tem como função mudar o index para a equipe que foi selecionada na tela Home
     if (query.crewIndex) {
@@ -48,38 +33,51 @@ export default function Equipes({ crews }) {
 
   function handleChangeCrewSelected(operation) {
     setProjectIndex(0);
+    setAwardTranslateX(0);
 
     if (operation === 1) {
-      document.getElementById("currentImage").style.transform = "translateX(-220px)";
-      document.getElementById("nextImage").style.transform = "translateX(-220px)";
+      document.getElementById("currentProjectImage").style.transform = "translateX(-220px)";
+      document.getElementById("nextProjectImage").style.transform = "translateX(-220px)";
       
       setTimeout(() => {
-        document.getElementById("currentImage").style.transition = "none";
-        document.getElementById("nextImage").style.transition = "none";
-        document.getElementById("currentImage").style.transform = "translateX(0)";
-        document.getElementById("nextImage").style.transform = "translateX(0)";
+        document.getElementById("currentProjectImage").style.transition = "none";
+        document.getElementById("nextProjectImage").style.transition = "none";
+        document.getElementById("currentProjectImage").style.transform = "translateX(0)";
+        document.getElementById("nextProjectImage").style.transform = "translateX(0)";
         setCrewIndex(crewIndex + 1 === crews.length ? 0 : crewIndex + 1);
       }, 500);
 
-      document.getElementById("currentImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
-      document.getElementById("nextImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
+      document.getElementById("currentProjectImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
+      document.getElementById("nextProjectImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
     
     } else {
-      document.getElementById("currentImage").style.transform = "translateX(220px)";
-      document.getElementById("previousImage").style.transform = "translateX(220px)";
+      document.getElementById("currentProjectImage").style.transform = "translateX(220px)";
+      document.getElementById("previousProjectImage").style.transform = "translateX(220px)";
       
       setTimeout(() => {
-        document.getElementById("currentImage").style.transition = "none";
-        document.getElementById("previousImage").style.transition = "none";
-        document.getElementById("currentImage").style.transform = "translateX(0)";
-        document.getElementById("previousImage").style.transform = "translateX(0)";
+        document.getElementById("currentProjectImage").style.transition = "none";
+        document.getElementById("previousProjectImage").style.transition = "none";
+        document.getElementById("currentProjectImage").style.transform = "translateX(0)";
+        document.getElementById("previousProjectImage").style.transform = "translateX(0)";
         setCrewIndex(crewIndex - 1 === -1 ? crews.length - 1 : crewIndex - 1);
       }, 500);
 
-      document.getElementById("currentImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
-      document.getElementById("previousImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
+      document.getElementById("currentProjectImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
+      document.getElementById("previousProjectImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
     }
   }
+
+  function handleChangeAwardSelected(operation) {
+    if (operation === 1 && awardTranslateX > -1 * 184 * (crews[crewIndex].awards.length - 3)) {
+      setAwardTranslateX(awardTranslateX - 184);
+    } else if (operation === -1 && awardTranslateX < 0) {
+      setAwardTranslateX(awardTranslateX + 184);
+    }
+  }
+  
+  useEffect(() => {
+    document.getElementById(styles.awardsImagesContainer).style.transform = `translateX(${awardTranslateX}px)`;
+  }, [awardTranslateX]);
 
   return (
     <div>
@@ -97,28 +95,28 @@ export default function Equipes({ crews }) {
             <h2>Escolha sua equipe!</h2>
 
             <section className={styles.carousel}>
-              <PrevArrow style={styles.prevArrow} onClick={() => handleChangeCrewSelected(-1)}/>
+              <PrevArrow onClick={() => handleChangeCrewSelected(-1)}/>
               
               <article className={styles.crewSelected}>
 
                 <div className={styles.imagesCarouselContainer}>
                   { crewIndex === 0
-                    ? <img src={crews[crews.length - 1].image} className={styles.previousImage} id="previousImage"/>
-                    : <img src={crews[crewIndex - 1].image} className={styles.previousImage} id="previousImage"/>
+                    ? <img src={crews[crews.length - 1].image} className={styles.previousProjectImage} id="previousProjectImage"/>
+                    : <img src={crews[crewIndex - 1].image} className={styles.previousProjectImage} id="previousProjectImage"/>
                   }
                   
-                  <img src={crews[crewIndex].image} className={styles.currentImage} id="currentImage" />
+                  <img src={crews[crewIndex].image} className={styles.currentProjectImage} id="currentProjectImage" />
 
                   { crewIndex === crews.length - 1
-                    ? <img src={crews[0].image} className={styles.nextImage} id="nextImage"/>
-                    : <img src={crews[crewIndex + 1].image} className={styles.nextImage} id="nextImage"/>
+                    ? <img src={crews[0].image} className={styles.nextProjectImage} id="nextProjectImage"/>
+                    : <img src={crews[crewIndex + 1].image} className={styles.nextProjectImage} id="nextProjectImage"/>
                   }
                 </div>
 
                 <p> {crews[crewIndex].name} </p>
               </article>
 
-              <NextArrow style={styles.nextArrow} onClick={() => handleChangeCrewSelected(+1)}/>
+              <NextArrow onClick={() => handleChangeCrewSelected(+1)}/>
             </section>
           </div>
         </section>
@@ -134,7 +132,8 @@ export default function Equipes({ crews }) {
                   id={projectIndex === idx && styles.active}
                   project={project}
                   key={project.id} 
-                  onCLick={() => setProjectIndex(idx)}/>
+                  onCLick={() => setProjectIndex(idx)}
+                />
               )
             })}
           </div>
@@ -150,20 +149,27 @@ export default function Equipes({ crews }) {
         <section className={styles.awards_section}>
           <img className={styles.topWave} src='/Background.png'></img>
           <div className={styles.awards}>
-            <h1>Prêmios</h1>
-            <Slider {...settings}>
-              {
-                crews[crewIndex].awards.map((award, idx) => {
-                  return (
-                  <div className={styles.awardContainer}>
-                    <img src="award.svg" alt="award image" className={styles.awardImage} />
-                    <span>{award.name}</span>
-                    <p>{award.year && award.year}</p>
-                  </div>
-                  )
-                })
-              }
-            </Slider>
+            <h2>Prêmios</h2>
+
+            <div className={styles.awardSlider}>
+              <AwardPrevArrow onClick={() => handleChangeAwardSelected(-1)} disabled={awardTranslateX === 0}/>
+              <section className={styles.awardsContainer}>
+                <div id={styles.awardsImagesContainer}>
+                  {
+                    crews[crewIndex].awards.map((award, idx) => {
+                      return (
+                      <article className={styles.award} key={idx}>
+                        <img src="award.svg" alt="award image"/>
+                        <span>{award.name}</span>
+                        <p>{award.year && award.year}</p>
+                      </article>
+                      )
+                    })
+                  }
+                </div>
+              </section>
+              <AwardNextArrow onClick={() => handleChangeAwardSelected(1)} disabled={!(awardTranslateX > -1 * 184 * (crews[crewIndex].awards.length - 3))}/>
+            </div>
           </div>
           <img className={styles.bottomWave} src='/Background.png'></img>
         </section>
