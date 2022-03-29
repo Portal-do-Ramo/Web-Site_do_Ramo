@@ -214,6 +214,15 @@
               border-radius: 35px;
               background: var(--contraste);
             }
+
+            strong {
+              position: absolute;
+              top: 0px;
+              margin-top: 40px;
+              color: var(--azul-ramo);
+              font-size: 1.8rem;
+              font-weight: 700;
+            }
             
             span {
               max-width: 110px;

@@ -160,6 +160,7 @@ export default function Equipes({ crews }) {
                       return (
                       <article className={styles.award} key={idx}>
                         <img src="award.svg" alt="award image"/>
+                        <strong>{award.placing}</strong>
                         <span>{award.name}</span>
                         <p>{award.year && award.year}</p>
                       </article>

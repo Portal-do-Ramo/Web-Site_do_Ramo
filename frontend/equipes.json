@@ -32,24 +32,24 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
           "name": "Premio 8",
-          "year": "2018"
+          "year": "2018",
+          "placing": "1"
         },
         {
-          "image": "Prem.svg",
           "name": "Premio 9",
-          "year": "2018"
+          "year": "2018",
+          "placing": "2"
         },
         {
-          "image": "Prem.svg",
           "name": "Premio 10",
-          "year": "2018"
+          "year": "2018",
+          "placing": "3"
         },
         {
-          "image": "Prem.svg",
           "name": "Premio 11",
-          "year": "2018"
+          "year": "2018",
+          "placing": "4"
         }
       ]
     },
@@ -223,14 +223,14 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
           "name": "Melhor equipe do ramo 2021 :)",
-          "year": "2018"
+          "year": "2018",
+          "placing": "2"
         },
         {
-          "image": "Prem.svg",
           "name": "Premio 2",
-          "year": "2018"
+          "year": "2018",
+          "placing": "2"
         }
       ]
     },
@@ -294,12 +294,14 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
-          "name": "Premio 3"
+          "name": "Premio 3",
+          "year": "2018",
+          "placing": "2"
         },
         {
-          "image": "Prem.svg",
-          "name": "Premio 4"
+          "name": "Premio 4",
+          "year": "2018",
+          "placing": "2"
         }
       ]
     },
@@ -382,16 +384,19 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
-          "name": "Premio 5"
+          "name": "Premio 5",
+          "year": "2018",
+          "placing": "2"
         },
         {
-          "image": "Prem.svg",
-          "name": "Premio 6"
+          "name": "Premio 6",
+          "year": "2018",
+          "placing": "2"
         },
         {
-          "image": "Prem.svg",
-          "name": "Premio 7"
+          "name": "Premio 7",
+          "year": "2018",
+          "placing": "2"
         }
       ]
     },
@@ -416,8 +421,9 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
-          "name": "Premio 11"
+          "name": "Premio 11",
+          "year": "2018",
+          "placing": "2"
         }
       ]
     },
@@ -442,8 +448,9 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
-          "name": "Premio 11"
+          "name": "Premio 11",
+          "year": "2018",
+          "placing": "2"
         }
       ]
     },
@@ -468,8 +475,9 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
-          "name": "Premio 11"
+          "name": "Premio 11",
+          "year": "2018",
+          "placing": "2"
         }
       ]
     },
@@ -494,8 +502,9 @@
       ],
       "awards": [
         {
-          "image": "Prem.svg",
-          "name": "Premio 11"
+          "name": "Premio 11",
+          "year": "2018",
+          "placing": "2"
         }
       ]
     }
