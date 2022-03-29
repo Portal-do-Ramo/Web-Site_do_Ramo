@@ -1,78 +1,73 @@
-.pagecontent {
+#pagecontent {
     display: flex;
     flex-direction: column;
+    position: relative;
+
+    row-gap: 250px;
 
     padding: 0 7rem;
 
-    #descriptionContainer {
+    #introduction {
         display: flex;
-        flex-direction: column;
-        row-gap: 30px;
-        margin-right: 2rem;
-        color: var(--azul-ramo);
-        font-family: Poppins;
-        font-style: normal;
-        max-width: 75%;
-    
-        h1 {
-            font-size: 2.5rem;
-            max-width: 50%;
-        }
-    
-        p {
-            font-weight: 500;
-            font-size: 1.25rem;
-            max-width: 60%;
-            text-align: justify;
-        }
-    }
-    
-    #meetCrews {
-        display: flex;
-        flex-direction: row;
-        margin-top: 2rem;
-    
-        #buttonContainer {
-    
-            margin-left: 2rem;
+        align-items: center;
+
+        #descriptionContainer {
             display: flex;
-            flex: 1;
-            justify-content: flex-start;
-            align-items: center;
-    
-            a {
-                background: var(--azul-ramo);
-                border-radius: 47px;
-                color: #FFFFFF;
-                font-family: Poppins;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 28px;
-                padding: 1.5rem;
-                border: none;
-                transition: background-color .5s ease;
-                text-decoration: none;
+            flex-direction: column;
+            row-gap: 30px;
+            margin-top: 110px;
+            margin-right: 2rem;
+            color: var(--azul-ramo);
+            font-family: Poppins;
+            font-style: normal;
+            max-width: 75%;
+            z-index: 1;
+        
+            h1 {
+                font-size: 2.5rem;
+                max-width: 55%;
             }
-    
-            a:hover {
-                background-color: var(--logo_trasition);
-                transition: background-color .5s ease;
+        
+            p {
+                font-weight: 500;
+                font-size: 1.25rem;
+                max-width: 60%;
+                text-align: justify;
+            }
+
+            a {
+                width: fit-content;
+                background-color: var(--azul-ramo);
+                border-radius: 25px;
+                color: #FFFFFF;
+                font-weight: bold;
+                font-size: 16px;
+                padding: 1.5rem;
+                transition: .3s ease;
+                text-decoration: none;
                 cursor: pointer;
             }
+
+            a:hover {
+                background-color: var(--logo_trasition);
+            }
+        }
+
+        #imageContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 0;
+        
+            img {
+                margin-top: 60px;
+                margin-right: 10px;
+                height: 600px;
+            }
         }
     }
-    
-    
-    #imageContainer {
-        display: flex;
-        flex: 1;
-        justify-content: center;
-    
-        img {
-            width: 40%;
-        }
-    }
-    
+
     #steps {
         display: flex;
         flex-direction: column;
@@ -82,7 +77,6 @@
         row-gap: 80px;
     
         width: 100%;
-        margin-top: 10rem;
         margin-bottom: 20rem;
         color: var(--azul-ramo);
         font-family: Poppins;
@@ -139,8 +133,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
-            margin-top: 2.5rem;
 
             h1 {
                 font-size: 2rem;
