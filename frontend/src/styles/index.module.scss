@@ -71,7 +71,7 @@
             border-radius: 10px;
             margin-bottom: 10%;
             text-decoration: none;
-            transition: background-color .7s ease;
+            transition: background-color .2s ease;
 
             
             p {
@@ -82,7 +82,7 @@
         }
         
         #button:hover {
-            background-color: var(--logo_trasition);
+            background-color: var(--button-trasition);
             cursor: pointer;
         }
     }
@@ -154,7 +154,7 @@
             p {
                 font-family: 'Poppins', sans-serif;
                 font-weight: 800;
-                color: var(--logo_trasition);
+                color: var(--logo-trasition);
                 font-size: 25px;
             }
         }

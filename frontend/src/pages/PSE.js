@@ -33,7 +33,7 @@ export default function PSE({ crews }) {
     return (
         <div>
             <Header page="PSE"/>
-            <div id={styles.pagecontent}>
+            <div id={styles.pageContent}>
                 <section id={styles.introduction}>
                     <div id={styles.descriptionContainer}>
                         <h1>Lugar onde os projetos se tornam realidade!</h1>
@@ -42,16 +42,12 @@ export default function PSE({ crews }) {
                         na faculdade em prática e, além disso, se divertir muito,
                         você veio ao lugar certo! 
                         </p>
-                        <a href="/equipes">Conheça nossas equipes</a>
-                    </div>
-
-                    <div id={styles.imageContainer}>
-                        <img src="/pse-image.svg" />
+                        <button type="button">Conheça nossas equipes</button>
                     </div>
                 </section>
 
                 <section id={styles.steps}>
-                    <h1>Etapas do nosso processo seletivo.</h1>
+                    <h2>Etapas do nosso processo seletivo.</h2>
                     <div id={styles.stepsContainer}>
                         <div className={styles.oddSteps}>
                             <span className={styles.numberStep}>1</span>
@@ -102,7 +98,7 @@ export default function PSE({ crews }) {
                         </div>
 
                         <div id={styles.warning}>
-                        <h1>Importante</h1>
+                        <h3>Importante</h3>
                         <p>O resultado de cada etapa será encaminhado por e-mail.</p>
                     </div>
                 </section> 

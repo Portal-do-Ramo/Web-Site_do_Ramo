@@ -37,7 +37,7 @@
 }
 
 .cards:hover {
-    background: #0a467a;
+    background: var(--button-trasition);
     transition: background-color .2s ease;
 }
 
