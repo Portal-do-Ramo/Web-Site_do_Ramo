@@ -52,14 +52,26 @@ module.exports = {
   },
 
 	async updateSchedulePSE(startDate, endDate) {
-        const endDateFormatted = new Date(endDate);
+    const endDateFormatted = new Date(endDate);
+    const startDateFormatted = new Date(startDate);
+    let currentDate = new Date();
+
 		try {
-            await knex("pse").select("*").update(startDate, endDate);
-            const job = scheduleJob(endDateFormatted, async () => {
-                console.log("Job run on " + new Date(Date.now()).toTimeString());
-                await knex("pse").delete();
-              });
-            return job;
+      if (!(startDateFormatted instanceof Date && !isNaN(startDateFormatted)) || !(endDateFormatted instanceof Date && !isNaN(endDateFormatted))) {
+        throw new Error("date bad formatted");
+      }
+
+      if (currentDate > startDateFormatted || currentDate > endDateFormatted) {
+        throw new Error("start date must be greater than the current date!");
+      }
+      
+      await knex("pse").select("*").update({start: startDate, end: endDate});
+      const job = scheduleJob(endDateFormatted, async () => {
+        console.log("Job run on " + new Date(Date.now()).toTimeString());
+        await knex("pse").delete();
+      });
+
+      return job;
 		} catch(err) {
 			throw new Error(err.message);
 		}
@@ -81,7 +93,7 @@ module.exports = {
       
       if (data[0]) {
         const endDateFormatted = new Date(data[0].end);
-  
+        
         const job = scheduleJob(endDateFormatted, async () => {
           console.log("Job run on " + new Date(Date.now()).toTimeString());
           await knex("pse").delete();

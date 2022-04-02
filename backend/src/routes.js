@@ -16,6 +16,7 @@ const sendEmail = require('./services/nodemailer');
 
 const auth = require('./middleware/auth');
 const uploadImage = require("./middleware/UploadImage");
+const pseMiddleware = require("./middleware/pseMiddleware")
 
 const upload = multer(uploadImage.getConfig);
 
@@ -43,7 +44,7 @@ router
 	.post("/sponsor", auth, sponsorController.create)
 	.post("/user", auth, userController.create)
 	.post("/login", sessionController.create)
-	.post("/pse", auth, pseController.create) 
+	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, pseController.schedulePSE) 
 	.post("/image/:name", auth, upload.single('picture'), imageController.uploadOne)
 

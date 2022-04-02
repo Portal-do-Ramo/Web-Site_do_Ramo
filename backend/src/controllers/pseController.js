@@ -30,10 +30,10 @@ module.exports =  {
 		const { startDate, endDate } = req.body;
 
 		try {
-		jobScheduled.cancel();
+			jobScheduled.cancel();
 			const response = await pseService.updateSchedulePSE(startDate, endDate);
 			jobScheduled = response;
-			return res.status(200).json(response);
+			return res.status(200).json({ message: "service rescheduled to " + endDate});
 		} catch(err) {
 			return res.status(405).json({message: err.message});
 		}
