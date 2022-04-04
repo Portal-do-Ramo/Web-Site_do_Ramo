@@ -8,7 +8,7 @@ export default function MapGL({actived}) {
         initialViewState={{ latitude: -22.9125953, longitude: -43.2247835, zoom: 15 }}
         style={{ width: 900, height: 500 }}
         mapStyle="mapbox://styles/mapbox/streets-v11"
-        mapboxAccessToken="pk.eyJ1IjoibXZnb2xpdmVpcmEiLCJhIjoiY2wwbDdlcm5oMHRwdDNmcWtnZXYxc2kzbiJ9.ckDPiWO2jWq40oSS9RhGxg"
+        mapboxAccessToken={process.env.MAPBOX_SECRET_KEY}
         attributionControl={false}
       >
         <FullscreenControl/>
