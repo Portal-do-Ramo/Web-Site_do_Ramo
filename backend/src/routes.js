@@ -12,7 +12,7 @@ const pseController = require("./controllers/pseController");
 const sessionController = require("./controllers/sessionController");
 const imageController = require("./controllers/imageController");
 
-const sendEmail = require('./services/nodemailer');
+const sendEmail = require('./services/emailService');
 
 const auth = require('./middleware/auth');
 const uploadImage = require("./middleware/UploadImage");

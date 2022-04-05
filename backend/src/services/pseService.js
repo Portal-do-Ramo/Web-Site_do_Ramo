@@ -1,7 +1,7 @@
 const knex = require("../database");
 const { v4 } = require("uuid");
 const csvHandler = require("../services/csvHandler");
-const { scheduleJob } = require("node-schedule");
+const { scheduleJob, scheduledJobs } = require("node-schedule");
 
 module.exports = {
 	async create(info){
@@ -17,6 +17,12 @@ module.exports = {
     try {
       const endDateFormatted = new Date(endDate);
       const startDateFormatted = new Date(startDate);
+
+      const jobExists = scheduledJobs["scheduleJobPSE"]
+
+      if (jobExists) {
+        throw new Error("Job already exists!");
+      }
 
       if (!(startDateFormatted instanceof Date && !isNaN(startDateFormatted)) || !(endDateFormatted instanceof Date && !isNaN(endDateFormatted))) {
           throw new Error("date bad formatted");
@@ -40,12 +46,12 @@ module.exports = {
         throw new Error("pse already scheduled!");
       }
     
-      const job = scheduleJob(endDateFormatted, async () => {
+      scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
         console.log("Job run on " + new Date(Date.now()).toTimeString());
         await knex("pse").delete();
       });
 
-      return job;
+      return { message: "service scheduled to " + endDate };
 		} catch(err) {
 			throw new Error(err.message);
 		}
@@ -55,6 +61,7 @@ module.exports = {
     const endDateFormatted = new Date(endDate);
     const startDateFormatted = new Date(startDate);
     let currentDate = new Date();
+    const jobExists = scheduledJobs["scheduleJobPSE"];
 
 		try {
       if (!(startDateFormatted instanceof Date && !isNaN(startDateFormatted)) || !(endDateFormatted instanceof Date && !isNaN(endDateFormatted))) {
@@ -64,24 +71,35 @@ module.exports = {
       if (currentDate > startDateFormatted || currentDate > endDateFormatted) {
         throw new Error("start date must be greater than the current date!");
       }
+
+      if (jobExists) {
+        jobExists.cancel();
+      }
       
       await knex("pse").select("*").update({start: startDate, end: endDate});
-      const job = scheduleJob(endDateFormatted, async () => {
+      
+      scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
         console.log("Job run on " + new Date(Date.now()).toTimeString());
         await knex("pse").delete();
       });
 
-      return job;
+      return { message: "service rescheduled to " + endDate};
 		} catch(err) {
 			throw new Error(err.message);
 		}
 	},
 
-	async deleteSchedulePSE(jobScheduled) {
+	async deleteSchedulePSE() {
+    const jobScheduled = scheduledJobs["scheduleJobPSE"];
+
 		try {
-        jobScheduled.cancel();
-        await knex("pse").delete();
-        return {message: "PSE schedule deleted!"};
+        if (jobScheduled) {
+          jobScheduled.cancel();
+          await knex("pse").delete();
+          return {message: "PSE schedule deleted!"};
+        }
+        
+        throw new Error("Schedule does not exists");
 		} catch(err) {
 			throw new Error(err.message);
 		}
@@ -94,7 +112,7 @@ module.exports = {
       if (data[0]) {
         const endDateFormatted = new Date(data[0].end);
         
-        const job = scheduleJob(endDateFormatted, async () => {
+        const job = scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
           console.log("Job run on " + new Date(Date.now()).toTimeString());
           await knex("pse").delete();
         });

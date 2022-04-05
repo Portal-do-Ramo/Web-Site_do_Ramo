@@ -1,4 +1,4 @@
-const mailer = require("../services/nodemailer");
+const mailer = require("../services/emailService");
 
 // VERIFICAR STATUS CODE.
 
