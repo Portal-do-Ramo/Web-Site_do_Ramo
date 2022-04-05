@@ -10,7 +10,7 @@ module.exports = async function googleTransport() {
         process.env.REDIRECT_URI
     )
 
-    oAuth2Client.setCredentials({ refresh_token:process.env.REFRESH_TOKEN})
+    oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN})
 
     const accessToken = await oAuth2Client.getAccessToken()
 
@@ -21,14 +21,14 @@ module.exports = async function googleTransport() {
             user: process.env.SENDER_EMAIL,
             clientId: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            refreshToken: process.env.REFRESH_TOKEN,
+            refreshToken: process.env.REFRESH_TOKEN
         },
         tls: {
             rejectUnauthorized: false
         }
     });
 
-    transport.set("oauth2_provision_cb", () => {
+    transporter.set("oauth2_provision_cb", () => {
         accessToken
     });
 

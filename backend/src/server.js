@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require('cors');
 const routes = require("./routes");
 const {checkSchedulePSE} = require("./controllers/pseController");
+require("dotenv").config();
 
 const app = express();
 

@@ -11,8 +11,7 @@ const userController = require("./controllers/userController");
 const pseController = require("./controllers/pseController");
 const sessionController = require("./controllers/sessionController");
 const imageController = require("./controllers/imageController");
-
-const sendEmail = require('./services/emailService');
+const emailController = require('./controllers/emailController');
 
 const auth = require('./middleware/auth');
 const uploadImage = require("./middleware/UploadImage");
@@ -47,6 +46,7 @@ router
 	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, pseController.schedulePSE) 
 	.post("/image/:name", auth, upload.single('picture'), imageController.uploadOne)
+	.post("/email", emailController.sendCSV)
 
 
 	.delete("/award/:id", awardController.delete)

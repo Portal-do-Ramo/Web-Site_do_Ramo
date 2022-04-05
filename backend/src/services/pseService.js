@@ -2,6 +2,7 @@ const knex = require("../database");
 const { v4 } = require("uuid");
 const csvHandler = require("../services/csvHandler");
 const { scheduleJob, scheduledJobs } = require("node-schedule");
+const emailService = require("../services/emailService");
 
 module.exports = {
 	async create(info){
@@ -47,7 +48,7 @@ module.exports = {
       }
     
       scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-        console.log("Job run on " + new Date(Date.now()).toTimeString());
+        await emailService.sendCSV();
         await knex("pse").delete();
       });
 
@@ -79,7 +80,7 @@ module.exports = {
       await knex("pse").select("*").update({start: startDate, end: endDate});
       
       scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-        console.log("Job run on " + new Date(Date.now()).toTimeString());
+        await emailService.sendCSV();
         await knex("pse").delete();
       });
 
@@ -112,12 +113,17 @@ module.exports = {
       if (data[0]) {
         const endDateFormatted = new Date(data[0].end);
         
-        const job = scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-          console.log("Job run on " + new Date(Date.now()).toTimeString());
+        if (endDateFormatted < new Date()) {
+          await emailService.sendCSV();
           await knex("pse").delete();
-        });
-        
-        return job;
+        } else {
+          scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
+            await emailService.sendCSV();
+            await knex("pse").delete();
+          });
+        }
+
+        return "";
       } else {
         throw new Error("⛔ Schedule does not exists!");
       }

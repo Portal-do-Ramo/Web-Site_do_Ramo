@@ -1,32 +1,36 @@
 const googleTransport = require("../config/emailConfig");
-require("dotenv").config
+const fs = require("fs");
+const path = require("path");
 
+module.exports = {
+    async sendCSV () {
+        let transporter = await googleTransport();
 
+        try {
+            fs.stat('./uploads/pse.csv', (err, stats) => {
+                console.log(stats);
+            })
 
+            await transporter.sendMail({
+                from: `"Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
+                to: `${process.env.GP_EMAIL}`,
+                subject: "Planilha de inscritos PSE",
+                html: '<h1>Inscritos</h1>',
+                attachments:
+                    [
+                        {
+                            filename: 'pse.csv',
+                            path: `${process.env.BASE_URL}/api/uploads/pse.csv`
+                        },
+                    ]
+            })
 
-async function sendCSV() {
-    let transporter = googleTransport();
+            if (fs.existsSync('./uploads/pse.csv'))
+                fs.unlinkSync('./uploads/pse.csv');
 
-    try {
-        await transporter.sendMail({
-            from: `"Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
-            to: `${"markusvi17@gmail.com"}`,
-            subject: "PlGP_EMAILanilha de inscritos PSE",
-            text: 'lorem',
-            html: '<h1>Olá</h1>',
-            // attachments:
-            //     [
-            //         {
-            //             filename: 'pse.csv',
-            //             path: '../../uploads/pse.csv'
-            //         },
-            //     ]
-        })
-    } catch {
-        return false
+            return {message: "arquivo csv enviado"};
+        } catch (error)  {
+            throw new Error(error.message);
+        }
     }
 }
-// }
-
-sendCSV()
-

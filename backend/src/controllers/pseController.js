@@ -45,7 +45,7 @@ module.exports =  {
 	
 	async checkSchedulePSE() {
 		try {
-			const response = await pseService.checkSchedulePSE();
+			await pseService.checkSchedulePSE();
 			console.log("🆗 service scheduled!");
 		} catch (error) {
 			console.log(error.message);
