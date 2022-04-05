@@ -14,7 +14,7 @@ module.exports = {
         let { name, about, image } = req.body;
 
         try{
-            const response = await crewService.create(name, about, image);
+            const response = await crewService.create(name, about, img);
             return res.status(201).json(response);
         } catch(err){
             return res.status(422).json({message: err.message});
