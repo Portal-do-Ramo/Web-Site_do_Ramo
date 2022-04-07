@@ -102,6 +102,16 @@ export default function PSE({ crews }) {
                         <p>O resultado de cada etapa será encaminhado por e-mail.</p>
                     </div>
                 </section> 
+
+                <section className={styles.registerContainer}>
+                    <article className={styles.register}>
+                        <div className={styles.whiteSpace}></div>
+                        <div className={styles.joinContainer}>
+                            <span>Faça parte do nosso time</span>
+                            <button>inscrever-se</button>
+                        </div>
+                    </article>
+                </section>
                   
             </div>
 
