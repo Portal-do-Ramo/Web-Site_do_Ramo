@@ -16,19 +16,19 @@ export default function Header({page, children}) {
 
         <div className={styles.linkContainer}>
           <Link href="/">
-            <a className={page === "inicio" && styles.activeLink}>Inicio</a>
+            <p href="/" className={page === "inicio" && styles.activeLink}>Inicio</p>
           </Link>
 
           <Link href="/sobre" className={styles.activeLink}>
-            <a className={page === "sobre" && styles.activeLink}>Sobre</a>
+            <p className={page === "sobre" && styles.activeLink}>Sobre</p>
           </Link>
 
           <Link href="/equipes">
-            <a className={page === "equipes" && styles.activeLink}>Equipes</a>
+            <p className={page === "equipes" && styles.activeLink}>Equipes</p>
           </Link>
 
           <Link href="/PSE" className={page === "PSE" && styles.activeLink}>
-            <a className={page === "PSE" && styles.activeLink}>Processo Seletivo</a>
+            <p className={page === "PSE" && styles.activeLink}>Processo Seletivo</p>
           </Link>
 
           <Link href="/login">

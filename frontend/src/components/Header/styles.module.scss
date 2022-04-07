@@ -55,7 +55,7 @@
     border-radius: 21px 0px 0px 40px;
     padding: 20px 20px 0 30px;
 
-    a {
+    p, a {
       display: flex;
       text-decoration: none;
       display: inline;
@@ -66,13 +66,14 @@
       margin-left: 0.5rem;
       color: #ffffff;
       margin-bottom: 1.4rem;
+      cursor: pointer;
     }
 
     .activeLink {
       border-bottom: 3px solid white;
     }
     
-    a:hover {
+    p:hover, a:hover {
       color:var(--logo-trasition);
     }
   } 
@@ -127,7 +128,7 @@
     border-radius: 21px 0px 0px 40px;
     padding: 20px 12px 0 30px;
 
-    a {
+    p, a {
       display: flex;
       text-decoration: none;
       display: inline;
@@ -138,13 +139,14 @@
       margin-left: 0.5rem;
       color: #ffffff;
       margin-bottom: 1.4rem;
+      cursor: pointer;
     }
 
     .activeLink {
       border-bottom: 3px solid white;
     }
     
-    a:hover {
+    p:hover, a:hover {
       color:var(--logo-trasition);
     }
   } 

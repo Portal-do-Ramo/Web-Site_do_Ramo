@@ -75,7 +75,7 @@
         row-gap: 80px;
     
         width: 100%;
-        margin-bottom: 20rem;
+        margin-bottom: 100px;
         color: var(--azul-ramo);
         font-family: Poppins;
     
@@ -106,6 +106,7 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: start;
+                    padding: 1rem 0;
 
                     row-gap: 3px;
 
@@ -152,119 +153,72 @@
             }
         }
     }
-    
-/*
-   #inscrevase {
-        margin-top: 5rem;
-    
-        #inscrevaseTitle {
-            font-family: Poppins;
-            font-style: normal;
-            font-size: 2.2rem;
-            color: var(--azul-ramo);
-            display: inline-block;
-            margin-left: 3rem;
-            text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-    
-        #inscrevaseTitle::after {
-            content: '';
-            background: rgba(67, 172, 240, 0.25);
-            display: block;
-            width: 225px;
-            height: 30px;
-            border-radius: 20px;
-            position: relative;
-            bottom: 25px;
-        }
-    
-    
-    
-        #formcontainer {
-            background-color: var(--azul-ramo);
-            border-radius: 20px;
-            padding: 0.5rem;
-            font-family: Poppins;
-    
-            .fildsetWrapper {
-                padding: 1rem 3rem;
-                width: 99%;
-                margin: 1rem auto;
-                background-color: var(--contraste);
-                border-radius: 25px;
-                box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
-    
-                h1 {
-                    color: white;
-                    font-size: 2rem;
-                    font-weight: bold;
-                }
-    
-                fieldset {
-                    display: flex;
-                    flex-direction: row;
-                    border: none;
-                    height: 100%;
-                    max-width: 1300px;
+
+    .registerContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        margin-bottom: 150px;
+        margin-top: 80px;
         
-                    .inputSection{
-                        display: flex;
-                        flex:1;
-                        flex-direction: column;
-                    }
-        
-                    .boxSizing{
-                        display: flex;
-                        flex: 0.2;
-                    }
-        
-                    label {
-                        color: white;
-                    }
-        
-                    input,
-                    select,
-                    textarea {
-                        border: none;
-                        background-color: white;
-                        border-radius: 25px;
-                        padding: 1rem 0.5rem;
-                        margin: 0.5rem 0 1rem 0;
-                    }
-    
-                    #registrationSection{
-                        max-width: 600px;
-                    }
+        .register {
+            display: flex;
+            width: 80vw;
+            background: var(--azul-ramo);
             
-                    #interestsLeftSection {
-                        max-width: 300px;
-                    }
-                }
-    
+
+            .whiteSpace {
+                background: url("../../public/pessoas_trabalhando.svg") no-repeat;
+                background-position: left center;
+                min-width: 590px;
+                margin: -80px 0px -80px -100px;
             }
-    
-            button {
+            
+            .joinContainer {
                 display: flex;
+                flex: 1;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin: 2rem auto;
-                width: 50%;
-                height: 4rem;
-    
-                background-color: var(--contraste);
-                border-radius: 15px;
-                border: 0.1px solid #FFFFFF;
-                box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.25);
+                justify-self: center;
                 
-                p{
-                    color: white;
-                    font-size: 2rem;
+                padding: 70px 0;
+                font-family: Poppins;
+                color: white;
+                width: 100%;
+                
+                span {
+                    text-align: center;
+                    font-size: 1.8rem;
                     font-weight: bold;
-                    font-family: Poppins;
+                    margin-bottom: 15px;
+                    max-width: 210px;
+
+                }
+
+                button {
+                    max-width: 210px;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 1.2rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    padding: 20px 0;
+                    font-size: 1;
+                    border: none;
+                    background-color: #1386D0;
+                    border-radius: 10px;
+                    color: white;      
+                    cursor: pointer;     
+                    transition: .2s ease;                     
+                }
+
+                button:hover {
+                    background-color: #0270b8;
                 }
             }
         }
     }
-*/ 
-    
 }
