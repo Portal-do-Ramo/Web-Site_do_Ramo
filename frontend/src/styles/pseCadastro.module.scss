@@ -1,0 +1,42 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: #EEEEEE;
+  padding-left: 7rem;
+  
+  font-family: 'Poppins', sans-serif;
+  background: url("../../public/fundo-pse-formulario.svg") no-repeat;
+  background-position: -30px center;
+  background-clip: border-box;
+  
+  .pageContent {
+    display: flex;
+    justify-content: space-between;
+    row-gap: 15px;
+
+    width: 80%;
+
+    .leftSide {
+      display: flex;
+      flex-direction: column;
+
+      max-width: 50%;
+
+      .message {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 15px;
+
+        border-radius: 8px;
+        column-gap: 15px;
+        font-size: 50px;
+        background-color: tomato;
+
+        p {
+          font-size: 0.813rem;
+        }
+      }
+    }
+  }
+}
