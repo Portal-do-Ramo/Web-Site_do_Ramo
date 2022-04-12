@@ -1,12 +1,14 @@
 .pageContent {
+
   h1 {
     font-weight: 700;
     color: #fff;
+    font-size: 1.6rem;
   }
 
   > p {
-      font-weight: 300;
-      color: #fff;  
+    font-weight: 300;
+    color: #fff;  
   }
 
   .message {
@@ -33,7 +35,7 @@
       }
   }
 
-  .pageContent {
+  .formSection {
     display: flex;
     justify-content: space-between;
 
@@ -84,13 +86,12 @@
     .leftSide {
       display: flex;
       flex-direction: column;
-
-      max-width: 50%;
-
-        .mainForm {
-            display: flex;
-            flex-direction: column;
-            width: 500px;
+      z-index: 2;
+      width: 500px;
+          
+      .mainForm {
+        display: flex;
+        flex-direction: column;
 
             .nameInputs {
             display: flex;
@@ -139,5 +140,17 @@
             }
           }
     }
+  }
+
+  .rightSide {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 550px;
+    height: 680px;
+    background: url("../../public/pse_formulario.svg") no-repeat;
+    background-position: right bottom;
+    background-clip: border-box;
+    background-size: contain;
   }
 }

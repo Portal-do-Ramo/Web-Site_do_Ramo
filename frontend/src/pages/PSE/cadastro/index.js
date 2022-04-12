@@ -1,11 +1,16 @@
-import styles from '../../../styles/pseCadastro.module.scss';
-import PSEFormHeader from '../../../components/pseFormHeader';
+import { useEffect } from 'react';
 import { useRouter } from "next/router";
+
+import api from '../../../services/api';
+
 import Page1 from './_page1';
 import Page2 from './_page2';
-import { useEffect } from 'react';
+import Page3 from './_page3';
+import PSEFormHeader from '../../../components/pseFormHeader';
+import styles from '../../../styles/pseCadastro.module.scss';
 
-export default function cadastro() {
+
+export default function cadastro({ crewsNames }) {
   const router = useRouter()
   const { page } = router.query;
 
@@ -22,8 +27,23 @@ export default function cadastro() {
 
       { page === "1" && <Page1/> }
       { page === "2" && <Page2/> }
-      {/* { page === "3" && <Page3/> } */}
+      { page === "3" && <Page3 crewsNames={crewsNames}/> }
 
     </section>
   )
+}
+
+export const getStaticProps = async () => {
+  let { data } = await api.get("/crews");
+
+  let crewsNames = data.map( crew => {
+    return crew.name;
+  });
+
+  return {
+    props: {
+      crewsNames
+    },
+    revalidate: 24 * 60 * 60 // 24 Horas
+  }
 }

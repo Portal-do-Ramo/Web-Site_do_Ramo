@@ -3,7 +3,7 @@
   min-height: 100vh;
   min-width: 1150px;
   padding: 0 7rem;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   
   font-family: 'Poppins', sans-serif;
   background: #eee url("../../public/fundo-pse-formulario.svg") no-repeat;
@@ -13,11 +13,16 @@
   h1 {
     font-weight: 700;
     color: #fff;
+    font-size: 1.6rem;
   }
 
   > p {
     font-weight: 300;
     color: #fff;  
+  }
+
+  strong {
+    color: rgb(255, 55, 55);
   }
 
   .message {

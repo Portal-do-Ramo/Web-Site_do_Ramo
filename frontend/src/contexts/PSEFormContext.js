@@ -1,12 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const PSEFormContext = createContext({})
 
 export function PSEFormContextProvider({children}) {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [location, setLocation] = useState("");
+    const [address, setAddress] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [email, setEmail] = useState("");
     const [facebook, setFacebook] = useState("");
     const [LinkedIn, setLinkedIn] = useState("");
     const [instagram, setInstagram] = useState("");
@@ -15,6 +16,28 @@ export function PSEFormContextProvider({children}) {
     const [currentTimeCourse, setCurrentTimeCourse] = useState("");
     const [crew, setCrew] = useState("");
     const [area, setArea] = useState("");
+    const [motivation, setMotivation] = useState("");
+    const [experience, setExperience] = useState("");
+
+    function clearAll() {
+      setName("");
+      setLastName("");
+      setAddress("");
+      setPhoneNumber("");
+      setEmail("");
+      setFacebook("");
+      setInstagram("");
+      setLinkedIn("");
+
+      setRegistration("");
+      setCourse("");
+      setCurrentTimeCourse("");
+      
+      setCrew("");
+      setArea("");
+      setMotivation("");
+      setExperience("");
+    }
 
     return (
       <PSEFormContext.Provider 
@@ -23,10 +46,12 @@ export function PSEFormContextProvider({children}) {
         setName,
         lastName,
         setLastName,
-        location,
-        setLocation,
+        address,
+        setAddress,
         phoneNumber,
         setPhoneNumber,
+        email,
+        setEmail,
         facebook,
         setFacebook,
         LinkedIn,
@@ -39,7 +64,15 @@ export function PSEFormContextProvider({children}) {
         setCourse,
         currentTimeCourse,
         setCurrentTimeCourse,
-
+        crew,
+        setCrew,
+        area,
+        setArea,
+        motivation,
+        setMotivation,
+        experience,
+        setExperience,
+        clearAll
       }}>
           {children}
       </PSEFormContext.Provider>
