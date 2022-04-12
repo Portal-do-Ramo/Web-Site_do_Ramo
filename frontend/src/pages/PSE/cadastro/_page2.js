@@ -61,8 +61,8 @@ export default function Page2() {
           </div>
 
           <div className={styles.buttonsHolder}>
-            <button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=1")}>voltar</button>
-            <button type='button' className={styles.prox}>Próximo</button>
+            <button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=1")}>Voltar</button>
+            <button type='button' className={styles.prox} onClick={() => router.push("/PSE/cadastro?page=3")}>Próximo</button>
           </div>
 
         </div>

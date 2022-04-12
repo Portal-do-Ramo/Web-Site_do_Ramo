@@ -3,6 +3,7 @@ import PSEFormHeader from '../../../components/pseFormHeader';
 import { useRouter } from "next/router";
 import Page1 from './_page1';
 import Page2 from './_page2';
+import Page3 from './_page3';
 import { useEffect } from 'react';
 
 export default function cadastro() {
@@ -22,7 +23,7 @@ export default function cadastro() {
 
       { page === "1" && <Page1/> }
       { page === "2" && <Page2/> }
-      {/* { page === "3" && <Page3/> } */}
+      { page === "3" && <Page3/> }
 
     </section>
   )
