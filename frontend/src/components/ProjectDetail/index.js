@@ -14,6 +14,7 @@ export function ProjectDetail({ project }) {
           }
         </div>
         <div className={styles.projectDescription}>
+          <strong> {project.name} </strong>
           <p>
             {project.description}
           </p>
