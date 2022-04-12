@@ -1,5 +1,38 @@
 .container {
+  display: flex;
+  margin-right: 7rem;
+  align-items: center;
+  padding: 30px 0 50px 0;
+
   img {
     width: 80px;
+  }
+
+  .progressContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 350px;
+
+    .dots {
+      width: 18px;
+      height: 18px;
+      border-radius: 100%;
+      background: #fff;
+    }
+
+    .activeDot {
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      background: #0B95EE;
+    }
+
+    .lines {
+      width: 70px;
+      height: 2px;
+      margin: 0 10px;
+      background: #fff;
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -8,6 +9,8 @@ import { useState } from "react";
 import api from '../../services/api'
 
 export default function PSE({ crews }) {
+    const router = useRouter()
+
     let [values, setValues] = useState({fullname: "", birthdate: "", contact: "", email: "", facebook: "", 
     linkedin: "", instagram: "", registry: "", course: "Administração", period: "1º Período", crew: "WIE", 
     motivation: "", area: "Programação", experience: "", dynamic: "Opção 1"});
@@ -90,7 +93,7 @@ export default function PSE({ crews }) {
                         <div className={styles.whiteSpace}></div>
                         <div className={styles.joinContainer}>
                             <span>Faça parte do nosso time</span>
-                            <button>inscrever-se</button>
+                            <button type="button" onClick={() => router.push("/PSE/cadastro?page=1")}>inscrever-se</button>
                         </div>
                     </article>
                 </section>

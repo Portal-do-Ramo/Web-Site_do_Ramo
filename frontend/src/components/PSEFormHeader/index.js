@@ -1,14 +1,18 @@
 import styles from "./styles.module.scss";
 
-export default function PSEFormHeader() {
+export default function PSEFormHeader({ page }) {
   return (
     <div className={styles.container}>
-      <img src="/Ramo_logo.svg" alt="logo do Ramo"/>
+      <section>
+        <img src="/Ramo_logo.svg" alt="logo do Ramo"/>
+      </section>
 
       <section className={styles.progressContainer}>
-        <article className="dots"></article>
-        <article className="dots"></article>
-        <article className="dots"></article>
+        <article className={page === "1" ? styles.activeDot : styles.dots}></article>
+        <div className={styles.lines}></div>
+        <article className={page === "2" ? styles.activeDot : styles.dots}></article>
+        <div className={styles.lines}></div>
+        <article className={page === "3" ? styles.activeDot : styles.dots}></article>
       </section>
     </div>
   );
