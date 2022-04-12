@@ -7,6 +7,7 @@ import styles from '../../../styles/pseCadastro.module.scss';
 
 export default function Page1() {
   const router = useRouter();
+  
   const { 
     name, 
     setName,
