@@ -32,5 +32,21 @@ module.exports = {
         } catch (error)  {
             throw new Error(error.message);
         }
+    },
+
+    async sendResetPassword(email, password){
+        let transporter = await googleTransport();
+        
+        try {
+            await transporter.sendMail({
+                from: `"Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
+                to: `${email}`,
+                subject: "Recuperação de senha",
+                html: `<h1>Sua nova senha é ${password}</h1>`
+            })
+            return {message: "Email de recuperação de senha enviado"};
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
 }
