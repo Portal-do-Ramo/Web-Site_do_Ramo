@@ -22,17 +22,17 @@ export default function Sobre(){
             description: "Capacitar os membros para que estes repassem o conhecimento de forma atenciosa e com segurança."
         },
         {
-            img: "/valor_4.svg",
+            img: "/valor_4.png",
             title: "Empatia",
             description: "Prezamos a diversidade de pessoas e projetos com a responsabilidade de manter um ambiente confortável, acolhedor e divertido para todo."
         },
         {
-            img: "/valor_5.svg",
+            img: "/valor_5.png",
             title: "Orgulho IEEE",
             description: "Sentimento universal de pertencimento no qual os membros prezam de forma apaixonada pelo desenvolvimento da extensão."
         },
         {
-            img: "/valor_6.svg",
+            img: "/valor_6.png",
             title: "Espírito de liderança",
             description: "Desenvolver, influenciar e estimular a inteligência emocional de nossos membros, formando novos líderes."
         }

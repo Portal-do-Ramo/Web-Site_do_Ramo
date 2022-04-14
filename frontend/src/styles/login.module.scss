@@ -73,22 +73,7 @@
                 text-indent: 15px;
                 font-size: 14px;
             }
-            button{
-                width: 100%;
-                color: white;
-                background-color: var(--azul-ramo);
-                height: 50px;
-                border-radius: 5px;
-                border: none;
-                box-shadow:0 0 20px rgba(32, 31, 31, 0.2) ;
-                cursor: pointer;
-                transition: all .2s;
-                font-weight: bold;
-                font-size: 16px;
-            }
-            button:hover{
-                background-color: var(--contraste);
-            }
+            
             .radioContainer{ 
                 align-self: flex-start;
                 width: 100%;
@@ -111,6 +96,35 @@
                 label{
                     cursor: pointer;
                     font-size: 14px;
+                }
+            }
+
+            .buttonsContainer {
+                display: flex;
+                width: 100%;
+                gap: 20px;
+
+                button {
+                    width: 100%;
+                    color: white;
+                    background-color: var(--azul-ramo);
+                    height: 50px;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                    transition: all .2s;
+                    font-weight: bold;
+                    font-size: 16px;
+
+                    &:first-child {
+                        border: 1px solid var(--azul-ramo);
+                        background: none;
+                        color: var(--azul-ramo);
+                    }
+                
+                    &:hover {
+                        transform: scale(1.02);
+                    }
                 }
             }
             

@@ -1,0 +1,145 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  min-width: 1150px;
+  padding: 0 7rem;
+  padding-bottom: 50px;
+  
+  font-family: 'Poppins', sans-serif;
+  background: #eee url("../../public/fundo-pse-formulario.svg") no-repeat;
+  background-position: left top;
+  background-clip: border-box;
+
+  h1 {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.6rem;
+  }
+
+  > p {
+    font-weight: 300;
+    color: #fff;  
+  }
+
+  strong {
+    color: rgb(255, 55, 55);
+  }
+
+  .message {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px 10px;
+
+    border-radius: 8px;
+    column-gap: 15px;
+    font-size: 3.125rem;
+    background-color: #C8E2FC;
+    max-width: 500px;
+
+    svg {
+      color: #79808F;
+    }
+
+    p {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #0D5FAA;
+    }
+  }
+  
+  .pageContent {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      margin: none;
+      border-radius: 5px;
+      border: 1px solid #CFCFCF;
+      margin-top: 10px;
+      width: 100%;
+      padding: 13px;
+
+      &::placeholder {
+        color: #8B8B8B;
+      }
+    }
+
+    .leftSide {
+      display: flex;
+      flex-direction: column;
+
+      max-width: 50%;
+
+      .mainForm {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+
+        .nameInputs {
+          display: flex;
+          justify-content: space-between;
+          column-gap: 10px;
+        }
+
+        span {
+          margin-top: 15px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #fff;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    .rightSide {
+      display: flex;
+      flex-direction: column;
+      margin-left: 50px;
+      width: 450px;
+
+      span {
+        margin-top: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #000;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      .buttonsHolder {
+        display: flex;
+        justify-content: space-between;
+
+        margin-top: 25px;
+
+        .cancel, .prox {
+          padding: 15px 60px;
+          border: 1px solid #0D5FAA;
+          border-radius: 5px;
+          background-color: transparent;
+          color: #0D5FAA;
+          cursor: pointer;
+          transition: .2s ease;
+          font-weight: 600;
+          font-size: 0.8rem;
+        }
+
+        .cancel:hover, .prox:hover {
+          transform: scale(1.05);
+        }
+
+        .prox {
+          background-color: #0D5FAA;
+          color: white;
+        }
+      }
+    }
+  }
+}

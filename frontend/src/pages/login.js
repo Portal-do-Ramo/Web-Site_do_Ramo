@@ -2,8 +2,11 @@ import styles from "../styles/login.module.scss";
 import { useForm } from 'react-hook-form'
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { useRouter } from "next/router";
 
 export default function Login(){
+    const router = useRouter();
+
     const { register, handleSubmit } = useForm();
     const { signIn } = useContext(AuthContext);
     const [errMessage, setErrMessage] = useState(null);
@@ -41,7 +44,10 @@ export default function Login(){
                         
                     </div><br/>    
                     
-                    <button type="submit">Login</button>
+                    <section className={styles.buttonsContainer}>
+                        <button type="button" onClick={() => router.push("/")}>Voltar</button>
+                        <button type="submit">Login</button>
+                    </section>
                 </form>
 
                 <div></div>

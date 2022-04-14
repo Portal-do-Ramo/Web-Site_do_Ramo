@@ -1,6 +1,7 @@
 import '../styles/global.scss'
 import { AuthContextProvider } from '../contexts/AuthContext'
 import { ImageContextProvider } from '../contexts/ImageContext'
+import { PSEFormContextProvider } from '../contexts/PSEFormContext';
 
 function MyApp({ Component, pageProps }){
 
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }){
       <main>
         <AuthContextProvider>
           <ImageContextProvider>
-            <Component {...pageProps}/>
+            <PSEFormContextProvider>
+              <Component {...pageProps}/>
+            </PSEFormContextProvider>
           </ImageContextProvider>
         </AuthContextProvider>
       </main>

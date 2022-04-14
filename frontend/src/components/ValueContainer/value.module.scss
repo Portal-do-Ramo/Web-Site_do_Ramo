@@ -5,7 +5,7 @@
 
     width: 330px;
     height: 360px;
-    padding: 2.5rem 1rem;
+    padding: 45px 16px 0 16px;
     border-radius: 20px;
     
     text-align: center;
@@ -13,13 +13,12 @@
 
     border: 1px solid #CED3D9;
 
-    img{
-        width: 36%;
-        border-radius: 50%;
+    img {
+        height: 80px;
     }
 
-    h3{
-        margin: 0.5rem 0;
+    h3 {
+        margin: 16px 0 8px 0;
         color: var(--azul-ramo);
         font-size: 20px;
     }

@@ -27,10 +27,10 @@
     }
     
     p {
-      color: #26272c;
+      color: #3A3D45;
       width: 380px;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -39,6 +39,6 @@
 }
 
 .card:hover {
-  background-color: #ECEEEF;
+  background-color: #E9EBED;
   transition: .3s ease;
 }

@@ -35,6 +35,12 @@
 
     gap: 40px;
 
+    > strong {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: -20px;
+    }
+
     p {
       font-size: .9rem;
       line-height: 150%;

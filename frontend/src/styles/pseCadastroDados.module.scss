@@ -1,0 +1,156 @@
+.pageContent {
+
+  h1 {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.6rem;
+  }
+
+  > p {
+    font-weight: 300;
+    color: #fff;  
+  }
+
+  .message {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 20px 0;
+      padding: 10px 10px;
+
+      border-radius: 8px;
+      column-gap: 15px;
+      font-size: 3.125rem;
+      background-color: #C8E2FC;
+      max-width: 500px;
+
+      svg {
+      color: #79808F;
+      }
+
+      p {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #0D5FAA;
+      }
+  }
+
+  .formSection {
+    display: flex;
+    justify-content: space-between;
+
+    input, select {
+      margin: none;
+      border-radius: 5px;
+      border-radius: 5px;
+      border: 1px solid #CFCFCF;
+      margin-top: 10px;
+      width: 100%;
+      padding: 13px;
+      
+      &::placeholder {
+        color: #8B8B8B;
+      }
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+
+      background-image:
+        linear-gradient(45deg, transparent 50%, #8B8B8B 50%),
+        linear-gradient(135deg, #8B8B8B 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+
+      background-position:
+        calc(100% - 20px) calc(1em + 6px),
+        calc(100% - 15.1px) calc(1em + 6px),
+        calc(100% - 2.5em) 0.8em;
+
+      background-size:
+        5px 5px,
+        5px 5px,
+        1px 1.5em;
+
+      background-repeat: no-repeat;
+
+      &:invalid {
+        color: #8B8B8B;
+      }
+    }
+
+    option {
+      color: #000;
+    }
+
+    .leftSide {
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+      width: 500px;
+          
+      .mainForm {
+        display: flex;
+        flex-direction: column;
+
+            .nameInputs {
+            display: flex;
+            justify-content: space-between;
+            column-gap: 10px;
+            }
+
+            span {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #fff;
+
+            &:first-child {
+                margin-top: 0;
+                }
+            }
+        }
+
+        .buttonsHolder {
+            display: flex;
+            justify-content: space-between;
+    
+            margin-top: 50px;
+    
+            .back, .prox {
+              padding: 15px 60px;
+              border: 1px solid white;
+              border-radius: 5px;
+              background-color: transparent;
+              color: white;
+              cursor: pointer;
+              transition: .2s ease;
+              font-weight: 600;
+              font-size: 0.9rem;
+            }
+    
+            .back:hover, .prox:hover {
+              transform: scale(1.05);
+            }
+    
+            .prox {
+              background-color: #0574BC;
+              color: white;
+              border: 0;
+            }
+          }
+    }
+  }
+
+  .rightSide {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 550px;
+    height: 680px;
+    background: url("../../public/pse_formulario.svg") no-repeat;
+    background-position: right bottom;
+    background-clip: border-box;
+    background-size: contain;
+  }
+}
