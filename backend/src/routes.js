@@ -37,7 +37,8 @@ router
 	.patch("/user/:id", userController.update)
 	.patch("/pse/schedule", pseController.updateSchedulePSE) 
 
-	//Fazer rota para encerrar PSE
+	//Fazer rota para encerrar PSE manualmente na mesma hora.
+
 	.post("/award", auth, awardController.create)
 	.post("/crew", auth, crewController.create)
 	.post("/project", auth, projectController.create)
