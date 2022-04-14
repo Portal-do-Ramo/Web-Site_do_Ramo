@@ -11,11 +11,11 @@ const userController = require("./controllers/userController");
 const pseController = require("./controllers/pseController");
 const sessionController = require("./controllers/sessionController");
 const imageController = require("./controllers/imageController");
-
-const sendEmail = require('./services/nodemailer');
+const emailController = require('./controllers/emailController');
 
 const auth = require('./middleware/auth');
 const uploadImage = require("./middleware/UploadImage");
+const pseMiddleware = require("./middleware/pseMiddleware")
 
 const upload = multer(uploadImage.getConfig);
 
@@ -34,6 +34,7 @@ router
 	.patch("/project/:id", projectController.update)
 	.patch("/sponsor/:id", sponsorController.update)
 	.patch("/user/:id", userController.update)
+	.patch("/pse/schedule", pseController.updateSchedulePSE) 
 
 	//Fazer rota para encerrar PSE
 	.post("/award", auth, awardController.create)
@@ -42,14 +43,17 @@ router
 	.post("/sponsor", auth, sponsorController.create)
 	.post("/user", auth, userController.create)
 	.post("/login", sessionController.create)
-	.post("/pse", auth, pseController.create) 
+	.post("/pse", pseMiddleware, pseController.create) 
+	.post("/pse/schedule", auth, pseController.schedulePSE) 
 	.post("/image/:name", auth, upload.single('picture'), imageController.uploadOne)
+	.post("/email", emailController.sendCSV)
 
 
 	.delete("/award/:id", awardController.delete)
 	.delete("/crew/:id", crewController.delete)
 	.delete("/project/:id", projectController.delete)
 	.delete("/sponsor/:id", sponsorController.delete)
+	.delete("/pse/schedule", pseController.deleteSchedulePSE)
 	.delete("/user/:id", userController.delete)
 
 module.exports = router;

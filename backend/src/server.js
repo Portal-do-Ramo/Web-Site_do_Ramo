@@ -1,5 +1,8 @@
 const express = require("express");
 const cors = require('cors');
+const routes = require("./routes");
+const {checkSchedulePSE} = require("./controllers/pseController");
+require("dotenv").config();
 
 const app = express();
 
@@ -7,9 +10,12 @@ app.use(cors());
 app.use(express.urlencoded({extended: true}));
 
 
-const routes = require("./routes");
-
 app.use(express.json());
 app.use("/api", routes);
 
-app.listen(5000);
+const port = 5000;
+
+app.listen(port, async () => {
+  await checkSchedulePSE();
+  console.log("🚀 App is running on port:", port);
+});
