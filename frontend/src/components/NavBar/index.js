@@ -18,7 +18,7 @@ export default function NavBar() {
           <h1>Equipes</h1>
         </Link>
 
-        <Link href="/">
+        <Link href="/marketing/PSE">
           <h1>PSE</h1>
         </Link>       
       </div>

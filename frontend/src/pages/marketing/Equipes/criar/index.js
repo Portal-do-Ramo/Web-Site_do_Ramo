@@ -1,8 +1,6 @@
 import NavBar from "../../../../components/NavBar"
 import styles from "../criar/styles.module.scss"
 
-import { BsCamera } from 'react-icons/bs'
-
 export default function Criar({ crews }){
   return (
     <div className={styles.all}>
@@ -30,6 +28,11 @@ export default function Criar({ crews }){
                     <h1>Descrição da equipe</h1>
                     <textarea placeholder='Digite a descrição da equipe'></textarea>
 
+                </div>
+
+                <div className={styles.buttonRow}>
+                    <button className={styles.cancel}>Cancelar</button>
+                    <button className={styles.edit}>Editar</button>
                 </div>
             </div>
         </div>
