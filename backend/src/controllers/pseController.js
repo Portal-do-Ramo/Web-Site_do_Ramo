@@ -12,6 +12,15 @@ module.exports =  {
 		}
 	},
 
+	async getSchedulePSE(req, res) {
+		try {
+			const response = await pseService.getSchedulePSE();
+			return res.status(200).json(response);
+		} catch(err) {
+			return res.status(405).json({message: err.message});
+		}
+	},
+
 	async schedulePSE(req, res) {
 		const { startDate, endDate } = req.body;
 

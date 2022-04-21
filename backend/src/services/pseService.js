@@ -14,6 +14,15 @@ module.exports = {
 		}
 	},
 
+  async getSchedulePSE(){
+    try {
+      const data = await knex("pse").select("start", "end").first();
+      return data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
+
   async schedulePSE(startDate, endDate) {
     try {
       const endDateFormatted = new Date(endDate);

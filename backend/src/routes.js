@@ -28,6 +28,7 @@ router
 	.get("/sponsors", sponsorController.index)
 	.get("/users", userController.index)
 	.get("/uploads/:name", imageController.getByName)
+	.get("/pse", pseController.getSchedulePSE)
 	
 	
 	.patch("/award/:id", awardController.update)
