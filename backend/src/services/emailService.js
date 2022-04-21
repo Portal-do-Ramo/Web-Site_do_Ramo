@@ -1,6 +1,7 @@
 const googleTransport = require("../config/emailConfig");
 const fs = require("fs");
 const path = require("path");
+const handlebars = require("handlebars");
 
 module.exports = {
     async sendCSV () {
@@ -34,15 +35,44 @@ module.exports = {
         }
     },
 
-    async sendResetPassword(email, password){
+    // async sendResetPassword(name, email, password){
+    //     let transporter = await googleTransport();
+        
+    //     try {
+    //         await transporter.sendMail({
+    //             from: `"Site do Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
+    //             to: `${email}`,
+    //             subject: "Recuperação de senha",
+    //             html: `<h1>Sua nova senha é ${password}</h1>`
+    //         })
+    //         return {message: "Email de recuperação de senha enviado"};
+    //     } catch (error) {
+    //         throw new Error(error.message);
+    //     }
+    // }
+
+    async sendResetPassword(name, email, password){
         let transporter = await googleTransport();
         
+        const pathTemplate = path.join(__dirname, "..", "views", "emails", "resetPasswordMail.hbs");
+
+        const templateFileContent = fs.readFileSync(pathTemplate, "utf-8");
+        
+        const mailTemplateParse = handlebars.compile(templateFileContent);
+
+        const html = mailTemplateParse({name, password});
+
         try {
             await transporter.sendMail({
-                from: `"Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
+                from: `"Site do Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
                 to: `${email}`,
                 subject: "Recuperação de senha",
-                html: `<h1>Sua nova senha é ${password}</h1>`
+                html,
+                attachments: [{
+                    filename: 'logo-ramo-azul.png',
+                    path: __dirname + "../../../uploads/logo-ramo-azul.png",
+                    cid: 'logo-ramo-azul'
+                }]
             })
             return {message: "Email de recuperação de senha enviado"};
         } catch (error) {

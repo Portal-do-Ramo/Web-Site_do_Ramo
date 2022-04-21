@@ -5,7 +5,7 @@ const emailService = require("../services/emailService");
 module.exports = {
 
     async resetPassword(email){
-        const user = await knex("users").select("email").where({email}).first();
+        const user = await knex("users").select("email", "name").where({email}).first();
 
         try {
             if(!user)
@@ -15,7 +15,7 @@ module.exports = {
             const hash = await bcrypt.hash(newPassword, 10);
 
             await knex("users").update({password: hash}).where({email});
-            const response = await emailService.sendResetPassword(user.email, newPassword);
+            const response = await emailService.sendResetPassword(user.name, user.email, newPassword);
             return response;
         } catch (error) {
             throw new Error(error.message);
