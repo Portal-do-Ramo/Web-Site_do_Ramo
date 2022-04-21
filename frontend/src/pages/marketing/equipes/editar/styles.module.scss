@@ -1,0 +1,52 @@
+.all {
+    display: flex;
+    font-family: 'Poppins';
+    min-height: 100vh;
+
+    .pageContent {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-height: 100vh;
+        margin-left: 350px;
+        background-color: var(--marketing-brackground);
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            row-gap: 40px;
+            margin-left: 10rem;
+
+            width: 80%;
+
+            .upperRow {
+                display: flex;
+                column-gap: 40px;
+            }
+
+            .lowerRow {
+                display: flex;
+                column-gap: 40px;
+            }
+
+            .upperRow, .lowerRow {
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    width: fit-content;
+                    row-gap: 0px;
+    
+                    padding: 25px 50px;
+    
+                    border: 1px solid lightgray;
+                    border-radius: 20px;
+                    background-color: #fff;
+
+                    width: 350px;
+                }
+            }   
+        }
+    }
+}

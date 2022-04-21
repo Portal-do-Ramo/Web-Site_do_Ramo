@@ -1,14 +1,16 @@
 .all {
     display: flex;
     font-family: 'Poppins';
-    max-height: 100vh;
-
+    min-height: 100vh;
+    background-color: var(--marketing-brackground);
+    padding-bottom: 50px;
+    
     .pageContent {
+        margin-left: 350px;
         display: flex;
         justify-content: center;
 
         width: 100%;
-        background-color: #E2E2E7;
 
         .content {
             display: flex;
@@ -16,12 +18,13 @@
             align-items: center;
 
             width: 80%;
-            margin-top: 200px;
+            margin-top: 150px;
             row-gap: 40px;
 
             .row {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 width: 100%;
 
                 h1 {
@@ -35,15 +38,16 @@
 
                 .link {
                     display: flex;
+                    height: 75%;
                     justify-content: center;
                     align-items: center;
                     column-gap: 10px;
-                    padding: 0px 40px;
+                    padding: 0px 30px;
                     border: 0;
                     border-radius: 12px;
-                    color: white;
+                    color: #fff;
                     background-color: var(--azul-ramo);
-                    font-size: 1.25rem;
+                    font-size: 1rem;
                     cursor: pointer;
                 }
 
@@ -56,7 +60,7 @@
             .crewsList {
                 display: flex;
                 flex-direction: column;
-                overflow-y: scroll;
+                
 
                 width: 100%;
 
@@ -67,7 +71,18 @@
                     padding: 20px 0;
                     padding-right: 30px;
                     width: 100%;
-                    border-top: 2px solid lightgray;
+                    border-top: 2px solid #E2E2E7;
+
+                    .gearConfig {
+                        background: none;
+                        color: var(--azul-ramo);
+                        width: 60px;
+                        height: 60px;
+
+                        &:hover {
+                            background: #BFD6EC;
+                        }
+                    }
 
                     .name {
                         display: flex;
@@ -77,8 +92,8 @@
                         img {
                             padding: 10px;
                             border-radius: 12px;
-                            background-color: rgb(50, 50, 50);
-                            max-height: 90px;
+                            background-color: #3F434F;
+                            max-height: 80px;
                         }
     
                         h2 {

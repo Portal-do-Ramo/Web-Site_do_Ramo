@@ -34,8 +34,8 @@ export default function Equipesmkt({ crews }){
                             <img src={crew.image}/>
                             <h2>{crew.name}</h2>
                           </div>
-                          <Link className={styles.link} href={"/marketing/Equipes/editar"}>
-                            <span><BsFillGearFill/></span>
+                          <Link href={`/marketing/equipes/editar/${crew.id}`}>
+                            <span className={styles.gearConfig}><BsFillGearFill/></span>
                           </Link>
                         </div>
                       )

@@ -1,9 +1,10 @@
 .all {
     display: flex;
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
     max-height: 100vh;
 
     .pageContent {
+        margin-left: 300px;
         display: flex;
         overflow-y: scroll;
 
@@ -25,7 +26,7 @@
                 display: flex;
                 column-gap: 20px;
                 padding-bottom: 40px;
-                border-bottom: 1px solid white;
+                border-bottom: 1px solid #E9EAF0;
 
                 img {
                     height: 300px;
@@ -38,13 +39,20 @@
                     align-items: center;
                     padding: 50px 50px;
                     width: 50%;
-                    height: 58%;
+                    height: 169px;
+                    text-align: center;
 
 
-                    background-color: #E9EAF0;
+                    background-color: #e9eaf0;
                     row-gap: 20px;
+                    
+                    span {
+                        font-size: 1rem;
+                        font-weight: 800;
+                        color: #525252;
+                    }
 
-                    h1, p {
+                    span, p {
                       font-size: 1rem;
                     }
 
@@ -52,7 +60,7 @@
                         width: 80%;
                         text-align: center;
                     }
-
+                    
                     .dates {
                         display: flex;
                         justify-content: center;
@@ -63,6 +71,7 @@
                             justify-content: center;
                             align-items: center;
                             padding: 10px 20px;
+                            white-space: nowrap;
 
                             font-size: 13px;
                             font-weight: bold;
@@ -88,11 +97,12 @@
                 flex-direction: column;
                 row-gap: 50px;
 
-                padding-bottom: 40px;
-                border-bottom: 1px solid white;
+                padding-bottom: 50px;
+                border-bottom: 1px solid #E9EAF0;
 
-                h1 {
-                    font-size: 1.5rem;
+                span {
+                    font-size: 1.3rem;
+                    font-weight: 800;
                 }
 
                 .rowDates {
@@ -101,17 +111,54 @@
 
                     column-gap: 20px;
 
+                    p {
+                        font-weight: 600;
+                    }
+
                     .begin, .end {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        padding: 15px 30px;
+                        height: 100%;
+                        padding: 0 10px;
 
-                        font-size: 1rem;
+                        font-size: .9rem;
                         font-weight: bold;
                         border-radius: 5px;
                         color: var(--contraste);
                         background-color: #CDD9E8;
+
+                        input {
+                            background: #CDD9E8;
+                            color: var(--contraste);
+                            font-weight: bold;
+                            border: none;
+                            font-family: 'Poppins', sans-serif;
+
+                            &::-webkit-datetime-edit{
+                                display: flex;
+                                justify-content: center;
+                                padding: 5px;
+                                max-width: 150px;
+                                font-weight: 800;
+                                font-size: .9rem;
+                            }
+                            
+                            &::-webkit-datetime-edit-fields-wrapper{
+                            }
+                            
+                            &::-webkit-datetime-edit-text{
+                            }
+                            
+                            &::-webkit-inner-spin-button{
+                            }
+                            
+                            &::-webkit-calendar-picker-indicator{
+                                margin-left: 0px;
+                                display: none;
+                            }
+                        }
+
                     }
 
                     button {
@@ -127,7 +174,6 @@
                     
                         &:hover {
                             transform: scale(1.05);
-                            letter-spacing: 0.5px;
                         }
                     }
                 }
@@ -139,14 +185,16 @@
                 row-gap: 10px;
                 padding-bottom: 120px;
 
-                width: 60%;
+                width: 450px;
 
-                h1 {
-                    font-size: 1.5rem;
+                span {
+                    font-size: 1.3rem;
+                    font-weight: 800;
                 }
 
                 p {
                     font-size: 0.875rem;
+                    font-weight: 500;
                 }
 
                 button {
@@ -164,7 +212,6 @@
                 
                     &:hover {
                         transform: scale(1.05);
-                        letter-spacing: 0.5px;
                     }
                 }
             }
@@ -173,16 +220,20 @@
 }
 
 .modal {
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 110px 200px;
 
     position: absolute;
-    top: 100px;
-    left: 300px;
-    right: 300px;
-    bottom: 100px;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);   
 
     row-gap: 5px;
     background-color: white;
@@ -201,7 +252,8 @@
         margin-top: 10px;
         
         .cancel, .shutDown {
-            width: fit-content;
+            font-family: 'Poppins', sans-serif;
+            width: 150px;
             padding: 15px 20px;
             border: 0;
             border-radius: 5px;
@@ -209,13 +261,16 @@
             cursor: pointer;
             transition: .2s ease;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: .9rem;
             margin-top: 20px;
         
             &:hover {
                 transform: scale(1.05);
-                letter-spacing: 0.5px;
             }
+        }
+
+        .cancel {
+            font-weight: 500;
         }
 
         .shutDown {
@@ -231,5 +286,5 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.5);
 }

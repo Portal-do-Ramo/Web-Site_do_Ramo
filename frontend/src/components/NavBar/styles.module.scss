@@ -1,6 +1,8 @@
 .all{
   display: flex;
   flex-direction: column;
+  position: fixed;
+  align-items: center;
 
   width: 350px;
   min-height: 100vh;
@@ -13,7 +15,7 @@
     margin-top: 50px;
   }
 
-  .edit{
+  .edit {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,10 +23,10 @@
 
     margin-top: 150px;
 
-    h1{
+    h1 {
       font-size: 1.3rem;
       font-weight: bold;
-      margin: 15px 0;
+      margin: 25px 0;
       cursor: pointer;
     }
 

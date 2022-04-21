@@ -13,7 +13,7 @@
   --wie-trasition: #c6547c;
   --logo-trasition: #04213b;
   --button-trasition: #0a467a;
-  --marketing-brackground: #E2E2E7;
+  --marketing-brackground: #F4F4F6;
   --gray: #333333;
 }
 
@@ -34,11 +34,11 @@ label {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
+  box-shadow: inset 0 0 2px #a5a5a5;
   
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #919191;
+  background: #c4c4c4;
 }
