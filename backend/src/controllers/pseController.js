@@ -15,8 +15,27 @@ module.exports =  {
 	async schedulePSE(req, res) {
 		const { startDate, endDate } = req.body;
 
+		const info = Object.values({
+			nomeCompleto: "usuário de controle [ignorar essa inscrição]",
+			dataDeNascimento: "usuário de controle [ignorar essa inscrição]", 
+			celular: "usuário de controle [ignorar essa inscrição]", 
+			eMail: "usuário de controle [ignorar essa inscrição]", 
+			facebook: "usuário de controle [ignorar essa inscrição]", 
+			linkedIn: "usuário de controle [ignorar essa inscrição]",
+			instagram: "usuário de controle [ignorar essa inscrição]",
+			matricula: "usuário de controle [ignorar essa inscrição]",
+			curso: "usuário de controle [ignorar essa inscrição]",
+			periodo: "usuário de controle [ignorar essa inscrição]",
+			equipe: "usuário de controle [ignorar essa inscrição]",
+			porQuaisMotivos: "usuário de controle [ignorar essa inscrição]",
+			area: "usuário de controle [ignorar essa inscrição]",
+			experiencia: "usuário de controle [ignorar essa inscrição]",
+			diaDaDinamica: "usuário de controle [ignorar essa inscrição]"
+		});
+
 		try {
 			const response = await pseService.schedulePSE(startDate, endDate);
+			pseService.create(info);
 			return res.status(200).json(response);
 		} catch(err) {
 			return res.status(405).json({message: err.message});

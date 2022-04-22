@@ -3,6 +3,7 @@ const { v4 } = require("uuid");
 const csvHandler = require("../services/csvHandler");
 const { scheduleJob, scheduledJobs } = require("node-schedule");
 const emailService = require("../services/emailService");
+const fs = require("fs");
 
 module.exports = {
 	async create(info){
@@ -22,11 +23,15 @@ module.exports = {
       const jobExists = scheduledJobs["scheduleJobPSE"]
 
       if (jobExists) {
-        throw new Error("Job already exists!");
+          throw new Error("Job already exists!");
       }
 
       if (!(startDateFormatted instanceof Date && !isNaN(startDateFormatted)) || !(endDateFormatted instanceof Date && !isNaN(endDateFormatted))) {
           throw new Error("date bad formatted");
+      }
+
+      if (fs.existsSync('./uploads/pse.csv')) {
+          fs.unlinkSync('./uploads/pse.csv');
       }
 
       const data = await knex("pse").select("*");
@@ -35,7 +40,7 @@ module.exports = {
           let currentDate = new Date();
 
           if (currentDate > startDateFormatted || currentDate > endDateFormatted) {
-            throw new Error("start date must be greater than the current date!");
+              throw new Error("start date must be greater than the current date!");
           }
           
           await knex("pse").insert({
@@ -65,12 +70,17 @@ module.exports = {
     const jobExists = scheduledJobs["scheduleJobPSE"];
 
 		try {
+
+      if (!jobExists) {
+        throw new Error("agendamento não existe!");
+      }
+
       if (!(startDateFormatted instanceof Date && !isNaN(startDateFormatted)) || !(endDateFormatted instanceof Date && !isNaN(endDateFormatted))) {
-        throw new Error("date bad formatted");
+        throw new Error("data mal formatada!");
       }
 
       if (currentDate > startDateFormatted || currentDate > endDateFormatted) {
-        throw new Error("start date must be greater than the current date!");
+        throw new Error("data de início precisa ser maior que a data atual!");
       }
 
       if (jobExists) {
@@ -97,6 +107,11 @@ module.exports = {
         if (jobScheduled) {
           jobScheduled.cancel();
           await knex("pse").delete();
+
+          if (fs.existsSync('./uploads/pse.csv')) {
+            fs.unlinkSync('./uploads/pse.csv');
+          }
+          
           return {message: "PSE schedule deleted!"};
         }
         
