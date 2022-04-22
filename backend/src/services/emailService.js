@@ -7,6 +7,14 @@ module.exports = {
     async sendCSV () {
         let transporter = await googleTransport();
 
+        const pathTemplate = path.join(__dirname, "..", "views", "emails", "CSVEmail.hbs");
+
+        const templateFileContent = fs.readFileSync(pathTemplate, "utf-8");
+        
+        const mailTemplateParse = handlebars.compile(templateFileContent);
+
+        const html = mailTemplateParse({name, password});
+
         try {
             fs.stat('./uploads/pse.csv', (err, stats) => {
                 console.log(stats);
@@ -15,14 +23,19 @@ module.exports = {
             await transporter.sendMail({
                 from: `"Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
                 to: `${process.env.GP_EMAIL}`,
-                subject: "Planilha de inscritos PSE",
-                html: '<h1>Inscritos</h1>',
+                subject: "Planilha de inscritos do PSE!",
+                html,
                 attachments:
                     [
                         {
                             filename: 'pse.csv',
                             path: `${process.env.BASE_URL}/api/uploads/pse.csv`
                         },
+                        {
+                            filename: 'logo-ramo-azul.png',
+                            path: __dirname + "../../../uploads/logo-ramo-azul.png",
+                            cid: 'logo-ramo-azul'
+                        }
                     ]
             })
 
@@ -34,22 +47,6 @@ module.exports = {
             throw new Error(error.message);
         }
     },
-
-    // async sendResetPassword(name, email, password){
-    //     let transporter = await googleTransport();
-        
-    //     try {
-    //         await transporter.sendMail({
-    //             from: `"Site do Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
-    //             to: `${email}`,
-    //             subject: "Recuperação de senha",
-    //             html: `<h1>Sua nova senha é ${password}</h1>`
-    //         })
-    //         return {message: "Email de recuperação de senha enviado"};
-    //     } catch (error) {
-    //         throw new Error(error.message);
-    //     }
-    // }
 
     async sendResetPassword(name, email, password){
         let transporter = await googleTransport();
@@ -66,7 +63,7 @@ module.exports = {
             await transporter.sendMail({
                 from: `"Site do Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
                 to: `${email}`,
-                subject: "Recuperação de senha",
+                subject: "Recuperação de senha!",
                 html,
                 attachments: [{
                     filename: 'logo-ramo-azul.png',
