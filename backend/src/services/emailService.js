@@ -5,6 +5,10 @@ const handlebars = require("handlebars");
 
 module.exports = {
     async sendCSV () {
+        if (!fs.existsSync('./uploads/pse.csv')) {
+            throw new Error("Não existe arquivo CSV!");
+        }
+
         let transporter = await googleTransport();
 
         const pathTemplate = path.join(__dirname, "..", "views", "emails", "CSVEmail.hbs");
@@ -13,15 +17,11 @@ module.exports = {
         
         const mailTemplateParse = handlebars.compile(templateFileContent);
 
-        const html = mailTemplateParse({name, password});
+        const html = mailTemplateParse();
 
         try {
-            fs.stat('./uploads/pse.csv', (err, stats) => {
-                console.log(stats);
-            })
-
             await transporter.sendMail({
-                from: `"Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
+                from: `"Site do Ramo Estudantil IEEE CEFET-RJ" <${process.env.SENDER_EMAIL}>`,
                 to: `${process.env.GP_EMAIL}`,
                 subject: "Planilha de inscritos do PSE!",
                 html,
