@@ -1,14 +1,13 @@
 .all {
     display: flex;
     font-family: 'Poppins';
-    max-height: 100vh;
+    height: 100vh;
+    background-color: var(--marketing-brackground);
 
     .pageContent {
         display: flex;
-
-        width: 100%;
-        background-color: var(--marketing-brackground);
-        
+        margin-left: 350px;
+        width: 100%;       
 
         .content {
             display: flex;

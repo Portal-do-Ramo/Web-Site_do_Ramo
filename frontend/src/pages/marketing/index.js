@@ -4,7 +4,7 @@ import styles from "../../styles/marketing.module.scss";
 export default function inicial() {
   return (
     <div className={styles.all}>
-      <NavBar />
+      <NavBar page="home" />
       <div className={styles.container}>
         <h1>Seja bem-vindo, Admin</h1>
         <p>

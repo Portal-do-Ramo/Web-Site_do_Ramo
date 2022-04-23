@@ -6,7 +6,7 @@ import PSEAgendado from "./_PSEAgendado";
 export default function PSE(){
     return (
         <div className={styles.all}>
-            <NavBar/>
+            <NavBar page="pse"/>
             
 
             <div className={styles.pageContent}>

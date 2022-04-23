@@ -12,39 +12,39 @@
         background-color: var(--marketing-brackground);
 
         .content {
-            display: flex;
-            flex-direction: column;
-            row-gap: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             margin-left: 10rem;
+            width: fit-content;
 
-            width: 80%;
-
-            .upperRow {
+            button {
                 display: flex;
-                column-gap: 40px;
-            }
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: fit-content;
+                
+                padding: 25px 50px;
 
-            .lowerRow {
-                display: flex;
-                column-gap: 40px;
-            }
+                border: 1px solid lightgray;
+                border-radius: 20px;
+                background-color: #fff;
+                cursor: pointer;
 
-            .upperRow, .lowerRow {
-                button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                    width: fit-content;
-                    row-gap: 0px;
-    
-                    padding: 25px 50px;
-    
-                    border: 1px solid lightgray;
-                    border-radius: 20px;
-                    background-color: #fff;
+                &:hover {
+                    transform: scale(1.05);
+                    transition: .2s ease;
+                }
 
-                    width: 350px;
+                img {
+                    width: 240px;
+                    height: 240px;
+                }    
+                
+                span {
+                    font-size: 1rem;
+                    font-weight: 600;
                 }
             }   
         }
