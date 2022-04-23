@@ -10,28 +10,28 @@ export default function Manage({ crew }){
 
       <div className={styles.pageContent}>
         <div className={styles.content}>
-          <Link href={`marketing/equipes/editar/${crew.id}/gerenciar-projetos`}>
+          <Link href={`${crew.id}/gerenciar_projetos`}>
             <button>
               <img src="/gerenciarProjetos.svg"></img>
               <span>Gerênciar Projetos</span>
             </button>
           </Link>
 
-          <Link href={`marketing/equipes/editar/${crew.id}/gerenciar-premios`}>
+          <Link href={`${crew.id}/gerenciar-premios`}>
             <button>
                 <img src="/gerenciarPremios.svg"></img>
                 <span>Gerênciar Prêmios</span>
               </button>
           </Link>
 
-          <Link href={`marketing/equipes/editar/${crew.id}/editar-equipe`}>
+          <Link href={`${crew.id}/editar-equipe`}>
             <button>
                 <img src="/editarEquipe.svg"></img>
                 <span>Editar Equipe</span>
               </button>
           </Link>
 
-          <Link href={`marketing/equipes/editar/${crew.id}/excluir-equipe`}>
+          <Link href={`${crew.id}/excluir-equipe`}>
             <button>
               <img src="/excluirEquipe.svg"></img>
               <span>Excluir Equipe</span>

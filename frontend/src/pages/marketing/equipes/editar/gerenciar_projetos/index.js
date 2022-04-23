@@ -47,12 +47,20 @@ export default function Equipesmkt({ crews }){
   )
 }
 
-export const getServerSideProps = async () => {
-  let {data : crews} = await api.get("/crews");
+export async function getServerSideProps(ctx) {
+  const { crewId } = ctx.params;
 
-  return {
-    props: {
-      crews
+  try {
+    let { data } = await api.get(`/crews/${crewId}/gerenciar_projetos`);
+    
+    return {
+      props: {
+        crew: data
+      }
+    }
+  } catch (error) {
+    return {
+      notFound: true
     }
   }
 }
