@@ -6,7 +6,7 @@ import api from '../../../services/api'
 import { BiPlusMedical } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
 
-export default function Equipesmkt({ crews }){
+export default function equipes({ crews }){
   return (
     <div className={styles.all}>
       <NavBar page="equipes"/>
@@ -34,7 +34,7 @@ export default function Equipesmkt({ crews }){
                             <img src={crew.image}/>
                             <h2>{crew.name}</h2>
                           </div>
-                          <Link href={`/marketing/equipes/editar/${crew.id}`}>
+                          <Link href={`/marketing/equipes/${crew.id}`}>
                             <span className={styles.gearConfig}><BsFillGearFill/></span>
                           </Link>
                         </div>

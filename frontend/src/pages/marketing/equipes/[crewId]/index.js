@@ -1,42 +1,45 @@
-import NavBar from "../../../../components/NavBar"
+import NavBar from "../../../../components/NavBar";
 import api from "../../../../services/api";
-import styles from "./styles.module.scss"
-import Link from "next/link";
+import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-export default function Manage({ crew }){ 
+export default function equipe({ crew }){ 
+    const router = useRouter();
+
+    function handleSelectOption(option) {
+        router.push(`${crew.id}/${option}`);    
+    }
+
+    useEffect(() => {
+      console.log(crew);
+    }, [])
+
   return (
     <div className={styles.all}>
-      <NavBar/>
+      <NavBar page="equipes"/>
 
       <div className={styles.pageContent}>
         <div className={styles.content}>
-          <Link href={`${crew.id}/gerenciar_projetos`}>
-            <button>
+            <button type="button" onClick={() => handleSelectOption("projetos")}>
               <img src="/gerenciarProjetos.svg"></img>
-              <span>Gerênciar Projetos</span>
+              <span>Gerenciar Projetos</span>
             </button>
-          </Link>
 
-          <Link href={`${crew.id}/gerenciar-premios`}>
-            <button>
+            <button type="button" onClick={() => handleSelectOption("premios")}>
                 <img src="/gerenciarPremios.svg"></img>
-                <span>Gerênciar Prêmios</span>
+                <span>Gerenciar Prêmios</span>
               </button>
-          </Link>
 
-          <Link href={`${crew.id}/editar-equipe`}>
-            <button>
+            <button type="button" onClick={() => handleSelectOption("editar")}>
                 <img src="/editarEquipe.svg"></img>
                 <span>Editar Equipe</span>
               </button>
-          </Link>
 
-          <Link href={`${crew.id}/excluir-equipe`}>
-            <button>
+            <button type="button">
               <img src="/excluirEquipe.svg"></img>
               <span>Excluir Equipe</span>
             </button>
-          </Link>
         </div>
       </div>
     </div>

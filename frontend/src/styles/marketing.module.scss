@@ -21,13 +21,24 @@
   }
 
   .container {
-    width: 70%;
-    height: 20vh;
-    margin: 10%;
-    text-align: center;
-    border: 1px solid gray;
-    border-radius: 5px;
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    margin-left: 350px;
 
+    section {
+      display: flex;
+      flex-direction: column;  
+      width: 750px;
+
+      text-align: center;
+      border: 1px solid gray;
+      border-radius: 5px;
+      height: 20vh;
+    }
+    
     h1 {
       padding-top: 0.8rem;
       height: 4rem;
