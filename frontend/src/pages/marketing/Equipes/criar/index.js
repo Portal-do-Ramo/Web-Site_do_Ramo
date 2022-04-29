@@ -32,7 +32,7 @@ export default function Criar({ crews }){
 
                 <div className={styles.buttonRow}>
                     <button className={styles.cancel}>Cancelar</button>
-                    <button className={styles.edit}>Editar</button>
+                    <button className={styles.edit}>Criar</button>
                 </div>
             </div>
         </div>

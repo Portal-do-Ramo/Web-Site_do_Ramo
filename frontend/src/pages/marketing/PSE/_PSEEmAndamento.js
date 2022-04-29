@@ -1,4 +1,4 @@
-import Modal from 'react-modal'; //falta fazer o modal!! npm install react-modal
+import Modal from 'react-modal';
 import { useEffect, useState } from "react";
 import styles from "../PSE/styles.module.scss"
 

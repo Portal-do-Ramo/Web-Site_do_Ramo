@@ -1,0 +1,121 @@
+.all {
+    display: flex;
+    font-family: 'Poppins';
+    height: 100vh;
+    background-color: var(--marketing-brackground);
+
+    .pageContent {
+        display: flex;
+        margin-left: 350px;
+        width: 100%;       
+
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-left: 10rem;
+            row-gap: 40px;
+
+            width: 50%;
+
+            
+
+            .logoName {
+                display: flex;
+                justify-content: space-between;
+
+                h1 {
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+
+                .logoHolder {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+
+                    input {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        width: 150px;
+                        height: 150px;
+
+                        border-radius: 8px;
+                        background-color: #3F434F;
+                        color: white;
+
+                        background-image: url('/camera_icon.svg');
+                        background-repeat: no-repeat;
+                        background-size: 80px;
+                        background-position: center;
+                    }
+                }
+
+                .nameHolder {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+
+                    input {
+                        margin: none;
+                        border-radius: 5px;
+                        border: 1px solid #CFCFCF;
+                        margin-top: 10px;
+                        width: 400px;
+                        padding: 13px;
+                    }
+                }
+                
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+
+                h1 {
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+
+                textarea {
+                    margin: none;
+                    border-radius: 5px;
+                    border: 1px solid #CFCFCF;
+                    margin-top: 10px;
+                    width: 100%;
+                    height: 150px;
+                    padding: 13px;
+                    resize: none;
+                }
+            }
+
+            .buttonRow {
+                display: flex;
+                column-gap: 30px;
+
+                .cancel, .edit {
+                    padding: 15px 60px;
+                    border: 0;
+                    border-radius: 5px;
+                    background-color: #D5E0EC;
+                    color: #0D5FAA;
+                    cursor: pointer;
+                    transition: .2s ease;
+                    font-weight: 600;
+                    font-size: 0.8rem;
+                  }
+
+                  .cancel:hover, .edit:hover {
+                    transform: scale(1.05);
+                  }
+          
+                  .edit {
+                    background-color: #0D5FAA;
+                    color: white;
+                  }
+            }
+        }
+    }
+}
