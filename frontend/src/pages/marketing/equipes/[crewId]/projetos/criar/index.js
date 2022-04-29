@@ -1,10 +1,10 @@
 import NavBar from "../../../../../../components/NavBar"
 import styles from "../criar/styles.module.scss"
 
-export default function CriarProjeto({ crew }){
+export default function CriarProjeto(){
   return (
     <div className={styles.all}>
-      <NavBar/>
+      <NavBar page={"equipes"}/>
 
         <div className={styles.pageContent}>
             <div className={styles.content}>
@@ -44,21 +44,3 @@ export default function CriarProjeto({ crew }){
     </div>
   )
 }
-
-export async function getServerSideProps(ctx) {
-    const { projectId } = ctx.params;
-  
-    try {
-      let { data } = await api.get(`/projetos/${projectId}`);
-      
-      return {
-        props: {
-          crew: data
-        }
-      }
-    } catch (error) {
-      return {
-        notFound: true
-      }
-    }
-  }
