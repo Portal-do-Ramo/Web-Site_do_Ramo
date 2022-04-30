@@ -3,13 +3,12 @@
     font-family: 'Poppins';
     min-height: 100vh;
     background-color: var(--marketing-brackground);
-    padding-bottom: 50px;
     
     .pageContent {
-        margin-left: 350px;
         display: flex;
-        justify-content: center;
-        margin-top: 80px;
+        margin-left: 510px;
+        margin-top: 40px;
+        row-gap: 40px;
         width: 100%;
 
         .content {

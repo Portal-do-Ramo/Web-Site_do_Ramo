@@ -2,7 +2,7 @@
     font-family: 'Poppins', sans-serif;
     color: var(--azul-ramo);
     font-weight: 600;
-    margin-bottom: 40px;
+    align-self: flex-start;
 
     .content {
         display: flex;
@@ -12,6 +12,7 @@
 
         span {
             border-radius: 10px;
+            font-size: 0.8rem;
             padding: 5px 15px;
             cursor: pointer;
             background: #BACFE3;
