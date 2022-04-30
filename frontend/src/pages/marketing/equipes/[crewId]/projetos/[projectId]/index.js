@@ -4,8 +4,9 @@ import api from "../../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoutes";
 
-export default function projeto({ project }){ 
+export default function projeto({ crew, project }){ 
     const router = useRouter();
     const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -30,8 +31,12 @@ export default function projeto({ project }){
         <NavBar page="equipes"/>
   
         <div className={styles.pageContent}>
-          <div className={styles.content}>
+          <MarketingMenuRoutes 
+            routesName={`Equipes/${crew.name}/Projetos/${project.name}`} 
+            routes={`Equipes/${crew.id}/Projetos/${project.id}`}
+          />
 
+          <div className={styles.content}>
             <section id={styles.upper}>
               <img src={project.image}></img>
               <div className={styles.nameSub}>
@@ -80,6 +85,7 @@ export async function getServerSideProps(ctx) {
   try {
     let { data } = await api.get(`/crews/${crewId}`);
 
+    let crew = data;
     let project = data.projects.find(project => project.id === Number(projectId));
 
     if (!project) {
@@ -88,6 +94,7 @@ export async function getServerSideProps(ctx) {
     
     return {
       props: {
+        crew,
         project
       }
     }

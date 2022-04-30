@@ -1,4 +1,5 @@
 import NavBar from "../../../components/NavBar"
+import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
 import Link from "next/link";
 import styles from "../../../styles/marketingEquipes.module.scss"
 import api from '../../../services/api'
@@ -13,6 +14,7 @@ export default function equipes({ crews }){
 
       <div className={styles.pageContent}>
           <div className={styles.content}>
+              <MarketingMenuRoutes routesName={`Equipes`} routes={`Equipes`}/>
               <div className={styles.row}>
                   <div className={styles.text}>
                       <h1>Lista de Equipes</h1>
@@ -29,7 +31,7 @@ export default function equipes({ crews }){
               <div className={styles.crewsList}>
                     {crews.map((crew) => { 
                       return(
-                        <div className={styles.crewRow}>
+                        <div className={styles.crewRow} key={crew.id}>
                           <div className={styles.name}>
                             <img src={crew.image}/>
                             <h2>{crew.name}</h2>

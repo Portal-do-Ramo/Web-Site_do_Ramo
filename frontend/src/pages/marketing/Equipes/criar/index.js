@@ -1,13 +1,15 @@
+import MarketingMenuRoutes from "../../../../components/marketingMenuRoutes"
 import NavBar from "../../../../components/NavBar"
 import styles from "../criar/styles.module.scss"
 
 export default function Criar({ crews }){
   return (
     <div className={styles.all}>
-      <NavBar/>
+      <NavBar page="equipes"/>
 
         <div className={styles.pageContent}>
             <div className={styles.content}>
+                <MarketingMenuRoutes routesName={`Equipes/Criar`} routes={`Equipes/Criar`}/>
                 <h1>Criar Equipe</h1>
 
                 <div className={styles.logoName}>

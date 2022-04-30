@@ -6,10 +6,11 @@
     padding-bottom: 50px;
     
     .pageContent {
-        margin-left: 350px;
         display: flex;
-        justify-content: center;
-
+        flex-direction: column;
+        margin-left: 455px;
+        padding: 80px 0;
+        align-items: flex-start;
         width: 100%;
 
         .content {
@@ -18,7 +19,7 @@
             align-items: center;
 
             width: 80%;
-            margin-top: 150px;
+            margin-top: 30px;
             row-gap: 40px;
 
             .row {

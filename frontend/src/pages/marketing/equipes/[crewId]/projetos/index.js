@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { BiPlusMedical } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
+import MarketingMenuRoutes from "../../../../../components/MarketingMenuRoutes";
 
 export default function projetos({ crew }){ 
     const router = useRouter();
@@ -19,6 +20,10 @@ export default function projetos({ crew }){
         <NavBar page="equipes"/>
   
         <div className={styles.pageContent}>
+            <MarketingMenuRoutes 
+                routesName={`Equipes/${crew.name}/Projetos`} 
+                routes={`Equipes/${crew.id}/Projetos`}
+            />
             <div className={styles.content}>
                 <div className={styles.row}>
                     <div className={styles.text}>

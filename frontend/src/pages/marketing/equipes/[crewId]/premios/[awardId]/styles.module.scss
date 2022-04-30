@@ -5,18 +5,17 @@
 
     .pageContent {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         width: 100vw;
-        margin-left: 350px;
+        padding: 80px 0;
+        padding-left: 455px;
         background-color: var(--marketing-brackground);
 
         .content {
             display: flex;
             flex-direction: column;
             gap: 40px;
-            margin-left: 10rem;
-            width: 60%;
-
 
             #upper {
                 display: flex;
@@ -49,6 +48,7 @@
                 display: flex;
                 justify-content: space-around;
                 padding-top: 20px;
+                gap: 40px;
             }
 
             button {

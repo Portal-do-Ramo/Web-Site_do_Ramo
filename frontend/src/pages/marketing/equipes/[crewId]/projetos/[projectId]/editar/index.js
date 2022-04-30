@@ -2,8 +2,9 @@ import NavBar from "../../../../../../../components/NavBar";
 import api from "../../../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
+import MarketingMenuRoutes from "../../../../../../../components/MarketingMenuRoutes";
 
-export default function projetoEditar({ crew }){ 
+export default function projetoEditar({ crew, project }){ 
     const router = useRouter();
 
     function handleSelectOption(option) {
@@ -15,8 +16,13 @@ export default function projetoEditar({ crew }){
         <NavBar page={"equipes"}/>
   
           <div className={styles.pageContent}>
+              <MarketingMenuRoutes 
+                routesName={`Equipes/${crew.name}/Projetos/${project.name}/Editar`} 
+                routes={`Equipes/${crew.id}/Projetos/${project.id}/Editar`}
+              />
+
               <div className={styles.content}>
-                  <h1>Criar Projeto</h1>
+                  <h1>Editar Projeto</h1>
   
                   <div className={styles.logoBanner}>
                       <div className={styles.logoHolder}>
@@ -59,14 +65,22 @@ export default function projetoEditar({ crew }){
 }
 
 export async function getServerSideProps(ctx) {
-  const { crewId } = ctx.params;
+  const { crewId, projectId } = ctx.params;
 
   try {
     let { data } = await api.get(`/crews/${crewId}`);
+
+    let crew = data;
+    let project = data.projects.find(project => project.id === Number(projectId));
+
+    if (!project) {
+        throw new Error("id do projeto não existe");
+    }
     
     return {
       props: {
-        crew: data
+        crew,
+        project
       }
     }
   } catch (error) {

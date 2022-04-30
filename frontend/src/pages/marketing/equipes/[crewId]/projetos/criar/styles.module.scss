@@ -6,16 +6,17 @@
 
     .pageContent {
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         overflow-y: scroll;
-        margin-left: 350px;
-        width: 100%;       
+        padding: 80px 0;
+        margin-left: 455px;
+        width: 100vw;       
 
         .content {
             display: flex;
             justify-content: center;
             flex-direction: column;
-            margin-left: 10rem;
-            margin-top: 200px;
             row-gap: 40px;
 
             width: 50%;

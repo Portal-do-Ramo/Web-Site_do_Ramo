@@ -4,6 +4,7 @@ import api from "../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import MarketingMenuRoutes from "../../../../components/MarketingMenuRoutes";
 
 export default function equipe({ crew }){ 
     const router = useRouter();
@@ -30,6 +31,7 @@ export default function equipe({ crew }){
       <NavBar page="equipes"/>
 
       <div className={styles.pageContent}>
+        <MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`Equipes/${crew.id}`}/>
         <div className={styles.content}>
             <button type="button" onClick={() => handleSelectOption("projetos")}>
               <img src="/gerenciarProjetos.svg"></img>

@@ -1,12 +1,16 @@
 import NavBar from "../../../../../../components/NavBar"
 import styles from "../criar/styles.module.scss"
+import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoutes";
+import api from "../../../../../../services/api";
 
-export default function CriarProjeto(){
+export default function CriarProjeto({ crew, project}){
   return (
     <div className={styles.all}>
       <NavBar page={"equipes"}/>
 
         <div className={styles.pageContent}>
+            <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Projetos/Criar`} routes={`Equipes/${crew.id}/Projetos/Criar`}/>
+
             <div className={styles.content}>
                 <h1>Criar Projeto</h1>
 
@@ -49,3 +53,27 @@ export default function CriarProjeto(){
     </div>
   )
 }
+
+export async function getServerSideProps(ctx) {
+    const { crewId } = ctx.params;
+  
+    try {
+      let { data } = await api.get(`/crews/${crewId}`);
+  
+      let crew = data;
+      
+      if (!crew) {
+        throw new Error("id do projeto não existe");
+      }
+  
+      return {
+        props: {
+          crew
+        }
+      }
+    } catch (error) {
+      return {
+        notFound: true
+      }
+    }
+  }

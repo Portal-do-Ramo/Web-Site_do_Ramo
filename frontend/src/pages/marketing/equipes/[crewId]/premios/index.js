@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { BiPlusMedical } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
+import MarketingMenuRoutes from "../../../../../components/MarketingMenuRoutes";
 
 export default function premios({ crew }){ 
     const router = useRouter();
@@ -20,6 +21,7 @@ export default function premios({ crew }){
   
         <div className={styles.pageContent}>
             <div className={styles.content}>
+                <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Prêmios`} routes={`Equipes/${crew.id}/Premios`}/>
                 <div className={styles.row}>
                     <div className={styles.text}>
                         <h1>Lista de Prêmios</h1>

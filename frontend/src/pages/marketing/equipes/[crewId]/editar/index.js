@@ -2,6 +2,7 @@ import NavBar from "../../../../../components/NavBar";
 import api from "../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
+import MarketingMenuRoutes from "../../../../../components/MarketingMenuRoutes";
 
 export default function equipeEditar({ crew }){ 
     const router = useRouter();
@@ -15,6 +16,7 @@ export default function equipeEditar({ crew }){
         <NavBar/>
   
           <div className={styles.pageContent}>
+              <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Editar`} routes={`Equipes/${crew.id}/Editar`}/>
               <div className={styles.content}>
                   <h1>Editar Equipe</h1>
   

@@ -4,6 +4,7 @@ import api from "../../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoutes";
 
 export default function premio({ crew, award }){ 
     const router = useRouter();
@@ -30,6 +31,7 @@ export default function premio({ crew, award }){
         <NavBar page="equipes"/>
   
         <div className={styles.pageContent}>
+          <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Prêmios/${award.name}`} routes={`Equipes/${crew.id}/Premios`}/>
           <div className={styles.content}>
 
             <section id={styles.upper}>
@@ -80,6 +82,7 @@ export async function getServerSideProps(ctx) {
   try {
     let { data } = await api.get(`/crews/${crewId}`);
 
+    let crew = data;
     let award = data.awards.find(award => award.id === Number(awardId));
     
     if (!award) {
@@ -88,6 +91,7 @@ export async function getServerSideProps(ctx) {
 
     return {
       props: {
+        crew,
         award
       }
     }
