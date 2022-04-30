@@ -227,11 +227,13 @@
       ],
       "awards": [
         {
+          "id" : 1, 
           "name": "Melhor equipe do ramo 2021 :)",
           "year": "2018",
-          "placing": "2"
+          "placing": "1"
         },
         {
+          "id" : 2, 
           "name": "Premio 2",
           "year": "2018",
           "placing": "2"

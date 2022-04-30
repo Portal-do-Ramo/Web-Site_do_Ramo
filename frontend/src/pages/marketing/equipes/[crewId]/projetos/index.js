@@ -38,8 +38,8 @@ export default function projetos({ crew }){
                         return(
                           <div className={styles.crewRow}>
                             <div className={styles.name}>
-                              <img src={crew.image}/>
-                              <h2>{crew.name}</h2>
+                              <img src={project.image}/>
+                              <h2>{project.name}</h2>
                             </div>
                             <Link href={`/marketing/equipes/${crew.id}/projetos/${project.id}`}>
                               <span className={styles.gearConfig}><BsFillGearFill/></span>

@@ -6,6 +6,7 @@
 
     .pageContent {
         display: flex;
+        overflow-y: scroll;
         margin-left: 350px;
         width: 100%;       
 
@@ -14,22 +15,21 @@
             justify-content: center;
             flex-direction: column;
             margin-left: 10rem;
+            margin-top: 200px;
             row-gap: 40px;
 
             width: 50%;
 
-            
-
-            .logoName {
+            .logoBanner {
                 display: flex;
                 justify-content: space-between;
 
-                h1 {
+                span {
                     font-size: 1rem;
                     font-weight: 500;
                 }
 
-                .logoHolder {
+                .logoHolder, .bannerHolder {
                     display: flex;
                     flex-direction: column;
                     row-gap: 15px;
@@ -53,47 +53,70 @@
                     }
                 }
 
+                .bannerHolder {
+                    input {
+                        width: 410px;
+                    }
+                }         
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                row-gap: 20px;
+
+                span {
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+
                 .nameHolder {
                     display: flex;
                     flex-direction: column;
-                    row-gap: 15px;
 
                     input {
                         margin: none;
                         border-radius: 5px;
                         border: 1px solid #CFCFCF;
                         margin-top: 10px;
-                        width: 400px;
                         padding: 13px;
                     }
                 }
-                
-            }
 
-            .description {
-                display: flex;
-                flex-direction: column;
+                .descriptionHolder {
+                    display: flex;
+                    flex-direction: column;
 
-                h1 {
-                    font-size: 1rem;
-                    font-weight: 500;
+                    textarea {
+                        margin: none;
+                        border-radius: 5px;
+                        border: 1px solid #CFCFCF;
+                        margin-top: 10px;
+                        width: 100%;
+                        height: 150px;
+                        padding: 13px;
+                        resize: none;
+                    }
                 }
 
-                textarea {
-                    margin: none;
-                    border-radius: 5px;
-                    border: 1px solid #CFCFCF;
-                    margin-top: 10px;
-                    width: 100%;
-                    height: 150px;
-                    padding: 13px;
-                    resize: none;
+                .members {
+                    display: flex;
+                    flex-direction: column;
+                    
+                    input {
+                        margin: none;
+                        border-radius: 5px;
+                        border: 1px solid #CFCFCF;
+                        margin-top: 10px;
+                        padding: 13px;
+                    }  
                 }
             }
 
             .buttonRow {
                 display: flex;
                 column-gap: 30px;
+                padding-bottom: 50px;
 
                 .cancel, .edit {
                     padding: 15px 60px;

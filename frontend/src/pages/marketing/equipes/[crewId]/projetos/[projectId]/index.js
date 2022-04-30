@@ -33,9 +33,9 @@ export default function projeto({ project }){
           <div className={styles.content}>
 
             <section id={styles.upper}>
-              <img></img>
+              <img src={project.image}></img>
               <div className={styles.nameSub}>
-                <span>Site do Ramo</span>
+                <span>{project.name}</span>
                 <p>{project.members.length} Membros</p>
               </div>
             </section>
