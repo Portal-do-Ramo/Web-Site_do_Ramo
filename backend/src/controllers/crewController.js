@@ -11,10 +11,9 @@ module.exports = {
     },
 
     async create(req, res) {
-        let { name, about, image } = req.body;
-
+        let { name, about } = req.body;
         try{
-            const response = await crewService.create(name, about, image);
+            const response = await crewService.create(name, about);
             return res.status(201).json(response);
         } catch(err){
             return res.status(422).json({message: err.message});

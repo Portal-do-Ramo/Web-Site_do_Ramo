@@ -7,7 +7,8 @@ module.exports = {
         return sponsors;
     },
 
-    async create(name, imageURL, link) {
+    async create(name, link) {
+        let imageURL = name.toLowerCase() + "_avatar.png";
         try {
             await knex("sponsors").insert({
                 id: v4(), 
@@ -36,7 +37,7 @@ module.exports = {
             let confirmation = await knex('sponsors').where({id}).delete();
 
             if(confirmation > 1){
-                return {message: "Prêmios foram deletados"};
+                return {message: "Patrocinadores foram deletados"};
             } 
 
             return {message: "Patrocinador deletado!"};

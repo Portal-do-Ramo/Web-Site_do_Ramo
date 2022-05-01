@@ -7,10 +7,10 @@ module.exports = {
 	},
 
 	async create(req, res) {
-		let { name, imageURL, link } = req.body;
+		let { name, link } = req.body;
 
 		try {
-			const response = await sponsorService.create(name, imageURL, link);
+			const response = await sponsorService.create(name, link);
 			return res.status(201).json(response);
 		} catch (err) {
 			return res.status(422).json({ message: err.message });

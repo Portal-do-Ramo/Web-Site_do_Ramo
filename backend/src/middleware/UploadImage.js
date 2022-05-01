@@ -21,10 +21,10 @@ module.exports = {
       filename: (req, file, cb) => {
         //renomeia o arquivo
         if (file.mimetype === "image/svg+xml" || file.mimetype === "image/svg") {
-          cb(null, `${req.params.name}.svg`);
+          cb(null, `${req.params.name.toLowerCase()}.svg`);
         }
 
-        cb(null, `${req.params.name}.png`);
+        cb(null, `${req.params.name.toLowerCase()}.png`);
       }
     });
   },

@@ -7,14 +7,12 @@ module.exports = {
     },
 	
     async create(req, res){ 
-        let { name, description, imageURL, logoURL, members, crew_name, beginning, ended } = req.body;
+        let { name, description, members, crew_name, beginning, ended } = req.body;
         
         try {
             const response = await projectService.create(
                 name,
                 description,
-                imageURL,
-                logoURL,
                 members,
                 crew_name,
                 beginning,
