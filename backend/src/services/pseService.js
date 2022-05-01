@@ -30,9 +30,9 @@ module.exports = {
           throw new Error("date bad formatted");
       }
 
-      if (fs.existsSync('./uploads/pse.csv')) {
-          fs.unlinkSync('./uploads/pse.csv');
-      }
+      // if (fs.existsSync('./uploads/pse.csv')) {
+      //     fs.unlinkSync('./uploads/pse.csv');
+      // }
 
       const data = await knex("pse").select("*");
 
@@ -145,5 +145,26 @@ module.exports = {
     } catch (error) {
       throw new Error(error.message);
     }
-	}
+	},
+
+  async endPse(){
+    const jobExists = scheduledJobs["scheduleJobPSE"];
+
+    try {
+      if (!jobExists) {
+        throw new Error("agendamento não existe!");
+      }
+
+      if (jobExists) {
+        jobExists.cancel();
+      }
+      await emailService.sendCSV();
+      await knex("pse").delete();
+
+      return { message: "pse encerrado"}
+      
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }

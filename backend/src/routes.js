@@ -28,6 +28,7 @@ router
 	.get("/sponsors", sponsorController.index)
 	.get("/users", userController.index)
 	.get("/uploads/:name", imageController.getByName)
+	.get("/pse/end", auth, pseController.endPse)
 	
 	
 	.patch("/award/:id", awardController.update)
@@ -37,7 +38,6 @@ router
 	.patch("/user/:id", userController.update)
 	.patch("/pse/schedule", pseController.updateSchedulePSE) 
 
-	//Fazer rota para encerrar PSE manualmente na mesma hora.
 
 	.post("/award", auth, awardController.create)
 	.post("/crew", auth, crewController.create)

@@ -69,6 +69,15 @@ module.exports =  {
 		} catch (error) {
 			console.log(error.message);
 		}
+	},
+
+	async endPse(req, res) {
+		try {
+			const response = await pseService.endPse();
+			return res.status(200).json(response);
+		} catch (err) {
+			return res.status(400).json({message: err.message});
+		}
 	}
 }
 
