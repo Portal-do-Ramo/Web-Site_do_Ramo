@@ -5,19 +5,20 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
     async index() {
-        const users = await knex("users").select("name", "email");
+        const users = await knex("users").select("name", "email", "admin");
         return users;
     },
 
-    async create(name, email, password) {
+    async create(name, email, password, admin) {
         try {
             const userValidation = Joi.object({
                 name: Joi.string().min(3).required(),    
                 email: Joi.string().min(6).email().required(),
-                password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required()     
+                password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required(),
+                admin: Joi.boolean().required()
             });
         
-            userValidation.validate({name, email, password});
+            userValidation.validate({name, email, password, admin});
             
             const user = await knex("users").select("name").where({email}).first();
 
@@ -32,6 +33,7 @@ module.exports = {
                 name,
                 email,
                 password: hash,
+                admin
             });
 
             return {message: "Usuário Cadastrado"};
