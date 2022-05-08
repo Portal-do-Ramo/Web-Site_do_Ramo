@@ -6,10 +6,10 @@ export default function NavBar({ page }) {
   return (
     <div className={styles.all}>
       <div className={styles.title}>
-        <Image src="/Ramo_logo.svg" width="auto" height="90%" />
+        <Image src="/Ramo_logo.svg" width="90px" height="100%" />
       </div>
 
-      <div className={styles.edit}>
+      <div className={styles.routes}>
         <Link href={`/marketing`}>
             <h1 className={page === "home" && styles.border}>Home</h1>
         </Link>
@@ -21,6 +21,17 @@ export default function NavBar({ page }) {
         <Link href="/marketing/PSE">
           <h1 className={page === "pse" && styles.border}>PSE</h1>
         </Link>       
+      </div>
+
+      <div className={styles.user}>
+        <section className={styles.userImage}>
+
+        </section>
+
+        <section className={styles.userInfo}>
+          <span>Nome NomeNomeNomeNome</span>
+          <p>marketing</p>
+        </section>
       </div>
     </div>
   );
