@@ -9,7 +9,10 @@ export default function CriarProjeto({ crew, project}){
       <NavBar page={"equipes"}/>
 
         <div className={styles.pageContent}>
-            <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Projetos/Criar`} routes={`Equipes/${crew.id}/Projetos/Criar`}/>
+            <MarketingMenuRoutes 
+              routesName={`Equipes/${crew.name}/Projetos/Criar`} 
+              routes={`equipes/${crew.id}/projetos/criar`}
+            />
 
             <div className={styles.content}>
                 <h1>Criar Projeto</h1>

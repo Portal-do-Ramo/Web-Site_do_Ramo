@@ -31,7 +31,11 @@ export default function premio({ crew, award }){
         <NavBar page="equipes"/>
   
         <div className={styles.pageContent}>
-          <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Prêmios/${award.name}`} routes={`Equipes/${crew.id}/Premios`}/>
+          <MarketingMenuRoutes
+            routesName={`Equipes/${crew.name}/Prêmios/${award.name}`} 
+            routes={`equipes/${crew.id}/premios/${award.id}`}
+          />
+
           <div className={styles.content}>
 
             <section id={styles.upper}>

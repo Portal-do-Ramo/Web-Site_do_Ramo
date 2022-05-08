@@ -7,11 +7,7 @@ export default function MarketingMenuRoutes({ routesName, routes }) {
     const router = useRouter();
     
     function handleChangeRoute(index) {
-        const LOWERsplittedRoutes = splittedRoute.map(route => {
-            return route.toLowerCase();
-        }); 
-
-        let selectedRoute = LOWERsplittedRoutes.slice(0, index+1).join("/");
+        let selectedRoute = splittedRoute.slice(0, index+1).join("/");
 
         router.push(`/marketing/${selectedRoute}`);    
     }

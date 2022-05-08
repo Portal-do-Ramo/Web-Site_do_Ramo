@@ -31,7 +31,7 @@ export default function equipe({ crew }){
       <NavBar page="equipes"/>
 
       <div className={styles.pageContent}>
-        <MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`Equipes/${crew.id}`}/>
+        <MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`equipes/${crew.id}`}/>
         <div className={styles.content}>
             <button type="button" onClick={() => handleSelectOption("projetos")}>
               <img src="/gerenciarProjetos.svg"></img>

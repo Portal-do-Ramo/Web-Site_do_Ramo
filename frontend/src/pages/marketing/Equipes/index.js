@@ -14,7 +14,7 @@ export default function equipes({ crews }){
 
       <div className={styles.pageContent}>
           <div className={styles.content}>
-              <MarketingMenuRoutes routesName={`Equipes`} routes={`Equipes`}/>
+              <MarketingMenuRoutes routesName={`Equipes`} routes={`equipes`}/>
               <div className={styles.row}>
                   <div className={styles.text}>
                       <h1>Lista de Equipes</h1>

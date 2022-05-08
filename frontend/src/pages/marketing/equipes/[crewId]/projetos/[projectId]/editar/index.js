@@ -18,7 +18,7 @@ export default function projetoEditar({ crew, project }){
           <div className={styles.pageContent}>
               <MarketingMenuRoutes 
                 routesName={`Equipes/${crew.name}/Projetos/${project.name}/Editar`} 
-                routes={`Equipes/${crew.id}/Projetos/${project.id}/Editar`}
+                routes={`equipes/${crew.id}/projetos/${project.id}/editar`}
               />
 
               <div className={styles.content}>

@@ -33,7 +33,7 @@ export default function projeto({ crew, project }){
         <div className={styles.pageContent}>
           <MarketingMenuRoutes 
             routesName={`Equipes/${crew.name}/Projetos/${project.name}`} 
-            routes={`Equipes/${crew.id}/Projetos/${project.id}`}
+            routes={`equipes/${crew.id}/projetos/${project.id}`}
           />
 
           <div className={styles.content}>

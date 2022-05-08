@@ -16,7 +16,10 @@ export default function equipeEditar({ crew }){
         <NavBar/>
   
           <div className={styles.pageContent}>
-              <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Editar`} routes={`Equipes/${crew.id}/Editar`}/>
+              <MarketingMenuRoutes
+                routesName={`Equipes/${crew.name}/Editar`} 
+                routes={`equipes/${crew.id}/editar`}
+              />
               <div className={styles.content}>
                   <h1>Editar Equipe</h1>
   

@@ -16,8 +16,8 @@
         .content {
             display: flex;
             flex-direction: column;
-            margin-left: 10rem;
-            margin-top: 150px;
+            margin: 0 10rem;
+            margin-top: 0px;
             row-gap: 50px;
 
             width: 80%;
@@ -39,6 +39,8 @@
                     align-items: center;
                     padding: 50px 50px;
                     width: 50%;
+                    min-width: 410px;
+                    max-width: 500px;
                     height: 169px;
                     text-align: center;
 

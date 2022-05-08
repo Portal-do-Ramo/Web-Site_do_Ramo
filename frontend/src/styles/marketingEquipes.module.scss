@@ -7,7 +7,6 @@
     
     .pageContent {
         margin-left: 510px;
-        margin-top: 50px;
         display: flex;
 
         width: 100%;
@@ -18,6 +17,7 @@
             align-items: flex-start;
 
             width: 80%;
+            min-width: 450px;
             row-gap: 40px;
 
             .row {

@@ -21,7 +21,10 @@ export default function premios({ crew }){
   
         <div className={styles.pageContent}>
             <div className={styles.content}>
-                <MarketingMenuRoutes routesName={`Equipes/${crew.name}/Prêmios`} routes={`Equipes/${crew.id}/Premios`}/>
+                <MarketingMenuRoutes 
+                  routesName={`Equipes/${crew.name}/Prêmios`} 
+                  routes={`equipes/${crew.id}/premios`}
+                />
                 <div className={styles.row}>
                     <div className={styles.text}>
                         <h1>Lista de Prêmios</h1>

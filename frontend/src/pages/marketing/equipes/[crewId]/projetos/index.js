@@ -22,7 +22,7 @@ export default function projetos({ crew }){
         <div className={styles.pageContent}>
             <MarketingMenuRoutes 
                 routesName={`Equipes/${crew.name}/Projetos`} 
-                routes={`Equipes/${crew.id}/Projetos`}
+                routes={`equipes/${crew.id}/projetos`}
             />
             <div className={styles.content}>
                 <div className={styles.row}>
