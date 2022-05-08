@@ -8,9 +8,8 @@ export default function Criar({ crews }){
       <NavBar page="equipes"/>
 
         <div className={styles.pageContent}>
-            <MarketingMenuRoutes routesName={`Equipes/Criar`} routes={`equipes/criar`}/>
-
             <div className={styles.content}>
+                <MarketingMenuRoutes routesName={`Equipes/Criar`} routes={`equipes/criar`}/>
                 <h1>Criar Equipe</h1>
 
                 <div className={styles.logoName}>

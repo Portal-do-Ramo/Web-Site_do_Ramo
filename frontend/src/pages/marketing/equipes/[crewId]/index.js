@@ -31,8 +31,13 @@ export default function equipe({ crew }){
       <NavBar page="equipes"/>
 
       <div className={styles.pageContent}>
-        <MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`equipes/${crew.id}`}/>
+        <section className={styles.menuRoutes}>
+          <MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`equipes/${crew.id}`}/>
+        </section>
+        
         <div className={styles.content}>
+          
+          <section className={styles.grid}>
             <button type="button" onClick={() => handleSelectOption("projetos")}>
               <img src="/gerenciarProjetos.svg"></img>
               <span>Gerenciar Projetos</span>
@@ -52,6 +57,7 @@ export default function equipe({ crew }){
               <img src="/excluirEquipe.svg"></img>
               <span>Excluir Equipe</span>
             </button>
+          </section>
 
             <Modal 
             isOpen={modalIsOpen}

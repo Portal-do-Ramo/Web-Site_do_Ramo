@@ -1,25 +1,32 @@
 .all {
     display: flex;
-    font-family: 'Poppins';
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--marketing-brackground);
+    font-family: 'Poppins', sans-serif;
+
+    input {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    textarea {
+        font-family: 'Poppins', sans-serif;
+    }
 
     .pageContent {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-left: 510px;
-        row-gap: 30px;
-
-        width: 100%;       
-
+        margin-left: 300px;
+        justify-content: center;
+        align-items: baseline;
+        width: 100%;
+        
         .content {
+            width: 80%;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             flex-direction: column;
-            width: 60%;
             row-gap: 40px;
+            padding-bottom: 50px;
 
             .logoName {
                 display: flex;
@@ -59,6 +66,8 @@
                     display: flex;
                     flex-direction: column;
                     width: 100%;
+                    max-width: 300px;
+                    min-width: 230px;
                     row-gap: 15px;
 
                     input {
@@ -76,6 +85,8 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
+                max-width: 480px;
+                min-width: 410px;
 
                 h1 {
                     font-size: 1rem;
