@@ -29,7 +29,7 @@ export default function NavBar({ page }) {
         </section>
 
         <section className={styles.userInfo}>
-          <span>Nome NomeNomeNomeNome</span>
+          <span>Nome Sobrenome</span>
           <p>marketing</p>
         </section>
       </div>
