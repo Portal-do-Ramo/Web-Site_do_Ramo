@@ -1,23 +1,24 @@
 .all {
     display: flex;
     font-family: 'Poppins';
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--marketing-brackground);
+    padding-bottom: 50px;
     
     .pageContent {
         display: flex;
-        flex-direction: column;
-        margin-left: 510px;
-        row-gap: 40px;
-        align-items: flex-start;
+        margin-left: 300px;
+        justify-content: center;
+
         width: 100%;
 
         .content {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
 
             width: 80%;
+            min-width: 450px;
             row-gap: 40px;
 
             .row {

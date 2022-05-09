@@ -31,10 +31,12 @@ export default function premio({ crew, award }){
         <NavBar page="equipes"/>
   
         <div className={styles.pageContent}>
-          <MarketingMenuRoutes
-            routesName={`Equipes/${crew.name}/Prêmios/${award.name}`} 
-            routes={`equipes/${crew.id}/premios/${award.id}`}
-          />
+          <section className={styles.menuRoutes}>
+            <MarketingMenuRoutes
+              routesName={`Equipes/${crew.name}/Prêmios/${award.name}`} 
+              routes={`equipes/${crew.id}/premios/${award.id}`}
+            />
+          </section>
 
           <div className={styles.content}>
 

@@ -3,11 +3,13 @@
     font-family: 'Poppins';
     min-height: 100vh;
     background-color: var(--marketing-brackground);
+    padding-bottom: 50px;
     
     .pageContent {
         display: flex;
-        margin-left: 510px;
-        row-gap: 40px;
+        margin-left: 300px;
+        justify-content: center;
+
         width: 100%;
 
         .content {
@@ -16,6 +18,7 @@
             align-items: flex-start;
 
             width: 80%;
+            min-width: 450px;
             row-gap: 40px;
 
             .row {

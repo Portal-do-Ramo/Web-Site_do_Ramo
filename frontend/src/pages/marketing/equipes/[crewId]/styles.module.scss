@@ -1,22 +1,20 @@
 .all {
     display: flex;
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     background-color: var(--marketing-brackground);
     
     .pageContent {
-        // background: tomato;
         display: flex;
+        flex-direction: column;
         width: 100%;
         align-items: center;
         margin-left: 300px;
-        flex-direction: column;
 
         .menuRoutes {
             display: flex;
             width: 80%;
             min-width: 611px;
-            // background: teal;
         }
         
         .content {
@@ -30,8 +28,6 @@
             min-width: 611px;
 
             min-height: 80vh;
-
-            // background: wheat;
 
             .grid {
                 display: grid;

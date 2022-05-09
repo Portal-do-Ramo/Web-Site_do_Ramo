@@ -7,14 +7,24 @@
     .pageContent {
         display: flex;
         flex-direction: column;
-        height: 100vh;
-        margin-left: 510px;
-        row-gap: 40px;
+        width: 100%;
+        align-items: center;
+        margin-left: 300px;
+        
+        .menuRoutes {
+            display: flex;
+            width: 80%;
+            min-width: 611px;
+        }
         
         .content {
             display: flex;
             flex-direction: column;
             gap: 40px;
+            min-width: 80%;
+
+            padding: 50px 0;
+            min-height: 80vh;
 
             #upper {
                 display: flex;
@@ -45,7 +55,7 @@
 
             #lower {
                 display: flex;
-                justify-content: space-around;
+                justify-content: start;
                 padding-top: 20px;
                 gap: 40px;
             }

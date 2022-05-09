@@ -36,7 +36,6 @@ export default function equipe({ crew }){
         </section>
         
         <div className={styles.content}>
-          
           <section className={styles.grid}>
             <button type="button" onClick={() => handleSelectOption("projetos")}>
               <img src="/gerenciarProjetos.svg"></img>

@@ -20,11 +20,11 @@ export default function projetos({ crew }){
         <NavBar page="equipes"/>
   
         <div className={styles.pageContent}>
-            <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Projetos`} 
-                routes={`equipes/${crew.id}/projetos`}
-            />
             <div className={styles.content}>
+              <MarketingMenuRoutes 
+                  routesName={`Equipes/${crew.name}/Projetos`} 
+                  routes={`equipes/${crew.id}/projetos`}
+              />
                 <div className={styles.row}>
                     <div className={styles.text}>
                         <h1>Lista de Projetos</h1>
