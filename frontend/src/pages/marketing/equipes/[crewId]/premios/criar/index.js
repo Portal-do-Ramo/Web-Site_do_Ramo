@@ -4,7 +4,7 @@ import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoute
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 
-export default function premioCriar({ crew, project }){ 
+export default function premioCriar({ crew }){ 
     const router = useRouter();
 
     function handleSelectOption(option) {
@@ -17,8 +17,8 @@ export default function premioCriar({ crew, project }){
   
           <div className={styles.pageContent}>
               <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Projetos/${project.name}/Editar`} 
-                routes={`equipes/${crew.id}/projetos/${project.id}/editar`}
+                routesName={`Equipes/${crew.name}/Prêmios/Criar`} 
+                routes={`equipes/${crew.id}/premios/criar`}
               />
 
               <div className={styles.content}>
@@ -65,22 +65,16 @@ export default function premioCriar({ crew, project }){
 }
 
 export async function getServerSideProps(ctx) {
-  const { crewId, projectId } = ctx.params;
+  const { crewId } = ctx.params;
 
   try {
     let { data } = await api.get(`/crews/${crewId}`);
 
     let crew = data;
-    let project = data.projects.find(project => project.id === Number(projectId));
-
-    if (!project) {
-        throw new Error("id do projeto não existe");
-    }
     
     return {
       props: {
-        crew,
-        project
+        crew
       }
     }
   } catch (error) {

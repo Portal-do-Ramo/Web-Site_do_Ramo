@@ -4,7 +4,7 @@ import MarketingMenuRoutes from "../../../../../../../components/MarketingMenuRo
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 
-export default function premioEditar({ crew, project }){ 
+export default function premioEditar({ crew, award }){ 
     const router = useRouter();
 
     function handleSelectOption(option) {
@@ -17,8 +17,8 @@ export default function premioEditar({ crew, project }){
   
           <div className={styles.pageContent}>
               <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Projetos/${project.name}/Editar`} 
-                routes={`equipes/${crew.id}/projetos/${project.id}/editar`}
+                routesName={`Equipes/${crew.name}/Prêmios/${award.name}/Editar`} 
+                routes={`equipes/${crew.id}/premios/${award.id}/editar`}
               />
 
               <div className={styles.content}>
@@ -65,22 +65,22 @@ export default function premioEditar({ crew, project }){
 }
 
 export async function getServerSideProps(ctx) {
-  const { crewId, projectId } = ctx.params;
+  const { crewId, awardId } = ctx.params;
 
   try {
     let { data } = await api.get(`/crews/${crewId}`);
 
     let crew = data;
-    let project = data.projects.find(project => project.id === Number(projectId));
+    let award = data.awards.find(award => award.id === Number(awardId));
 
-    if (!project) {
+    if (!award) {
         throw new Error("id do projeto não existe");
     }
     
     return {
       props: {
         crew,
-        project
+        award
       }
     }
   } catch (error) {
