@@ -11,7 +11,7 @@ export default function premio({ crew, award }){
     const [modalIsOpen, setIsOpen] = useState(false);
 
     function handleSelectOption(option) {
-        router.push(`${option}`);    
+        router.push(`${award.id}/${option}`);    
     }
 
     useEffect(() => {
@@ -49,7 +49,7 @@ export default function premio({ crew, award }){
             </section>
 
             <section id={styles.lower}>
-              <button type="button" onClick={() => handleSelectOption("editar")}>
+                <button type="button" onClick={() => handleSelectOption("editar")}>
                   <img src="/editarPremio.svg"></img>
                   <span>Editar Prêmio</span>
                 </button>
