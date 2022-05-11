@@ -47,6 +47,7 @@
         justify-content: center;
         min-width: 400px;
         padding-top: 4rem;
+        margin-right: 30px;
 
         p {
             padding: 1rem 0 10rem 0;
@@ -59,7 +60,7 @@
         flex: 1;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
 
         #button {
             display: flex;
@@ -70,6 +71,7 @@
             height: 4rem;
             border-radius: 10px;
             margin-bottom: 10%;
+            margin-right: 90px;
             text-decoration: none;
             transition: background-color .2s ease;
 
@@ -110,14 +112,14 @@
     }
     
     h3 {
-        align-self: flex-start;
-        margin: 0 0 4rem 130px;
-
+        margin: 0 0 4rem 0px;
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
         font-size: 40px;
         color: #FFFFFF;
         text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
+        width: 100%;
+        max-width: 1112px;
     }
 }
 

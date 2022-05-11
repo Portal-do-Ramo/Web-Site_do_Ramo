@@ -6,18 +6,9 @@ import Image from "next/image";
 
 import api from '../services/api'
 
-import { useState } from "react";
-
-import {
-  ProjectPrevArrow,
-  ProjectNextArrow,
-} from "../components/Arrows";
-
 import styles from "../styles/index.module.scss";
 
 export default function Home({ crews, sponsors }) {
-
-  let [index, setIndex] = useState(0);
 
   return (
     <div id={styles.container}>
