@@ -17,8 +17,8 @@ export default function Home({ crews, sponsors }) {
           <Image 
             src="/seu_pai.svg"
             alt="Lobo do Ramo IEEE CEFET-RJ"
-            width={450}
-            height={450}
+            width={300}
+            height={300}
           />
         </div>
       </Header>
