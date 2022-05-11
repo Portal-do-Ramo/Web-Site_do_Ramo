@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import CrewsCard from "../components/CrewsCard";
 
 import Image from "next/image";
-import Slider from "react-slick";
 
 import api from '../services/api'
 
@@ -16,43 +15,9 @@ import {
 
 import styles from "../styles/index.module.scss";
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
-
 export default function Home({ crews, sponsors }) {
 
   let [index, setIndex] = useState(0);
-
-  const settings = { //Configurações do Slider dos parceiros
-    autoplay: true,
-    autoPlaySpeed: 1000,
-    infinite: true,
-    centerMode: true,
-    variableWidth: true,
-    speed: 500,
-    slidesToScroll: 1,
-    nextArrow: <ProjectNextArrow />,
-    prevArrow: <ProjectPrevArrow />,
-    beforeChange: (current, prox) => setIndex(prox),
-    className: styles.slider,
-  };
 
   return (
     <div id={styles.container}>
@@ -114,18 +79,6 @@ export default function Home({ crews, sponsors }) {
         
         <div className={styles.parcerias}>
           <h3>Parceiros</h3>
-          <Slider {...settings}>
-            {
-              sponsors.map((sponsor, idx) => {
-                return (
-                <div className={idx === index ? styles.current : styles.other} key={sponsor.id}>
-                  <img src={sponsor.image} height={180}/>
-                  <p>{idx === index ? sponsor.name : []}</p>
-                </div>
-                )
-              })
-            }
-          </Slider>
         </div>
       </div>
       <Footer />
