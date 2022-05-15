@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 import styles from "../PSE/styles.module.scss"
 
 export default function PSEEmAndamento() {
-  let psecontroler = true;
   const beginDate = "03/04/2022 - 00:00h";
   const endDate = "05/04/2022 - 00:00h";
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
+ /* useEffect(() => {
     var date = new Date("2022-04-22T00:00:00.000Z");
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     document.getElementById('beginDate').value = date.toISOString().slice(0, 16);
   }, [])
+*/
 
   function openModal() {
     setIsOpen(true);
@@ -32,7 +32,7 @@ export default function PSEEmAndamento() {
       <section id={styles.showInformation}>
           <img src="/pseilustration.svg"></img>
           <div className={styles.container}>
-            <span>Processo seletivo agendado!</span>
+            <span>Processo seletivo em andamento!</span>
             <div className={styles.dates}>
               <div className={styles.begin}>
                 {beginDate}
@@ -50,8 +50,8 @@ export default function PSEEmAndamento() {
       <section id={styles.create_edit}>
           <span>Editar PSE!</span>
           <div className={styles.rowDates}>
-            <div className={styles.begin}>
-                <input type="datetime-local"  name="beginDate" id="beginDate" max={new Date()}/>
+            <div className={styles.beginFixed}>
+                <p>{beginDate}</p>
             </div>
 
               <p> até </p>
@@ -64,8 +64,8 @@ export default function PSEEmAndamento() {
           </div>
       </section>
 
-      <section id={styles.cancelPSE}>
-          <span>Cancelar o PSE!</span>
+      <section id={styles.terminatePSE}>
+          <span>Encerrar o PSE!</span>
           <p>
               Ao cancelar o processo seletivo externo as informações
               de início e término do processo serão removidas.

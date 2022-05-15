@@ -59,7 +59,8 @@
                     }
 
                     p {
-                        width: 80%;
+                        width: 90%;
+                        margin-top: -15px;
                         text-align: center;
                     }
                     
@@ -117,7 +118,7 @@
                         font-weight: 600;
                     }
 
-                    .begin, .end {
+                    .begin, .end, .beginFixed {
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -130,7 +131,7 @@
                         color: var(--contraste);
                         background-color: #CDD9E8;
 
-                        input {
+                        input, p {
                             background: #CDD9E8;
                             color: var(--contraste);
                             font-weight: bold;
@@ -146,21 +147,21 @@
                                 font-size: .9rem;
                             }
                             
-                            &::-webkit-datetime-edit-fields-wrapper{
-                            }
-                            
-                            &::-webkit-datetime-edit-text{
-                            }
-                            
-                            &::-webkit-inner-spin-button{
-                            }
-                            
                             &::-webkit-calendar-picker-indicator{
                                 margin-left: 0px;
                                 display: none;
                             }
                         }
 
+                        p {
+                            background-color: #E1E2E8;
+                            color: #8D8E92;
+                        }
+
+                    }
+
+                    .beginFixed {
+                        background-color: #E1E2E8;
                     }
 
                     button {
@@ -181,7 +182,7 @@
                 }
             }
 
-            #cancelPSE {
+            #cancelPSE, #terminatePSE {
                 display: flex;
                 flex-direction: column;
                 row-gap: 10px;
@@ -215,6 +216,12 @@
                     &:hover {
                         transform: scale(1.05);
                     }
+                }
+            }
+
+            #terminatePSE {
+                button {
+                    background-color: #38B05A;
                 }
             }
         }
