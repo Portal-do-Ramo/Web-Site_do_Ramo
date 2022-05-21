@@ -3,9 +3,28 @@ import api from "../../../../../../../services/api";
 import MarketingMenuRoutes from "../../../../../../../components/MarketingMenuRoutes";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function premioEditar({ crew, award }){ 
     const router = useRouter();
+
+    const setYear = useState();
+    const setPosition = useState();
+
+
+    const year = [
+      '2008', '2009', '2010',
+      '2011', '2012', '2013',
+      '2014', '2015', '2016',
+      '2017', '2018', '2019',
+      '2020', '2021', '2022',
+    ];
+
+    const position = [
+      '9', '8', '7',
+      '6', '5', '4',
+      '3', '2', '1',
+    ];
 
     function handleSelectOption(option) {
       router.push(`${crew.id}/${option}`);    
@@ -17,40 +36,44 @@ export default function premioEditar({ crew, award }){
   
           <div className={styles.pageContent}>
               <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Prêmios/${award.name}/Editar`} 
-                routes={`equipes/${crew.id}/premios/${award.id}/editar`}
+                routesName={`Equipes/${crew.name}/Prêmios/Editar`} 
+                routes={`equipes/${crew.id}/premios/editar`}
               />
 
               <div className={styles.content}>
-                  <h1>Editar Premio</h1>
-  
-                  <div className={styles.logoBanner}>
-                      <div className={styles.logoHolder}>
-                          <span>Logo do projeto</span>
-                          <input type="image" alt=""></input>
-                      </div>
-  
-                      <div className={styles.bannerHolder}>
-                          <span>Banner do projeto</span>
-                          <input type="image" alt=""></input>
-                      </div>
-                  </div>
+                  <h1>Editar Prêmio</h1>
   
                   <div className={styles.description}>
   
                       <div className={styles.nameHolder}>
-                          <span>Nome da equipe</span>
-                          <input type="text" placeholder='Digite o nome da equipe'></input>
+                          <span>Nome do prêmio</span>
+                          <input type="text" placeholder='Digite o nome do prêmio'></input>
                       </div>
   
-                      <div className={styles.descriptionHolder}>
-                          <span>Descrição da equipe</span>
-                          <textarea placeholder='Digite a descrição da equipe'></textarea>
-                      </div>
-  
-                      <div className={styles.members}> 
-                          <span>Membros do projeto</span>
-                          <input placeholder='Digite um nome e pressione enter'></input>
+                      <div className={styles.other}>
+                        <div className={styles.selects}>
+                          <span>Ano da premiação</span>
+                          <select required value={year} onChange={(event) => setYear(event.target.value)}>
+                            
+                            {year.map((date, idx) => {
+                              return (
+                                <option key={idx} value={date}>{date}</option>
+                              )
+                            })}
+                            </select>
+                        </div>
+
+                        <div className={styles.selects}>
+                          <span>Colocação</span>
+                          <select required value={position} onChange={(event) => setPosition(event.target.value)}>
+                            
+                            {position.map((pos, idx) => {
+                              return (
+                                <option key={idx} value={pos}>{pos}º</option>
+                              )
+                            })}
+                          </select>
+                        </div>
                       </div>
                   </div>
   

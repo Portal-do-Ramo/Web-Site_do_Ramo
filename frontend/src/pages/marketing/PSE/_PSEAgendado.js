@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import styles from "../PSE/styles.module.scss"
 
 export default function PSEAgendado() {
-  let psecontroler = true;
   const beginDate = "03/04/2022 - 00:00h";
   const endDate = "05/04/2022 - 00:00h";
 
@@ -31,46 +30,36 @@ export default function PSEAgendado() {
     <>
       <section id={styles.showInformation}>
           <img src="/pseilustration.svg"></img>
-          { psecontroler 
-          ? 
-              <div className={styles.container}>
-                  <span>Processo seletivo agendado!</span>
-                  <div className={styles.dates}>
-                      <div className={styles.begin}>
-                          {beginDate}
-                      </div>
+            <div className={styles.container}>
+                <span>Processo seletivo agendado!</span>
+                <div className={styles.dates}>
+                    <div className={styles.begin}>
+                        {beginDate}
+                    </div>
 
-                      <div className={styles.divider}></div>
+                    <div className={styles.divider}></div>
 
-                      <div className={styles.end}>
-                          {endDate}
-                      </div>
-                  </div>
-              </div> 
-
-          :
-              <div className={styles.container}>
-                  <h1>Não há registro de processo seletivo ativo</h1>
-                  <p>Registre um novo PSE para habilitar outras funções</p>
-              </div> 
-              
-          }
+                    <div className={styles.end}>
+                        {endDate}
+                    </div>
+                </div>
+            </div>    
       </section>
 
       <section id={styles.create_edit}>
-          <span>{psecontroler ? "Editar PSE!" : "Cadastre um novo PSE!"}</span>
+          <span>Editar PSE!</span>
           <div className={styles.rowDates}>
               <div className={styles.begin}>
-                  <input type="datetime-local"  name="beginDate" id="beginDate" max={new Date()}/>
+                  <input type="datetime-local" max="9999-12-31T23:59" name="beginDate" id="beginDate"/>
               </div>
 
               <p> até </p>
 
               <div className={styles.end}>
-                  <input type="datetime-local"  name="endDate"/>
+                  <input type="datetime-local" max="9999-12-31T23:59" name="endDate"/>
               </div>
 
-              <button>{psecontroler ? "Editar" : "Agendar"}</button>
+              <button>Editar</button>
           </div>
       </section>
 
@@ -93,8 +82,8 @@ export default function PSEAgendado() {
               <h1>Cancelar PSE</h1>
               <p>Tem certeza que você deseja cancelar o PSE?</p>
               <div className={styles.rowButton}>
-                  <button className={styles.cancel}>Cancelar</button>
-                  <button className={styles.shutDown}>Sim, encerrar</button>
+                  <button className={styles.cancel} onClick={closeModal}>Cancelar</button>
+                  <button className={styles.shutDown}>Sim, cancelar</button>
               </div>
           </Modal>
       </section>
