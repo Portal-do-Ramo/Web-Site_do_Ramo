@@ -1,3 +1,4 @@
+import MarketingMenuRoutes from "../../components/MarketingMenuRoutes";
 import NavBar from "../../components/NavBar";
 import styles from "../../styles/marketing.module.scss";
 
@@ -5,13 +6,25 @@ export default function inicial() {
   return (
     <div className={styles.all}>
       <NavBar page="home" />
-      <div className={styles.container}>
-        <section>
-          <h1>Seja bem-vindo, Admin</h1>
-          <p>
-            Aqui você pode personalizar algumas partes do site do ramo, 
-            vá fundo e explore.
-          </p>
+      <div className={styles.pageContent}>
+        <section className={styles.menuRoutes}>
+          <MarketingMenuRoutes routesName={`Home`} routes={`/`}/>
+        </section>
+
+        <section className={styles.content}>
+          <article>
+            <h1>Bem Vindo, {"nome"}!</h1>
+            
+            <p>
+              Aqui você encontrará ferramentas para personalizar
+              certas partes do site do Ramo, como equipes, seus 
+              prêmios e seus projetos.
+            </p>
+
+            <p>
+              Além de poder controlar o sistema do PSE. 
+            </p>
+          </article>
         </section>
       </div>
     </div>
