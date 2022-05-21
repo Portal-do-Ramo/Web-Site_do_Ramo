@@ -122,10 +122,14 @@
 }
 
 .parcerias {  
+    display: flex;
+    flex-direction: column;
     height: auto;
     padding: 5rem 130px 10rem 130px;
+    // align-items: center;
 
     h3 {
+        // align-self: baseline;
         margin: 0 0 5rem 0;
         color: #0876BE;
 
@@ -140,6 +144,7 @@
         align-items: center;
         padding: 0 5rem;
         height: fit-content;
+        // max-width: 1200px;
         
         .current { //Item centralizado no carrossel
             text-align: center;

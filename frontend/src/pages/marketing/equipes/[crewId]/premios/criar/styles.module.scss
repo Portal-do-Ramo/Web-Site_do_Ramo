@@ -1,0 +1,138 @@
+.all {
+    display: flex;
+    font-family: 'Poppins';
+    height: 100vh;
+    background-color: var(--marketing-brackground);
+
+    .pageContent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow-y: scroll;
+        margin-left: 510px;
+        row-gap: 40px;
+        width: 100vw;       
+
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            row-gap: 40px;
+
+            .logoBanner {
+                display: flex;
+                justify-content: space-between;
+                column-gap: 30px;
+
+                span {
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+
+                .logoHolder, .bannerHolder {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+
+                    input {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        width: 150px;
+                        height: 150px;
+
+                        border-radius: 8px;
+                        background-color: #3F434F;
+                        color: white;
+
+                        background-image: url('/camera_icon.svg');
+                        background-repeat: no-repeat;
+                        background-size: 80px;
+                        background-position: center;
+                    }
+                }
+
+                .bannerHolder {
+                    input {
+                        width: 410px;
+                    }
+                }         
+            }
+
+            .description {
+                display: flex;
+                width: 590px;
+                flex-direction: column;
+                row-gap: 30px;
+
+                span {
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+
+                .nameHolder {
+                    display: flex;
+                    flex-direction: column;
+
+                    input {
+                        margin: none;
+                        border-radius: 5px;
+                        border: 1px solid #CFCFCF;
+                        margin-top: 10px;
+                        padding: 13px;
+                    }
+                }
+
+                .other {
+                    display: flex;
+
+                    column-gap: 40px;
+
+                    .selects {
+                        display: flex;
+                        flex-direction: column;
+
+                        select {
+                            width: fit-content;
+                            margin: none;
+                            border-radius: 5px;
+                            border: 1px solid #CFCFCF;
+                            margin-top: 10px;
+                            padding: 13px;
+                        }
+                    }
+
+                }
+
+            }
+
+            .buttonRow {
+                display: flex;
+                column-gap: 30px;
+                padding-bottom: 50px;
+
+                .cancel, .edit {
+                    padding: 15px 60px;
+                    border: 0;
+                    border-radius: 5px;
+                    background-color: #D5E0EC;
+                    color: #0D5FAA;
+                    cursor: pointer;
+                    transition: .2s ease;
+                    font-weight: 600;
+                    font-size: 0.8rem;
+                  }
+
+                  .cancel:hover, .edit:hover {
+                    transform: scale(1.05);
+                  }
+          
+                  .edit {
+                    background-color: #0D5FAA;
+                    color: white;
+                  }
+            }
+        }
+    }
+}

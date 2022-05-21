@@ -1,0 +1,37 @@
+.all {
+    margin-top: 80px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--azul-ramo);
+    font-weight: 600;
+    align-self: flex-start;
+
+    .content {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            border-radius: 10px;
+            font-size: 0.8rem;
+            padding: 5px 15px;
+            cursor: pointer;
+            background: #BACFE3;
+            
+            &:hover {
+                background: #afc3d6;
+            }
+        }
+        
+        p {
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: 500;
+
+            &:last-of-type {
+                display: none;
+            }
+        }
+    }
+    
+}

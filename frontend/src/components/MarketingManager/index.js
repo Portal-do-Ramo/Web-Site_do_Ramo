@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import SearchBar from "../SearchBar";
+
 import { useState } from "react";
 import EquipeAPI from "../../services/equipeAPI";
 
@@ -35,10 +35,7 @@ export default function ManageContainer({name, equipes}) {
       <legend className={styles.title}>{name}</legend>
         <div className={styles.search}>
           <div className={styles.searchBar}>
-            <SearchBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
+            
           </div>
           <div className={styles.searchButton}>
             <p>Buscar</p>

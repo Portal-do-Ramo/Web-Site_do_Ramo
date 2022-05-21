@@ -1,44 +1,83 @@
-.all{
-  width: 14vw;
+.all {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  align-items: center;
+
+  width: 300px;
   min-height: 100vh;
-  min-width: 195px;
   background-color: var(--azul-ramo);
-  padding: 1rem 2rem;
   color: white;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  .title{
+  font-family: 'Poppins', sans-serif;
+
+  .title {   
+    display: flex;
+    margin-top: 50px;
+  }
+
+  .routes {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid white;
-    .title2{
-      font-size: 1.8rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;     
+    align-items: center;
+
+    h1 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 25px 0;
+      cursor: pointer;
+    }
+
+    h1:hover {
+      color: black;
+    }
+
+    .border {
+      border-radius: 2px;
+      border-bottom: 4px solid #fff;
+      padding-bottom: 5px;
     }
   }
-  .edit{
-    h1{
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin: 1.8rem 0;
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    padding: 15px 0 15px 20px;
+    width: 80%;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    background: var(--contraste);
+
+    .userImage {
+      background: var(--azul-ramo);
+      width: 55px;
+      height: 55px;
+      border-radius: 100%;
     }
-    .options{
-      font-size: 18px;
-      opacity: 0.8;
-      margin-left: 1.2rem;
-      
-      p{
-        margin: 1rem 0;
+
+    .userInfo {
+      display: flex;
+      flex-direction: column;
+      margin-left: 15px;
+
+      span {
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: .9rem;
+        font-weight: 700;
       }
       
-    }
-    a{
-      text-decoration: none;
-      color: inherit;
+      p {
+        font-size: .7rem;
+        color: #fff;
+        opacity: 57%;
+        font-weight: 400;
+      }
     }
   }
 }

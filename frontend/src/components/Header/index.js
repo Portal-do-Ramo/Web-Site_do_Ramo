@@ -27,7 +27,7 @@ export default function Header({page, children}) {
             <p className={page === "equipes" && styles.activeLink}>Equipes</p>
           </Link>
 
-          <Link href="/PSE" className={page === "PSE" && styles.activeLink}>
+          <Link href="/PSE">
             <p className={page === "PSE" && styles.activeLink}>Processo Seletivo</p>
           </Link>
 
