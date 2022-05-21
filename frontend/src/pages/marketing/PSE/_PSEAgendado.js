@@ -50,13 +50,13 @@ export default function PSEAgendado() {
           <span>Editar PSE!</span>
           <div className={styles.rowDates}>
               <div className={styles.begin}>
-                  <input type="datetime-local"  name="beginDate" id="beginDate" max={new Date()}/>
+                  <input type="datetime-local" max="9999-12-31T23:59" name="beginDate" id="beginDate"/>
               </div>
 
               <p> até </p>
 
               <div className={styles.end}>
-                  <input type="datetime-local"  name="endDate"/>
+                  <input type="datetime-local" max="9999-12-31T23:59" name="endDate"/>
               </div>
 
               <button>Editar</button>
@@ -83,7 +83,7 @@ export default function PSEAgendado() {
               <p>Tem certeza que você deseja cancelar o PSE?</p>
               <div className={styles.rowButton}>
                   <button className={styles.cancel} onClick={closeModal}>Cancelar</button>
-                  <button className={styles.shutDown}>Sim, encerrar</button>
+                  <button className={styles.shutDown}>Sim, cancelar</button>
               </div>
           </Modal>
       </section>

@@ -11,6 +11,7 @@ function controller(x) {
     //psecontroler = 0 --> <PSENaoAgendado/>
     //psecontroler = 1 --> <PSEAgendado/>
     //psecontroler = 2 --> <PSEEmAndamento/>
+    x = 2;
 
     switch (x) {
         case 0:

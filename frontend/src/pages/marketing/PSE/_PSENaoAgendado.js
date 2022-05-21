@@ -40,13 +40,13 @@ export default function PSENaoAgendado() {
           <span>Cadastre um novo PSE!</span>
           <div className={styles.rowDates}>
               <div className={styles.begin}>
-                  <input type="datetime-local"  name="beginDate" id="beginDate" max={new Date()}/>
+                  <input type="datetime-local" max="9999-12-31T23:59" name="beginDate" id="beginDate"/>
               </div>
 
               <p> até </p>
 
               <div className={styles.end}>
-                  <input type="datetime-local"  name="endDate"/>
+                  <input type="datetime-local" max="9999-12-31T23:59" name="endDate"/>
               </div>
 
               <button>Agendar</button>

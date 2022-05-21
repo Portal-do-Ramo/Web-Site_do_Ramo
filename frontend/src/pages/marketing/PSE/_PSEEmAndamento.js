@@ -57,7 +57,7 @@ export default function PSEEmAndamento() {
               <p> até </p>
 
               <div className={styles.end}>
-                  <input type="datetime-local"  name="endDate"/>
+                  <input type="datetime-local" max="9999-12-31T23:59"  name="endDate"/>
               </div>
 
               <button>Editar</button>
@@ -71,7 +71,7 @@ export default function PSEEmAndamento() {
               de início e término do processo serão removidas.
           </p>
 
-          <button onClick={openModal}>Cancelar PSE</button>
+          <button onClick={openModal}>Encerrar PSE</button>
 
           <Modal 
             isOpen={modalIsOpen}
@@ -81,12 +81,12 @@ export default function PSEEmAndamento() {
             contentLabel="Example Modal"
             shouldCloseOnEsc={true}  
           >
-              <img src="/cancel.svg"></img>
-              <h1>Cancelar PSE</h1>
+              <img src="/finish.svg"></img>
+              <h1>Encerrar PSE</h1>
               <p>Tem certeza que você deseja cancelar o PSE?</p>
               <div className={styles.rowButton}>
                   <button type='button' className={styles.cancel} onClick={handleCloseModal}>Cancelar</button>
-                  <button type='button' className={styles.shutDown}>Sim, encerrar</button>
+                  <button type='button' className={styles.finishButton}>Sim, encerrar</button>
               </div>
           </Modal>
 
