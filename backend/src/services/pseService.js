@@ -138,8 +138,8 @@ module.exports = {
         const endDateFormatted = new Date(data[0].end);
         
         if (endDateFormatted < new Date()) {
-          await emailService.sendCSV();
           await knex("pse").delete();
+          await emailService.sendCSV();
         } else {
           scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
             await emailService.sendCSV();
