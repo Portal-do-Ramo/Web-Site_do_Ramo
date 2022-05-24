@@ -7,13 +7,19 @@ module.exports = {
         return crews;
     },
 
-    async create(name, about, image) {
+    async create(name, about) {
+        let imageURL = name.toLowerCase() + "_avatar.png";
+        let crew = await knex("crews").where({name}).first();
+        
         try {
+            if(crew)
+                return {message: "Equipe já existe!"}
+
             await knex("crews").insert({
                 id: v4(),
                 name, 
                 about,
-                image
+                imageURL
             });
 
             return {message: "Equipe criada!"}
@@ -24,7 +30,7 @@ module.exports = {
 
     async update(id, crew) {
         try {
-            await knex("crew").where({id}).update(crew);
+            await knex("crews").where({id}).update(crew);
             return {message: "Equipe atualizada!"}
         } catch (error) {
             throw new Error(error.message);
@@ -47,7 +53,7 @@ module.exports = {
 
     getCrewByName(crew_name){
         try {
-            let crew = knex('crews').select().where({"name": crew_name}).first();
+            let crew = knex("crews").select().where({"name": crew_name}).first();
             return crew;
         } catch (error) {
             throw new Error(error.message);

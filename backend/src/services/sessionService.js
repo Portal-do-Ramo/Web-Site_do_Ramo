@@ -13,7 +13,7 @@ module.exports = {
 
       userValidation.validate({email, password});
 
-      const user = await knex("users").select("email", "password", "name").where({email}).first();
+      const user = await knex("users").select("email", "password", "name", "admin").where({email}).first();
       
       if(!user) {
         throw new Error("Email não existe!");
@@ -22,9 +22,9 @@ module.exports = {
       if (!(compareSync(password, user.password))) {
         throw new Error('Senha incorreta!');
       }
-
+      
       const token = jwt.sign(
-        {name: user.name, email: user.email},
+        {name: user.name, email: user.email, admin: user.admin},
         process.env.TOKEN_HASH, 
         {expiresIn: '48h'}
       );

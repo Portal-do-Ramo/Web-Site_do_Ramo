@@ -39,13 +39,14 @@ module.exports = {
         },
         
     // Talvez tenha que existir uma tabela só pra membros de projetos, com uma lógica de 1 membro para muitos projetos.
-    async create(name, description, imageURL, logoURL, members, crew_name, beginning, ended) { //Repensar a lógica dos members
+    async create(name, description, members, crew_name, beginning, ended) { //Repensar a lógica dos members
+        let imageURL = name.toLowerCase() + "_banner.png";
+        let logoURL = name.toLowerCase() + "_avatar.png";
+        
         try {
             const projectValidation = Joi.object({
                 name: Joi.string().required(),    
                 description: Joi.string().required(),
-                imageURL: Joi.string().required(),
-                logoURL: Joi.string().required(),
                 members: Joi.array().items(Joi.string()).required(),
                 beginning: Joi.date().timestamp(),
                 ended: Joi.date().timestamp(),
