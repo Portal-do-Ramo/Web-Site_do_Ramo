@@ -39,9 +39,9 @@ module.exports = {
           throw new Error("date bad formatted");
       }
 
-      // if (fs.existsSync('./uploads/pse.csv')) {
-      //     fs.unlinkSync('./uploads/pse.csv');
-      // }
+      if (fs.existsSync('./uploads/pse.csv')) {
+          fs.unlinkSync('./uploads/pse.csv');
+      }
 
       const data = await knex("pse").select("*");
 
