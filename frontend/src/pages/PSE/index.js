@@ -64,7 +64,7 @@ export default function PSE({ crews }) {
                                 <h3>Entrevista</h3>
                                 <p>
                                     Os candidatos aprovados na segunda fase, passarão por uma fase de entrevistas 
-                                    realizadas pelos membros do Ramo Estudantil IEE CEFET/RJ.
+                                    realizadas pelos membros do Ramo Estudantil IEEE CEFET/RJ.
                                 </p> 
                             </div>
                         </div>

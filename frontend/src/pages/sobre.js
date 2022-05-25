@@ -49,7 +49,7 @@ export default function Sobre(){
                     <div className={styles.aboutContainer}>
                         <section className={styles.aboutLeftContainer}>
                             <article>
-                            <div className={styles.historyArrow}></div>
+                                <div className={styles.historyArrow}></div>
                                 <h1>O que é o Ramo ?</h1>
                                 <p>     Lorem ipsum dolor sit amet, consectetur 
                                 adipiscing elit. Massa tempor, eu aenean 
@@ -86,7 +86,7 @@ export default function Sobre(){
                                 ligula. Ipsum aliquam a, sed nisi, mauris 
                                 eu risus ut. Ullamcorper libero, lectus 
                                 eleifend tincidunt viverra adipiscing 
-                                facilisis sed luctus.</p> 
+                                facilisis sed luctus.</p>
 
                             </article>
                         </section>

@@ -17,21 +17,28 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
+            max-width: 40vw;
             color: var(--azul-ramo);
-        
+            
+            
             h1 {
                 font-size: 2.5rem;
-                max-width: 55%;
+                max-width: 500px;
             }
-        
+            
             p {
                 line-height: 27px;
                 font-weight: 500;
                 font-size: 1.2rem;
-                max-width: 40vw;
                 text-align: justify;
+                max-width: 680px;
             }
 
+            @media (min-width: 1700px) {
+                max-width: 50vw;
+                
+            }
+            
             button {
                 width: fit-content;
                 background-color: var(--azul-ramo);
@@ -107,7 +114,6 @@
                     justify-content: center;
                     align-items: start;
                     padding: 1rem 0;
-
                     row-gap: 3px;
 
                     h3 {                 
