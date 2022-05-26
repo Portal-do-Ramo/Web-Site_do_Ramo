@@ -1,6 +1,16 @@
 #pageContent {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    background: url("../../public/pse-image.svg") no-repeat;
+    background-position: right top;
+    // background: teal;
+
+    .introductionContainer {
+        width: 100vw;
+        max-width: 1700px;
+        // background: #0270b8;
+    }
     
     #introduction {
         font-family: "Poppins", sans-serif;
@@ -9,8 +19,9 @@
         height: calc(100vh - 109px);
         min-height: 700px;
         align-items: center;
-        background: url("../../public/pse-image.svg") no-repeat;
-        background-position: right top;
+        max-height: 900px;
+        max-width: 1100px;
+        // background: wheat;
         
         #descriptionContainer {
             margin-top: -50px;
@@ -19,6 +30,7 @@
             gap: 30px;
             max-width: 40vw;
             color: var(--azul-ramo);
+            // background: tomato;
             
             
             h1 {
@@ -78,24 +90,25 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+        
         row-gap: 80px;
-    
+        
         width: 100%;
         margin-bottom: 100px;
         color: var(--azul-ramo);
         font-family: Poppins;
-    
+        
         h2 {
             font-style: normal;
             font-weight: bold;
             font-size: 2.5rem;
         }
-    
+        
         #stepsContainer {
             display: flex;
             flex-direction: column;
             width: 80vw;
+            max-width: 1400px;
 
             .oddSteps, .evenSteps {
                 display: flex;
@@ -167,6 +180,7 @@
         width: 100vw;
         margin-bottom: 150px;
         margin-top: 80px;
+        max-width: 1400px;
         
         .register {
             display: flex;

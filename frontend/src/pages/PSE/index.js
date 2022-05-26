@@ -19,16 +19,18 @@ export default function PSE({ crews }) {
         <div>
             <Header page="PSE"/>
             <div id={styles.pageContent}>
-                <section id={styles.introduction}>
-                    <div id={styles.descriptionContainer}>
-                        <h1>Lugar onde os projetos se tornam realidade!</h1>
-                        <p>Se você é estudante de graduação do CEFET-RJ com vontade de aprender,
-                        conhecer novas ferramentas, colocar os conhecimentos adquiridos
-                        na faculdade em prática e, além disso, se divertir muito,
-                        você veio ao lugar certo! 
-                        </p>
-                        <button type="button">Conheça nossas equipes</button>
-                    </div>
+                <section className={styles.introductionContainer}>
+                    <article id={styles.introduction}>
+                        <div id={styles.descriptionContainer}>
+                            <h1>Lugar onde os projetos se tornam realidade!</h1>
+                            <p>Se você é estudante de graduação do CEFET-RJ com vontade de aprender,
+                            conhecer novas ferramentas, colocar os conhecimentos adquiridos
+                            na faculdade em prática e, além disso, se divertir muito,
+                            você veio ao lugar certo! 
+                            </p>
+                            <button type="button">Conheça nossas equipes</button>
+                        </div>
+                    </article>
                 </section>
 
                 <section id={styles.steps}>
