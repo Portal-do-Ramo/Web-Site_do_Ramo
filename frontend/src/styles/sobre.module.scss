@@ -45,8 +45,9 @@
         .aboutRightContainer{
             width: 45%;
         }
+
         /* ----- Container esquerdo ----- */
-        .aboutLeftContainer{
+        .aboutLeftContainer {
 
             /* O que é o ramo */
             article:first-child{
@@ -94,7 +95,10 @@
             
         }
 
-
+        /*---- Container Direito ----*/
+        .aboutRightContainer {
+            margin-top: -120px;
+        }
     }
 
     /* ----- Nossos valores ----- */
