@@ -22,14 +22,16 @@ export default function cadastro({ crewsNames }) {
   
 
   return (
-    <section className={styles.container}>
-      <PSEFormHeader page={page}/>
+    <div className={styles.pageContainer}>
+      <section className={styles.container}>
+        <PSEFormHeader page={page}/>
 
-      { page === "1" && <Page1/> }
-      { page === "2" && <Page2/> }
-      { page === "3" && <Page3 crewsNames={crewsNames}/> }
+        { page === "1" && <Page1/> }
+        { page === "2" && <Page2/> }
+        { page === "3" && <Page3 crewsNames={crewsNames}/> }
 
-    </section>
+      </section>
+    </div>
   )
 }
 
