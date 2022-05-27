@@ -18,6 +18,11 @@
         justify-content: center;
         align-items: baseline;
         width: 100%;
+
+        @media (max-width: 950px) {
+            align-items: flex-start;
+            padding-left: 30px;
+        }
         
         .content {
             width: 80%;

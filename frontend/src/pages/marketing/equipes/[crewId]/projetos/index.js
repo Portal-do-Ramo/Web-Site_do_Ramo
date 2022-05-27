@@ -1,4 +1,4 @@
-import NavBar from "../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../components/MarketingNavBar";
 import api from "../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
@@ -17,7 +17,7 @@ export default function projetos({ crew }){
 
     return (
       <div className={styles.all}>
-        <NavBar page="equipes"/>
+        <MarketingNavBar page="equipes"/>
   
         <div className={styles.pageContent}>
             <div className={styles.content}>

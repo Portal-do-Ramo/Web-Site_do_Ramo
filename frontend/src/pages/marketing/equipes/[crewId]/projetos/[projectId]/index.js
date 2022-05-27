@@ -1,4 +1,4 @@
-import NavBar from "../../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../../components/MarketingNavBar";
 import Modal from 'react-modal';
 import api from "../../../../../../services/api";
 import styles from "./styles.module.scss";
@@ -11,12 +11,8 @@ export default function projeto({ crew, project }){
     const [modalIsOpen, setIsOpen] = useState(false);
 
     function handleSelectOption(option) {
-        router.push(`${project.id}/${option}`);    
+      router.push(`${project.id}/${option}`);    
     }
-
-    useEffect(() => {
-        console.log(project);
-    }, [])
 
     function openModal() {
       setIsOpen(true);
@@ -28,15 +24,14 @@ export default function projeto({ crew, project }){
 
     return (
       <div className={styles.all}>
-        <NavBar page="equipes"/>
+        <MarketingNavBar page="equipes"/>
   
         <div className={styles.pageContent}>
-          <MarketingMenuRoutes 
-            routesName={`Equipes/${crew.name}/Projetos/${project.name}`} 
-            routes={`equipes/${crew.id}/projetos/${project.id}`}
-          />
-
           <div className={styles.content}>
+            <MarketingMenuRoutes 
+              routesName={`Equipes/${crew.name}/Projetos/${project.name}`} 
+              routes={`equipes/${crew.id}/projetos/${project.id}`}
+            />
             <section id={styles.upper}>
               <img src={project.image}></img>
               <div className={styles.nameSub}>

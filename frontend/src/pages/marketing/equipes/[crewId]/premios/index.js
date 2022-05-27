@@ -1,4 +1,4 @@
-import NavBar from "../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../components/MarketingNavBar";
 import api from "../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
@@ -17,7 +17,7 @@ export default function premios({ crew }){
 
     return (
       <div className={styles.all}>
-        <NavBar page="equipes"/>
+        <MarketingNavBar page="equipes"/>
   
         <div className={styles.pageContent}>
             <div className={styles.content}>
@@ -38,12 +38,15 @@ export default function premios({ crew }){
                     </Link>
                 </div>
   
-                <div className={styles.crewsList}>
-                      {crew.awards.map((award) => { 
+                <div className={styles.awardList}>
+                      {crew.awards.map((award, idx) => { 
                         return(
-                          <div className={styles.crewRow}>
-                            <div className={styles.name}>
-                              <img src={award.image}/>
+                          <div className={styles.awardRow} key={idx}>
+                            <div className={styles.award}>
+                              <article className={styles.awardImg}>
+                                <img src="../../../award.svg" alt="award image"/>
+                                <strong>{award.placing}</strong>
+                              </article>
                               <h2>{award.name}</h2>
                             </div>
                             <Link href={`/marketing/equipes/${crew.id}/premios/${award.id}`}>

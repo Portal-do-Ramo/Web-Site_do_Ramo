@@ -15,7 +15,20 @@
     background-clip: content-box;
     background-size: 500px 600px;
     background-position: right bottom;
+
+    @media (max-width: 1184px) {
+      background-size: 400px 500px;
+    }
+
+    @media (max-width: 1080px) {
+      background: url("") no-repeat;
+    }
     
+    @media (max-width: 920px) {
+      align-items: flex-start;
+      margin-left: 350px;
+    }
+
     .menuRoutes {
       display: flex;
       width: 80%;

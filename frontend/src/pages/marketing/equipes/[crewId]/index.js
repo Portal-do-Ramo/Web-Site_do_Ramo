@@ -1,4 +1,4 @@
-import NavBar from "../../../../components/NavBar";
+import MarketingNavBar from "../../../../components/MarketingNavBar";
 import Modal from 'react-modal';
 import api from "../../../../services/api";
 import styles from "./styles.module.scss";
@@ -14,10 +14,6 @@ export default function equipe({ crew }){
         router.push(`${crew.id}/${option}`);    
     }
 
-    useEffect(() => {
-      console.log(crew);
-    }, [])
-
     function openModal() {
       setIsOpen(true);
     }
@@ -28,14 +24,12 @@ export default function equipe({ crew }){
 
   return (
     <div className={styles.all}>
-      <NavBar page="equipes"/>
+      <MarketingNavBar page="equipes"/>
 
       <div className={styles.pageContent}>
-        <section className={styles.menuRoutes}>
-          <MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`equipes/${crew.id}`}/>
-        </section>
-        
         <div className={styles.content}>
+          <MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`equipes/${crew.id}`}/>
+
           <section className={styles.grid}>
             <button type="button" onClick={() => handleSelectOption("projetos")}>
               <img src="/gerenciarProjetos.svg"></img>

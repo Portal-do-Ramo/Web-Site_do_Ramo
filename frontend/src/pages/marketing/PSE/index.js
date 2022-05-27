@@ -1,5 +1,5 @@
-import NavBar from "../../../components/NavBar"
-import styles from "../PSE/styles.module.scss"
+import MarketingNavBar from "../../../components/MarketingNavBar";
+import styles from "../PSE/styles.module.scss";
 import PSEEmAndamento from "./_PSEEmAndamento";
 import PSEAgendado from "./_PSEAgendado";
 import PSENaoAgendado from "./_PSENaoAgendado";
@@ -8,10 +8,7 @@ import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
 let psecontroler = 2;
 
 function controller(x) {
-    //psecontroler = 0 --> <PSENaoAgendado/>
-    //psecontroler = 1 --> <PSEAgendado/>
-    //psecontroler = 2 --> <PSEEmAndamento/>
-    x = 2;
+    x = 1;
 
     switch (x) {
         case 0:
@@ -36,7 +33,7 @@ function controller(x) {
 export default function PSE(){
     return (
         <div className={styles.all}>
-            <NavBar page="pse"/>
+            <MarketingNavBar page="pse"/>
             
             <div className={styles.pageContent}>
                 <div className={styles.content}>

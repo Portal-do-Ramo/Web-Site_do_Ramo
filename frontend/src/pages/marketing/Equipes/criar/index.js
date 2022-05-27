@@ -1,11 +1,11 @@
 import MarketingMenuRoutes from "../../../../components/marketingMenuRoutes"
-import NavBar from "../../../../components/NavBar"
+import MarketingNavBar from "../../../../components/MarketingNavBar"
 import styles from "../criar/styles.module.scss"
 
 export default function Criar({ crews }){
   return (
     <div className={styles.all}>
-      <NavBar page="equipes"/>
+      <MarketingNavBar page="equipes"/>
 
         <div className={styles.pageContent}>
             <div className={styles.content}>

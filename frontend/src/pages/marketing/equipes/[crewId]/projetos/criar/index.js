@@ -1,4 +1,4 @@
-import NavBar from "../../../../../../components/NavBar"
+import MarketingNavBar from "../../../../../../components/MarketingNavBar"
 import styles from "../criar/styles.module.scss"
 import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoutes";
 import api from "../../../../../../services/api";
@@ -6,15 +6,14 @@ import api from "../../../../../../services/api";
 export default function CriarProjeto({ crew, project}){
   return (
     <div className={styles.all}>
-      <NavBar page={"equipes"}/>
+      <MarketingNavBar page={"equipes"}/>
 
         <div className={styles.pageContent}>
-            <MarketingMenuRoutes 
-              routesName={`Equipes/${crew.name}/Projetos/Criar`} 
-              routes={`equipes/${crew.id}/projetos/criar`}
-            />
-
             <div className={styles.content}>
+              <MarketingMenuRoutes 
+                routesName={`Equipes/${crew.name}/Projetos/Criar`} 
+                routes={`equipes/${crew.id}/projetos/criar`}
+              />
                 <h1>Criar Projeto</h1>
 
                 <div className={styles.logoBanner}>

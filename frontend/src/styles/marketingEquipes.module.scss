@@ -4,7 +4,7 @@
     min-height: 100vh;
     background-color: var(--marketing-brackground);
     padding-bottom: 50px;
-    overflow-y: scroll;
+    overflow-y: auto;
     
     .pageContent {
         display: flex;
@@ -12,6 +12,10 @@
         justify-content: center;
 
         width: 100%;
+
+        @media (max-width: 950px) {
+            padding-left: 30px;
+        }
 
         .content {
             display: flex;

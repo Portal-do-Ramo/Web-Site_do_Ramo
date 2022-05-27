@@ -3,23 +3,31 @@
     font-family: 'Poppins';
     min-height: 100vh;
     background-color: var(--marketing-brackground);
-
+    padding-bottom: 50px;
+    overflow-y: auto;
+    
     .pageContent {
         display: flex;
-        flex-direction: column;
-        margin-left: 510px;
-        row-gap: 40px;
+        margin-left: 300px;
+        justify-content: center;
+
+        width: 100%;
 
         .content {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            align-items: flex-start;
+            margin: 0 30px;
+            width: 80%;
+            min-width: 500px;
+            row-gap: 40px;
 
             #upper {
                 display: flex;
                 align-items: center;
                 column-gap: 30px;
                 padding-bottom: 60px;
+                width: 600px;
 
                 border-bottom: 1px solid lightgray;
 

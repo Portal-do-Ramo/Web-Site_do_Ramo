@@ -1,4 +1,4 @@
-import NavBar from "../../../components/NavBar"
+import MarketingNavBar from "../../../components/MarketingNavBar"
 import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
 import Link from "next/link";
 import styles from "../../../styles/marketingEquipes.module.scss"
@@ -10,7 +10,7 @@ import { BsFillGearFill } from 'react-icons/bs';
 export default function equipes({ crews }){
   return (
     <div className={styles.all}>
-      <NavBar page="equipes"/>
+      <MarketingNavBar page="equipes"/>
 
       <div className={styles.pageContent}>
           <div className={styles.content}>

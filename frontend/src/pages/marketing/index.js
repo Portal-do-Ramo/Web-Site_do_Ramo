@@ -1,11 +1,11 @@
 import MarketingMenuRoutes from "../../components/MarketingMenuRoutes";
-import NavBar from "../../components/NavBar";
+import MarketingNavBar from "../../components/MarketingNavBar";
 import styles from "../../styles/marketing.module.scss";
 
 export default function inicial() {
   return (
     <div className={styles.all}>
-      <NavBar page="home" />
+      <MarketingNavBar page="home" />
       <div className={styles.pageContent}>
         <section className={styles.menuRoutes}>
           <MarketingMenuRoutes routesName={`Home`} routes={`/`}/>
