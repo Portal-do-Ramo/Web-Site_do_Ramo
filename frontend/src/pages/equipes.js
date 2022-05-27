@@ -86,11 +86,6 @@ export default function Equipes({ crews }) {
       <div className={styles.all}>
 
         <section className={styles.presentation}>
-          <div className={styles.descrição}>
-            <h1>{crews[crewIndex].name}</h1>
-            <p>{crews[crewIndex].about}</p>
-          </div>
-
           <div className={styles.carouselContainer}>
             <h2>Escolha sua equipe!</h2>
 
@@ -118,6 +113,11 @@ export default function Equipes({ crews }) {
 
               <NextArrow onClick={() => handleChangeCrewSelected(+1)}/>
             </section>
+          </div>
+
+          <div className={styles.description}>
+            <h1>{crews[crewIndex].name}</h1>
+            <p>{crews[crewIndex].about}</p>
           </div>
         </section>
         
