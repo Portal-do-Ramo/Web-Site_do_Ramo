@@ -1,25 +1,33 @@
 .all {
     display: flex;
     font-family: 'Poppins';
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--marketing-brackground);
+    padding-bottom: 50px;
+    overflow-y: auto;
 
+    input {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    textarea {
+        font-family: 'Poppins', sans-serif;
+    }
+    
     .pageContent {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        overflow-y: scroll;
-        margin-left: 510px;
-        row-gap: 40px;
-        width: 100vw;       
+        margin-left: 300px;
+        justify-content: center;
+        width: 100%;
 
         .content {
             display: flex;
-            justify-content: center;
             flex-direction: column;
-            row-gap: 30px;
-
-            width: fit-content;
+            align-items: flex-start;
+            margin: 0 30px;
+            width: 80%;
+            min-width: 500px;
+            row-gap: 40px;
 
             .logoBanner {
                 display: flex;
@@ -82,6 +90,7 @@
                         border: 1px solid #CFCFCF;
                         margin-top: 10px;
                         padding: 13px;
+                        width: 590px;
                     }
                 }
 

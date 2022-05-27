@@ -1,4 +1,4 @@
-import NavBar from "../../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../../components/MarketingNavBar";
 import Modal from 'react-modal';
 import api from "../../../../../../services/api";
 import styles from "./styles.module.scss";
@@ -14,10 +14,6 @@ export default function premio({ crew, award }){
         router.push(`${award.id}/${option}`);    
     }
 
-    useEffect(() => {
-        console.log(award);
-    }, [])
-
     function openModal() {
       setIsOpen(true);
     }
@@ -28,27 +24,27 @@ export default function premio({ crew, award }){
 
     return (
       <div className={styles.all}>
-        <NavBar page="equipes"/>
+        <MarketingNavBar page="equipes"/>
   
         <div className={styles.pageContent}>
-          <section className={styles.menuRoutes}>
+          <div className={styles.content}>
             <MarketingMenuRoutes
               routesName={`Equipes/${crew.name}/Prêmios/${award.name}`} 
               routes={`equipes/${crew.id}/premios/${award.id}`}
             />
-          </section>
 
-          <div className={styles.content}>
-
-            <section id={styles.upper}>
-              <img src={award.image}></img>
+            <section className={styles.upper}>
+              <article className={styles.awardImg}>
+                <img src="../../../../award.svg" alt="award image"/>
+                <strong>{award.placing}</strong>
+              </article>
               <div className={styles.nameSub}>
                 <span>{award.name}</span>
                 <p>{award.year}</p>
               </div>
             </section>
 
-            <section id={styles.lower}>
+            <section className={styles.lower}>
                 <button type="button" onClick={() => handleSelectOption("editar")}>
                   <img src="/editarPremio.svg"></img>
                   <span>Editar Prêmio</span>

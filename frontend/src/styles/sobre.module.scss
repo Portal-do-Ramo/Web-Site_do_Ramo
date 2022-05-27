@@ -24,10 +24,12 @@
         /* ----- Container ----- */
         .aboutContainer{
             min-width: 1050px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 270px
         }
         h1, h2{
             font-size: 2.5rem;
@@ -41,10 +43,11 @@
         /* ----- Subcontainers ----- */
         .aboutLeftContainer,
         .aboutRightContainer{
-            width: 30%;
+            width: 45%;
         }
+
         /* ----- Container esquerdo ----- */
-        .aboutLeftContainer{
+        .aboutLeftContainer {
 
             /* O que é o ramo */
             article:first-child{
@@ -73,7 +76,7 @@
                     width: 14rem;
                     height: 14rem;
                     position: absolute;
-                    right: -15rem;
+                    right: -16rem;
                     top: -11rem;
                 }
                 div.familyPicture{
@@ -92,7 +95,10 @@
             
         }
 
-
+        /*---- Container Direito ----*/
+        .aboutRightContainer {
+            margin-top: -120px;
+        }
     }
 
     /* ----- Nossos valores ----- */

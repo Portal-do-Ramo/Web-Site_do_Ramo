@@ -1,4 +1,4 @@
-import NavBar from "../../../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../../../components/MarketingNavBar";
 import api from "../../../../../../../services/api";
 import MarketingMenuRoutes from "../../../../../../../components/MarketingMenuRoutes";
 import styles from "./styles.module.scss";
@@ -6,85 +6,81 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function premioEditar({ crew, award }){ 
-    const router = useRouter();
+  const router = useRouter();
 
-    const setYear = useState();
-    const setPosition = useState();
+  const [year, setYear] = useState("2022");
+  const [placing, setPlacing] = useState("1");
 
 
-    const year = [
-      '2008', '2009', '2010',
-      '2011', '2012', '2013',
-      '2014', '2015', '2016',
-      '2017', '2018', '2019',
-      '2020', '2021', '2022',
-    ];
+  const years = [
+    '2008', '2009', '2010',
+    '2011', '2012', '2013',
+    '2014', '2015', '2016',
+    '2017', '2018', '2019',
+    '2020', '2021', '2022',
+  ];
 
-    const position = [
-      '9', '8', '7',
-      '6', '5', '4',
-      '3', '2', '1',
-    ];
+  const placings = [
+    '1', '2', '3',
+    '4', '5', '6',
+    '7', '8', '9'
+  ];
 
-    function handleSelectOption(option) {
-      router.push(`${crew.id}/${option}`);    
-    }
+  return (
+    <div className={styles.all}>
+      <MarketingNavBar page={"equipes"}/>
 
-    return (
-      <div className={styles.all}>
-        <NavBar page={"equipes"}/>
-  
-          <div className={styles.pageContent}>
-              <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Prêmios/Editar`} 
-                routes={`equipes/${crew.id}/premios/editar`}
-              />
+        <div className={styles.pageContent}>
+            <div className={styles.content}>
+                <MarketingMenuRoutes 
+                  routesName={`Equipes/${crew.name}/Prêmios/${award.name}/Editar`} 
+                  routes={`equipes/${crew.id}/premios/${award.id}/editar`}
+                />
 
-              <div className={styles.content}>
-                  <h1>Editar Prêmio</h1>
-  
-                  <div className={styles.description}>
-  
-                      <div className={styles.nameHolder}>
-                          <span>Nome do prêmio</span>
-                          <input type="text" placeholder='Digite o nome do prêmio'></input>
-                      </div>
-  
-                      <div className={styles.other}>
-                        <div className={styles.selects}>
-                          <span>Ano da premiação</span>
-                          <select required value={year} onChange={(event) => setYear(event.target.value)}>
-                            
-                            {year.map((date, idx) => {
-                              return (
-                                <option key={idx} value={date}>{date}</option>
-                              )
-                            })}
-                            </select>
-                        </div>
+                <h1>Editar Prêmio</h1>
 
-                        <div className={styles.selects}>
-                          <span>Colocação</span>
-                          <select required value={position} onChange={(event) => setPosition(event.target.value)}>
-                            
-                            {position.map((pos, idx) => {
-                              return (
-                                <option key={idx} value={pos}>{pos}º</option>
-                              )
-                            })}
+                <div className={styles.description}>
+
+                    <div className={styles.nameHolder}>
+                        <span>Nome do prêmio</span>
+                        <input type="text" placeholder='Digite o nome do prêmio'></input>
+                    </div>
+
+                    <div className={styles.other}>
+                      <div className={styles.selects}>
+                        <span>Ano da premiação</span>
+                        <select required value={year} onChange={(event) => setYear(event.target.value)}>
+                          
+                          {years.map((year, idx) => {
+                            return (
+                              <option key={idx} value={year}>{year}</option>
+                            )
+                          })}
                           </select>
-                        </div>
                       </div>
-                  </div>
-  
-                  <div className={styles.buttonRow}>
-                      <button className={styles.cancel}>Cancelar</button>
-                      <button className={styles.edit}>Editar</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-    )
+
+                      <div className={styles.selects}>
+                        <span>Colocação</span>
+                        <select required value={placing} onChange={(event) => setPlacing(event.target.value)}>
+                          
+                          {placings.map((placing, idx) => {
+                            return (
+                              <option key={idx} value={placing}>{placing}º</option>
+                            )
+                          })}
+                        </select>
+                      </div>
+                    </div>
+                </div>
+
+                <div className={styles.buttonRow}>
+                    <button className={styles.cancel}>Cancelar</button>
+                    <button className={styles.edit}>Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  )
 }
 
 export async function getServerSideProps(ctx) {

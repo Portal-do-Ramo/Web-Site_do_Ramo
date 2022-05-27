@@ -10,7 +10,7 @@ export default function Header({page, children}) {
 
           <section>
             <h1>Ramo Estudantil IEEE CEFET-RJ</h1>
-            <p>Desenvolvendo pessoas através de projetos</p>
+            <p>Desenvolvendo pessoas através de projetos tecnicos e/ou sociais</p>
           </section>
         </div>
 

@@ -1,4 +1,4 @@
-import NavBar from "../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../components/MarketingNavBar";
 import api from "../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
@@ -13,7 +13,7 @@ export default function equipeEditar({ crew }){
 
     return (
       <div className={styles.all}>
-        <NavBar/>
+        <MarketingNavBar/>
   
           <div className={styles.pageContent}>
               <div className={styles.content}>

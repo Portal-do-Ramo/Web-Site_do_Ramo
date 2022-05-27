@@ -1,4 +1,4 @@
-import NavBar from "../../../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../../../components/MarketingNavBar";
 import api from "../../../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
@@ -13,15 +13,15 @@ export default function projetoEditar({ crew, project }){
 
     return (
       <div className={styles.all}>
-        <NavBar page={"equipes"}/>
-  
-          <div className={styles.pageContent}>
-              <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Projetos/${project.name}/Editar`} 
-                routes={`equipes/${crew.id}/projetos/${project.id}/editar`}
-              />
+        <MarketingNavBar page={"equipes"}/>
 
+          <div className={styles.pageContent}>
               <div className={styles.content}>
+                  <MarketingMenuRoutes 
+                    routesName={`Equipes/${crew.name}/Projetos/${project.name}/Editar`} 
+                    routes={`equipes/${crew.id}/projetos/${project.id}/editar`}
+                  />
+                  
                   <h1>Editar Projeto</h1>
   
                   <div className={styles.logoBanner}>

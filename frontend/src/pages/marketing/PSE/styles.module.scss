@@ -3,24 +3,28 @@
     font-family: 'Poppins';
     min-height: 100vh;
     background-color: var(--marketing-brackground);
-    padding-bottom: 50px;
-    overflow-y: scroll;
+    max-height: 100vh;
     
     .pageContent {
+        padding-bottom: 50px;
+        overflow-y: scroll;
         display: flex;
-        margin-left: 300px;
         justify-content: center;
-
+        margin-left: 300px;
         width: 100%;
+        
+        @media (max-width: 1168px) {
+            justify-content: flex-start;
+        }
 
         .content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            margin: 0 30px;
+            margin: 0 50px;
             width: 80%;
             min-width: 750px;
-            row-gap: 40px;
+            row-gap: 40px;    
 
             #showInformation {
                 display: flex;

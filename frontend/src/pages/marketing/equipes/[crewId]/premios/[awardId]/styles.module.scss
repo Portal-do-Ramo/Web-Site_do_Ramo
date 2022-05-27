@@ -3,42 +3,63 @@
     font-family: 'Poppins';
     min-height: 100vh;
     background-color: var(--marketing-brackground);
-
+    padding-bottom: 50px;
+    overflow-y: auto;
+    
     .pageContent {
         display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
         margin-left: 300px;
-        
-        .menuRoutes {
-            display: flex;
-            width: 80%;
-            min-width: 611px;
+        justify-content: center;
+        width: 100%;
+
+        @media (max-width: 950px) {
+            padding: 0 30px;
         }
-        
+
         .content {
             display: flex;
             flex-direction: column;
-            gap: 40px;
-            min-width: 80%;
+            align-items: flex-start;
+            margin: 0 30px;
+            width: 80%;
+            min-width: 500px;
+            row-gap: 40px;
 
-            padding: 50px 0;
-            min-height: 80vh;
-
-            #upper {
+            .upper {
                 display: flex;
                 align-items: center;
                 column-gap: 30px;
                 padding-bottom: 60px;
+                width: 600px;
 
                 border-bottom: 1px solid lightgray;
 
-                img {
-                    background-color: #3f434f;
-                    border-radius: 10px;
-                    width: 130px;
-                    height: 130px;
+                .awardImg {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    word-wrap: break-word;
+                    text-align: center;
+                    background-color: #3F434F;
+                    border-radius: 12px;
+
+                    strong {
+                        position: absolute;
+                        top: 39px;
+                        color: #3F434F;
+                        font-size: 1.4rem;
+                        font-weight: 700;
+                    }
+                    
+                    img {
+                        padding: 30px;
+                        background-color: #3f434f;
+                        border-radius: 10px;
+                        width: 130px;
+                        height: 130px;
+                    }
                 }
 
                 .nameSub {
@@ -53,7 +74,7 @@
                 }
             }
 
-            #lower {
+            .lower {
                 display: flex;
                 justify-content: start;
                 padding-top: 20px;

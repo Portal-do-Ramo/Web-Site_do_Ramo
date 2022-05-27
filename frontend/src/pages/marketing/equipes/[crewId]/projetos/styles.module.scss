@@ -4,6 +4,7 @@
     min-height: 100vh;
     background-color: var(--marketing-brackground);
     padding-bottom: 50px;
+    overflow-y: auto;
     
     .pageContent {
         display: flex;
@@ -12,13 +13,17 @@
 
         width: 100%;
 
+        @media (max-width: 950px) {
+            padding-left: 30px;
+        }
+
         .content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-
+            margin: 0 30px;
             width: 80%;
-            min-width: 450px;
+            min-width: 500px;
             row-gap: 40px;
 
             .row {

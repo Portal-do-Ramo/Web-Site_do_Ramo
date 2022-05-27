@@ -1,4 +1,4 @@
-import NavBar from "../../../../../../components/NavBar";
+import MarketingNavBar from "../../../../../../components/MarketingNavBar";
 import api from "../../../../../../services/api";
 import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoutes";
 import styles from "./styles.module.scss";
@@ -8,11 +8,11 @@ import { useState } from "react";
 export default function premioCriar({ crew }){ 
     const router = useRouter();
 
-    const setYear = useState();
-    const setPosition = useState();
+    const [year, setYear] = useState("2022");
+    const [placing, setPlacing] = useState("1");
 
 
-    const year = [
+    const years = [
       '2008', '2009', '2010',
       '2011', '2012', '2013',
       '2014', '2015', '2016',
@@ -20,27 +20,23 @@ export default function premioCriar({ crew }){
       '2020', '2021', '2022',
     ];
 
-    const position = [
-      '9', '8', '7',
-      '6', '5', '4',
-      '3', '2', '1',
+    const placings = [
+      '1', '2', '3',
+      '4', '5', '6',
+      '7', '8', '9'
     ];
-
-    function handleSelectOption(option) {
-      router.push(`${crew.id}/${option}`);    
-    }
 
     return (
       <div className={styles.all}>
-        <NavBar page={"equipes"}/>
+        <MarketingNavBar page={"equipes"}/>
   
           <div className={styles.pageContent}>
-              <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Prêmios/Criar`} 
-                routes={`equipes/${crew.id}/premios/criar`}
-              />
-
               <div className={styles.content}>
+                  <MarketingMenuRoutes 
+                    routesName={`Equipes/${crew.name}/Prêmios/Criar`} 
+                    routes={`equipes/${crew.id}/premios/criar`}
+                  />
+
                   <h1>Criar Prêmio</h1>
   
                   <div className={styles.description}>
@@ -55,9 +51,9 @@ export default function premioCriar({ crew }){
                           <span>Ano da premiação</span>
                           <select required value={year} onChange={(event) => setYear(event.target.value)}>
                             
-                            {year.map((date, idx) => {
+                            {years.map((year, idx) => {
                               return (
-                                <option key={idx} value={date}>{date}</option>
+                                <option key={idx} value={year}>{year}</option>
                               )
                             })}
                             </select>
@@ -65,11 +61,11 @@ export default function premioCriar({ crew }){
 
                         <div className={styles.selects}>
                           <span>Colocação</span>
-                          <select required value={position} onChange={(event) => setPosition(event.target.value)}>
+                          <select required value={placing} onChange={(event) => setPlacing(event.target.value)}>
                             
-                            {position.map((pos, idx) => {
+                            {placings.map((placing, idx) => {
                               return (
-                                <option key={idx} value={pos}>{pos}º</option>
+                                <option key={idx} value={placing}>{placing}º</option>
                               )
                             })}
                           </select>

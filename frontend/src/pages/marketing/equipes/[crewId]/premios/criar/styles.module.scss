@@ -1,68 +1,35 @@
 .all {
     display: flex;
     font-family: 'Poppins';
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--marketing-brackground);
-
+    padding-bottom: 50px;
+    overflow-y: auto;
+    
     .pageContent {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        overflow-y: scroll;
-        margin-left: 510px;
-        row-gap: 40px;
-        width: 100vw;       
+        margin-left: 300px;
+        justify-content: center;
+
+        width: 100%;
+
+        @media (max-width: 950px) {
+            padding-left: 30px;
+        }
 
         .content {
             display: flex;
-            justify-content: center;
             flex-direction: column;
+            align-items: flex-start;
+            margin: 0 30px;
+            width: 80%;
+            min-width: 500px;
             row-gap: 40px;
 
-            .logoBanner {
-                display: flex;
-                justify-content: space-between;
-                column-gap: 30px;
-
-                span {
-                    font-size: 1rem;
-                    font-weight: 500;
-                }
-
-                .logoHolder, .bannerHolder {
-                    display: flex;
-                    flex-direction: column;
-                    row-gap: 15px;
-
-                    input {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        width: 150px;
-                        height: 150px;
-
-                        border-radius: 8px;
-                        background-color: #3F434F;
-                        color: white;
-
-                        background-image: url('/camera_icon.svg');
-                        background-repeat: no-repeat;
-                        background-size: 80px;
-                        background-position: center;
-                    }
-                }
-
-                .bannerHolder {
-                    input {
-                        width: 410px;
-                    }
-                }         
-            }
-
             .description {
+
                 display: flex;
-                width: 590px;
+                width: 400px;
                 flex-direction: column;
                 row-gap: 30px;
 

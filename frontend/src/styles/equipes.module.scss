@@ -18,16 +18,19 @@
 
   .presentation {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100vw;
 
     padding: 7rem 0;
 
-    .descrição {
+    .description {
       display: flex;
       flex-direction: column;
       width: 100%;
-   
+      min-width: 400px;
+      max-width: 900px;
+      
+      margin-top: 55px;
       margin-left: 7rem;
       margin-right: 10rem;
       
@@ -58,7 +61,7 @@
       height: 100%;
       
       background-color: var(--azul-ramo);
-      border-radius: 60px 0 0 60px;     
+      border-radius: 0px 60px 60px 0px;     
       
       h2 {
         text-align: center;
@@ -118,7 +121,8 @@
 
   .projetos {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 70px;
 
     width: 100%;
 

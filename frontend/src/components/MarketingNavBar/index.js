@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 
-export default function NavBar({ page }) {
+export default function MarketingNavBar({ page }) {
   return (
     <div className={styles.all}>
       <div className={styles.title}>
