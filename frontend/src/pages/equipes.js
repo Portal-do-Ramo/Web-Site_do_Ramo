@@ -121,7 +121,7 @@ export default function Equipes({ crews }) {
           </div>
         </section>
         
-        <section className={styles.projetos}>
+        <section className={styles.projects}>
           <div className={styles.leftContainer}>
             <h2>Projetos</h2>
             <p>Conheça todos os projetos da equipe WolfByte</p>

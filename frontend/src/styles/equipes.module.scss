@@ -30,7 +30,6 @@
       min-width: 400px;
       max-width: 900px;
       
-      margin-top: 55px;
       margin-left: 7rem;
       margin-right: 10rem;
       
@@ -119,30 +118,24 @@
     }
   }
 
-  .projetos {
+  .projects {
     display: flex;
     justify-content: center;
     gap: 70px;
 
     width: 100%;
-
+    
     padding: 7rem 0 12rem;
     margin-top: 3rem;
     margin-bottom: -3rem;
-
+    
     background: #F4F4F6;
 
     .leftContainer {
       display: flex;
       flex-direction: column;
       row-gap: 8px;
-
-      .crewproject {
-        display: flex;
-        flex-direction: column;
-        row-gap: 15px;
-      }
-
+      
       h2 {
         color: var(--azul-ramo);
         font-size: 2.5rem;   

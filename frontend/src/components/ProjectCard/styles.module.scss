@@ -2,7 +2,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
-
+  
   width: 536px;
   padding: 25px 30px;
 
@@ -28,7 +28,8 @@
     
     p {
       color: #3A3D45;
-      width: 380px;
+      min-width: 100px;
+      max-width: 380px;
       font-weight: 500;
       font-size: 0.8rem;
       white-space: nowrap;
