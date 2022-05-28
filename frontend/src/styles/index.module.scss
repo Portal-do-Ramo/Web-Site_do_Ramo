@@ -131,51 +131,30 @@
     display: flex;
     flex-direction: column;
     height: auto;
-    padding: 5rem 130px 10rem 130px;
-    // align-items: center;
-
+    width: 100vw;
+    padding: 5rem 0 8rem 0;
+    align-items: center;
+    
     h3 {
+        width: 1112px;
+        
         // align-self: baseline;
         margin: 0 0 5rem 0;
         color: #0876BE;
-
+        
         font-size: 40px;
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
     }
     
-    .slider {
-        display: flex;
-        justify-content: center;
+    .partnerGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-items: center;
         align-items: center;
-        padding: 0 5rem;
-        height: fit-content;
-        // max-width: 1200px;
-        
-        .current { //Item centralizado no carrossel
-            text-align: center;
-            outline: none;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-
-            img {
-                display: inline;
-                margin-bottom: 1rem;
-            }
-
-            p {
-                font-family: 'Poppins', sans-serif;
-                font-weight: 800;
-                color: var(--logo-trasition);
-                font-size: 25px;
-            }
-        }
-
-        .other { //Item que não está no centro
-            transform: scale(0.6);
-            outline: none;
-        }
+        gap: 10px 0;
+        width: 1112px;
     }
-    
 }
 
 .rotate {
