@@ -71,20 +71,20 @@ export default function Home({ crews, sponsors }) {
         <div className={styles.parcerias}>
           <h3>Parceiros</h3>
           <div className={styles.partnerGrid}>
-            <img src="/sponsor-logo-motim.png" width={"150px"} height={"150px"}></img>
-            <img src="/sponsor-logo-TEC_CI_RGB.png" width={"300px"} height={"70px"}></img>
-            <img src="/sponsor-logo-squair.jpg" width={"150px"} height={"150px"}></img>
+            <img src="/sponsor-logo-motim.png" width={"130px"} height={"130px"}></img>
+            <img src="/sponsor-logo-TEC_CI_RGB.png" width={"250px"} height={"58px"}></img>
+            <img src="/sponsor-logo-squair.jpg" width={"130px"} height={"130px"}></img>
             <img src="/sponsor-logo-Universinagem.png" width={"120px"} height={"80px"}></img>
             
-            <img src="/sponsor-logo-voitto.png" width={"150px"} height={"150px"}></img>
-            <img src="/sponsor-logo-botz-loja.png" width={"175px"} height={"100px"}></img>
-            <img src="/sponsor-pololu-logo.jpg" width={"250px"} height={"130px"}></img>
-            <img src="/sponsor-logo-solidworks.png" width={"100px"} height={"100px"}></img>
+            <img src="/sponsor-logo-voitto.png" width={"130px"} height={"130px"}></img>
+            <img src="/sponsor-logo-botz-loja.png" width={"150px"} height={"86px"}></img>
+            <img src="/sponsor-pololu-logo.jpg" width={"190px"} height={"99px"}></img>
+            <img src="/sponsor-logo-solidworks.png" width={"150px"} height={"150px"}></img>
 
-            <img src="/sponsor-logo-Betabit.jpg" width={"150px"} height={"150px"}></img>
-            <img src="/sponsor-logo-alura.png" width={"210px"} height={"110px"}></img>
+            <img src="/sponsor-logo-Betabit.jpg" width={"140px"} height={"140px"}></img>
+            <img src="/sponsor-logo-alura.png" width={"160px"} height={"84px"}></img>
             <img src="/sponsor-logo-altium.png" width={"170px"} height={"75px"}></img>
-            <img src="/sponsor-logo-mlabs.png" width={"150px"} height={"150px"}></img>
+            <img src="/sponsor-logo-mlabs.png" width={"130px"} height={"130px"}></img>
           </div>
         </div>
       </div>

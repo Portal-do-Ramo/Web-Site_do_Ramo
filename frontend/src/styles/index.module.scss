@@ -132,14 +132,16 @@
     flex-direction: column;
     height: auto;
     width: 100vw;
-    padding: 5rem 130px 10rem 130px;
-    // align-items: center;
-
+    padding: 5rem 0 8rem 0;
+    align-items: center;
+    
     h3 {
+        width: 1112px;
+        
         // align-self: baseline;
         margin: 0 0 5rem 0;
         color: #0876BE;
-
+        
         font-size: 40px;
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
@@ -150,10 +152,8 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         justify-items: center;
         align-items: center;
-        justify-self: center;
-        align-self: center;
-        gap: 25px 0;
-        width: 90%;
+        gap: 10px 0;
+        width: 1112px;
     }
 }
 
