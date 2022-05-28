@@ -1,3 +1,4 @@
+const fs = require("fs");
 const fileService = require("../services/fileService");
 
 module.exports = {
@@ -27,7 +28,15 @@ module.exports = {
     }
   },
 
-  async getPse(req, res) {
-    return res.sendFile("/uploads/pse.csv", { root: '.' });
+  async getPseFile(req, res) {
+    try {
+      if (!fs.existsSync('./uploads/pse.csv')) {
+        throw new Error("Não existe arquivo CSV!");
+      }
+
+      return res.sendFile("/uploads/pse.csv", { root: '.' });
+    } catch (error) {
+      return res.status(400).json({error: error.message});      
+    }
   }
 }

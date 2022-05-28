@@ -4,7 +4,7 @@ exports.up = knex => {
     table.string("name").notNullable();
     table.string("email").notNullable().unique();
     table.string("password").notNullable();
-    table.boolean("admin").notNullable();
+    table.boolean("admin").notNullable().defaultTo(false);
     table.timestamps(true, true);
   });
 };

@@ -30,7 +30,7 @@ router
 	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
 	.get("/pse/end", auth, pseController.endPse)
-	.get("/download/pse.csv", auth, fileController.getPse)
+	.get("/download/pse.csv", auth, fileController.getPseFile)
 	
 	
 	.patch("/award/:id", awardController.update)
@@ -45,7 +45,7 @@ router
 	.post("/crew", auth, crewController.create)
 	.post("/project", auth, projectController.create)
 	.post("/sponsor", auth, sponsorController.create)
-	.post("/user", auth, userController.create)
+	.post("/user", userController.create)
 	.post("/login", sessionController.create)
 	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, pseController.schedulePSE) 
