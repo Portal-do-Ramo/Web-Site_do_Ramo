@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { AiFillLock } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastroInteresse.module.scss';
 
@@ -17,6 +18,11 @@ export default function Page3({ crewsNames }) {
     experience,
     setExperience
   } = useContext(PSEFormContext);
+
+  function handleFinish() {
+    toast.success("Cadastro concluido");
+    router.push("/PSE");
+  }
   
 
   return (
@@ -76,7 +82,7 @@ export default function Page3({ crewsNames }) {
 
           <div className={styles.buttonsHolder}>
             <button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=2")}>voltar</button>
-            <button type='button' className={styles.end}>Concluir</button>
+            <button type='button' className={styles.end} onClick={handleFinish}>Concluir</button>
           </div>
         </div>
       </article>
