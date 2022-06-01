@@ -3,6 +3,9 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 
 export default function MarketingNavBar({ page }) {
+  const user = {name: "Guilherme Fernandes Melo"}
+  let nameURL = `https://ui-avatars.com/api/?name=${user.name}`
+  
   return (
     <div className={styles.all}>
       <div className={styles.title}>
@@ -24,12 +27,10 @@ export default function MarketingNavBar({ page }) {
       </div>
 
       <div className={styles.user}>
-        <section className={styles.userImage}>
-
-        </section>
+        <img src={nameURL} className={styles.userImage}/>
 
         <section className={styles.userInfo}>
-          <span>Nome Sobrenome</span>
+          <span>{user.name}</span>
           <p>marketing</p>
         </section>
       </div>

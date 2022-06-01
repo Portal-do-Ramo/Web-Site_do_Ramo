@@ -9,7 +9,7 @@ export default function MarketingMenuRoutes({ routesName, routes }) {
     function handleChangeRoute(index) {
         let selectedRoute = splittedRoute.slice(0, index+1).join("/");
 
-        router.push(`/marketing/${selectedRoute}`);    
+        router.push(`/marketing/${selectedRoute}`);
     }
 
     return (
