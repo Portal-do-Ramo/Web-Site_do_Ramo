@@ -124,7 +124,7 @@ export default function Equipes({ crews }) {
         <section className={styles.projects}>
           <div className={styles.leftContainer}>
             <h2>Projetos</h2>
-            <p>Conheça todos os projetos da equipe WolfByte</p>
+            <p>Conheça todos os projetos da equipe {crews[crewIndex].name}</p>
 
             {crews[crewIndex].projects.map((project, idx) => {
               return (
