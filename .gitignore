@@ -36,3 +36,4 @@ yarn-error.log*
 /backend/uploads
 
 **/.vscode
+frontend/yarn.lock
