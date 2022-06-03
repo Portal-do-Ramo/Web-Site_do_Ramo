@@ -29,6 +29,15 @@
         cursor: pointer;
         font-size: 1.125rem;
         color: var(--azul-ramo);
+
+        @media (max-width: 870px) {
+            width: 120px;
+            height: 120px;
+            
+            p {
+                display: none;
+            }
+        }
     }
     
     .buttonContainer:hover {

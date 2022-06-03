@@ -1,15 +1,21 @@
-.main{ 
+.main { 
     font-family: "Poppins";
     width: 100vw;
     
     /* ----- Banner da foto dos membros ----- */
-    .banner{
+    .banner {
         margin-top: -3%;
         background-image: url("../../public/RG_auto_x2.jpg");
         height: 60vh;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+
+        @media (max-width: 680px) {
+            position: relative;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: -50px;
+        }
     }
     /* ----- Sobre o ramo ----- */
     .about {        
@@ -21,64 +27,109 @@
         background-repeat: no-repeat;
         background-position: 120% 110%;
 
+        @media (max-width: 680px) {
+            padding: 8rem 0;
+        }
+
         /* ----- Container ----- */
-        .aboutContainer{
+        .aboutContainer {
             min-width: 1050px;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 270px
+            column-gap: 210px;
+
+            @media (max-width: 1240px) {
+                max-width: 1000px;
+                column-gap: 150px;
+            }
+
+            @media (max-width: 1100px) {
+                column-gap: 50px;
+            }
+
+            @media (max-width: 1050px) {
+                flex-direction: column;
+                max-width: 1050px;
+                min-width: 0px;
+            }
         }
-        h1, h2{
+
+
+        h1, h2 {
             font-size: 2.5rem;
             margin-bottom: 1.2rem;
         }
-        p{
+
+        p {
             font-size: 1.063rem;
             margin-bottom: 1rem;
             text-align: justify;
         }
+        
         /* ----- Subcontainers ----- */
         .aboutLeftContainer,
-        .aboutRightContainer{
+        .aboutRightContainer {
             width: 45%;
+            
+            @media (max-width: 1050px) {
+                width: 80%;
+            }
         }
 
         /* ----- Container esquerdo ----- */
         .aboutLeftContainer {
 
             /* O que é o ramo */
-            article:first-child{
+            article:first-child {
                 margin-bottom: 4rem;
                 position: relative;
 
-                .historyArrow{
+                .historyArrow {
                     background-image: url("../../public/Arrow_6.svg");
                     background-repeat: no-repeat;
                     background-size: contain;
                     width: 23rem;
                     height: 20rem;
                     position: absolute;
-                    right: -25rem;
-                    top: -6rem;
+                    right: -21rem;
+                    top: -5.6rem;
+                    
+                    @media (max-width: 1240px) {
+                        right: -17rem;
+                    }
+                    
+                    @media (max-width: 1100px) {
+                        display: none;
+                    }
+                    
                 }
             }
             /* Nossa família */
-            article:last-child{
+            article:last-child {
                 position: relative;
 
-                div.familyArrow{
+                div.familyArrow {
                     background-image: url("../../public/Arrow_7.svg");
                     background-repeat: no-repeat;
                     background-size: contain;
                     width: 14rem;
                     height: 14rem;
                     position: absolute;
-                    right: -16rem;
+                    right: -12rem;
                     top: -11rem;
+                
+                    @media (max-width: 1240px) {
+                        right: -9rem;
+                    }
+
+                    @media (max-width: 1100px) {
+                        display: none;
+                    }
                 }
+
                 div.familyPicture{
                     padding: 8%;
                     background-image: url("../../public/about_img_border.svg");
@@ -86,9 +137,29 @@
                     background-position: center;
                     background-repeat: no-repeat;
                     margin-bottom: 1rem;
-                    img{
+
+                    img {
                         width: 100%;
                         border-radius: 0.8rem;
+                    }
+                    
+                    @media (max-width: 1050px) {
+                        display: flex;
+                        justify-content: center;
+
+                        padding: 5%;
+
+                        img {
+                            width: 80%;
+                        }
+                    }
+
+                    @media (max-width: 680px) {
+                        background-image: none;
+
+                        img {
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -98,6 +169,10 @@
         /*---- Container Direito ----*/
         .aboutRightContainer {
             margin-top: -120px;
+
+            @media (max-width: 1050px) {
+                margin-top: 50px;
+            }
         }
     }
 
@@ -109,19 +184,39 @@
         padding: 2rem;
         margin-top: 6rem;
 
-        h2{
+        h2 {
             font-size: 3rem;
             text-align: center;
             color: var(--azul-ramo);
             margin-bottom: 3rem;
         }
 
-        .valuesContainer{ 
+        .valuesContainer {
             display: grid;
             justify-self: center;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
             justify-items: center;
+
+            grid-template-columns: 1fr 1fr 1fr;
+            
+            column-gap: 30px;
+            row-gap: 30px;
+
+            @media (max-width: 1100px) {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            min-width: 0px;
+        }
+
+        @media (max-width: 758px) {
+            padding: 0;
+
+            .valuesContainer {
+                column-gap: 0px;
+                row-gap: 18px;
+            }
         }
     }
 
@@ -145,6 +240,10 @@
             font-size: 1.4rem;
             font-weight: lighter;
             text-align: center;
+        }
+
+        @media (max-width: 1050px) {
+            // background: tomato;
         }
     }
 }

@@ -33,7 +33,9 @@ export default function ContactButton({ text, image }) {
                     onClick={() => setButtonSelected(0)}
                 >
                     <FiMapPin/>
-                    R. Gen. Canabarro, 485 - Maracanã, RJ
+                    <p>
+                        R. Gen. Canabarro, 485 - Maracanã, RJ
+                    </p>
                 </button>
 
                 <button 
@@ -42,7 +44,9 @@ export default function ContactButton({ text, image }) {
                     onClick={() => setButtonSelected(1)}
                 >
                     <FiUsers className={styles.icon}/>
-                    Nossas Redes
+                    <p>
+                        Nossas Redes
+                    </p>
                 </button>
 
                 <button 
@@ -51,7 +55,9 @@ export default function ContactButton({ text, image }) {
                     onClick={() => setButtonSelected(2)}
                 >
                     <FiMail className={styles.icon}/>
-                    E-mail
+                    <p>
+                        E-mail
+                    </p>
                 </button>
             </div>
 

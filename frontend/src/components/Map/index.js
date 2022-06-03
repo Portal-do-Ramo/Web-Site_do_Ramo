@@ -6,7 +6,6 @@ export default function MapGL({actived}) {
     <div className={styles.mapContainer} id={!actived && styles.disabled}>
       <Map
         initialViewState={{ latitude: -22.9125953, longitude: -43.2247835, zoom: 15 }}
-        style={{ width: 900, height: 500 }}
         mapStyle="mapbox://styles/mapbox/streets-v11"
         mapboxAccessToken={process.env.MAPBOX_SECRET_KEY}
         attributionControl={false}
