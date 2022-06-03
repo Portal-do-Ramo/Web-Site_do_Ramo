@@ -1,6 +1,6 @@
 .pageContainer {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: #eee;
 }
 
@@ -9,7 +9,7 @@
   min-height: 100vh;
   min-width: 1150px;
   padding: 0 7rem;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
   max-width: 1500px;
   
   font-family: 'Poppins', sans-serif;
