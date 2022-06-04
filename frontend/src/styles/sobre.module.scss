@@ -15,6 +15,12 @@
             position: relative;
             border-radius: 0 0 50px 50px;
             margin-bottom: -50px;
+            height: 45vh;
+        }
+
+        @media (max-width: 640px) {
+            height: 40vh;
+            margin-top: -5%;
         }
     }
     /* ----- Sobre o ramo ----- */
@@ -68,6 +74,16 @@
             margin-bottom: 1rem;
             text-align: justify;
         }
+
+        @media (max-width: 640px) {
+            h1, h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+        }
         
         /* ----- Subcontainers ----- */
         .aboutLeftContainer,
@@ -111,7 +127,7 @@
             article:last-child {
                 position: relative;
 
-                div.familyArrow {
+                .familyArrow {
                     background-image: url("../../public/Arrow_7.svg");
                     background-repeat: no-repeat;
                     background-size: contain;
@@ -130,7 +146,7 @@
                     }
                 }
 
-                div.familyPicture{
+                .familyPicture {
                     padding: 8%;
                     background-image: url("../../public/about_img_border.svg");
                     background-size: contain;
@@ -156,8 +172,11 @@
 
                     @media (max-width: 680px) {
                         background-image: none;
+                        padding: 0;
 
                         img {
+                            object-fit: cover;
+                            height: 250px;
                             width: 100%;
                         }
                     }
@@ -168,7 +187,7 @@
 
         /*---- Container Direito ----*/
         .aboutRightContainer {
-            margin-top: -120px;
+            margin-top: -60px;
 
             @media (max-width: 1050px) {
                 margin-top: 50px;
@@ -204,6 +223,10 @@
             @media (max-width: 1100px) {
                 grid-template-columns: 1fr 1fr;
             }
+
+            @media (max-width: 530px) {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 1000px) {
@@ -216,6 +239,17 @@
             .valuesContainer {
                 column-gap: 0px;
                 row-gap: 18px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .valuesContainer {
+                column-gap: 10px;
+                row-gap: 10px;
             }
         }
     }
@@ -235,15 +269,21 @@
             font-size: 3rem;
         }
     
-        .subtitle {
+        span {
             color: var(--azul-ramo);
             font-size: 1.4rem;
-            font-weight: lighter;
+            font-weight: 400;
             text-align: center;
         }
 
-        @media (max-width: 1050px) {
-            // background: tomato;
+        @media (max-width: 640px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            span {
+                font-size: 1rem;
+            }
         }
     }
 }
