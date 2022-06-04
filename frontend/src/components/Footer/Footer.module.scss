@@ -8,6 +8,10 @@
   font-family: 'Poppins', sans-serif;
   color: white;
   background-color: #0D5FAA;
+
+  @media (max-width: 725px) {
+    display: none;
+  }
   
   h1 {
     font-size: 1.5rem;
@@ -49,6 +53,18 @@
     p {
       font-size: 0.8rem;
       font-weight: 400;
+      text-align: center;
+    }
+
+    @media (max-width: 1050px) {
+      p {
+        max-width: 200px;
+      }
+      
+    }
+
+    @media (max-width: 890px) {
+      display: none;
     }
   }
 
