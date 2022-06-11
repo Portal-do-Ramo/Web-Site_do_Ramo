@@ -1,4 +1,4 @@
-.contactUsContent{
+.contactUsContent {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,6 +29,40 @@
         cursor: pointer;
         font-size: 1.125rem;
         color: var(--azul-ramo);
+
+        svg {
+            color: var(--azul-ramo);
+            font-size: 2.188rem;
+            margin-bottom: .6rem;
+        }
+
+        @media (max-width: 870px) {
+            width: 120px;
+            height: 120px;
+
+            svg {
+                margin-bottom: 0;
+            }
+            
+            p {
+                display: none;
+            }
+        }
+
+        @media (max-width: 680px) {
+            svg {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 530px) {
+            width: 90px;
+            height: 90px;
+
+            svg {
+                font-size: 1.6rem;
+            }
+        }
     }
     
     .buttonContainer:hover {
@@ -43,12 +77,6 @@
         }
     }
 
-    svg {
-        color: var(--azul-ramo);
-        font-size: 2.188rem;
-        margin-bottom: .6rem;
-    }
-
     #activedButton {
         background-color: var(--azul-ramo);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -58,6 +86,10 @@
             color: #fff;
             transition: .2s ease;
         }
+    }
+
+    @media (max-width: 530px) {
+        gap: 10px;
     }
 }
 
@@ -82,7 +114,7 @@
         
         background-color: #fff;
         border: 0;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-family: 'Poppins';
         color: var(--azul-ramo);
         
@@ -120,6 +152,19 @@
             background: linear-gradient(180deg, rgba(244,11,221,1) 0%, rgba(249,189,37,1) 100%);
         }
     }
+
+    @media (max-width: 530px) {
+        gap: 15px;
+        
+        .socialButton {
+            font-size: .9rem;
+
+            span {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
 }
 
 .mail {
@@ -154,6 +199,33 @@
         svg {
             margin-left: 40px;
             color: #83AACE;
+        }
+    }
+
+    @media (max-width: 870px) {
+        width: 90%;
+    }
+
+    @media (max-width: 740px) {
+        justify-content: center;
+        background: var(--azul-ramo);
+    }
+
+    @media (max-width: 530px) {
+        .copyEmailButton {
+            img {
+                width: 40px;
+            }
+            
+            svg {
+                width: 25px;
+                margin-left: 15px;
+            }
+            
+            p {
+                margin-left: 15px;
+                font-size: .9rem;
+            }
         }
     }
 }

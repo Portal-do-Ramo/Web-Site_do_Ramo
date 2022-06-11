@@ -118,8 +118,8 @@ export default function Sobre(){
                                 enorme, nos permitindo ao chegar ao que somos hoje.</p>
                                     
                                 <p>Até hoje, inúmeros alunos do CEFET-RJ passaram pelo
-                                Ramo e inúmeros alunos ainda vão passar, dizem que as
-                                pessoas que conheceram o Ramo, nunca o esquece. </p>
+                                Ramo e inúmeros alunos ainda vão passar. Dizem que quem
+                                conheceu o Ramo, nunca o esquece. </p>
 
                                 <p>Continuar desenvolvendo pessoas através de projetos
                                 técnicos e sociais é a nossa missão e é isso o que nos move
@@ -147,7 +147,7 @@ export default function Sobre(){
 
                 <section className={styles.contactUs}>
                     <h2>Fale conosco!</h2>
-                    <p className={styles.subtitle}>Mande uma mensagem de dúvida, <br/> nos ajude com uma idéia!</p>
+                    <span>Mande uma mensagem de dúvida, <br/> nos ajude com uma ideia!</span>
 
                     <ContactOptions/>
                 </section>
