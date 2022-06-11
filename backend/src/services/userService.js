@@ -15,7 +15,7 @@ module.exports = {
                 name: Joi.string().min(3).required(),    
                 email: Joi.string().min(6).email().required(),
                 password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required(),
-                admin: Joi.boolean().required()
+                admin: Joi.boolean().default(false)
             });
         
             userValidation.validate({name, email, password, admin});

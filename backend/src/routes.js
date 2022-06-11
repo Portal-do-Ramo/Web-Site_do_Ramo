@@ -10,7 +10,7 @@ const sponsorController = require("./controllers/sponsorController");
 const userController = require("./controllers/userController");
 const pseController = require("./controllers/pseController");
 const sessionController = require("./controllers/sessionController");
-const imageController = require("./controllers/imageController");
+const fileController = require("./controllers/fileController");
 const emailController = require("./controllers/emailController");
 const forgotPasswordController = require("./controllers/forgotPasswordController");
 
@@ -27,9 +27,10 @@ router
 	.get("/projects", projectController.index)
 	.get("/sponsors", sponsorController.index)
 	.get("/users", userController.index)
-	.get("/uploads/:name", imageController.getByName)
+	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
 	.get("/pse/end", auth, pseController.endPse)
+	.get("/download/pse.csv", auth, fileController.getPseFile)
 	
 	
 	.patch("/award/:id", awardController.update)
@@ -44,11 +45,11 @@ router
 	.post("/crew", auth, crewController.create)
 	.post("/project", auth, projectController.create)
 	.post("/sponsor", auth, sponsorController.create)
-	.post("/user", auth, userController.create)
+	.post("/user", userController.create)
 	.post("/login", sessionController.create)
 	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, pseController.schedulePSE) 
-	.post("/image/:name", auth, upload.single('picture'), imageController.uploadOne)
+	.post("/image/:name", auth, upload.single('picture'), fileController.uploadOne)
 	.post("/email", emailController.sendCSV)
 	.post("/forgot_password", forgotPasswordController.resetPassword)
 
