@@ -7,6 +7,7 @@ import Image from "next/image";
 import api from '../services/api'
 
 import styles from "../styles/index.module.scss";
+import { useEffect } from "react";
 
 export default function Home({ crews, sponsors }) {
 
@@ -71,20 +72,20 @@ export default function Home({ crews, sponsors }) {
         <div className={styles.parcerias}>
           <h3>Parceiros</h3>
           <div className={styles.partnerGrid}>
-            <img src="/sponsor-logo-motim.png" width={"130px"} height={"130px"}></img>
-            <img src="/sponsor-logo-TEC_CI_RGB.png" width={"250px"} height={"58px"}></img>
-            <img src="/sponsor-logo-squair.jpg" width={"130px"} height={"130px"}></img>
-            <img src="/sponsor-logo-Universinagem.png" width={"120px"} height={"80px"}></img>
+            <img id={styles.motim} src="/sponsor-logo-motim.png"></img>
+            <img id={styles.tecci} src="/sponsor-logo-TEC_CI_RGB.png"></img>
+            <img id={styles.squair} src="/sponsor-logo-squair.jpg"></img>
+            <img id={styles.u} src="/sponsor-logo-Universinagem.png"></img>
             
-            <img src="/sponsor-logo-voitto.png" width={"130px"} height={"130px"}></img>
-            <img src="/sponsor-logo-botz-loja.png" width={"150px"} height={"86px"}></img>
-            <img src="/sponsor-pololu-logo.jpg" width={"190px"} height={"99px"}></img>
-            <img src="/sponsor-logo-solidworks.png" width={"150px"} height={"150px"}></img>
+            <img id={styles.voitto} src="/sponsor-logo-voitto.png"></img>
+            <img id={styles.botz} src="/sponsor-logo-botz-loja.png"></img>
+            <img id={styles.pololu} src="/sponsor-pololu-logo.jpg"></img>
+            <img id={styles.solidworks} src="/sponsor-logo-solidworks.png"></img>
 
-            <img src="/sponsor-logo-Betabit.jpg" width={"140px"} height={"140px"}></img>
-            <img src="/sponsor-logo-alura.png" width={"160px"} height={"84px"}></img>
-            <img src="/sponsor-logo-altium.png" width={"170px"} height={"75px"}></img>
-            <img src="/sponsor-logo-mlabs.png" width={"130px"} height={"130px"}></img>
+            <img id={styles.betabit} src="/sponsor-logo-Betabit.jpg"></img>
+            <img id={styles.alura} src="/sponsor-logo-alura.png"></img>
+            <img id={styles.altium} src="/sponsor-logo-altium.png"></img>
+            <img id={styles.mlabs} src="/sponsor-logo-mlabs.png"></img>
           </div>
         </div>
       </div>
