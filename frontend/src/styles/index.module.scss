@@ -8,12 +8,23 @@
     right: 14%;
 }
 
+@media (max-width: 1000px) {
+    .wolfImageContainer {
+        display: none;
+    }
+
+    #text_container {
+        height: 100vh;
+    }
+}
+
 #page_container {
     display: flex;
+    width: 100%;
+    min-width: 330px;
     flex-direction: column;
     align-items: center;
     height: auto;
-    min-width: 900px;
     font-family: 'Poppins';
     background-image: url("../../public/Background_Logos.svg");
     background-size: contain;
@@ -98,13 +109,81 @@
     }
 }
 
+@media(max-width: 1000px){
+    #text_container {
+        flex-direction: column;
+        padding-bottom: 100px;
+
+        #ourStory {
+            padding-top: 0px;
+            width: 100%;
+            min-width: 0px;
+
+            p {
+                padding-bottom: 25px;
+            }
+        }
+
+        #main_container {
+            margin-top: 20px;
+            flex-direction: row;
+            justify-content: flex-end;
+
+            #button {
+                margin-right: 0px;
+            }
+        }
+    }  
+}
+
+@media (max-width: 650px) {
+    #page_container {
+
+        img {
+            margin-bottom: 10px;
+        }
+
+        #text_container {
+            flex-direction: column;
+            padding-bottom: 100px;
+    
+            #ourStory {
+                justify-content: center;
+                padding-top: 0px;
+                width: 100%;
+                min-width: 0px;
+    
+                h1 {
+                    text-align: center;
+                    font-size: 1.5rem;
+                }
+
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+    
+            #main_container {
+                margin-top: 20px;
+                flex-direction: row;
+                justify-content: center;
+    
+                #button {
+                    margin-right: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+        } 
+    }
+}
+
 .crew_content {
     display: flex;
     flex-direction: column;
     align-items: center;
 
     width: 100%;
-    padding: 5rem 0 8rem 0;
+    padding: 5rem 12% 8rem 12%;
     margin-top: -1rem;
     
     background-color: #0D5FAA;
@@ -127,18 +206,52 @@
     }
 }
 
+@media (max-width: 1200px) {
+    .crew_content {
+        .logo_content { 
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .crew_content {
+        .logo_content { 
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .crew_content {
+        .logo_content { 
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .crew_content {
+        h3 { 
+            font-size: 30px;
+        }
+
+        .logo_content {
+            gap: 10px;
+        }
+    }
+}
+
 .parcerias {  
     display: flex;
     flex-direction: column;
     height: auto;
     width: 100vw;
-    padding: 5rem 0 8rem 0;
+    padding: 5rem 12% 8rem 12%;
     align-items: center;
     
-    h3 {
-        width: 1112px;
-        
-        // align-self: baseline;
+    h3 {    
+        align-self: flex-start;
         margin: 0 0 5rem 0;
         color: #0876BE;
         
@@ -154,6 +267,145 @@
         align-items: center;
         gap: 10px 0;
         width: 1112px;
+
+        #motim, #squair, #voitto {
+            width: 130px;
+            height: 130px;
+        }
+
+        #tecci {
+            width: 250px;
+            height: 58px;
+        }
+
+        #u {
+            width: 120px;
+            height: 80px;
+        }
+
+        #botz {
+            width: 150px;
+            height: 86px;
+        }
+
+        #pololu {
+            width: 190px;
+            height: 99px;
+        }
+
+        #solidworks {
+            width: 150px;
+            height: 150px;
+        }
+
+        #betabit {
+            width: 140px;
+            height: 140px;
+        }
+
+        #alura {
+            width: 160px;
+            height: 84px;
+        }
+
+        #altium {
+            width: 170px;
+            height: 85px;
+        }
+
+        #mlabs {
+            width: 130px;
+            height: 130px;
+        }
+    }
+}
+
+@media (max-width: 1180px) {
+    .parcerias {     
+        .partnerGrid {
+            grid-template-columns: 1fr 1fr 1fr;
+            width: 90%;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .parcerias {      
+        .partnerGrid {
+            grid-template-columns: 1fr 1fr;
+            width: fit-content;
+            gap: 30px 30px;
+
+            #motim, #squair, #voitto {
+                width: 90px;
+                height: 90px;
+            }
+    
+            #tecci {
+                width: 180px;
+                height: 40px;
+            }
+    
+            #u {
+                width: 100px;
+                height: 65px;
+            }
+    
+            #botz {
+                width: 150px;
+                height: 86px;
+            }
+    
+            #pololu {
+                width: 130px;
+                height: 70px;
+            }
+    
+            #solidworks {
+                width: 150px;
+                height: 150px;
+            }
+    
+            #betabit {
+                width: 120px;
+                height: 120px;
+            }
+    
+            #alura {
+                width: 120px;
+                height: 64px;
+            }
+    
+            #altium {
+                width: 140px;
+                height: 65px;
+            }
+    
+            #mlabs {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .parcerias {
+        .partnerGrid {
+            gap: 3px 0;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .parcerias {
+        h3 { 
+            font-size: 30px;
+        }
+
+        .partnerGrid {
+            gap: 3px 0;
+        }
     }
 }
 
