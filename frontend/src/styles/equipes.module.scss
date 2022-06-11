@@ -13,7 +13,6 @@
 
 .all {
   width: 100%;
-  min-width: 900px;
   font-family: "Poppins";
 
   .presentation {
@@ -26,8 +25,6 @@
     .description {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      min-width: 400px;
       max-width: 900px;
       
       margin-left: 7rem;
@@ -48,6 +45,20 @@
         font-size: 15px;
         color: var(--azul-ramo);
         text-align: justify;
+      }
+    }
+
+    @media (max-width: 1400px) {
+      .description {
+        margin-right: 5rem;
+        margin-left: 5rem;
+      }
+    }
+
+    @media (max-width: 1150px) {
+      .description {
+        margin-right: 3rem;
+        margin-left: 3rem;
       }
     }
     
@@ -116,6 +127,157 @@
         }
       }
     }
+
+    @media (max-width: 1200px) {
+      .carouselContainer {
+        padding: 80px 30px;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .carouselContainer {
+        padding: 80px 20px;
+
+        .carousel {
+          gap: 60px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1050px) {
+    .presentation {
+      padding-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .presentation {
+      padding-top: 60px;
+      flex-direction: column;
+
+      .description {
+        justify-content: center;
+        margin: 0px;
+        padding: 50px 80px 10px 80px;
+
+        h1 {
+          align-self: center;
+        } 
+      }
+
+      .carouselContainer {
+        margin: 0px 50px;
+        padding: 50px 30px;
+        border-radius: 60px; 
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    .presentation {
+      .description {
+        padding: 50px 60px 10px 60px;
+      }
+
+      .carouselContainer {
+        .carousel {
+          gap: 40px;
+          .imagesCarouselContainer {
+            width: 160px;
+            gap: 50px;
+            display: flex;
+            overflow: hidden;
+  
+            img {
+              min-width: 150px;
+            }
+            
+            .currentProjectImage, .previousProjectImage, .nextProjectImage{
+              right: 195px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    .presentation {
+      .description {
+        padding: 50px 60px 10px 60px;
+
+        h1 {
+          font-size: 25px;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 14px;
+        }
+      }
+
+      .carouselContainer {
+        margin: 0px 40px;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+        .carousel {
+          gap: 25px;
+          .imagesCarouselContainer {
+            width: 160px;
+            gap: 50px;
+            display: flex;
+            overflow: hidden;
+  
+            img {
+              min-width: 150px;
+            }
+            
+            .currentProjectImage, .previousProjectImage, .nextProjectImage{
+              right: 195px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .presentation {
+      .carouselContainer {
+        margin: 0px 20px;
+        h2 {
+          font-size: 1.3rem;
+          margin-bottom: 20px;
+        }
+
+        .carousel {
+          gap: 25px;
+          .imagesCarouselContainer {
+            width: 160px;
+            gap: 50px;
+            display: flex;
+            overflow: hidden;
+  
+            img {
+              min-width: 150px;
+            }
+            
+            .currentProjectImage, .previousProjectImage, .nextProjectImage{
+              right: 195px;
+            }
+          }
+
+          .crewSelected {
+            p {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
   }
 
   .projects {
@@ -152,7 +314,6 @@
   .awards_section {
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin-bottom: 180px;
     
     .topWave {
