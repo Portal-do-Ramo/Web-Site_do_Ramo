@@ -9,7 +9,7 @@ export default function Page2() {
   const router = useRouter();
 
   const {
-    Registration,
+    registration,
     setRegistration,
     course,
     setCourse,
@@ -55,7 +55,7 @@ export default function Page2() {
             <input 
               type="text"
               placeholder='Número da Matrícula'
-              value={Registration}
+              value={registration}
               onChange={(event) => setRegistration(event.target.value)}
             ></input>
 

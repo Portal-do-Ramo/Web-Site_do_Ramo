@@ -6,6 +6,7 @@
 
   img {
     width: 80px;
+    cursor: pointer;
   }
 
   .progressContainer {
@@ -14,11 +15,20 @@
     justify-content: center;
     margin-left: 350px;
 
+    article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.6rem;
+      color: #fff;
+    }
+
     .dots {
       width: 18px;
       height: 18px;
       border-radius: 100%;
       background: #fff;
+      cursor: pointer;
     }
 
     .activeDot {
@@ -26,6 +36,15 @@
       height: 20px;
       border-radius: 100%;
       background: #0B95EE;
+      cursor: pointer;
+    }
+
+    .validatedDot {
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      background: #38B05A;
+      cursor: pointer;
     }
 
     .lines {

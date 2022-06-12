@@ -11,10 +11,6 @@ import api from '../../services/api'
 export default function PSE({ crews }) {
     const router = useRouter()
 
-    let [values, setValues] = useState({fullname: "", birthdate: "", contact: "", email: "", facebook: "", 
-    linkedin: "", instagram: "", registry: "", course: "Administração", period: "1º Período", crew: "WIE", 
-    motivation: "", area: "Programação", experience: "", dynamic: "Opção 1"});
-
     return (
         <div>
             <Header page="PSE"/>

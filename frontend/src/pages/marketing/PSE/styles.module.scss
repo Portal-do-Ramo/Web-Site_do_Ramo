@@ -98,7 +98,7 @@
 
             }
 
-            #create_edit {
+            .schedulePSESection {
                 display: flex;
                 flex-direction: column;
                 row-gap: 50px;
@@ -171,7 +171,7 @@
                         padding: 15px 60px;
                         border: 0;
                         border-radius: 5px;
-                        background-color: var(--contraste);
+                        background-color: var(--azul-ramo);
                         color: white;
                         cursor: pointer;
                         transition: .2s ease;
@@ -181,6 +181,65 @@
                         &:hover {
                             transform: scale(1.05);
                         }
+
+                        &:active {
+                            transform: scale(0.95);
+                        }
+                    }
+                }
+            }
+
+            .downloadPSEFile {
+                display: flex;
+                flex-direction: column;
+                row-gap: 50px;
+                padding-bottom: 100px;
+                align-items: baseline;
+
+                span {
+                    font-size: 1.3rem;
+                    font-weight: 800;
+                }
+
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 18px 30px;
+                    border: 0;
+                    border-radius: 5px;
+                    background-color: var(--azul-ramo);
+                    color: white;
+                    cursor: pointer;
+                    transition: .2s ease;
+                    font-weight: bold;
+                    font-size: 1rem;
+                
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+
+                    &:active {
+                        transform: scale(0.95);
+                    }
+
+                    svg {
+                        margin-right: 15px;
+                        font-size: 1.4rem;
+                    }
+                }
+
+                .downloadButtonOff {
+                    cursor: not-allowed;
+                    background-color: #D0D0D0;
+                    color: #909090;
+
+                    &:hover {
+                        transform: scale(1);
+                    }
+
+                    &:active {
+                        transform: scale(1);
                     }
                 }
             }
@@ -218,6 +277,10 @@
                 
                     &:hover {
                         transform: scale(1.05);
+                    }
+
+                    &:active {
+                        transform: scale(0.95);
                     }
                 }
             }
@@ -278,6 +341,10 @@
         
             &:hover {
                 transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.95);
             }
         }
 

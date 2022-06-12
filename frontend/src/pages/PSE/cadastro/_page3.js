@@ -16,12 +16,20 @@ export default function Page3({ crewsNames }) {
     motivation,
     setMotivation,
     experience,
-    setExperience
+    setExperience,
+    isFistPageValidated,
+    isSecondPageValidated,
+    isThirdPageValidated
   } = useContext(PSEFormContext);
 
   function handleFinish() {
-    toast.success("Cadastro concluido");
-    router.push("/PSE");
+    if (isFistPageValidated && isSecondPageValidated && isThirdPageValidated) {
+      toast.success("Cadastro concluído");
+      router.push("/PSE");
+    } else {
+      toast.error("Formulário incompleto");
+    }
+
   }
   
 

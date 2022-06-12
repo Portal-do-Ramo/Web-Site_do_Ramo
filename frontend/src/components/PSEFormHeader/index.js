@@ -1,18 +1,63 @@
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { PSEFormContext } from "../../contexts/PSEFormContext";
 import styles from "./styles.module.scss";
+import { ImCheckmark } from "react-icons/im";
 
 export default function PSEFormHeader({ page }) {
+  const router = useRouter()
+
+  const { 
+    isFistPageValidated,
+    isSecondPageValidated,
+    isThirdPageValidated
+  } = useContext(PSEFormContext);
+
+  function dotStyle(pageStyle) {
+    if (pageStyle === page) {
+      return styles.activeDot;
+    }
+
+    if (isFistPageValidated && pageStyle === "1") {
+      return styles.validatedDot;
+    }
+    
+    if (isSecondPageValidated && pageStyle === "2") {
+      return styles.validatedDot;
+    }
+    
+    if (isThirdPageValidated && pageStyle === "3") {
+      return styles.validatedDot;
+    }
+
+    return styles.dots
+  }
+
   return (
     <div className={styles.container}>
       <section>
-        <img src="/Ramo_logo.svg" alt="logo do Ramo"/>
+        <img src="/Ramo_logo.svg" alt="logo do Ramo" onClick={() => router.push("/")}/>
       </section>
 
       <section className={styles.progressContainer}>
-        <article className={page === "1" ? styles.activeDot : styles.dots}></article>
+        <article 
+          className={dotStyle("1")}
+          onClick={() => router.push("/PSE/cadastro?page=1")}
+        > {isFistPageValidated && <ImCheckmark/>} </article>
+
         <div className={styles.lines}></div>
-        <article className={page === "2" ? styles.activeDot : styles.dots}></article>
+
+        <article
+          className={dotStyle("2")}
+          onClick={() => router.push("/PSE/cadastro?page=2")}
+        > {isSecondPageValidated && <ImCheckmark/>} </article>
+        
         <div className={styles.lines}></div>
-        <article className={page === "3" ? styles.activeDot : styles.dots}></article>
+        
+        <article
+          className={dotStyle("3")}
+          onClick={() => router.push("/PSE/cadastro?page=3")}
+        > {isThirdPageValidated && <ImCheckmark/>} </article>
       </section>
     </div>
   );

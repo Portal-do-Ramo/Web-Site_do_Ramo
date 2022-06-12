@@ -8,7 +8,7 @@ import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
 let psecontroler = 2;
 
 function controller(x) {
-    x = 1;
+    x = 0;
 
     switch (x) {
         case 0:

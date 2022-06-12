@@ -11,7 +11,7 @@ import styles from '../../../styles/pseCadastro.module.scss';
 
 
 export default function cadastro({ crewsNames }) {
-  const router = useRouter()
+  const router = useRouter();
   const { page } = router.query;
 
   useEffect(() => {
@@ -19,7 +19,6 @@ export default function cadastro({ crewsNames }) {
       router.push("/PSE/cadastro?page=1");
     }
   }, [page]);
-  
 
   return (
     <div className={styles.pageContainer}>

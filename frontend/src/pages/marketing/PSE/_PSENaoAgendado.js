@@ -1,10 +1,12 @@
-import Modal from 'react-modal';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
+import { FiDownload } from "react-icons/fi"
+import { MdOutlineFileDownloadOff } from "react-icons/md"
 import styles from "../PSE/styles.module.scss"
 
 export default function PSENaoAgendado() {
   const [beginDate, setBeginDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [isDownloadActive, setIsDownloadActive] = useState(false);
 
   useEffect(() => {
     var date = new Date();
@@ -22,7 +24,7 @@ export default function PSENaoAgendado() {
             </div>           
       </section>
 
-      <section id={styles.create_edit}>
+      <section className={styles.schedulePSESection}>
           <span>Cadastre um novo PSE!</span>
           <div className={styles.rowDates}>
               <div className={styles.begin}>
@@ -50,6 +52,14 @@ export default function PSENaoAgendado() {
 
               <button type='button'>Agendar</button>
           </div>
+      </section>
+
+      <section className={styles.downloadPSEFile}>
+        <span>Baixe o arquivo do último PSE!</span>
+        <button type="button" className={!isDownloadActive && styles.downloadButtonOff}>
+          {isDownloadActive ? <FiDownload/> : <MdOutlineFileDownloadOff/> }
+          Baixar
+        </button>
       </section>
     </>
   )
