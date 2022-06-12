@@ -246,6 +246,14 @@
 
   @media (max-width: 400px) {
     .presentation {
+      .description {
+        padding: 50px 40px 10px 40px;
+
+        h1 {
+          align-self: center;
+        } 
+      }
+
       .carouselContainer {
         margin: 0px 20px;
         h2 {
@@ -403,6 +411,132 @@
               font-size: 1.2rem;
               color: #fff;
               font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+    .awards_section {
+      margin-bottom: 0px;
+      .bottomWave {
+        display: none;
+      }
+
+      .awards {
+        h2 {
+          font-size: 2rem;
+        }
+
+        .awardSlider {
+          gap: 25px;
+
+          .awardsContainer {
+            max-width: 450px;
+            #awardsImagesContainer {
+              gap: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 590px) {
+    .awards_section {
+      .awards {
+        padding-top: 125px;
+        padding-bottom: 1350px;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        .awardSlider {
+          gap: 15px;
+          margin-top: 40px;
+
+          .awardsContainer {
+            max-width: 290px;
+
+            #awardsImagesContainer {
+              gap: 10px;
+            }
+
+            .award {
+              img {
+                padding: 20px;
+                width: 90px;
+                border-radius: 20px;
+              }
+        
+              strong {
+                margin-top: 20px;
+                font-size: 1.6rem;
+              }
+              
+              span {
+                max-width: 100px;
+                font-size: 1.1rem;
+                margin-top: 13px;
+              }
+              
+              p {
+                margin-top: 5px;
+                font-size: 1rem;
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .awards_section {
+      .awards {
+        padding-top: 80px;
+        padding-bottom: 120px;
+        h2 {
+          font-size: 1.3rem;
+        }
+
+        .awardSlider {
+          gap: 15px;
+          margin-top: 40px;
+          
+          .awardsContainer {
+            max-width: 230px;
+
+            #awardsImagesContainer {
+              gap: 8px;
+            }
+
+            .award {
+              img {
+                padding: 15px;
+                width: 70px;
+                border-radius: 18px;
+              }
+        
+              strong {
+                margin-top: 15px;
+                font-size: 1.3rem;
+              }
+              
+              span {
+                font-size: 0.8rem;
+                margin-top: 13px;
+              }
+              
+              p {
+                margin-top: 5px;
+                font-size: 0.8rem;
+
+              }
             }
           }
         }
