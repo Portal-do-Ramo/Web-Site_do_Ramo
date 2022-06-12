@@ -4,8 +4,6 @@ import Footer from "../../components/Footer";
 
 import styles from "../../styles/PSE.module.scss";
 
-import { useState } from "react";
-
 import api from '../../services/api'
 
 export default function PSE({ crews }) {
@@ -16,8 +14,8 @@ export default function PSE({ crews }) {
             <Header page="PSE"/>
             <div id={styles.pageContent}>
                 <section className={styles.introductionContainer}>
-                    <article id={styles.introduction}>
-                        <div id={styles.descriptionContainer}>
+                    <article className={styles.introduction}>
+                        <div className={styles.descriptionContainer}>
                             <h1>Lugar onde os projetos se tornam realidade!</h1>
                             <p>Se você é estudante de graduação do CEFET-RJ com vontade de aprender,
                             conhecer novas ferramentas, colocar os conhecimentos adquiridos
