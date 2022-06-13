@@ -43,6 +43,7 @@
 
     p {
       font-size: .9rem;
+      text-align: justify;
       line-height: 150%;
       font-weight: 500;
     }
@@ -60,6 +61,7 @@
 
     .members {
       display: flex;
+      flex-wrap: wrap;
       width: 100%;
       gap: 6px;
       font-size: .9rem;
@@ -81,6 +83,19 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .main {
+    width: 500px;
+  }
+}
+
+@media (max-width: 950px) {
+  .main {
+    width: 400px;
+  }
+}
+
 
 
 

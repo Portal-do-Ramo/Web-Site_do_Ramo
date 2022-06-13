@@ -125,17 +125,19 @@ export default function Equipes({ crews }) {
           <div className={styles.leftContainer}>
             <h2>Projetos</h2>
             <p>Conheça todos os projetos da equipe {crews[crewIndex].name}</p>
-
-            {crews[crewIndex].projects.map((project, idx) => {
-              return (
-                <ProjectCard 
-                  id={projectIndex === idx && styles.active}
-                  project={project}
-                  key={project.id} 
-                  onCLick={() => setProjectIndex(idx)}
-                />
-              )
-            })}
+            <div className={styles.cardSlider}>
+              {crews[crewIndex].projects.map((project, idx) => {
+                return (
+                  <ProjectCard 
+                    id={projectIndex === idx && styles.active}
+                    project={project}
+                    key={project.id} 
+                    onCLick={() => setProjectIndex(idx)}
+                  />
+                )
+              })}
+            </div>
+            
           </div>
           
           <div className={styles.rightcontainer}>
