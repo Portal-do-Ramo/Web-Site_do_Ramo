@@ -315,9 +315,15 @@
         color: #1b1b1b;
       }
 
-      .cardSlider {
-        display: flex;
-        flex-direction: column;
+      .sliderHolder {
+        #cardSlider {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      .dots {
+        display: none;
       }
     }
   }
@@ -368,17 +374,42 @@
           text-align: center;
         }
 
-        .cardSlider {
-          justify-content: center;
-          flex-direction: row;
-          flex-wrap: wrap;
+        .sliderHolder {
+          display: flex;
+          column-gap: 30px;
+          
+          .projectSliderContainer {
+            display: flex;
+            overflow: hidden;
+            max-width: calc(3 * (142px + 5px));
+          }
+          
+          #cardSlider {
+            justify-content: center;
+            flex-direction: row;
+            column-gap: 10px;
+          }
+        }
+
+        .dots {
+          display: flex;
+          column-gap: 10px;
+          margin-top: 30px;
+
+          span, #dotSelected {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background-color: #C4C4C4;
+          }
+
+          #dotSelected {
+            background-color: #0574BC;
+          }
         }
       }
     }
   }
-
-
- 
 
   .awards_section {
     display: flex;
@@ -423,7 +454,6 @@
           display: flex;
           max-width: 512px;
           overflow: hidden;
-          max-width: 512px;
           
           #awardsImagesContainer {
             display: flex;

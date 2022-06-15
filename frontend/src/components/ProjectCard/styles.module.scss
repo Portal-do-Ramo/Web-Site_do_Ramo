@@ -93,6 +93,10 @@
   @media (max-width: 740px) {
     .card {
       width: fit-content;
+
+      img {
+        max-width: 80px;
+      }
   
       .projectinfo {
         display: none;

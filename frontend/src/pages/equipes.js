@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import {
   PrevArrow,
   NextArrow,
+  ProjectNextArrow,
+  ProjectPrevArrow,
   AwardPrevArrow,
   AwardNextArrow,
 } from "../components/Arrows";
@@ -24,6 +26,7 @@ export default function Equipes({ crews }) {
   const [crewIndex, setCrewIndex] = useState(0);
   const [projectIndex, setProjectIndex] = useState(0);
   const [awardTranslateX, setAwardTranslateX] = useState(0);
+  const [projectsTranslateX, setProjectsTranslateX] = useState(0);
   
   useEffect(() => { //Tem como função mudar o index para a equipe que foi selecionada na tela Home
     if (query.crewIndex) {
@@ -68,16 +71,29 @@ export default function Equipes({ crews }) {
   }
 
   function handleChangeAwardSelected(operation) {
+    console.log(document.getElementById(((styles.awardsImagesContainer.clientWidth) / 3) - 60));
     if (operation === 1 && awardTranslateX > -1 * 184 * (crews[crewIndex].awards.length - 3)) {
       setAwardTranslateX(awardTranslateX - 184);
     } else if (operation === -1 && awardTranslateX < 0) {
       setAwardTranslateX(awardTranslateX + 184);
     }
   }
+
+  function handleChangeProjectsSelected(operation) {
+    if (operation === 1 && projectsTranslateX > -1 * 184 * (crews[crewIndex].awards.length - 3)) {
+      setProjectsTranslateX(projectsTranslateX - 184);
+    } else if (operation === -1 && projectsTranslateX < 0) {
+      setProjectsTranslateX(projectsTranslateX + 184);
+    }
+  }
   
   useEffect(() => {
     document.getElementById(styles.awardsImagesContainer).style.transform = `translateX(${awardTranslateX}px)`;
   }, [awardTranslateX]);
+
+  useEffect(() => {
+    document.getElementById(styles.cardSlider).style.transform = `translateX(${awardTranslateX}px)`;
+  }, [projectsTranslateX]);
 
   return (
     <div>
@@ -125,19 +141,30 @@ export default function Equipes({ crews }) {
           <div className={styles.leftContainer}>
             <h2>Projetos</h2>
             <p>Conheça todos os projetos da equipe {crews[crewIndex].name}</p>
-            <div className={styles.cardSlider}>
-              {crews[crewIndex].projects.map((project, idx) => {
-                return (
-                  <ProjectCard 
-                    id={projectIndex === idx && styles.active}
-                    project={project}
-                    key={project.id} 
-                    onCLick={() => setProjectIndex(idx)}
-                  />
-                )
-              })}
+            <div className={styles.sliderHolder}>
+              <ProjectPrevArrow onClick={() => handleChangeProjectsSelected(-1)}/>
+              
+              <section className={styles.projectSliderContainer}>
+                <div id={styles.cardSlider}>
+                  {crews[crewIndex].projects.map((project, idx) => {
+                    return (
+                      <ProjectCard 
+                        id={projectIndex === idx && styles.active}
+                        project={project}
+                        key={project.id} 
+                        onCLick={() => setProjectIndex(idx)}
+                      />
+                    )
+                  })}
+                </div>
+              </section>
+              <ProjectNextArrow onClick={() => handleChangeProjectsSelected(+1)}/>
             </div>
-            
+            <div className={styles.dots}>
+              <span id={styles.dotSelected}></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
           
           <div className={styles.rightcontainer}>

@@ -40,12 +40,10 @@
   }
 }
 
-.pprev {
-  margin-right: 70px;
-}
-
-.pnext {
-  margin-left: 70px;
+@media (min-width: 741px) {
+  .pprev, .pnext {
+    display: none;
+  }
 }
 
 .awardNext, .awardPrev {
