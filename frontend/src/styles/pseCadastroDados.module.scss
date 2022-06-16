@@ -37,7 +37,6 @@
 
   .formSection {
     display: flex;
-    justify-content: space-between;
 
     input, select {
       margin: none;
@@ -152,5 +151,37 @@
     background-position: right bottom;
     background-clip: border-box;
     background-size: contain;
+  }
+
+  @media (max-width: 1200px) {
+    .rightSide {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .formSection {
+      .leftSide {
+        width: 100%;  
+      }
+
+      .back, .prox {
+        padding: 15px 40px !important;
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  @media (max-width: 350px) {
+    .back, .prox {
+      padding: 15px 30px !important;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 570px) {
+  .pageContent {
+    padding: 0 30px;
   }
 }
