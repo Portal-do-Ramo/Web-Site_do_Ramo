@@ -1,6 +1,7 @@
 .container {
   display: flex;
-  margin-right: 7rem;
+  width: 100%;
+ 
   align-items: center;
   padding: 30px 0 50px 0;
 
@@ -55,3 +56,45 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .container {
+    width: 500px;
+    justify-content: space-between;
+    padding-left: 0px;
+
+    .progressContainer {
+      margin-left: 0px;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    width: 100%;
+    padding: 25px 30px;
+  }
+}
+
+@media (max-width: 490px) {
+  .progressContainer {
+    .lines {
+      width: 40px !important;
+      height: 2px;
+      margin: 0 10px;
+      background: #fff;
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  .progressContainer {
+    .lines {
+      width: 20px !important;
+      height: 2px;
+      margin: 0 10px;
+      background: #fff;
+    }
+  }
+}
+

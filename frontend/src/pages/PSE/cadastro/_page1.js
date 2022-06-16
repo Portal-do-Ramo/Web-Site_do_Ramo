@@ -34,7 +34,7 @@ export default function Page1() {
   }
 
   return (
-    <>
+    <div className={styles.holderResponsive}>
       <h1>Registro</h1>
       <p>Insira suas informações pessoais.</p>
 
@@ -80,6 +80,6 @@ export default function Page1() {
           </div>
         </div>
       </article>
-    </>
+    </div>
   )
 }
