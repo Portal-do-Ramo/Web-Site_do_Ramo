@@ -68,7 +68,7 @@
 
       margin-top: -25px;
   
-      .memberholder {
+      .memberHolder {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -98,25 +98,44 @@
 
 @media (max-width: 740px) {
   .main {
-    width: 550px;
+    width: 85vw;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 550px) {
   .main {
-    width: 450px;
-  }
-}
+    .imageHolder {
+      height: 150px;
+    }
 
-@media (max-width: 520px) {
-  .main {
-    width: 380px;
-  }
-}
+    .projectDescription {
+      > strong {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: -20px;
+      }
+  
+      p {
+        font-size: .8rem;
+      }
+  
+      span {
+        font-size: .8rem;
 
-@media (max-width: 420px) {
-  .main {
-    width: 300px;
+        strong {
+          font-size: .8rem;
+        }
+      }
+  
+      .members {
+        gap: 6px;
+        font-size: .7rem;
+    
+        .memberHolder {
+          padding: 3px 1rem;
+        }
+      }
+    }
   }
 }
 

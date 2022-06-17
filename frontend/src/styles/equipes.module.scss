@@ -92,7 +92,7 @@
           gap: 20px;
           display: flex;
           overflow: hidden;
-
+          
           img {
             min-width: 200px;
           }
@@ -126,18 +126,14 @@
           }
         }
       }
-    }
 
-    @media (max-width: 1200px) {
-      .carouselContainer {
+      @media (max-width: 1200px) {
         padding: 80px 30px;
       }
-    }
 
-    @media (max-width: 1000px) {
-      .carouselContainer {
+      @media (max-width: 1000px) {
         padding: 80px 20px;
-
+  
         .carousel {
           gap: 60px;
         }
@@ -181,10 +177,16 @@
       }
 
       .carouselContainer {
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 30px;
+        }
+
         .carousel {
           gap: 40px;
+          
           .imagesCarouselContainer {
-            width: 160px;
+            width: 150px;
             gap: 50px;
             display: flex;
             overflow: hidden;
@@ -193,8 +195,15 @@
               min-width: 150px;
             }
             
-            .currentProjectImage, .previousProjectImage, .nextProjectImage{
-              right: 195px;
+            .currentProjectImage, .previousProjectImage, .nextProjectImage {
+              right: 200px;
+            }
+          }
+
+          .crewSelected {
+            p {
+              font-size: 1.3rem;
+              margin-top: 30px;
             }
           }
         }
@@ -202,41 +211,51 @@
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 550px) {
     .presentation {
       .description {
         padding: 50px 60px 10px 60px;
 
         h1 {
-          font-size: 25px;
+          font-size: 1.8rem;
           margin-bottom: 10px;
         }
 
         p {
-          font-size: 14px;
+          font-size: 0.8rem;
         }
       }
 
       .carouselContainer {
-        margin: 0px 40px;
+        margin: 0px 20px;
 
         h2 {
-          font-size: 1.5rem;
+          font-size: 1.2rem;
+          margin-bottom: 30px;
         }
+
         .carousel {
           gap: 25px;
+
           .imagesCarouselContainer {
-            width: 160px;
-            gap: 50px;
+            width: 130px;
+            gap: 40px;
             display: flex;
             overflow: hidden;
   
             img {
-              min-width: 150px;
+              min-width: 130px;
             }
             
             .currentProjectImage, .previousProjectImage, .nextProjectImage{
-              right: 195px;
+              right: 170px;
+            }
+          }
+
+          .crewSelected {
+            p {
+              font-size: 1.2rem;
+              margin-top: 30px;
             }
           }
         }
@@ -255,32 +274,23 @@
       }
 
       .carouselContainer {
-        margin: 0px 20px;
-        h2 {
-          font-size: 1.3rem;
-          margin-bottom: 20px;
-        }
+        margin: 0px 10px;
 
         .carousel {
           gap: 25px;
+          
           .imagesCarouselContainer {
-            width: 160px;
+            width: 110px;
             gap: 50px;
             display: flex;
             overflow: hidden;
   
             img {
-              min-width: 150px;
+              min-width: 110px;
             }
             
             .currentProjectImage, .previousProjectImage, .nextProjectImage{
-              right: 195px;
-            }
-          }
-
-          .crewSelected {
-            p {
-              font-size: 1.2rem;
+              right: 160px;
             }
           }
         }
@@ -310,6 +320,7 @@
       }
 
       > p {
+        font-size: 1rem;
         margin-top: 5px;
         margin-bottom: 20px;
         color: #1b1b1b;
@@ -319,6 +330,11 @@
         #cardSlider {
           display: flex;
           flex-direction: column;
+          transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+
+          .projectCard {
+            width: 100%;
+          }
         }
       }
 
@@ -326,54 +342,44 @@
         display: none;
       }
     }
-  }
 
-  @media (max-width: 1250px) {
-    .projects {
+    @media (max-width: 1250px) {
       gap: 40px;
     }
-  }
 
-  @media (max-width: 850px) {
-    .projects {
+    @media (max-width: 850px) {
       gap: 30px;
-
+  
       .leftContainer {
         p {
           max-width: 290px;
         }
       }
     }
-  }
 
-  @media (max-width: 815px) {
-    .projects {
+    @media (max-width: 815px) {
       gap: 15px;
     }
-  }
 
-  @media (max-width: 780px) {
-    .projects {
+    @media (max-width: 780px) {
       gap: 0px;
     }
-  }
 
-  @media (max-width: 740px) {
-    .projects {
+    @media (max-width: 740px) {
       flex-direction: column;
       align-items: center;
-
+  
       .leftContainer {
         width: 100%;
         justify-content: center;
         align-items: center;
         margin-bottom: 100px;
-
+  
         p {
           font-size: 1.2rem;
           text-align: center;
         }
-
+  
         .sliderHolder {
           display: flex;
           column-gap: 30px;
@@ -381,32 +387,117 @@
           .projectSliderContainer {
             display: flex;
             overflow: hidden;
-            max-width: calc(3 * (142px + 5px));
+            max-width: calc(3 * (142.5px + 5px));
           }
           
           #cardSlider {
             justify-content: center;
             flex-direction: row;
             column-gap: 10px;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
           }
         }
-
+  
         .dots {
           display: flex;
           column-gap: 10px;
           margin-top: 30px;
-
-          span, #dotSelected {
+  
+          span, .dotSelected {
             width: 11px;
             height: 11px;
             border-radius: 50%;
             background-color: #C4C4C4;
           }
-
-          #dotSelected {
+  
+          .dotSelected {
             background-color: #0574BC;
           }
         }
+      }
+    }
+
+    @media (max-width: 670px) {
+      .leftContainer {
+        .sliderHolder {
+          .projectSliderContainer {
+            max-width: calc(3 * (122.5px + 5px));
+          }
+        }
+
+        .dots {
+          span, .dotSelected {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+
+      .rightContainer {
+        margin-top: -30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .leftContainer {
+        .sliderHolder {
+          .projectSliderContainer {
+            max-width: calc(3 * (92.5px + 5px));
+          }
+        }
+      }
+
+      .rightContainer {
+        margin-top: -40px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .leftContainer {
+        h2 {
+          font-size: 2rem;
+        }
+  
+        > p {
+          font-size: .9rem;
+        }
+      }
+    }
+
+    @media (max-width: 475px) {
+      .leftContainer {
+        .sliderHolder {
+          column-gap: 10px;
+
+          .projectSliderContainer {
+            max-width: calc(3 * (89.5px + 5px));
+          }
+
+          #cardSlider {
+            column-gap: 5px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 435px) {
+      .leftContainer {
+        .sliderHolder {
+          .projectSliderContainer {
+            max-width: calc(3 * (59.5px + 5px));
+          }
+        }
+        
+        .dots {
+          span, .dotSelected {
+            width: 8px;
+            height: 8px;
+          }
+        }
+      }
+
+      .rightContainer {
+        margin-top: -50px;
       }
     }
   }
@@ -457,7 +548,7 @@
           
           #awardsImagesContainer {
             display: flex;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: baseline;
             gap: 40px;
             transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
@@ -564,8 +655,9 @@
               }
         
               strong {
-                margin-top: 20px;
-                font-size: 1.6rem;
+                margin-top: 22.5px;
+                margin-left: 2px;
+                font-size: 1.3rem;
               }
               
               span {
@@ -614,8 +706,9 @@
               }
         
               strong {
-                margin-top: 15px;
-                font-size: 1.3rem;
+                margin-top: 17px;
+                margin-left: 1px;
+                font-size: 1rem;
               }
               
               span {
@@ -635,10 +728,9 @@
     }
   }
 
-  
-
-  #active {
+  .active {
     background-color: white;
     border: 1px solid #E1E1E1;
+    padding: 19px;
   }
 }

@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   
   width: 536px;
@@ -17,7 +17,7 @@
   .projectinfo {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     
     margin-left: 1rem;
 
@@ -96,6 +96,63 @@
 
       img {
         max-width: 80px;
+      }
+  
+      .projectinfo {
+        display: none;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 670px) {
+    .card {
+      width: fit-content;
+      padding: 25px 30px;
+
+      img {
+        max-width: 60px;
+      }
+  
+      .projectinfo {
+        display: none;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .card {
+      width: fit-content;
+      padding: 20px 20px;
+
+      img {
+        max-width: 50px;
+      }
+  
+      .projectinfo {
+        display: none;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 435px) {
+    .card {
+      width: fit-content;
+      padding: 10px 10px;
+
+      img {
+        max-width: 40px;
       }
   
       .projectinfo {
