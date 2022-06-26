@@ -14,7 +14,7 @@
     max-width: 58px;
   }
 
-  .projectinfo {
+  .projectInfo {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -43,11 +43,20 @@
   transition: .3s ease;
 }
 
+#cardActive {
+  background-color: white;
+  border: 1px solid #E1E1E1;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 @media (max-width: 1200px) {
   .card {
     width: 480px;
 
-    .projectinfo {
+    .projectInfo {
       p {
         max-width: 330px;
       }
@@ -59,7 +68,7 @@
   .card {
     width: 380px;
 
-    .projectinfo {
+    .projectInfo {
       p {
         max-width: 240px;
       }
@@ -71,7 +80,7 @@
   .card {
     width: 300px;
 
-    .projectinfo {
+    .projectInfo {
       p {
         width: 170px;
       }
@@ -82,7 +91,7 @@
     .card {
       width: 235px;
   
-      .projectinfo {
+      .projectInfo {
         p {
           display: none;
         }
@@ -98,7 +107,7 @@
         max-width: 80px;
       }
   
-      .projectinfo {
+      .projectInfo {
         display: none;
 
         span {
@@ -117,7 +126,7 @@
         max-width: 60px;
       }
   
-      .projectinfo {
+      .projectInfo {
         display: none;
 
         span {
@@ -136,7 +145,7 @@
         max-width: 50px;
       }
   
-      .projectinfo {
+      .projectInfo {
         display: none;
 
         span {
@@ -155,7 +164,7 @@
         max-width: 40px;
       }
   
-      .projectinfo {
+      .projectInfo {
         display: none;
 
         span {

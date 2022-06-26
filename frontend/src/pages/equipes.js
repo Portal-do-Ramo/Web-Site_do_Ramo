@@ -213,8 +213,8 @@ export default function Equipes({ crews }) {
                     return (
                       <div className={styles.projectCard} key={idx}>
                         <ProjectCard 
-                          className={projectIndex === idx && styles.active}
                           project={project}
+                          active={projectIndex === idx}
                           key={idx}
                           onCLick={() => setProjectIndex(idx)}
                         />
