@@ -42,8 +42,6 @@
       padding: 50px 0;
 
       width: 80%;
-      min-width: 510px;
-      min-height: 80vh;
       
       
       h1 {
@@ -58,6 +56,30 @@
         margin-bottom: 30px;
         font-weight: 400;
         line-height: 135%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .pageContent {
+    align-items: flex-start !important;
+    margin-left: 0px !important;
+    padding: 80px 0px 0px 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .pageContent {
+    padding: 80px 0px 0px 20px;
+
+    .content {
+      h1 {
+        font-size: 1.4rem !important;
+      }
+      
+      p {
+        font-size: 1rem !important;
       }
     }
   }

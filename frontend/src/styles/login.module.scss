@@ -16,7 +16,7 @@
     > div{
         height: 100vh;
     }
-    > div:first-child{
+    .leftImage{
         width: 60%;
         background-image: url("../../public/equipe_azul.jpg");
         background-repeat: no-repeat;
@@ -128,6 +128,38 @@
                 }
             }
             
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .loginContainer{
+        justify-content: center;
+        .leftImage {
+            display: none;
+        }
+
+        .loginContent {
+            width: fit-content !important;
+            .form {
+                width: 500px;
+            }
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    .loginContent {
+        .form {
+            width: 350px !important;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .loginContent {
+        .form {
+            width: 300px !important;
         }
     }
 }

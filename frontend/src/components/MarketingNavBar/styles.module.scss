@@ -1,5 +1,4 @@
 .all {
-  // opacity: 10%;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -80,6 +79,29 @@
         opacity: 57%;
         font-weight: 400;
       }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .all {
+    flex-direction: row;
+    min-height: fit-content;
+    align-items: center;
+    width: 100%;
+    padding: 10px 30px;
+
+    .title {
+      margin-top: 0px;
+      width: 80px;
+    }
+
+    .routes {
+      display: none;
+    }
+
+    .user {
+      display: none;
     }
   }
 }

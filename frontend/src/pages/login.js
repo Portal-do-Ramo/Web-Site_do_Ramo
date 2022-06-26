@@ -21,9 +21,10 @@ export default function Login(){
 
     return(
         <div className={styles.loginContainer}>
-            <div></div>
-            <div className={styles.loginContent}>
+            <div className={styles.leftImage}></div>
 
+
+            <div className={styles.loginContent}>
                 <img src="logo_azul.svg"/>
                 
                 <form className={styles.form} onSubmit={handleSubmit(handleSignIn)}>
@@ -37,11 +38,8 @@ export default function Login(){
                     <input {...register('password')} type="password" placeholder="Senha" required/><br/>
 
                     <div className={styles.radioContainer}>
-                        
                         <label for="manter-conectado"><input type="checkbox" id="manter-conectado"/> Matenha-me conectado</label>
-
                         <span><a href="#" >Esqueceu a senha?</a></span>
-                        
                     </div><br/>    
                     
                     <section className={styles.buttonsContainer}>
