@@ -43,6 +43,7 @@
 
     p {
       font-size: .9rem;
+      text-align: justify;
       line-height: 150%;
       font-weight: 500;
     }
@@ -60,13 +61,14 @@
 
     .members {
       display: flex;
+      flex-wrap: wrap;
       width: 100%;
       gap: 6px;
       font-size: .9rem;
 
       margin-top: -25px;
   
-      .memberholder {
+      .memberHolder {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -81,6 +83,64 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .main {
+    width: 500px;
+  }
+}
+
+@media (max-width: 950px) {
+  .main {
+    width: 400px;
+  }
+}
+
+@media (max-width: 740px) {
+  .main {
+    width: 85vw;
+  }
+}
+
+@media (max-width: 550px) {
+  .main {
+    .imageHolder {
+      height: 150px;
+    }
+
+    .projectDescription {
+      > strong {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: -20px;
+      }
+  
+      p {
+        font-size: .8rem;
+      }
+  
+      span {
+        font-size: .8rem;
+
+        strong {
+          font-size: .8rem;
+        }
+      }
+  
+      .members {
+        gap: 6px;
+        font-size: .7rem;
+    
+        .memberHolder {
+          padding: 3px 1rem;
+        }
+      }
+    }
+  }
+}
+
+
+
 
 
 

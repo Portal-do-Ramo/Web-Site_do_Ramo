@@ -16,17 +16,17 @@ export const PrevArrow = ({ onClick }) => {
   );
 };
 
-export const ProjectNextArrow = ({ onClick }) => {
+export const ProjectNextArrow = ({ onClick, disabled }) => {
   return (
-    <div className={styles.pnext} onClick={onClick}>
+    <div className={disabled ? styles.pNextDisabled : styles.pNext } onClick={onClick}>
       <img src="/Arrow_EquipesRight.svg" />
     </div>
   );
 };
 
-export const ProjectPrevArrow = ({ onClick }) => {
+export const ProjectPrevArrow = ({ onClick, disabled }) => {
   return (
-    <div className={styles.pprev} onClick={onClick}>
+    <div className={disabled ? styles.pPrevDisabled : styles.pPrev } onClick={onClick}>
       <img src="/Arrow_EquipesLeft.svg" />
     </div>
   );
