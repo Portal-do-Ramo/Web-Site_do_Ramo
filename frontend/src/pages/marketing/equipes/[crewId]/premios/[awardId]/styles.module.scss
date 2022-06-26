@@ -20,6 +20,7 @@
 
             .upper {
                 display: flex;
+                width: 100%;
                 align-items: center;
                 column-gap: 30px;
                 padding-bottom: 60px;
@@ -36,6 +37,7 @@
                     text-align: center;
                     background-color: #3F434F;
                     border-radius: 12px;
+                    
 
                     strong {
                         position: absolute;
@@ -107,15 +109,26 @@
 
         @media (max-width: 700px) {
             .content {
+                .upper {
+                    padding-bottom: 40px;
+                }
+
                 .lower {
                     flex-direction: column;
+                    padding-top: 0px;
 
                     button {
                         flex-direction: row;
                         column-gap: 30px;
+                        padding: 15px 50px;
+
+                        img {
+                            width: 130px;
+                            height: 130px;
+                        }  
 
                         span {
-                            font-size: 1.6rem;
+                            font-size: 1.4rem;
                             margin-top: 0px;
                         }
                     }

@@ -8,28 +8,19 @@
     
     .pageContent {
         display: flex;
-        margin-left: 300px;
-        justify-content: center;
-
+        margin-left: 360px;
         width: 100%;
-
-        @media (max-width: 950px) {
-            padding-left: 30px;
-        }
 
         .content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             margin: 0 30px;
-            width: 80%;
-            min-width: 500px;
             row-gap: 40px;
 
             .description {
-
                 display: flex;
-                width: 400px;
+                width: 100%;
                 flex-direction: column;
                 row-gap: 30px;
 
@@ -89,16 +80,40 @@
                     transition: .2s ease;
                     font-weight: 600;
                     font-size: 0.8rem;
-                  }
+                }
 
-                  .cancel:hover, .edit:hover {
+                .cancel:hover, .edit:hover {
                     transform: scale(1.05);
-                  }
-          
-                  .edit {
+                }
+        
+                .edit {
                     background-color: #0D5FAA;
                     color: white;
-                  }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .pageContent {
+            margin-left: 0px;
+            padding-top: 80px;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .pageContent {
+            .content {
+                .buttonRow {
+                    display: flex;
+                    column-gap: 30px;
+                    padding-bottom: 50px;
+    
+                    .cancel, .edit {
+                        padding: 15px 40px;
+                    }
+                }
             }
         }
     }
