@@ -22,9 +22,9 @@ export function ProjectDetail({ project }) {
           <span>Membros</span>
           <div className={styles.members}>
             {
-              project.members.map(member => {
+              project.members.map((member, idx) => {
                 return (
-                  <div className={styles.memberholder}>{member.name}</div>
+                  <div className={styles.memberHolder} key={idx}>{member.name}</div>
                 )
               })
             }
