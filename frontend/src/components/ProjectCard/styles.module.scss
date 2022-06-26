@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   
   width: 536px;
@@ -11,13 +11,13 @@
   cursor: pointer;
 
   img {
-    width: 58px;
+    max-width: 58px;
   }
 
   .projectinfo {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     
     margin-left: 1rem;
 
@@ -28,7 +28,6 @@
     
     p {
       color: #3A3D45;
-      min-width: 100px;
       max-width: 380px;
       font-weight: 500;
       font-size: 0.8rem;
@@ -43,3 +42,127 @@
   background-color: #E9EBED;
   transition: .3s ease;
 }
+
+@media (max-width: 1200px) {
+  .card {
+    width: 480px;
+
+    .projectinfo {
+      p {
+        max-width: 330px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .card {
+    width: 380px;
+
+    .projectinfo {
+      p {
+        max-width: 240px;
+      }
+    }
+  }
+}
+
+@media (max-width: 870px) {
+  .card {
+    width: 300px;
+
+    .projectinfo {
+      p {
+        width: 170px;
+      }
+    }
+  }
+
+  @media (max-width: 795px) {
+    .card {
+      width: 235px;
+  
+      .projectinfo {
+        p {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 740px) {
+    .card {
+      width: fit-content;
+
+      img {
+        max-width: 80px;
+      }
+  
+      .projectinfo {
+        display: none;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 670px) {
+    .card {
+      width: fit-content;
+      padding: 25px 30px;
+
+      img {
+        max-width: 60px;
+      }
+  
+      .projectinfo {
+        display: none;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .card {
+      width: fit-content;
+      padding: 20px 20px;
+
+      img {
+        max-width: 50px;
+      }
+  
+      .projectinfo {
+        display: none;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 435px) {
+    .card {
+      width: fit-content;
+      padding: 10px 10px;
+
+      img {
+        max-width: 40px;
+      }
+  
+      .projectinfo {
+        display: none;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+

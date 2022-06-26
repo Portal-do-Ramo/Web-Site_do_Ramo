@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import {
   PrevArrow,
   NextArrow,
+  ProjectNextArrow,
+  ProjectPrevArrow,
   AwardPrevArrow,
   AwardNextArrow,
 } from "../components/Arrows";
@@ -24,20 +26,66 @@ export default function Equipes({ crews }) {
   const [crewIndex, setCrewIndex] = useState(0);
   const [projectIndex, setProjectIndex] = useState(0);
   const [awardTranslateX, setAwardTranslateX] = useState(0);
+  const [projectsTranslateX, setProjectsTranslateX] = useState(0);
   
-  useEffect(() => { //Tem como função mudar o index para a equipe que foi selecionada na tela Home
+  const [dots, setDots] = useState([]);
+  const [projectsDotSelected, setProjectsDotSelected] = useState(0);
+  
+  useEffect(() => {
     if (query.crewIndex) {
       setCrewIndex(parseInt(query.crewIndex));
     }
   }, [query]);
 
+  useEffect(() => {
+    document.getElementById(styles.awardsImagesContainer).style.transform = `translateX(${awardTranslateX}px)`;
+  }, [awardTranslateX]);
+
+  useEffect(() => {
+      let dotsContainer = [];
+
+      if (crews[crewIndex].projects.length > 3) {
+        let quantity = Math.trunc(crews[crewIndex].projects.length / 3);
+        if (crews[crewIndex].projects.length % 3 !== 0) {
+          quantity = quantity + 1;
+        }
+
+        while (quantity > 0) {
+          dotsContainer.push(<span></span>)
+          quantity--;
+        }
+      } else {
+        dotsContainer.push(<span></span>)
+      }
+
+      setDots(dotsContainer)
+  }, [crewIndex]);
+
+  useEffect(() => {
+    let cardCardWidth = document.querySelector('.' + styles.projectCard).offsetWidth; 
+    let cardSliderGap = getComputedStyle(document.getElementById(styles.cardSlider)).columnGap;
+    cardSliderGap = cardSliderGap.replace("px", "");
+    cardSliderGap = Number(cardSliderGap);
+    
+    document.getElementById(styles.cardSlider).style.transform = `translateX(${projectsTranslateX}px)`;
+    
+    if (-projectsTranslateX % ((cardCardWidth + cardSliderGap) * 3) === 0) {
+      setProjectsDotSelected((-projectsTranslateX) / ((cardCardWidth + cardSliderGap) * 3));
+    }
+  }, [projectsTranslateX]);
+
   function handleChangeCrewSelected(operation) {
+    let imageContainerShift = document.querySelector("." + styles.currentProjectImage);
+    imageContainerShift = getComputedStyle(imageContainerShift).right;
+    imageContainerShift = imageContainerShift.replace("px", "");
+    imageContainerShift = Number(imageContainerShift);
+
     setProjectIndex(0);
     setAwardTranslateX(0);
 
     if (operation === 1) {
-      document.getElementById("currentProjectImage").style.transform = "translateX(-220px)";
-      document.getElementById("nextProjectImage").style.transform = "translateX(-220px)";
+      document.getElementById("currentProjectImage").style.transform = `translateX(-${imageContainerShift}px)`;
+      document.getElementById("nextProjectImage").style.transform = `translateX(-${imageContainerShift}px)`;
       
       setTimeout(() => {
         document.getElementById("currentProjectImage").style.transition = "none";
@@ -51,8 +99,8 @@ export default function Equipes({ crews }) {
       document.getElementById("nextProjectImage").style.transition = "transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)";
     
     } else {
-      document.getElementById("currentProjectImage").style.transform = "translateX(220px)";
-      document.getElementById("previousProjectImage").style.transform = "translateX(220px)";
+      document.getElementById("currentProjectImage").style.transform = `translateX(${imageContainerShift}px)`;
+      document.getElementById("previousProjectImage").style.transform = `translateX(${imageContainerShift}px)`;
       
       setTimeout(() => {
         document.getElementById("currentProjectImage").style.transition = "none";
@@ -68,16 +116,45 @@ export default function Equipes({ crews }) {
   }
 
   function handleChangeAwardSelected(operation) {
-    if (operation === 1 && awardTranslateX > -1 * 184 * (crews[crewIndex].awards.length - 3)) {
-      setAwardTranslateX(awardTranslateX - 184);
+    let awardWidth = document.querySelector("." + styles.award).offsetWidth; 
+    let awardGridGap = getComputedStyle(document.getElementById(styles.awardsImagesContainer)).gap;
+    awardGridGap = awardGridGap.replace("px", "");
+    awardGridGap = Number(awardGridGap);
+
+    if (operation === 1 && awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
+      setAwardTranslateX(awardTranslateX - (awardWidth + awardGridGap));
     } else if (operation === -1 && awardTranslateX < 0) {
-      setAwardTranslateX(awardTranslateX + 184);
+      setAwardTranslateX(awardTranslateX + (awardWidth + awardGridGap));
     }
   }
-  
-  useEffect(() => {
-    document.getElementById(styles.awardsImagesContainer).style.transform = `translateX(${awardTranslateX}px)`;
-  }, [awardTranslateX]);
+
+  function handleChangeProjectsSelected(operation) {
+    let cardCardWidth = document.querySelector('.' + styles.projectCard).offsetWidth; 
+    let cardSliderGap = getComputedStyle(document.getElementById(styles.cardSlider)).columnGap;
+    cardSliderGap = cardSliderGap.replace("px", "");
+    cardSliderGap = Number(cardSliderGap);
+
+    if (operation === 1 && projectsTranslateX > -1 * (cardCardWidth + cardSliderGap) * (crews[crewIndex].projects.length - 3)) {
+      setProjectsTranslateX(projectsTranslateX - ((cardCardWidth + cardSliderGap) * 3));
+    } else if (operation === -1 && projectsTranslateX < 0 && (projectsTranslateX + cardCardWidth + cardSliderGap) <= 0) {
+      setProjectsTranslateX(projectsTranslateX + ((cardCardWidth + cardSliderGap) * 3));
+    }
+  }
+
+  function verifyIsAwardArrowDisabled() {
+    if (process.browser) {
+      let awardWidth = document.querySelector("." + styles.award).offsetWidth; 
+      let awardGridGap = getComputedStyle(document.getElementById(styles.awardsImagesContainer)).gap;
+      awardGridGap = awardGridGap.replace("px", "");
+      awardGridGap = Number(awardGridGap);
+
+      if (awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
 
   return (
     <div>
@@ -93,7 +170,6 @@ export default function Equipes({ crews }) {
               <PrevArrow onClick={() => handleChangeCrewSelected(-1)}/>
               
               <article className={styles.crewSelected}>
-
                 <div className={styles.imagesCarouselContainer}>
                   { crewIndex === 0
                     ? <img src={crews[crews.length - 1].image} className={styles.previousProjectImage} id="previousProjectImage"/>
@@ -125,23 +201,45 @@ export default function Equipes({ crews }) {
           <div className={styles.leftContainer}>
             <h2>Projetos</h2>
             <p>Conheça todos os projetos da equipe {crews[crewIndex].name}</p>
-
-            {crews[crewIndex].projects.map((project, idx) => {
-              return (
-                <ProjectCard 
-                  id={projectIndex === idx && styles.active}
-                  project={project}
-                  key={project.id} 
-                  onCLick={() => setProjectIndex(idx)}
-                />
-              )
-            })}
+            <div className={styles.sliderHolder}>
+              <ProjectPrevArrow 
+                onClick={() => handleChangeProjectsSelected(-1)}
+                disabled={projectsTranslateX === 0}
+              />
+              
+              <section className={styles.projectSliderContainer}>
+                <div id={styles.cardSlider}>
+                  {crews[crewIndex].projects.map((project, idx) => {
+                    return (
+                      <div className={styles.projectCard} key={idx}>
+                        <ProjectCard 
+                          className={projectIndex === idx && styles.active}
+                          project={project}
+                          key={idx}
+                          onCLick={() => setProjectIndex(idx)}
+                        />
+                      </div>
+                    )
+                  })}
+                </div>
+              </section>
+              <ProjectNextArrow 
+                onClick={() => handleChangeProjectsSelected(+1)}
+                disabled={projectsDotSelected === (dots.length - 1)}
+              />
+            </div>
+            <div className={styles.dots}>
+              {dots.map((dot, idx) => {
+                return (
+                  <span className={projectsDotSelected === idx && styles.dotSelected} key={idx}></span>
+                )
+              })}
+            </div>
           </div>
           
-          <div className={styles.rightcontainer}>
+          <div className={styles.rightContainer}>
             <ProjectDetail 
-              project={crews[crewIndex].projects[projectIndex]} 
-              key={crews[crewIndex].projects[projectIndex].id}
+              project={crews[crewIndex].projects[projectIndex]}
             />
           </div>
         </section>
@@ -158,18 +256,21 @@ export default function Equipes({ crews }) {
                   {
                     crews[crewIndex].awards.map((award, idx) => {
                       return (
-                      <article className={styles.award} key={idx}>
-                        <img src="award.svg" alt="award image"/>
-                        <strong>{award.placing}</strong>
-                        <span>{award.name}</span>
-                        <p>{award.year && award.year}</p>
-                      </article>
+                        <article className={styles.award} key={idx}>
+                          <img src="award.svg" alt="award image"/>
+                          <strong>{award.placing}</strong>
+                          <span>{award.name}</span>
+                          <p>{award.year && award.year}</p>
+                        </article>
                       )
                     })
                   }
                 </div>
               </section>
-              <AwardNextArrow onClick={() => handleChangeAwardSelected(1)} disabled={!(awardTranslateX > -1 * 184 * (crews[crewIndex].awards.length - 3))}/>
+              <AwardNextArrow 
+                onClick={() => handleChangeAwardSelected(1)} 
+                disabled={ verifyIsAwardArrowDisabled() }
+                />
             </div>
           </div>
           <img className={styles.bottomWave} src='/Background.png'></img>

@@ -13,7 +13,6 @@
 
 .all {
   width: 100%;
-  min-width: 900px;
   font-family: "Poppins";
 
   .presentation {
@@ -26,8 +25,6 @@
     .description {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      min-width: 400px;
       max-width: 900px;
       
       margin-left: 7rem;
@@ -48,6 +45,20 @@
         font-size: 15px;
         color: var(--azul-ramo);
         text-align: justify;
+      }
+    }
+
+    @media (max-width: 1400px) {
+      .description {
+        margin-right: 5rem;
+        margin-left: 5rem;
+      }
+    }
+
+    @media (max-width: 1150px) {
+      .description {
+        margin-right: 3rem;
+        margin-left: 3rem;
       }
     }
     
@@ -81,7 +92,7 @@
           gap: 20px;
           display: flex;
           overflow: hidden;
-
+          
           img {
             min-width: 200px;
           }
@@ -115,6 +126,175 @@
           }
         }
       }
+
+      @media (max-width: 1200px) {
+        padding: 80px 30px;
+      }
+
+      @media (max-width: 1000px) {
+        padding: 80px 20px;
+  
+        .carousel {
+          gap: 60px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1050px) {
+    .presentation {
+      padding-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .presentation {
+      padding-top: 60px;
+      flex-direction: column;
+
+      .description {
+        justify-content: center;
+        margin: 0px;
+        padding: 50px 80px 10px 80px;
+
+        h1 {
+          align-self: center;
+        } 
+      }
+
+      .carouselContainer {
+        margin: 0px 50px;
+        padding: 50px 30px;
+        border-radius: 60px; 
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    .presentation {
+      .description {
+        padding: 50px 60px 10px 60px;
+      }
+
+      .carouselContainer {
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 30px;
+        }
+
+        .carousel {
+          gap: 40px;
+          
+          .imagesCarouselContainer {
+            width: 150px;
+            gap: 50px;
+            display: flex;
+            overflow: hidden;
+  
+            img {
+              min-width: 150px;
+            }
+            
+            .currentProjectImage, .previousProjectImage, .nextProjectImage {
+              right: 200px;
+            }
+          }
+
+          .crewSelected {
+            p {
+              font-size: 1.3rem;
+              margin-top: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    .presentation {
+      .description {
+        padding: 50px 60px 10px 60px;
+
+        h1 {
+          font-size: 1.8rem;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 0.8rem;
+        }
+      }
+
+      .carouselContainer {
+        margin: 0px 20px;
+
+        h2 {
+          font-size: 1.2rem;
+          margin-bottom: 30px;
+        }
+
+        .carousel {
+          gap: 25px;
+
+          .imagesCarouselContainer {
+            width: 130px;
+            gap: 40px;
+            display: flex;
+            overflow: hidden;
+  
+            img {
+              min-width: 130px;
+            }
+            
+            .currentProjectImage, .previousProjectImage, .nextProjectImage{
+              right: 170px;
+            }
+          }
+
+          .crewSelected {
+            p {
+              font-size: 1.2rem;
+              margin-top: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .presentation {
+      .description {
+        padding: 50px 40px 10px 40px;
+
+        h1 {
+          align-self: center;
+        } 
+      }
+
+      .carouselContainer {
+        margin: 0px 10px;
+
+        .carousel {
+          gap: 25px;
+          
+          .imagesCarouselContainer {
+            width: 110px;
+            gap: 50px;
+            display: flex;
+            overflow: hidden;
+  
+            img {
+              min-width: 110px;
+            }
+            
+            .currentProjectImage, .previousProjectImage, .nextProjectImage{
+              right: 160px;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -122,8 +302,6 @@
     display: flex;
     justify-content: center;
     gap: 70px;
-
-    width: 100%;
     
     padding: 7rem 0 12rem;
     margin-top: 3rem;
@@ -142,9 +320,184 @@
       }
 
       > p {
+        font-size: 1rem;
         margin-top: 5px;
         margin-bottom: 20px;
         color: #1b1b1b;
+      }
+
+      .sliderHolder {
+        #cardSlider {
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+
+          .projectCard {
+            width: 100%;
+          }
+        }
+      }
+
+      .dots {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1250px) {
+      gap: 40px;
+    }
+
+    @media (max-width: 850px) {
+      gap: 30px;
+  
+      .leftContainer {
+        p {
+          max-width: 290px;
+        }
+      }
+    }
+
+    @media (max-width: 815px) {
+      gap: 15px;
+    }
+
+    @media (max-width: 780px) {
+      gap: 0px;
+    }
+
+    @media (max-width: 740px) {
+      flex-direction: column;
+      align-items: center;
+  
+      .leftContainer {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 100px;
+  
+        p {
+          font-size: 1.2rem;
+          text-align: center;
+        }
+  
+        .sliderHolder {
+          display: flex;
+          column-gap: 30px;
+          
+          .projectSliderContainer {
+            display: flex;
+            overflow: hidden;
+            max-width: calc(3 * (142.5px + 5px));
+          }
+          
+          #cardSlider {
+            justify-content: center;
+            flex-direction: row;
+            column-gap: 10px;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+          }
+        }
+  
+        .dots {
+          display: flex;
+          column-gap: 10px;
+          margin-top: 30px;
+  
+          span, .dotSelected {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background-color: #C4C4C4;
+          }
+  
+          .dotSelected {
+            background-color: #0574BC;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 670px) {
+      .leftContainer {
+        .sliderHolder {
+          .projectSliderContainer {
+            max-width: calc(3 * (122.5px + 5px));
+          }
+        }
+
+        .dots {
+          span, .dotSelected {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+
+      .rightContainer {
+        margin-top: -30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .leftContainer {
+        .sliderHolder {
+          .projectSliderContainer {
+            max-width: calc(3 * (92.5px + 5px));
+          }
+        }
+      }
+
+      .rightContainer {
+        margin-top: -40px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .leftContainer {
+        h2 {
+          font-size: 2rem;
+        }
+  
+        > p {
+          font-size: .9rem;
+        }
+      }
+    }
+
+    @media (max-width: 475px) {
+      .leftContainer {
+        .sliderHolder {
+          column-gap: 10px;
+
+          .projectSliderContainer {
+            max-width: calc(3 * (89.5px + 5px));
+          }
+
+          #cardSlider {
+            column-gap: 5px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 435px) {
+      .leftContainer {
+        .sliderHolder {
+          .projectSliderContainer {
+            max-width: calc(3 * (59.5px + 5px));
+          }
+        }
+        
+        .dots {
+          span, .dotSelected {
+            width: 8px;
+            height: 8px;
+          }
+        }
+      }
+
+      .rightContainer {
+        margin-top: -50px;
       }
     }
   }
@@ -152,7 +505,6 @@
   .awards_section {
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin-bottom: 180px;
     
     .topWave {
@@ -193,11 +545,10 @@
           display: flex;
           max-width: 512px;
           overflow: hidden;
-          max-width: 512px;
           
           #awardsImagesContainer {
             display: flex;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: baseline;
             gap: 40px;
             transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
@@ -249,10 +600,137 @@
     }
   }
 
-  
+  @media (max-width: 720px) {
+    .awards_section {
+      margin-bottom: 0px;
+      .bottomWave {
+        display: none;
+      }
 
-  #active {
+      .awards {
+        h2 {
+          font-size: 2rem;
+        }
+
+        .awardSlider {
+          gap: 25px;
+
+          .awardsContainer {
+            max-width: 450px;
+            #awardsImagesContainer {
+              gap: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 590px) {
+    .awards_section {
+      .awards {
+        padding-top: 125px;
+        padding-bottom: 1350px;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        .awardSlider {
+          gap: 15px;
+          margin-top: 40px;
+
+          .awardsContainer {
+            max-width: 290px;
+
+            #awardsImagesContainer {
+              gap: 10px;
+            }
+
+            .award {
+              img {
+                padding: 20px;
+                width: 90px;
+                border-radius: 20px;
+              }
+        
+              strong {
+                margin-top: 22.5px;
+                margin-left: 2px;
+                font-size: 1.3rem;
+              }
+              
+              span {
+                max-width: 100px;
+                font-size: 1.1rem;
+                margin-top: 13px;
+              }
+              
+              p {
+                margin-top: 5px;
+                font-size: 1rem;
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .awards_section {
+      .awards {
+        padding-top: 80px;
+        padding-bottom: 120px;
+        h2 {
+          font-size: 1.3rem;
+        }
+
+        .awardSlider {
+          gap: 15px;
+          margin-top: 40px;
+          
+          .awardsContainer {
+            max-width: 230px;
+
+            #awardsImagesContainer {
+              gap: 8px;
+            }
+
+            .award {
+              img {
+                padding: 15px;
+                width: 70px;
+                border-radius: 18px;
+              }
+        
+              strong {
+                margin-top: 17px;
+                margin-left: 1px;
+                font-size: 1rem;
+              }
+              
+              span {
+                font-size: 0.8rem;
+                margin-top: 13px;
+              }
+              
+              p {
+                margin-top: 5px;
+                font-size: 0.8rem;
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .active {
     background-color: white;
     border: 1px solid #E1E1E1;
+    padding: 19px;
   }
 }
