@@ -8,18 +8,14 @@
     
     .pageContent {
         display: flex;
-        margin-left: 300px;
-        justify-content: center;
-
+        margin-left: 360px;
         width: 100%;
 
         .content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            margin: 0 30px;
-            width: 80%;
-            min-width: 500px;
+            padding: 0 30px;
             row-gap: 40px;
 
             #upper {
@@ -27,7 +23,6 @@
                 align-items: center;
                 column-gap: 30px;
                 padding-bottom: 60px;
-                width: 600px;
 
                 border-bottom: 1px solid lightgray;
 
@@ -87,6 +82,79 @@
                     font-weight: 500;
                 }
             }   
+        }
+
+        @media (max-width: 700px) {
+            .content {
+                #lower {
+                    flex-direction: column;
+
+                    button {
+                        flex-direction: row;
+                        column-gap: 30px;
+
+                        span {
+                            font-size: 1.6rem;
+                            margin-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 450px) {
+            .content {
+                #upper {
+                    img {
+                        width: 110px;
+                        height: 110px;
+                    }
+                }
+
+                #lower {
+                    button {
+                        column-gap: 20px;
+                        padding: 20px 30px;
+
+                        img {
+                            width: 150px;
+                            height: 150px;
+                        }   
+
+                        span {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 350px) {
+            .content {
+                #lower {
+                    button {
+                        column-gap: 20px;
+                        padding: 20px 30px;
+
+                        img {
+                            width: 130px;
+                            height: 130px;
+                        }   
+
+                        span {
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .pageContent {
+            margin-left: 0px;
+            padding-top: 80px;
+            justify-content: center;
         }
     }
 }
