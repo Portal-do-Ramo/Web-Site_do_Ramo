@@ -6,18 +6,13 @@
     padding-bottom: 50px;
     overflow-y: auto;
 
-    input {
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    textarea {
+    input, textarea {
         font-family: 'Poppins', sans-serif;
     }
     
     .pageContent {
         display: flex;
-        margin-left: 300px;
-        justify-content: center;
+        margin-left: 360px;
         width: 100%;
 
         .content {
@@ -25,13 +20,10 @@
             flex-direction: column;
             align-items: flex-start;
             margin: 0 30px;
-            width: 80%;
-            min-width: 500px;
             row-gap: 40px;
 
             .logoBanner {
                 display: flex;
-                justify-content: space-between;
                 column-gap: 30px;
 
                 span {
@@ -71,7 +63,6 @@
             }
 
             .description {
-                width: 590px;
                 display: flex;
                 flex-direction: column;
                 row-gap: 20px;
@@ -91,6 +82,7 @@
                         border: 1px solid #CFCFCF;
                         margin-top: 10px;
                         padding: 13px;
+                        width: 590px;
                     }
                 }
 
@@ -150,6 +142,107 @@
                     color: white;
                   }
             }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .pageContent {
+            margin-left: 0px;
+            padding: 80px 20px 0 20px;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 670px) {
+        .pageContent {
+            .content {
+                .logoBanner {
+                    column-gap: 20px;   
+    
+                    .bannerHolder {
+                        input {
+                            width: 350px;
+                        }
+                    }         
+                }
+    
+                .description {     
+                    width: 100%;
+                    .nameHolder {
+                        input {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 570px) {
+        .pageContent {
+            .content {
+                .logoBanner {
+                    column-gap: 15px;   
+
+                    .logoHolder, .bannerHolder {
+                        input {
+                            width: 130px;
+                            height: 130px;
+                        }
+                    }
+                    .bannerHolder {
+                        input {
+                            width: 250px;
+                        }
+                    }         
+                }
+            }
+        }
+    }
+
+    @media (max-width: 440px) {
+        .pageContent {
+            .content {
+                .logoBanner {
+                    column-gap: 30px;
+                    .bannerHolder {
+                        input {
+                            width: 200px;
+                        }
+                    }         
+                }
+
+                .buttonRow {
+                    column-gap: 20px;
+    
+                    .cancel, .edit {
+                        padding: 15px 40px;
+                      }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        .pageContent {
+            .content {
+                .logoBanner {
+                    column-gap: 30px;
+                    .bannerHolder {
+                        input {
+                            width: 150px;
+                        }
+                    }         
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .all {
+        h1 {
+            font-size: 1.5rem;
         }
     }
 }

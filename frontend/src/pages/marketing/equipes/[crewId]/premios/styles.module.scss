@@ -13,17 +13,12 @@
 
         width: 100%;
 
-        @media (max-width: 950px) {
-            padding-left: 30px;
-        }
-
         .content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             margin: 0 30px;
             width: 80%;
-            min-width: 500px;
             row-gap: 40px;
 
             .row {
@@ -43,11 +38,10 @@
 
                 .link {
                     display: flex;
-                    height: 75%;
                     justify-content: center;
                     align-items: center;
                     column-gap: 10px;
-                    padding: 0px 30px;
+                    padding: 13px 30px;
                     border: 0;
                     border-radius: 12px;
                     color: #fff;
@@ -143,6 +137,83 @@
                     span:hover {
                         transform: scale(1.05);
                         transition: .2s ease;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .pageContent {
+        align-items: flex-start !important;
+        margin-left: 0px !important;
+        padding-top: 80px;
+    }
+}
+
+@media (max-width: 550px) {
+    .content {
+        margin: 0px !important;
+        .row {
+            column-gap: 20px;
+
+            h1 {
+                font-size: 1.3rem !important;
+            }
+
+            p {
+                font-size: 0.9rem !important;
+            }
+
+            .link {
+                padding: 10px 20px !important;
+                font-size: 0.9rem !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .content {
+        .row {
+            column-gap: 20px;
+
+            h1 {
+                font-size: 1.1rem !important;
+            }
+
+            p {
+                font-size: 0.9rem !important;
+            }
+
+            .link {
+                padding: 10px 10px !important;
+                font-size: 0.8rem !important;
+            }
+        }
+
+        .awardList {
+            .awardRow {
+                .name {
+                    column-gap: 20px !important;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .content {
+        width: 90% !important;
+
+        .awardList {
+            .awardRow {
+                .name {
+                    column-gap: 20px !important;
+
+                    img {
+                        height: 60px !important;
                     }
                 }
             }

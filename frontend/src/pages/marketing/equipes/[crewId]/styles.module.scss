@@ -8,15 +8,9 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        align-items: center;
-        margin-left: 300px;
+        align-items: flex-start;
+        margin-left: 360px;
         overflow-y: auto;
-
-        @media (max-width: 950px) {
-            align-items: flex-start;
-            padding-left: 30px;
-        }
-
         
         .content {
             display: flex;
@@ -24,11 +18,6 @@
             justify-content: center;
             align-items: flex-start;
             padding-bottom: 50px;
-            
-            width: 80%;
-            min-width: 611px;
-            
-            min-height: 80vh;
             
             .grid {
                 display: grid;
@@ -70,6 +59,112 @@
                 }
             }
 
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .pageContent {
+            align-items: center;
+            margin-left: 0px;
+            padding-top: 80px;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .pageContent {
+            .content {
+                padding: 0 20px;
+                .grid {
+                    display: flex;
+                    flex-direction: column;
+
+                    button {
+                        flex-direction: row;
+                        column-gap: 30px;
+
+                        span {
+                            font-size: 1.6rem;
+                            margin-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        .pageContent {
+            .content {
+                .grid {
+                    button {
+                        column-gap: 18px;
+
+                        span {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 490px) {
+        .pageContent {
+            .content {
+                .grid {
+                    button {
+                        column-gap: 15px;
+
+                        img {
+                            width: 150px;
+                            height: 150px;
+                        } 
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 440px) {
+        .pageContent {
+            .content {
+                .grid {
+                    button {
+                        column-gap: 8px;
+                        padding: 20px 30px;
+
+                        img {
+                            width: 130px;
+                            height: 130px;
+                        } 
+
+                        span {
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 345px) {
+        .pageContent {
+            .content {
+                .grid {
+                    button {
+                        padding: 20px 20px;
+
+                        img {
+                            width: 110px;
+                            height: 110px;
+                        } 
+
+                        span {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -143,3 +238,4 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
 }
+
