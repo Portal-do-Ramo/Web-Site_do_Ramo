@@ -148,7 +148,7 @@
     @media (max-width: 1000px) {
         .pageContent {
             margin-left: 0px;
-            padding: 80px 20px 0 20px;
+            padding: 0px 20px 0 20px;
             justify-content: center;
         }
     }
@@ -186,6 +186,7 @@
 
                     .logoHolder, .bannerHolder {
                         input {
+                            background-size: 60px;
                             width: 130px;
                             height: 130px;
                         }
@@ -204,12 +205,10 @@
         .pageContent {
             .content {
                 .logoBanner {
+                    width: 100%;
                     column-gap: 30px;
-                    .bannerHolder {
-                        input {
-                            width: 200px;
-                        }
-                    }         
+                    flex-direction: column;
+                    row-gap: 30px;
                 }
 
                 .buttonRow {
@@ -218,21 +217,6 @@
                     .cancel, .edit {
                         padding: 15px 40px;
                       }
-                }
-            }
-        }
-    }
-
-    @media (max-width: 400px) {
-        .pageContent {
-            .content {
-                .logoBanner {
-                    column-gap: 30px;
-                    .bannerHolder {
-                        input {
-                            width: 150px;
-                        }
-                    }         
                 }
             }
         }

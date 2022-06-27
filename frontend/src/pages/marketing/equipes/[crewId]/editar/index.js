@@ -27,20 +27,17 @@ export default function equipeEditar({ crew }){
                       <div className={styles.logoHolder}>
                           <h1>Logo da equipe</h1>
                           <input type="image" alt=""></input>
-                          
                       </div>
   
                       <div className={styles.nameHolder}>
                           <h1>Nome da equipe</h1>
                           <input type="text" placeholder='Digite o nome da equipe'></input>
-  
                       </div>
                   </div>
   
                   <div className={styles.description}>
                       <h1>Descrição da equipe</h1>
                       <textarea placeholder='Digite a descrição da equipe'></textarea>
-  
                   </div>
   
                   <div className={styles.buttonRow}>

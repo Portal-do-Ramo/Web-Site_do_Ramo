@@ -66,7 +66,6 @@
         .pageContent {
             align-items: center;
             margin-left: 0px;
-            padding-top: 80px;
         }
     }
 
@@ -75,6 +74,7 @@
             .content {
                 padding: 0 20px;
                 .grid {
+                    width: 100%;
                     display: flex;
                     flex-direction: column;
 
@@ -84,7 +84,7 @@
                         width: 100%;
 
                         span {
-                            font-size: 1.6rem;
+                            font-size: 1.3rem;
                             margin-top: 0px;
                         }
                     }
@@ -101,7 +101,10 @@
                         column-gap: 18px;
 
                         span {
-                            font-size: 1.5rem;
+                            font-size: 1.3rem;
+                            text-align: start;
+                            max-width: 110px;
+                            margin-left: 25px;
                         }
                     }
                 }
@@ -140,7 +143,7 @@
                         } 
 
                         span {
-                            font-size: 1.3rem;
+                            font-size: 1.2rem;
                         }
                     }
                 }

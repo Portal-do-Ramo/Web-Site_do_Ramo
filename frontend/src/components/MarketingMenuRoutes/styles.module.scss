@@ -1,16 +1,35 @@
 .all {
+    display: flex;
     margin-top: 80px;
     font-family: 'Poppins', sans-serif;
     color: var(--azul-ramo);
     font-weight: 600;
     align-self: flex-start;
 
+    @media (max-width: 1000px) {
+        padding-top: 50px;
+        width: 750px;
+        align-self: center;
+    }
+    
+    @media (max-width: 810px) {
+        width: 90vw;
+        align-self: center;
+        align-items: center;
+        justify-content: flex-start;    
+    }
+    
     .content {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+
+        @media (max-width: 1000px) {
+            justify-content: start;
+            align-items: center;
+        }
 
         span {
             border-radius: 10px;
@@ -34,5 +53,4 @@
             }
         }
     }
-    
 }

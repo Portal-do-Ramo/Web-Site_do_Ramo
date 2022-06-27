@@ -42,6 +42,7 @@
                     display: flex;
                     flex-direction: column;
                     row-gap: 15px;
+                    white-space: nowrap;
 
                     input {
                         display: flex;
@@ -156,11 +157,12 @@
                 input {
                     width: 130px !important;
                     height: 130px !important;
+                    background-size: 70px !important;
                 }
             }
 
             .nameHolder {
-                width: auto !important;
+                width: 100% !important;
             }
             
         }
@@ -176,6 +178,7 @@
                 input {
                     width: 120px !important;
                     height: 120px !important;
+                    background-size: 60px !important;
                 }
             }        
         }
@@ -206,13 +209,9 @@
                 input {
                     width: 110px !important;
                     height: 110px !important;
+                    background-size: 50px !important;
                 }
-            }
-
-            .nameHolder {
-                width: 140px !important;
-            }
-            
+            }   
         }
     }
 }

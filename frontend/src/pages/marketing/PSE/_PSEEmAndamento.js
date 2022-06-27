@@ -29,7 +29,7 @@ export default function PSEEmAndamento() {
 
   return (
     <>
-      <section id={styles.showInformation}>
+      <section className={styles.showInformation}>
           <img src="/pseilustration.svg"></img>
           <div className={styles.container}>
             <span>Processo seletivo em andamento!</span>
@@ -47,24 +47,26 @@ export default function PSEEmAndamento() {
           </div> 
       </section>
 
-      <section id={styles.create_edit}>
+      <section className={styles.schedulePSESection}>
           <span>Editar PSE!</span>
           <div className={styles.rowDates}>
-            <div className={styles.beginFixed}>
+            <section className={styles.datesContainer}>
+              <div className={styles.beginFixed}>
                 <p>{beginDate}</p>
-            </div>
+              </div>
 
               <p> até </p>
 
               <div className={styles.end}>
-                  <input type="datetime-local" max="9999-12-31T23:59"  name="endDate"/>
+                <input type="datetime-local" max="9999-12-31T23:59"  name="endDate"/>
               </div>
+            </section>
 
               <button>Editar</button>
           </div>
       </section>
 
-      <section id={styles.terminatePSE}>
+      <section className={styles.terminatePSE}>
           <span>Encerrar o PSE!</span>
           <p>
               Ao cancelar o processo seletivo externo as informações

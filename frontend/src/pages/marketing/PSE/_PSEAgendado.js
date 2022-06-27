@@ -28,7 +28,7 @@ export default function PSEAgendado() {
 
   return (
     <>
-      <section id={styles.showInformation}>
+      <section className={styles.showInformation}>
           <img src="/pseilustration.svg"></img>
             <div className={styles.container}>
                 <span>Processo seletivo agendado!</span>
@@ -46,24 +46,26 @@ export default function PSEAgendado() {
             </div>    
       </section>
 
-      <section id={styles.create_edit}>
+      <section className={styles.schedulePSESection}>
           <span>Editar PSE!</span>
           <div className={styles.rowDates}>
+            <section className={styles.datesContainer}>
               <div className={styles.begin}>
-                  <input type="datetime-local" max="9999-12-31T23:59" name="beginDate" id="beginDate"/>
+                <input type="datetime-local" max="9999-12-31T23:59" name="beginDate" id="beginDate"/>
               </div>
 
               <p> até </p>
 
               <div className={styles.end}>
-                  <input type="datetime-local" max="9999-12-31T23:59" name="endDate"/>
+                <input type="datetime-local" max="9999-12-31T23:59" name="endDate"/>
               </div>
+            </section>
 
               <button>Editar</button>
           </div>
       </section>
 
-      <section id={styles.cancelPSE}>
+      <section className={styles.cancelPSE}>
           <span>Cancelar o PSE!</span>
           <p>
               Ao cancelar o processo seletivo externo as informações
