@@ -66,13 +66,16 @@
         .pageContent {
             align-items: center;
             margin-left: 0px;
+            
+            .content {
+                align-items: center;
+            }
         }
     }
 
     @media (max-width: 700px) {
         .pageContent {
             .content {
-                padding: 0 20px;
                 .grid {
                     width: 100%;
                     display: flex;
@@ -116,13 +119,19 @@
         .pageContent {
             .content {
                 .grid {
+                    gap: 20px;
+
                     button {
                         column-gap: 15px;
 
                         img {
                             width: 150px;
                             height: 150px;
-                        } 
+                        }
+
+                        span {
+                            font-size: 1.2rem;
+                        }
                     }
                 }
             }
@@ -133,6 +142,8 @@
         .pageContent {
             .content {
                 .grid {
+                    gap: 10px;
+
                     button {
                         column-gap: 8px;
                         padding: 20px 30px;
@@ -143,7 +154,7 @@
                         } 
 
                         span {
-                            font-size: 1.2rem;
+                            font-size: 1rem;
                         }
                     }
                 }
@@ -164,7 +175,7 @@
                         } 
 
                         span {
-                            font-size: 1.1rem;
+                            font-size: 0.9rem;
                         }
                     }
                 }
@@ -194,6 +205,11 @@
     border-radius: 25px;
 
     font-family: 'Poppins';
+
+    @media (max-width: 810px) {
+        width: 80vw;
+        padding: 100px 0;
+    }
 
     img {
         width: 75px;
@@ -230,6 +246,47 @@
         .shutDown {
             background-color: #F93944;
             color: white;
+        }
+    }
+
+    @media (max-width: 650px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            font-size: .8rem;
+        }
+
+        img {
+            width: 55px;
+        }
+
+        .rowButton {
+            .cancel, .shutDown, .finishButton {
+                font-size: .7rem;
+            }
+        }
+    }
+
+    @media (max-width: 475px) {
+        width: 95vw;
+        padding: 50px 0;
+
+        p {
+            max-width: 70%;
+        }
+
+        .rowButton {
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            column-gap: 0px;
+
+            .cancel, .shutDown, .finishButton {
+                width: 80%;
+                margin-top: 10px;
+            }
         }
     }
 }

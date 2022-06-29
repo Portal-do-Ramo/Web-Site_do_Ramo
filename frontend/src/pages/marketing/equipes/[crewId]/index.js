@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import api from "../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MarketingMenuRoutes from "../../../../components/MarketingMenuRoutes";
 
 export default function equipe({ crew }){ 

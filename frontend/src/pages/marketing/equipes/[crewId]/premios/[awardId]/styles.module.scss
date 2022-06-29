@@ -35,21 +35,20 @@
                     align-items: center;
                     word-wrap: break-word;
                     text-align: center;
-                    background-color: #3F434F;
+                    background-color: var(--contraste);
                     border-radius: 12px;
                     
 
                     strong {
                         position: absolute;
                         top: 39px;
-                        color: #3F434F;
+                        color: var(--contraste);
                         font-size: 1.4rem;
                         font-weight: 700;
                     }
                     
                     img {
                         padding: 30px;
-                        background-color: #3f434f;
                         border-radius: 10px;
                         width: 130px;
                         height: 130px;
@@ -116,11 +115,14 @@
                 .lower {
                     flex-direction: column;
                     padding-top: 0px;
+                    gap: 20px;
+                    width: 80vw;
 
                     button {
                         flex-direction: row;
                         column-gap: 30px;
                         padding: 15px 50px;
+                        width: 100%;
 
                         img {
                             width: 130px;
@@ -128,7 +130,7 @@
                         }  
 
                         span {
-                            font-size: 1.4rem;
+                            font-size: 1.2rem;
                             margin-top: 0px;
                         }
                     }
@@ -148,6 +150,8 @@
                 }
 
                 .lower {
+                    gap: 10px;
+
                     button {
                         column-gap: 20px;
                         padding: 20px 30px;
@@ -158,7 +162,7 @@
                         }   
 
                         span {
-                            font-size: 1.5rem;
+                            font-size: 1rem;
                         }
                     }
                 }
@@ -178,7 +182,7 @@
                         }   
 
                         span {
-                            font-size: 1.3rem;
+                            font-size: 0.9rem;
                         }
                     }
                 }
@@ -189,7 +193,7 @@
     @media (max-width: 1000px) {
         .pageContent {
             margin-left: 0px;
-            padding-top: 80px;
+            padding-top: 0px;
             justify-content: center;
         }
     }
@@ -216,6 +220,11 @@
     border-radius: 25px;
 
     font-family: 'Poppins';
+
+    @media (max-width: 810px) {
+        width: 80vw;
+        padding: 100px 0;
+    }
 
     img {
         width: 75px;
@@ -252,6 +261,47 @@
         .shutDown {
             background-color: #F93944;
             color: white;
+        }
+    }
+
+    @media (max-width: 650px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            font-size: .8rem;
+        }
+
+        img {
+            width: 55px;
+        }
+
+        .rowButton {
+            .cancel, .shutDown, .finishButton {
+                font-size: .7rem;
+            }
+        }
+    }
+
+    @media (max-width: 475px) {
+        width: 95vw;
+        padding: 50px 0;
+
+        p {
+            max-width: 70%;
+        }
+
+        .rowButton {
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            column-gap: 0px;
+
+            .cancel, .shutDown, .finishButton {
+                width: 80%;
+                margin-top: 10px;
+            }
         }
     }
 }

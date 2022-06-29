@@ -28,7 +28,7 @@
                 border-bottom: 1px solid lightgray;
 
                 img {
-                    background-color: #3f434f;
+                    background-color: var(--contraste);
                     border-radius: 10px;
                     width: 130px;
                     height: 130px;
@@ -106,7 +106,7 @@
                         }  
 
                         span {
-                            font-size: 1.4rem;
+                            font-size: 1.2rem;
                             margin-top: 0px;
                         }
                     }
@@ -134,7 +134,7 @@
                         }   
 
                         span {
-                            font-size: 1.5rem;
+                            font-size: 1.1rem;
                         }
                     }
                 }
@@ -154,7 +154,7 @@
                         }   
 
                         span {
-                            font-size: 1.3rem;
+                            font-size: 1rem;
                         }
                     }
                 }
@@ -192,6 +192,11 @@
 
     font-family: 'Poppins';
 
+    @media (max-width: 810px) {
+        width: 80vw;
+        padding: 100px 0;
+    }
+
     img {
         width: 75px;
         margin-bottom: 20px;
@@ -227,6 +232,47 @@
         .shutDown {
             background-color: #F93944;
             color: white;
+        }
+    }
+
+    @media (max-width: 650px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            font-size: .8rem;
+        }
+
+        img {
+            width: 55px;
+        }
+
+        .rowButton {
+            .cancel, .shutDown, .finishButton {
+                font-size: .7rem;
+            }
+        }
+    }
+
+    @media (max-width: 475px) {
+        width: 95vw;
+        padding: 50px 0;
+
+        p {
+            max-width: 70%;
+        }
+
+        .rowButton {
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            column-gap: 0px;
+
+            .cancel, .shutDown, .finishButton {
+                width: 80%;
+                margin-top: 10px;
+            }
         }
     }
 }

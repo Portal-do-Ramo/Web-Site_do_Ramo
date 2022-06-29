@@ -96,13 +96,13 @@
                             align-items: center;
                             word-wrap: break-word;
                             text-align: center;
-                            background-color: #3F434F;
+                            background-color: var(--contraste);
                             border-radius: 12px;
 
                             strong {
                                 position: absolute;
                                 top: 16px;
-                                color: #3F434F;
+                                color: var(--contraste);
                                 font-size: 1.1rem;
                                 font-weight: 700;
                             }
