@@ -142,7 +142,7 @@ export default function Equipes({ crews }) {
   }
 
   function verifyIsAwardArrowDisabled() {
-    if (process.browser) {
+    if (process.browser && document.querySelector("." + styles.award)) {
       let awardWidth = document.querySelector("." + styles.award).offsetWidth; 
       let awardGridGap = getComputedStyle(document.getElementById(styles.awardsImagesContainer)).gap;
       awardGridGap = awardGridGap.replace("px", "");
