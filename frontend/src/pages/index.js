@@ -7,7 +7,6 @@ import Image from "next/image";
 import api from '../services/api'
 
 import styles from "../styles/index.module.scss";
-import { useEffect } from "react";
 
 export default function Home({ crews, sponsors }) {
 
@@ -34,7 +33,7 @@ export default function Home({ crews, sponsors }) {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio
               elementum bibendum aliquam. Vel, tempor tincidunt enim, eu. Ut non
               dui nulla massa viverra. Pellentesque id integer vulputate nulla sed
-              in aenean. Pulvinar suspendisse vitae etiam sem natoque aliquam amet
+              in aenean IEEE. Pulvinar suspendisse vitae etiam sem natoque aliquam amet
               pulvinar velit. Aliquet tempor iaculis curabitur cursus libero.
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio
               elementum bibendum aliquam. Vel, tempor tincidunt enim, eu. Ut non
