@@ -27,7 +27,7 @@ module.exports = {
             await userService.update(id, name, password);
             return res.status(200).json({message: "Usuário atualizado!"});
 		} catch(err){
-			return res.status(405).json({message: err.message});
+			return res.status(422).json({message: err.message});
 		}
     },
 
@@ -36,7 +36,7 @@ module.exports = {
         
         try {
             let response = await userService.delete(id);
-            return res.json(response);
+            return res.status(200).json(response);
         } catch(err) {
             return res.status(405).json({message: err.message});
         }

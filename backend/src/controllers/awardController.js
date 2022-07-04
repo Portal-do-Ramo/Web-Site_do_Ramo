@@ -20,10 +20,10 @@ module.exports = {
     async update(req, res) {
         let { award } = req.body;
 		let { id } = req.params;
-
+        console.log(award, id);
         try {
-			await awardService.update(id, award);
-			return res.status(200).json({message: "Prêmio atualizado!!"});
+			const response = await awardService.update(id, award);
+			return res.status(200).json(response);
 		} catch(err){
 			return res.status(405).json({message: err.message});
 		}
@@ -36,7 +36,7 @@ module.exports = {
 			let response = await awardService.delete(id);
             return res.status(200).json(response);
 		} catch(err) {
-			return res.status(405).json({"message": err.message});
+			return res.status(405).json({message: err.message});
 		}
     }
 }

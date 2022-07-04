@@ -1,7 +1,6 @@
 const crewService = require("../services/crewService");
 const projectService = require("../services/projectService");
 const awardService = require("../services/awardService");
-const knex = require('../database');
 
 module.exports = {
 
@@ -28,7 +27,7 @@ module.exports = {
             const response = await crewService.update(id, crew);
 			return res.status(200).json(response);
 		} catch(err){
-			return res.status(405).json({message: err.message});
+			return res.status(422).json({message: err.message});
         }
     },
 
@@ -54,7 +53,7 @@ module.exports = {
                 response.push({crew, projects, awards});
             }
             
-            return res.json(response);
+            return res.status(200).json(response);
             
         } catch (error) {
             return res.status(400).json({ message: error.message })

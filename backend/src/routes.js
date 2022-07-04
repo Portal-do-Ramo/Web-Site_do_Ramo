@@ -33,19 +33,19 @@ router
 	.get("/download/pse.csv", auth, fileController.getPseFile)
 	
 	
-	.patch("/award/:id", awardController.update)
-	.patch("/crew/:id", crewController.update)
-	.patch("/project/:id", projectController.update)
-	.patch("/sponsor/:id", sponsorController.update)
-	.patch("/user/:id", userController.update)
-	.patch("/pse/schedule", pseController.updateSchedulePSE) 
+	.patch("/award/:id", auth, awardController.update)
+	.patch("/crew/:id", auth, crewController.update)
+	.patch("/project/:id", auth, projectController.update)
+	.patch("/sponsor/:id", auth, sponsorController.update)
+	.patch("/user/:id", auth, userController.update)
+	.patch("/pse/schedule", auth, pseController.updateSchedulePSE) 
 
 
 	.post("/award", auth, awardController.create)
 	.post("/crew", auth, crewController.create)
 	.post("/project", auth, projectController.create)
 	.post("/sponsor", auth, sponsorController.create)
-	.post("/user", userController.create)
+	.post("/user", auth, userController.create)
 	.post("/login", sessionController.create)
 	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, pseController.schedulePSE) 

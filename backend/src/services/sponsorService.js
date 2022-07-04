@@ -9,41 +9,44 @@ module.exports = {
 
     async create(name, link) {
         let imageURL = name.toLowerCase() + "_avatar.png";
-        try {
-            await knex("sponsors").insert({
-                id: v4(), 
-                name,
-                imageURL, 
-                link
-            });
-
-            return {message: "Patrocinador criado!"}
-        } catch (error) {
-            throw new Error(error.message);
+        let sponsor = await knex("sponsors").where({name}).first();
+        if (sponsor){
+            throw new Error("Patrocinador já existe!");
         }
+
+        await knex("sponsors").insert({
+            id: v4(), 
+            name,
+            imageURL, 
+            link
+        });
+
+        return {message: "Patrocinador criado!"}
     },
 
     async update(id, sponsor) {
-        try {
-            await knex("sponsors").where({id}).update(sponsor); //trocar o timestamp do updated_at
-            return {message: "Patrocinador atualizado!"};
-        } catch (error) {
-            throw new Error(error.message);
+        let Sponsor = await knex("sponsors").where({id}).first();
+        if (!Sponsor){
+            throw new Error("Patrocinador não existe!");
         }
+
+        await knex("sponsors").where({id}).update(sponsor); //trocar o timestamp do updated_at
+        return {message: "Patrocinador atualizado!"};
+        
     },
 
     async delete(id){
-        try {
-            let confirmation = await knex('sponsors').where({id}).delete();
-
-            if(confirmation > 1){
-                return {message: "Patrocinadores foram deletados"};
-            } 
-
-            return {message: "Patrocinador deletado!"};
-        } catch (error) {
-            throw new Error(error.message);
+        let sponsor = await knex("sponsors").where({id}).first();
+        if (!sponsor){
+            throw new Error("Patrocinador não existe!");
         }
+
+        let confirmation = await knex('sponsors').where({id}).delete();
+        if(confirmation > 1){
+            return {message: "Patrocinadores foram deletados"};
+        } 
+
+        return {message: "Patrocinador deletado!"};
     }
 
 }

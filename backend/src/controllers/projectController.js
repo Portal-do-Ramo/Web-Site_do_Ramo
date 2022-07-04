@@ -19,9 +19,9 @@ module.exports = {
                 ended
             );
 
-            return res.status(200).json(response);
+            return res.status(201).json(response);
         } catch (error) {
-            return res.status(400).json({message: error.message});
+            return res.status(422).json({message: error.message});
         }
     },
 

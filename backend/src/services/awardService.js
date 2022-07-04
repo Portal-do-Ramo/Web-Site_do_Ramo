@@ -9,42 +9,44 @@ module.exports = {
     },
 
     async create(name, description, crew_name) {
-        try {
-            let { id: crew_id } = await crewService.getCrewByName(crew_name);
-
-            if (!crew_id) {
-                throw new Error("Equipe não existe!");
-            }
-            
-            await knex("awards").insert({
-                id: v4(),
-                name,
-                description,
-                crew_id
-            });
-
-            return {message: "Prêmio Cadastrado!!"};
-        } catch (error) {
-            throw new Error(error.message);
+        
+        let crew = await crewService.getCrewByName(crew_name);
+        if (!crew) {
+            throw new Error("Equipe não existe!");
         }
+
+        await knex("awards").insert({
+            id: v4(),
+            name,
+            description,
+            crew_id: crew.id
+        });
+
+        return {message: "Prêmio Cadastrado!!"};
     },
 
     async update(id, award) {
-        await knex("awards").where({id}).update(award); //trocar o timestamp do updated_at 
+        let Award = await knex("awards").where({id}).first();
+        if(!Award){
+            throw new Error("Prêmio não existe!");
+        }
+
+        await knex("awards").where({id}).update(award); //trocar o timestamp do updated_at
+        return {message: "Prêmio atualizado!"}
     },
 
     async delete(id) {
-        try {
-            let confirmation = await knex("awards").where({id}).delete();
-
-            if (confirmation > 1) {
-                return {message: "Prêmios foram deletados"};
-            } 
-            
-            return {message: "Prêmio foi deletado"};
-        } catch (error) {
-            throw new Error(error.message);
+        let Award = await knex("awards").where({id}).first();
+        if(!Award){
+            throw new Error("Prêmio não existe!");
         }
+
+        let confirmation = await knex("awards").where({id}).delete();
+        if (confirmation > 1) {
+            return {message: "Prêmios foram deletados"};
+        } 
+            
+        return {message: "Prêmio foi deletado"};
     },
     
     async getByCrewId(crew_id) {
