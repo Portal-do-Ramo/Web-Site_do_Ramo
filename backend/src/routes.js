@@ -54,11 +54,11 @@ router
 	.post("/forgot_password", forgotPasswordController.resetPassword)
 
 
-	.delete("/award/:id", awardController.delete)
-	.delete("/crew/:id", crewController.delete)
-	.delete("/project/:id", projectController.delete)
-	.delete("/sponsor/:id", sponsorController.delete)
-	.delete("/pse/schedule", pseController.deleteSchedulePSE)
-	.delete("/user/:id", userController.delete)
+	.delete("/award/:id", auth, awardController.delete)
+	.delete("/crew/:id", auth, crewController.delete)
+	.delete("/project/:id", auth, projectController.delete)
+	.delete("/sponsor/:id", auth, sponsorController.delete)
+	.delete("/pse/schedule", auth, pseController.deleteSchedulePSE)
+	.delete("/user/:id", auth, userController.delete)
 
 module.exports = router;
