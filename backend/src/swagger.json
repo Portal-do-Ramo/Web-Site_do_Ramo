@@ -61,6 +61,28 @@
                 }
             }
         },
+        "/users": {
+            "get": {
+                "summary": "Lista de Usuários",
+                "description": "Essa rota á responsável por fazer a listagem de todos os usuários",
+                "tags": ["Users"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/user/{id}": {
             "patch": {
                 "summary": "Atualização de Usuário",
@@ -137,28 +159,6 @@
                 }
             }
         },
-        "/users": {
-            "get": {
-                "summary": "Lista de Usuários",
-                "description": "Essa rota á responsável por fazer a listagem de todos os usuários",
-                "tags": ["Users"],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/User"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/login": {
             "post": {
                 "summary": "Login",
@@ -197,6 +197,149 @@
                     }
                 }
             }
+        },
+        "/sponsor": {
+            "post": {
+                "summary": "Cadastro de Parceiro",
+                "description": "Essa rota é responsável pelo cadastro de um novo parceiro",
+                "tags": ["Sponsors"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sponsor"
+                            },
+                            "examples": {
+                                "sponsor": {
+                                    "value": {
+                                        "name": "Parceiro",
+                                        "link": "parceiro.com"  
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Sponsor"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/sponsors": {
+            "get": {
+                "summary": "Lista de Parceiros",
+                "description": "Essa rota á responsável por fazer a listagem de todos os parceiros",
+                "tags": ["Sponsors"],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Sponsor"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sponsor/{id}": {
+            "patch": {
+                "summary": "Atualização de Parceiro",
+                "description": "Essa rota é responável por atualizar o cadastro de um parceiro",
+                "tags": ["Sponsors"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do parceiro que será atualizado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sponsor"
+                            },
+                            "examples": {
+                                "sponsor": {
+                                    "value": {
+                                        "sponsor": {
+                                            "name": "Parceiro Teste",
+                                            "link": "parceiroteste.com",
+                                            "imageURL": "Parceiro Teste_avatar.png"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Sponsor"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remoção de Parceiro",
+                "description": "Essa rota é responsável por remover um parceiro",
+                "tags": ["Sponsors"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do parceiro que será removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -218,6 +361,80 @@
                     },
                     "admin": {
                         "type": "boolean"
+                    }
+                }
+            },
+            "Sponsor": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "imageURL": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Crew": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "about": {
+                        "type": "string"
+                    },
+                    "imageURL": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Project": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "imageURL": {
+                        "type": "string"
+                    },
+                    "logoURL": {
+                        "type": "string"
+                    },
+                    "members": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Award": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "crew_id": {
+                        "type": "string"
                     }
                 }
             }
