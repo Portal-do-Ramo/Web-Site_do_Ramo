@@ -62,8 +62,12 @@ module.exports = {
       }
     
       scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-        await emailService.sendCSV();
-        await knex("pse").delete();
+        try {
+          await emailService.sendCSV();
+          await knex("pse").delete();
+        } catch (error) {
+          console.log("Error: ", error.message);
+        }
       });
 
       return { message: "service scheduled to " + endDate };
@@ -99,8 +103,12 @@ module.exports = {
       await knex("pse").select("*").update({start: startDate, end: endDate});
       
       scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-        await emailService.sendCSV();
-        await knex("pse").delete();
+        try {
+          await emailService.sendCSV();
+          await knex("pse").delete();
+        } catch (error) {
+          console.log("Error: ", error.message);
+        }
       });
 
       return { message: "service rescheduled to " + endDate};
@@ -142,8 +150,12 @@ module.exports = {
           await emailService.sendCSV();
         } else {
           scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-            await emailService.sendCSV();
-            await knex("pse").delete();
+            try {
+              await emailService.sendCSV();
+              await knex("pse").delete();
+            } catch (error) {
+              console.log("Error: ", error.message);
+            }
           });
         }
 

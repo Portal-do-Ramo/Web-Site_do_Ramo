@@ -26,7 +26,7 @@ router
 	.get("/crewsAllData", crewController.getCrewsAllData)
 	.get("/projects", projectController.index)
 	.get("/sponsors", sponsorController.index)
-	.get("/users", userController.index)
+	.get("/users", auth, userController.index)
 	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
 	.get("/pse/end", auth, pseController.endPse)
