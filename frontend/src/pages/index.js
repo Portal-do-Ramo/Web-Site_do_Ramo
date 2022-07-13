@@ -8,7 +8,7 @@ import api from '../services/api'
 
 import styles from "../styles/index.module.scss";
 
-export default function Home({ crews, sponsors }) {
+export default function Home({ crews }) {
 
   return (
     <div id={styles.container}>
@@ -60,7 +60,14 @@ export default function Home({ crews, sponsors }) {
           <section className={styles.logo_content}>
             {
               crews.map((crew, index) => {
-                return (<CrewsCard key={crew.id} index={index} name={crew.name} image={crew.image} />)
+                return (
+                  <CrewsCard
+                    key={crew.id}
+                    index={index} 
+                    name={crew.name} 
+                    image={`${process.env.API_URL}/uploads/${crew.imageURL}`} 
+                  />
+                )
               })
             }
           </section>
@@ -95,12 +102,10 @@ export default function Home({ crews, sponsors }) {
 
 export const getStaticProps = async () => {
   let {data : crews} = await api.get("/crews");
-  let {data : sponsors} = await api.get("/sponsors");
 
   return {
     props: {
-      crews,
-      sponsors
+      crews
     },
     revalidate: 1 // 24 Horas
   }

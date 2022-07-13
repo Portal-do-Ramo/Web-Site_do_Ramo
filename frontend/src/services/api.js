@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const api = axios.create({
     //baseURL:'https://site-ramo-api.herokuapp.com/api',
-    baseURL:'http://localhost:5000/api',
+    baseURL: process.env.API_URL,
 })
 
 export default api;

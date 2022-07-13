@@ -55,7 +55,6 @@ export default function Page3({ crewsNames }) {
               <option value="" disabled selected hidden>Selecione a equipe de interesse</option>
               
               {crewsNames.map((crewName, idx) => {
-                console.log(crewName);
                 return (
                   <option key={idx} value={crewName}>{crewName}</option>
                 )

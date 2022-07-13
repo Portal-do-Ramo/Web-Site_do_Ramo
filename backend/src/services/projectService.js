@@ -59,7 +59,7 @@ module.exports = {
         }
 
         const crew = await crewService.getCrewByName(crew_name);
-        console.log(crew);
+        
         if (!crew) {
             throw new Error("Equipe não existe!");
         }
