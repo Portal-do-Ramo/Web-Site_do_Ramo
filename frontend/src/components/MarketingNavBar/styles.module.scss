@@ -41,6 +41,31 @@
     }
   }
 
+  .routesActivated {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 25px 0;
+      cursor: pointer;
+    }
+
+    h1:hover {
+      color: black;
+    }
+
+    .border {
+      border-radius: 2px;
+      border-bottom: 4px solid #fff;
+      padding-bottom: 5px;
+    }
+  }
+
   .user {
     display: flex;
     align-items: center;
@@ -81,27 +106,109 @@
       }
     }
   }
+
+  .ham {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transform: 0;
+    width: 100%;
+    height: 70%;
+    
+    .line {
+      fill: none;
+      transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+      stroke:#fff;
+      stroke-width: 6;
+      stroke-linecap:round;
+    }
+
+    #top {
+      stroke-dasharray: 40 139;
+      stroke-dashoffset: 0;
+    }
+
+    #bottom {
+      stroke-dasharray: 40 180;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .hamActivated {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transform: 0;
+    transform: rotate(45deg);
+
+    .line {
+      fill: none;
+      transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+      stroke:#fff;
+      stroke-width: 6;
+      stroke-linecap:round;
+    }
+
+    #topActivated {
+      stroke-dasharray: 40 139;
+      stroke-dashoffset: -98px;
+    }
+
+    #bottomActivated {
+      stroke-dasharray: 40 180;
+      stroke-dashoffset: -138px;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .ham, .hamActivated {
+    display: none;
+  }
 }
 
 @media (max-width: 1000px) {
   .all {
-    flex-direction: row;
     min-height: fit-content;
     align-items: center;
     width: 100%;
     padding: 10px 30px;
+
+    .ham, .hamActivated {
+      margin-top: 10px;
+    }
 
     img {
       width: 50px;
     }
 
     .title {
+      display: flex;
+      justify-content: space-between;
       margin-top: 0px;
-      width: 80px;
+      width: 100%;
     }
 
     .routes {
       display: none;
+    }
+
+    .routesActivated {
+      position: fixed;
+      top: -50px;
+      z-index: -1;
+      width: 100vw;
+      background: var(--azul-ramo);
+      display: flex;
+      min-height: calc(100vh + 50px);
     }
 
     .user {

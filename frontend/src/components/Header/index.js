@@ -1,7 +1,19 @@
 import styles from "./styles.module.scss";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Header({page, children}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function open() {
+    document.body.style.overflowY = isOpen ? "scroll" : "hidden";
+    setIsOpen(!isOpen);
+  }
+  
+  useEffect(() => {
+    document.body.style.overflowY = "scroll";
+  }, [])
+
   return (
     <>
       <header className={page === "inicio" ? styles.homeHeader : styles.headerContainer}>
@@ -10,25 +22,42 @@ export default function Header({page, children}) {
 
           <section>
             <h1>Ramo Estudantil IEEE CEFET-RJ</h1>
-            <p>Desenvolvendo pessoas através de projetos tecnicos e/ou sociais</p>
+            <p>Desenvolvendo pessoas através de projetos técnicos e/ou sociais</p>
           </section>
         </div>
 
-        <div className={styles.linkContainer}>
+        <div className={styles.navIcon} onClick={open}>
+          <svg className={isOpen ? styles.hamActivated : styles.ham} viewBox="0 0 100 100" height={50}>
+            <path
+              className={styles.line}
+              id={isOpen ? styles.topActivated : styles.top}
+              d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+            <path
+              className={styles.line}
+              id="middle"
+              d="m 30,50 h 40" />
+            <path
+              className={styles.line}
+              id={isOpen ? styles.bottomActivated : styles.bottom}
+              d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+          </svg>
+        </div>
+
+        <div className={isOpen ? styles.linkContainerActivated : styles.linkContainer}>
           <Link href="/">
-            <p href="/" className={page === "inicio" && styles.activeLink}>Inicio</p>
+            <a className={page === "inicio" && styles.activeLink}>Inicio</a>
           </Link>
 
           <Link href="/sobre" className={styles.activeLink}>
-            <p className={page === "sobre" && styles.activeLink}>Sobre</p>
+            <a className={page === "sobre" && styles.activeLink}>Sobre</a>
           </Link>
 
           <Link href="/equipes">
-            <p className={page === "equipes" && styles.activeLink}>Equipes</p>
+            <a className={page === "equipes" && styles.activeLink}>Equipes</a>
           </Link>
 
           <Link href="/PSE">
-            <p className={page === "PSE" && styles.activeLink}>Processo Seletivo</p>
+            <a className={page === "PSE" && styles.activeLink}>Processo Seletivo</a>
           </Link>
 
           <Link href="/login">
