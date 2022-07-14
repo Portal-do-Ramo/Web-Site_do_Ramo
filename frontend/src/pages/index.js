@@ -30,16 +30,12 @@ export default function Home({ crews, sponsors }) {
             <h1>Nossa História</h1>
 
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio
-              elementum bibendum aliquam. Vel, tempor tincidunt enim, eu. Ut non
-              dui nulla massa viverra. Pellentesque id integer vulputate nulla sed
-              in aenean IEEE. Pulvinar suspendisse vitae etiam sem natoque aliquam amet
-              pulvinar velit. Aliquet tempor iaculis curabitur cursus libero.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio
-              elementum bibendum aliquam. Vel, tempor tincidunt enim, eu. Ut non
-              dui nulla massa viverra. Pellentesque id integer vulputate nulla sed
-              in aenean. Pulvinar suspendisse vitae etiam sem natoque aliquam amet
-              pulvinar velit. Aliquet tempor iaculis curabitur cursus libero.
+              "O Ramo Estudantil IEEE teve um inicio humilde em 2004, mas voltou mais forte em 2016, desde então crescendo passo a passo.
+              Começou focado somente na parte de programação computacional, mas conforme o tempo expandiu as áreas de atuação, criando 
+              equipes para cada uma dessas áreas.
+
+              Buscamos auxiliar no crescimento das pessoas tanto como profissional como quanto pessoa, com projetos em equipe que 
+              aceitam qualquer nível de expriência, desde que esteja disposto/a a aprender."
             </p>
           </div>
 

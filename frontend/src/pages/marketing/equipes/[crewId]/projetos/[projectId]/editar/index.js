@@ -2,13 +2,41 @@ import MarketingNavBar from "../../../../../../../components/MarketingNavBar";
 import api from "../../../../../../../services/api";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import MarketingMenuRoutes from "../../../../../../../components/MarketingMenuRoutes";
 
 export default function projetoEditar({ crew, project }){ 
     const router = useRouter();
+    const [logo, setLogo] = useState(project.image);
+    const [banner, setBanner] = useState(project.image);
 
     function handleSelectOption(option) {
       router.push(`${crew.id}/${option}`);    
+    }
+
+    function submit() {
+      let newName = document.getElementById('name').value;
+      let newDescription = document.getElementById('description').value;
+    }
+  
+    let logoHandler = e => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if(reader.readyState === 2) {
+          setLogo(reader.result);
+        }
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    let bannerHandler = e => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if(reader.readyState === 2) {
+          setBanner(reader.result);
+        }
+      }
+      reader.readAsDataURL(e.target.files[0]);
     }
 
     return (
@@ -27,30 +55,40 @@ export default function projetoEditar({ crew, project }){
                   <div className={styles.logoBanner}>
                       <div className={styles.logoHolder}>
                           <span>Logo do projeto</span>
-                          <input type="image" alt=""></input>
+                          <div className={styles.img}> 
+                            <img src={logo}></img>
+                            <input type="file" alt="" onChange={logoHandler} accept="image/*"></input>
+                          </div>
                       </div>
   
                       <div className={styles.bannerHolder}>
                           <span>Banner do projeto</span>
-                          <input type="image" alt=""></input>
+                          <div className={styles.img}> 
+                            <img src={banner}></img>
+                            <input type="file" alt="" onChange={bannerHandler} accept="image/*"></input>
+                          </div>
                       </div>
                   </div>
   
                   <div className={styles.description}>
   
                       <div className={styles.nameHolder}>
-                          <span>Nome da equipe</span>
-                          <input type="text" placeholder='Digite o nome da equipe'></input>
+                          <span>Nome do projeto</span>
+                          <input type="text" placeholder='Digite o nome da equipe' defaultValue={project.name}></input>
                       </div>
   
                       <div className={styles.descriptionHolder}>
-                          <span>Descrição da equipe</span>
-                          <textarea placeholder='Digite a descrição da equipe'></textarea>
+                          <span>Descrição do projeto</span>
+                          <textarea placeholder='Digite a descrição da equipe' defaultValue={project.description}></textarea>
                       </div>
   
                       <div className={styles.members}> 
                           <span>Membros do projeto</span>
-                          <input placeholder='Digite um nome e pressione enter'></input>
+                          <input placeholder='Digite um nome e pressione enter' defaultValue={
+                            project.members.map((member) => {
+                              return `${member.name} `
+                            })
+                          }></input>
                       </div>
                   </div>
   
