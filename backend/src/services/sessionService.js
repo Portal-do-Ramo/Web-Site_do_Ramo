@@ -26,7 +26,7 @@ module.exports = {
     }
       
     const token = jwt.sign(
-      {name: user.name, email: user.email, admin: user.admin},
+      {name: user.name, email: user.email},
       process.env.TOKEN_HASH, 
       {expiresIn: '48h'}
     );

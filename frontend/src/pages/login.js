@@ -1,8 +1,9 @@
 import styles from "../styles/login.module.scss";
 import { useForm } from 'react-hook-form'
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useRouter } from "next/router";
+import { toast } from 'react-toastify';
 
 export default function Login(){
     const router = useRouter();
@@ -11,18 +12,25 @@ export default function Login(){
     const { signIn } = useContext(AuthContext);
     const [errMessage, setErrMessage] = useState(null);
 
+    useEffect(() => {
+        if (errMessage) {
+            toast.error(errMessage);
+            setErrMessage(null);
+        }
+    }, [errMessage]);
+
     async function handleSignIn(data) {
         try {
             await signIn(data);
+            router.push("/marketing/");
         } catch(err) {
-            setErrMessage(err);
+            setErrMessage(err.message);
         }
     }
 
     return(
         <div className={styles.loginContainer}>
             <div className={styles.leftImage}></div>
-
 
             <div className={styles.loginContent}>
                 <img src="logo_azul.svg"/>

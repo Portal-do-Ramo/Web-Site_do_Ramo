@@ -29,9 +29,7 @@ export default function Page3({ crewsNames }) {
     } else {
       toast.error("Formulário incompleto");
     }
-
   }
-  
 
   return (
     <section className={styles.pageContent}>

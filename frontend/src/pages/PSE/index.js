@@ -4,10 +4,8 @@ import Footer from "../../components/Footer";
 
 import styles from "../../styles/PSE.module.scss";
 
-import api from '../../services/api'
-
-export default function PSE({ crews }) {
-    const router = useRouter()
+export default function PSE() {
+    const router = useRouter();
 
     return (
         <div>
@@ -100,21 +98,3 @@ export default function PSE({ crews }) {
         
     )
 }
-
-export const getStaticProps = async () => {
-    let { data: crews } = await api.get("/crews");
-    
-    // let crews = data.map(crew => {
-    //   return {
-    //     id: crew.id,
-    //     name: crew.name,
-    //   }
-    // });
-  
-    return {
-      props: {
-        crews
-      },
-      revalidate: 60 * 60 * 24 // 24 Horas
-    }
-  }

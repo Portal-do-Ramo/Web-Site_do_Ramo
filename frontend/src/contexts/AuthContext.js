@@ -1,37 +1,81 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import api from '../services/api'
-import { setCookie } from 'nookies'
-import Router from 'next/router'
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext({})
 
 export function AuthContextProvider({children}) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
 
-    let isAuthenticated = null;
+    useEffect(() => {
+        const token = Cookies.get('token');
+    
+        if (token) {
+          try {
+            const verify = jwt.verify(token, process.env.TOKEN_SECRET);
+            
+            userData = {
+                name: verify.name, 
+                email
+            };
+          } catch (error) {
+			signOut();
+		  }
+        }
+      }, []);
 
-    async function signIn({ email, password }) {
-        const { token } = await api.post('/login', {
-            email,
-            password,
-        });
+	async function signIn ({email, password}) {
+		let userData = null;
+		
+		try {
+			const { data } = await api.post('/login', { email, password });
+			
+			Cookies.set('token', data.token, { expires: 60 });
+			api.defaults.headers.Authorization = `Bearer ${data.token}`
 
-        setCookie(undefined, 'token', token, {
-            maxAge: 60 * 60 * 1, // 1 hora
-        });
+			const verify = jwt.verify(data.token, process.env.TOKEN_SECRET);
 
-        //setUser(user);
+			userData = { 
+			name: verify.name, 
+			email
+			};
 
-        isAuthenticated = true;
+			setUser(userData);
 
-        Router.push('/marketing');
-    }
+		} catch (error) {
+			throw new Error("Email ou senha incorreta!");
+		}
+	}
+
+	async function signOut() {
+		try {
+			Cookies.remove('token');
+			delete api.defaults.headers.Authorization;
+
+			setUser(null);
+		} catch (error) {
+			throw new Error("Nenhum usuário logado!");
+		}
+	}
+
+	async function register({ email, password, name }) {
+		try {
+			let admin = true;
+	
+			const { data } = await api.post('/user', { email, password, name, admin});
+
+			toast.success("Usuário cadastrado");
+		} catch (error) {
+			throw new Error("Não foi possível realizar o cadastro");
+		}
+	}
 
     return (
         <AuthContext.Provider 
-        value={{ 
-            user, 
-            isAuthenticated, 
+        value={{
+            user,
             signIn
         }}>
             {children}

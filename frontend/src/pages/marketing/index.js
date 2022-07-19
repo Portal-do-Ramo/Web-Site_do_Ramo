@@ -30,3 +30,15 @@ export default function inicial() {
     </div>
   );
 }
+
+export const getServerSideProps = async (ctx) => {
+
+  // const {level, currentExperience, challengesCompleted} = ctx.req.cookies;
+
+  return {
+    props: {
+      
+    }
+  }
+
+}
