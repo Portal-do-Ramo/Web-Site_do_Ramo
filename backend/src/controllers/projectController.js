@@ -3,6 +3,12 @@ const projectService = require("../services/projectService");
 module.exports = {
     async index(req, res) {
         let projects = await projectService.index();
+        
+        for (const project of projects) {
+            project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
+            project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+        }
+
         return res.status(200).json({"projects": projects});
     },
 	

@@ -65,7 +65,7 @@ export default function Home({ crews }) {
                     key={crew.id}
                     index={index} 
                     name={crew.name} 
-                    image={`${process.env.API_URL}/uploads/${crew.imageURL}`} 
+                    image={crew.imageURL} 
                   />
                 )
               })
@@ -107,6 +107,6 @@ export const getStaticProps = async () => {
     props: {
       crews
     },
-    revalidate: 1 // 24 Horas
+    revalidate: 60 * 60 * 24 // 24 Horas
   }
 }

@@ -4,11 +4,11 @@ const crewService = require("./crewService");
 
 module.exports = {
     async index() {
-        const awards = await knex("awards").select("id", "name", "description", "crew_id");
+        const awards = await knex("awards").select("id", "name", "placing", "year", "crew_id");
         return awards;
     },
 
-    async create(name, description, crew_name) {
+    async create(name, placing, year, crew_name) {
         
         let crew = await crewService.getCrewByName(crew_name);
         if (!crew) {
@@ -18,7 +18,8 @@ module.exports = {
         await knex("awards").insert({
             id: v4(),
             name,
-            description,
+            placing,
+            year,
             crew_id: crew.id
         });
 
@@ -50,7 +51,7 @@ module.exports = {
     },
     
     async getByCrewId(crew_id) {
-        let awards = await knex("awards").select("id", "name", "description", "crew_id").where({crew_id});
+        let awards = await knex("awards").select("id", "name", "placing", "year", "crew_id").where({crew_id});
         return awards;
     }
 

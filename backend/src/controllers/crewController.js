@@ -6,6 +6,11 @@ module.exports = {
 
    async index(req, res) {
         let crews = await crewService.index();
+
+        for (const crew of crews) {
+            crew.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${crew.imageURL}`;
+        }
+
         return res.status(200).json(crews);
     },
 
@@ -49,7 +54,15 @@ module.exports = {
             
             for (const crew of crews) {
                 const projects = await projectService.getByCrewId(crew.id);
-                const awards = await awardService.getByCrewId(crew.id)
+                const awards = await awardService.getByCrewId(crew.id);
+
+                for (const project of projects) {
+                    project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
+                    project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+                }
+
+                crew.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${crew.imageURL}`;
+
                 response.push({crew, projects, awards});
             }
             

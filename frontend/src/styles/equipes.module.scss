@@ -540,6 +540,11 @@
         align-items: flex-start;
         margin-top: 70px;
         gap: 50px;
+        min-height: 20vh;
+
+        span {
+          color: #C4C4C4;
+        }
         
         .awardsContainer {
           display: flex;

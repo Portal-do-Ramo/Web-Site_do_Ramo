@@ -1,16 +1,16 @@
 const awardService = require("../services/awardService");
 
 module.exports = {
-    async index(req,res) {
+    async index(req, res) {
         let awards = await awardService.index();
         return res.status(200).json(awards);
     },
     
-    async create(req,res) {
-		let { name, description, crew_name } = req.body;
+    async create(req, res) {
+		let { name, placing, year, crew_name } = req.body;
 
         try {
-            const response = await awardService.create(name, description, crew_name);
+            const response = await awardService.create(name, placing, year, crew_name);
             return res.status(201).json(response);
         } catch(err) {
             return res.status(422).json({message: err.message});
@@ -29,7 +29,7 @@ module.exports = {
 		}
     },
 
-    async delete(req,res) {
+    async delete(req, res) {
         let { id } = req.params;  
 		
         try {

@@ -147,12 +147,14 @@ export default function Equipes({ crews }) {
       let awardGridGap = getComputedStyle(document.getElementById(styles.awardsImagesContainer)).gap;
       awardGridGap = awardGridGap.replace("px", "");
       awardGridGap = Number(awardGridGap);
-
-      if (awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
+      
+      if (crews[crewIndex].awards.length !== 0 && awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
         return false;
       } else {
         return true;
       }
+    } else {
+      return true;
     }
   }
 
@@ -172,19 +174,19 @@ export default function Equipes({ crews }) {
               <article className={styles.crewSelected}>
                 <div className={styles.imagesCarouselContainer}>
                   { crewIndex === 0
-                    ? <img src={crews[crews.length - 1].image} className={styles.previousProjectImage} id="previousProjectImage"/>
-                    : <img src={crews[crewIndex - 1].image} className={styles.previousProjectImage} id="previousProjectImage"/>
+                    ? <img src={crews[crews.length - 1].crew.imageURL} className={styles.previousProjectImage} id="previousProjectImage"/>
+                    : <img src={crews[crewIndex - 1].crew.imageURL} className={styles.previousProjectImage} id="previousProjectImage"/>
                   }
                   
-                  <img src={crews[crewIndex].image} className={styles.currentProjectImage} id="currentProjectImage" />
-
+                  <img src={crews[crewIndex].crew.imageURL} className={styles.currentProjectImage} id="currentProjectImage" />
+                  
                   { crewIndex === crews.length - 1
-                    ? <img src={crews[0].image} className={styles.nextProjectImage} id="nextProjectImage"/>
-                    : <img src={crews[crewIndex + 1].image} className={styles.nextProjectImage} id="nextProjectImage"/>
+                    ? <img src={crews[0].crew.imageURL} className={styles.nextProjectImage} id="nextProjectImage"/>
+                    : <img src={crews[crewIndex + 1].crew.imageURL} className={styles.nextProjectImage} id="nextProjectImage"/>
                   }
                 </div>
 
-                <p> {crews[crewIndex].name} </p>
+                <p> {crews[crewIndex].crew.name} </p>
               </article>
 
               <NextArrow onClick={() => handleChangeCrewSelected(+1)}/>
@@ -192,15 +194,15 @@ export default function Equipes({ crews }) {
           </div>
 
           <div className={styles.description}>
-            <h1>{crews[crewIndex].name}</h1>
-            <p>{crews[crewIndex].about}</p>
+            <h1>{crews[crewIndex].crew.name}</h1>
+            <p>{crews[crewIndex].crew.about}</p>
           </div>
         </section>
         
         <section className={styles.projects}>
           <div className={styles.leftContainer}>
             <h2>Projetos</h2>
-            <p>Conheça todos os projetos da equipe {crews[crewIndex].name}</p>
+            <p>Conheça todos os projetos da equipe {crews[crewIndex].crew.name}</p>
             <div className={styles.sliderHolder}>
               <ProjectPrevArrow 
                 onClick={() => handleChangeProjectsSelected(-1)}
@@ -228,6 +230,7 @@ export default function Equipes({ crews }) {
                 disabled={projectsDotSelected === (dots.length - 1)}
               />
             </div>
+
             <div className={styles.dots}>
               {dots.map((dot, idx) => {
                 return (
@@ -250,27 +253,37 @@ export default function Equipes({ crews }) {
             <h2>Prêmios</h2>
 
             <div className={styles.awardSlider}>
-              <AwardPrevArrow onClick={() => handleChangeAwardSelected(-1)} disabled={awardTranslateX === 0}/>
-              <section className={styles.awardsContainer}>
-                <div id={styles.awardsImagesContainer}>
-                  {
-                    crews[crewIndex].awards.map((award, idx) => {
-                      return (
-                        <article className={styles.award} key={idx}>
-                          <img src="award.svg" alt="award image"/>
-                          <strong>{award.placing}</strong>
-                          <span>{award.name}</span>
-                          <p>{award.year && award.year}</p>
-                        </article>
-                      )
-                    })
-                  }
-                </div>
-              </section>
-              <AwardNextArrow 
-                onClick={() => handleChangeAwardSelected(1)} 
-                disabled={ verifyIsAwardArrowDisabled() }
-                />
+              {
+                crews[crewIndex].awards.length > 0 ? (
+                  <>
+                    <AwardPrevArrow onClick={() => handleChangeAwardSelected(-1)} disabled={awardTranslateX === 0}/>
+                    <section className={styles.awardsContainer}>
+                      <div id={styles.awardsImagesContainer}>
+                        {
+                          crews[crewIndex].awards.map((award, idx) => {
+                            return (
+                              <article className={styles.award} key={idx}>
+                                <img src="award.svg" alt="award image"/>
+                                <strong>{award.placing}</strong>
+                                <span>{award.name}</span>
+                                <p>{award.year && award.year}</p>
+                              </article>
+                            )
+                          })
+                        }
+                      </div>
+                    </section>
+                    <AwardNextArrow 
+                      onClick={() => handleChangeAwardSelected(1)} 
+                      disabled={ verifyIsAwardArrowDisabled() }
+                    />
+                  </>
+                ) : (
+                  <>
+                    <span> Não há nenhum prêmio registrado </span>
+                  </>
+                )
+              }
             </div>
           </div>
           <img className={styles.bottomWave} src='/Background.png'></img>
@@ -283,23 +296,12 @@ export default function Equipes({ crews }) {
 }
 
 export const getStaticProps = async () => {
-  let { data } = await api.get("/crews");
-  
-  // let crews = data.map(crew => {
-  //   return {
-  //     id: crew.id,
-  //     title: crew.name,
-  //     description: crew.about,
-  //     image: crew.image.replace('.', '')
-  //   }
-  // });
-
-  let crews = data;
+  let { data: crewsAllData } = await api.get("/crewsAllData");
 
   return {
     props: {
-      crews
+      crews: crewsAllData
     },
-    revalidate: 1 // 24 Horas
+    revalidate: 60 * 60 * 24 // 24 Horas
   }
 }
