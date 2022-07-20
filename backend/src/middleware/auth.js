@@ -16,7 +16,7 @@ function auth(req, res, next){
 		return res.status(401).send({error: 'Token error'});
 	
 	const [ scheme, token ] = parts;
-	
+
 	if(!/^Bearer$/i.test(scheme))
 		return res.status(401).send({error: 'Token malformatted'});
     

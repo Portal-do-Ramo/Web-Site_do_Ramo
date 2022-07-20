@@ -5,13 +5,13 @@ const Joi = require("joi");
 
 module.exports = {
   async create(email, password) {
-
     const userValidation = Joi.object({
       email: Joi.string().min(6).email().required(),
       password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required()     
     });
 
     const {error} = userValidation.validate({email, password});
+    
     if (error){
       throw new Error(error.message);
     }

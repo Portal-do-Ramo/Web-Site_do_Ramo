@@ -41,7 +41,6 @@ module.exports = {
     },
 
     async update(id, name, password) {
-        
         const userValidation = Joi.object({
             name: Joi.string().min(3),
             password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$"))    
