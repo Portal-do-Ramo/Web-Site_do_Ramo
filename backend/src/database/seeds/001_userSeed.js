@@ -12,7 +12,6 @@ exports.seed = async function (knex) {
 					name: "Cleitin do Rasta",
 					email: "cleitin@123.com",
 					password: hash,
-					admin: true
 				},
 			]);
 		});

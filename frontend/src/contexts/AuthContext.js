@@ -62,9 +62,7 @@ export function AuthContextProvider({children}) {
 
 	async function register({ email, password, name }) {
 		try {
-			let admin = true;
-	
-			const { data } = await api.post('/user', { email, password, name, admin});
+			const { data } = await api.post('/user', { email, password, name });
 
 			toast.success("Usuário cadastrado");
 		} catch (error) {

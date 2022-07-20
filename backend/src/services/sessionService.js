@@ -16,7 +16,7 @@ module.exports = {
       throw new Error(error.message);
     }
 
-    const user = await knex("users").select("email", "password", "name", "admin").where({email}).first();
+    const user = await knex("users").select("email", "password", "name").where({email}).first();
     if(!user) {
       throw new Error("Email não existe!");
     }
