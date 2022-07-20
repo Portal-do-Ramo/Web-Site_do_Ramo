@@ -7,10 +7,10 @@ module.exports = {
     },
 
     async create(req, res) {
-        const {name, email, password, admin} = req.body;
+        const {name, email, password} = req.body;
         
         try {
-            const response = await userService.create(name, email.toLowerCase(), password, admin);
+            const response = await userService.create(name, email.toLowerCase(), password);
             return res.status(201).json(response); 
         } catch (err) {
             return res
