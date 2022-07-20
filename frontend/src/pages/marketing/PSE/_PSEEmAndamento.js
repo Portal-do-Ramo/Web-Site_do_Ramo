@@ -1,19 +1,22 @@
 import Modal from 'react-modal';
 import { useEffect, useState } from "react";
-import styles from "../PSE/styles.module.scss"
+import styles from "../PSE/styles.module.scss";
+import { format } from "date-fns";
 
-export default function PSEEmAndamento() {
-  const beginDate = "03/04/2022 - 00:00h";
-  const endDate = "05/04/2022 - 00:00h";
-
+export default function PSEEmAndamento({start, end}) {
+  const [beginDate, setBeginDate] = useState(""); 
+  const [endDate, setEndDate] = useState(""); 
+  const [endDateInputValue, setEndDateInputValue] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
 
- /* useEffect(() => {
-    var date = new Date("2022-04-22T00:00:00.000Z");
+ useEffect(() => {
+	setBeginDate(format(new Date(start), "dd/MM/yyyy - H:mm"));
+	setEndDate(format(new Date(end), "dd/MM/yyyy - H:mm"));
+
+	let date = new Date(end);
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
-    document.getElementById('beginDate').value = date.toISOString().slice(0, 16);
-  }, [])
-*/
+	document.getElementById("endDateInput").value = date.toISOString().slice(0, 16);
+  }, []);
 
   function openModal() {
     setIsOpen(true);
@@ -24,7 +27,8 @@ export default function PSEEmAndamento() {
   }
 
   function handleEditPSE() {
-
+	const endDate = document.getElementById("endDateInput").value
+	setEndDate(format(new Date(endDate), "dd/MM/yyyy - H:mm"));
   }
 
   return (
@@ -58,11 +62,16 @@ export default function PSEEmAndamento() {
               <p> até </p>
 
               <div className={styles.end}>
-                <input type="datetime-local" max="9999-12-31T23:59"  name="endDate"/>
+                <input
+					type="datetime-local"
+					max="9999-12-31T23:59"
+					name="endDate"
+					id='endDateInput'
+				/>
               </div>
             </section>
 
-              <button>Editar</button>
+              <button onClick={handleEditPSE}>Editar</button>
           </div>
       </section>
 

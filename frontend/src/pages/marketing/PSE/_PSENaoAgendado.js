@@ -3,13 +3,13 @@ import { FiDownload } from "react-icons/fi"
 import { MdOutlineFileDownloadOff } from "react-icons/md"
 import styles from "../PSE/styles.module.scss"
 
-export default function PSENaoAgendado() {
+export default function PSENaoAgendado({startDate, end}) {
   const [beginDate, setBeginDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [endDate, setEndDate] = useState(endDate);
   const [isDownloadActive, setIsDownloadActive] = useState(false);
 
   useEffect(() => {
-    var date = new Date();
+    let date = new Date();
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     setBeginDate(date.toISOString().slice(0, 16));
   }, [])

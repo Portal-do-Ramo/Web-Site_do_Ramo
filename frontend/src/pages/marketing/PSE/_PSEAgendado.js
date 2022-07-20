@@ -2,14 +2,14 @@ import Modal from 'react-modal'; //falta fazer o modal!! npm install react-modal
 import { useEffect, useState } from "react";
 import styles from "../PSE/styles.module.scss"
 
-export default function PSEAgendado() {
+export default function PSEAgendado({startDate, end}) {
   const beginDate = "03/04/2022 - 00:00h";
   const endDate = "05/04/2022 - 00:00h";
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    var date = new Date("2022-04-22T00:00:00.000Z");
+    let date = new Date("2022-04-22T00:00:00.000Z");
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     document.getElementById('beginDate').value = date.toISOString().slice(0, 16);
   }, [])

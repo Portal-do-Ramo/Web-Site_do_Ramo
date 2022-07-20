@@ -8,33 +8,30 @@ import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../../contexts/AuthContext";
+import api from "../../../services/api";
 
-let psecontroler = 2;
-
-function controller(x) {
-    x = 1;
-
-    switch (x) {
+function controller(page, startDate, endDate) {
+    switch (page) {
         case 0:
-            return <PSENaoAgendado/>
+            return <PSENaoAgendado start={startDate} end={endDate}/>
 
             break;
         case 1:
-            return <PSEAgendado/>
+            return <PSEAgendado start={startDate} end={endDate}/>
 
             break;
         case 2:
-            return <PSEEmAndamento/>
+            return <PSEEmAndamento start={startDate} end={endDate}/>
 
             break;
         default:
-            return <PSENaoAgendado/>
+            return <PSENaoAgendado start={startDate} end={endDate}/>
             
             break;
     }
 }
 
-export default function PSE(){
+export default function PSE({ startDate, endDate, page }) {
     const router = useRouter();
 
 	const { user, isAuthenticated } = useContext(AuthContext);
@@ -64,10 +61,41 @@ export default function PSE(){
                 <div className={styles.pageContent}>
                     <div className={styles.content}>
                         <MarketingMenuRoutes routesName={`PSE`} routes={`PSE`}/>
-                        {controller(psecontroler)}
+                        {controller(page, startDate, endDate)}
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+export const getServerSideProps = async (ctx) => {
+    let startDate = null;
+    let endDate = null;
+    let page = 0;
+
+    try {
+        const {data} = await api.get("/PSE");
+        
+        startDate = data.start;
+        endDate = data.end;
+
+        if (new Date(startDate) > new Date()) {
+            page = 1;
+        } else {
+            page = 2;
+        }
+
+    } catch (error) {
+        startDate = null;
+        endDate = null;
+    }
+  
+    return {
+      props: {
+        startDate,
+        endDate,
+        page
+      }
+    }
+  }

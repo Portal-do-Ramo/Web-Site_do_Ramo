@@ -17,10 +17,10 @@ export default function MarketingMenuRoutes({ routesName, routes }) {
             <section className={styles.content}>
                 { splittedRoutesName.map((route, index) => {
                     return (
-                        <>
+                        <article key={index}>
                             <span onClick={() => handleChangeRoute(index)}> {route} </span>
                             <p> {">"} </p>
-                        </>
+                        </article>
                     )
                 })}
             </section>

@@ -48,15 +48,15 @@ export default function MarketingNavBar({ page, user }) {
 
       <div className={isOpen ? styles.routesActivated : styles.routes}>
         <Link href={`/marketing`}>
-          <h1 className={page === "home" && styles.border}>Home</h1>
+          <h1 className={page === "home" ? styles.border : null}>Home</h1>
         </Link>
 
         <Link href={`/marketing/equipes`}>
-          <h1 className={page === "equipes" && styles.border}>Equipes</h1>
+          <h1 className={page === "equipes" ? styles.border : null}>Equipes</h1>
         </Link>
 
         <Link href="/marketing/PSE">
-          <h1 className={page === "pse" && styles.border}>PSE</h1>
+          <h1 className={page === "pse" ? styles.border : null}>PSE</h1>
         </Link>       
       </div>
 
