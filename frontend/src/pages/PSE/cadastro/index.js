@@ -25,7 +25,6 @@ export default function cadastro({ crewsNames }) {
     <div className={styles.pageContainer}>
       <Head>
         <title>Formulário PSE | IEEE CEFET-RJ</title>
-        <link rel="shortcut icon" href="/Ramo_logo.svg" />
       </Head>
 
       <section className={styles.container}>

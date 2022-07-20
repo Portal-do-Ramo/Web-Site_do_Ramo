@@ -12,7 +12,6 @@ export default function PSE() {
         <div>
             <Head>
                 <title>PSE | IEEE CEFET-RJ</title>
-                <link rel="shortcut icon" href="/Ramo_logo.svg" />
             </Head>
 
             <Header page="PSE"/>

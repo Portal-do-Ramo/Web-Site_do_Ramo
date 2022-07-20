@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function MarketingNavBar({ page }) {
+export default function MarketingNavBar({ page, user }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function open() {
@@ -15,7 +15,6 @@ export default function MarketingNavBar({ page }) {
     document.body.style.overflowY = "scroll";
   }, [])
 
-  const user = {name: "Guilherme Fernandes Melo"}
   let nameURL = `https://ui-avatars.com/api/?name=${user.name}`
   
   return (
