@@ -1,21 +1,27 @@
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function MarketingNavBar({ page, user }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { signOut } = useContext(AuthContext);
 
   function open() {
     document.body.style.overflowY = isOpen ? "scroll" : "hidden";
     setIsOpen(!isOpen);
+  }
+
+  function handleSignOut() {
+    signOut();
   }
   
   useEffect(() => {
     document.body.style.overflowY = "scroll";
   }, [])
 
-  let nameURL = `https://ui-avatars.com/api/?name=${user.name}`
+  let nameURL = `https://ui-avatars.com/api/?name=${user ? user.name : "unknown"}`
   
   return (
     <div className={styles.all}>
@@ -58,8 +64,8 @@ export default function MarketingNavBar({ page, user }) {
         <img src={nameURL} className={styles.userImage}/>
 
         <section className={styles.userInfo}>
-          <span>{user.name}</span>
-          <p>sair</p>
+          <span>{user ? user.name : "unknown"}</span>
+          <p onClick={handleSignOut}>sair</p>
         </section>
       </div>
     </div>

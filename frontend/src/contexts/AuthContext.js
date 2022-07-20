@@ -3,10 +3,12 @@ import api from '../services/api'
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export const AuthContext = createContext({})
 
 export function AuthContextProvider({children}) {
+	const router = useRouter();
     const [user, setUser] = useState(null);
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -53,6 +55,8 @@ export function AuthContextProvider({children}) {
 			Cookies.remove('token');
 			delete api.defaults.headers.Authorization;
 
+			router.push("login");
+			
 			setUser(null);
 		} catch (error) {
 			throw new Error("Nenhum usuário logado!");
@@ -74,7 +78,8 @@ export function AuthContextProvider({children}) {
         value={{
             user,
             signIn,
-			isAuthenticated
+			isAuthenticated,
+			signOut
         }}>
             {children}
         </AuthContext.Provider>

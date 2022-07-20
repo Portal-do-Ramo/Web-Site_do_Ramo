@@ -33,7 +33,7 @@ export default function index() {
 					<title>Marketing - Inicio | IEEE CEFET-RJ</title>
 				</Head>
 	
-				<MarketingNavBar page="home" user={user} />
+				<MarketingNavBar page="home" user={user ? user : null} />
 	
 				<div className={styles.pageContent}>
 					<section className={styles.menuRoutes}>
@@ -42,7 +42,7 @@ export default function index() {
 	
 					<section className={styles.content}>
 						<article>
-							<h1>Bem Vindo, {user.name}!</h1>
+							<h1>Bem Vindo, {user && user.name}!</h1>
 							
 							<p>
 								Aqui você encontrará ferramentas para personalizar

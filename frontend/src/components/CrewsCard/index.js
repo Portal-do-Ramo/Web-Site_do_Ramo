@@ -3,18 +3,18 @@ import Link from "next/link"
 
 export default function Card({ index, image, name }) {
     return (           
-        <div className={styles.cards}>
+        <section className={styles.cards}>
             <Link
                 href={{ 
                     pathname:"/equipes", 
                     query: { crewIndex: index } 
                 }}
             >
-                <a>
+                <article>
                     <img src={image}/>
                     <p>{name}</p>
-                </a>
+                </article>
             </Link>
-        </div>
+        </section>
     )
 }

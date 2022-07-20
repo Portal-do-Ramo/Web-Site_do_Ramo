@@ -24,17 +24,18 @@
         background-position: center center;
     }
     .loginContent{
-        padding: 10vh 0;
-        width: 40%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
 
-        img{ 
+        img { 
             width: 100px; 
+            margin-bottom: 10px;
         }
-        .form{ 
+
+        .form { 
             display: flex;
             align-items: center;
             flex-direction: column;

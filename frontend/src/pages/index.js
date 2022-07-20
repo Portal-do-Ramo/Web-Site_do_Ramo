@@ -20,12 +20,12 @@ export default function Home({ crews }) {
 		<Header page="inicio">
 			<div className={styles.wolfImageContainer}>
 
-			<Image 
-				src="/seu_pai.svg"
-				alt="Lobo do Ramo IEEE CEFET-RJ"
-				width={300}
-				height={300}
-			/>
+				<Image 
+					src="/seu_pai.svg"
+					alt="Lobo do Ramo IEEE CEFET-RJ"
+					width={300}
+					height={300}
+				/>
 			
 			</div>
 		</Header>

@@ -8,7 +8,7 @@
     
     transition: background-color .7s ease;
 
-    a {
+    article {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -16,6 +16,8 @@
         height: 100%;
 
         text-decoration: none;
+
+        cursor: pointer;
 
         img {
             height: 140px;
