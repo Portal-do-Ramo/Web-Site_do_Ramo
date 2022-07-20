@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import ValueContainer from '../components/ValueContainer'
 import ContactOptions from '../components/ContactOptions'
 import styles from "../styles/sobre.module.scss"
+import Head from 'next/head'
 
 export default function Sobre(){
     let values = [
@@ -40,6 +41,11 @@ export default function Sobre(){
 
     return (
         <>
+            <Head>
+                <title>Sobre | IEEE CEFET-RJ</title>
+                <link rel="shortcut icon" href="/Ramo_logo.svg" />
+            </Head>
+
             <Header page="sobre"/>
 
             <main className={styles.main}>

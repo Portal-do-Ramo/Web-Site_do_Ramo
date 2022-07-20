@@ -15,10 +15,14 @@
   background: url("../../public/fundo-pse-formulario.svg") no-repeat;
   background-position: left top;
   background-clip: border-box;
-  // background-size: contain;
+  background-size: 75%;
 
   @media (min-height: 890px) {
     background-size: contain;
+  }
+
+  @media (min-width: 1300px) {
+    background-size: 950px;
   }
 
   h1 {
@@ -110,7 +114,7 @@
     .rightSide {
       display: flex;
       flex-direction: column;
-      margin-left: 50px;
+      margin-left: 100px;
       width: fit-content;
 
       span {

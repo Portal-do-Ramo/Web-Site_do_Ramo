@@ -3,12 +3,18 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 import styles from "../../styles/PSE.module.scss";
+import Head from "next/head";
 
 export default function PSE() {
     const router = useRouter();
 
     return (
         <div>
+            <Head>
+                <title>PSE | IEEE CEFET-RJ</title>
+                <link rel="shortcut icon" href="/Ramo_logo.svg" />
+            </Head>
+
             <Header page="PSE"/>
             <div id={styles.pageContent}>
                 <section className={styles.introductionContainer}>

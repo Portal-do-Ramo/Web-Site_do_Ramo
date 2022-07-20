@@ -8,6 +8,7 @@ import Page2 from './_page2';
 import Page3 from './_page3';
 import PSEFormHeader from '../../../components/pseFormHeader';
 import styles from '../../../styles/pseCadastro.module.scss';
+import Head from 'next/head';
 
 
 export default function cadastro({ crewsNames }) {
@@ -22,6 +23,11 @@ export default function cadastro({ crewsNames }) {
 
   return (
     <div className={styles.pageContainer}>
+      <Head>
+        <title>Formulário PSE | IEEE CEFET-RJ</title>
+        <link rel="shortcut icon" href="/Ramo_logo.svg" />
+      </Head>
+
       <section className={styles.container}>
         <PSEFormHeader page={page}/>
 

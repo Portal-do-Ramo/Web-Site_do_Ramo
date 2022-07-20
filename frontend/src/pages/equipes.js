@@ -20,6 +20,7 @@ import { ProjectDetail } from "../components/ProjectDetail";
 import styles from "../styles/equipes.module.scss";
 
 import api from "../services/api";
+import Head from 'next/head';
 
 export default function Equipes({ crews }) {
   const { query } = useRouter();
@@ -160,6 +161,11 @@ export default function Equipes({ crews }) {
 
   return (
     <div>
+      	<Head>
+        	<title>Equipes | IEEE CEFET-RJ</title>
+        	<link rel="shortcut icon" href="/Ramo_logo.svg" />
+      	</Head>
+
       <Header page="equipes"/>
       
       <div className={styles.all}>

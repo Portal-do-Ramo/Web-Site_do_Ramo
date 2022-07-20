@@ -8,27 +8,29 @@ export const AuthContext = createContext({})
 
 export function AuthContextProvider({children}) {
     const [user, setUser] = useState(null);
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
+		setIsAuthenticated(false);
         const token = Cookies.get('token');
-    
+		
         if (token) {
-          try {
-            const verify = jwt.verify(token, process.env.TOKEN_SECRET);
-            
-            userData = {
-                name: verify.name, 
-                email
-            };
+			try {
+				const verify = jwt.verify(token, process.env.TOKEN_SECRET);
+				
+				setUser({
+					name: verify.name, 
+					email: verify.email
+				});
           } catch (error) {
 			signOut();
 		  }
         }
+
+		setIsAuthenticated(true);
       }, []);
 
 	async function signIn ({email, password}) {
-		let userData = null;
-		
 		try {
 			const { data } = await api.post('/login', { email, password });
 			
@@ -36,14 +38,11 @@ export function AuthContextProvider({children}) {
 			api.defaults.headers.Authorization = `Bearer ${data.token}`
 
 			const verify = jwt.verify(data.token, process.env.TOKEN_SECRET);
-
-			userData = { 
-			name: verify.name, 
-			email
-			};
-
-			setUser(userData);
-
+			
+			setUser({
+				name: verify.name, 
+				email: verify.email	
+			});
 		} catch (error) {
 			throw new Error("Email ou senha incorreta!");
 		}
@@ -74,7 +73,8 @@ export function AuthContextProvider({children}) {
         <AuthContext.Provider 
         value={{
             user,
-            signIn
+            signIn,
+			isAuthenticated
         }}>
             {children}
         </AuthContext.Provider>

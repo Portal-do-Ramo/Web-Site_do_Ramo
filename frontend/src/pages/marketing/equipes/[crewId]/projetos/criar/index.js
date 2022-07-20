@@ -2,58 +2,80 @@ import MarketingNavBar from "../../../../../../components/MarketingNavBar"
 import styles from "../criar/styles.module.scss"
 import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoutes";
 import api from "../../../../../../services/api";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../../../../contexts/AuthContext";
 
 export default function CriarProjeto({ crew, project}){
-  return (
-    <div className={styles.all}>
-      <MarketingNavBar page={"equipes"}/>
+	const router = useRouter();
 
-        <div className={styles.pageContent}>
-            <div className={styles.content}>
-              <MarketingMenuRoutes 
-                routesName={`Equipes/${crew.name}/Projetos/Criar`} 
-                routes={`equipes/${crew.id}/projetos/criar`}
-              />
-                <h1>Criar Projeto</h1>
+	const { user, isAuthenticated } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(true);
 
-                <div className={styles.logoBanner}>
-                    <div className={styles.logoHolder}>
-                        <span>Logo do projeto</span>
-                        <input type="image" alt=""></input>
-                    </div>
+    useEffect(() => {
+		if (isAuthenticated) {
+            if (user === null) {
+                router.push("/login");
+            } else {
+				setIsLoading(false);
+			}
+        }
+    }, [user, isAuthenticated]);
 
-                    <div className={styles.bannerHolder}>
-                        <span>Banner do projeto</span>
-                        <input type="image" alt=""></input>
-                    </div>
-                </div>
-
-                <div className={styles.description}>
-
-                    <div className={styles.nameHolder}>
-                        <span>Nome da equipe</span>
-                        <input type="text" placeholder='Digite o nome da equipe'></input>
-                    </div>
-
-                    <div className={styles.descriptionHolder}>
-                        <span>Descrição da equipe</span>
-                        <textarea placeholder='Digite a descrição da equipe'></textarea>
-                    </div>
-
-                    <div className={styles.members}> 
-                        <span>Membros do projeto</span>
-                        <input placeholder='Digite um nome e pressione enter'></input>
-                    </div>
-                </div>
-
-                <div className={styles.buttonRow}>
-                    <button className={styles.cancel}>Cancelar</button>
-                    <button className={styles.edit}>Criar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-  )
+	if (isLoading) {
+        return ( <></> )
+    } else {
+		return (
+		  <div className={styles.all}>
+			<MarketingNavBar page={"equipes"}/>
+	  
+			  <div className={styles.pageContent}>
+				  <div className={styles.content}>
+					<MarketingMenuRoutes 
+					  routesName={`Equipes/${crew.name}/Projetos/Criar`} 
+					  routes={`equipes/${crew.id}/projetos/criar`}
+					/>
+					  <h1>Criar Projeto</h1>
+	  
+					  <div className={styles.logoBanner}>
+						  <div className={styles.logoHolder}>
+							  <span>Logo do projeto</span>
+							  <input type="image" alt=""></input>
+						  </div>
+	  
+						  <div className={styles.bannerHolder}>
+							  <span>Banner do projeto</span>
+							  <input type="image" alt=""></input>
+						  </div>
+					  </div>
+	  
+					  <div className={styles.description}>
+	  
+						  <div className={styles.nameHolder}>
+							  <span>Nome da equipe</span>
+							  <input type="text" placeholder='Digite o nome da equipe'></input>
+						  </div>
+	  
+						  <div className={styles.descriptionHolder}>
+							  <span>Descrição da equipe</span>
+							  <textarea placeholder='Digite a descrição da equipe'></textarea>
+						  </div>
+	  
+						  <div className={styles.members}> 
+							  <span>Membros do projeto</span>
+							  <input placeholder='Digite um nome e pressione enter'></input>
+						  </div>
+					  </div>
+	  
+					  <div className={styles.buttonRow}>
+						  <button className={styles.cancel}>Cancelar</button>
+						  <button className={styles.edit}>Criar</button>
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+		)
+	}
 }
 
 export async function getServerSideProps(ctx) {

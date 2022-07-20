@@ -60,7 +60,7 @@ export default function MarketingNavBar({ page }) {
 
         <section className={styles.userInfo}>
           <span>{user.name}</span>
-          <p>marketing</p>
+          <p>sair</p>
         </section>
       </div>
     </div>
