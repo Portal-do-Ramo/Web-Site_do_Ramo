@@ -7,10 +7,8 @@ import { useState } from "react";
 
 export default function premioEditar({ crew, award }){ 
   const router = useRouter();
-
   const [year, setYear] = useState("2022");
   const [placing, setPlacing] = useState("1");
-
 
   const years = [
     '2008', '2009', '2010',
@@ -42,18 +40,20 @@ export default function premioEditar({ crew, award }){
                 <div className={styles.description}>
 
                     <div className={styles.nameHolder}>
-                        <span>Nome do prêmio</span>
-                        <input type="text" placeholder='Digite o nome do prêmio'></input>
+                      <span>Nome do prêmio</span>
+                      <input type="text" placeholder='Digite o nome do prêmio' defaultValue={award.name}></input>
                     </div>
 
                     <div className={styles.other}>
                       <div className={styles.selects}>
                         <span>Ano da premiação</span>
-                        <select required value={year} onChange={(event) => setYear(event.target.value)}>
-                          
-                          {years.map((year, idx) => {
+                        <select onChange={(event) => setYear(event.target.value)}>
+                        {years.map((year, idx) => {
                             return (
-                              <option key={idx} value={year}>{year}</option>
+                              year === award.year ? 
+                                <option selected key={idx} value={year}>{year}</option> 
+                                : 
+                                <option key={idx} value={year}>{year}</option>
                             )
                           })}
                           </select>
@@ -61,11 +61,14 @@ export default function premioEditar({ crew, award }){
 
                       <div className={styles.selects}>
                         <span>Colocação</span>
-                        <select required value={placing} onChange={(event) => setPlacing(event.target.value)}>
+                        <select onChange={(event) => setPlacing(event.target.value)}>
                           
                           {placings.map((placing, idx) => {
                             return (
-                              <option key={idx} value={placing}>{placing}º</option>
+                              placing === award.placing?
+                                <option selected key={idx} value={placing}>{placing}º</option>
+                                :
+                                <option key={idx} value={placing}>{placing}º</option>
                             )
                           })}
                         </select>
