@@ -66,7 +66,7 @@ export default function Login(){
     
                         <div className={styles.radioContainer}>
                             <label htmlFor="manter-conectado"><input type="checkbox" id="manter-conectado"/> Matenha-me conectado</label>
-                            <span><a href="#" >Esqueceu a senha?</a></span>
+                            <span>Esqueceu a senha?</span>
                         </div><br/>    
                         
                         <section className={styles.buttonsContainer}>
