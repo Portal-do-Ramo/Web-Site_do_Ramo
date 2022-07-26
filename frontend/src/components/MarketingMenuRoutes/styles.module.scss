@@ -21,35 +21,41 @@
     
     .content {
         display: flex;
-        gap: 8px;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-
+        
         @media (max-width: 1000px) {
             justify-content: start;
             align-items: center;
         }
-
-        span {
-            border-radius: 10px;
-            font-size: 0.8rem;
-            padding: 5px 15px;
-            cursor: pointer;
-            background: #BACFE3;
-            
-            &:hover {
-                background: #afc3d6;
-            }
-        }
         
-        p {
-            color: #000;
-            font-size: 1.2rem;
-            font-weight: 500;
+        article {
+            display: flex;
+            
+            &:last-child {
+                p {
+                    display: none;
+                }
+            }
 
-            &:last-of-type {
-                display: none;
+            span {
+                border-radius: 10px;
+                font-size: 0.8rem;
+                padding: 5px 15px;
+                cursor: pointer;
+                background: #BACFE3;
+                
+                &:hover {
+                    background: #afc3d6;
+                }
+            }
+            
+            p {
+                color: #000;
+                font-size: 1.2rem;
+                font-weight: 500;
+                margin: 0 8px;
             }
         }
     }
