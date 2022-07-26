@@ -1,10 +1,11 @@
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import MarketingMenuRoutes from "../../../../components/marketingMenuRoutes"
 import MarketingNavBar from "../../../../components/MarketingNavBar"
 import { AuthContext } from "../../../../contexts/AuthContext";
 import styles from "../criar/styles.module.scss"
 
-export default function Criar({ crews }) {
+export default function Criar() {
     const router = useRouter();
 
 	const { user, isAuthenticated } = useContext(AuthContext);

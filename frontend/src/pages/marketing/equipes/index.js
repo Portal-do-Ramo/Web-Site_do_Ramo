@@ -59,7 +59,7 @@ export default function equipes({ crews }){
 							return(
 							  <div className={styles.crewRow} key={crew.id}>
 								<div className={styles.name}>
-								  <img src={crew.image}/>
+								  <img src={crew.imageURL}/>
 								  <h2>{crew.name}</h2>
 								</div>
 								<Link href={`/marketing/equipes/${crew.id}`}>
