@@ -23,6 +23,7 @@ const upload = multer(uploadImage.getConfig);
 router
 	.get("/awards", awardController.index)
 	.get("/crews", crewController.index)
+	.get("/crew/:id", crewController.getCrewInformation)
 	.get("/crewsAllData", crewController.getCrewsAllData)
 	.get("/projects", projectController.index)
 	.get("/sponsors", sponsorController.index)
@@ -39,7 +40,6 @@ router
 	.patch("/sponsor/:id", auth, sponsorController.update)
 	.patch("/user/:id", auth, userController.update)
 	.patch("/pse/schedule", auth, pseController.updateSchedulePSE) 
-
 
 	.post("/award", auth, awardController.create)
 	.post("/crew", auth, crewController.create)

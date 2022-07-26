@@ -26,7 +26,7 @@ export default function Criar() {
     } else {
         return (
             <div className={styles.all}>
-            <MarketingNavBar page="equipes" user={user ? user : null} />
+                <MarketingNavBar page="equipes" user={user ? user : null} />
 
                 <div className={styles.pageContent}>
                     <div className={styles.content}>

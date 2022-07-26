@@ -6,11 +6,9 @@ import { useState } from "react";
 import MarketingMenuRoutes from "../../../../../components/MarketingMenuRoutes";
 import EquipeAPI from "../../../../../services/equipeAPI";
 
-// Fazer API para pegar imagem do cliente
-
 export default function equipeEditar({ crew }){ 
     const router = useRouter();
-    const [state, setState] = useState(crew.image);
+    const [state, setState] = useState(crew.imageURL);
 
     function handleSelectOption(option) {
         router.push(`${crew.id}/${option}`);    
@@ -32,44 +30,44 @@ export default function equipeEditar({ crew }){
     }
 
     return (
-      <div className={styles.all}>
-        <MarketingNavBar/>
-  
-          <div className={styles.pageContent}>
-              <div className={styles.content}>
-                <MarketingMenuRoutes
-                  routesName={`Equipes/${crew.name}/Editar`} 
-                  routes={`equipes/${crew.id}/editar`}
-                />
-                  <h1>Editar Equipe</h1>
-  
-                  <div className={styles.logoName}>
-                      <div className={styles.logoHolder}>
-                          <h1>Logo da equipe</h1>
-                          <div className={styles.img}> 
-                            <img src={state}></img>
-                            <input type="file" alt="" onChange={imageHandler} accept="image/*"></input>
-                          </div>
-                      </div>
-  
-                      <div className={styles.nameHolder}>
-                          <h1>Nome da equipe</h1>
-                          <input id="name" type="text" placeholder='Digite o nome da equipe' defaultValue={crew.name}></input>
-                      </div>
-                  </div>
-  
-                  <div className={styles.description}>
-                      <h1>Descrição da equipe</h1>
-                      <textarea id="description" placeholder='Digite a descrição da equipe' defaultValue={crew.about}></textarea>
-                  </div>
-  
-                  <div className={styles.buttonRow}>
-                      <button className={styles.cancel}>Cancelar</button>
-                      <button className={styles.edit} onClick={submit}>Editar</button>
-                  </div>
-              </div>
-          </div>
-      </div>
+		<div className={styles.all}>
+			<MarketingNavBar/>
+
+			<div className={styles.pageContent}>
+				<div className={styles.content}>
+					<MarketingMenuRoutes
+					routesName={`Equipes/${crew.name}/Editar`} 
+					routes={`equipes/${crew.id}/editar`}
+					/>
+					<h1>Editar Equipe</h1>
+	
+					<div className={styles.logoName}>
+						<div className={styles.logoHolder}>
+							<h1>Logo da equipe</h1>
+							<div className={styles.img}> 
+								<img src={state}></img>
+								<input type="file" alt="" onChange={imageHandler} accept="image/*"></input>
+							</div>
+						</div>
+	
+						<div className={styles.nameHolder}>
+							<h1>Nome da equipe</h1>
+							<input id="name" type="text" placeholder='Digite o nome da equipe' defaultValue={crew.name}></input>
+						</div>
+					</div>
+	
+					<div className={styles.description}>
+						<h1>Descrição da equipe</h1>
+						<textarea id="description" placeholder='Digite a descrição da equipe' defaultValue={crew.about}></textarea>
+					</div>
+	
+					<div className={styles.buttonRow}>
+						<button className={styles.cancel}>Cancelar</button>
+						<button className={styles.edit} onClick={submit}>Editar</button>
+					</div>
+				</div>
+			</div>
+		</div>
     )
 }
 
@@ -77,7 +75,7 @@ export async function getServerSideProps(ctx) {
   const { crewId } = ctx.params;
 
   try {
-    let { data } = await api.get(`/crews/${crewId}`);
+    let { data } = await api.get(`/crew/${crewId}`);
     
     return {
       props: {

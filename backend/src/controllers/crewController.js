@@ -14,6 +14,20 @@ module.exports = {
         return res.status(200).json(crews);
     },
 
+    async getCrewInformation(req, res) {
+        const { id } = req.params;
+
+        try {
+            let crew = await crewService.getCrewInformation(id);
+
+            crew.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${crew.imageURL}`;
+            
+            return res.json(crew);
+        } catch (error) {
+            return res.status(422).json({message: error.message});
+        }
+    },
+
     async create(req, res) {
         let { name, about } = req.body;
         try{

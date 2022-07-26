@@ -7,6 +7,16 @@ module.exports = {
         return crews;
     },
 
+    async getCrewInformation(id) {
+        const crew = await knex("crews").select("id", "name", "about", "imageURL").where({id}).first();
+        
+        if(!crew) {
+            throw new Error("Equipe não existe!");
+        }
+        
+        return crew;
+    },
+
     async create(name, about) {
         let imageURL = name.toLowerCase() + "_avatar.png";
         let crew = await knex("crews").where({name}).first();
@@ -27,7 +37,8 @@ module.exports = {
 
     async update(id, crew) {
         let Crew = await knex("crews").where({id}).first();
-        if(!Crew){
+        
+        if (!Crew){
             throw new Error("Equipe não existe!");
         }
 
