@@ -56,24 +56,11 @@ export default function Sobre(){
                             <article>
                                 <div className={styles.historyArrow}></div>
                                 <h1>O que é o Ramo ?</h1>
-                                <p>     Lorem ipsum dolor sit amet, consectetur 
-                                adipiscing elit. Massa tempor, eu aenean 
-                                nisi, tortor. Tellus, posuere diam nunc ac ut 
-                                iaculis. Pharetra odio id netus eu a, 
-                                volutpat porttitor urna. Ac gravida in ac 
-                                viverra nibh. Nulla lectus amet, vel mattis. 
-                                Mauris, vel et massa netus sollicitudin 
-                                ligula. Ipsum aliquam a, sed nisi, mauris 
-                                eu risus ut. Ullamcorper libero, lectus 
-                                eleifend tincidunt viverra adipiscing 
-                                facilisis sed luctus. Odio sed elit, duis 
-                                vulputate nunc arcu magna elit. IEEE 
-                                nulla nisl sed morbi lorem. Malesuada 
-                                viverra consectetur pulvinar auctor. 
-                                Consequat, quis est fermentum parturient 
-                                proin tristique augue turpis. A amet, 
-                                eleifend libero tincidunt at. Praesent 
-                                vestibulum sollicitudin ultrices viverra.
+                                <p> 
+                                    "O Ramo estudantil IEEE é uma extensão que busca desenvolver pessoas e profissionais 
+                                    por meio de projetos colaborativos em todas equipes.
+                                    O espírito de camaradagem existente no Ramo ajuda a melhor confecção de projetos e 
+                                    apoia o desenvolvimento dos seus membros."
                                 </p>
                             </article>
 

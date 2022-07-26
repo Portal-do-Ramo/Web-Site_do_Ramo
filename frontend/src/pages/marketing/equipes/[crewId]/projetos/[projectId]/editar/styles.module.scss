@@ -22,7 +22,7 @@
             margin: 0 30px;
             row-gap: 40px;
 
-            .logoBanner {
+            .logoBanner, .bannerHolder {
                 display: flex;
                 column-gap: 30px;
 
@@ -35,30 +35,60 @@
                     display: flex;
                     flex-direction: column;
                     row-gap: 15px;
+                    white-space: nowrap;
 
-                    input {
+                    .img {
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        position: relative;
+                        border-radius: 8px;
 
                         width: 150px;
                         height: 150px;
 
-                        border-radius: 8px;
-                        background-color: var(--contraste);
-                        color: white;
+                        img {
+                            background-color: var(--contraste);
 
-                        background-image: url('/camera_icon.svg');
-                        background-repeat: no-repeat;
-                        background-size: 80px;
-                        background-position: center;
+                            width: 100%;
+                            padding: 20px;
+                            border-radius: 8px;
+                        }
+
+                        input {
+                            display: flex;
+                            position: absolute;
+                            color: transparent;
+    
+                            width: 150px;
+                            height: 150px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: .5s ease;
+                            background-position: center;
+                            
+                        }
+
+                        input::-webkit-file-upload-button {
+                            visibility: hidden;
+                          }
+    
+                        input:hover {
+                            background-image: url('/camera_icon.svg');
+                            background-repeat: no-repeat;
+                            background-size: 60px;
+                            background-color: rgba($color: #0e2738, $alpha: 0.6);
+                        }
                     }
                 }
 
                 .bannerHolder {
-                    input {
+                    .img {
                         width: 410px;
+
+                        input {
+                            width: 410px;
+                        }
                     }
+
                 }         
             }
 
@@ -160,8 +190,12 @@
                     column-gap: 20px;   
     
                     .bannerHolder {
-                        input {
+                        .img  {
                             width: 350px;
+
+                            input {
+                                width: 350px;
+                            }
                         }
                     }         
                 }
@@ -185,14 +219,24 @@
                     column-gap: 15px;   
 
                     .logoHolder, .bannerHolder {
-                        input {
+                        .img {
                             width: 130px;
                             height: 130px;
+
+                            input {
+                                width: 130px;
+                                height: 130px;
+                            }
                         }
+                        
                     }
                     .bannerHolder {
-                        input {
-                            width: 250px;
+                        .img {
+                            width: 300px;
+                            
+                            input {
+                                width: 300px;
+                            }
                         }
                     }         
                 }
@@ -200,14 +244,18 @@
         }
     }
 
-    @media (max-width: 440px) {
+    @media (max-width: 460px) {
         .pageContent {
             .content {
                 .logoBanner {
                     column-gap: 30px;
                     .bannerHolder {
-                        input {
+                        .img {
                             width: 200px;
+                            
+                            input {
+                                width: 200px;
+                            }
                         }
                     }         
                 }
@@ -229,8 +277,12 @@
                 .logoBanner {
                     column-gap: 30px;
                     .bannerHolder {
-                        input {
+                        .img {
                             width: 150px;
+                            
+                            input {
+                                width: 150px;
+                            }
                         }
                     }         
                 }

@@ -44,22 +44,46 @@
                     row-gap: 15px;
                     white-space: nowrap;
 
-                    input {
+                    .img {
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        position: relative;
+                        border-radius: 8px;
 
                         width: 150px;
                         height: 150px;
 
-                        border-radius: 8px;
-                        background-color: var(--contraste);
-                        color: white;
+                        img {
+                            background-color: var(--contraste);
 
-                        background-image: url('/camera_icon.svg');
-                        background-repeat: no-repeat;
-                        background-size: 80px;
-                        background-position: center;
+                            width: 100%;
+                            padding: 20px;
+                            border-radius: 8px;
+                        }
+
+                        input {
+                            display: flex;
+                            position: absolute;
+                            color: transparent;
+    
+                            width: 150px;
+                            height: 150px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: .5s ease;
+                            background-position: center;
+                            
+                        }
+
+                        input::-webkit-file-upload-button {
+                            visibility: hidden;
+                          }
+    
+                        input:hover {
+                            background-image: url('/camera_icon.svg');
+                            background-repeat: no-repeat;
+                            background-size: 60px;
+                            background-color: rgba($color: #0e2738, $alpha: 0.6);
+                        }
                     }
                 }
 
@@ -154,7 +178,7 @@
             column-gap: 25px !important;
 
             .logoHolder {
-                input {
+                .img, input, image {
                     width: 130px !important;
                     height: 130px !important;
                     background-size: 70px !important;
@@ -175,7 +199,7 @@
             column-gap: 15px !important;
 
             .logoHolder {
-                input {
+                .img, input, image {
                     width: 120px !important;
                     height: 120px !important;
                     background-size: 60px !important;
@@ -206,7 +230,7 @@
             }
 
             .logoHolder {
-                input {
+                .img, input, image {
                     width: 110px !important;
                     height: 110px !important;
                     background-size: 50px !important;
