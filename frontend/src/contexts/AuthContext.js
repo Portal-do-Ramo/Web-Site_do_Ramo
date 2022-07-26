@@ -15,10 +15,11 @@ export function AuthContextProvider({children}) {
     useEffect(() => {
 		setIsAuthenticated(false);
         const token = Cookies.get('token');
-		
+
         if (token) {
 			try {
 				const verify = jwt.verify(token, process.env.TOKEN_SECRET);
+				api.defaults.headers.Authorization = `Bearer ${token}`
 				
 				setUser({
 					name: verify.name, 
@@ -36,7 +37,8 @@ export function AuthContextProvider({children}) {
 		try {
 			const { data } = await api.post('/login', { email, password });
 			
-			Cookies.set('token', data.token, { expires: 60 });
+			Cookies.set('token', data.token, { expires: 60000 });
+
 			api.defaults.headers.Authorization = `Bearer ${data.token}`
 
 			const verify = jwt.verify(data.token, process.env.TOKEN_SECRET);
@@ -55,7 +57,7 @@ export function AuthContextProvider({children}) {
 			Cookies.remove('token');
 			delete api.defaults.headers.Authorization;
 
-			router.push("login");
+			router.push("/login");
 			
 			setUser(null);
 		} catch (error) {

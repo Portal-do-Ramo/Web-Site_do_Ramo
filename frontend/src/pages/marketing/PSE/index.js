@@ -9,13 +9,10 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../../contexts/AuthContext";
 import api from "../../../services/api";
+import { isBefore } from "date-fns";
 
 function controller(page, startDate, endDate) {
     switch (page) {
-        case 0:
-            return <PSENaoAgendado start={startDate} end={endDate}/>
-
-            break;
         case 1:
             return <PSEAgendado start={startDate} end={endDate}/>
 
@@ -25,7 +22,7 @@ function controller(page, startDate, endDate) {
 
             break;
         default:
-            return <PSENaoAgendado start={startDate} end={endDate}/>
+            return <PSENaoAgendado/>
             
             break;
     }
@@ -56,7 +53,7 @@ export default function PSE({ startDate, endDate, page }) {
                     <title>Marketing - PSE | IEEE CEFET-RJ</title>
                 </Head>
     
-                <MarketingNavBar page="pse"/>
+                <MarketingNavBar page="pse" user={user ? user : null} />
                 
                 <div className={styles.pageContent}>
                     <div className={styles.content}>
@@ -80,7 +77,7 @@ export const getServerSideProps = async (ctx) => {
         startDate = data.start;
         endDate = data.end;
 
-        if (new Date(startDate) > new Date()) {
+        if (!isBefore(new Date(startDate), new Date())) {
             page = 1;
         } else {
             page = 2;

@@ -42,7 +42,7 @@ export default function equipe({ crew }){
     } else {
 		return (
 		  <div className={styles.all}>
-			<MarketingNavBar page="equipes"/>
+			<MarketingNavBar page="equipes" user={user ? user : null} />
 	  
 			<div className={styles.pageContent}>
 			  <div className={styles.content}>

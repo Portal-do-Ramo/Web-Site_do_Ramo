@@ -20,7 +20,7 @@ module.exports = {
     async update(req, res) {
         let { award } = req.body;
 		let { id } = req.params;
-        console.log(award, id);
+        
         try {
 			const response = await awardService.update(id, award);
 			return res.status(200).json(response);

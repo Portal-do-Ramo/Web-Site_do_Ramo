@@ -36,7 +36,7 @@ export default function equipes({ crews }){
 			  <title>Marketing - Equipes | IEEE CEFET-RJ</title>
 			</Head>
 	  
-			<MarketingNavBar page="equipes"/>
+			<MarketingNavBar page="equipes" user={user ? user : null} />
 	  
 			<div className={styles.pageContent}>
 				<div className={styles.content}>
