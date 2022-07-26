@@ -29,7 +29,6 @@ router
 	.get("/users", auth, userController.index)
 	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
-	.get("/pse/end", auth, pseController.endPse)
 	.get("/download/check/pse.csv", auth, fileController.checkPseFile)
 	.get("/download/pse.csv", auth, fileController.getPseFile)
 	

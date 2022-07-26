@@ -49,23 +49,26 @@ export default function PSENaoAgendado() {
 		offset = "00" + offset;
 
 		try {
-		await toast.promise(
-			api.post("/pse/schedule",
-			{ 
-				startDate: `${beginDate}:00.000-${offset.slice(-2)}:00`,
-				endDate: `${endDate}:00.000-${offset.slice(-2)}:00`
-			}
-			),
-			{
-			pending: 'Carregando',
-			success: 'Novo PSE agendado',
-			error: 'Não foi possível agendar um novo PSE'
-			}
-		)
+			await toast.promise(
+				api.post("/pse/schedule",
+				{ 
+					startDate: `${beginDate}:00.000-${offset.slice(-2)}:00`,
+					endDate: `${endDate}:00.000-${offset.slice(-2)}:00`
+				}
+				),
+				{
+					pending: 'Carregando',
+					success: 'Novo PSE agendado',
+					error: 'Não foi possível agendar um novo PSE'
+				}
+			)
+		
+			setTimeout(() => {
+				router.reload();
+			}, 3000);
 
-		router.reload();
 		} catch (error) {
-		return null;
+			return null;
 		}
 	}
 

@@ -106,7 +106,7 @@ module.exports = {
 				throw new Error("data mal formatada!");
 			}
 
-			if ( startDateFormatted > endDateFormatted) {
+			if ( isBefore(endDateFormatted, startDateFormatted)) {
 				throw new Error("start date can't be greater than end date");
 			}
 
@@ -145,8 +145,12 @@ module.exports = {
 				jobScheduled.cancel();
 				await knex("pse").delete();
 
-				if (fs.existsSync('./uploads/pse.csv')) {
-					fs.unlinkSync('./uploads/pse.csv');
+				try {
+					if (fs.existsSync('./uploads/pse.csv')) {
+						await emailService.sendCSV();
+					}
+				} catch (error) {
+					console.log(error.message);
 				}
 				
 				return {message: "PSE schedule deleted!"};
@@ -171,10 +175,10 @@ module.exports = {
 				} else {
 				scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
 					try {
-					await knex("pse").delete();
-					await emailService.sendCSV();
+						await knex("pse").delete();
+						await emailService.sendCSV();
 					} catch (error) {
-					console.log("Error: ", error.message);
+						console.log("Error: ", error.message);
 					}
 				});
 				}
@@ -185,26 +189,6 @@ module.exports = {
 			}
 		} catch (error) {
 			throw new Error(error.message);
-		}
-	},
-
-	async endPse() {
-		const jobExists = scheduledJobs["scheduleJobPSE"];
-
-		try {
-			if (!jobExists) {
-				throw new Error("agendamento não existe!");
-			}
-
-			if (jobExists) {
-				jobExists.cancel();
-			}
-			await emailService.sendCSV();
-			await knex("pse").delete();
-
-			return { message: "pse encerrado"}
-		} catch (err) {
-			throw new Error(err.message);
 		}
 	}
 }

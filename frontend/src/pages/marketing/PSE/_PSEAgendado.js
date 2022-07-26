@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { useEffect, useState } from "react";
 import styles from "../PSE/styles.module.scss";
-import { format } from "date-fns";
+import { format, isBefore } from "date-fns";
 import api from '../../../services/api';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
@@ -45,11 +45,13 @@ export default function PSEAgendado({start, end}) {
 
 		offset = offset.slice(-2);
 
+		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-${offset}:00`;
+
 		try {
 			await toast.promise(
 				api.patch("/pse/schedule",
 				{ 
-					startDate: `${document.getElementById("beginDateInput").value}:00.000-${offset}:00`,
+					startDate: beginDateFormatted,
 					endDate: `${document.getElementById("endDateInput").value}:00.000-${offset}:00`
 				}
 				),
@@ -69,6 +71,12 @@ export default function PSEAgendado({start, end}) {
 				format(new Date(document.getElementById("endDateInput").value),
 				"dd/MM/yyyy - H:mm")
 			);
+
+			if (isBefore(new Date(beginDateFormatted), date)) {
+				setTimeout(() => {
+					router.reload();
+				}, 3000);	
+			}
 		} catch (error) {
 			return null;
 		}
