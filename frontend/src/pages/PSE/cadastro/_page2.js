@@ -61,7 +61,7 @@ export default function Page2() {
 
             <span>Curso <strong>*</strong></span>
             <select required value={course} onChange={(event) => setCourse(event.target.value)}>
-              <option value="" disabled selected hidden>Selecione seu curso</option>
+              <option value="" disabled defaultValue={true} hidden>Selecione seu curso</option>
               
               {courses.map((course, idx) => {
                 return (

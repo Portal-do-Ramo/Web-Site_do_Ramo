@@ -72,7 +72,7 @@ export const getServerSideProps = async (ctx) => {
     let page = 0;
 
     try {
-        const {data} = await api.get("/PSE");
+        const {data} = await api.get("/pse");
         
         startDate = data.start;
         endDate = data.end;
@@ -95,4 +95,4 @@ export const getServerSideProps = async (ctx) => {
         page
       }
     }
-  }
+}

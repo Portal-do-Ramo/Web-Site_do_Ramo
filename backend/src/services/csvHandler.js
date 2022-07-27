@@ -2,10 +2,9 @@ const fs = require("fs");
 
 path = `${__dirname}/../../uploads/pse.csv`;
 
-dataColumns = ["nomeCompleto", "dataDeNascimento", "celular", "eMail", "facebook", "linkedIn", "instagram", "matricula", "curso", "periodo", "equipe", "porQuaisMotivos", "area", "experiencia", "diaDaDinamica"];
+dataColumns = ["nomeCompleto", "endereco", "celular", "Email", "facebook", "linkedIn", "instagram", "matricula", "curso", "periodo", "equipe", "area", "porQuaisMotivos", "experiencia"];
 
-
-function csvHandler(input){ //array com as informações do usuário -> como o dataColumns
+function csvHandler(input){
 	if(fs.existsSync(path)){
 		fs.appendFile(path, `${input.join(",")}\n`, err => {
 			if(err){

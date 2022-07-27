@@ -4,9 +4,26 @@ import Footer from "../../components/Footer";
 
 import styles from "../../styles/PSE.module.scss";
 import Head from "next/head";
+import api from "../../services/api";
+import { toast } from "react-toastify";
+import { isBefore } from "date-fns";
 
 export default function PSE() {
     const router = useRouter();
+
+    async function handleRegister() {
+        try {
+            const {data} = await api.get("/pse");
+
+            if (!isBefore(new Date(), new Date(data.start))) {
+                router.push("/PSE/cadastro?page=1");
+            } else {
+                toast.error("Processo seletivo inativo!");
+            }
+        } catch (error) {
+            toast.error("Processo seletivo inativo!");
+        }
+    }
 
     return (
         <div>
@@ -92,7 +109,12 @@ export default function PSE() {
                         <div className={styles.whiteSpace}></div>
                         <div className={styles.joinContainer}>
                             <span>Faça parte do nosso time</span>
-                            <button type="button" onClick={() => router.push("/PSE/cadastro?page=1")}>inscrever-se</button>
+                            <button 
+                                type="button"
+                                onClick={handleRegister}
+                            >
+                                inscrever-se
+                            </button>
                         </div>
                     </article>
                 </section>
@@ -100,6 +122,5 @@ export default function PSE() {
 
             <Footer/>
         </div>
-        
     )
 }

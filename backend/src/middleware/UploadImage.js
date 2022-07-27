@@ -22,9 +22,9 @@ module.exports = {
         //renomeia o arquivo
         if (file.mimetype === "image/svg+xml" || file.mimetype === "image/svg") {
           cb(null, `${req.params.name.toLowerCase()}.svg`);
+        } else {
+          cb(null, `${req.params.name.toLowerCase()}.png`);
         }
-
-        cb(null, `${req.params.name.toLowerCase()}.png`);
       }
     });
   },

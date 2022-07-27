@@ -1,12 +1,18 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import MarketingMenuRoutes from "../../../../components/marketingMenuRoutes"
 import MarketingNavBar from "../../../../components/MarketingNavBar"
 import { AuthContext } from "../../../../contexts/AuthContext";
-import styles from "../criar/styles.module.scss"
+import api from "../../../../services/api";
+import styles from "../criar/styles.module.scss";
 
 export default function Criar() {
     const router = useRouter();
+
+    const [image, setImage] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
 
 	const { user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +26,43 @@ export default function Criar() {
 			}
         }
     }, [user, isAuthenticated]);
+
+    let imageHandler = e => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            if(reader.readyState === 2) {
+                setImage(reader.result);
+            }
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    async function handleCreateCrew() {
+        try {
+            if (name.length > 0 && description.length > 0 && image) {
+                const formData = new FormData();
+                const imagefile = document.getElementById("avatarInput");
+
+
+                await api.post(
+                    "/crew", 
+                    { name, about: description, imageURL: `${name}_avatar.${imagefile.files[0].name.split(".")[1]}` }
+                );
+                
+                formData.append("picture", imagefile.files[0]);
+
+                await api.post(`/image/${name}_avatar`, formData, {
+                    headers: {
+                        "Content-Type": `multipart/form-data`
+                    }
+                });
+            } else {
+                toast.error("cadastro incompleto");
+            }
+        } catch (error) {
+            toast.error("não foi possível criar a equipe");
+        }
+    }
 
 	if (isLoading) {
         return ( <></> )
@@ -36,24 +79,40 @@ export default function Criar() {
                         <div className={styles.logoName}>
                             <div className={styles.logoHolder}>
                                 <h1>Logo da equipe</h1>
-                                <input type="image" alt=""></input>
+                                <div className={styles.img}> 
+                                    <img src={image}></img>
+                                    <input 
+                                        type="file" 
+                                        onChange={imageHandler} 
+                                        accept=".png, image/jpg, .svg" 
+                                        id="avatarInput"
+                                    />
+                                </div>
                             </div>
 
                             <div className={styles.nameHolder}>
                                 <h1>Nome da equipe</h1>
-                                <input type="text" placeholder='Digite o nome da equipe'></input>
+                                <input 
+                                    type="text"
+                                    placeholder='Digite o nome da equipe'
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name}
+                                />
                             </div>
                         </div>
 
                         <div className={styles.description}>
                             <h1>Descrição da equipe</h1>
-                            <textarea placeholder='Digite a descrição da equipe'></textarea>
-
+                            <textarea
+                                placeholder='Digite a descrição da equipe'
+                                onChange={(e) => setDescription(e.target.value)}
+                                value={description}
+                            />
                         </div>
 
                         <div className={styles.buttonRow}>
                             <button className={styles.cancel}>Cancelar</button>
-                            <button className={styles.edit}>Criar</button>
+                            <button className={styles.edit} onClick={handleCreateCrew}>Criar</button>
                         </div>
                     </div>
                 </div>

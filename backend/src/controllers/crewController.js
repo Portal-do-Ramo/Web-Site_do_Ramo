@@ -29,9 +29,14 @@ module.exports = {
     },
 
     async create(req, res) {
-        let { name, about } = req.body;
+        let { name, about, imageURL } = req.body;
+
+        if (!imageURL) {
+            imageURL = name.toLowerCase() + "_avatar.png";
+        }
+
         try{
-            const response = await crewService.create(name, about);
+            const response = await crewService.create(name, about, imageURL);
             return res.status(201).json(response);
         } catch(err){
             return res.status(422).json({message: err.message});

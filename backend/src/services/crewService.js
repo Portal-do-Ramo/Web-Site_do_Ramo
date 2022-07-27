@@ -17,8 +17,7 @@ module.exports = {
         return crew;
     },
 
-    async create(name, about) {
-        let imageURL = name.toLowerCase() + "_avatar.png";
+    async create(name, about, imageURL) {
         let crew = await knex("crews").where({name}).first();
     
         if(crew){

@@ -72,23 +72,23 @@ module.exports = {
 					start: startDate,
 					end: endDate
 				});
-		} else {
-			throw new Error("pse already scheduled!");
-		}
+			} else {
+				throw new Error("pse already scheduled!");
+			}
 		
-		scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-			try {
-			await knex("pse").delete();
-			await emailService.sendCSV();
-			} catch (error) {
-			console.log("Error: ", error.message);
-			}
-		});
+			scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
+				try {
+					await knex("pse").delete();
+					await emailService.sendCSV();
+				} catch (error) {
+					console.log("Error: ", error.message);
+				}
+			});
 
-		return { message: "service scheduled to " + endDate };
-			} catch(err) {
-				throw new Error(err.message);
-			}
+			return { message: "service scheduled to " + endDate };
+		} catch(err) {
+			throw new Error(err.message);
+		}
 	},
 
 	async updateSchedulePSE(startDate, endDate) {

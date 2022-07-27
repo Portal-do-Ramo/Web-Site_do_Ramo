@@ -75,7 +75,7 @@ export default function PSEAgendado({start, end}) {
 			if (isBefore(new Date(beginDateFormatted), date)) {
 				setTimeout(() => {
 					router.reload();
-				}, 3000);	
+				}, 2000);	
 			}
 		} catch (error) {
 			return null;

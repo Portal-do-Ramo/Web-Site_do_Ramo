@@ -9,47 +9,70 @@ import Page3 from './_page3';
 import PSEFormHeader from '../../../components/pseFormHeader';
 import styles from '../../../styles/pseCadastro.module.scss';
 import Head from 'next/head';
+import { isBefore } from 'date-fns';
 
+export default function cadastro({ hasActivePSE, crewsNames }) {
+	const router = useRouter();
+	const { page } = router.query;
 
-export default function cadastro({ crewsNames }) {
-  const router = useRouter();
-  const { page } = router.query;
+	useEffect(() => {
+		if (!hasActivePSE) {
+			router.replace("/PSE");
+		}
+	}, [])
 
-  useEffect(() => {
-    if (page && page !== "1" && page !== "2" && page !== "3") {
-      router.push("/PSE/cadastro?page=1");
-    }
-  }, [page]);
+	useEffect(() => {
+		if (page && page !== "1" && page !== "2" && page !== "3") {
+			router.push("/PSE/cadastro?page=1");
+		}
+	}, [page]);
 
-  return (
-    <div className={styles.pageContainer}>
-      <Head>
-        <title>Formulário PSE | IEEE CEFET-RJ</title>
-      </Head>
+	if (!hasActivePSE) {
+		return <></>
+	}
 
-      <section className={styles.container}>
-        <PSEFormHeader page={page}/>
+	return (
+		<div className={styles.pageContainer}>
+			<Head>
+				<title>Formulário PSE | IEEE CEFET-RJ</title>
+			</Head>
 
-        { page === "1" && <Page1/> }
-        { page === "2" && <Page2/> }
-        { page === "3" && <Page3 crewsNames={crewsNames}/> }
+			<section className={styles.container}>
+				<PSEFormHeader page={page}/>
 
-      </section>
-    </div>
-  )
+				{ page === "1" && <Page1/> }
+				{ page === "2" && <Page2/> }
+				{ page === "3" && <Page3 crewsNames={crewsNames}/> }
+
+			</section>
+		</div>
+	)
 }
 
-export const getStaticProps = async () => {
-  let { data } = await api.get("/crews");
+export const getServerSideProps = async (ctx) => {
+	const { data } = await api.get("/crews");
+	
+	let crewsNames = data.map( crew => {
+		return crew.name;
+	});
 
-  let crewsNames = data.map( crew => {
-    return crew.name;
-  });
+	let hasActivePSE = false;
 
-  return {
-    props: {
-      crewsNames
-    },
-    revalidate: 24 * 60 * 60 // 24 Horas
-  }
+	try {
+		const {data} = await api.get("/pse");
+
+		if (!isBefore(new Date(), new Date(data.start))) {
+			hasActivePSE = true;
+		}
+
+	} catch (error) {
+		hasActivePSE = false;
+	}
+
+	return {
+		props: {
+			hasActivePSE,
+			crewsNames
+		}
+	}
 }
