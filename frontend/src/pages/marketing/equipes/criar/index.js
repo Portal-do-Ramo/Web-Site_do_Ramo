@@ -81,10 +81,10 @@ export default function Criar() {
                                 <h1>Logo da equipe</h1>
                                 <div className={styles.img}> 
                                     <img src={image}></img>
-                                    <input 
-                                        type="file" 
-                                        onChange={imageHandler} 
-                                        accept=".png, image/jpg, .svg" 
+                                    <input
+                                        type="file"
+                                        onChange={imageHandler}
+                                        accept=".png, image/jpeg, .svg"
                                         id="avatarInput"
                                     />
                                 </div>
