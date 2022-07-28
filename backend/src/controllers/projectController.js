@@ -17,6 +17,12 @@ module.exports = {
         
         try {
             let projects = await projectService.getByCrewId(crewId);
+
+            for (const project of projects) {
+                project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
+                project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+            }
+            
             return res.json(projects)
         } catch (error) {
             return res.status(422).json({message: error.message});
