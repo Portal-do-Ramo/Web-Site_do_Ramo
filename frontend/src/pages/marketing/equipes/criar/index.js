@@ -43,7 +43,6 @@ export default function Criar() {
                 const formData = new FormData();
                 const imagefile = document.getElementById("avatarInput");
 
-
                 await api.post(
                     "/crew", 
                     { name, about: description, imageURL: `${name}_avatar.${imagefile.files[0].name.split(".")[1]}` }
@@ -56,6 +55,8 @@ export default function Criar() {
                         "Content-Type": `multipart/form-data`
                     }
                 });
+
+                router.replace("/marketing/equipes");
             } else {
                 toast.error("cadastro incompleto");
             }

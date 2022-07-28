@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import MarketingMenuRoutes from "../../../../components/MarketingMenuRoutes";
 import { AuthContext } from "../../../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function equipe({ crew }){ 
     const router = useRouter();
@@ -30,11 +31,20 @@ export default function equipe({ crew }){
 	}
 
 	function openModal() {
-	setIsOpen(true);
+		setIsOpen(true);
 	}
 
 	function handleCloseModal() {
-	setIsOpen(false);
+		setIsOpen(false);
+	}
+
+	async function handleDeleteCrew() {
+		try {
+			await api.delete(`/crew/${crew.id}`)
+			router.replace("/marketing/equipes");
+		} catch (error) {
+			toast.error("não foi possível excluir essa equipe");
+		}
 	}
 
 	if (isLoading) {
@@ -82,8 +92,17 @@ export default function equipe({ crew }){
 					<h1>Excluir Equipe</h1>
 					<p>Tem certeza que você deseja excluir esta equipe?</p>
 					<div className={styles.rowButton}>
-						<button type='button' className={styles.cancel} onClick={handleCloseModal}>Cancelar</button>
-						<button type='button' className={styles.shutDown}>Sim, excluir</button>
+						<button
+							type='button'
+							className={styles.cancel}
+							onClick={handleCloseModal}
+						> Cancelar </button>
+
+						<button
+							type='button'
+							className={styles.shutDown}
+							onClick={handleDeleteCrew}
+						> Sim, excluir </button>
 					</div>
 				 </Modal>
 			  </div>

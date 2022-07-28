@@ -1,5 +1,6 @@
 const knex = require('../database');
 const {v4} = require('uuid');
+const fs = require("fs");
 
 module.exports = {
     async index() {
@@ -17,7 +18,7 @@ module.exports = {
         return crew;
     },
 
-    async create(name, about, imageURL) {
+    async create(name, about) {
         let crew = await knex("crews").where({name}).first();
     
         if(crew){
@@ -28,7 +29,7 @@ module.exports = {
             id: v4(),
             name, 
             about,
-            imageURL
+            imageURL: name.toLowerCase() + "_avatar.png"
         });
 
         return {message: "Equipe criada!"}
@@ -41,22 +42,37 @@ module.exports = {
             throw new Error("Equipe não existe!");
         }
 
-        await knex("crews").where({id}).update(crew);
+        await knex("crews").where({id}).update({
+            ...crew,
+            imageURL: `${crew.name}_avatar.${Crew.imageURL.split(".")[1]}`
+        });
+
+        if (fs.existsSync(`./uploads/${Crew.imageURL}`))
+            fs.rename(
+                `./uploads/${Crew.imageURL}`, 
+                `./uploads/${crew.name}_avatar.${Crew.imageURL.split(".")[1]}`,
+                () => {}
+            );
+
         return {message: "Equipe atualizada!"}
-        
     },
 
     async delete(id) {
-
         let crew = await knex("crews").where({id}).first();
+
         if(!crew){
             throw new Error("Equipe não existe!");
         }
 
+        if (fs.existsSync(`./uploads/${crew.imageURL}`))
+            fs.unlinkSync(`./uploads/${crew.imageURL}`);
+
         let confirmation = await knex("crews").where({id}).delete();
+
         if(confirmation > 1) {
             return {message: "Equipes deletadas!"};
         }
+
             
         return {message: "Equipe deletada!"};
     },

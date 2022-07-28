@@ -39,9 +39,6 @@ module.exports = {
                     ]
             })
 
-            //if (fs.existsSync('./uploads/pse.csv'))
-            //   fs.unlinkSync('./uploads/pse.csv');
-
             return {message: "arquivo csv enviado"};
         } catch (error)  {
             throw new Error(error.message);
