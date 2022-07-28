@@ -20,23 +20,25 @@ module.exports = {
         return projects;
     },
 
-    async getByCrewId(crew_id) {
-        
-        let projects = await knex("projects")
-        .select (
-            "id", 
-            "name", 
-            "description", 
-            "imageURL", 
-            "logoURL", 
-            "members", 
-            "beginning", 
-            "ended",
-            "crew_id"
-            ).where({crew_id});
-            
-            return projects;
-        },
+    async getByCrewId(crew_id) {    
+        try {
+            let projects = await knex("projects")
+                .select (
+                    "id", 
+                    "name", 
+                    "description", 
+                    "imageURL", 
+                    "logoURL", 
+                    "members", 
+                    "beginning", 
+                    "ended",
+                    "crew_id"
+                ).where({crew_id});
+                return projects;
+        } catch (error) {
+            throw new Error("crew does not exists");
+        }
+    },
         
     // Talvez tenha que existir uma tabela só pra membros de projetos, com uma lógica de 1 membro para muitos projetos.
     async create(name, description, members, crew_name, beginning, ended) { //Repensar a lógica dos members

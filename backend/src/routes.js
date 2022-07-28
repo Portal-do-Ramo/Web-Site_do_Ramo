@@ -26,6 +26,7 @@ router
 	.get("/crew/:id", crewController.getCrewInformation)
 	.get("/crewsAllData", crewController.getCrewsAllData)
 	.get("/projects", projectController.index)
+	.get("/projects/:crewId", projectController.getByCrewId)
 	.get("/sponsors", sponsorController.index)
 	.get("/users", auth, userController.index)
 	.get("/uploads/:name", fileController.getByName)

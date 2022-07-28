@@ -11,6 +11,17 @@ module.exports = {
 
         return res.status(200).json({"projects": projects});
     },
+    
+    async getByCrewId(req, res) {
+        const {crewId} = req.params;
+        
+        try {
+            let projects = await projectService.getByCrewId(crewId);
+            return res.json(projects)
+        } catch (error) {
+            return res.status(422).json({message: error.message});
+        }
+    },
 	
     async create(req, res){ 
         let { name, description, members, crew_name, beginning, ended } = req.body;
