@@ -7,10 +7,10 @@ module.exports = {
     },
     
     async create(req, res) {
-		let { name, placing, year, crew_name } = req.body;
+		let { name, placing, year, crew_id } = req.body;
 
         try {
-            const response = await awardService.create(name, placing, year, crew_name);
+            const response = await awardService.create(name, placing, year, crew_id);
             return res.status(201).json(response);
         } catch(err) {
             return res.status(422).json({message: err.message});

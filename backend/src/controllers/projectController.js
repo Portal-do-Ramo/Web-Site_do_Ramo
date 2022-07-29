@@ -30,14 +30,14 @@ module.exports = {
     },
 	
     async create(req, res){ 
-        let { name, description, members, crew_name, beginning, ended } = req.body;
+        let { name, description, members, crew_id, beginning, ended } = req.body;
         
         try {
             const response = await projectService.create(
                 name,
                 description,
                 members,
-                crew_name,
+                crew_id,
                 beginning,
                 ended
             );
