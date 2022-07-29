@@ -2,6 +2,7 @@ const {v4} = require("uuid");
 const knex = require("../database");
 const Joi = require("joi");
 const crewService = require("./crewService");
+const fs = require("fs");
 
 module.exports = {
     async index() {
@@ -18,6 +19,27 @@ module.exports = {
             "crew_id"
         );
         return projects;
+    },
+
+    async getProject(id) {
+        try {
+            let project = await knex("projects")
+                .select (
+                    "id", 
+                    "name", 
+                    "description", 
+                    "imageURL", 
+                    "logoURL", 
+                    "members", 
+                    "beginning", 
+                    "ended",
+                    "crew_id"
+                ).where({id}).first();
+
+                return project;
+        } catch (error) {
+            throw new Error("project does not exists");
+        }
     },
 
     async getByCrewId(crew_id) {    
@@ -52,15 +74,15 @@ module.exports = {
             members: Joi.array().items(Joi.string()).required(),
             beginning: Joi.date().timestamp(),
             ended: Joi.date().timestamp(),
-            crew_name: Joi.string(),
+            crew_id: Joi.string(),
         });
             
-        const {error} = projectValidation.validate({name, description, members, beginning: miliseconds, ended, crew_name});
+        const {error} = projectValidation.validate({name, description, members, beginning: miliseconds, ended, crew_id});
         if (error){
             throw new Error(error.message);
         }
 
-        const crew = await crewService.getByCrewId(crew_id);
+        const crew = await crewService.getCrew(crew_id);
         
         if (!crew) {
             throw new Error("Equipe não existe!");
@@ -90,9 +112,39 @@ module.exports = {
 
     async update(id, project){
         let Project = await knex("projects").where({id}).first();
+        
         if(!Project){
             throw new Error("Projeto não existe!");
         }
+
+        if (project.members && project.name) {
+            project = {
+                ...project,
+                members: project.members.join(),
+            }
+        }
+
+        if (project.name) {
+            project = {
+                ...project,
+                imageURL: `${project.name}_avatar.${Project.imageURL.split(".")[1]}`,
+                logoURL: `${project.name}_avatar.${Project.logoURL.split(".")[1]}`
+            }
+        }
+
+        if (fs.existsSync(`./uploads/${Project.imageURL}`))
+            fs.rename(
+                `./uploads/${Project.imageURL}`, 
+                `./uploads/${project.name}_avatar.${Project.imageURL.split(".")[1]}`,
+                () => {}
+            );
+
+        if (fs.existsSync(`./uploads/${Project.logoURL}`))
+            fs.rename(
+                `./uploads/${Project.logoURL}`, 
+                `./uploads/${project.name}_avatar.${Project.logoURL.split(".")[1]}`,
+                () => {}
+            );
 
         await knex("projects").where({id}).update(project); //trocar o timestamp do updated_at
         return {message: "Projeto atualizado!"}

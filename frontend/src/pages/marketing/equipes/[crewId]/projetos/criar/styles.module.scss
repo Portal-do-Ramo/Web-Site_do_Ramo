@@ -22,7 +22,7 @@
             margin: 0 30px;
             row-gap: 40px;
 
-            .logoBanner {
+            .logoBanner, .bannerHolder {
                 display: flex;
                 column-gap: 30px;
 
@@ -35,30 +35,67 @@
                     display: flex;
                     flex-direction: column;
                     row-gap: 15px;
+                    white-space: nowrap;
+                    z-index: 0;
 
-                    input {
+                    #bannerImg {
+                        img {
+                            padding: 0px;
+                        }
+                    }
+
+                    .img {
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        position: relative;
+                        border-radius: 8px;
 
                         width: 150px;
                         height: 150px;
 
-                        border-radius: 8px;
-                        background-color: var(--contraste);
-                        color: white;
+                        img {
+                            background-color: var(--contraste);
 
-                        background-image: url('/camera_icon.svg');
-                        background-repeat: no-repeat;
-                        background-size: 80px;
-                        background-position: center;
+                            width: 100%;
+                            padding: 20px;
+                            border-radius: 8px;
+                        }
+
+                        input {
+                            display: flex;
+                            position: absolute;
+                            color: transparent;
+    
+                            width: 150px;
+                            height: 150px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: .5s ease;
+                            background-position: center;
+                            
+                        }
+
+                        input::-webkit-file-upload-button {
+                            visibility: hidden;
+                          }
+    
+                        input:hover {
+                            background-image: url('/camera_icon.svg');
+                            background-repeat: no-repeat;
+                            background-size: 60px;
+                            background-color: rgba($color: #0e2738, $alpha: 0.6);
+                        }
                     }
                 }
 
                 .bannerHolder {
-                    input {
+                    .img {
                         width: 410px;
+
+                        input {
+                            width: 410px;
+                        }
                     }
+
                 }         
             }
 
@@ -113,6 +150,118 @@
                         margin-top: 10px;
                         padding: 13px;
                     }  
+                }
+
+                .datesContainer {
+                    align-items: flex-start;
+                    column-gap: 20px;
+                    display: flex;
+                    height: 100%;
+
+                    @media (max-width: 680px) {
+                        width: 100%;
+                    }
+
+                    @media (max-width: 475px) {
+                        row-gap: 15px;
+                        justify-content: center;
+                        flex-direction: column;
+                    }
+
+                    article {
+                        p {
+                            font-weight: 500;
+                            margin-bottom: 10px;
+                        }
+
+                        >input {
+                            margin-top: 15px;
+                        }
+
+                        label {
+                            margin-left: 10px;
+                        }
+                    }
+                }
+
+                .begin, .end, .endFixed {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    padding: 0 10px;
+
+                    font-size: .9rem;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    color: var(--contraste);
+                    background-color: #CDD9E8;
+
+                    .beginDateInputOff {
+                        color: #8D8E92;
+                    }
+
+                    @media (max-width: 680px) {
+                        flex: 1;
+                    }
+                    
+                    @media (max-width: 475px) {
+                        width: 100%;
+                        padding: 5px 10px;
+                        font-size: .8rem;
+                    }
+
+                    span {
+                        padding: 14px 0;
+                    }
+
+                    input, p {
+                        background: transparent;
+                        color: var(--contraste);
+                        font-weight: bold;
+                        border: none;
+                        font-family: 'Poppins', sans-serif;
+                        padding: 10px 0px;
+
+                        &::-webkit-datetime-edit{
+                            display: flex;
+                            justify-content: center;
+                            padding: 5px;
+                            max-width: 150px;
+                            font-weight: 800;
+                            font-size: .9rem;
+
+                            @media (max-width: 475px) {
+                                font-size: .8rem;
+                            }
+                        }
+                        
+                        &::-webkit-calendar-picker-indicator{
+                            margin-left: 0px;
+                            display: none;
+                        }
+                    }
+
+                    p {
+                        background-color: #E1E2E8;
+                        color: #8D8E92;
+                    }
+
+                }
+
+                .endFixed {
+                    background-color: #E1E2E8;
+
+                    p {
+                        color: #8D8E92;
+                        padding: 10px 15px;
+                    }
+                    
+                    @media (max-width: 475px) {
+                        width: 100%;
+                        padding: 10px 10px;
+                        font-size: .8rem;
+                    }
                 }
             }
 

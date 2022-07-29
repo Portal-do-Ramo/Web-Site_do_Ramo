@@ -23,10 +23,11 @@ const upload = multer(uploadImage.getConfig);
 router
 	.get("/awards", awardController.index)
 	.get("/crews", crewController.index)
-	.get("/crew/:id", crewController.getCrewInformation)
+	.get("/crew/:id", crewController.getCrew)
 	.get("/crewsAllData", crewController.getCrewsAllData)
 	.get("/projects", projectController.index)
-	.get("/projects/:crewId", projectController.getByCrewId)
+	.get("/projects/crew/:crewId", projectController.getByCrewId)
+	.get("/project/:id", projectController.getProject)
 	.get("/sponsors", sponsorController.index)
 	.get("/users", auth, userController.index)
 	.get("/uploads/:name", fileController.getByName)

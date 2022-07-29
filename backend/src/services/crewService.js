@@ -8,7 +8,7 @@ module.exports = {
         return crews;
     },
 
-    async getCrewInformation(id) {
+    async getCrew(id) {
         const crew = await knex("crews").select("id", "name", "about", "imageURL").where({id}).first();
         
         if(!crew) {

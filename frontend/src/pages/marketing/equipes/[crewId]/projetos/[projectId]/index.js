@@ -6,13 +6,14 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import MarketingMenuRoutes from "../../../../../../components/MarketingMenuRoutes";
 import { AuthContext } from "../../../../../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function projeto({ crew, project }){ 
     const router = useRouter();
 	
 	const { user, isAuthenticated } = useContext(AuthContext);
     
-	const [modalIsOpen, setIsOpen] = useState(false);
+	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -30,12 +31,22 @@ export default function projeto({ crew, project }){
     }
 
     function openModal() {
-      setIsOpen(true);
+      setModalIsOpen(true);
     }
   
     function handleCloseModal() {
-      setIsOpen(false);
+      setModalIsOpen(false);
     }
+
+	async function handleDeleteProject() {
+		try {
+			await api.delete(`/project/${project.id}`);
+			router.push(`/marketing/equipes/${crew.id}/projetos`);	
+		} catch (error) {
+			setModalIsOpen(false);
+			toast.error("Não foi possível apagar o projeto")
+		}
+	}
 
 	if (isLoading) {
         return ( <></> )
@@ -51,10 +62,10 @@ export default function projeto({ crew, project }){
 				  routes={`equipes/${crew.id}/projetos/${project.id}`}
 				/>
 				<section id={styles.upper}>
-				  <img src={project.image}></img>
+				  <img src={project.logoURL}></img>
 				  <div className={styles.nameSub}>
 					<span>{project.name}</span>
-					<p>{project.members.length} Membros</p>
+					<p>{project.members.split(",").length} Membros</p>
 				  </div>
 				</section>
 	
@@ -70,19 +81,20 @@ export default function projeto({ crew, project }){
 					</button>
 	
 					<Modal 
-					  isOpen={modalIsOpen}
-					  onRequestClose={handleCloseModal}
-					  className={styles.modal}
-					  overlayClassName={styles.overlay}
-					  contentLabel="Example Modal"
-					  shouldCloseOnEsc={true}  
-					  >
+						isOpen={modalIsOpen}
+						onRequestClose={handleCloseModal}
+						className={styles.modal}
+						overlayClassName={styles.overlay}
+						contentLabel="Example Modal"
+						shouldCloseOnEsc={true}
+						style={{overlay: {zIndex: 10}}}
+					>
 						<img src="/cancel.svg"></img>
 						<h1>Excluir Projeto</h1>
 						<p>Tem certeza que você deseja excluir este projeto?</p>
 						<div className={styles.rowButton}>
 							<button type='button' className={styles.cancel} onClick={handleCloseModal}>Cancelar</button>
-							<button type='button' className={styles.shutDown}>Sim, excluir</button>
+							<button type='button' className={styles.shutDown} onClick={handleDeleteProject}>Sim, excluir</button>
 						</div>
 					</Modal>
 				</section>
@@ -95,27 +107,25 @@ export default function projeto({ crew, project }){
 }
 
 export async function getServerSideProps(ctx) {
-  const { crewId, projectId } = ctx.params;
+	const { crewId, projectId } = ctx.params;
 
-  try {
-    let { data } = await api.get(`/crews/${crewId}`);
+	try {
+		let { data: crew } = await api.get(`/crew/${crewId}`);
+		let { data: project } = await api.get(`/project/${projectId}`);
 
-    let crew = data;
-    let project = data.projects.find(project => project.id === Number(projectId));
-
-    if (!project) {
-        throw new Error("id do projeto não existe");
-    }
-    
-    return {
-      props: {
-        crew,
-        project
-      }
-    }
-  } catch (error) {
-    return {
-      notFound: true
-    }
-  }
+		if (!project) {
+			throw new Error("id do projeto não existe");
+		}
+		
+		return {
+			props: {
+				crew,
+				project
+			}
+		}
+	} catch (error) {
+		return {
+			notFound: true
+		}
+	}
 }

@@ -11,6 +11,21 @@ module.exports = {
 
         return res.status(200).json({"projects": projects});
     },
+
+    async getProject(req, res) {
+        const {id} = req.params;
+        
+        try {
+            let project = await projectService.getProject(id);
+
+            project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
+            project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+            
+            return res.json(project)
+        } catch (error) {
+            return res.status(422).json({message: error.message});
+        }
+    },
     
     async getByCrewId(req, res) {
         const {crewId} = req.params;

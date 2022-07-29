@@ -14,11 +14,11 @@ module.exports = {
         return res.status(200).json(crews);
     },
 
-    async getCrewInformation(req, res) {
+    async getCrew(req, res) {
         const { id } = req.params;
 
         try {
-            let crew = await crewService.getCrewInformation(id);
+            let crew = await crewService.getCrew(id);
 
             crew.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${crew.imageURL}`;
             

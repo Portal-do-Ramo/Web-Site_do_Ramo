@@ -79,7 +79,7 @@ export async function getServerSideProps(ctx) {
 
   try {
     let { data: crew } = await api.get(`/crew/${crewId}`);
-    let { data: projects } = await api.get(`/projects/${crewId}`);
+    let { data: projects } = await api.get(`/projects/crew/${crewId}`);
     
     return {
       props: {
