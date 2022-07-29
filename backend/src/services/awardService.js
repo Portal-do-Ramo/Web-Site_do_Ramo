@@ -8,9 +8,10 @@ module.exports = {
         return awards;
     },
 
-    async create(name, placing, year, crew_name) {
+    async create(name, placing, year, crew_id) {
         
-        let crew = await crewService.getCrewByName(crew_name);
+        const crew = await crewService.getByCrewId(crew_id);
+
         if (!crew) {
             throw new Error("Equipe não existe!");
         }
@@ -20,10 +21,10 @@ module.exports = {
             name,
             placing,
             year,
-            crew_id: crew.id
+            crew_id
         });
 
-        return {message: "Prêmio Cadastrado!!"};
+        return {message: "Prêmio Cadastrado!"};
     },
 
     async update(id, award) {

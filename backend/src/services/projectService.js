@@ -41,7 +41,7 @@ module.exports = {
     },
         
     // Talvez tenha que existir uma tabela só pra membros de projetos, com uma lógica de 1 membro para muitos projetos.
-    async create(name, description, members, crew_name, beginning, ended) { //Repensar a lógica dos members
+    async create(name, description, members, crew_id, beginning, ended) { //Repensar a lógica dos members
         let imageURL = name.toLowerCase() + "_banner.png";
         let logoURL = name.toLowerCase() + "_avatar.png";
         let miliseconds = Date.parse(beginning)
@@ -60,13 +60,13 @@ module.exports = {
             throw new Error(error.message);
         }
 
-        const crew = await crewService.getCrewByName(crew_name);
+        const crew = await crewService.getByCrewId(crew_id);
         
         if (!crew) {
             throw new Error("Equipe não existe!");
         }
             
-        const project = await knex("projects").where({name, crew_id: crew.id}).first();
+        const project = await knex("projects").where({name, crew_id}).first();
         if (project) {
             throw new Error("Projeto já existe!");
         }
@@ -85,7 +85,7 @@ module.exports = {
             crew_id: crew.id
         });
 
-        return {message: "Projeto adicionado"};
+        return {message: "Projeto adicionado!"};
     },
 
     async update(id, project){

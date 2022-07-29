@@ -75,14 +75,5 @@ module.exports = {
 
             
         return {message: "Equipe deletada!"};
-    },
-
-    getCrewByName(crew_name){
-        try {
-            let crew = knex("crews").select().where({"name": crew_name}).first();
-            return crew;
-        } catch (error) {
-            throw new Error(error.message);
-        }
-	}	
+    }
 }
