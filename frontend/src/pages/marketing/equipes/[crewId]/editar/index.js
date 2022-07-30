@@ -137,7 +137,11 @@ export default function equipeEditar({ crew }){
 						</div>
 		
 						<div className={styles.buttonRow}>
-							<button className={styles.cancel}>Cancelar</button>
+							<button 
+								className={styles.cancel} 
+								onClick={() => router.push(`/marketing/equipes/${crew.id}`)}
+							> Cancelar </button>
+
 							<button
 								className={styles.edit}
 								onClick={handleUpdateCrew}

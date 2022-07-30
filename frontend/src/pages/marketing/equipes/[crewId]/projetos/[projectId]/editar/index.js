@@ -272,8 +272,15 @@ export default function projetoEditar({ crew, project }){
 						</div>
 		
 						<div className={styles.buttonRow}>
-							<button className={styles.cancel}>Cancelar</button>
-							<button className={styles.edit} onClick={handleUpdateProject}>Editar</button>
+							<button 
+								className={styles.cancel}
+								onClick={() => router.push(`/marketing/equipes/${crew.id}/projetos/${project.id}`)}
+							> Cancelar </button>
+							
+							<button
+								className={styles.edit}
+								onClick={handleUpdateProject}
+							> Editar </button>
 						</div>
 					</div>
 				</div>

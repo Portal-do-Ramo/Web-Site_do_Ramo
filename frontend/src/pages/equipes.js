@@ -239,7 +239,7 @@ export default function Equipes({ crews }) {
             <div className={styles.dots}>
               {dots.map((dot, idx) => {
                 return (
-                  <span className={projectsDotSelected === idx && styles.dotSelected} key={idx}></span>
+                  <span className={projectsDotSelected === idx ? styles.dotSelected : ""} key={idx}></span>
                 )
               })}
             </div>

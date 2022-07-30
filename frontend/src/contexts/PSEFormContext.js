@@ -89,25 +89,25 @@ export function PSEFormContextProvider({children}) {
 		try {
 			if (isFistPageValidated && isSecondPageValidated && isThirdPageValidated) {				
 				await api.post("/pse", {
-					nomeCompleto: `${name} ${lastName}`,
-					endereco: address,
-					celular: phoneNumber,
-					Email: email,
-					facebook,
-					linkedIn: LinkedIn,
-					instagram,
-					matricula: registration,
-					curso: course,
-					periodo: currentTimeCourse,
-					equipe: crew,
-					area,
-					porQuaisMotivos: motivation,
-					experiencia: experience,
+					nomeCompleto: `${name.replace(", ", " -")} ${lastName.replace(", ", " -")}`,
+					endereco: address.replace(", ", " -"),
+					celular: phoneNumber.replace(", ", " -"),
+					Email: email.replace(", ", " -"),
+					facebook: facebook.replace(", ", " -"),
+					linkedIn: LinkedIn.replace(", ", " -"),
+					instagram: instagram.replace(", ", " -"),
+					matricula: registration.replace(", ", " -"),
+					curso: course.replace(", ", " -"),
+					periodo: currentTimeCourse.replace(", ", " -"),
+					equipe: crew.replace(", ", " -"),
+					area: area.replace(", ", " -"),
+					porQuaisMotivos: motivation.replace(", ", " -"),
+					experiencia: experience.replace(", ", " -"),
 				});
 
 				toast.success("Cadastro concluído");
 				clearAll();
-				// router.push("/PSE");
+				router.push("/PSE");
 			} else {
 				toast.error("Formulário incompleto");
 			}

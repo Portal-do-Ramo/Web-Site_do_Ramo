@@ -131,14 +131,16 @@
                     background-image: url("../../public/Arrow_7.svg");
                     background-repeat: no-repeat;
                     background-size: contain;
-                    width: 14rem;
-                    height: 14rem;
+                    width: 12rem;
+                    height: 12rem;
                     position: absolute;
                     right: -12rem;
-                    top: -11rem;
+                    top: 5rem;
                 
                     @media (max-width: 1240px) {
-                        right: -9rem;
+                        right: -8.5rem;
+                        width: 10rem;
+                        height: 10rem;
                     }
 
                     @media (max-width: 1100px) {
@@ -187,7 +189,7 @@
 
         /*---- Container Direito ----*/
         .aboutRightContainer {
-            margin-top: 120px;
+            margin-top: 190px;
 
             @media (max-width: 1050px) {
                 margin-top: 50px;

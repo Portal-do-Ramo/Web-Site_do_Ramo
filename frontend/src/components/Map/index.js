@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 
 export default function MapGL({actived}) {
   return (
-    <div className={styles.mapContainer} id={!actived && styles.disabled}>
+    <div className={styles.mapContainer} id={!actived ? styles.disabled : ""}>
       <Map
         initialViewState={{ latitude: -22.911757475702384, longitude: -43.224460062225745, zoom: 15 }}
         mapStyle="mapbox://styles/mapbox/streets-v11"

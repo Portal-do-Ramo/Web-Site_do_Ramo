@@ -112,7 +112,7 @@ export default function Criar() {
                         </div>
 
                         <div className={styles.buttonRow}>
-                            <button className={styles.cancel}>Cancelar</button>
+                            <button className={styles.cancel} onClick={() => router.push("/marketing/equipes")}>Cancelar</button>
                             <button className={styles.edit} onClick={handleCreateCrew}>Criar</button>
                         </div>
                     </div>

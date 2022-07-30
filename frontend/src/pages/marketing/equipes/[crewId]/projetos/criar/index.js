@@ -236,8 +236,15 @@ export default function CriarProjeto({ crew }){
 						</div>
 		
 						<div className={styles.buttonRow}>
-							<button className={styles.cancel}>Cancelar</button>
-							<button className={styles.edit} onClick={handleCreateProject}>Criar</button>
+							<button 
+								className={styles.cancel}
+								onClick={() => router.push(`/marketing/equipes/${crew.id}/projetos`)}
+							> Cancelar </button>
+
+							<button
+								className={styles.edit}
+								onClick={handleCreateProject}
+							> Criar </button>
 						</div>
 					</div>
 				</div>

@@ -29,7 +29,7 @@ export default function ContactButton({ text, image }) {
             <div className={styles.contactOptions}>
                 <button 
                     className={styles.buttonContainer}
-                    id={buttonSelected === 0 && styles.activedButton}
+                    id={buttonSelected === 0 ? styles.activedButton : ""}
                     onClick={() => setButtonSelected(0)}
                 >
                     <FiMapPin/>
@@ -40,7 +40,7 @@ export default function ContactButton({ text, image }) {
 
                 <button 
                     className={styles.buttonContainer}
-                    id={buttonSelected === 1 && styles.activedButton} 
+                    id={buttonSelected === 1 ? styles.activedButton : ""} 
                     onClick={() => setButtonSelected(1)}
                 >
                     <FiUsers className={styles.icon}/>
@@ -51,7 +51,7 @@ export default function ContactButton({ text, image }) {
 
                 <button 
                     className={styles.buttonContainer}
-                    id={buttonSelected === 2 && styles.activedButton} 
+                    id={buttonSelected === 2 ? styles.activedButton : ""} 
                     onClick={() => setButtonSelected(2)}
                 >
                     <FiMail className={styles.icon}/>
@@ -63,7 +63,7 @@ export default function ContactButton({ text, image }) {
 
             <Map actived={buttonSelected === 0 ? true : false}/>
 
-            <div className={styles.social} id={buttonSelected !== 1 && styles.disableSocial}>
+            <div className={styles.social} id={buttonSelected !== 1 ? styles.disableSocial : ""}>
                 <button className={styles.socialButton}>
                     <span id={styles.linkedin}>
                         <FaLinkedinIn className={styles.icon}/>
@@ -86,7 +86,7 @@ export default function ContactButton({ text, image }) {
                 </button>
             </div>
 
-            <section className={styles.mail} id={buttonSelected !== 2 && styles.disableMail}>
+            <section className={styles.mail} id={buttonSelected !== 2 ? styles.disableMail : ""}>
                 <article className={styles.copyEmailButton} onClick={() => handleCopyEmail()}>
                     <img src="/Envelope.svg" alt="Envelope Illustration" />
                     <p>sitedoramo@gmail.com</p>
