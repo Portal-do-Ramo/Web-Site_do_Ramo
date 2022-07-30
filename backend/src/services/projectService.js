@@ -63,8 +63,8 @@ module.exports = {
     },
         
     async create(name, description, members, crew_id, beginning, ended) {
-        let imageURL = name.toLowerCase() + "_banner.png";
-        let logoURL = name.toLowerCase() + "_avatar.png";
+        let imageURL = name.toLowerCase() + "_project_banner.png";
+        let logoURL = name.toLowerCase() + "_project_avatar.png";
         let miliseconds = Date.parse(beginning)
         
         const projectValidation = Joi.object({
@@ -126,22 +126,22 @@ module.exports = {
         if (project.name) {
             project = {
                 ...project,
-                imageURL: `${project.name}_banner.${Project.imageURL.split(".")[1]}`,
-                logoURL: `${project.name}_avatar.${Project.logoURL.split(".")[1]}`
+                imageURL: `${project.name}_project_banner.${Project.imageURL.split(".")[1]}`,
+                logoURL: `${project.name}_project_avatar.${Project.logoURL.split(".")[1]}`
             }
         }
 
         if (fs.existsSync(`./uploads/${Project.imageURL}`))
             fs.rename(
                 `./uploads/${Project.imageURL}`, 
-                `./uploads/${project.name}_avatar.${Project.imageURL.split(".")[1]}`,
+                `./uploads/${project.name}_project_banner.${Project.imageURL.split(".")[1]}`,
                 () => {}
             );
 
         if (fs.existsSync(`./uploads/${Project.logoURL}`))
             fs.rename(
                 `./uploads/${Project.logoURL}`, 
-                `./uploads/${project.name}_avatar.${Project.logoURL.split(".")[1]}`,
+                `./uploads/${project.name}_project_avatar.${Project.logoURL.split(".")[1]}`,
                 () => {}
             );
 

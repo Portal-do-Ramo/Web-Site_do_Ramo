@@ -4,10 +4,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 25px 70px 25px 50px;
+  position: relative;
+  bottom: 0;
+  z-index: 20;
 
   font-family: 'Poppins', sans-serif;
   color: white;
-  background-color: #0D5FAA;
+  background-color: var(--azul-ramo);
+  -webkit-box-shadow: 0px -4px 27px -2px rgba(0,0,0,0.06); 
+  box-shadow: 0px -4px 27px -2px rgba(0,0,0,0.06);
 
   @media (max-width: 725px) {
     display: none;

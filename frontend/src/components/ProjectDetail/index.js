@@ -29,7 +29,12 @@ export function ProjectDetail({ project }) {
           <p>
             {project.description}
           </p>
-          <span>Status: <strong>Em Andamento</strong></span>
+          {project.ended ? (
+            <span>Status: <strong>Finalizado</strong></span>
+            ) : (
+              <span>Status: <strong>Em Andamento</strong></span>
+            )
+          }
           <span>Membros</span>
           <div className={styles.members}>
             {

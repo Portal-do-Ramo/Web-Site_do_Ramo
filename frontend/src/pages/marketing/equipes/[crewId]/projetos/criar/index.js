@@ -63,7 +63,7 @@ export default function CriarProjeto({ crew }){
 				const logoImageFile = document.getElementById("logoInput");
 				formData.append("picture", logoImageFile.files[0]);
 
-				await api.post(`/image/${name}_avatar`, formData, {
+				await api.post(`/image/${name}_project_avatar`, formData, {
                     headers: {
                         "Content-Type": `multipart/form-data`
                     }
@@ -73,7 +73,7 @@ export default function CriarProjeto({ crew }){
 				const bannerImageFile = document.getElementById("bannerInput");
 				formData.append("picture", bannerImageFile.files[0]);
 
-				await api.post(`/image/${name}_banner`, formData, {
+				await api.post(`/image/${name}_project_banner`, formData, {
                     headers: {
                         "Content-Type": `multipart/form-data`
                     }

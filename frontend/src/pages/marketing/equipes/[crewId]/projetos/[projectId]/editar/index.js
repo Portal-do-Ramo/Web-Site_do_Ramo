@@ -77,7 +77,7 @@ export default function projetoEditar({ crew, project }){
 			if (logoImageFile.files[0]) {
 				formData.append("picture", logoImageFile.files[0]);
 				
-				await api.post(`/image/${name}_avatar`, formData, {
+				await api.post(`/image/${name}_project_avatar`, formData, {
 					headers: {
 						"Content-Type": `multipart/form-data`
 					}
@@ -89,7 +89,7 @@ export default function projetoEditar({ crew, project }){
 				
 				formData.append("picture", bannerImageFile.files[0]);
 	
-				await api.post(`/image/${name}_banner`, formData, {
+				await api.post(`/image/${name}_project_banner`, formData, {
 					headers: {
 						"Content-Type": `multipart/form-data`
 					}
@@ -128,6 +128,7 @@ export default function projetoEditar({ crew, project }){
 						name,
 						description,
 						beginning: beginDateFormatted,
+						ended: null,
 						members: membersFormatted,
 						crew_id: crew.id
 					}

@@ -505,8 +505,8 @@
   .awards_section {
     display: flex;
     flex-direction: column;
-    margin-bottom: 180px;
-    
+    margin-bottom: -50px;
+
     .topWave {
       margin-top: -1px;
     }
@@ -524,7 +524,7 @@
       background-color: var(--azul-ramo);
   
       padding-top: 150px;
-      padding-bottom: 200px;
+      padding-bottom: 250px;
       
       h2 {
         color: white;

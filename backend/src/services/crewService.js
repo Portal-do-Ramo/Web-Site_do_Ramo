@@ -29,7 +29,7 @@ module.exports = {
             id: v4(),
             name, 
             about,
-            imageURL: name.toLowerCase() + "_avatar.png"
+            imageURL: name.toLowerCase() + "_crew_avatar.png"
         });
 
         return {message: "Equipe criada!"}
@@ -50,7 +50,7 @@ module.exports = {
         if (fs.existsSync(`./uploads/${Crew.imageURL}`))
             fs.rename(
                 `./uploads/${Crew.imageURL}`, 
-                `./uploads/${crew.name}_avatar.${Crew.imageURL.split(".")[1]}`,
+                `./uploads/${crew.name}_crew_avatar.${Crew.imageURL.split(".")[1]}`,
                 () => {}
             );
 
