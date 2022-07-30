@@ -5,6 +5,28 @@ module.exports = {
         let awards = await awardService.index();
         return res.status(200).json(awards);
     },
+
+    async getAward(req, res) {
+        const { id } = req.params;
+        
+        try {
+            let award = await awardService.getAward(id);
+            return res.json(award);
+        } catch (error) {
+            return res.status(422).json({ message: error.message });
+        }
+    },
+
+    async getByCrewId(req, res) {
+        const { crewId } = req.params;
+        
+        try {
+            let awards = await awardService.getByCrewId(crewId);
+            return res.json(awards);
+        } catch (error) {
+            return res.status(422).json({ message: error.message });
+        }
+    },
     
     async create(req, res) {
 		let { name, placing, year, crew_id } = req.body;

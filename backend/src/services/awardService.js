@@ -8,9 +8,27 @@ module.exports = {
         return awards;
     },
 
+    async getAward(id) {
+        const award = await knex("awards")
+            .select("id", "name", "placing", "year", "crew_id")
+            .where({ id })
+            .first()
+
+        return award;
+    },
+
+    async getByCrewId(crewId) {
+        console.log("Executei");
+        const awards = await knex("award")
+            .select("id", "name", "placing", "year", "crew_id")
+            .where({ crew_id: crewId });
+
+        return awards;
+    },
+
     async create(name, placing, year, crew_id) {
         
-        const crew = await crewService.getByCrewId(crew_id);
+        const crew = await crewService.getCrew(crew_id);
 
         if (!crew) {
             throw new Error("Equipe não existe!");

@@ -5,20 +5,16 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function premioCriar({ crew }){ 
     const router = useRouter();
 
-    const [year, setYear] = useState("2022");
+	const [name, setName] = useState("");
+    const [year, setYear] = useState(new Date().getFullYear());
     const [placing, setPlacing] = useState("1");
-
-    const years = [
-      '2008', '2009', '2010',
-      '2011', '2012', '2013',
-      '2014', '2015', '2016',
-      '2017', '2018', '2019',
-      '2020', '2021', '2022',
-    ];
+	
+    const [years, setYears] = useState([]);
 
     const placings = [
       '1', '2', '3',
@@ -39,12 +35,37 @@ export default function premioCriar({ crew }){
         }
     }, [user, isAuthenticated]);
 
+	useEffect(() => {
+		let newYears = [];
+
+		for (let i = 0; i <= new Date().getFullYear() - 2000; i++) {
+			newYears.push(new Date().getFullYear() - i);
+		}
+
+		setYears(newYears);
+	}, [])
+
+	async function handleCreateAward() {
+		try {
+			await api.post("/award", {
+				name,
+				placing,
+				year,
+				crew_id: crew.id
+			})
+
+			router.push(`/marketing/equipes/${crew.id}/premios`);
+		} catch (error) {
+			toast.error("Não foi possível criar esse prêmio");
+		}
+	}
+
 	if (isLoading) {
         return ( <></> )
     } else {
 		return (
 		  <div className={styles.all}>
-			<MarketingNavBar page={"equipes"}/>
+			<MarketingNavBar page="equipes" user={user ? user : null} />
 	  
 			  <div className={styles.pageContent}>
 				  <div className={styles.content}>
@@ -58,20 +79,24 @@ export default function premioCriar({ crew }){
 					  <div className={styles.description}>
 	  
 						  <div className={styles.nameHolder}>
-							  <span>Nome do prêmio</span>
-							  <input type="text" placeholder='Digite o nome do prêmio'></input>
+								<span>Nome do prêmio</span>
+								<input 
+									type="text"
+									placeholder='Digite o nome do prêmio'
+									value={name}
+									onChange={(e) => setName(e.target.value)}
+								/>
 						  </div>
 	  
 						  <div className={styles.other}>
 							<div className={styles.selects}>
-							  <span>Ano da premiação</span>
-							  <select required value={year} onChange={(event) => setYear(event.target.value)}>
-								
-								{years.map((year, idx) => {
-								  return (
-									<option key={idx} value={year}>{year}</option>
-								  )
-								})}
+								<span>Ano da premiação</span>
+								<select required value={year} onChange={(event) => setYear(event.target.value)}>
+									{years.map((year, idx) => {
+										return (
+											<option key={idx} value={year}>{year}</option>
+										)
+									})}
 								</select>
 							</div>
 	
@@ -91,7 +116,7 @@ export default function premioCriar({ crew }){
 	  
 					  <div className={styles.buttonRow}>
 						  <button className={styles.cancel}>Cancelar</button>
-						  <button className={styles.edit}>Editar</button>
+						  <button className={styles.edit} onClick={handleCreateAward}>Criar</button>
 					  </div>
 				  </div>
 			  </div>
@@ -104,9 +129,7 @@ export async function getServerSideProps(ctx) {
   const { crewId } = ctx.params;
 
   try {
-    let { data } = await api.get(`/crews/${crewId}`);
-
-    let crew = data;
+    let { data: crew } = await api.get(`/crew/${crewId}`);
     
     return {
       props: {

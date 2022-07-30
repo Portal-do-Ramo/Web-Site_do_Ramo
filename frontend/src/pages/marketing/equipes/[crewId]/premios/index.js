@@ -10,7 +10,7 @@ import MarketingMenuRoutes from "../../../../../components/MarketingMenuRoutes";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../../contexts/AuthContext";
 
-export default function premios({ crew }){ 
+export default function premios({ crew, awards }){ 
     const router = useRouter();
 
 	const { user, isAuthenticated } = useContext(AuthContext);
@@ -25,10 +25,6 @@ export default function premios({ crew }){
 			}
 		}
 	}, [user, isAuthenticated]);
-
-    function handleSelectOption(option) {
-        router.push(`${crew.id}/${option}`);    
-    }	
 
 	if (isLoading) {
         return ( <></> )
@@ -46,7 +42,7 @@ export default function premios({ crew }){
 					<div className={styles.row}>
 						<div className={styles.text}>
 							<h1>Lista de Prêmios</h1>
-							<p>{crew.awards.length} Prêmio(s)</p>
+							<p>{awards.length} Prêmio(s)</p>
 						</div>
 						<Link href={`/marketing/equipes/${crew.id}/premios/criar`}>
 						  <span className={styles.link}>
@@ -57,7 +53,7 @@ export default function premios({ crew }){
 					</div>
 	  
 					<div className={styles.awardList}>
-						  {crew.awards.map((award, idx) => { 
+						  {awards.map((award, idx) => { 
 							return(
 							  <div className={styles.awardRow} key={idx}>
 								<div className={styles.award}>
@@ -86,11 +82,13 @@ export async function getServerSideProps(ctx) {
   const { crewId } = ctx.params;
 
   try {
-    let { data } = await api.get(`/crews/${crewId}`);
+    let { data: crew } = await api.get(`/crew/${crewId}`);
+    let { data: awards } = await api.get(`/awards/crew/${crewId}`);
     
     return {
       props: {
-        crew: data
+        crew,
+		awards
       }
     }
   } catch (error) {

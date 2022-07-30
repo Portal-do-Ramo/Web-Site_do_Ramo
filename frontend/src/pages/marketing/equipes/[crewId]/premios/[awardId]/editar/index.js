@@ -5,23 +5,20 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../../../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function premioEditar({ crew, award }){ 
 	const router = useRouter();
 	
 	const { user, isAuthenticated } = useContext(AuthContext);
-	
-	const [year, setYear] = useState("2022");
-	const [placing, setPlacing] = useState("1");
-	const [isLoading, setIsLoading] = useState(true);
 
-	const years = [
-		'2008', '2009', '2010',
-		'2011', '2012', '2013',
-		'2014', '2015', '2016',
-		'2017', '2018', '2019',
-		'2020', '2021', '2022',
-	];
+	const [name, setName] = useState(award.name);
+    const [year, setYear] = useState(award.year);
+    const [placing, setPlacing] = useState(award.placing);
+	
+    const [years, setYears] = useState([]);
+	
+	const [isLoading, setIsLoading] = useState(true);
 
 	const placings = [
 		'1', '2', '3',
@@ -39,6 +36,33 @@ export default function premioEditar({ crew, award }){
         }
     }, [user, isAuthenticated]);
 
+	useEffect(() => {
+		let newYears = [];
+
+		for (let i = 0; i <= new Date().getFullYear() - 2000; i++) {
+			newYears.push(new Date().getFullYear() - i);
+		}
+
+		setYears(newYears);
+	}, []);
+
+	async function handleUpdateAward() {
+		try {
+			await api.patch(`/award/${award.id}`, {
+				award: {
+					name,
+					placing,
+					year,
+					crew_id: crew.id
+				}
+			});
+
+			toast.success("Prêmio atualizado!");
+		} catch (error) {
+			toast.error("Não foi possível criar esse prêmio");
+		}
+	}
+
 	if (isLoading) {
         return ( <></> )
     } else {
@@ -49,7 +73,7 @@ export default function premioEditar({ crew, award }){
 			  <div className={styles.pageContent}>
 				  <div className={styles.content}>
 					  <MarketingMenuRoutes 
-						routesName={`Equipes/${crew.name}/Prêmios/${award.name}/Editar`} 
+						routesName={`Equipes/${crew.name}/Prêmios/${name}/Editar`} 
 						routes={`equipes/${crew.id}/premios/${award.id}/editar`}
 					  />
 	  
@@ -59,19 +83,23 @@ export default function premioEditar({ crew, award }){
 	  
 						  <div className={styles.nameHolder}>
 							  <span>Nome do prêmio</span>
-							  <input type="text" placeholder='Digite o nome do prêmio'></input>
+								<input 
+									type="text"
+									placeholder='Digite o nome do prêmio'
+									value={name}
+									onChange={(e) => setName(e.target.value)}
+								/>
 						  </div>
 	  
 						  <div className={styles.other}>
 							<div className={styles.selects}>
 							  <span>Ano da premiação</span>
 							  <select required value={year} onChange={(event) => setYear(event.target.value)}>
-								
-								{years.map((year, idx) => {
-								  return (
-									<option key={idx} value={year}>{year}</option>
-								  )
-								})}
+									{years.map((year, idx) => {
+									return (
+										<option key={idx} value={year}>{year}</option>
+									)
+									})}
 								</select>
 							</div>
 	  
@@ -91,7 +119,7 @@ export default function premioEditar({ crew, award }){
 	  
 					  <div className={styles.buttonRow}>
 						  <button className={styles.cancel}>Cancelar</button>
-						  <button className={styles.edit}>Editar</button>
+						  <button className={styles.edit} onClick={handleUpdateAward}>Editar</button>
 					  </div>
 				  </div>
 			  </div>
@@ -101,27 +129,21 @@ export default function premioEditar({ crew, award }){
 }
 
 export async function getServerSideProps(ctx) {
-  const { crewId, awardId } = ctx.params;
+	const { crewId, awardId } = ctx.params;
 
-  try {
-    let { data } = await api.get(`/crews/${crewId}`);
+	try {
+		let { data: crew } = await api.get(`/crew/${crewId}`);
+		let { data: award } = await api.get(`/award/${awardId}`);
 
-    let crew = data;
-    let award = data.awards.find(award => award.id === Number(awardId));
-
-    if (!award) {
-        throw new Error("id do projeto não existe");
-    }
-    
-    return {
-      props: {
-        crew,
-        award
-      }
-    }
-  } catch (error) {
-    return {
-      notFound: true
-    }
-  }
+		return {
+			props: {
+				crew,
+				award
+			}
+		}
+	} catch (error) {
+		return {
+			notFound: true
+		}
+	}
 }

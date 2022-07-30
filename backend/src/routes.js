@@ -22,6 +22,8 @@ const upload = multer(uploadImage.getConfig);
 
 router
 	.get("/awards", awardController.index)
+	.get("/award/:id", awardController.getAward)
+	.get("/awards/crew/:crewId", awardController.getByCrewId)
 	.get("/crews", crewController.index)
 	.get("/crew/:id", crewController.getCrew)
 	.get("/crewsAllData", crewController.getCrewsAllData)
