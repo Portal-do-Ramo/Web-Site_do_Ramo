@@ -9,7 +9,7 @@ exports.up = knex => {
       table.timestamp("beginning").notNullable();
       table.timestamp("ended");
       table.timestamps(true, true);
-      table.uuid("crew_id").notNullable().references("id").inTable("crews").onDelete("SET NULL");
+      table.uuid("crew_id").notNullable().references("id").inTable("crews").onDelete("CASCADE");
     });
   };
   

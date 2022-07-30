@@ -5,7 +5,7 @@ exports.up = knex => {
       table.text("placing");
       table.text("year");
       table.timestamps(true, true);
-      table.uuid("crew_id").references("id").inTable("crews").onDelete("SET NULL");
+      table.uuid("crew_id").references("id").inTable("crews").onDelete("CASCADE");
   });
 };
 
