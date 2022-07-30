@@ -109,7 +109,7 @@ export default function equipeEditar({ crew }){
 										type="file"
 										id="avatarInput"
 										onChange={imageHandler}
-										accept=".png, image/jpeg, .svg"
+										accept=".png, image/jpeg"
 									/>
 								</div>
 							</div>

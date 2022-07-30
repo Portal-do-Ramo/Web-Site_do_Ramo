@@ -20,11 +20,7 @@ module.exports = {
       //Renomeia o arquivo
       filename: (req, file, cb) => {
         //renomeia o arquivo
-        if (file.mimetype === "image/svg+xml" || file.mimetype === "image/svg") {
-          cb(null, `${req.params.name.toLowerCase()}.svg`);
-        } else {
-          cb(null, `${req.params.name.toLowerCase()}.png`);
-        }
+        cb(null, `${req.params.name.toLowerCase()}.png`);
       }
     });
   },
@@ -35,7 +31,7 @@ module.exports = {
       const type = mime.extension(file.mimetype);
 
       //Definir as extensões permitidas
-      const extensionsAllowed = ["png", "jpeg", "jpg", "svg"];
+      const extensionsAllowed = ["png", "jpeg", "jpg"];
 
       if (extensionsAllowed.includes(`${type}`)) {
         //Caso a extensão estiver correta

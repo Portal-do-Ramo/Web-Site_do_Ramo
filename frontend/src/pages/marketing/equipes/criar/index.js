@@ -85,7 +85,7 @@ export default function Criar() {
                                     <input
                                         type="file"
                                         onChange={imageHandler}
-                                        accept=".png, image/jpeg, .svg"
+                                        accept=".png, image/jpeg"
                                         id="avatarInput"
                                     />
                                 </div>
