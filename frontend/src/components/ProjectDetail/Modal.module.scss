@@ -12,17 +12,20 @@
 
   .imageHolder {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 100px;
-
     width: 100%;
     height: 204px;
-
+    
     border-bottom: 1px solid #E1E1E1;
     border-radius: 14px 14px 0 0;
     background-color: #fff;
     color: #BBBBBB;
+    
+    img {
+      object-fit: cover;
+      width: 100%;
+      padding: 0px;
+      border-radius: 8px;
+    }
   }
 
   .projectDescription {

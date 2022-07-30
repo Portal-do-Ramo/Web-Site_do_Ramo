@@ -34,7 +34,6 @@ export default function projetoEditar({ crew, project }){
 
 	useEffect(() => {
 		async function convertImage(image) {
-			console.log(image);
 			let blob = await fetch(image).then(r => r.blob());
 			let dataUrl = await new Promise(resolve => {
 				let reader = new FileReader();
@@ -52,7 +51,7 @@ export default function projetoEditar({ crew, project }){
 			let beginDateFormatted = new Date(project.beginning);
 			beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
 			document.getElementById("beginDateInput").value = beginDateFormatted.toISOString().slice(0, 16);
-			
+
 			if (project.ended) {
 				let endDateFormatted = new Date(project.ended);
 				endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
@@ -86,8 +85,6 @@ export default function projetoEditar({ crew, project }){
 			}
 
 			if (bannerImageFile.files[0]) {
-				console.log(bannerImageFile.files[0]);
-
 				formData = new FormData();
 				
 				formData.append("picture", bannerImageFile.files[0]);
@@ -114,7 +111,7 @@ export default function projetoEditar({ crew, project }){
 
 			if (isFinished) {
 				endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-${offset}:00`;
-				
+
 				await api.patch(`/project/${project.id}`, {
 					project: {
 						name,
@@ -126,7 +123,6 @@ export default function projetoEditar({ crew, project }){
 					}
 				});
 			} else {
-
 				await api.patch(`/project/${project.id}`, {
 					project: {
 						name,

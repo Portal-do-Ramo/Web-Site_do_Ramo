@@ -62,8 +62,7 @@ module.exports = {
         }
     },
         
-    // Talvez tenha que existir uma tabela só pra membros de projetos, com uma lógica de 1 membro para muitos projetos.
-    async create(name, description, members, crew_id, beginning, ended) { //Repensar a lógica dos members
+    async create(name, description, members, crew_id, beginning, ended) {
         let imageURL = name.toLowerCase() + "_banner.png";
         let logoURL = name.toLowerCase() + "_avatar.png";
         let miliseconds = Date.parse(beginning)
@@ -127,7 +126,7 @@ module.exports = {
         if (project.name) {
             project = {
                 ...project,
-                imageURL: `${project.name}_avatar.${Project.imageURL.split(".")[1]}`,
+                imageURL: `${project.name}_banner.${Project.imageURL.split(".")[1]}`,
                 logoURL: `${project.name}_avatar.${Project.logoURL.split(".")[1]}`
             }
         }

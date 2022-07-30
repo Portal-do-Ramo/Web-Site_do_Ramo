@@ -95,7 +95,7 @@ export default function equipeEditar({ crew }){
 				<div className={styles.pageContent}>
 					<div className={styles.content}>
 						<MarketingMenuRoutes
-							routesName={`Equipes/${crew.name}/Editar`} 
+							routesName={`Equipes/${name}/Editar`} 
 							routes={`equipes/${crew.id}/editar`}
 						/>
 						<h1>Editar Equipe</h1>

@@ -21,7 +21,7 @@ export function ProjectDetail({ project }) {
     return (
       <div className={styles.main}>
         <div className={styles.imageHolder}>
-			<img src={project.imageURL}/>
+			    <img src={project.imageURL}/>
         </div>
 
         <div className={styles.projectDescription}>

@@ -22,9 +22,13 @@
             margin: 0 30px;
             row-gap: 40px;
 
-            .logoBanner, .bannerHolder {
+            .logoBanner {
                 display: flex;
                 column-gap: 30px;
+
+                @media (max-width: 600px) {
+                    flex-direction: column;
+                }
 
                 span {
                     font-size: 1rem;
@@ -54,7 +58,7 @@
 
                         img {
                             background-color: var(--contraste);
-
+                            object-fit: cover;
                             width: 100%;
                             padding: 20px;
                             border-radius: 8px;
@@ -90,12 +94,23 @@
                 .bannerHolder {
                     .img {
                         width: 410px;
-
+                        
                         input {
                             width: 410px;
                         }
                     }
 
+                    @media (max-width: 600px) {
+                        margin-top: 25px;
+                    }
+
+                    @media (max-width: 440px) {
+                        margin-top: 25px;
+                        
+                        .img {
+                            width: 90vw;
+                        }
+                    }
                 }         
             }
 
@@ -157,16 +172,6 @@
                     column-gap: 20px;
                     display: flex;
                     height: 100%;
-
-                    @media (max-width: 680px) {
-                        width: 100%;
-                    }
-
-                    @media (max-width: 475px) {
-                        row-gap: 15px;
-                        justify-content: center;
-                        flex-direction: column;
-                    }
 
                     article {
                         p {
@@ -306,13 +311,7 @@
         .pageContent {
             .content {
                 .logoBanner {
-                    column-gap: 20px;   
-    
-                    .bannerHolder {
-                        input {
-                            width: 350px;
-                        }
-                    }         
+                    column-gap: 20px;        
                 }
     
                 .description {     
@@ -333,18 +332,13 @@
                 .logoBanner {
                     column-gap: 15px;   
 
-                    .logoHolder, .bannerHolder {
+                    .logoHolder {
                         input {
                             background-size: 60px;
                             width: 130px;
                             height: 130px;
                         }
-                    }
-                    .bannerHolder {
-                        input {
-                            width: 250px;
-                        }
-                    }         
+                    }   
                 }
             }
         }
@@ -357,7 +351,6 @@
                     width: 100%;
                     column-gap: 30px;
                     flex-direction: column;
-                    row-gap: 30px;
                 }
 
                 .buttonRow {
