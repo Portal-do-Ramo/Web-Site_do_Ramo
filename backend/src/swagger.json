@@ -403,6 +403,33 @@
             }
         },
         "/crew/{id}": {
+            "get": {
+                "summary": "Informações de uma Equipe",
+                "description": "Essa rota é responsável por mostrar as informações de uma determinada equipe",
+                "tags": ["Crews"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da equipe que será mostrado",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Crew"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
             "patch": {
                 "summary": "Atualização de Equipe",
                 "description": "Essa rota é responsável por atualizar o cadastro de uma equipe",
@@ -570,7 +597,7 @@
         },
         "/project/{id}": {
             "get": {
-                "summary": "Informações do Projeto",
+                "summary": "Informações de um Projeto",
                 "description": "Essa rota é responsável por mostrar as informações de um determinado projeto",
                 "tags": ["Projects"],
                 "parameters": [
@@ -595,7 +622,6 @@
                         "description": "Unprocessable Entity"
                     }
                 }
-                
             },
             "patch": {
                 "summary": "Atualização de Projeto",
@@ -743,7 +769,7 @@
         },
         "/award/{id}": {
             "get": {
-                "summary": "Informações do Prêmio",
+                "summary": "Informações de um Prêmio",
                 "description": "Essa rota é responsável por mostrar as informações de um determinado prêmio",
                 "tags": ["Awards"],
                 "parameters": [
