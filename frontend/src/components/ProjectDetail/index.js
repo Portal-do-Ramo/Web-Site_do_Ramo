@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import { AiOutlinePicture } from 'react-icons/ai';
+import React from "react";
 import styles from "./Modal.module.scss";
-
 
 export function ProjectDetail({ project }) {
 	if (!project) {
 		return (
 			<div className={styles.main}>
 				<div className={styles.imageHolder}>
-        		</div>
+        </div>
 
 				<div className={styles.projectDescription}>
 					<p> Nenhum projeto registrado </p>
