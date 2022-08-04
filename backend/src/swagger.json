@@ -569,6 +569,34 @@
             }
         },
         "/project/{id}": {
+            "get": {
+                "summary": "Informações do Projeto",
+                "description": "Essa rota é responsável por mostrar as informações de um determinado projeto",
+                "tags": ["Projects"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do projeto que será mostrado",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+                
+            },
             "patch": {
                 "summary": "Atualização de Projeto",
                 "description": "Essa rota é responável por atualizar o cadastro de um projeto",
