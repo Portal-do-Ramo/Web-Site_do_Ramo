@@ -519,7 +519,7 @@
                                         "name": "Teste",
                                         "description": "Projeto Teste",
                                         "members": ["membro 1", "membro 2", "membro 3"],
-                                        "crew_name": "WolfTeste",
+                                        "crew_id": "39226c22-9a55-4aac-b17e-f48c68bf129e",
                                         "beginning": "2022-03-05T22:31:17.821Z"
                                     }
                                 }
@@ -665,7 +665,7 @@
                                         "name": "Prêmio 1",
                                         "year": "2022",
                                         "placing": "Primeiro",
-                                        "crew_name": "WolfTeste"  
+                                        "crew_id": "39226c22-9a55-4aac-b17e-f48c68bf129e"  
                                     }
                                 }
                             }
@@ -714,6 +714,33 @@
             }
         },
         "/award/{id}": {
+            "get": {
+                "summary": "Informações do Prêmio",
+                "description": "Essa rota é responsável por mostrar as informações de um determinado prêmio",
+                "tags": ["Awards"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do prêmio que será mostrado",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Award"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
             "patch": {
                 "summary": "Atualização de Prêmio",
                 "description": "Essa rota é responável por atualizar o cadastro de um prêmio",
