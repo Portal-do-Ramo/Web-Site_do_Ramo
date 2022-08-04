@@ -33,8 +33,7 @@
                                     "value": {
                                         "name": "Cleitin do Rasta",
                                         "email": "cleitin@123.com",
-                                        "password": "cleitin123",
-                                        "admin": true
+                                        "password": "cleitin123"
                                     }
                                 }
                             }
@@ -66,6 +65,7 @@
                 "summary": "Lista de Usuários",
                 "description": "Essa rota á responsável por fazer a listagem de todos os usuários",
                 "tags": ["Users"],
+                "security": [{ "bearerAuth": [] }],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -340,6 +340,457 @@
                     }
                 }
             }
+        },
+        "/crew": {
+            "post": {
+                "summary": "Cadastro de Equipe",
+                "description": "Essa rota é responsável pelo cadastro de uma nova equipe",
+                "tags": ["Crews"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Crew"
+                            },
+                            "examples": {
+                                "crew": {
+                                    "value": {
+                                        "name": "WolfTeste",
+                                        "about": "Equipe de teste"  
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Crew"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        },
+        "/crews": {
+            "get": {
+                "summary": "Lista de Equipes",
+                "description": "Essa rota á responsável por fazer a listagem de todas as equipes",
+                "tags": ["Crews"],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Crew"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crew/{id}": {
+            "patch": {
+                "summary": "Atualização de Equipe",
+                "description": "Essa rota é responsável por atualizar o cadastro de uma equipe",
+                "tags": ["Crews"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da equipe que será atualizado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Crew"
+                            },
+                            "examples": {
+                                "crew": {
+                                    "value": {
+                                        "crew": {
+                                            "name": "WolfTeste",
+                                            "about": "Equipe de teste"  
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Crew"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remoção de Equipe",
+                "description": "Essa rota é responsável por remover uma equipe",
+                "tags": ["Crews"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da equipe que será atualizado",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/crewsAllData": {
+            "get": {
+                "summary": "Lista de Equipes e suas informações",
+                "description": "Essa rota á responsável por fazer a listagem de todas as equipes com informações sobre seus projetos e prêmios",
+                "tags": ["Crews"],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CrewAllData"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/project": {
+            "post": {
+                "summary": "Cadastro de Projeto",
+                "description": "Essa rota é responsável pelo cadastro de um novo projeto",
+                "tags": ["Projects"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Project"
+                            },
+                            "examples": {
+                                "project": {
+                                    "value": {
+                                        "name": "Teste",
+                                        "description": "Projeto Teste",
+                                        "members": ["membro 1", "membro 2", "membro 3"],
+                                        "crew_name": "WolfTeste",
+                                        "beginning": "2022-03-05T22:31:17.821Z"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/projects": {
+            "get": {
+                "summary": "Lista de Projetos",
+                "description": "Essa rota á responsável por fazer a listagem de todos os projetos",
+                "tags": ["Projects"],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Project"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/project/{id}": {
+            "patch": {
+                "summary": "Atualização de Projeto",
+                "description": "Essa rota é responável por atualizar o cadastro de um projeto",
+                "tags": ["Projects"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do projeto que será atualizado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Project"
+                            },
+                            "examples": {
+                                "project": {
+                                    "value": {
+                                        "project": {
+                                            "name": "Teste",
+                                            "description": "Projeto Teste",
+		                                    "members": "membro2,membro3,membro4"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remoção de Projeto",
+                "description": "Essa rota é responsável por remover um projeto",
+                "tags": ["Projects"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do projeto que será removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/award": {
+            "post": {
+                "summary": "Cadastro de Prêmio",
+                "description": "Essa rota é responsável pelo cadastro de um novo prêmio",
+                "tags": ["Awards"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Award"
+                            },
+                            "examples": {
+                                "award": {
+                                    "value": {
+                                        "name": "Prêmio 1",
+                                        "year": "2022",
+                                        "placing": "Primeiro",
+                                        "crew_name": "WolfTeste"  
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Award"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/awards": {
+            "get": {
+                "summary": "Lista de Prêmios",
+                "description": "Essa rota á responsável por fazer a listagem de todos os prêmios",
+                "tags": ["Awards"],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Award"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/award/{id}": {
+            "patch": {
+                "summary": "Atualização de Prêmio",
+                "description": "Essa rota é responável por atualizar o cadastro de um prêmio",
+                "tags": ["Awards"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do prêmio que será atualizado",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Award"
+                            },
+                            "examples": {
+                                "award": {
+                                    "value": {
+                                        "award": {
+                                            "name": "Prêmio 2",
+		                                    "year": "2022",
+		                                    "placing": "Teste"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Award"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remoção de Prêmio",
+                "description": "Essa rota é responsável por remover um prêmio",
+                "tags": ["Awards"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do prêmio que será removido",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "405": {
+                        "description": "Method Not Allowed"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -358,9 +809,6 @@
                     },
                     "password": {
                         "type": "string"
-                    },
-                    "admin": {
-                        "type": "boolean"
                     }
                 }
             },
@@ -398,6 +846,35 @@
                     }
                 }
             },
+            "CrewAllData": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "about": {
+                        "type": "string"
+                    },
+                    "imageURL": {
+                        "type": "string"
+                    },
+                    "projects": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "awards": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
             "Project": {
                 "type": "object",
                 "properties": {
@@ -430,7 +907,10 @@
                     "name": {
                         "type": "string"
                     },
-                    "description": {
+                    "year": {
+                        "type": "string"
+                    },
+                    "placing": {
                         "type": "string"
                     },
                     "crew_id": {
