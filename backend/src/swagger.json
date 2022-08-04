@@ -411,7 +411,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID da equipe que será mostrado",
+                        "description": "ID da equipe que será mostrada",
                         "required": true
                     }
                 ],
@@ -595,6 +595,38 @@
                 }
             }
         },
+        "/projects/crew/{crew_id}": {
+            "get": {
+                "summary": "Lista de Projetos de uma Determinada Equipe",
+                "description": "Essa rota á responsável por fazer a listagem de todos os projetos de uma determinada equipe",
+                "tags": ["Projects"],
+                "parameters": [
+                    {
+                        "name": "crew_id",
+                        "in": "path",
+                        "description": "ID da equipe na qual pertencem os projetos",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Project"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        },
         "/project/{id}": {
             "get": {
                 "summary": "Informações de um Projeto",
@@ -763,6 +795,38 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/awards/crew/{crew_id}": {
+            "get": {
+                "summary": "Lista de Prêmios de uma Determinada Equipe",
+                "description": "Essa rota á responsável por fazer a listagem de todos os prêmios de uma determinada equipe",
+                "tags": ["Awards"],
+                "parameters": [
+                    {
+                        "name": "crew_id",
+                        "in": "path",
+                        "description": "ID da equipe na qual pertencem os prêmios",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Award"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 }
             }
