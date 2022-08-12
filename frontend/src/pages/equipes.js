@@ -47,7 +47,7 @@ export default function Equipes({ crews }) {
 	useEffect(() => {
 		let dotsContainer = [];
 
-		if (crews[crewIndex].projects.length > 3) {
+		if (crews.length > 0 && crews[crewIndex].projects.length > 3) {
 			let quantity = Math.trunc(crews[crewIndex].projects.length / 3);
 			if (crews[crewIndex].projects.length % 3 !== 0) {
 				quantity = quantity + 1;
@@ -126,7 +126,7 @@ export default function Equipes({ crews }) {
 		awardGridGap = awardGridGap.replace("px", "");
 		awardGridGap = Number(awardGridGap);
 
-		if (operation === 1 && awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
+		if (crews.length > 0 && operation === 1 && awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
 			setAwardTranslateX(awardTranslateX - (awardWidth + awardGridGap));
 		} else if (operation === -1 && awardTranslateX < 0) {
 			setAwardTranslateX(awardTranslateX + (awardWidth + awardGridGap));
@@ -139,7 +139,7 @@ export default function Equipes({ crews }) {
 		cardSliderGap = cardSliderGap.replace("px", "");
 		cardSliderGap = Number(cardSliderGap);
 
-		if (operation === 1 && projectsTranslateX > -1 * (cardCardWidth + cardSliderGap) * (crews[crewIndex].projects.length - 3)) {
+		if ( crews.length > 0 && operation === 1 && projectsTranslateX > -1 * (cardCardWidth + cardSliderGap) * (crews[crewIndex].projects.length - 3)) {
 			setProjectsTranslateX(projectsTranslateX - ((cardCardWidth + cardSliderGap) * 3));
 		} else if (operation === -1 && projectsTranslateX < 0 && (projectsTranslateX + cardCardWidth + cardSliderGap) <= 0) {
 			setProjectsTranslateX(projectsTranslateX + ((cardCardWidth + cardSliderGap) * 3));
@@ -153,7 +153,7 @@ export default function Equipes({ crews }) {
 			awardGridGap = awardGridGap.replace("px", "");
 			awardGridGap = Number(awardGridGap);
 			
-			if (crews[crewIndex].awards.length !== 0 && awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
+			if (crews.length > 0 && crews[crewIndex].awards.length !== 0 && awardTranslateX > -1 * (awardWidth + awardGridGap) * (crews[crewIndex].awards.length - 3)) {
 				return false;
 			} else {
 				return true;
@@ -164,143 +164,148 @@ export default function Equipes({ crews }) {
 	}
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>Equipes | IEEE CEFET-RJ</title>
 			</Head>
 
-		<Header page="equipes"/>
+			<Header page="equipes"/>
 		
-		<div className={styles.all}>
+			<div className={styles.all}>
+				{ crews.length ? (
+					<>
+						<section className={styles.presentation}>
+							<div className={styles.carouselContainer}>
+								<h2>Escolha sua equipe!</h2>
+								
+								<section className={styles.carousel}>
+								<PrevArrow onClick={() => handleChangeCrewSelected(-1)}/>
+								
+								<article className={styles.crewSelected}>
+									<div className={styles.imagesCarouselContainer}>
+									{ crewIndex === 0
+										? <img src={crews[crews.length - 1].crew.imageURL} className={styles.previousProjectImage} id="previousProjectImage"/>
+										: <img src={crews[crewIndex - 1].crew.imageURL} className={styles.previousProjectImage} id="previousProjectImage"/>
+									}
+									
+									<img src={crews[crewIndex].crew.imageURL} className={styles.currentProjectImage} id="currentProjectImage" />
+									
+									{ crewIndex === crews.length - 1
+										? <img src={crews[0].crew.imageURL} className={styles.nextProjectImage} id="nextProjectImage"/>
+										: <img src={crews[crewIndex + 1].crew.imageURL} className={styles.nextProjectImage} id="nextProjectImage"/>
+									}
+									</div>
 
-			<section className={styles.presentation}>
-				<div className={styles.carouselContainer}>
-					<h2>Escolha sua equipe!</h2>
+									<p> {crews[crewIndex].crew.name} </p>
+								</article>
 
-					<section className={styles.carousel}>
-					<PrevArrow onClick={() => handleChangeCrewSelected(-1)}/>
-					
-					<article className={styles.crewSelected}>
-						<div className={styles.imagesCarouselContainer}>
-						{ crewIndex === 0
-							? <img src={crews[crews.length - 1].crew.imageURL} className={styles.previousProjectImage} id="previousProjectImage"/>
-							: <img src={crews[crewIndex - 1].crew.imageURL} className={styles.previousProjectImage} id="previousProjectImage"/>
-						}
+								<NextArrow onClick={() => handleChangeCrewSelected(+1)}/>
+								</section>
+							</div>
+
+							<div className={styles.description}>
+								<h1>{crews[crewIndex].crew.name}</h1>
+								<p>{crews[crewIndex].crew.about}</p>
+							</div>
+						</section>
 						
-						<img src={crews[crewIndex].crew.imageURL} className={styles.currentProjectImage} id="currentProjectImage" />
-						
-						{ crewIndex === crews.length - 1
-							? <img src={crews[0].crew.imageURL} className={styles.nextProjectImage} id="nextProjectImage"/>
-							: <img src={crews[crewIndex + 1].crew.imageURL} className={styles.nextProjectImage} id="nextProjectImage"/>
-						}
-						</div>
+						<section className={styles.projects}>
+							<div className={styles.leftContainer}>
+								<h2>Projetos</h2>
+								<p>Conheça todos os projetos da equipe {crews[crewIndex].crew.name}</p>
+								<div className={styles.sliderHolder}>
+								<ProjectPrevArrow 
+									onClick={() => handleChangeProjectsSelected(-1)}
+									disabled={projectsTranslateX === 0}
+								/>
+								
+								<section className={styles.projectSliderContainer}>
+									<div id={styles.cardSlider}>
+									{crews[crewIndex].projects.map((project, idx) => {
+										return (
+										<div className={styles.projectCard} key={idx}>
+											<ProjectCard 
+												project={project}
+												active={projectIndex === idx}
+												key={idx}
+												onCLick={() => setProjectIndex(idx)}
+											/>
+										</div>
+										)
+									})}
+									</div>
+								</section>
+								<ProjectNextArrow 
+									onClick={() => handleChangeProjectsSelected(+1)}
+									disabled={projectsDotSelected === (dots.length - 1)}
+								/>
+								</div>
 
-						<p> {crews[crewIndex].crew.name} </p>
-					</article>
-
-					<NextArrow onClick={() => handleChangeCrewSelected(+1)}/>
-					</section>
-				</div>
-
-				<div className={styles.description}>
-					<h1>{crews[crewIndex].crew.name}</h1>
-					<p>{crews[crewIndex].crew.about}</p>
-				</div>
-			</section>
-			
-			<section className={styles.projects}>
-				<div className={styles.leftContainer}>
-					<h2>Projetos</h2>
-					<p>Conheça todos os projetos da equipe {crews[crewIndex].crew.name}</p>
-					<div className={styles.sliderHolder}>
-					<ProjectPrevArrow 
-						onClick={() => handleChangeProjectsSelected(-1)}
-						disabled={projectsTranslateX === 0}
-					/>
-					
-					<section className={styles.projectSliderContainer}>
-						<div id={styles.cardSlider}>
-						{crews[crewIndex].projects.map((project, idx) => {
-							return (
-							<div className={styles.projectCard} key={idx}>
-								<ProjectCard 
-									project={project}
-									active={projectIndex === idx}
-									key={idx}
-									onCLick={() => setProjectIndex(idx)}
+								<div className={styles.dots}>
+								{dots.map((dot, idx) => {
+									return (
+									<span className={projectsDotSelected === idx ? styles.dotSelected : ""} key={idx}></span>
+									)
+								})}
+								</div>
+							</div>
+							
+							<div className={styles.rightContainer}>
+								<ProjectDetail 
+									project={crews[crewIndex].projects[projectIndex]}
 								/>
 							</div>
-							)
-						})}
-						</div>
-					</section>
-					<ProjectNextArrow 
-						onClick={() => handleChangeProjectsSelected(+1)}
-						disabled={projectsDotSelected === (dots.length - 1)}
-					/>
-					</div>
+						</section>
 
-					<div className={styles.dots}>
-					{dots.map((dot, idx) => {
-						return (
-						<span className={projectsDotSelected === idx ? styles.dotSelected : ""} key={idx}></span>
-						)
-					})}
-					</div>
-				</div>
-				
-				<div className={styles.rightContainer}>
-					<ProjectDetail 
-						project={crews[crewIndex].projects[projectIndex]}
-					/>
-				</div>
-			</section>
+						<section className={styles.awards_section}>
+							<img className={styles.topWave} src='/Background.png'></img>
+							<div className={styles.awards}>
+								<h2>Prêmios</h2>
 
-			<section className={styles.awards_section}>
-				<img className={styles.topWave} src='/Background.png'></img>
-				<div className={styles.awards}>
-					<h2>Prêmios</h2>
-
-					<div className={styles.awardSlider}>
-					{
-						crews[crewIndex].awards.length > 0 ? (
-						<>
-							<AwardPrevArrow onClick={() => handleChangeAwardSelected(-1)} disabled={awardTranslateX === 0}/>
-							<section className={styles.awardsContainer}>
-							<div id={styles.awardsImagesContainer}>
+								<div className={styles.awardSlider}>
 								{
-									crews[crewIndex].awards.map((award, idx) => {
-										return (
-										<article className={styles.award} key={idx}>
-											<img src="award.svg" alt="award image"/>
-											<strong>{award.placing}</strong>
-											<span>{award.name}</span>
-											<p>{award.year && award.year}</p>
-										</article>
-										)
-									})
+									crews[crewIndex].awards.length > 0 ? (
+									<>
+										<AwardPrevArrow onClick={() => handleChangeAwardSelected(-1)} disabled={awardTranslateX === 0}/>
+										<section className={styles.awardsContainer}>
+										<div id={styles.awardsImagesContainer}>
+											{
+												crews[crewIndex].awards.map((award, idx) => {
+													return (
+													<article className={styles.award} key={idx}>
+														<img src="award.svg" alt="award image"/>
+														<strong>{award.placing}</strong>
+														<span>{award.name}</span>
+														<p>{award.year && award.year}</p>
+													</article>
+													)
+												})
+											}
+										</div>
+										</section>
+										<AwardNextArrow 
+											onClick={() => handleChangeAwardSelected(1)} 
+											disabled={ verifyIsAwardArrowDisabled() }
+										/>
+									</>
+									) : (
+									<>
+										<span> Não há nenhum prêmio registrado </span>
+									</>
+									)
 								}
+								</div>
 							</div>
-							</section>
-							<AwardNextArrow 
-								onClick={() => handleChangeAwardSelected(1)} 
-								disabled={ verifyIsAwardArrowDisabled() }
-							/>
-						</>
-						) : (
-						<>
-							<span> Não há nenhum prêmio registrado </span>
-						</>
-						)
-					}
-					</div>
-				</div>
-				<img className={styles.bottomWave} src='/Background.png'></img>
-			</section>
-		</div>
+							<img className={styles.bottomWave} src='/Background.png'></img>
+						</section>
+					</>
+				) : (
+					<></>
+				)}
+			</div>
 
-		<Footer />
-		</div>
+			<Footer />
+		</>
 	);
 }
 

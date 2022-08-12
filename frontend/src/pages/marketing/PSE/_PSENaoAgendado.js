@@ -129,13 +129,3 @@ export default function PSENaoAgendado() {
 		</>
 	)
 }
-
-export const getServerSideProps = async (ctx) => {
-  let PSEFileExists = true;
-
-  return {
-    props: {
-      PSEFileExists
-    }
-  }
-}

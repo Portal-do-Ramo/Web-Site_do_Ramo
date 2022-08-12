@@ -36,16 +36,20 @@ export default function Page3({ crewsNames }) {
 					</div>
 
 					<div className={styles.mainForm}>
-						<span>Equipe <strong>*</strong></span>
-						<select required value={crew} onChange={(event) => setCrew(event.target.value)}>
-						<option value="" disabled defaultValue={true} hidden>Selecione a equipe de interesse</option>
-						
-						{crewsNames.map((crewName, idx) => {
-							return (
-								<option key={idx} value={crewName}>{crewName}</option>
-							)
-						})}
-						</select>
+						{crewsNames && crewsNames.length > 0 && (
+							<>
+								<span>Equipe <strong>*</strong></span>
+								<select required value={crew} onChange={(event) => setCrew(event.target.value)}>
+									<option value="" disabled defaultValue={true} hidden>Selecione a equipe de interesse</option>
+								
+									{crewsNames.map((crewName, idx) => {
+										return (
+											<option key={idx} value={crewName}>{crewName}</option>
+										)
+									})}
+								</select>
+							</>
+						)}
 
 						<span>Área <strong>*</strong></span>
 						<input 

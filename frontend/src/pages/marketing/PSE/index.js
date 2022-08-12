@@ -12,19 +12,15 @@ import api from "../../../services/api";
 import { isBefore } from "date-fns";
 
 function controller(page, startDate, endDate) {
+    page = 0;
+
     switch (page) {
         case 1:
             return <PSEAgendado start={startDate} end={endDate}/>
-
-            break;
         case 2:
             return <PSEEmAndamento start={startDate} end={endDate}/>
-
-            break;
         default:
             return <PSENaoAgendado/>
-            
-            break;
     }
 }
 

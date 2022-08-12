@@ -52,9 +52,15 @@ export default function cadastro({ hasActivePSE, crewsNames }) {
 export const getServerSideProps = async (ctx) => {
 	const { data } = await api.get("/crews");
 	
-	let crewsNames = data.map( crew => {
-		return crew.name;
-	});
+	let crewsNames;
+	
+	try {
+		crewsNames = data.map( crew => {
+			return crew.name;
+		});
+	} catch (error) {
+		crewsNames = [];
+	}
 
 	let hasActivePSE = false;
 
