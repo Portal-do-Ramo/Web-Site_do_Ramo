@@ -1,6 +1,6 @@
 import '../styles/global.scss'
-import { AuthContextProvider } from '../contexts/AuthContext'
-import { ImageContextProvider } from '../contexts/ImageContext'
+import { AuthContextProvider } from '../contexts/AuthContext';
+import { ImageContextProvider } from '../contexts/ImageContext';
 import { PSEFormContextProvider } from '../contexts/PSEFormContext';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";

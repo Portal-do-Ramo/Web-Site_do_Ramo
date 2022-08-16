@@ -1,14 +1,17 @@
-import MarketingNavBar from "../../../components/MarketingNavBar"
-import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
+import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from "../../../styles/marketingEquipes.module.scss"
-import api from '../../../services/api'
+import Head from "next/head";
 
 import { BiPlusMedical } from 'react-icons/bi';
 import { BsFillGearFill } from 'react-icons/bs';
-import Head from "next/head";
-import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+
+import styles from "../../../styles/marketingEquipes.module.scss"
+import api from '../../../services/api'
+
+import MarketingNavBar from "../../../components/MarketingNavBar"
+import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
+
 import { AuthContext } from "../../../contexts/AuthContext";
 
 export default function equipes({ crews }){

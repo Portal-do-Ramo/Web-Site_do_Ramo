@@ -1,34 +1,24 @@
-import MarketingNavBar from "../../../components/MarketingNavBar";
-import styles from "../PSE/styles.module.scss";
-import PSEEmAndamento from "./_PSEEmAndamento";
-import PSEAgendado from "./_PSEAgendado";
-import PSENaoAgendado from "./_PSENaoAgendado";
-import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
-import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { AuthContext } from "../../../contexts/AuthContext";
-import api from "../../../services/api";
 import { isBefore } from "date-fns";
+import Head from "next/head";
 
-function controller(page, startDate, endDate) {
-    page = 0;
+import styles from "./styles.module.scss";
+import api from "../../../services/api";
 
-    switch (page) {
-        case 1:
-            return <PSEAgendado start={startDate} end={endDate}/>
-        case 2:
-            return <PSEEmAndamento start={startDate} end={endDate}/>
-        default:
-            return <PSENaoAgendado/>
-    }
-}
+import MarketingNavBar from "../../../components/MarketingNavBar";
+import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
+
+import { AuthContext } from "../../../contexts/AuthContext";
+import { PSEAgendado } from "../../../components/marketingPseScreens/PSEAgendado";
+import { PSEEmAndamento } from "../../../components/marketingPseScreens/PSEEmAndamento";
+import { PSENaoAgendado } from "../../../components/marketingPseScreens/PSENaoAgendado";
 
 export default function PSE({ startDate, endDate, page }) {
     const router = useRouter();
 
 	const { user, isAuthenticated } = useContext(AuthContext);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 		if (isAuthenticated) {
@@ -54,7 +44,10 @@ export default function PSE({ startDate, endDate, page }) {
                 <div className={styles.pageContent}>
                     <div className={styles.content}>
                         <MarketingMenuRoutes routesName={`PSE`} routes={`PSE`}/>
-                        {controller(page, startDate, endDate)}
+
+                        {page === "0" && <PSENaoAgendado/>}
+                        {page === "1" && <PSEAgendado start={startDate} end={endDate} styles/>}
+                        {page === "2" && <PSEEmAndamento start={startDate} end={endDate} styles/>}
                     </div>
                 </div>
             </div>
@@ -62,11 +55,11 @@ export default function PSE({ startDate, endDate, page }) {
     }
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = async () => {
     let startDate = null;
     let endDate = null;
-    let page = 0;
-
+    let page = "0";
+    
     try {
         const {data} = await api.get("/pse");
         
@@ -74,11 +67,10 @@ export const getServerSideProps = async (ctx) => {
         endDate = data.end;
 
         if (!isBefore(new Date(startDate), new Date())) {
-            page = 1;
+            page = "1";
         } else {
-            page = 2;
+            page = "2";
         }
-
     } catch (error) {
         startDate = null;
         endDate = null;

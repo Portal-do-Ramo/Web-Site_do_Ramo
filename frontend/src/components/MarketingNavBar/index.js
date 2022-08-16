@@ -3,8 +3,10 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useRouter } from "next/router";
 
 export default function MarketingNavBar({ page, user }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useContext(AuthContext);
 
@@ -26,7 +28,7 @@ export default function MarketingNavBar({ page, user }) {
   return (
     <div className={styles.all}>
       <div className={styles.title}>
-        <Image src="/Ramo_logo.svg" width="90px" height="100%" />
+        <Image src="/Ramo_logo.svg" width="90px" height="100%" onClick={() => router.push("/")}/>
         
         <div className={styles.navIcon} onClick={open}>
           <svg className={isOpen ? styles.hamActivated : styles.ham} viewBox="0 0 100 100" height={50}>
@@ -55,9 +57,9 @@ export default function MarketingNavBar({ page, user }) {
           <h1 className={page === "equipes" ? styles.border : null}>Equipes</h1>
         </Link>
 
-        <Link href="/marketing/PSE">
+        <Link href={`/marketing/PSE`}>
           <h1 className={page === "pse" ? styles.border : null}>PSE</h1>
-        </Link>       
+        </Link>
       </div>
 
       <div className={styles.user}>

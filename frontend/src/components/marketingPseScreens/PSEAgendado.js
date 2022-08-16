@@ -1,30 +1,31 @@
-import Modal from 'react-modal';
 import { useEffect, useState } from "react";
-import styles from "../PSE/styles.module.scss";
 import { format, isBefore } from "date-fns";
-import api from '../../../services/api';
-import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import Modal from 'react-modal';
 
-export default function PSEAgendado({start, end}) {
+import styles from "../../pages/marketing/PSE/styles.module.scss";
+import api from '../../services/api';
+
+function PSEAgendado({start, end}) {
 	const [beginDate, setBeginDate] = useState(""); 
 	const [endDate, setEndDate] = useState("");
 	const [modalIsOpen, setIsOpen] = useState(false);
 	const router = useRouter();
 
 	useEffect(() => {
-			setBeginDate(format(new Date(start), "dd/MM/yyyy - H:mm"));
-			setEndDate(format(new Date(end), "dd/MM/yyyy - H:mm"));
+		setBeginDate(format(new Date(start), "dd/MM/yyyy - H:mm"));
+		setEndDate(format(new Date(end), "dd/MM/yyyy - H:mm"));
 
-			let beginDateFormatted = new Date(start);
-			beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
-			
-			let endDateFormatted = new Date(end);
-			endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
+		let beginDateFormatted = new Date(start);
+		beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
 		
-			document.getElementById("beginDateInput").value = beginDateFormatted.toISOString().slice(0, 16);
-			document.getElementById("endDateInput").value = endDateFormatted.toISOString().slice(0, 16);
-		}, []);
+		let endDateFormatted = new Date(end);
+		endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
+	
+		document.getElementById("beginDateInput").value = beginDateFormatted.toISOString().slice(0, 16);
+		document.getElementById("endDateInput").value = endDateFormatted.toISOString().slice(0, 16);
+	}, []);
 
 	function openModal() {
 		setIsOpen(true);
@@ -153,3 +154,5 @@ export default function PSEAgendado({start, end}) {
 		</>
 	)
 }
+
+export {PSEAgendado};

@@ -21,8 +21,8 @@ export default function Footer() {
         <img src="/Wolfbyte_logo.svg" />
         <img src="/Socialwolf_logo.svg" />
         <img src="/Rocketwolf_logo.svg" />
-        <img src="/WolfPower_logo.svg" />
-        <img src="/WolfBotz_logo.svg" />
+        <img src="/Wolfpower_logo.svg" />
+        <img src="/Wolfbotz_logo.svg" />
         <img src="/Gestao_logo.svg" />
         <img src="/Marketing_logo.svg" />
       </div>

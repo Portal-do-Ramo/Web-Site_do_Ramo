@@ -19,7 +19,7 @@ export function AuthContextProvider({children}) {
         if (token) {
 			try {
 				const verify = jwt.verify(token, process.env.TOKEN_SECRET);
-				api.defaults.headers.Authorization = `Bearer ${token}`
+				api.defaults.headers.Authorization = `Bearer ${token}`;
 				
 				setUser({
 					name: verify.name, 

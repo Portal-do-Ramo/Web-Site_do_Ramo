@@ -98,6 +98,10 @@
           column-gap: 10px;
         }
 
+        .addressInput {
+          margin-top: 15px;
+        }
+
         span {
           margin-top: 15px;
           font-size: 0.9rem;
@@ -116,6 +120,7 @@
       flex-direction: column;
       margin-left: 100px;
       width: fit-content;
+      gap: 10px;
 
       span {
         margin-top: 15px;

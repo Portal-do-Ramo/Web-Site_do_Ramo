@@ -56,7 +56,7 @@ export default function Page1() {
 							<input type="text" placeholder='Sobrenome' value={lastName} onChange={(event) => setLastName(event.target.value)}></input>
 						</div>
 						
-						<div className={styles.loc}>
+						<div className={styles.addressInput}>
 							<input type="text"
 								placeholder='Endereço'
 								value={address}

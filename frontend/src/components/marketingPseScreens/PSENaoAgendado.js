@@ -1,12 +1,14 @@
-import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import { FiDownload } from "react-icons/fi"
-import { MdOutlineFileDownloadOff } from "react-icons/md"
-import { toast } from "react-toastify"
-import api from "../../../services/api"
-import styles from "../PSE/styles.module.scss"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
-export default function PSENaoAgendado() {
+import { FiDownload } from "react-icons/fi";
+import { MdOutlineFileDownloadOff } from "react-icons/md";
+
+import styles from "../../pages/marketing/PSE/styles.module.scss";
+import api from '../../services/api';
+
+function PSENaoAgendado() {
 	const router = useRouter();
 	const [beginDate, setBeginDate] = useState("");
 	const [endDate, setEndDate] = useState("");
@@ -19,12 +21,12 @@ export default function PSENaoAgendado() {
 		setEndDate(date.toISOString().slice(0, 16));
 
 		async function checkPSEFile() {
-		try {
-			await api.get("/download/check/pse.csv");
-			setIsDownloadActive(true);
-		} catch (error) {
-			setIsDownloadActive(false);
-		}
+			try {
+				await api.get("/download/check/pse.csv");
+				setIsDownloadActive(true);
+			} catch (error) {
+				setIsDownloadActive(false);
+			}
 		}
 
 		checkPSEFile();
@@ -129,3 +131,5 @@ export default function PSENaoAgendado() {
 		</>
 	)
 }
+
+export {PSENaoAgendado};

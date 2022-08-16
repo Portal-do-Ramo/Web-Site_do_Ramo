@@ -26,7 +26,7 @@ export default function PSE() {
     }
 
     return (
-        <div>
+        <>
             <Head>
                 <title>PSE | IEEE CEFET-RJ</title>
             </Head>
@@ -121,6 +121,6 @@ export default function PSE() {
             </div>
 
             <Footer/>
-        </div>
+        </>
     )
 }
