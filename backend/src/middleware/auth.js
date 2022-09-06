@@ -18,7 +18,7 @@ function auth(req, res, next){
 	const [ scheme, token ] = parts;
 
 	if(!/^Bearer$/i.test(scheme))
-		return res.status(401).send({error: 'Token malformatted'});
+		return res.status(401).send({error: 'Token malformed'});
     
 	jwt.verify(token, process.env.TOKEN_HASH, (err) => {
 		if(err) return res.status(401).send({ error: 'Token invalid'});
