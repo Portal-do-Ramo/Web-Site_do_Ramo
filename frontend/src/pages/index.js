@@ -30,12 +30,13 @@ export default function Home({ crews }) {
             <h1>Nossa História</h1>
 
             <p>
-              "O Ramo Estudantil IEEE teve um inicio humilde em 2004, mas voltou mais forte em 2016, desde então crescendo passo a passo.
+              O Ramo Estudantil IEEE teve um inicio humilde em 2004, mas voltou mais forte em 2016, desde então crescendo passo a passo.
               Começou focado somente na parte de programação computacional, mas conforme o tempo expandiu as áreas de atuação, criando 
               equipes para cada uma dessas áreas.
-
+              <br />
+              <br />
               Buscamos auxiliar no crescimento das pessoas tanto como profissional como quanto pessoa, com projetos em equipe que 
-              aceitam qualquer nível de expriência, desde que esteja disposto/a a aprender."
+              aceitam qualquer nível de experiência, desde que esteja disposto/a a aprender.
             </p>
           </div>
 

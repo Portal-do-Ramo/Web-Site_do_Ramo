@@ -11,6 +11,9 @@
   cursor: pointer;
 
   img {
+    background: var(--contraste);
+    padding: 9px;
+    border-radius: 5px;
     max-width: 58px;
   }
 

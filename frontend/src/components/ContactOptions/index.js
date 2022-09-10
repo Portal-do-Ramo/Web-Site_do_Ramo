@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from "next/router"
 
 import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import { FiMail, FiMapPin, FiUsers } from 'react-icons/fi';
@@ -10,9 +11,11 @@ import Map from '../Map'
 import styles from './styles.module.scss'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-export default function ContactButton({ text, image }) {
+export default function ContactButton() {
     const [buttonSelected, setButtonSelected] = useState(0);
     const [isEmailCopied, setIsEmailCopied] = useState(false);
+
+    const router = useRouter();
 
     function handleCopyEmail() {
         navigator.clipboard.writeText("sitedoramo@gmail.com");
@@ -64,21 +67,21 @@ export default function ContactButton({ text, image }) {
             <Map actived={buttonSelected === 0 ? true : false}/>
 
             <div className={styles.social} id={buttonSelected !== 1 ? styles.disableSocial : ""}>
-                <button className={styles.socialButton}>
+                <button className={styles.socialButton} onClick={() => window.open("https://www.linkedin.com/company/ieeecefet", "_blank")}>
                     <span id={styles.linkedin}>
                         <FaLinkedinIn className={styles.icon}/>
                     </span>   
                     Linkedin
                 </button>
 
-                <button className={styles.socialButton}>
+                <button className={styles.socialButton} onClick={() => window.open("https://www.linkedin.com/company/ieeecefet", "_blank")}>
                     <span id={styles.facebook}>
                         <FaFacebookF className={styles.icon}/>
                     </span>   
                     Facebook
                 </button>
 
-                <button className={styles.socialButton}>
+                <button className={styles.socialButton} onClick={() => window.open("https://www.instagram.com/ieeecefet", "_blank")}>
                     <span id={styles.instagram}>
                         <BsInstagram className={styles.icon}/>
                     </span>   

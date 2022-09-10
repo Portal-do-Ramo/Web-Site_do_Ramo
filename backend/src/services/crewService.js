@@ -44,7 +44,7 @@ module.exports = {
 
         await knex("crews").where({id}).update({
             ...crew,
-            imageURL: `${crew.name}_avatar.${Crew.imageURL.split(".")[1]}`
+            imageURL: `${crew.name}_crew_avatar.png`
         });
 
         if (fs.existsSync(`./uploads/${Crew.imageURL}`))

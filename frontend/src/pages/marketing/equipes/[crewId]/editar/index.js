@@ -4,7 +4,6 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import MarketingMenuRoutes from "../../../../../components/MarketingMenuRoutes";
-import EquipeAPI from "../../../../../services/equipeAPI";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../../../contexts/AuthContext";
 

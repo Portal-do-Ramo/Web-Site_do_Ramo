@@ -4,8 +4,6 @@
     border-radius: 10px;
 
     background-color: var(--contraste);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    
     transition: background-color .7s ease;
 
     article {
@@ -63,7 +61,7 @@
 }
 
 .cards:hover {
-    background: var(--button-trasition);
+    background: #0a4e8a;
     transition: background-color .2s ease;
 }
 

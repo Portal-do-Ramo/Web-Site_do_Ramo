@@ -57,10 +57,10 @@ export default function Sobre(){
                                 <div className={styles.historyArrow}></div>
                                 <h1>O que é o Ramo ?</h1>
                                 <p> 
-                                    "O Ramo estudantil IEEE é uma extensão que busca desenvolver pessoas e profissionais 
+                                    O Ramo estudantil IEEE é uma extensão que busca desenvolver pessoas e profissionais 
                                     por meio de projetos colaborativos em todas equipes.
                                     O espírito de camaradagem existente no Ramo ajuda a melhor confecção de projetos e 
-                                    apoia o desenvolvimento dos seus membros."
+                                    apoia o desenvolvimento dos seus membros.
                                 </p>
                             </article>
 

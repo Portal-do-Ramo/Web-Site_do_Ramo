@@ -1,4 +1,3 @@
-import api from "../../services/api";
 import styles from "./styles.module.scss";
 
 export function ProjectCard({ project, onCLick, active }) {
