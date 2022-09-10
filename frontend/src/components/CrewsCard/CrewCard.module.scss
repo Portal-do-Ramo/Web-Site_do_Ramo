@@ -1,4 +1,4 @@
-.cards {
+.cards, .wieCard {
     width: 260px;
     height: 280px;
     border-radius: 10px;
@@ -35,18 +35,17 @@
             color: white;
         }
     }
-
 }
 
 @media (max-width: 700px) {
-    .cards {
+    .cards, .wieCard {
         width: 210px;
         height: 230px;
     }
 }
 
 @media (max-width: 500px) {
-    .cards {
+    .cards, .wieCard {
         width: 150px;
         height: 170px;
 
@@ -68,11 +67,11 @@
     transition: background-color .2s ease;
 }
 
-.cards:first-child {
+.wieCard {
     background-color: var(--wie);
 }
 
-.cards:first-child:hover {
+.wieCard:hover {
     background-color: var(--wie-trasition);
     transition: background-color .2s ease;
 }

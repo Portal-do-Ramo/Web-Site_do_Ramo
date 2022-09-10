@@ -2,8 +2,8 @@ import styles from './CrewCard.module.scss'
 import Link from "next/link"
 
 export default function Card({ index, image, name }) {
-    return (           
-        <section className={styles.cards}>
+    return (
+        <section className={name === "WIE" ? styles.wieCard : styles.cards }>
             <Link
                 href={{ 
                     pathname:"/equipes", 
