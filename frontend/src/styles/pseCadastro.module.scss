@@ -16,13 +16,25 @@
   background-position: left top;
   background-clip: border-box;
   background-size: 75%;
-
+  
   @media (min-height: 890px) {
     background-size: contain;
   }
-
-  @media (min-width: 1300px) {
+  
+  @media (min-width: 1300px) and (max-height: 845px) {
     background-size: 950px;
+  }
+
+  @media (min-width: 1430px) and (max-height: 845px) {
+    background-size: 70%;
+  }
+
+  @media (min-width: 1300px) and (min-height: 845px) {
+    background-position: -30% top;
+  }
+
+  @media (min-width: 1430px) and (min-height: 845px) {
+    background-size: 75%;
   }
 
   h1 {
