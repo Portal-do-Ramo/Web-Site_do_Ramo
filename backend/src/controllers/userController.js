@@ -15,7 +15,7 @@ module.exports = {
         } catch (err) {
             return res
                 .status(422)
-                .json({message: err.message}); //melhorar a lógica para usuário já cadastrado
+                .json({message: err.message});
         }
     },
 

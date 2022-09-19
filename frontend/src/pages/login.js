@@ -67,7 +67,9 @@ export default function Login(){
                         <div className={styles.radioContainer}>
                             <label htmlFor="manter-conectado"><input type="checkbox" id="manter-conectado"/> Matenha-me conectado</label>
                             <span>Esqueceu a senha?</span>
-                        </div><br/>    
+                        </div>
+                        
+                        <br/>
                         
                         <section className={styles.buttonsContainer}>
                             <button type="button" onClick={() => router.push("/")}>Voltar</button>

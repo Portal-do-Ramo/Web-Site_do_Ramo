@@ -1,0 +1,141 @@
+.all {
+	display: flex;
+	font-family: 'Poppins', sans-serif;
+	min-height: 100vh;
+	background-color: var(--marketing-brackground);
+	overflow-y: auto;
+	
+	.pageContent {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+		margin-left: 280px;
+		background: url("../../../../public/pse_formulario.svg") no-repeat;
+		background-clip: content-box;
+		background-size: 500px 600px;
+		background-position: right bottom;
+
+		@media (max-width: 1184px) {
+			background-size: 400px 500px;
+		}
+
+		@media (max-width: 1080px) {
+			background: none;
+		}
+		
+		@media (max-width: 920px) {
+			align-items: flex-start;
+			margin-left: 350px;
+		}
+
+		.menuRoutes {
+			display: flex;
+			width: 80%;
+		}
+		
+		.content {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 50px 0;
+			width: 80%;
+
+			article {
+				display: flex;
+				flex-direction: column;
+				row-gap: 15px;
+			}
+			
+			h1 {
+				font-weight: 800;
+				font-size: 1.8rem;
+				margin-bottom: 15px;
+			}
+
+			.textInput {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: 1px solid #CFCFCF;
+				border-radius: 5px;
+				background: #fff;
+				cursor: text;
+				width: 400px;
+
+				svg {
+					font-size: 1.5rem;
+					margin-left: 20px;
+					color: #9A9A9A;
+					margin-right: 20px;
+				}
+
+				input {
+					width: 100%;
+					font-family: 'Poppins', sans-serif;
+					margin: none;
+					padding: 13px 13px 13px 0;
+					border: none;
+					border-radius: 5px;
+					outline: none;
+
+					&::placeholder {
+						color: #9A9A9A;
+					}
+				}
+			}
+
+			.buttonRow {
+				display: flex;
+				column-gap: 30px;
+				margin-top: 15px;
+
+				.cancelButton, .createButton {
+					padding: 15px 0px;
+					border: 0;
+					border-radius: 5px;
+					background-color: #D5E0EC;
+					color: #0D5FAA;
+					cursor: pointer;
+					transition: .2s ease;
+					font-weight: 600;
+					font-size: 0.8rem;
+					width: 100%;
+				}
+
+				.cancelButton:hover, .createButton:hover {
+					transform: scale(1.05);
+				}
+	
+				.createButton {
+					background-color: #0D5FAA;
+					color: white;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1000px) {
+	.pageContent {
+		align-items: flex-start !important;
+		margin-left: 0px !important;
+		padding: 0px 0px 0px 50px;
+	}
+}
+
+@media (max-width: 500px) {
+	.pageContent {
+		padding: 0px 0px 0px 20px;
+
+		.content {
+			h1 {
+			font-size: 1.4rem !important;
+			}
+			
+			p {
+			font-size: 1rem !important;
+			}
+		}
+	}
+}

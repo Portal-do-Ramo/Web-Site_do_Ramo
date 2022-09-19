@@ -5,6 +5,8 @@ import MarketingMenuRoutes from "../../components/MarketingMenuRoutes";
 import MarketingNavBar from "../../components/MarketingNavBar";
 import { AuthContext } from "../../contexts/AuthContext";
 import styles from "../../styles/marketing.module.scss";
+import { HiUserAdd } from "react-icons/hi"; 
+import Link from "next/link";
 
 export default function index() {
     const router = useRouter();
@@ -33,11 +35,11 @@ export default function index() {
 					<title>Marketing - Inicio | IEEE CEFET-RJ</title>
 				</Head>
 	
-				<MarketingNavBar page="home" user={user ? user : null} />
+				<MarketingNavBar page="inicio" user={user ? user : null} />
 	
 				<div className={styles.pageContent}>
 					<section className={styles.menuRoutes}>
-						<MarketingMenuRoutes routesName={`Home`} routes={`/`}/>
+						<MarketingMenuRoutes routesName={`Inicio`} routes={`/`}/>
 					</section>
 	
 					<section className={styles.content}>
@@ -53,6 +55,13 @@ export default function index() {
 							<p>
 								Além de poder controlar o sistema do PSE. 
 							</p>
+
+							<Link href={"/marketing/cadastro"}>
+								<span className={styles.link}>
+									<HiUserAdd/>
+									Criar novo usuário
+								</span>
+							</Link>
 						</article>
 					</section>
 				</div>
