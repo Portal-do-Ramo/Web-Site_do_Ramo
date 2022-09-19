@@ -82,6 +82,10 @@
 					&::placeholder {
 						color: #9A9A9A;
 					}
+
+					@media (max-width: 300px) {
+						font-size: 0.7rem;
+					}
 				}
 			}
 
@@ -101,6 +105,10 @@
 					font-weight: 600;
 					font-size: 0.8rem;
 					width: 100%;
+
+					@media (max-width: 300px) {
+						font-size: 0.6rem;
+					}
 				}
 
 				.cancelButton:hover, .createButton:hover {
@@ -130,11 +138,25 @@
 
 		.content {
 			h1 {
-			font-size: 1.4rem !important;
+				font-size: 1.4rem !important;
 			}
-			
-			p {
-			font-size: 1rem !important;
+
+			.textInput {
+				width: calc(100vw - 40px) !important;
+
+				svg {
+					font-size: 1.1rem !important;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 300px) {
+	.pageContent {
+		.content {
+			h1 {
+				font-size: 1.2rem !important;
 			}
 		}
 	}
