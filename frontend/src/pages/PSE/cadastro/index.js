@@ -6,7 +6,7 @@ import api from '../../../services/api';
 import Page1 from './_page1';
 import Page2 from './_page2';
 import Page3 from './_page3';
-import PSEFormHeader from '../../../components/pseFormHeader';
+import PSEFormHeader from '../../../components/PSEFormHeader';
 import styles from '../../../styles/pseCadastro.module.scss';
 import Head from 'next/head';
 import { isBefore } from 'date-fns';
