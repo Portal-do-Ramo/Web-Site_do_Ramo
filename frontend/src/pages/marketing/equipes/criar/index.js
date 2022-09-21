@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import MarketingMenuRoutes from "../../../../components/marketingMenuRoutes"
+import MarketingMenuRoutes from "../../../../components/MarketingMenuRoutes"
 import MarketingNavBar from "../../../../components/MarketingNavBar"
 import { AuthContext } from "../../../../contexts/AuthContext";
 import api from "../../../../services/api";
