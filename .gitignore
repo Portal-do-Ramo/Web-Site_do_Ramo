@@ -33,7 +33,5 @@ yarn-error.log*
 # vercel
 .vercel
 
-/backend/uploads
-
 **/.vscode
 frontend/yarn.lock
