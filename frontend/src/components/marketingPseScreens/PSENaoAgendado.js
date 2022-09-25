@@ -8,28 +8,16 @@ import { MdOutlineFileDownloadOff } from "react-icons/md";
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
 
-function PSENaoAgendado() {
+function PSENaoAgendado({isDownloadActive}) {
 	const router = useRouter();
 	const [beginDate, setBeginDate] = useState("");
 	const [endDate, setEndDate] = useState("");
-	const [isDownloadActive, setIsDownloadActive] = useState(false);
 
 	useEffect(() => {
 		let date = new Date();
 		date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
 		setBeginDate(date.toISOString().slice(0, 16));
 		setEndDate(date.toISOString().slice(0, 16));
-
-		async function checkPSEFile() {
-			try {
-				await api.get("/download/check/pse.csv");
-				setIsDownloadActive(true);
-			} catch (error) {
-				setIsDownloadActive(false);
-			}
-		}
-
-		checkPSEFile();
 	}, []);
 
 	async function handleDownloadPSEFile() {
