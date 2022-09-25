@@ -29,9 +29,9 @@
         color: white;
         background-color: var(--azul-ramo);
         background-image: url(../../public/Ramo_cinza.svg);
-        background-size: 50%;
+        background-size: 40%;
         background-repeat: no-repeat;
-        background-position: 120% 110%;
+        background-position: 120% 130%;
 
         @media (max-width: 680px) {
             padding: 8rem 0;
@@ -256,8 +256,157 @@
         }
     }
 
-    /* ----- Fale conosco ----- */
+    /* ----- Nossa missão ----- */
+    .mission {
+        background: var(--azul-ramo);
+        width: 100vw;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 96px;
+        padding-top: 90px;
 
+        background-image: url(../../public/Ramo_cinza_cortado.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-origin: content-box;
+
+        div {
+            margin-bottom: 90px;
+            height: 200px;
+        }
+
+        article {
+            margin-left: 60px;
+            width: 305px;
+            margin-top: -90px;
+        }
+
+        span {
+            font-weight: 700;
+            font-size: 2.7rem;
+            color: #fff;
+        }
+        
+        p {
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: #fff;
+            text-align: justify;
+        }
+
+        @media (max-width: 720px) {
+            img {
+                height: 130px;
+            }
+
+            article {
+                margin-left: 40px;
+                width: 260px;
+            }
+
+            span {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 530px) {
+            height: 350px;
+
+            img {
+                height: 100px;
+            }
+
+            article {
+                margin-left: 40px;
+                width: 220px;
+            }
+
+            span {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    /* ----- Nossa visão ----- */
+    .vision {
+        background: var(--marketing-brackground);
+        width: 100vw;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        article {
+            margin-left: 80px;
+            width: 320px;
+        }
+
+        span {
+            color: var(--azul-ramo);
+            font-weight: 700;
+            font-size: 2.7rem;
+        }
+        
+        p {
+            color: var(--azul-ramo);
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 720px) {
+            img {
+                width: 150px;
+            }
+
+            article {
+                margin-left: 40px;
+                width: 260px;
+            }
+
+            span {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 530px) {
+            height: 350px;
+
+            img {
+                width: 100px;
+            }
+
+            article {
+                margin-left: 40px;
+                width: 220px;
+            }
+
+            span {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    /* ----- Fale conosco ----- */
     .contactUs {
         display: flex;
         flex-direction: column;

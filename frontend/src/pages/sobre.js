@@ -4,6 +4,7 @@ import ValueContainer from '../components/ValueContainer'
 import ContactOptions from '../components/ContactOptions'
 import styles from "../styles/sobre.module.scss"
 import Head from 'next/head'
+import Image from "next/image";
 
 export default function Sobre(){
     let values = [
@@ -134,7 +135,25 @@ export default function Sobre(){
                         <ValueContainer props={values[4]}/>
                         <ValueContainer props={values[5]}/>
                     </section>
+                </section>
+
+                <section className={styles.mission}>
+                    <div>
+                        <Image src="/mission_illustration.svg" width="200px" height="200px"/>
+                    </div>
                     
+                    <article>
+                        <span>Nossa Missão</span>
+                        <p>Desenvolver pessoas através de projetos técnicos e/ou sociais</p>
+                    </article>
+                </section>
+
+                <section className={styles.vision}>
+                    <Image src="/vision_illustration.svg" width="200px" height="200px"/>
+                    <article>
+                        <span>Nossa Visão</span>
+                        <p>Ser uma extensão que promove o crescimento dos membros e impacto social através de inovação de diferentes tecnologias.</p>
+                    </article>
                 </section>
 
                 <section className={styles.contactUs}>
