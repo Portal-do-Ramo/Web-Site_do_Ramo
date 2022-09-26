@@ -21,7 +21,7 @@ export default function Header({page, children}) {
 				<img src="/Ramo_logo.svg" alt="logo" className={styles.logo}/>
 
 				<section>
-					<h1>Ramo Estudantil IEEE CEFET-RJ</h1>
+					<h1>Ramo Estudantil IEEE CEFET/RJ</h1>
 					<p>Desenvolvendo pessoas através de projetos técnicos e/ou sociais</p>
 				</section>
 			</div>
