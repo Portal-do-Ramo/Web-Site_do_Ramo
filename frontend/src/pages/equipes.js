@@ -205,7 +205,18 @@ export default function Equipes({ crews }) {
 
 							<div className={styles.description}>
 								<h1>{crews[crewIndex].crew.name}</h1>
-								<p>{crews[crewIndex].crew.about}</p>
+
+								{(crews[crewIndex].crew.about.split(/\r?\n/g)).map(info => {
+									if (info !== "") {
+										return (
+											<>
+												<p>{info}</p>
+												<br />
+											</>
+										)
+									}
+								}
+								)}
 							</div>
 						</section>
 						

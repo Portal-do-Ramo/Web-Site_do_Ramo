@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Modal.module.scss";
 
 export function ProjectDetail({ project }) {
+	const urlRegex = /(https?:\/\/[^\s]+)/g;
+
 	return (
 		<div className={styles.main}>
 			<div className={styles.imageHolder}>
@@ -10,7 +12,19 @@ export function ProjectDetail({ project }) {
 
 			<div className={styles.projectDescription}>
 				<strong> {project.name} </strong>
-				<p> {project.description} </p>
+				{project.description.split(/\r?\n/g).map(info => {
+					if (info !== "") {
+						return (
+							info.split(urlRegex).map(description => {
+								if (description.match(urlRegex)) {
+									return <a href={description}>{description}</a>
+								} else if (description !== "") {
+									return <p>{description}</p>; 
+								}
+							})
+						)
+					}
+				})}
 				
 				{project.ended ? (
 					<span>Status: <strong>Finalizado</strong></span>
