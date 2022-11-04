@@ -75,20 +75,25 @@ export default function Home({ crews }) {
         <div className={styles.parcerias}>
           <h3>Parceiros</h3>
           <div className={styles.partnerGrid}>
-            <img id={styles.motim} src="/sponsor-logo-motim.png"></img>
-            <img id={styles.tecci} src="/sponsor-logo-TEC_CI_RGB.png"></img>
-            <img id={styles.squair} src="/sponsor-logo-squair.jpg"></img>
-            <img id={styles.u} src="/sponsor-logo-Universinagem.png"></img>
+            <article>
+              <img id={styles.motim} src="/sponsor-logo-motim.png"></img>
+              <img id={styles.tecci} src="/sponsor-logo-TEC_CI_RGB.png"></img>
+              <img id={styles.squair} src="/sponsor-logo-squair.jpg"></img>
+              <img id={styles.u} src="/sponsor-logo-Universinagem.png"></img>
+            </article>
             
-            <img id={styles.voitto} src="/sponsor-logo-voitto.png"></img>
-            <img id={styles.botz} src="/sponsor-logo-botz-loja.png"></img>
-            <img id={styles.pololu} src="/sponsor-pololu-logo.jpg"></img>
-            <img id={styles.solidworks} src="/sponsor-logo-solidworks.png"></img>
+            <article>
+              <img id={styles.voitto} src="/sponsor-logo-voitto.png"></img>
+              <img id={styles.botz} src="/sponsor-logo-botz-loja.png"></img>
+              <img id={styles.pololu} src="/sponsor-pololu-logo.jpg"></img>
+              <img id={styles.solidworks} src="/sponsor-logo-solidworks.png"></img>
+            </article>
 
-            <img id={styles.betabit} src="/sponsor-logo-Betabit.jpg"></img>
-            <img id={styles.alura} src="/sponsor-logo-alura.png"></img>
-            <img id={styles.altium} src="/sponsor-logo-altium.png"></img>
-            <img id={styles.mlabs} src="/sponsor-logo-mlabs.png"></img>
+            <article>
+              <img id={styles.betabit} src="/sponsor-logo-Betabit.png"></img>
+              <img id={styles.altium} src="/sponsor-logo-altium.png"></img>
+              <img id={styles.mlabs} src="/sponsor-logo-mlabs.png"></img>
+            </article>
           </div>
         </div>
       </div>

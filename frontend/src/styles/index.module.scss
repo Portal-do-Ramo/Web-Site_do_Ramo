@@ -261,12 +261,18 @@
     }
     
     .partnerGrid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        display: flex;
+        flex-direction: column;
         justify-items: center;
         align-items: center;
-        gap: 10px 0;
-        width: 1112px;
+        gap: 30px;
+
+        article {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 1000px;
+        }
 
         #motim, #squair, #voitto {
             width: 130px;
@@ -299,7 +305,6 @@
         }
 
         #betabit {
-            width: 140px;
             height: 140px;
         }
 
