@@ -42,7 +42,12 @@ export default function PSE() {
                             na faculdade em prática e, além disso, se divertir muito,
                             você veio ao lugar certo! 
                             </p>
-                            <button type="button">Conheça nossas equipes</button>
+                            <button
+                                type="button"
+                                onClick={() => router.push("/equipes")}
+                            >
+                                Conheça nossas equipes
+                            </button>
                         </div>
                     </article>
                 </section>
