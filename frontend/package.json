@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "serve-json": "json-server --watch --port 5000 --routes routes.json equipes.json"
+    "server-json": "json-server --watch --port 5000 --routes routes.json equipes.json"
   },
   "dependencies": {
     "axios": "^0.21.1",
