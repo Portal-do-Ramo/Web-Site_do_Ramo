@@ -261,11 +261,13 @@
     }
     
     .partnerGrid {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 30px;
         justify-items: center;
         align-items: center;
-        gap: 30px;
+        width: 100%;
+        gap: 10px 0;
 
         article {
             display: flex;
