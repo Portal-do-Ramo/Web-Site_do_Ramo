@@ -58,10 +58,15 @@ export default function Sobre(){
                                 <div className={styles.historyArrow}></div>
                                 <h1>O que é o Ramo ?</h1>
                                 <p> 
-                                    O Ramo estudantil IEEE é uma extensão que busca desenvolver pessoas e profissionais 
-                                    por meio de projetos colaborativos em todas equipes.
-                                    O espírito de camaradagem existente no Ramo ajuda a melhor confecção de projetos e 
-                                    apoia o desenvolvimento dos seus membros.
+                                    O Ramo Estudantil IEEE CEFET/RJ é uma organização de estudantes de graduação do CEFET/RJ Campus Maracanã que tem por objetivo o desenvolvimento de pessoas através de projetos técnicos e sociais, e possui duas vertentes:
+                                </p>
+
+                                <p>
+                                    <strong>O braço estudantil do IEEE</strong>, que é ligada ao Instituto dos Engenheiros Eletricistas e Eletrônicos (IEEE), quem contém cinco capítulos estudantis e um grupo de afinidade.
+                                </p>
+
+                                <p>
+                                    <strong>O projeto de extensão universitária</strong>, que é vinculada ao CEFET/RJ, Campus Maracanã, e possui oito equipes e diversos subprojetos.
                                 </p>
                             </article>
 
@@ -69,18 +74,13 @@ export default function Sobre(){
                                 <div className={styles.familyArrow}></div>
                                 <h2>Nossa família</h2>
                                 <div className={styles.familyPicture}><img src="/galerinha_ramo.png"/></div>
-                                <p>Lorem ipsum dolor sit amet, consectetur 
-                                adipiscing elit. Massa tempor, eu aenean 
-                                nisi, tortor. Tellus, posuere diam nunc ac ut 
-                                iaculis. Pharetra odio id netus eu a, 
-                                volutpat porttitor urna. Ac gravida in ac 
-                                viverra nibh. Nulla lectus amet, vel mattis. 
-                                Mauris, vel et massa netus sollicitudin 
-                                ligula. Ipsum aliquam a, sed nisi, mauris 
-                                eu risus ut. Ullamcorper libero, lectus 
-                                eleifend tincidunt viverra adipiscing 
-                                facilisis sed luctus.</p>
+                                <p>
+                                    Somos uma organização de estudantes de graduação do CEFET/RJ com o sonho de desenvolver pessoas.
+                                </p>
 
+                                <p>
+                                    Somos vinculados ao IEEE, Instituto de Engenheiros Eletricistas e Eletrônicos e possuímos 8 equipes, sendo elas: WolfPower, WolfBotz, WolfByte, RocketWolf, SocialWolf, WIE, Assessoria de Gestão e Marketing.
+                                </p>
                             </article>
                         </section>
                          
