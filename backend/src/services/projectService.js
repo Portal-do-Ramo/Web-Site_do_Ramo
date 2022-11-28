@@ -126,22 +126,22 @@ module.exports = {
         if (project.name) {
             project = {
                 ...project,
-                imageURL: `${project.name}_project_banner.${Project.imageURL.split(".")[1]}`,
-                logoURL: `${project.name}_project_avatar.${Project.logoURL.split(".")[1]}`
+                imageURL: `${project.name}_project_banner.${(Project.imageURL.toLowerCase()).split(".")[1]}`,
+                logoURL: `${project.name}_project_avatar.${(Project.logoURL.toLowerCase()).split(".")[1]}`
             }
         }
 
         if (fs.existsSync(`./uploads/${Project.imageURL}`))
             fs.rename(
                 `./uploads/${Project.imageURL}`, 
-                `./uploads/${project.name}_project_banner.${Project.imageURL.split(".")[1]}`,
+                `./uploads/${project.name}_project_banner.${(Project.imageURL.toLowerCase()).split(".")[1]}`,
                 () => {}
             );
 
         if (fs.existsSync(`./uploads/${Project.logoURL}`))
             fs.rename(
                 `./uploads/${Project.logoURL}`, 
-                `./uploads/${project.name}_project_avatar.${Project.logoURL.split(".")[1]}`,
+                `./uploads/${project.name}_project_avatar.${(Project.logoURL.toLowerCase()).split(".")[1]}`,
                 () => {}
             );
 

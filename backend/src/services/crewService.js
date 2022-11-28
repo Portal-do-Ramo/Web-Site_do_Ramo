@@ -44,13 +44,13 @@ module.exports = {
 
         await knex("crews").where({id}).update({
             ...crew,
-            imageURL: `${crew.name}_crew_avatar.png`
+            imageURL: `${crew.name.toLowerCase()}_crew_avatar.png`
         });
 
         if (fs.existsSync(`./uploads/${Crew.imageURL}`))
             fs.rename(
                 `./uploads/${Crew.imageURL}`, 
-                `./uploads/${crew.name}_crew_avatar.${Crew.imageURL.split(".")[1]}`,
+                `./uploads/${crew.name.toLowerCase()}_crew_avatar.${(Crew.imageURL.toLowerCase()).split(".")[1]}`,
                 () => {}
             );
 

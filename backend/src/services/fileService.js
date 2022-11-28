@@ -3,7 +3,7 @@ const fs = require("fs");
 module.exports = {
   async uploadOne(image) {
     if (image) {
-      return `${process.env.BASE_URL}/api/${image.destination}/${image.filename}`;
+      return `${process.env.BASE_URL}/api/${image.destination}/${(image.filename).toLowerCase()}`;
     } else {
       throw new Error("Imagem não pode ser enviada!");
     }
@@ -11,7 +11,7 @@ module.exports = {
 
   async removeImage(imgName) {
     try {
-      await fs.promises.unlink(`./uploads/${imgName}`);
+      await fs.promises.unlink(`./uploads/${imgName.toLowerCase()}`);
       return ("Imagem deletada com sucesso!");
     } catch (error) {
       throw new Error("Essa imagem não existe");

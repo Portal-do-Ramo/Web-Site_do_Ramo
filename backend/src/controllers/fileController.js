@@ -6,8 +6,8 @@ module.exports = {
     const { name } = req.params;
 
     try {
-      if (fs.existsSync(`./uploads/${name}`)) {
-        return res.sendFile(`/uploads/${name}`, { root: '.' });
+      if (fs.existsSync(`./uploads/${name.toLowerCase()}`)) {
+        return res.sendFile(`/uploads/${name.toLowerCase()}`, { root: '.' });
       } else {
         return  res.sendFile(`uploads/ramo_logo.svg`, { root: '.' });
       }
