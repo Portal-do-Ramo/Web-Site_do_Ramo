@@ -68,9 +68,9 @@ module.exports = {
         let miliseconds = Date.parse(beginning)
         
         const projectValidation = Joi.object({
-            name: Joi.string().required(),    
+            name: Joi.string().required(),  
             description: Joi.string().required(),
-            members: Joi.array().items(Joi.string()).required(),
+            members: Joi.string(),
             beginning: Joi.date().timestamp(),
             ended: Joi.date().timestamp(),
             crew_id: Joi.string(),
@@ -92,15 +92,13 @@ module.exports = {
             throw new Error("Projeto já existe!");
         }
         
-        const membersString = members.join();
-
         await knex("projects").insert({
             id: v4(),
             name,
             description,
             imageURL,
             logoURL,
-            members: membersString,
+            members,
             beginning, 
             ended,
             crew_id: crew.id
@@ -119,7 +117,7 @@ module.exports = {
         if (project.members && project.name) {
             project = {
                 ...project,
-                members: project.members.join(),
+                members: project.members,
             }
         }
 

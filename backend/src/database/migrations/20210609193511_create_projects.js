@@ -5,7 +5,7 @@ exports.up = knex => {
       table.string("description", 1400).notNullable();
       table.string("imageURL").notNullable();
       table.string("logoURL").notNullable();
-      table.string("members", 1000).notNullable();
+      table.string("members", 1000);
       table.timestamp("beginning").notNullable();
       table.timestamp("ended");
       table.timestamps(true, true);

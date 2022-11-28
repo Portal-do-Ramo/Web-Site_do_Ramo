@@ -66,10 +66,6 @@ export default function projetoEditar({ crew, project }){
 
 	async function handleUpdateProject() {
 		try {
-			let membersFormatted = members.split(",");
-
-			membersFormatted = membersFormatted.map(member => member.replace(" ", ""))
-
 			let formData = new FormData();
 			const logoImageFile = document.getElementById("logoInput");
 			const bannerImageFile = document.getElementById("bannerInput");
@@ -118,7 +114,7 @@ export default function projetoEditar({ crew, project }){
 						description,
 						beginning: beginDateFormatted,
 						ended: endDateFormatted,
-						members: membersFormatted,
+						members,
 						crew_id: crew.id
 					}
 				});
@@ -129,7 +125,7 @@ export default function projetoEditar({ crew, project }){
 						description,
 						beginning: beginDateFormatted,
 						ended: null,
-						members: membersFormatted,
+						members,
 						crew_id: crew.id
 					}
 				});
@@ -206,7 +202,7 @@ export default function projetoEditar({ crew, project }){
 		
 						<div className={styles.description}>
 							<div className={styles.nameHolder}>
-								<span>Nome da equipe</span>
+								<span>Nome do projeto</span>
 								<input
 									type="text"
 									placeholder='Digite o nome do projeto'
@@ -216,7 +212,7 @@ export default function projetoEditar({ crew, project }){
 							</div>
 		
 							<div className={styles.descriptionHolder}>
-								<span>Descrição da equipe</span>
+								<span>Descrição do projeto</span>
 								<textarea
 									placeholder='Digite a descrição do projeto'
 									value={description}

@@ -55,10 +55,6 @@ export default function CriarProjeto({ crew }){
 	async function handleCreateProject() {
 		try {
 			if (logo.length > 0 && banner.length > 0 && name.length > 1 && description.length > 1 && members.length > 0) {
-				let membersFormatted = members.split(",");
-
-				membersFormatted = membersFormatted.map(member => member.replace(" ", ""))
-
 				let formData = new FormData();
 				const logoImageFile = document.getElementById("logoInput");
 				formData.append("picture", logoImageFile.files[0]);
@@ -101,7 +97,7 @@ export default function CriarProjeto({ crew }){
 						members,
 						beginning: beginDateFormatted,
 						ended: endDateFormatted,
-						members: membersFormatted,
+						members,
 						crew_id: crew.id
 					});
 					
@@ -111,7 +107,7 @@ export default function CriarProjeto({ crew }){
 						description,
 						members,
 						beginning: beginDateFormatted,
-						members: membersFormatted,
+						members,
 						crew_id: crew.id
 					});
 				}
@@ -170,7 +166,7 @@ export default function CriarProjeto({ crew }){
 		
 						<div className={styles.description}>
 							<div className={styles.nameHolder}>
-								<span>Nome da equipe</span>
+								<span>Nome do projeto</span>
 								<input
 									type="text"
 									placeholder='Digite o nome do projeto'
@@ -180,7 +176,7 @@ export default function CriarProjeto({ crew }){
 							</div>
 		
 							<div className={styles.descriptionHolder}>
-								<span>Descrição da equipe</span>
+								<span>Descrição do projeto</span>
 								<textarea
 									placeholder='Digite a descrição do projeto'
 									value={description}
