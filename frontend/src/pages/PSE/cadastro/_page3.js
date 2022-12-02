@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { AiFillLock } from 'react-icons/ai';
+import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastroInteresse.module.scss';
 
@@ -21,6 +22,8 @@ export default function Page3({ crewsNames }) {
 
 	return (
 		<section className={styles.pageContent}>
+			<PSEFormHeader page='3'/>
+
 			<h1>Interesse</h1>
 			<p>Insira seus interesses pessoais no Ramo Estudantil IEEE.</p>
 

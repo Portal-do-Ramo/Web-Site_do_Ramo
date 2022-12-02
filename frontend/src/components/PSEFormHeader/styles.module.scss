@@ -1,65 +1,66 @@
 .container {
-  display: flex;
-  width: 100%;
- 
-  align-items: center;
-  padding: 30px 0 50px 0;
+	display: flex;
+	width: 100%;
+	
+	align-items: center;
+	justify-content: space-between;
+	padding: 30px 0 50px 0;
+	max-width: 600px;
 
-  img {
-    width: 80px;
-    cursor: pointer;
-  }
+	img {
+		width: 80px;
+		cursor: pointer;
+	}
 
-  .progressContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 350px;
+	.progressContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-    article {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 0.6rem;
-      color: #fff;
-    }
+		article {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 0.6rem;
+			color: #fff;
+		}
 
-    .dots {
-      width: 18px;
-      height: 18px;
-      border-radius: 100%;
-      background: #fff;
-      cursor: pointer;
-    }
+		.dots {
+			width: 18px;
+			height: 18px;
+			border-radius: 100%;
+			background: #fff;
+			cursor: pointer;
+		}
 
-    .activeDot {
-      width: 20px;
-      height: 20px;
-      border-radius: 100%;
-      background: #0B95EE;
-      cursor: pointer;
-    }
+		.activeDot {
+			width: 20px;
+			height: 20px;
+			border-radius: 100%;
+			background: #0B95EE;
+			cursor: pointer;
+		}
 
-    .validatedDot {
-      width: 20px;
-      height: 20px;
-      border-radius: 100%;
-      background: #38B05A;
-      cursor: pointer;
-    }
+		.validatedDot {
+			width: 20px;
+			height: 20px;
+			border-radius: 100%;
+			background: #38B05A;
+			cursor: pointer;
+		}
 
-    .lines {
-      width: 70px;
-      height: 2px;
-      margin: 0 10px;
-      background: #fff;
-    }
-  }
+		.lines {
+			width: 70px;
+			height: 2px;
+			margin: 0 10px;
+			background: #fff;
+		}
+	}
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1060px) {
   .container {
-    width: 500px;
+    width: 400px;
     justify-content: space-between;
     padding-left: 0px;
 

@@ -6,7 +6,6 @@ import api from '../../../services/api';
 import Page1 from './_page1';
 import Page2 from './_page2';
 import Page3 from './_page3';
-import PSEFormHeader from '../../../components/PSEFormHeader';
 import styles from '../../../styles/pseCadastro.module.scss';
 import Head from 'next/head';
 import { isBefore } from 'date-fns';
@@ -38,12 +37,9 @@ export default function cadastro({ hasActivePSE, crewsNames }) {
 			</Head>
 
 			<section className={styles.container}>
-				<PSEFormHeader page={page}/>
-
-				{ page === "1" && <Page1/> }
+				{ page === "1" && <Page1 /> }
 				{ page === "2" && <Page2/> }
 				{ page === "3" && <Page3 crewsNames={crewsNames}/> }
-
 			</section>
 		</div>
 	)

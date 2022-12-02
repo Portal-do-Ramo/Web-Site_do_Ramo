@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { AiFillLock } from 'react-icons/ai';
 import { IMaskInput } from "react-imask";
+import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastroDados.module.scss';
 
@@ -36,6 +37,8 @@ export default function Page2() {
 
   return (
     <section className={styles.pageContent}>
+			<PSEFormHeader page='2'/>
+
       <h1>Dados da Matrícula</h1>
       <p>Insira seus dados acadêmicos.</p>
 
