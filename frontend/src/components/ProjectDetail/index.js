@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import styles from "./Modal.module.scss";
+import React from "react";
+import styles from "./styles.module.scss";
 
 export function ProjectDetail({ project }) {
 	const urlRegex = /(https?:\/\/[^\s]+)/g;
