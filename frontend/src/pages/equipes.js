@@ -206,11 +206,11 @@ export default function Equipes({ crews }) {
 							<div className={styles.description}>
 								<h1>{crews[crewIndex].crew.name}</h1>
 
-								{(crews[crewIndex].crew.about.split(/\r?\n/g)).map(info => {
+								{(crews[crewIndex].crew.about.split(/\r?\n/g)).map((info, idx) => {
 									if (info !== "") {
 										return (
 											<>
-												<p>{info}</p>
+												<p key={idx}>{info}</p>
 												<br />
 											</>
 										)
