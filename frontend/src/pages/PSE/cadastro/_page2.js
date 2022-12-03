@@ -4,7 +4,7 @@ import { AiFillLock } from 'react-icons/ai';
 import { IMaskInput } from "react-imask";
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
-import styles from '../../../styles/pseCadastroDados.module.scss';
+import styles from '../../../styles/pseCadastro.module.scss';
 
 export default function Page2() {
   const router = useRouter();
@@ -36,66 +36,102 @@ export default function Page2() {
   ];
 
   return (
-    <section className={styles.pageContent}>
-			<PSEFormHeader page='2'/>
+    // <section className={styles.pageContent}>
+	// 		<PSEFormHeader page='2'/>
 
-      <h1>Dados da Matrícula</h1>
-      <p>Insira seus dados acadêmicos.</p>
+	// 	<article className={styles.formSection}>
+	// 		<div className={styles.leftSide}>
+	// 			<div className={styles.mainForm}>
+					
+					
+	// 			</div>
 
-      <div className={styles.message}>
-        <AiFillLock/>
-        <p>
-          Levamos as questões de privacidade a sério. Você pode ter
-          certeza de que seus dados pessoais estão protegidos com 
-          segurança.
-        </p>
-      </div>
-
-      <article className={styles.formSection}>
-        <div className={styles.leftSide}>
-          <div className={styles.mainForm}>
-            <span>Matrícula <strong>*</strong></span>
-            <input 
-              type="text"
-              placeholder='Número da Matrícula'
-              value={registration}
-              onChange={(event) => setRegistration(event.target.value)}
-            ></input>
-
-            <span>Curso <strong>*</strong></span>
-            <select required value={course} onChange={(event) => setCourse(event.target.value)}>
-              <option value="" disabled defaultValue={true} hidden>Selecione seu curso</option>
-              
-              {courses.map((course, idx) => {
-                return (
-                  <option key={idx} value={course}>{course}</option>
-                )
-              })}
-            </select>
-
-            <span>Período atual <strong>*</strong></span>
-            <IMaskInput 
-              type='text' 
-              placeholder='1º período' 
-              mask={Number} 
-              min={1} 
-              max={12}
-              value={currentTimeCourse}
-              onChange={(event) => setCurrentTimeCourse(event.target.value)}
-            />
-            
-          </div>
-
-          <div className={styles.buttonsHolder}>
-            <button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=1")}>Voltar</button>
-            <button type='button' className={styles.prox} onClick={() => router.push("/PSE/cadastro?page=3")}>Próximo</button>
-          </div>
-
-        </div>
-      </article>
+	// 			<div className={styles.buttonsHolder}>
+	// 				<button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=1")}>Voltar</button>
+	// 				<button type='button' className={styles.prox} onClick={() => router.push("/PSE/cadastro?page=3")}>Próximo</button>
+	// 			</div>
+	// 		</div>
+	// 	</article>
       
-      <div className={styles.rightSide}>
-      </div>
-    </section>
+    //   <div className={styles.rightSide}>
+    //   </div>
+    // </section>
+
+	<>
+		<section className={styles.leftSide}>
+			<PSEFormHeader page='2'/>
+			
+			<article>
+				<h1>Dados da Matrícula</h1>
+				<p>Insira seus dados acadêmicos.</p>
+
+				<div className={styles.message}>
+					<AiFillLock/>
+					<p>
+						Levamos as questões de privacidade a sério. Você pode ter
+						certeza de que seus dados pessoais estão protegidos com 
+						segurança.
+					</p>
+				</div>
+
+				<div className={styles.leftForm}>
+				<span>Matrícula <strong>*</strong></span>
+					<input 
+						type="text"
+						placeholder='Número da Matrícula'
+						value={registration}
+						onChange={(event) => setRegistration(event.target.value)}
+					></input>
+
+					<span>Curso <strong>*</strong></span>
+					<select required value={course} onChange={(event) => setCourse(event.target.value)}>
+						<option value="" disabled defaultValue={true} hidden>Selecione seu curso</option>
+						
+						{courses.map((course, idx) => {
+							return (
+							<option key={idx} value={course}>{course}</option>
+							)
+						})}
+					</select>
+
+					<span>Período atual <strong>*</strong></span>
+
+					<IMaskInput 
+						type='text' 
+						placeholder='1º período' 
+						mask={Number} 
+						min={1} 
+						max={12}
+						value={currentTimeCourse}
+						onChange={(event) => setCurrentTimeCourse(event.target.value)}
+					/>
+
+					<div className={styles.buttonsHolder}>
+						<button
+							type='button'
+							className={styles.back_page2} 
+							onClick={() => router.push("/PSE/cadastro?page=1")}
+						>
+							Voltar
+						</button>
+						
+						<button 
+							type='button'
+							className={styles.next_page2}
+							onClick={() => router.push("/PSE/cadastro?page=3")}
+						>
+							Próximo
+						</button>
+					</div>
+				</div>
+			</article>
+		</section>
+
+		<section className={styles.rightSide}>
+			<article className={styles.rightForm_page2}>
+				
+			</article>
+		</section>
+	</>
   )
 }

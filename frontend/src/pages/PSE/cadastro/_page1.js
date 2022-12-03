@@ -35,21 +35,6 @@ export default function Page1() {
 	}
 
 	return (
-		// <div className={styles.holderResponsive}>
-		// 	<PSEFormHeader page='1'/>
-
-		// 	<article className={styles.pageContent}>
-		// 		<div className={styles.leftSide}>
-					
-		// 		</div>
-
-		// 		<div className={styles.rightSide}>
-					
-		// 		</div>
-		// 	</article>
-		// </div>
-
-
 		<>
 			<section className={styles.leftSide}>
 				<PSEFormHeader page='1'/>
@@ -105,7 +90,7 @@ export default function Page1() {
 					<input type="text" placeholder='Instagram' value={instagram} onChange={(event) => setInstagram(event.target.value)}/>
 					<div className={styles.buttonsHolder}>
 						<button type='button' className={styles.cancel} onClick={handleCancel}>Cancelar</button>
-						<button type='button' className={styles.prox} onClick={() => router.push("/PSE/cadastro?page=2")}>Próximo</button>
+						<button type='button' className={styles.next} onClick={() => router.push("/PSE/cadastro?page=2")}>Próximo</button>
 					</div>
 				</article>
 			</section>
