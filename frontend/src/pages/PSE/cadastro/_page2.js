@@ -18,6 +18,20 @@ export default function Page2() {
     setCurrentTimeCourse,
   } = useContext(PSEFormContext);
 
+  const currentTimesCourse = [
+    "1º período", 
+    "2º período", 
+    "3º período", 
+    "4º período", 
+    "5º período", 
+    "6º período", 
+    "7º período", 
+    "8º período", 
+    "9º período", 
+    "10º período", 
+    "Não sei definir", 
+  ];
+
   const courses = [
     "Bacharelado em Administração", 
     "Bacharelado em Ciência da Computação", 
@@ -36,27 +50,6 @@ export default function Page2() {
   ];
 
   return (
-    // <section className={styles.pageContent}>
-	// 		<PSEFormHeader page='2'/>
-
-	// 	<article className={styles.formSection}>
-	// 		<div className={styles.leftSide}>
-	// 			<div className={styles.mainForm}>
-					
-					
-	// 			</div>
-
-	// 			<div className={styles.buttonsHolder}>
-	// 				<button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=1")}>Voltar</button>
-	// 				<button type='button' className={styles.prox} onClick={() => router.push("/PSE/cadastro?page=3")}>Próximo</button>
-	// 			</div>
-	// 		</div>
-	// 	</article>
-      
-    //   <div className={styles.rightSide}>
-    //   </div>
-    // </section>
-
 	<>
 		<section className={styles.leftSide}>
 			<PSEFormHeader page='2'/>
@@ -78,7 +71,7 @@ export default function Page2() {
 				<span>Matrícula <strong>*</strong></span>
 					<input 
 						type="text"
-						placeholder='Número da Matrícula'
+						placeholder='Digite o número da Matrícula'
 						value={registration}
 						onChange={(event) => setRegistration(event.target.value)}
 					></input>
@@ -89,22 +82,27 @@ export default function Page2() {
 						
 						{courses.map((course, idx) => {
 							return (
-							<option key={idx} value={course}>{course}</option>
+								<option key={idx} value={course}>{course}</option>
 							)
 						})}
 					</select>
 
 					<span>Período atual <strong>*</strong></span>
-
-					<IMaskInput 
-						type='text' 
-						placeholder='1º período' 
-						mask={Number} 
-						min={1} 
-						max={12}
-						value={currentTimeCourse}
+					<select 
+						required 
+						value={currentTimeCourse} 
 						onChange={(event) => setCurrentTimeCourse(event.target.value)}
-					/>
+					>
+						<option value="" disabled defaultValue={true} hidden>Selecione seu período</option>
+						
+						{currentTimesCourse.map((currentTimeCourse, idx) => {
+							return (
+								<option key={idx} value={currentTimeCourse}>
+									{currentTimeCourse}
+								</option>
+							)
+						})}
+					</select>
 
 					<div className={styles.buttonsHolder}>
 						<button
