@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AiFillLock } from 'react-icons/ai';
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
-import styles from '../../../styles/pseCadastroInteresse.module.scss';
+import styles from '../../../styles/pseCadastro.module.scss';
 
 export default function Page3({ crewsNames }) {
 	const router = useRouter();
@@ -21,14 +21,14 @@ export default function Page3({ crewsNames }) {
 	} = useContext(PSEFormContext);
 
 	return (
-		<section className={styles.pageContent}>
-			<PSEFormHeader page='3'/>
+		<>
+			<section className={styles.leftSide}>
+				<PSEFormHeader page='3'/>
+				
+				<article>
+					<h1>Interesse</h1>
+					<p>Insira seus interesses pessoais no Ramo Estudantil IEEE.</p>
 
-			<h1>Interesse</h1>
-			<p>Insira seus interesses pessoais no Ramo Estudantil IEEE.</p>
-
-			<article className={styles.formSection}>
-				<div className={styles.leftSide}>
 					<div className={styles.message}>
 						<AiFillLock/>
 						<p>
@@ -38,7 +38,7 @@ export default function Page3({ crewsNames }) {
 						</p>
 					</div>
 
-					<div className={styles.mainForm}>
+					<div className={styles.leftForm}>
 						{crewsNames && crewsNames.length > 0 && (
 							<>
 								<span>Equipe <strong>*</strong></span>
@@ -55,6 +55,7 @@ export default function Page3({ crewsNames }) {
 						)}
 
 						<span>Área <strong>*</strong></span>
+
 						<input 
 							type='text' 
 							placeholder='Digite a área de interesse' 
@@ -62,10 +63,12 @@ export default function Page3({ crewsNames }) {
 							onChange={(event) => setArea(event.target.value)}
 						/>
 					</div>
-				</div>
+				</article>
+			</section>
 
-				<div className={styles.rightSide}>
-					<span>Por quais motivos gostaria de fazer parte do Ramo?</span>
+			<section className={styles.rightSide}>
+				<article className={styles.rightForm}>
+				<span>Por quais motivos gostaria de fazer parte do Ramo?</span>
 					<textarea 
 						placeholder="Escreva seus motivos"
 						onChange={event => setMotivation(event.target.value)}
@@ -81,10 +84,10 @@ export default function Page3({ crewsNames }) {
 
 					<div className={styles.buttonsHolder}>
 						<button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=2")}>voltar</button>
-						<button type='button' className={styles.end} onClick={handleSendCSV}>Concluir</button>
+						<button type='button' className={styles.finish} onClick={handleSendCSV}>Concluir</button>
 					</div>
-				</div>
-			</article>
-		</section>
+				</article>
+			</section>
+		</>
 	)
 }
