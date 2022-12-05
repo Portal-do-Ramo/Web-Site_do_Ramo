@@ -323,6 +323,6 @@ export const getStaticProps = async () => {
     props: {
       crews: crewsAllData
     },
-    revalidate: 30 // 1 min
+    revalidate: 30 // 30 seg
   }
 }
