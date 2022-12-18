@@ -14,6 +14,14 @@ export default function Login(){
     const { signIn, user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
 
+    function changePasswordInputVisibility() {
+        if (document.getElementById("show_password_input").checked) {
+            document.getElementById("password_input").type = "text";
+        } else {
+            document.getElementById("password_input").type = "password";
+        }
+    }
+
     useEffect(() => {
         if (isAuthenticated) {
             if (user) {
@@ -62,10 +70,10 @@ export default function Login(){
                         <input {...register('email')} type="email" placeholder="E-mail" required/><br/>
                         
                         <label className={styles.inputsLabel}>Senha</label>    
-                        <input {...register('password')} type="password" placeholder="Senha" required/><br/>
+                        <input {...register('password')} type="password" placeholder="Senha" id="password_input" required/><br/>
     
-                        <div className={styles.radioContainer}>
-                            <label htmlFor="manter-conectado"><input type="checkbox" id="manter-conectado"/> Matenha-me conectado</label>
+                        <div className={styles.radioContainer} onClick={changePasswordInputVisibility}>
+                            <label htmlFor="show_password_input"><input type="checkbox" id="show_password_input"/> Mostrar senha</label>
                             <span>Esqueceu a senha?</span>
                         </div>
                         
