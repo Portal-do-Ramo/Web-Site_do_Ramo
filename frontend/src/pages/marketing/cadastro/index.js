@@ -15,6 +15,7 @@ export default function index() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
 	const { user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
@@ -36,18 +37,22 @@ export default function index() {
 
     async function handleCreateUser() {
         try {
-            if (name.length > 0 && email.length > 0 && password.length > 0) {
-
-                await api.post(`/user`, {name, email, password});
-
-                toast.success("cadastro realizado com sucesso!");
-
-                router.replace("/marketing");
+            if (confirmPassword !== password) {
+                toast.error("senha e confirmação de senha precisam ser iguais!")
             } else {
-                toast.error("cadastro incompleto");
+                if (name.length > 0 && email.length > 0 && password.length > 0) {
+    
+                    await api.post(`/user`, {name, email, password});
+    
+                    toast.success("cadastro realizado com sucesso!");
+    
+                    router.replace("/marketing");
+                } else {
+                    toast.error("cadastro incompleto");
+                }
             }
+
         } catch (error) {
-            console.log(error.message);
             toast.error("não foi possível criar o usuário");
         }
     }
@@ -104,6 +109,17 @@ export default function index() {
                                     placeholder='Digite a senha do usuário'
                                     onChange={(e) => setPassword(e.target.value)}
                                     value={password}
+                                />
+                            </div>
+
+                            <div className={styles.textInput} onClick={() => focusInput("confirmPasswordInput")}>
+                                <CgPassword id="passwordInputIcon"/>
+                                <input 
+                                    type="password"
+                                    id="confirmPasswordInput"
+                                    placeholder='Confirme a senha do usuário'
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    value={confirmPassword}
                                 />
                             </div>
 
