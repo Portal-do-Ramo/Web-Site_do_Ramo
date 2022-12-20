@@ -5,6 +5,7 @@
   
   width: 536px;
   padding: 25px 30px;
+  margin-bottom: 10px;
 
   border-radius: 13px;
   background-color: none;
@@ -118,6 +119,12 @@
         }
       }
     }
+
+    #cardActive {
+      img {
+        max-width: 78px;
+      }
+    }
   }
 
   @media (max-width: 670px) {
@@ -135,6 +142,12 @@
         span {
           display: none;
         }
+      }
+    }
+
+    #cardActive {
+      img {
+        max-width: 58px;
       }
     }
   }
@@ -156,6 +169,12 @@
         }
       }
     }
+
+    #cardActive {
+      img {
+        max-width: 48px;
+      }
+    }
   }
 
   @media (max-width: 435px) {
@@ -173,6 +192,12 @@
         span {
           display: none;
         }
+      }
+    }
+
+    #cardActive {
+      img {
+        max-width: 38px;
       }
     }
   }
