@@ -138,6 +138,10 @@
 
 @media (max-width: 650px) {
     #page_container {
+        h1, h3 {
+            text-align: center;
+            font-size: 2rem;
+        }
 
         img {
             margin-bottom: 10px;
@@ -152,11 +156,6 @@
                 padding-top: 0px;
                 width: 100%;
                 min-width: 0px;
-    
-                h1 {
-                    text-align: center;
-                    font-size: 1.5rem;
-                }
 
                 p {
                     font-size: 0.9rem;
@@ -174,6 +173,15 @@
                 }
             }
         } 
+    }
+}
+
+@media (max-width: 500px) {
+    #page_container {
+        h1, h3 {
+            text-align: center;
+            font-size: 1.5rem;
+        }
     }
 }
 
