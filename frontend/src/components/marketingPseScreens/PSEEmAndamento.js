@@ -4,10 +4,22 @@ import { toast } from 'react-toastify';
 import { format } from "date-fns";
 import Modal from 'react-modal';
 
+import { FiDownload } from "react-icons/fi";
+import { MdOutlineFileDownloadOff } from "react-icons/md";
+
+async function handleDownloadPSEFile() {
+	const { data } = await api.get("/download/pse.csv", { responseType: "blob" });
+	const url = window.URL.createObjectURL(new Blob([data]));
+	const link = document.createElement('a');
+	link.href = url;
+	link.setAttribute('download', 'pse.csv');
+	link.click();
+}
+
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
 
-function PSEEmAndamento({start, end}) {
+function PSEEmAndamento({ start, end, isDownloadActive }) {
 	const [beginDate, setBeginDate] = useState(""); 
 	const [endDate, setEndDate] = useState(""); 
 	const [modalIsOpen, setIsOpen] = useState(false);
@@ -126,7 +138,20 @@ function PSEEmAndamento({start, end}) {
 				</div>
 			</section>
 
-			<section className={styles.terminatePSE}>
+			<section className={styles.downloadPSEFile}>
+				<span>Baixe o arquivo do último PSE!</span>
+				<button
+					type="button"
+					className={!isDownloadActive ? styles.downloadButtonOff : ""}
+					onClick={handleDownloadPSEFile}
+					disabled={!isDownloadActive}
+				>
+					{isDownloadActive ? <FiDownload /> : <MdOutlineFileDownloadOff />}
+					Baixar
+				</button>
+			</section>
+
+			<section className={styles.closePSE}>
 				<span>Encerrar o PSE!</span>
 				<p>
 					Ao cancelar o processo seletivo externo as informações

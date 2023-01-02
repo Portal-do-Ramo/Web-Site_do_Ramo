@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
 
-function PSEAgendado({start, end}) {
+function PSEAgendado({ start, end }) {
 	const [beginDate, setBeginDate] = useState(""); 
 	const [endDate, setEndDate] = useState("");
 	const [modalIsOpen, setIsOpen] = useState(false);
