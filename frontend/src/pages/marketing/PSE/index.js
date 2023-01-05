@@ -47,7 +47,7 @@ export default function PSE({ startDate, endDate, page, isDownloadActive }) {
 
                         {page === "0" && <PSENaoAgendado isDownloadActive={isDownloadActive}/>}
                         {page === "1" && <PSEAgendado start={startDate} end={endDate} styles/>}
-                        {page === "2" && <PSEEmAndamento start={startDate} end={endDate} styles/>}
+                        {page === "2" && <PSEEmAndamento start={startDate} end={endDate} isDownloadActive={isDownloadActive} styles/>}
                     </div>
                 </div>
             </div>
