@@ -1,6 +1,6 @@
 .cards, .wieCard {
-    width: 260px;
-    height: 280px;
+    width: 230px;
+    height: 260px;
     border-radius: 10px;
 
     background-color: var(--contraste);
@@ -18,17 +18,17 @@
         cursor: pointer;
 
         img {
-            height: 140px;
+            height: 120px;
             display: inline;
             justify-self: center;
 
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         p {
             letter-spacing: 1px;
             text-align: center;
-            font-size: 20px;
+            font-size: 1.25rem;
             font-weight: 700;
             color: white;
         }
@@ -39,6 +39,16 @@
     .cards, .wieCard {
         width: 210px;
         height: 230px;
+        
+        article {
+            img {
+                height: 110px;
+            }
+
+            p {
+                font-size: 1.15rem;
+            }
+        }
     }
 }
 
@@ -51,10 +61,11 @@
             img {
                 width: 90px;
                 height: 90px;
+                margin-bottom: 10px;
             }
 
             p {
-                font-size: 18px;
+                font-size: 0.9rem;
                 letter-spacing: 0px;
             }
         }
