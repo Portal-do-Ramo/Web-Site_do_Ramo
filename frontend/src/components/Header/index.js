@@ -63,7 +63,7 @@ export default function Header({page, children}) {
 					</Link>
 
 					<Link href="/login">
-						Marketing
+						Administrador
 					</Link>
 				</div>
 
