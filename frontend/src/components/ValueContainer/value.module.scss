@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
 
-    width: 330px;
-    height: 360px;
+    width: 280px;
+    height: 300px;
     padding: 45px 16px 0 16px;
     border-radius: 20px;
     
@@ -14,18 +14,18 @@
     border: 1px solid #CED3D9;
 
     img {
-        height: 80px;
+        height: 60px;
     }
 
     h3 {
         margin: 16px 0 8px 0;
         color: var(--azul-ramo);
-        font-size: 20px;
+        font-size: 1rem;
     }
 
     p {
         color: var(--contraste);
-        font-size: 15px;
+        font-size: .8rem;
         padding: 0 15px;
     }
 
@@ -35,24 +35,11 @@
     }
 
     @media (max-width: 640px) {
-        height: 100%;
-        width: 250px;
-
-        img {
-            height: 70px;
-        }
-
-        h3 {
-            font-size: 1rem;
-        }
-
-        p {
-            font-size: 0.8rem;
-            padding-bottom: 30px;
-        }
+        width: 95%;
     }
 
     @media (max-width: 540px) {
+        height: 100%;
         padding: 45px 10px 0 10px;
 
         p {

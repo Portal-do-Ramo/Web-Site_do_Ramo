@@ -55,7 +55,6 @@ export default function Sobre(){
                     <div className={styles.aboutContainer}>
                         <section className={styles.aboutLeftContainer}>
                             <article>
-                                <div className={styles.historyArrow}></div>
                                 <h1>O que é o Ramo ?</h1>
                                 <p> 
                                     O Ramo Estudantil IEEE CEFET/RJ é uma organização de estudantes de graduação do CEFET/RJ Campus Maracanã que tem por objetivo o desenvolvimento de pessoas através de projetos técnicos e sociais, e possui duas vertentes:
@@ -71,7 +70,6 @@ export default function Sobre(){
                             </article>
 
                             <article>
-                                <div className={styles.familyArrow}></div>
                                 <h2>Nossa família</h2>
                                 <div className={styles.familyPicture}><img src="/galerinha_ramo.png"/></div>
                                 <p>
@@ -139,7 +137,13 @@ export default function Sobre(){
 
                 <section className={styles.mission}>
                     <div>
-                        <Image src="/mission_illustration.svg" width="200px" height="200px"/>
+                        <Image 
+                            src="/mission_illustration.svg"
+                            width="100%"
+                            height="100%"
+                            objectFit="contain"
+                            layout="responsive"
+                        />
                     </div>
                     
                     <article>
@@ -149,7 +153,15 @@ export default function Sobre(){
                 </section>
 
                 <section className={styles.vision}>
-                    <Image src="/vision_illustration.svg" width="200px" height="200px"/>
+                    <div>
+                        <Image
+                            src="/vision_illustration.svg"
+                            width="100%"
+                            height="100%"
+                            objectFit="contain"
+                            layout="responsive"
+                        />
+                    </div>
                     <article>
                         <span>Nossa Visão</span>
                         <p>Ser uma extensão que promove o crescimento dos membros e impacto social através de inovação de diferentes tecnologias.</p>
