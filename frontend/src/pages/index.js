@@ -1,3 +1,8 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper";
+import "swiper/css";
+import "swiper/css/free-mode";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CrewsCard from "../components/CrewsCard";
@@ -9,7 +14,6 @@ import api from '../services/api'
 import styles from "../styles/index.module.scss";
 
 export default function Home({ crews }) {
-
 	return (
 		<div className={styles.container}>
 			<Header page="inicio">
@@ -25,7 +29,7 @@ export default function Home({ crews }) {
 			
 			<div className={styles.page_container}>
 				<section className={styles.text_container}>
-					<div className={styles.ourStory}>
+					<article className={styles.ourStory}>
 						<h1>Nossa História</h1>
 
 						<p>
@@ -37,14 +41,41 @@ export default function Home({ crews }) {
 							Buscamos auxiliar no crescimento das pessoas tanto como profissional como quanto pessoa, com projetos em equipe que 
 							aceitam qualquer nível de experiência, desde que esteja disposto/a a aprender.
 						</p>
-					</div>
+					</article>
 
-					<div className={styles.main_container}>
+					<article className={styles.main_container}>
 						<a href="/sobre" className={styles.button}>
 							<p>Saiba mais</p>
 							<Image src="/right-arrow.svg" width={20} height={20} />
 						</a>
-					</div>
+					</article>
+				</section>
+
+				<section className={styles.sponsors}>
+					<Swiper
+						slidesPerView="auto"
+						spaceBetween={40}
+						freeMode={true}
+						loop={true}
+						allowTouchMove={true}
+						speed={2500}
+						centeredSlides={true}
+						autoplay={{
+							delay: 5,
+							disableOnInteraction: false,
+							pauseOnMouseEnter: true,
+						}}
+						modules={[FreeMode, Autoplay]}
+						className={styles.swiper}
+					>
+						<SwiperSlide className={styles.swiper_slide}> <img src="/sponsor_botz.svg" alt="botz logo" /> </SwiperSlide>
+						<SwiperSlide className={styles.swiper_slide}> <img src="/sponsor_motin.svg" alt="motin logo" /> </SwiperSlide>
+						<SwiperSlide className={styles.swiper_slide}> <img src="/sponsor_polozulu.svg" alt="polozulu logo" /> </SwiperSlide>
+						<SwiperSlide className={styles.swiper_slide}> <img src="/sponsor_squair.svg" alt="squair logo" id={styles.squair_logo}/> </SwiperSlide>
+						<SwiperSlide className={styles.swiper_slide}> <img src="/sponsor_tecci.svg" alt="tecci logo" /> </SwiperSlide>
+						<SwiperSlide className={styles.swiper_slide}> <img src="/sponsor_universinagem.svg" alt="universinagem logo" /> </SwiperSlide>
+						<SwiperSlide className={styles.swiper_slide}> <img src="/sponsor_voitto.svg" alt="voitto logo" /> </SwiperSlide>
+					</Swiper>
 				</section>
 
 				<section className={styles.crew_content}>
