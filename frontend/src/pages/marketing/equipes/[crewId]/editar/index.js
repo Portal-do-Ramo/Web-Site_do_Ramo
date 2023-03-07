@@ -89,7 +89,7 @@ export default function equipeEditar({ crew }){
     } else {
 		return (
 			<div className={styles.all}>
-				<MarketingNavBar page="equipes" user={user}/>
+				<MarketingNavBar page="equipes" user={user ? user : null}/>
 	
 				<div className={styles.pageContent}>
 					<div className={styles.content}>

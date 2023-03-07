@@ -27,7 +27,7 @@ export default function projeto({ crew, project }){
 	}, [user, isAuthenticated]);
 
     function handleSelectOption(option) {
-      router.push(`${project.id}/${option}`);    
+		router.replace(`/marketing/equipes/${crew.id}/projetos/${project.id}/${option}`);    
     }
 
     function openModal() {

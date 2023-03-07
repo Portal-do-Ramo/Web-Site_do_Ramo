@@ -43,7 +43,7 @@ export default function premio({ crew, award }){
 	}
 
 	function handleSelectOption(option) {
-        router.push(`${award.id}/${option}`);    
+		router.replace(`/marketing/equipes/${crew.id}/premios/${award.id}/${option}`);    
     }
 
 	if (isLoading) {
