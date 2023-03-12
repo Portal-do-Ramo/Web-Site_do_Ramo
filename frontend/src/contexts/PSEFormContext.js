@@ -65,7 +65,7 @@ export function PSEFormContextProvider({children}) {
 		} else {
 			setIsThirdPageValidated(false)
 		}
-    }, [crew, area]);
+    }, [crew, area, dynamicMainDate, dynamicSecondaryDate]);
 
 	function clearAll() {
 		setName("");
@@ -83,6 +83,8 @@ export function PSEFormContextProvider({children}) {
 		
 		setCrew("");
 		setArea("");
+		setDynamicMainDate("");
+		setDynamicSecondaryDate("");
 		setMotivation("");
 		setExperience("");
     }
@@ -103,6 +105,8 @@ export function PSEFormContextProvider({children}) {
 					periodo: currentTimeCourse.replace(", ", " -"),
 					equipe: crew.replace(", ", " -"),
 					area: area.replace(", ", " -"),
+					dataDinamicaPrincipal: dynamicMainDate.replace(", ", " -"),
+					dataDinamicaSecundaria: dynamicSecondaryDate.replace(", ", " -"),
 					porQuaisMotivos: motivation.replace(", ", " -"),
 					experiencia: experience.replace(", ", " -"),
 				});

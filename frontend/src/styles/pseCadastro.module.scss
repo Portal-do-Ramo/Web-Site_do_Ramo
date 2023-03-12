@@ -158,8 +158,12 @@
         .nameInputs {
           display: flex;
           justify-content: space-between;
-          column-gap: 10px;
+          gap: 10px;
         }
+
+		.addressInput {
+			margin-top: 7px;
+		}
 
         span {
           margin-top: 20px;

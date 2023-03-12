@@ -9,7 +9,10 @@ export default function Page3({ crewsNames }) {
 	const router = useRouter();
 
 	const dynamicDates = [
-		"07/04/2023 às 15h - Sábado"
+		"03/04/2023 às 15:30h - Segunda-feira",
+		"04/04/2023 às 09h - Terça-feira",
+		"04/04/2023 às 14:30h - Terça-feira",
+		"06/04/2023 às 10:30h - Quinta-feira",
 	]
 
 	const {
@@ -90,7 +93,7 @@ export default function Page3({ crewsNames }) {
 							<>
 								<span>Data de preferência secundária da dinâmica <strong>*</strong></span>
 								<select required value={dynamicSecondaryDate} onChange={(event) => setDynamicSecondaryDate(event.target.value)}>
-									<option value="" disabled defaultValue={true} hidden>Selecione a sua data de preferência secundária para a dinâmica</option>
+									<option value="" disabled defaultValue={true} hidden>Selecione a sua segunda data de preferência para a dinâmica</option>
 								
 									{dynamicDates.map((dynamicDate, idx) => {
 										return (
