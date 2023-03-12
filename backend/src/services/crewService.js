@@ -4,7 +4,9 @@ const fs = require("fs");
 
 module.exports = {
     async index() {
-        let crews = await knex("crews").select("id", "name", "about", "imageURL");
+        let crews = await knex("crews")
+            .select("id", "name", "about", "imageURL")
+            .orderBy([ {column: "created_at", order: "desc"} ]);
         return crews;
     },
 

@@ -55,7 +55,7 @@ module.exports = {
                     "beginning", 
                     "ended",
                     "crew_id"
-                ).where({crew_id});
+                ).where({crew_id}).orderBy([ {column: "created_at", order: "desc"} ]);
                 return projects;
         } catch (error) {
             throw new Error("crew does not exists");

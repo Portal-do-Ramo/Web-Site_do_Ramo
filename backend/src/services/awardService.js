@@ -4,7 +4,10 @@ const crewService = require("./crewService");
 
 module.exports = {
     async index() {
-        const awards = await knex("awards").select("id", "name", "placing", "year", "crew_id");
+        const awards = await knex("awards")
+            .select("id", "name", "placing", "year", "crew_id")
+            .orderBy([ {column: "created_at", order: "desc"} ]);
+
         return awards;
     },
 
@@ -21,7 +24,8 @@ module.exports = {
         console.log("Executei");
         const awards = await knex("award")
             .select("id", "name", "placing", "year", "crew_id")
-            .where({ crew_id: crewId });
+            .where({ crew_id: crewId })
+            .orderBy([ {column: "created_at", order: "desc"} ]);
 
         return awards;
     },
