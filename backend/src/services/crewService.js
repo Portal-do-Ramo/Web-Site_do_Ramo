@@ -19,20 +19,22 @@ module.exports = {
     },
 
     async create(name, about) {
-        let crew = await knex("crews").where({name}).first();
+        let crewExists = await knex("crews").where({name}).first();
     
-        if(crew){
+        if(crewExists){
             throw new Error("Equipe já existe!");
         }
 
-        await knex("crews").insert({
-            id: v4(),
+        const id = v4();
+
+        const crew = await knex("crews").insert({
+            id: id,
             name, 
             about,
-            imageURL: name.toLowerCase() + "_crew_avatar.png"
-        });
+            imageURL: id.toLowerCase() + "_crew_avatar.png"
+        }).returning('id');
 
-        return {message: "Equipe criada!"}
+        return { id: crew[0] }
     },
 
     async update(id, crew) {
@@ -42,17 +44,7 @@ module.exports = {
             throw new Error("Equipe não existe!");
         }
 
-        await knex("crews").where({id}).update({
-            ...crew,
-            imageURL: `${crew.name.toLowerCase()}_crew_avatar.png`
-        });
-
-        if (fs.existsSync(`./uploads/${Crew.imageURL}`))
-            fs.rename(
-                `./uploads/${Crew.imageURL}`, 
-                `./uploads/${crew.name.toLowerCase()}_crew_avatar.${(Crew.imageURL.toLowerCase()).split(".")[1]}`,
-                () => {}
-            );
+        await knex("crews").where({id}).update(crew);
 
         return {message: "Equipe atualizada!"}
     },

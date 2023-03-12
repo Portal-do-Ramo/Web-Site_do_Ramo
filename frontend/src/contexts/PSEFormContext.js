@@ -21,6 +21,8 @@ export function PSEFormContextProvider({children}) {
     const [currentTimeCourse, setCurrentTimeCourse] = useState("");
     const [crew, setCrew] = useState("");
     const [area, setArea] = useState("");
+	const [dynamicMainDate, setDynamicMainDate] = useState("");
+	const [dynamicSecondaryDate, setDynamicSecondaryDate] = useState("");
     const [motivation, setMotivation] = useState("");
     const [experience, setExperience] = useState("");
 
@@ -153,7 +155,11 @@ export function PSEFormContextProvider({children}) {
 				isFistPageValidated,
 				isSecondPageValidated,
 				isThirdPageValidated,
-				handleSendCSV
+				handleSendCSV,
+				dynamicMainDate,
+				setDynamicMainDate,
+				dynamicSecondaryDate,
+				setDynamicSecondaryDate
 			}}
 		>
           	{children}

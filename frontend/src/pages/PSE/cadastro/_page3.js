@@ -8,11 +8,19 @@ import styles from '../../../styles/pseCadastro.module.scss';
 export default function Page3({ crewsNames }) {
 	const router = useRouter();
 
+	const dynamicDates = [
+		"07/04/2023 às 15h - Sábado"
+	]
+
 	const {
 		crew,
 		setCrew,
 		area,
 		setArea,
+		dynamicMainDate,
+		setDynamicMainDate,
+		dynamicSecondaryDate,
+		setDynamicSecondaryDate,
 		motivation,
 		setMotivation,
 		experience,
@@ -62,6 +70,36 @@ export default function Page3({ crewsNames }) {
 							value={area}
 							onChange={(event) => setArea(event.target.value)}
 						/>
+
+						{dynamicDates && dynamicDates.length > 0 && (
+							<>
+								<span>Data de preferência da dinâmica <strong>*</strong></span>
+								<select required value={dynamicMainDate} onChange={(event) => setDynamicMainDate(event.target.value)}>
+									<option value="" disabled defaultValue={true} hidden>Selecione a sua data de preferência para a dinâmica</option>
+								
+									{dynamicDates.map((dynamicDate, idx) => {
+										return (
+											<option key={idx} value={dynamicDate}>{dynamicDate}</option>
+										)
+									})}
+								</select>
+							</>
+						)}
+
+						{dynamicDates && dynamicDates.length > 0 && (
+							<>
+								<span>Data de preferência secundária da dinâmica <strong>*</strong></span>
+								<select required value={dynamicSecondaryDate} onChange={(event) => setDynamicSecondaryDate(event.target.value)}>
+									<option value="" disabled defaultValue={true} hidden>Selecione a sua data de preferência secundária para a dinâmica</option>
+								
+									{dynamicDates.map((dynamicDate, idx) => {
+										return (
+											<option key={idx} value={dynamicDate}>{dynamicDate}</option>
+										)
+									})}
+								</select>
+							</>
+						)}
 					</div>
 				</article>
 			</section>

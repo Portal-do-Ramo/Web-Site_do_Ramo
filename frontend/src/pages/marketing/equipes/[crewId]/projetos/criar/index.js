@@ -55,26 +55,6 @@ export default function CriarProjeto({ crew }){
 	async function handleCreateProject() {
 		try {
 			if (logo.length > 0 && banner.length > 0 && name.length > 1 && description.length > 1 && members.length > 0) {
-				let formData = new FormData();
-				const logoImageFile = document.getElementById("logoInput");
-				formData.append("picture", logoImageFile.files[0]);
-
-				await api.post(`/image/${name}_project_avatar`, formData, {
-                    headers: {
-                        "Content-Type": `multipart/form-data`
-                    }
-                });
-				
-				formData = new FormData();
-				const bannerImageFile = document.getElementById("bannerInput");
-				formData.append("picture", bannerImageFile.files[0]);
-
-				await api.post(`/image/${name}_project_banner`, formData, {
-                    headers: {
-                        "Content-Type": `multipart/form-data`
-                    }
-                });
-				
 				const date = new Date();
 
 				let offset = date.getTimezoneOffset();
@@ -88,10 +68,12 @@ export default function CriarProjeto({ crew }){
 				let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-${offset}:00`;
 				let endDateFormatted = null;
 
+				let project;
+
 				if (isFinished) {
 					endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-${offset}:00`;
 					
-					await api.post("/project", {
+					project = await api.post("/project", {
 						name,
 						description,
 						members,
@@ -100,9 +82,8 @@ export default function CriarProjeto({ crew }){
 						members,
 						crew_id: crew.id
 					});
-					
 				} else {
-					await api.post("/project", {
+					project = await api.post("/project", {
 						name,
 						description,
 						members,
@@ -111,6 +92,26 @@ export default function CriarProjeto({ crew }){
 						crew_id: crew.id
 					});
 				}
+
+				let formData = new FormData();
+				const logoImageFile = document.getElementById("logoInput");
+				formData.append("picture", logoImageFile.files[0]);
+
+				await api.post(`/image/${project.data.id}_project_avatar`, formData, {
+                    headers: {
+                        "Content-Type": `multipart/form-data`
+                    }
+                });
+				
+				formData = new FormData();
+				const bannerImageFile = document.getElementById("bannerInput");
+				formData.append("picture", bannerImageFile.files[0]);
+
+				await api.post(`/image/${project.data.id}_project_banner`, formData, {
+                    headers: {
+                        "Content-Type": `multipart/form-data`
+                    }
+                });
 
 				router.push(`/marketing/equipes/${crew.id}/projetos`);	
 			} else {

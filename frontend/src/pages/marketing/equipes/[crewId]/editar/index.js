@@ -58,7 +58,7 @@ export default function equipeEditar({ crew }){
 	
 					formData.append("picture", imagefile.files[0]);
 
-					await api.post(`/image/${name}_crew_avatar`, formData, {
+					await api.post(`/image/${crew.id}_crew_avatar`, formData, {
 						headers: {
 							"Content-Type": `multipart/form-data`
 						}

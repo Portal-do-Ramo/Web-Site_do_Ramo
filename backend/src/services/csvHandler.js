@@ -2,7 +2,7 @@ const fs = require("fs");
 
 path = `${__dirname}/../../uploads/pse.csv`;
 
-dataColumns = ["nomeCompleto", "endereco", "celular", "Email", "facebook", "linkedIn", "instagram", "matricula", "curso", "periodo", "equipe", "area", "porQuaisMotivos", "experiencia"];
+dataColumns = ["nomeCompleto", "endereco", "celular", "Email", "facebook", "linkedIn", "instagram", "matricula", "curso", "periodo", "equipe", "area", "dataDinamicaPrincipal", "dataDinamicaSecundaria", "porQuaisMotivos", "experiencia"];
 
 function csvHandler(input){
 	if(fs.existsSync(path)){

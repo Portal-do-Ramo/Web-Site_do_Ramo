@@ -63,9 +63,11 @@ module.exports = {
     },
         
     async create(name, description, members, crew_id, beginning, ended) {
-        let imageURL = name.toLowerCase() + "_project_banner.png";
-        let logoURL = name.toLowerCase() + "_project_avatar.png";
-        let miliseconds = Date.parse(beginning)
+        const id = v4();
+
+        let imageURL = id.toLowerCase() + "_project_banner.png";
+        let logoURL = id.toLowerCase() + "_project_avatar.png";
+        let milliseconds = Date.parse(beginning)
         
         const projectValidation = Joi.object({
             name: Joi.string().required(),  
@@ -76,7 +78,8 @@ module.exports = {
             crew_id: Joi.string(),
         });
             
-        const {error} = projectValidation.validate({name, description, members, beginning: miliseconds, ended, crew_id});
+        const {error} = projectValidation.validate({name, description, members, beginning: milliseconds, ended, crew_id});
+        
         if (error){
             throw new Error(error.message);
         }
@@ -86,14 +89,15 @@ module.exports = {
         if (!crew) {
             throw new Error("Equipe não existe!");
         }
-            
-        const project = await knex("projects").where({name, crew_id}).first();
-        if (project) {
+
+        const projectExists = await knex("projects").where({name, crew_id}).first();
+
+        if (projectExists) {
             throw new Error("Projeto já existe!");
         }
         
-        await knex("projects").insert({
-            id: v4(),
+        const project = await knex("projects").insert({
+            id,
             name,
             description,
             imageURL,
@@ -102,9 +106,9 @@ module.exports = {
             beginning, 
             ended,
             crew_id: crew.id
-        });
+        }).returning('id');
 
-        return {message: "Projeto adicionado!"};
+        return { id: project[0] };
     },
 
     async update(id, project){
@@ -121,38 +125,23 @@ module.exports = {
             }
         }
 
-        if (project.name) {
-            project = {
-                ...project,
-                imageURL: `${project.name}_project_banner.${(Project.imageURL.toLowerCase()).split(".")[1]}`,
-                logoURL: `${project.name}_project_avatar.${(Project.logoURL.toLowerCase()).split(".")[1]}`
-            }
-        }
-
-        if (fs.existsSync(`./uploads/${Project.imageURL}`))
-            fs.rename(
-                `./uploads/${Project.imageURL}`, 
-                `./uploads/${project.name}_project_banner.${(Project.imageURL.toLowerCase()).split(".")[1]}`,
-                () => {}
-            );
-
-        if (fs.existsSync(`./uploads/${Project.logoURL}`))
-            fs.rename(
-                `./uploads/${Project.logoURL}`, 
-                `./uploads/${project.name}_project_avatar.${(Project.logoURL.toLowerCase()).split(".")[1]}`,
-                () => {}
-            );
-
-        await knex("projects").where({id}).update(project); //trocar o timestamp do updated_at
+        await knex("projects").where({id}).update(project);
         return {message: "Projeto atualizado!"}
      
     },
 
     async delete(id){
         let project = await knex("projects").where({id}).first();
+
         if(!project){
             throw new Error("Projeto não existe!");
         }
+
+        if (fs.existsSync(`./uploads/${project.imageURL}`))
+            fs.unlinkSync(`./uploads/${project.imageURL}`);
+
+        if (fs.existsSync(`./uploads/${project.logoURL}`))
+            fs.unlinkSync(`./uploads/${project.logoURL}`);
 
         let confirmation = await knex("projects").where({id}).delete();
         if(confirmation > 1){

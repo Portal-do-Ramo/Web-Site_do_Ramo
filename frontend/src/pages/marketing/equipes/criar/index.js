@@ -43,14 +43,14 @@ export default function Criar() {
                 const formData = new FormData();
                 const imagefile = document.getElementById("avatarInput");
 
-                await api.post(
+                const crew = await api.post(
                     "/crew", 
-                    { name, about: description, imageURL: `${name}_avatar.${imagefile.files[0].name.split(".")[1]}` }
+                    { name, about: description }
                 );
                 
                 formData.append("picture", imagefile.files[0]);
 
-                await api.post(`/image/${name}_crew_avatar`, formData, {
+                await api.post(`/image/${crew.data.id}_crew_avatar`, formData, {
                     headers: {
                         "Content-Type": `multipart/form-data`
                     }

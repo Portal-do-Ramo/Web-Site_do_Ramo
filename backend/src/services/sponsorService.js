@@ -8,14 +8,16 @@ module.exports = {
     },
 
     async create(name, link) {
-        let imageURL = name.toLowerCase() + "_avatar.png";
+        const id = v4();
+
+        let imageURL = id.toLowerCase() + "_avatar.png";
         let sponsor = await knex("sponsors").where({name}).first();
         if (sponsor){
             throw new Error("Patrocinador já existe!");
         }
 
         await knex("sponsors").insert({
-            id: v4(), 
+            id, 
             name,
             imageURL, 
             link
@@ -26,6 +28,7 @@ module.exports = {
 
     async update(id, sponsor) {
         let Sponsor = await knex("sponsors").where({id}).first();
+        
         if (!Sponsor){
             throw new Error("Patrocinador não existe!");
         }
