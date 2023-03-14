@@ -67,7 +67,8 @@ module.exports = {
 
         let imageURL = id.toLowerCase() + "_project_banner.png";
         let logoURL = id.toLowerCase() + "_project_avatar.png";
-        let milliseconds = Date.parse(beginning)
+        let beginningMilliseconds = Date.parse(beginning)
+        let endedMilliseconds = Date.parse(beginning)
         
         const projectValidation = Joi.object({
             name: Joi.string().required(),  
@@ -78,7 +79,7 @@ module.exports = {
             crew_id: Joi.string(),
         });
             
-        const {error} = projectValidation.validate({name, description, members, beginning: milliseconds, ended, crew_id});
+        const {error} = projectValidation.validate({name, description, members, beginning: beginningMilliseconds, ended: endedMilliseconds, crew_id});
         
         if (error){
             throw new Error(error.message);

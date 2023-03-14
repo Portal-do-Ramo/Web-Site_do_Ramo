@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 export default function projetoEditar({ crew, project }){ 
     const router = useRouter();
-
+	
 	const [logo, setLogo] = useState(project.logoURL);
 	const [banner, setBanner] = useState(project.imageURL);
 

@@ -72,6 +72,10 @@ export default function CriarProjeto({ crew }){
 
 				if (isFinished) {
 					endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-${offset}:00`;
+					console.log('====================================');
+					console.log(beginDateFormatted);
+					console.log(endDateFormatted);
+					console.log('====================================');
 					
 					project = await api.post("/project", {
 						name,
