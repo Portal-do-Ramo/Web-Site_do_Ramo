@@ -96,7 +96,7 @@ export function PSEFormContextProvider({children}) {
 					nomeCompleto: `${name.replace(", ", " -")} ${lastName.replace(", ", " -")}`,
 					endereco: address.replace(", ", " -"),
 					celular: phoneNumber.replace(", ", " -"),
-					Email: email.replace(", ", " -"),
+					email: email.replace(", ", " -"),
 					facebook: facebook.replace(", ", " -"),
 					linkedIn: LinkedIn.replace(", ", " -"),
 					instagram: instagram.replace(", ", " -"),

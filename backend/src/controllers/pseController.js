@@ -15,6 +15,8 @@ module.exports =  {
 			periodo: req.body.periodo.replace(",", ";"),
 			equipe: req.body.equipe.replace(",", ";"),
 			area: req.body.area.replace(",", ";"),
+			dataDinamicaPrincipal: req.body.dataDinamicaPrincipal.replace(",", ";"),
+			dataDinamicaSecundaria: req.body.dataDinamicaSecundaria.replace(",", ";"),
 			porQuaisMotivos: req.body.porQuaisMotivos.replace(",", ";"),
 			experiencia: req.body.experiencia.replace(",", ";"),
 		});
