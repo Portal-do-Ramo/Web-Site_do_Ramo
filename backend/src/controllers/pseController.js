@@ -2,7 +2,22 @@ const pseService = require("../services/pseService");
 
 module.exports =  {
 	async create(req, res){
-		const info = Object.values(req.body);
+		const info = Object.values({
+			nomeCompleto: req.body.nomeCompleto.replace(",", ";"),
+			endereco: req.body.endereco.replace(",", ";"),
+			celular: req.body.celular.replace(",", ";"),
+			email: req.body.email.replace(",", ";"),
+			facebook: req.body.facebook.replace(",", ";"),
+			linkedIn: req.body.linkedIn.replace(",", ";"),
+			instagram: req.body.instagram.replace(",", ";"),
+			matricula: req.body.matricula.replace(",", ";"),
+			curso: req.body.curso.replace(",", ";"),
+			periodo: req.body.periodo.replace(",", ";"),
+			equipe: req.body.equipe.replace(",", ";"),
+			area: req.body.area.replace(",", ";"),
+			porQuaisMotivos: req.body.porQuaisMotivos.replace(",", ";"),
+			experiencia: req.body.experiencia.replace(",", ";"),
+		});
 
 		try {
 			const response = pseService.create(info);
