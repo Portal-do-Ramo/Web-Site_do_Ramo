@@ -104,7 +104,7 @@ function PSENaoAgendado({isDownloadActive}) {
 				</div>
 			</section>
 
-			<section className={styles.downloadPSEFile}>
+			{/* <section className={styles.downloadPSEFile}>
 				<span>Baixe o arquivo do último PSE!</span>
 				<button 
 					type="button" 
@@ -115,7 +115,7 @@ function PSENaoAgendado({isDownloadActive}) {
 					{isDownloadActive ? <FiDownload/> : <MdOutlineFileDownloadOff/> }
 					Baixar
 				</button>
-			</section>
+			</section> */}
 		</>
 	)
 }

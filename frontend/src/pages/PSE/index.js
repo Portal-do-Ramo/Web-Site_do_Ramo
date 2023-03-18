@@ -13,10 +13,10 @@ export default function PSE() {
 
     async function handleRegister() {
         try {
-            const {data} = await api.get("/pse");
+            const { data } = await api.get("/pse");
 
             if (!isBefore(new Date(), new Date(data.start))) {
-                router.push("/PSE/cadastro?page=1");
+                window.open("https://forms.gle/uNo33xk34Jy5L7mf8", "_blank", "noopener noreferrer")
             } else {
                 toast.error("Processo seletivo inativo!");
             }
