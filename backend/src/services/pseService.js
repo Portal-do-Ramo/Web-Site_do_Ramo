@@ -1,19 +1,72 @@
 const knex = require("../database");
 const { v4 } = require("uuid");
-const csvHandler = require("../services/csvHandler");
 const { scheduleJob, scheduledJobs } = require("node-schedule");
 const emailService = require("../services/emailService");
 const fs = require("fs");
 const { isBefore } = require("date-fns");
+const Joi = require("joi");
+const db = require("../database/firebase");
+const registerPSE = db.collection("registerPSE");
 
 module.exports = {
 	async create(info){
-		try {
-			csvHandler(info);
-			return {message: "usuário cadastrado"};
-		} catch(err) {
-			throw new Error(err.message);
+		const pseValidation = Joi.object({
+            fullname: Joi.string().min(3).required(),
+			phone: Joi.string().pattern(/^[0-9]+$/).required(),
+            email: Joi.string().min(6).email().required(),
+            linkedin: Joi.string(),
+			instagram: Joi.string(),
+			gender: Joi.string().required(),
+			neuroatypicality: Joi.string().required(),
+			PcD: Joi.string().required(),
+			selfDeclaration: Joi.string().required(),
+			register: Joi.string().required(),
+			course: Joi.string().required(),
+			currentPeriod: Joi.string().required(),
+			crew: Joi.string().required(),
+			area: Joi.string().required(),
+			availableDate: Joi.array().required(),
+			reason: Joi.string().required(),
+			experience: Joi.string().required(),
+        });
+        
+        const {error, value} = pseValidation.validate(info);
+        if (error){
+            throw new Error(error.message);
+        }
+
+		const personalInformation = {
+			fullname: value.fullname,
+			phone: value.phone,
+            email: value.email,
+            linkedin: value.linkedin,
+			instagram: value.instagram,
+			gender: value.gender,
+			neuroatypicality: value.neuroatypicality,
+			PcD: value.PcD,
+			selfDeclaration: value.selfDeclaration
 		}
+
+		const registrationData = {
+			register: value.register,
+			course: value.course,
+			currentPeriod: value.currentPeriod,
+			crew: value.crew,
+			area: value.area,
+			availableDate: value.availableDate,
+			reason: value.reason,
+			experience: value.experience
+		}
+
+		const data = {
+			personalInformation,
+			registrationData
+		}
+		
+		await registerPSE.add(data)	
+
+		return {"message": "usuário cadastrado"};
+	
 	},
 
 	async getSchedulePSE(){
