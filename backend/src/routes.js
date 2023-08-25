@@ -13,6 +13,7 @@ const sessionController = require("./controllers/sessionController");
 const fileController = require("./controllers/fileController");
 const emailController = require("./controllers/emailController");
 const forgotPasswordController = require("./controllers/forgotPasswordController");
+//const sheetConfig = require("./config/sheetConfig");
 
 const auth = require('./middleware/auth');
 const uploadImage = require("./middleware/UploadImage");
@@ -36,6 +37,17 @@ router
 	.get("/pse", pseController.getSchedulePSE)
 	.get("/download/check/pse.csv", fileController.checkPseFile)
 	.get("/download/pse.csv", auth, fileController.getPseFile)
+	/*.get("/getRows", async (req, res) => {
+			const { googleSheets, auth, spreadsheetId } = await sheetConfig.getAuthSheets();
+	
+			const getRows = await googleSheets.spreadsheets.values.get({
+				auth, 
+				spreadsheetId,
+				range: "Sheet1"
+			})
+			return res.json(getRows.data)
+		}
+	)*/
 	
 	
 	.patch("/award/:id", auth, awardController.update)
@@ -64,5 +76,7 @@ router
 	.delete("/sponsor/:id", auth, sponsorController.delete)
 	.delete("/pse/schedule", auth, pseController.deleteSchedulePSE)
 	.delete("/user/:id", auth, userController.delete)
+
+	
 
 module.exports = router;
