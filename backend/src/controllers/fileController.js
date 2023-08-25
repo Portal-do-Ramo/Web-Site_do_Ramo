@@ -37,7 +37,7 @@ module.exports = {
     }
   },
 
-  async getPseFile(req, res) {
+  async getPseFile(req, res) { //Não mais necessário
     try {
       if (!fs.existsSync('./uploads/pse.csv')) {
         throw new Error("Não existe arquivo CSV!");

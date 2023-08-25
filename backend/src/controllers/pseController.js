@@ -23,7 +23,7 @@ module.exports =  {
 	async schedulePSE(req, res) {
 		const { startDate, endDate } = req.body;
 
-		const info = Object.values({
+		const info = Object.values({ // criado quando um pse é agendado
 			nomeCompleto: "usuário de controle [ignorar essa inscrição]",
 			dataDeNascimento: "usuário de controle [ignorar essa inscrição]", 
 			celular: "usuário de controle [ignorar essa inscrição]", 
@@ -43,7 +43,7 @@ module.exports =  {
 
 		try {
 			const response = await pseService.schedulePSE(startDate, endDate);
-			pseService.create(info);
+			//pseService.create(info);
 			return res.status(200).json(response);
 		} catch(err) {
 			return res.status(405).json({message: err.message});

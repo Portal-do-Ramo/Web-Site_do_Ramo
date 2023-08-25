@@ -224,12 +224,12 @@ module.exports = {
 				
 				if (endDateFormatted < new Date()) {
 				await knex("pse").delete();
-				await emailService.sendCSV();
+				//noemawait emailService.sendCSV();
 				} else {
 				scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
 					try {
 						await knex("pse").delete();
-						await emailService.sendCSV();
+						//await emailService.sendCSV();
 					} catch (error) {
 						console.log("Error: ", error.message);
 					}
