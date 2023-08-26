@@ -7,6 +7,7 @@ const { isBefore } = require("date-fns");
 const Joi = require("joi");
 const db = require("../database/firebase");
 const registerPSE = db.collection("registerPSE");
+const sheetController = require("../controllers/sheetController")
 
 module.exports = {
 	async create(info){
@@ -64,9 +65,9 @@ module.exports = {
 		}
 		
 		await registerPSE.add(data)	
+		await sheetController.insert(data)
 
 		return {"message": "usuário cadastrado"};
-	
 	},
 
 	async getSchedulePSE(){
