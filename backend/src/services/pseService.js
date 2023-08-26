@@ -126,6 +126,8 @@ module.exports = {
 					start: startDate,
 					end: endDate
 				});
+
+				//await sheetController.delete(); //Para apagar os inscritos da planilha quando um pse for agendado. Ainda não testei
 			} else {
 				throw new Error("pse already scheduled!");
 			}

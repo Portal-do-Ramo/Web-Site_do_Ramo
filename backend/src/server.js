@@ -19,6 +19,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 const port = 5000;
 
 app.listen(port, async () => {
-  //await checkSchedulePSE();
+  await checkSchedulePSE();
   console.log("🚀 App is running on port:", port);
 });
