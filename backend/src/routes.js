@@ -17,7 +17,7 @@ const sheetController = require("./controllers/sheetController");
 
 const auth = require('./middleware/auth');
 const uploadImage = require("./middleware/UploadImage");
-const pseMiddleware = require("./middleware/pseMiddleware")
+const pseMiddleware = require("./middleware/pseMiddleware");
 
 const upload = multer(uploadImage.getConfig);
 
@@ -66,6 +66,7 @@ router
 	.delete("/sponsor/:id", auth, sponsorController.delete)
 	.delete("/pse/schedule", auth, pseController.deleteSchedulePSE)
 	.delete("/user/:id", auth, userController.delete)
+	.delete("/sheet", pseMiddleware, sheetController.delete)
 
 	
 
