@@ -1,7 +1,4 @@
-const db = require("../database/firebase");
-const registerPSE = db.collection("registerPSE");
 const sheetConfig = require("../config/sheetConfig");
-
 
 module.exports = {
     async insert(values){
