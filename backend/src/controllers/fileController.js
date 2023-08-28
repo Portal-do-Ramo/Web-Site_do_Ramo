@@ -35,32 +35,5 @@ module.exports = {
     } catch (error) {
       return res.status(400).json({error: error.message});
     }
-  },
-
-  async getPseFile(req, res) { //Não mais necessário
-    try {
-      if (!fs.existsSync('./uploads/pse.csv')) {
-        throw new Error("Não existe arquivo CSV!");
-      }
-
-      return res.sendFile("/uploads/pse.csv", { root: '.' });
-    } catch (error) {
-      return res.status(400).json({error: error.message});      
-    }
-  },
-
-  async checkPseFile(req, res) {
-    try {
-      if (!fs.existsSync('./uploads/pse.csv')) {
-        const error = new Error("Arquivo CSV não encontrado");
-        error.code = "404";
-      
-        throw error;
-      } else {
-        return res.json({ message: "Arquivo encontrado" });
-      }
-    } catch (error) {
-      return res.status(error.code).json({ error: error.message });
-    }
   }
 }
