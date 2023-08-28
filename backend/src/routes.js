@@ -11,8 +11,6 @@ const userController = require("./controllers/userController");
 const pseController = require("./controllers/pseController");
 const sessionController = require("./controllers/sessionController");
 const fileController = require("./controllers/fileController");
-const emailController = require("./controllers/emailController");
-const forgotPasswordController = require("./controllers/forgotPasswordController");
 const sheetController = require("./controllers/sheetController");
 
 const auth = require('./middleware/auth');
@@ -35,9 +33,6 @@ router
 	.get("/users", auth, userController.index)
 	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
-	.get("/download/check/pse.csv", fileController.checkPseFile)
-	.get("/download/pse.csv", auth, fileController.getPseFile)
-
 	
 	
 	.patch("/award/:id", auth, awardController.update)
@@ -56,8 +51,6 @@ router
 	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, pseController.schedulePSE) 
 	.post("/image/:name", auth, upload.single('picture'), fileController.uploadOne)
-	.post("/email", emailController.sendCSV)
-	.post("/forgot_password", forgotPasswordController.resetPassword)
 
 
 	.delete("/award/:id", auth, awardController.delete)
