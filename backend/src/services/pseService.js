@@ -1,8 +1,6 @@
 const knex = require("../database");
 const { v4 } = require("uuid");
 const { scheduleJob, scheduledJobs } = require("node-schedule");
-const emailService = require("../services/emailService");
-const fs = require("fs");
 const { isBefore } = require("date-fns");
 const Joi = require("joi");
 const db = require("../database/firebase");
@@ -108,10 +106,6 @@ module.exports = {
 				throw new Error("Data de inicio não pode ser maior que a data de fim!");
 			}
 
-			if (fs.existsSync('./uploads/pse.csv')) {
-				fs.unlinkSync('./uploads/pse.csv');
-			}
-
 			const data = await knex("pse").select("*");
 
 			if(data.length === 0) {
@@ -135,7 +129,6 @@ module.exports = {
 			scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
 				try {
 					await knex("pse").delete();
-					await emailService.sendCSV();
 				} catch (error) {
 					console.log("Error: ", error.message);
 				}
@@ -181,7 +174,6 @@ module.exports = {
 			scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
 				try {
 					await knex("pse").delete();
-					await emailService.sendCSV();
 				} catch (error) {
 					console.log("Error: ", error.message);
 				}
@@ -200,14 +192,6 @@ module.exports = {
 			if (jobScheduled) {
 				jobScheduled.cancel();
 				await knex("pse").delete();
-
-				try {
-					if (fs.existsSync('./uploads/pse.csv')) {
-						await emailService.sendCSV();
-					}
-				} catch (error) {
-					console.log(error.message);
-				}
 				
 				return {message: "PSE schedule deleted!"};
 			}
@@ -227,12 +211,10 @@ module.exports = {
 				
 				if (endDateFormatted < new Date()) {
 				await knex("pse").delete();
-				//noemawait emailService.sendCSV();
 				} else {
 				scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
 					try {
 						await knex("pse").delete();
-						//await emailService.sendCSV();
 					} catch (error) {
 						console.log("Error: ", error.message);
 					}
