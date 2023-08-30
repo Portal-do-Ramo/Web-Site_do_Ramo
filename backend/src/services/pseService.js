@@ -82,6 +82,20 @@ module.exports = {
 		}
 	},
 
+	async deleteSubscribersData(){
+		try{
+			const getDocuments = await registerPSE.get();
+			const batch = db.batch();
+
+			getDocuments.forEach(doc => batch.delete(doc.ref));
+
+			await batch.commit();
+			return {message: "Documents deleted!"}
+		} catch(err){
+			throw new Error(err.message);
+		}
+	},
+
 	async schedulePSE(startDate, endDate) {
 		try {
 			const endDateFormatted = new Date(endDate);

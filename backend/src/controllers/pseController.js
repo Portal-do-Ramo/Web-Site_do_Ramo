@@ -11,6 +11,15 @@ module.exports =  {
 		}
 	},
 
+	async deleteSubscribersData(req, res){
+		try{
+			const response = await pseService.deleteSubscribersData();
+			return res.status(200).json(response);
+		} catch(err){
+			return res.status(405).json({message: err.message});
+		}
+	},
+
 	async getSchedulePSE(req, res) {
 		try {
 			const response = await pseService.getSchedulePSE();
