@@ -33,7 +33,7 @@ router
 	.get("/users", auth, userController.index)
 	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
-	
+
 	
 	.patch("/award/:id", auth, awardController.update)
 	.patch("/crew/:id", auth, crewController.update)
@@ -41,6 +41,7 @@ router
 	.patch("/sponsor/:id", auth, sponsorController.update)
 	.patch("/user/:id", auth, userController.update)
 	.patch("/pse/schedule", auth, pseController.updateSchedulePSE) 
+
 
 	.post("/award", auth, awardController.create)
 	.post("/crew", auth, crewController.create)

@@ -61,11 +61,18 @@ module.exports = {
 			personalInformation,
 			registrationData
 		}
-		
-		await registerPSE.add(data)	
-		await sheetController.insert(data)
+	
+		const subscriberEmail = await registerPSE.where('personalInformation.email', '==', value.email).get();
+		const subscriberPhone = await registerPSE.where('personalInformation.phone', '==', value.phone).get();
 
-		return {"message": "usuário cadastrado"};
+		await registerPSE.add(data)	
+
+		if (subscriberEmail.empty && subscriberPhone.empty){
+			await sheetController.insert(data)
+			return {"message": "usuário cadastrado!"};
+		}
+		
+		return {"message": "Email ou número inserido já foi cadastrado!"};
 	},
 
 	async getSchedulePSE(){
