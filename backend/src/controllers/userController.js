@@ -7,10 +7,10 @@ module.exports = {
     },
 
     async create(req, res) {
-        const {name, email, password} = req.body;
+        const {name, email, password, isAdmin, crew_id} = req.body;
         
         try {
-            const response = await userService.create(name, email.toLowerCase(), password);
+            const response = await userService.create(name, email.toLowerCase(), password, isAdmin, crew_id);
             return res.status(201).json(response); 
         } catch (err) {
             return res
@@ -20,11 +20,11 @@ module.exports = {
     },
 
     async update(req, res){
-        let { name, password } = req.body;
+        let { name, password, crew_id } = req.body;
         let { id } = req.params;
 
 		try {
-            await userService.update(id, name, password);
+            await userService.update(id, name, password, crew_id);
             return res.status(200).json({message: "Usuário atualizado!"});
 		} catch(err){
 			return res.status(422).json({message: err.message});
