@@ -14,6 +14,7 @@ const fileController = require("./controllers/fileController");
 const sheetController = require("./controllers/sheetController");
 
 const auth = require('./middleware/auth');
+const admin = require('./middleware/admin');
 const uploadImage = require("./middleware/UploadImage");
 const pseMiddleware = require("./middleware/pseMiddleware");
 
@@ -30,7 +31,7 @@ router
 	.get("/projects/crew/:crewId", projectController.getByCrewId)
 	.get("/project/:id", projectController.getProject)
 	.get("/sponsors", sponsorController.index)
-	.get("/users", auth, userController.index)
+	.get("/users", auth, admin, userController.index)
 	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
 
@@ -39,15 +40,15 @@ router
 	.patch("/crew/:id", auth, crewController.update)
 	.patch("/project/:id", auth, projectController.update)
 	.patch("/sponsor/:id", auth, sponsorController.update)
-	.patch("/user/:id", auth, userController.update)
+	.patch("/user/:id", auth, admin, userController.update)
 	.patch("/pse/schedule", auth, pseController.updateSchedulePSE) 
 
 
 	.post("/award", auth, awardController.create)
-	.post("/crew", auth, crewController.create)
+	.post("/crew", auth, admin, crewController.create)
 	.post("/project", auth, projectController.create)
 	.post("/sponsor", auth, sponsorController.create)
-	.post("/user", auth, userController.create)
+	.post("/user", auth, admin, userController.create)
 	.post("/login", sessionController.create)
 	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, pseController.schedulePSE) 
@@ -55,13 +56,14 @@ router
 
 
 	.delete("/award/:id", auth, awardController.delete)
-	.delete("/crew/:id", auth, crewController.delete)
+	.delete("/crew/:id", auth, admin, crewController.delete)
 	.delete("/project/:id", auth, projectController.delete)
 	.delete("/sponsor/:id", auth, sponsorController.delete)
-	.delete("/pse/schedule", auth, pseController.deleteSchedulePSE)
-	.delete("/user/:id", auth, userController.delete)
+	.delete("/pse/schedule", auth, admin, pseController.deleteSchedulePSE)
+	.delete("/user/:id", auth, admin, userController.delete)
 	.delete("/sheet", sheetController.delete)
 	.delete("/pse/subscribers", pseController.deleteSubscribersData)
+	.delete("/sheet", pseMiddleware, sheetController.delete)
 
 	
 
