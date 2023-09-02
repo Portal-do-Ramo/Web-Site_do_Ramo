@@ -44,7 +44,7 @@ router
 	.patch("/pse/schedule", auth, pseController.updateSchedulePSE) 
 
 	.post("/award", auth, awardController.create)
-	.post("/crew", auth, crewController.create)
+	.post("/crew", auth, admin, crewController.create)
 	.post("/project", auth, projectController.create)
 	.post("/sponsor", auth, sponsorController.create)
 	.post("/user", auth, admin, userController.create)
@@ -55,7 +55,7 @@ router
 
 
 	.delete("/award/:id", auth, awardController.delete)
-	.delete("/crew/:id", auth, crewController.delete)
+	.delete("/crew/:id", auth, admin, crewController.delete)
 	.delete("/project/:id", auth, projectController.delete)
 	.delete("/sponsor/:id", auth, sponsorController.delete)
 	.delete("/pse/schedule", auth, pseController.deleteSchedulePSE)
