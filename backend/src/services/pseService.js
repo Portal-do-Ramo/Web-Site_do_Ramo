@@ -77,7 +77,7 @@ module.exports = {
 
 	async getSchedulePSE(){
 		try {
-		const data = await knex("pse").select("*").first();
+		const data = await knex("pse").select("start", "end", "dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
 
 		if (!data) {
 			throw new Error("PSE has not been scheduled!");
@@ -103,13 +103,13 @@ module.exports = {
 		}
 	},
 
-	async schedulePSE(startDate, endDate) {
+	async schedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5) {
 		try {
 			const endDateFormatted = new Date(endDate);
 			const startDateFormatted = new Date(startDate);
 
 			const jobExists = scheduledJobs["scheduleJobPSE"]
-
+			
 			if (jobExists) {
 				throw new Error("Job already exists!");
 			}
@@ -139,7 +139,12 @@ module.exports = {
 				await knex("pse").insert({
 					id: v4(),
 					start: startDate,
-					end: endDate
+					end: endDate,
+					dinamycDate_1,
+					dinamycDate_2,
+					dinamycDate_3,
+					dinamycDate_4,
+					dinamycDate_5
 				});
 				
 			} else {

@@ -30,10 +30,10 @@ module.exports =  {
 	},
 
 	async schedulePSE(req, res) {
-		const { startDate, endDate } = req.body;
+		const { startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5 } = req.body;
 
 		try {
-			const response = await pseService.schedulePSE(startDate, endDate);
+			const response = await pseService.schedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5);
 			return res.status(200).json(response);
 		} catch(err) {
 			return res.status(405).json({message: err.message});
