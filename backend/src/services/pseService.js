@@ -77,7 +77,7 @@ module.exports = {
 
 	async getSchedulePSE(){
 		try {
-		const data = await knex("pse").select("start", "end").first();
+		const data = await knex("pse").select("*").first();
 
 		if (!data) {
 			throw new Error("PSE has not been scheduled!");

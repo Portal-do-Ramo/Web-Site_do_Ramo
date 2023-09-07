@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = knex => {
   return knex.schema.createTable("pse", (table) => {
     table.uuid("id").unique();
     table.timestamp("start").notNullable();
