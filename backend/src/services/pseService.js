@@ -159,13 +159,13 @@ module.exports = {
 				}
 			});
 
-			return { message: "service scheduled to " + endDate };
+			return { message: "service scheduled to " + endDate};
 		} catch(err) {
 			throw new Error(err.message);
 		}
 	},
 
-	async updateSchedulePSE(startDate, endDate) {
+	async updateSchedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5) {
 		const endDateFormatted = new Date(endDate);
 		const startDateFormatted = new Date(startDate);
 		
@@ -194,7 +194,7 @@ module.exports = {
 				jobExists.cancel();
 			}
 			
-			await knex("pse").select("*").update({start: startDate, end: endDate});
+			await knex("pse").select("*").update({start: startDate, end: endDate, dinamycDate_1: dinamycDate_1, dinamycDate_2: dinamycDate_2, dinamycDate_3: dinamycDate_3, dinamycDate_4: dinamycDate_4, dinamycDate_5: dinamycDate_5});
 			
 			scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
 				try {
@@ -223,6 +223,23 @@ module.exports = {
 			
 			throw new Error("Schedule does not exists");
 		} catch(err) {
+			throw new Error(err.message);
+		}
+	},
+
+	async deleteOnePseDate(date) {
+		try{
+
+			if (date === "startDate" || date === "endDate"){
+				throw new Error("Não é permitido apagar horário de agendamento do pse");
+			}
+
+			const updateDate = {}
+			updateDate[date] = null
+
+			await knex("pse").update(updateDate)
+			return {message: "Data removida"};
+		} catch (err){
 			throw new Error(err.message);
 		}
 	},

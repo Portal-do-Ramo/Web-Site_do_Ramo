@@ -41,10 +41,10 @@ module.exports =  {
 	},
 
 	async updateSchedulePSE(req, res) {
-		const { startDate, endDate } = req.body;
+		const { startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5} = req.body;
 
 		try {
-			const response = await pseService.updateSchedulePSE(startDate, endDate);
+			const response = await pseService.updateSchedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5);
 			return res.status(200).json(response);
 		} catch(err) {
 			return res.status(405).json({message: err.message});
@@ -58,6 +58,17 @@ module.exports =  {
 		} catch(err) {
 			return res.status(405).json({message: err.message});
 		}		
+	},
+
+	async deleteOnePseDate(req, res) {
+		const { name } = req.params
+
+		try{
+			const response = await pseService.deleteOnePseData(name);
+			return res.status(200).json(response)
+		} catch(err){
+			return res.status(405).json({message: err.message})
+		}
 	},
 	
 	async checkSchedulePSE() {

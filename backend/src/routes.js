@@ -41,7 +41,8 @@ router
 	.patch("/project/:id", auth, projectController.update)
 	.patch("/sponsor/:id", auth, sponsorController.update)
 	.patch("/user/:id", auth, admin, userController.update)
-	.patch("/pse/schedule", auth, admin, pseController.updateSchedulePSE) 
+	.patch("/pse/schedule", pseController.updateSchedulePSE) 
+	.patch("/pse/dinamycDate/:name", pseController.deleteOnePseDate)
 
 
 	.post("/award", auth, awardController.create)
@@ -51,7 +52,7 @@ router
 	.post("/user", auth, admin, userController.create)
 	.post("/login", sessionController.create)
 	.post("/pse", pseMiddleware, pseController.create) 
-	.post("/pse/schedule", auth, admin, pseController.schedulePSE) 
+	.post("/pse/schedule", pseController.schedulePSE) 
 	.post("/image/:name", auth, upload.single('picture'), fileController.uploadOne)
 
 
@@ -59,11 +60,12 @@ router
 	.delete("/crew/:id", auth, admin, crewController.delete)
 	.delete("/project/:id", auth, projectController.delete)
 	.delete("/sponsor/:id", auth, sponsorController.delete)
-	.delete("/pse/schedule", auth, admin, pseController.deleteSchedulePSE)
+	.delete("/pse/schedule", pseController.deleteSchedulePSE)
 	.delete("/user/:id", auth, admin, userController.delete)
 	.delete("/sheet", sheetController.delete)
 	.delete("/pse/subscribers", pseController.deleteSubscribersData)
 	.delete("/sheet", pseMiddleware, sheetController.delete)
+	
 
 	
 
