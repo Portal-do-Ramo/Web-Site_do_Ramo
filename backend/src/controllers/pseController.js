@@ -64,7 +64,7 @@ module.exports =  {
 		const { name } = req.params
 
 		try{
-			const response = await pseService.deleteOnePseData(name);
+			const response = await pseService.deleteOnePseDate(name);
 			return res.status(200).json(response)
 		} catch(err){
 			return res.status(405).json({message: err.message})
