@@ -41,11 +41,11 @@ module.exports =  {
 	},
 
 	async updateSchedulePSE(req, res) {
-		const { startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5} = req.body;
+		const { pse } = req.body;
 
 		try {
-			const response = await pseService.updateSchedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5);
-			return res.status(200).json(response);
+			const { pseDatesFormatted } = await pseService.updateSchedulePSE(pse);
+			return res.status(200).json({"message": "Schedule update", pseDatesFormatted});
 		} catch(err) {
 			return res.status(405).json({message: err.message});
 		}

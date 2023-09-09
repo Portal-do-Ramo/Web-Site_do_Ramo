@@ -136,7 +136,7 @@ module.exports = {
 			}
 
 			if (isBefore(endDateFormatted, startDateFormatted)) {
-				throw new Error("Data de inicio não pode ser maior que a data de fim!");
+				throw new Error("start date can't be greater than end date");
 			}
 
 			const data = await knex("pse").select("*");
@@ -145,7 +145,15 @@ module.exports = {
 				let currentDate = new Date();
 
 				if (isBefore(startDateFormatted, currentDate)) {
-					throw new Error("data de inicio precisa ser maior que a data atual!");
+					throw new Error("current date can't be greater than start date");
+				}
+
+				for(i = 0; i<5; i++) {
+					if (dinamycDatesFormatted[i]) {
+						if (isBefore(dinamycDatesFormatted[i], currentDate)) {
+							throw new Error("current date can't be greater than dinamyc date");
+						}
+					}
 				}
 				
 				await knex("pse").insert({
@@ -177,46 +185,92 @@ module.exports = {
 		}
 	},
 
-	async updateSchedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5) {
-		const endDateFormatted = new Date(endDate);
-		const startDateFormatted = new Date(startDate);
-		
+	async updateSchedulePSE(pse) {
+		const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}-03:00$/;
+		const pseDatesFormatted = {};
+		let verifyUpdateSchedule = false;
 		const jobExists = scheduledJobs["scheduleJobPSE"];
 
 		try {
 			if (!jobExists) {
-				throw new Error("agendamento não existe!");
+				throw new Error("scheduling does not exist!");
 			}
 
-			if (!(startDateFormatted instanceof Date && !isNaN(startDateFormatted)) || !(endDateFormatted instanceof Date && !isNaN(endDateFormatted))) {
-				throw new Error("data mal formatada!");
+			if (pse.startDate && regex.test(pse.startDate)) {
+				pseDatesFormatted.start = new Date(pse.startDate);
+			}
+			if (pse.endDate && regex.test(pse.endDate)) {
+				pseDatesFormatted.end = new Date(pse.endDate);
+				verifyUpdateSchedule = true;
 			}
 
-			if ( isBefore(endDateFormatted, startDateFormatted)) {
-				throw new Error("start date can't be greater than end date");
+			if (pse.dinamycDate_1 && regex.test(pse.dinamycDate_1)) {
+				pseDatesFormatted.dinamycDate_1 = new Date(pse.dinamycDate_1);
 			}
 
+			if (pse.dinamycDate_2 && regex.test(pse.dinamycDate_2)) {
+				pseDatesFormatted.dinamycDate_2 = new Date(pse.dinamycDate_2);
+			}
+
+			if (pse.dinamycDate_3 && regex.test(pse.dinamycDate_3)) {
+				pseDatesFormatted.dinamycDate_3 = new Date(pse.dinamycDate_3);
+			}
+
+			if (pse.dinamycDate_4 && regex.test(pse.dinamycDate_4)) {
+				pseDatesFormatted.dinamycDate_4 = new Date(pse.dinamycDate_4);
+			}
+
+			if (pse.dinamycDate_5 && regex.test(pse.dinamycDate_5)) {
+				pseDatesFormatted.dinamycDate_5 = new Date(pse.dinamycDate_5);
+			}
+	
 			let currentDate = new Date();
 
-			if (isBefore(endDateFormatted, currentDate)) {
-				throw new Error("data de fim precisa ser maior que a data atual!");
+			if (pseDatesFormatted.end && pseDatesFormatted.start) {
+				if (isBefore(pseDatesFormatted.endDate, pseDatesFormatted.startDate)) {
+					throw new Error("start date can't be greater than end date");
+				}
+			} 
+			else if (pseDatesFormatted.start) {
+				const { end } = await knex("pse").select("*").first();
+				if (isBefore(end, pseDatesFormatted.start)){
+					throw new Error("start date can't be greater than end date");
+				}
+
+				if (isBefore(pseDatesFormatted.start, currentDate)) {
+					throw new Error("current date can't be greater than start date");
+				}
 			}
 
-			if (jobExists) {
+			if (verifyUpdateSchedule && isBefore(pseDatesFormatted.end, currentDate)) {
+				throw new Error("current date can't be greater than end date");
+			}
+
+			if (isBefore(pseDatesFormatted.dinamycDate_1, currentDate) || 
+				isBefore(pseDatesFormatted.dinamycDate_2, currentDate) ||
+				isBefore(pseDatesFormatted.dinamycDate_3, currentDate) ||
+				isBefore(pseDatesFormatted.dinamycDate_4, currentDate) ||
+				isBefore(pseDatesFormatted.dinamycDate_5, currentDate)) {
+				throw new Error("current date can't be greater than dinamyc date");
+			}
+
+			if (jobExists && verifyUpdateSchedule) {
 				jobExists.cancel();
 			}
 			
-			await knex("pse").select("*").update({start: startDate, end: endDate, dinamycDate_1: dinamycDate_1, dinamycDate_2: dinamycDate_2, dinamycDate_3: dinamycDate_3, dinamycDate_4: dinamycDate_4, dinamycDate_5: dinamycDate_5});
+			await knex("pse").select("*").update(pseDatesFormatted);
 			
-			scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-				try {
-					await knex("pse").delete();
-				} catch (error) {
-					console.log("Error: ", error.message);
-				}
-			});
+			if (verifyUpdateSchedule) {
+				scheduleJob("scheduleJobPSE", pseDatesFormatted.end, async () => {
+					try {
+						await knex("pse").delete();
+					} catch (error) {
+						console.log("Error: ", error.message);
+					}
+				});
+			}
 
-			return { message: "service rescheduled to " + endDate};
+			return { pseDatesFormatted };
 		} catch(err) {
 			throw new Error(err.message);
 		}
