@@ -104,23 +104,35 @@ module.exports = {
 	},
 
 	async schedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5) {
+		const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}-03:00$/;
 		try {
 			const endDateFormatted = new Date(endDate);
 			const startDateFormatted = new Date(startDate);
+			const dinamycDates = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5]
+			const dinamycDatesFormatted = []
 
 			const jobExists = scheduledJobs["scheduleJobPSE"]
-			
+
 			if (jobExists) {
 				throw new Error("Job already exists!");
 			}
 
-			if (
-				!(startDateFormatted instanceof Date && 
-				!isNaN(startDateFormatted)) || 
-				!(endDateFormatted instanceof Date && 
-				!isNaN(endDateFormatted))
-			) {
-				throw new Error("date bad formatted");
+			if (!regex.test(startDate) || !regex.test(endDate)) {
+				throw new Error("Date bad formatted");
+			}
+			
+			for (i = 0; i<5; i++) {
+				if (dinamycDates[i]) {
+					if (!regex.test(dinamycDates[i])) {
+						throw new Error("Dinamyc date bad formatted");
+					}
+				}
+
+				if (!dinamycDates[i]) {
+					dinamycDatesFormatted.push(dinamycDates[i]);
+				} else {
+					dinamycDatesFormatted.push(new Date(dinamycDates[i]));
+				}
 			}
 
 			if (isBefore(endDateFormatted, startDateFormatted)) {
@@ -140,11 +152,11 @@ module.exports = {
 					id: v4(),
 					start: startDate,
 					end: endDate,
-					dinamycDate_1,
-					dinamycDate_2,
-					dinamycDate_3,
-					dinamycDate_4,
-					dinamycDate_5
+					dinamycDate_1: dinamycDatesFormatted[0],
+					dinamycDate_2: dinamycDatesFormatted[1],
+					dinamycDate_3: dinamycDatesFormatted[2],
+					dinamycDate_4: dinamycDatesFormatted[3],
+					dinamycDate_5: dinamycDatesFormatted[4]
 				});
 				
 			} else {
