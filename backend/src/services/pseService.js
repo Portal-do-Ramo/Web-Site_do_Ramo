@@ -6,6 +6,7 @@ const Joi = require("joi");
 const db = require("../database/firebase");
 const registerPSE = db.collection("registerPSE");
 const sheetController = require("../controllers/sheetController")
+const moment = require("moment");
 
 module.exports = {
 	async create(info){
@@ -77,11 +78,37 @@ module.exports = {
 
 	async getSchedulePSE(){
 		try {
-		const data = await knex("pse").select("start", "end", "dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
-
+		let data = await knex("pse").select("start", "end", "dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
+		
 		if (!data) {
 			throw new Error("PSE has not been scheduled!");
 		}
+
+		let dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5;
+
+		if (data.dinamycDate_1) {
+			dinamycDate_1 = `Dia ${moment(data.dinamycDate_1).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+		}
+		if (data.dinamycDate_2) {
+			dinamycDate_2 = `Dia ${moment(data.dinamycDate_2).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+		}
+		if (data.dinamycDate_3) {
+			dinamycDate_3 = `Dia ${moment(data.dinamycDate_3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+		}
+		if (data.dinamycDate_4) {
+			dinamycDate_4 = `Dia ${moment(data.dinamycDate_4).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+		}
+		if (data.dinamycDate_5){
+			dinamycDate_5 = `Dia ${moment(data.dinamycDate_5).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+		}
+		
+		data.start = moment(data.start).format();
+		data.end = moment(data.end).format();
+		data.dinamycDate_1 = dinamycDate_1;
+		data.dinamycDate_2 = dinamycDate_2;
+		data.dinamycDate_3 = dinamycDate_3;
+		data.dinamycDate_4 = dinamycDate_4;
+		data.dinamycDate_5 = dinamycDate_5;
 
 		return data;
 		} catch (error) {
@@ -152,6 +179,14 @@ module.exports = {
 					if (dinamycDatesFormatted[i]) {
 						if (isBefore(dinamycDatesFormatted[i], currentDate)) {
 							throw new Error("current date can't be greater than dinamyc date");
+						}
+
+						if (isBefore(dinamycDatesFormatted[i], startDateFormatted)) {
+							throw new Error("start date can't be greater than dinamyc date");
+						}
+
+						if (isBefore(dinamycDatesFormatted[i], endDateFormatted)) {
+							throw new Error("end date can't be greater than dinamyc date");
 						}
 					}
 				}
