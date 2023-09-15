@@ -1,9 +1,25 @@
 const { google } = require("googleapis");
+require('dotenv').config()
+
+
+const sheetCredentials = {
+    "type": "service_account",
+    "project_id": process.env.SHEET_PROJECT_ID,
+    "private_key_id": process.env.SHEET_PRIVATE_KEY_ID,
+    "private_key": process.env.SHEET_PRIVATE_KEY,
+    "client_email": process.env.SHEET_CLIENT_EMAIL,
+    "client_id": process.env.SHEET_CLIENT_ID,
+    "auth_uri": process.env.SHEET_AUTH_URI,
+    "token_uri": process.env.SHEET_TOKEN_URI,
+    "auth_provider_x509_cert_url": process.env.SHEET_AUTH_CERT_URL,
+    "client_x509_cert_url": process.env.SHEET_CLIENT_CERT_URL,
+    "universe_domain": "googleapis.com"
+  }
 
 module.exports = {
     async getAuthSheets(){
         const auth = new google.auth.GoogleAuth({
-            keyFile: "src/config/sheetCredentials.json",
+            credentials: sheetCredentials,
             scopes: "https://www.googleapis.com/auth/spreadsheets"
         })
 

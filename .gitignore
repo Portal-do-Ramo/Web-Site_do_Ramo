@@ -37,4 +37,3 @@ yarn-error.log*
 frontend/yarn.lock
 backend/yarn.lock
 
-sheetCredentials.json
