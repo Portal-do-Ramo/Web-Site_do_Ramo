@@ -1,12 +1,13 @@
 const firebase = require("firebase");
+require('dotenv').config();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAC0htnHvvwIJl2lVPN9nHo48qsx5CLTXI",
-  authDomain: "site-do-ramo-2a248.firebaseapp.com",
-  projectId: "site-do-ramo-2a248",
-  storageBucket: "site-do-ramo-2a248.appspot.com",
-  messagingSenderId: "514957689795",
-  appId: "1:514957689795:web:ab30a17e818461e66a3376"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_API_ID
 };
 
 firebase.initializeApp(firebaseConfig);

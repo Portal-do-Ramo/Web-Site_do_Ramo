@@ -36,3 +36,4 @@ yarn-error.log*
 **/.vscode
 frontend/yarn.lock
 backend/yarn.lock
+
