@@ -18,7 +18,6 @@ module.exports = {
     async delete(req, res){
         try{
             await sheetService.delete();
-            return res.status(200).json({message: "Inscritos deletados com sucesso!"})
         } catch(err){
             return res.status(405).json({message: err.message});
         }

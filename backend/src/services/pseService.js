@@ -201,6 +201,9 @@ module.exports = {
 					dinamycDate_4: dinamycDatesFormatted[3],
 					dinamycDate_5: dinamycDatesFormatted[4]
 				});
+
+				await sheetController.delete();
+				await this.deleteSubscribersData();
 				
 			} else {
 				throw new Error("pse already scheduled!");
