@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { AiFillLock } from 'react-icons/ai';
-import { IMaskInput } from "react-imask";
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
+import BasicInput from '../../../components/BasicInput';
 
 export default function Page1() {
 	const router = useRouter();
@@ -29,6 +29,68 @@ export default function Page1() {
 		clearAll
 	} = useContext(PSEFormContext);
 
+
+  const listFormRegistro = [
+    {
+      label: 'Nome Completo',
+      id: 'name',
+      type: 'text',
+      placeholder: 'Digite seu nome',
+      required: true,
+      value: name,
+      set: setName
+    },
+    {
+      label: 'Telefone',
+      id: 'telefone',
+      type:'text',
+      placeholder:'(21) 9xxxx-xxxx',
+      required: true,
+      value: phoneNumber,
+      set: setPhoneNumber,
+      mask:"(00) 00000-0000"
+    },
+    {
+      label: 'E-mail',
+      id: 'email',
+      type:'text',
+      placeholder: 'Digite seu email',
+      required: true,
+      value: email,
+      set: setEmail,
+    }
+  ]
+  
+  const listSocialMedia = [
+    {
+      label: null,
+      id: 'facebook',
+      type: 'text',
+      placeholder: 'Facebook',
+      required: true,
+      value:facebook,
+      set: setFacebook
+    },
+    {
+      label: null,
+      id: 'linkedin',
+      type:'text',
+      placeholder: 'Linkedin',
+      required: false,
+      value:LinkedIn,
+      set: setLinkedIn
+    },
+    {
+      label: null,
+      id: 'instagram',
+      type:'text',
+      placeholder: 'Instagram',
+      required: false,
+      value:instagram,
+      set: setInstagram
+    }
+  ]
+  
 	function handleCancel() {
 		clearAll();
 		router.push("/PSE");
@@ -53,47 +115,29 @@ export default function Page1() {
 					</div>
 
 					<div className={styles.leftForm}>
-						<span>Nome, Sobrenome e Endereço <strong>*</strong></span>
-						<div className={styles.nameInputs}>
-							<input type="text" placeholder='Nome' value={name} onChange={(event) => setName(event.target.value)}></input>
-							<input type="text" placeholder='Sobrenome' value={lastName} onChange={(event) => setLastName(event.target.value)}></input>
-						</div>
-						
-						<div className={styles.addressInput}>
-							<input type="text"
-								placeholder='Endereço'
-								value={address}
-								onChange={(event) => setAddress(event.target.value)}
-							/>
-						</div>
-
-						<span>Celular <strong>*</strong></span>
-						<IMaskInput 
-							mask="(00) 00000-0000"
-							name='phoneNumber'
-							placeholder='(21) 9xxxx-xxxx'
-							value={phoneNumber}
-							onChange={(event) => setPhoneNumber(event.target.value)}
-						/>
-						
-						<span>E-mail <strong>*</strong></span>
-						<input type="email" placeholder='nome@email.com' value={email} onChange={(event) => setEmail(event.target.value)}/>
+            {
+              listFormRegistro.map(item => {
+                return <BasicInput key={item.id} item={item}/>
+              })
+            }
 					</div>
 				</article>
 			</section>
 
 			<section className={styles.rightSide}>
 				<article className={styles.rightForm}>
-					<span>Redes Sociais</span>
-					<input type="text" placeholder='Facebook' value={facebook} onChange={(event) => setFacebook(event.target.value)}/>
-					<input type="text" placeholder='Linkedin' value={LinkedIn} onChange={(event) => setLinkedIn(event.target.value)}/>
-					<input type="text" placeholder='Instagram' value={instagram} onChange={(event) => setInstagram(event.target.value)}/>
+          <span>Redes Sociais</span>
+          {
+            listSocialMedia.map(item => { 
+              return <BasicInput key={item.id} item={item}/>
+            })
+          }
 					<div className={styles.buttonsHolder}>
 						<button type='button' className={styles.cancel} onClick={handleCancel}>Cancelar</button>
 						<button type='button' className={styles.next} onClick={() => router.push("/PSE/cadastro?page=2")}>Próximo</button>
 					</div>
 				</article>
 			</section>
-		</>
+    </>
 	)
 }
