@@ -71,6 +71,8 @@ export const getServerSideProps = async (ctx) => {
 		hasActivePSE = false;
 	}
 
+  hasActivePSE = true;
+
 	return {
 		props: {
 			hasActivePSE,

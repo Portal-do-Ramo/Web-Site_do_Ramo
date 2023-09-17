@@ -12,7 +12,9 @@ export default function PSE() {
     const router = useRouter();
 
     async function handleRegister() {
-        try {
+      router.push('/PSE/cadastro?page=1')
+
+        /* try {
             const { data } = await api.get("/pse");
 
             if (!isBefore(new Date(), new Date(data.start))) {
@@ -22,7 +24,7 @@ export default function PSE() {
             }
         } catch (error) {
             toast.error("Processo seletivo inativo!");
-        }
+        } */
     }
 
     return (
