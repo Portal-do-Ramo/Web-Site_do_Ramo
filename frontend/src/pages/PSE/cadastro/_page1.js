@@ -117,7 +117,17 @@ export default function Page1() {
 					<div className={styles.leftForm}>
             {
               listFormRegistro.map(item => {
-                return <BasicInput key={item.id} item={item}/>
+                return (
+                  <BasicInput
+                    key={item.id}
+                    label={item.label}
+                    id={item.id}
+                    type= {item.type}
+                    placeholder={item.placeholder}
+                    required={item.required}
+                    value={item.value}
+                    set={item.set} />
+                )
               })
             }
 					</div>
@@ -129,7 +139,17 @@ export default function Page1() {
           <span>Redes Sociais</span>
           {
             listSocialMedia.map(item => { 
-              return <BasicInput key={item.id} item={item}/>
+              return (
+                <BasicInput
+                  key={item.id}
+                  label={item.label}
+                  id={item.id}
+                  type= {item.type}
+                  placeholder={item.placeholder}
+                  required={item.required}
+                  value={item.value}
+                  set={item.set} />
+              )
             })
           }
 					<div className={styles.buttonsHolder}>

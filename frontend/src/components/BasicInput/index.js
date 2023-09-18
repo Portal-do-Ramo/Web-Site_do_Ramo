@@ -1,30 +1,40 @@
 import { IMaskInput } from 'react-imask'
 
-export default function BasicInput ({item}) {
+export default function BasicInput(
+  { mask,
+    label,
+    id,
+    placeholder,
+    required,
+    value,
+    set,
+    type
+  })
+{
   
-  if (item.mask) {
+  if (mask) {
     return <>
-      {item.label && <span>{item.label}<strong>*</strong></span>}
+      {label && <span>{label}<strong>*</strong></span>}
         <IMaskInput 
-					mask={item.mask}
-					name={item.id}
-					placeholder='(21) 9xxxx-xxxx'
-					required={item.required}
-          value={item.value}
-          onChange={(event) => item.set(event.target.value)}
+					mask={mask}
+					name={id}
+					placeholder={placeholder}
+					required={required}
+          value={value}
+          onChange={(event) => set(event.target.value)}
 				/>
     </>
   }
 
   return <>
-    {item.label && <span>{item.label}<strong>*</strong></span>} 
+    {label && <span>{label}<strong>*</strong></span>} 
       <input 
-        type={item.type}
-        name={item.id} 
-        placeholder={item.placeholder}
-        required={item.required}
-        value={item.value}
-        onChange={(event) => item.set(event.target.value)}
+        type={type}
+        name={id} 
+        placeholder={placeholder}
+        required={required}
+        value={value}
+        onChange={(event) => set(event.target.value)}
         />        
   </>  
 
