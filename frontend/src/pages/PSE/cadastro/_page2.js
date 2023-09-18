@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AiFillLock } from 'react-icons/ai';
-import { IMaskInput } from "react-imask";
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
+import RadioInputPlusSelect from '../../../components/RadioInputPlusSelect';
+import BasicInput from '../../../components/BasicInput';
+import BasicSelect from '../../../components/BasicSelect';
 
 export default function Page2() {
   const router = useRouter();
@@ -68,41 +70,32 @@ export default function Page2() {
 				</div>
 
 				<div className={styles.leftForm}>
-				<span>Matrícula <strong>*</strong></span>
-					<input 
-						type="text"
-						placeholder='Digite o número da Matrícula'
-						value={registration}
-						onChange={(event) => setRegistration(event.target.value)}
-					></input>
-
-					<span>Curso <strong>*</strong></span>
-					<select required value={course} onChange={(event) => setCourse(event.target.value)}>
-						<option value="" disabled defaultValue={true} hidden>Selecione seu curso</option>
-						
-						{courses.map((course, idx) => {
-							return (
-								<option key={idx} value={course}>{course}</option>
-							)
-						})}
-					</select>
-
-					<span>Período atual <strong>*</strong></span>
-					<select 
-						required 
-						value={currentTimeCourse} 
-						onChange={(event) => setCurrentTimeCourse(event.target.value)}
-					>
-						<option value="" disabled defaultValue={true} hidden>Selecione seu período</option>
-						
-						{currentTimesCourse.map((currentTimeCourse, idx) => {
-							return (
-								<option key={idx} value={currentTimeCourse}>
-									{currentTimeCourse}
-								</option>
-							)
-						})}
-					</select>
+            
+            <BasicInput
+              label='Matrícula'
+              id='registration'
+              type= 'text'
+              placeholder='Digite o número da Matrícula'
+              required={true}
+              value={registration}
+              set= {setRegistration}
+            />
+            <BasicSelect
+              label={'Curso'}
+              required={true}
+              value={course}
+              set={setCourse}
+              defaultValue={'Selecione seu curso'}
+              list={courses}
+            />
+            <BasicSelect
+              label={'Período atual'}
+              required={true}
+              value={currentTimeCourse}
+              set={setCurrentTimeCourse}
+              defaultValue={'Selecione seu período'}
+              list={currentTimesCourse}
+            />
 
 					<div className={styles.buttonsHolder}>
 						<button
