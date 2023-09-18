@@ -14,7 +14,7 @@ export default function BasicInput(
   
   if (mask) {
     return <>
-      {label && <span>{label}<strong>*</strong></span>}
+      {label && <span>{label} {required && <strong>*</strong>}</span>}
         <IMaskInput 
 					mask={mask}
 					name={id}
@@ -27,7 +27,7 @@ export default function BasicInput(
   }
 
   return <>
-    {label && <span>{label}<strong>*</strong></span>} 
+    {label && <span>{label} {required && <strong>*</strong>}</span>} 
       <input 
         type={type}
         name={id} 
