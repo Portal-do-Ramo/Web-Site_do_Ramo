@@ -1,0 +1,65 @@
+.container {
+	display: flex;
+  flex-direction: column;
+	width: 40%;
+
+	
+  .inputsRadio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 13px;
+    margin-top: 15px;
+    padding-inline: 10px;
+
+      div {
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        label {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #fff;
+        
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+        input {
+          margin-top: 2px;
+          margin-right: 4px;
+          width: 12px;
+        }
+
+      }
+    
+  }
+
+
+}
+
+@media (max-width: 1060px) {
+  .container {
+    justify-content: space-between;
+    padding-left: 0px;
+  }
+}
+
+@media (max-width: 560px) {
+	.container {
+		width: 100%;
+	}
+}
+
+@media (max-width: 490px) {
+
+}
+
+@media (max-width: 340px) {
+
+}
+

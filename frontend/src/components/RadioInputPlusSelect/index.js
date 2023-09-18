@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from './styles.module.scss'
 
 export default function RadioInputPlusSelect(
   { label,
@@ -28,27 +29,35 @@ export default function RadioInputPlusSelect(
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {label && <span>{label} {required && <strong>*</strong>}</span>}
-
-      <span>
-        <input
-          type="radio"
-          name="opcao"
-          checked={optionYes}
-          onChange={handleOptionYes}
-        />
-        Sim
-      </span>
-      <span>
-        <input
-          type="radio"
-          name="opcao"
-          checked={optionNo}
-          onChange={handleOptionNo}
-        />
-        Não
-      </span>
+      <div className={styles.inputsRadio}>
+        <div>
+          <input
+            id="yes"
+            type="radio"
+            name="opcao"
+            checked={optionYes}
+            onChange={handleOptionYes}
+          />
+          <label htmlFor="yes" >
+            Sim
+          </label>
+        </div>
+        <div>
+          <input
+            id="no"
+            type="radio"
+            name="opcao"
+            checked={optionNo}
+            onChange={handleOptionNo}
+          />
+          <label htmlFor="no">
+            Não
+          </label>
+        </div>
+      </div>
+      
       
       <select 
 				required={required}
@@ -71,10 +80,17 @@ export default function RadioInputPlusSelect(
               }
             </>
           
-          ) : <option value="" disabled defaultValue hidden>{defaultValue}</option>
+          ) : <></>
         }
 
 			</select>
     </div>
   );
 }
+
+/* 
+
+
+
+
+*/
