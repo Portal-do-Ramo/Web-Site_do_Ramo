@@ -29,7 +29,8 @@ export function PSEFormContextProvider({children}) {
     const [isFistPageValidated, setIsFistPageValidated] = useState(false);
     const [isSecondPageValidated, setIsSecondPageValidated] = useState(false);
     const [isThirdPageValidated, setIsThirdPageValidated] = useState(false);
-
+    const [isFourthPageValidated, setIsFourthPageValidated] = useState(false);
+  
     useEffect(() => {
 		if (
 			name.length > 3
@@ -66,6 +67,18 @@ export function PSEFormContextProvider({children}) {
 			setIsThirdPageValidated(false)
 		}
     }, [crew, area, dynamicMainDate, dynamicSecondaryDate]);
+    
+    useEffect(() => {
+      if (
+        registration.length > 7
+        && course.length > 3
+        && currentTimeCourse.length >= 1
+      ) {
+        setIsFourthPageValidated(true)
+      } else {
+        setIsFourthPageValidated(false)
+      }
+      }, [registration, course, currentTimeCourse])
 
 	function clearAll() {
 		setName("");
@@ -158,7 +171,8 @@ export function PSEFormContextProvider({children}) {
 				clearAll,
 				isFistPageValidated,
 				isSecondPageValidated,
-				isThirdPageValidated,
+        isThirdPageValidated,
+        isFourthPageValidated,
 				handleSendCSV,
 				dynamicMainDate,
 				setDynamicMainDate,

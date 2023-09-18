@@ -6,9 +6,11 @@ import api from '../../../services/api';
 import Page1 from './_page1';
 import Page2 from './_page2';
 import Page3 from './_page3';
+import Page4 from './_page4';
 import styles from '../../../styles/pseCadastro.module.scss';
 import Head from 'next/head';
 import { isBefore } from 'date-fns';
+
 
 export default function cadastro({ hasActivePSE, crewsNames }) {
 	const router = useRouter();
@@ -21,7 +23,7 @@ export default function cadastro({ hasActivePSE, crewsNames }) {
 	}, [])
 
 	useEffect(() => {
-		if (page && page !== "1" && page !== "2" && page !== "3") {
+		if (page && page !== "1" && page !== "2" && page !== "3" && page !== "4") {
 			router.push("/PSE/cadastro?page=1");
 		}
 	}, [page]);
@@ -39,7 +41,8 @@ export default function cadastro({ hasActivePSE, crewsNames }) {
 			<section className={styles.container}>
 				{ page === "1" && <Page1 /> }
 				{ page === "2" && <Page2/> }
-				{ page === "3" && <Page3 crewsNames={crewsNames}/> }
+        {page === "3" && <Page3 crewsNames={crewsNames} />}
+        { page === "4" && <Page4/> }
 			</section>
 		</div>
 	)

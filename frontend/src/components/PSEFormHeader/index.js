@@ -10,7 +10,8 @@ export default function PSEFormHeader({ page }) {
   const { 
     isFistPageValidated,
     isSecondPageValidated,
-    isThirdPageValidated
+    isThirdPageValidated,
+    isFourthPageValidated
   } = useContext(PSEFormContext);
 
   function dotStyle(pageStyle) {
@@ -27,6 +28,10 @@ export default function PSEFormHeader({ page }) {
     }
     
     if (isThirdPageValidated && pageStyle === "3") {
+      return styles.validatedDot;
+    }
+
+    if (isFourthPageValidated && pageStyle === "4") {
       return styles.validatedDot;
     }
 
@@ -57,6 +62,13 @@ export default function PSEFormHeader({ page }) {
         <article
           className={dotStyle("3")}
           onClick={() => router.push("/PSE/cadastro?page=3")}
+        > {isThirdPageValidated && <ImCheckmark />} </article>
+        
+        <div className={styles.lines}></div>
+
+        <article
+          className={dotStyle("4")}
+          onClick={() => router.push("/PSE/cadastro?page=4")}
         > {isThirdPageValidated && <ImCheckmark/>} </article>
       </section>
     </div>

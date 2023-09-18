@@ -20,8 +20,6 @@ export default function Page2() {
     setCurrentTimeCourse,
   } = useContext(PSEFormContext);
 
-  const [val, setVal] = useState('') //para testar RadioInputPlusSelect
-
   const currentTimesCourse = [
     "1º período", 
     "2º período", 
@@ -73,21 +71,6 @@ export default function Page2() {
 
 				<div className={styles.leftForm}>
             
-        <RadioInputPlusSelect
-            label='PCD'
-            defaultValue='Selecione uma opção'
-            value={val}
-            set={setVal}
-            list={
-              [
-              'Opção 1',
-              'Opção 2',
-              'Opção 3',
-              ]
-            }
-          />
-
-
             <BasicInput
               label='Matrícula'
               id='registration'
