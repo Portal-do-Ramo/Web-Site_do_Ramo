@@ -1,12 +1,27 @@
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AiFillLock } from 'react-icons/ai';
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
+import BasicSelect from '../../../components/BasicSelect';
 
 export default function Page3({ crewsNames }) {
 	const router = useRouter();
+
+  const [equip, setEquip] = useState('');
+  const [areaa, setAreaa] = useState('');
+
+
+  const equipesAtivas = [
+    'byte',
+    'rocket'
+  ]
+  const areaDasEquipes = {
+    'byte': ['web', 'games'],
+    'rocket': ['foguete grande', 'foguete pequeno']
+  }
+
 
 	const dynamicDates = [
 		"03/04/2023 às 15:30h - Segunda-feira",
@@ -49,8 +64,28 @@ export default function Page3({ crewsNames }) {
 						</p>
 					</div>
 
-					<div className={styles.leftForm}>
-						{crewsNames && crewsNames.length > 0 && (
+          <div className={styles.leftForm}>
+            
+          <BasicSelect
+              label={'Equipe'}
+              required={true}
+              value={equip}
+              set={setEquip}
+              defaultValue={'Selecione a equipe'}
+              list={equipesAtivas}
+          />
+
+            <BasicSelect
+              label={'Área'}
+              required={true}
+              value={areaa}
+              set={setAreaa}
+              defaultValue={'Selecione a area'}
+              list={areaDasEquipes[equip] ? areaDasEquipes[equip] : [] }
+            />
+
+
+						{/* {crewsNames && crewsNames.length > 0 && (
 							<>
 								<span>Equipe <strong>*</strong></span>
 								<select required value={crew} onChange={(event) => setCrew(event.target.value)}>
@@ -63,16 +98,16 @@ export default function Page3({ crewsNames }) {
 									})}
 								</select>
 							</>
-						)}
+						)} */}
 
-						<span>Área <strong>*</strong></span>
+						{/* <span>Área <strong>*</strong></span>
 
 						<input 
 							type='text' 
 							placeholder='Digite a área de interesse' 
 							value={area}
 							onChange={(event) => setArea(event.target.value)}
-						/>
+						/> */}
 
 						{dynamicDates && dynamicDates.length > 0 && (
 							<>
