@@ -152,8 +152,8 @@
         display: flex;
         flex-direction: column;
         max-width: 600px;
-		width: 100%;
-		gap: 3px;
+				width: 100%;
+				gap: 3px;
 
         .nameInputs {
           display: flex;
@@ -175,6 +175,9 @@
             margin-top: 0;
           }
         }
+	}
+	.centered{
+		align-items: center;
 	}
 }
 
