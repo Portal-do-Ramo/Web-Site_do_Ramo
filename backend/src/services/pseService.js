@@ -228,11 +228,13 @@ module.exports = {
 		const pseDatesFormatted = {};
 		let verifyUpdateSchedule = false;
 		const jobExists = scheduledJobs["scheduleJobPSE"];
+		let endDate;
 
 		try {
 			if (!jobExists) {
 				throw new Error("scheduling does not exist!");
 			}
+			
 
 			if (pse.startDate && regex.test(pse.startDate)) {
 				pseDatesFormatted.start = new Date(pse.startDate);
@@ -260,6 +262,13 @@ module.exports = {
 
 			if (pse.dinamycDate_5 && regex.test(pse.dinamycDate_5)) {
 				pseDatesFormatted.dinamycDate_5 = new Date(pse.dinamycDate_5);
+			}
+
+			if (!pse.endDate){
+				endDate = await knex("pse").select("end").first();
+			}
+			else{
+				endDate = pseDatesFormatted.end;
 			}
 	
 			let currentDate = new Date();
@@ -291,6 +300,21 @@ module.exports = {
 				isBefore(pseDatesFormatted.dinamycDate_5, currentDate)) {
 				throw new Error("current date can't be greater than dinamyc date");
 			}
+
+			/*if (isBefore(pseDatesFormatted.dinamycDate_1, endDate) || 
+				isBefore(pseDatesFormatted.dinamycDate_2, endDate) ||
+				isBefore(pseDatesFormatted.dinamycDate_3, endDate) ||
+				isBefore(pseDatesFormatted.dinamycDate_4, endDate) ||
+				isBefore(pseDatesFormatted.dinamycDate_5, endDate)) {
+				throw new Error("end pse date can't be greater than dinamyc date");
+			}*/
+
+			Object.keys(pseDatesFormatted).forEach((prop) => {
+				if (prop.includes('dynamicDate') && isBefore(pseDatesFormatted[prop], endDate)){
+					throw new Error("end pse date can't be greater than dinamyc date");
+				}
+			})
+
 
 			if (jobExists && verifyUpdateSchedule) {
 				jobExists.cancel();
