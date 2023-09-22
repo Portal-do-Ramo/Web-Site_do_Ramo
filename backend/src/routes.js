@@ -34,6 +34,8 @@ router
 	.get("/users", auth, admin, userController.index)
 	.get("/uploads/:name", fileController.getByName)
 	.get("/pse", pseController.getSchedulePSE)
+	.get("/dinamycDates", pseController.getDinamycDatesPSE)
+
 
 	
 	.patch("/award/:id", auth, awardController.update)

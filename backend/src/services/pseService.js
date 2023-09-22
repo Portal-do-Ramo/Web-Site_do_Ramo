@@ -75,10 +75,24 @@ module.exports = {
 		
 		return {"message": "Email ou número inserido já foi cadastrado!"};
 	},
+	
+	async getSchedulePSE() {
+		try {	
+			const data = await knex("pse").select("start", "end", "dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
+			
+			if (!data) {
+				throw new Error("PSE has not been scheduled!");
+			}
 
-	async getSchedulePSE(){
+			return data;
+		} catch (error) {
+			throw new Error(error.message);
+		}
+	},
+
+	async getDinamycDatesPSE(){
 		try {
-		let data = await knex("pse").select("start", "end", "dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
+		let data = await knex("pse").select("dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
 		
 		if (!data) {
 			throw new Error("PSE has not been scheduled!");
@@ -102,8 +116,6 @@ module.exports = {
 			dinamycDate_5 = `Dia ${moment(data.dinamycDate_5).locale('pt').format("D/MM (dddd) - kk:mm")}`;
 		}
 		
-		data.start = moment(data.start).format();
-		data.end = moment(data.end).format();
 		data.dinamycDate_1 = dinamycDate_1;
 		data.dinamycDate_2 = dinamycDate_2;
 		data.dinamycDate_3 = dinamycDate_3;

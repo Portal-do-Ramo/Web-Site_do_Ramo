@@ -67,7 +67,7 @@ module.exports =  {
 			const response = await pseService.deleteOnePseDate(name);
 			return res.status(200).json(response)
 		} catch(err){
-			return res.status(405).json({message: err.message})
+			return res.status(405).json({message: err.message});
 		}
 	},
 	
@@ -77,6 +77,15 @@ module.exports =  {
 			console.log("🆗 service scheduled!");
 		} catch (error) {
 			console.log(error.message);
+		}
+	},
+
+	async getDinamycDatesPSE(req, res) {
+		try {
+			const response = await pseService.getDinamycDatesPSE();
+			return res.status(200).json(response);
+		} catch (err) {
+			return res.status(405).json({message: err.message});
 		}
 	}
 }
