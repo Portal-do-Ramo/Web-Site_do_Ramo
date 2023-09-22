@@ -228,6 +228,8 @@ module.exports = {
 		const pseDatesFormatted = {};
 		let verifyUpdateSchedule = false;
 		const jobExists = scheduledJobs["scheduleJobPSE"];
+		//const {dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5} = await knex("pse").select("*").first();
+		//let dinamycDatesList = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5]
 		let endDate;
 
 		try {
@@ -235,7 +237,6 @@ module.exports = {
 				throw new Error("scheduling does not exist!");
 			}
 			
-
 			if (pse.startDate && regex.test(pse.startDate)) {
 				pseDatesFormatted.start = new Date(pse.startDate);
 			}
@@ -265,7 +266,8 @@ module.exports = {
 			}
 
 			if (!pse.endDate){
-				endDate = await knex("pse").select("end").first();
+				const { end } = await knex("pse").select("end").first();
+				endDate = end;
 			}
 			else{
 				endDate = pseDatesFormatted.end;
@@ -274,7 +276,7 @@ module.exports = {
 			let currentDate = new Date();
 
 			if (pseDatesFormatted.end && pseDatesFormatted.start) {
-				if (isBefore(pseDatesFormatted.endDate, pseDatesFormatted.startDate)) {
+				if (isBefore(pseDatesFormatted.end, pseDatesFormatted.start)) {
 					throw new Error("start date can't be greater than end date");
 				}
 			} 
@@ -301,19 +303,18 @@ module.exports = {
 				throw new Error("current date can't be greater than dinamyc date");
 			}
 
-			/*if (isBefore(pseDatesFormatted.dinamycDate_1, endDate) || 
+			if (isBefore(pseDatesFormatted.dinamycDate_1, endDate) || 
 				isBefore(pseDatesFormatted.dinamycDate_2, endDate) ||
 				isBefore(pseDatesFormatted.dinamycDate_3, endDate) ||
 				isBefore(pseDatesFormatted.dinamycDate_4, endDate) ||
 				isBefore(pseDatesFormatted.dinamycDate_5, endDate)) {
 				throw new Error("end pse date can't be greater than dinamyc date");
-			}*/
+			}
 
-			Object.keys(pseDatesFormatted).forEach((prop) => {
-				if (prop.includes('dynamicDate') && isBefore(pseDatesFormatted[prop], endDate)){
-					throw new Error("end pse date can't be greater than dinamyc date");
-				}
-			})
+			/*Object.keys(pseDatesFormatted).forEach((prop) => {
+			
+				console.log(pseDatesFormatted[prop])
+			}) Inicio de uma tentativa*/
 
 
 			if (jobExists && verifyUpdateSchedule) {
