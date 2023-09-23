@@ -240,8 +240,8 @@ module.exports = {
 		const pseDatesFormatted = {};
 		let verifyUpdateSchedule = false;
 		const jobExists = scheduledJobs["scheduleJobPSE"];
-		//const {dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5} = await knex("pse").select("*").first();
-		//let dinamycDatesList = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5]
+		const {end, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5} = await knex("pse").select("*").first();
+		let dinamycDatesList = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5]
 		let endDate;
 
 		try {
@@ -259,32 +259,31 @@ module.exports = {
 
 			if (pse.dinamycDate_1 && regex.test(pse.dinamycDate_1)) {
 				pseDatesFormatted.dinamycDate_1 = new Date(pse.dinamycDate_1);
+				dinamycDatesList[0] = new Date(pse.dinamycDate_1);
 			}
 
 			if (pse.dinamycDate_2 && regex.test(pse.dinamycDate_2)) {
 				pseDatesFormatted.dinamycDate_2 = new Date(pse.dinamycDate_2);
+				dinamycDatesList[1] = new Date(pse.dinamycDate_2);
 			}
 
 			if (pse.dinamycDate_3 && regex.test(pse.dinamycDate_3)) {
 				pseDatesFormatted.dinamycDate_3 = new Date(pse.dinamycDate_3);
+				dinamycDatesList[2] = new Date(pse.dinamycDate_3);
 			}
 
 			if (pse.dinamycDate_4 && regex.test(pse.dinamycDate_4)) {
 				pseDatesFormatted.dinamycDate_4 = new Date(pse.dinamycDate_4);
+				dinamycDatesList[3] = new Date(pse.dinamycDate_4);
 			}
 
 			if (pse.dinamycDate_5 && regex.test(pse.dinamycDate_5)) {
 				pseDatesFormatted.dinamycDate_5 = new Date(pse.dinamycDate_5);
+				dinamycDatesList[4] = new Date(pse.dinamycDate_5);
 			}
 
-			if (!pse.endDate){
-				const { end } = await knex("pse").select("end").first();
-				endDate = end;
-			}
-			else{
-				endDate = pseDatesFormatted.end;
-			}
-	
+			endDate = pse.endDate ? pseDatesFormatted.end : end;
+
 			let currentDate = new Date();
 
 			if (pseDatesFormatted.end && pseDatesFormatted.start) {
@@ -293,7 +292,6 @@ module.exports = {
 				}
 			} 
 			else if (pseDatesFormatted.start) {
-				const { end } = await knex("pse").select("*").first();
 				if (isBefore(end, pseDatesFormatted.start)){
 					throw new Error("start date can't be greater than end date");
 				}
@@ -315,19 +313,11 @@ module.exports = {
 				throw new Error("current date can't be greater than dinamyc date");
 			}
 
-			if (isBefore(pseDatesFormatted.dinamycDate_1, endDate) || 
-				isBefore(pseDatesFormatted.dinamycDate_2, endDate) ||
-				isBefore(pseDatesFormatted.dinamycDate_3, endDate) ||
-				isBefore(pseDatesFormatted.dinamycDate_4, endDate) ||
-				isBefore(pseDatesFormatted.dinamycDate_5, endDate)) {
-				throw new Error("end pse date can't be greater than dinamyc date");
+			for (i = 0; i < 5; i++){
+				if (isBefore(dinamycDatesList[i], endDate)){
+					throw new Error("end pse date can't be greater than dinamyc date")
+				}
 			}
-
-			/*Object.keys(pseDatesFormatted).forEach((prop) => {
-			
-				console.log(pseDatesFormatted[prop])
-			}) Inicio de uma tentativa*/
-
 
 			if (jobExists && verifyUpdateSchedule) {
 				jobExists.cancel();
