@@ -18,13 +18,7 @@ export default function Page5() {
           <h1>Muito obrigadx!</h1>
           <p>Em breve entraremos em contato com você.</p>
 
-          <div className={styles.message}>
-            <AiFillLock />
-            <p>
-              Levamos as questões de privacidade a sério. Você pode ter certeza
-              de que seus dados pessoais estão protegidos com segurança.
-            </p>
-          </div>
+
 
           <div className={`${styles.leftForm} ${styles.centered}`}>
             
