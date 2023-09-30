@@ -12,15 +12,15 @@ export default function Page2() {
   const router = useRouter();
 
   const {
-    registration,
-    setRegistration,
+    register,
+    setRegister,
     course,
     setCourse,
-    currentTimeCourse,
-    setCurrentTimeCourse,
+    currentPeriod,
+    setCurrentPeriod,
   } = useContext(PSEFormContext);
 
-  const currentTimesCourse = [
+  const periods = [
     "1º período", 
     "2º período", 
     "3º período", 
@@ -73,12 +73,12 @@ export default function Page2() {
             
             <BasicInput
               label='Matrícula'
-              id='registration'
+              id='register'
               type= 'text'
               placeholder='Digite o número da Matrícula'
               required={true}
-              value={registration}
-              set= {setRegistration}
+              value={register}
+              set={setRegister}
             />
             <BasicSelect
               label={'Curso'}
@@ -91,10 +91,10 @@ export default function Page2() {
             <BasicSelect
               label={'Período atual'}
               required={true}
-              value={currentTimeCourse}
-              set={setCurrentTimeCourse}
+              value={currentPeriod}
+              set={setCurrentPeriod}
               defaultValue={'Selecione seu período'}
-              list={currentTimesCourse}
+              list={periods}
             />
 
 					<div className={styles.buttonsHolder}>

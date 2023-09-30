@@ -10,17 +10,16 @@ export default function Page4() {
   const router = useRouter();
 
   const {
-    registration,
-    setRegistration,
-    course,
-    setCourse,
-    currentTimeCourse,
-    setCurrentTimeCourse,
+    neuroatypicality,
+    setNeuroatipicality,
+    Pcd,
+    setPcD,
+    selfDeclaration,
+    setSelfDeclaration
   } = useContext(PSEFormContext);
 
   const [val, setVal] = useState(""); //para testar RadioInputPlusSelect
-
-  const currentTimesCourse = [
+  const periods = [
     "1º período",
     "2º período",
     "3º período",
@@ -50,6 +49,31 @@ export default function Page4() {
     "Curso Superior de Tecnologia em Gestão Ambiental",
     "Curso Superior de Tecnologia em Sistemas para Internet",
   ];
+  
+  const pcdList = [
+    "Deficiência Motora",
+    "Deficiência Auditiva",
+    "Deficiência Intelectual",
+    "Deficiência Múltipla",
+    "Não sei",
+    "Prefiro não dizer"
+  ]
+  const neuroList = [
+    "Transtorno do Déficit de atenção com hiperatividade(TDAH)",
+    "Transtorno do Déficit de Atenção",
+    "Transtorno do Espectro Autirsta(TEA)",
+    "Dislexia",
+    "Outro"
+  ]
+  const selfDeclareList =[
+    "Pessoa Branca",
+    "Pessoa Amarela",
+    "Pessoa Preta",
+    "Pessoa Indígena",
+    "Pessoa Parda",
+    "Não sei",
+    "Prefiro não dizer"
+  ]
 
   return (
     <>
@@ -74,8 +98,16 @@ export default function Page4() {
               defaultValue="Selecione uma opção"
               value={val}
               set={setVal}
-              list={["Opção 1", "Opção 2", "Opção 3"]}
+              list={pcdList}
             />
+            <RadioInputPlusSelect
+              label="Neuro"
+              defaultValue="Selecione uma opção"
+              value={val}
+              set={setVal}
+              list={neuroList}
+            />
+            
 
             <div className={styles.buttonsHolder}>
               <button
@@ -89,7 +121,7 @@ export default function Page4() {
               <button
                 type="button"
                 className={styles.next_page2}
-                /* onClick={() => router.push("/PSE/cadastro?page=3")} */
+                 onClick={() => router.push("/PSE/cadastro?page=4")} 
               >
                 Finalizar
               </button>

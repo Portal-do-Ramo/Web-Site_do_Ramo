@@ -9,17 +9,27 @@ import BasicSelect from '../../../components/BasicSelect';
 export default function Page3({ crewsNames }) {
 	const router = useRouter();
 
-  const [equip, setEquip] = useState('');
-  const [areaa, setAreaa] = useState('');
+  const [equipes, setEquipes] = useState('');
+  const [subAreas, setSubAreas] = useState('');
 
 
   const equipesAtivas = [
     'byte',
-    'rocket'
+    'rocket',
+		'power',
+		'botz',
+		'wie',
+		'socialwolf',
+		'marketing',
+		'assessoria de gestão'
   ]
   const areaDasEquipes = {
-    'byte': ['web', 'games'],
-    'rocket': ['foguete grande', 'foguete pequeno']
+    'byte': ['programação', 'arte e som', 'eletrônica','mecânica'],
+    'rocket': ['propulsão', 'aerodinâmica', 'recuperação', 'estruturas', 'eletrônica'],
+		'power': ['eletrônica/programação', 'mecânica', 'divulgação'],
+		'botz': ['programação','mecânica', 'eletrônica'],
+		'wie': ['produtos','mídias sociais', 'eventos', 'projetos'],
+		'socialwolf':['educacional','mecânica','programação','eletrônica'],
   }
 
 
@@ -35,12 +45,10 @@ export default function Page3({ crewsNames }) {
 		setCrew,
 		area,
 		setArea,
-		dynamicMainDate,
-		setDynamicMainDate,
-		dynamicSecondaryDate,
-		setDynamicSecondaryDate,
-		motivation,
-		setMotivation,
+		availableDate,
+		setAvailableDate,
+		reason,
+		setReason,
 		experience,
 		setExperience,
 		handleSendCSV
@@ -69,8 +77,8 @@ export default function Page3({ crewsNames }) {
           <BasicSelect
               label={'Equipe'}
               required={true}
-              value={equip}
-              set={setEquip}
+              value={equipes}
+              set={setEquipes}
               defaultValue={'Selecione a equipe'}
               list={equipesAtivas}
           />
@@ -78,10 +86,10 @@ export default function Page3({ crewsNames }) {
             <BasicSelect
               label={'Área'}
               required={true}
-              value={areaa}
-              set={setAreaa}
+              value={subAreas}
+              set={setSubAreas}
               defaultValue={'Selecione a area'}
-              list={areaDasEquipes[equip] ? areaDasEquipes[equip] : [] }
+              list={areaDasEquipes[equipes] ? areaDasEquipes[equipes] : [] }
             />
 
 
@@ -112,7 +120,7 @@ export default function Page3({ crewsNames }) {
 						{dynamicDates && dynamicDates.length > 0 && (
 							<>
 								<span>Data de preferência da dinâmica <strong>*</strong></span>
-								<select required value={dynamicMainDate} onChange={(event) => setDynamicMainDate(event.target.value)}>
+								<select required value={availableDate} onChange={(event) => setDynamicMainDate(event.target.value)}>
 									<option value="" disabled defaultValue={true} hidden>Selecione a sua data de preferência para a dinâmica</option>
 								
 									{dynamicDates.map((dynamicDate, idx) => {
@@ -127,7 +135,7 @@ export default function Page3({ crewsNames }) {
 						{dynamicDates && dynamicDates.length > 0 && (
 							<>
 								<span>Data de preferência secundária da dinâmica <strong>*</strong></span>
-								<select required value={dynamicSecondaryDate} onChange={(event) => setDynamicSecondaryDate(event.target.value)}>
+								<select required value={availableDate} onChange={(event) => setDynamicSecondaryDate(event.target.value)}>
 									<option value="" disabled defaultValue={true} hidden>Selecione a sua segunda data de preferência para a dinâmica</option>
 								
 									{dynamicDates.map((dynamicDate, idx) => {
@@ -148,7 +156,7 @@ export default function Page3({ crewsNames }) {
 					<textarea 
 						placeholder="Escreva seus motivos"
 						onChange={event => setMotivation(event.target.value)}
-						value={motivation}
+						value={reason}
 					/>
 
 					<span>Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo?</span>

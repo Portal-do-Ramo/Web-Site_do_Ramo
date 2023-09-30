@@ -8,23 +8,33 @@ export const PSEFormContext = createContext({})
 export function PSEFormContextProvider({children}) {
 	const router = useRouter();
 
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [fullname, setFullName] = useState("");
+    
     const [address, setAddress] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
-    const [facebook, setFacebook] = useState("");
-    const [LinkedIn, setLinkedIn] = useState("");
+    
+    const [linkedin, setLinkedin] = useState("");
     const [instagram, setInstagram] = useState("");
-    const [registration, setRegistration] = useState("");
-    const [course, setCourse] = useState("");
-    const [currentTimeCourse, setCurrentTimeCourse] = useState("");
+    const [register, setRegister] = useState("");
     const [crew, setCrew] = useState("");
     const [area, setArea] = useState("");
-	const [dynamicMainDate, setDynamicMainDate] = useState("");
-	const [dynamicSecondaryDate, setDynamicSecondaryDate] = useState("");
-    const [motivation, setMotivation] = useState("");
-    const [experience, setExperience] = useState("");
+		const [reason, setReason] = useState("");
+		const [experience, setExperience] = useState("");
+		const [course, setCourse] = useState("");
+		const [currentPeriod, setCurrentPeriod] = useState();
+		const [PcD, setPcD] = useState("");
+		const [neuroatypicality, setNeuroatypicality ] = useState("");
+		const [gender, setGender] = useState("");
+		const [availableDate, setAvailableDate] = useState("")
+		const [selfDeclaration, setSelfDeclaration] = useState("");
+
+
+
+	// const [dynamicMainDate, setDynamicMainDate] = useState("");
+	// const [dynamicSecondaryDate, setDynamicSecondaryDate] = useState("");
+    // const [motivation, setMotivation] = useState("");
+    // const [experience, setExperience] = useState("");
 
     const [isFistPageValidated, setIsFistPageValidated] = useState(false);
     const [isSecondPageValidated, setIsSecondPageValidated] = useState(false);
@@ -33,29 +43,29 @@ export function PSEFormContextProvider({children}) {
   
     useEffect(() => {
 		if (
-			name.length > 3
-			&& lastName.length > 3
+			fullname.length > 3
+			
 			&& address.length > 3
-			&& phoneNumber.length > 14
+			&& phone.length > 14
 			&& email.length > 3
 		) {
 			setIsFistPageValidated(true)
 		} else {
 			setIsFistPageValidated(false)
 		}
-    }, [name, lastName, address, phoneNumber, email, facebook, instagram, LinkedIn])
+    }, [fullname, address, phone, email, instagram, linkedin])
 
     useEffect(() => {
 		if (
-			registration.length > 7
+			register.length > 7
 			&& course.length > 3
-			&& currentTimeCourse.length >= 1
+			&& currentPeriod.length >= 1
 		) {
 			setIsSecondPageValidated(true)
 		} else {
 			setIsSecondPageValidated(false)
 		}
-    }, [registration, course, currentTimeCourse])
+    }, [register, course, currentPeriod])
     
     useEffect(() => {
 		if (
@@ -66,39 +76,35 @@ export function PSEFormContextProvider({children}) {
 		} else {
 			setIsThirdPageValidated(false)
 		}
-    }, [crew, area, dynamicMainDate, dynamicSecondaryDate]);
+    }, [crew, area, availableDate]);
     
     useEffect(() => {
       if (
-        registration.length > 7
+        register.length > 7
         && course.length > 3
-        && currentTimeCourse.length >= 1
+        && currentPeriod.length >= 1
       ) {
         setIsFourthPageValidated(true)
       } else {
         setIsFourthPageValidated(false)
       }
-      }, [registration, course, currentTimeCourse])
+      }, [register, course, currentPeriod])
 
 	function clearAll() {
 		setName("");
-		setLastName("");
-		setAddress("");
-		setPhoneNumber("");
+		setPhone("");
 		setEmail("");
-		setFacebook("");
 		setInstagram("");
-		setLinkedIn("");
+		setLinkedin("");
 
-		setRegistration("");
+		setRegister("");
 		setCourse("");
-		setCurrentTimeCourse("");
+		setCurrentPeriod("");
 		
 		setCrew("");
 		setArea("");
-		setDynamicMainDate("");
-		setDynamicSecondaryDate("");
-		setMotivation("");
+		setAvailableDate("");
+		setReason("")
 		setExperience("");
     }
 
@@ -106,22 +112,19 @@ export function PSEFormContextProvider({children}) {
 		try {
 			if (isFistPageValidated && isSecondPageValidated && isThirdPageValidated) {				
 				await api.post("/pse", {
-					nomeCompleto: `${name.replace(", ", " -")} ${lastName.replace(", ", " -")}`,
-					endereco: address.replace(", ", " -"),
-					celular: phoneNumber.replace(", ", " -"),
+					fullname: fullname.replace(", ", " -") ,
+					phone: phone.replace(", ", " -"),
 					email: email.replace(", ", " -"),
-					facebook: facebook.replace(", ", " -"),
-					linkedIn: LinkedIn.replace(", ", " -"),
+					linkedin: linkedin.replace(", ", " -"),
 					instagram: instagram.replace(", ", " -"),
-					matricula: registration.replace(", ", " -"),
-					curso: course.replace(", ", " -"),
-					periodo: currentTimeCourse.replace(", ", " -"),
-					equipe: crew.replace(", ", " -"),
+					register: register.replace(", ", " -"),
+					curse: course.replace(", ", " -"),
+					currentPeriod: currentPeriod.replace(", ", " -"),
+					crew: crew.replace(", ", " -"),
 					area: area.replace(", ", " -"),
-					dataDinamicaPrincipal: dynamicMainDate.replace(", ", " -"),
-					dataDinamicaSecundaria: dynamicSecondaryDate.replace(", ", " -"),
-					porQuaisMotivos: motivation.replace(", ", " -"),
-					experiencia: experience.replace(", ", " -"),
+					availableDate: availableDate.replace(", ", " -"),
+					reason: reason.replace(",", "-"),
+					experience: experience.replace(", ", " -"),
 				});
 
 				toast.success("Cadastro concluído");
@@ -138,34 +141,28 @@ export function PSEFormContextProvider({children}) {
     return (
 		<PSEFormContext.Provider 
 			value={{
-				name,
-				setName,
-				lastName,
-				setLastName,
-				address,
-				setAddress,
-				phoneNumber,
-				setPhoneNumber,
+				fullname,
+				setFullName,
+				phone,
+				setPhone,
 				email,
 				setEmail,
-				facebook,
-				setFacebook,
-				LinkedIn,
-				setLinkedIn,
+				linkedin,
+				setLinkedin,
 				instagram,
 				setInstagram,
-				registration,
-				setRegistration,
+				register,
+				setRegister,
 				course,
 				setCourse,
-				currentTimeCourse,
-				setCurrentTimeCourse,
+				currentPeriod,
+				setCurrentPeriod,
 				crew,
 				setCrew,
 				area,
 				setArea,
-				motivation,
-				setMotivation,
+				reason,
+				setReason,
 				experience,
 				setExperience,
 				clearAll,

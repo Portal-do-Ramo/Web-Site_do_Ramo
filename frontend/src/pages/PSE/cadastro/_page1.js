@@ -12,18 +12,12 @@ export default function Page1() {
 	const { 
 		name, 
 		setName,
-		lastName,
-		setLastName,
-		address,
-		setAddress,
-		phoneNumber,
-		setPhoneNumber,
+		phone,
+		setPhone,
 		email,
 		setEmail,
-		facebook,
-		setFacebook,
-		LinkedIn,
-		setLinkedIn,
+		linkedin,
+		setLinkedin,
 		instagram,
 		setInstagram,
 		clearAll
@@ -46,8 +40,8 @@ export default function Page1() {
       type:'text',
       placeholder:'(21) 9xxxx-xxxx',
       required: true,
-      value: phoneNumber,
-      set: setPhoneNumber,
+      value: phone,
+      set: setPhone,
       mask:"(00) 00000-0000"
     },
     {
@@ -63,13 +57,7 @@ export default function Page1() {
   
   const listSocialMedia = [
     {
-      label: null,
-      id: 'facebook',
-      type: 'text',
-      placeholder: 'Facebook',
-      required: true,
-      value:facebook,
-      set: setFacebook
+      
     },
     {
       label: null,
@@ -77,8 +65,8 @@ export default function Page1() {
       type:'text',
       placeholder: 'Linkedin',
       required: false,
-      value:LinkedIn,
-      set: setLinkedIn
+      value:linkedin,
+      set: setLinkedin
     },
     {
       label: null,
