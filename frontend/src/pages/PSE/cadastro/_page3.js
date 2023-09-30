@@ -159,8 +159,8 @@ export default function Page3({ crewsNames }) {
 					/>
 
 					<div className={styles.buttonsHolder}>
-						<button type='button' className={styles.back} onClick={() => router.push("/PSE/cadastro?page=2")}>voltar</button>
-						<button type='button' className={styles.finish} onClick={handleSendCSV}>Concluir</button>
+						<button type='button' className={styles.cancel} onClick={() => router.push("/PSE/cadastro?page=2")}>Voltar</button>
+						<button type='button' className={styles.next} onClick={() => router.push("/PSE/cadastro?page=4")}>Próximo</button>
 					</div>
 				</article>
 			</section>
