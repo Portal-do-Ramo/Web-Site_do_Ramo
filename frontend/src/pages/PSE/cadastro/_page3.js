@@ -11,6 +11,14 @@ export default function Page3({ crewsNames }) {
 
   const [equip, setEquip] = useState('');
   const [areaa, setAreaa] = useState('');
+	const [dynamicMainDates, setDynamicMainDates] = useState([]);
+	const handleCheckboxChange = (event, date) => {
+  const checkedDates = dynamicMainDates.includes(date)
+    ? dynamicMainDates.filter((d) => d !== date)
+    : [...dynamicMainDates, date];
+
+  setDynamicMainDates(checkedDates);
+};
 
 
   const equipesAtivas = [
@@ -24,10 +32,10 @@ export default function Page3({ crewsNames }) {
 
 
 	const dynamicDates = [
-		"03/04/2023 às 15:30h - Segunda-feira",
-		"04/04/2023 às 09h - Terça-feira",
-		"04/04/2023 às 14:30h - Terça-feira",
-		"06/04/2023 às 10:30h - Quinta-feira",
+		"01/10/2023 - 15:30h (Domingo)",
+		"02/10/2023 - 9:00h (Segunda-feira)",
+		"04/10/2023 - 14:30h (Quarta-feira)",
+		"06/10/2023 - 10:30h (Sexta-feira)",
 	]
 
 	const {
@@ -109,35 +117,30 @@ export default function Page3({ crewsNames }) {
 							onChange={(event) => setArea(event.target.value)}
 						/> */}
 
-						{dynamicDates && dynamicDates.length > 0 && (
-							<>
-								<span>Data de preferência da dinâmica <strong>*</strong></span>
-								<select required value={dynamicMainDate} onChange={(event) => setDynamicMainDate(event.target.value)}>
-									<option value="" disabled defaultValue={true} hidden>Selecione a sua data de preferência para a dinâmica</option>
-								
-									{dynamicDates.map((dynamicDate, idx) => {
-										return (
-											<option key={idx} value={dynamicDate}>{dynamicDate}</option>
-										)
-									})}
-								</select>
-							</>
-						)}
+					{dynamicDates && dynamicDates.length > 0 && (
+						<>
+							<span>Data de preferência da dinâmica <strong>*</strong></span>
+							<div className={styles.dynamicDate}>
+								{dynamicDates.map((dynamicDate, idx) => (
+									<div className={styles.dynamicDateItem} key={idx}>
+										<label htmlFor={`dynamicMainDate-${idx}`}>
+											{dynamicDate}
+										</label>
+										<input
+											type="checkbox"
+											id={`dynamicMainDate-${idx}`}
+											value={dynamicDate}
+											checked={dynamicMainDates.includes(dynamicDate)}
+											onChange={(event) => handleCheckboxChange(event, dynamicDate)}
+										/>
+									</div>
+								))}
+							</div>
 
-						{dynamicDates && dynamicDates.length > 0 && (
-							<>
-								<span>Data de preferência secundária da dinâmica <strong>*</strong></span>
-								<select required value={dynamicSecondaryDate} onChange={(event) => setDynamicSecondaryDate(event.target.value)}>
-									<option value="" disabled defaultValue={true} hidden>Selecione a sua segunda data de preferência para a dinâmica</option>
-								
-									{dynamicDates.map((dynamicDate, idx) => {
-										return (
-											<option key={idx} value={dynamicDate}>{dynamicDate}</option>
-										)
-									})}
-								</select>
-							</>
-						)}
+						</>
+					)}
+
+
 					</div>
 				</article>
 			</section>
