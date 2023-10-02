@@ -120,7 +120,7 @@ export default function PSE() {
                                 type="button"
                                 onClick={handleRegister}
                             >
-                                inscrever-se
+                                Inscrever-se
                             </button>
                         </div>
                     </article>
