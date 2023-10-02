@@ -79,7 +79,6 @@ export default function Page4() {
     <>
       <section className={styles.leftSide}>
         <PSEFormHeader page="4" />
-
         <article>
           <h1>Censo</h1>
           <p>Insira outras informações pessoais.</p>
