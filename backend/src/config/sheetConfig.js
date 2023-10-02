@@ -9,9 +9,9 @@ const sheetCredentials = {
     "private_key": process.env.SHEET_PRIVATE_KEY,
     "client_email": process.env.SHEET_CLIENT_EMAIL,
     "client_id": process.env.SHEET_CLIENT_ID,
-    "auth_uri": process.env.SHEET_AUTH_URI,
-    "token_uri": process.env.SHEET_TOKEN_URI,
-    "auth_provider_x509_cert_url": process.env.SHEET_AUTH_CERT_URL,
+    "auth_uri": process.env.AUTH_URI,
+    "token_uri": process.env.TOKEN_URI,
+    "auth_provider_x509_cert_url": process.env.AUTH_CERT_URL,
     "client_x509_cert_url": process.env.SHEET_CLIENT_CERT_URL,
     "universe_domain": "googleapis.com"
   }

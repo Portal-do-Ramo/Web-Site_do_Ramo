@@ -120,7 +120,7 @@ export default function Page4() {
               <button
                 type="button"
                 className={styles.next_page2}
-                 onClick={() => router.push("/PSE/cadastro?page=4")} 
+                onClick={() => router.push("/PSE/cadastro?page=5")} 
               >
                 Finalizar
               </button>
