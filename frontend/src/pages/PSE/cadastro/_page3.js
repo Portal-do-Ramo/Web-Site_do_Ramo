@@ -11,6 +11,14 @@ export default function Page3({ crewsNames }) {
 
   const [equipes, setEquipes] = useState('');
   const [subAreas, setSubAreas] = useState('');
+	const [dynamicMainDates, setDynamicMainDates] = useState([]);
+	const handleCheckboxChange = (event, date) => {
+  const checkedDates = dynamicMainDates.includes(date)
+    ? dynamicMainDates.filter((d) => d !== date)
+    : [...dynamicMainDates, date];
+
+  setDynamicMainDates(checkedDates);
+};
 
 
   const equipesAtivas = [
