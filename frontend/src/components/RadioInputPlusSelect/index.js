@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './styles.module.scss'
 
 export default function RadioInputPlusSelect(
@@ -14,6 +14,12 @@ export default function RadioInputPlusSelect(
   const [optionNo, setoptionNo] = useState(false);
   const [enabledSelect, setEnabledSelect] = useState(false);
 
+  useEffect(() => {
+    if (value !== "") {
+      setoptionYes(true);
+      setEnabledSelect(true);
+    }
+  }, [])
 
   const handleOptionYes = () => {
     setoptionYes(true);
@@ -22,7 +28,7 @@ export default function RadioInputPlusSelect(
   };
 
   const handleOptionNo = () => {
-    set('')
+    set("");
     setoptionYes(false);
     setoptionNo(true);
     setEnabledSelect(false);
