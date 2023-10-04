@@ -170,11 +170,7 @@ export function PSEFormContextProvider({children}) {
 				isSecondPageValidated,
         isThirdPageValidated,
         isFourthPageValidated,
-				handleSendCSV,
-				dynamicMainDate,
-				setDynamicMainDate,
-				dynamicSecondaryDate,
-				setDynamicSecondaryDate
+				handleSendCSV
 			}}
 		>
           	{children}

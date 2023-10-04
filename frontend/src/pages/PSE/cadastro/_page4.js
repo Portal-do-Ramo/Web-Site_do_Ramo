@@ -18,37 +18,6 @@ export default function Page4() {
     setSelfDeclaration
   } = useContext(PSEFormContext);
 
-  const [val, setVal] = useState(""); //para testar RadioInputPlusSelect
-  const periods = [
-    "1º período",
-    "2º período",
-    "3º período",
-    "4º período",
-    "5º período",
-    "6º período",
-    "7º período",
-    "8º período",
-    "9º período",
-    "10º período",
-    "Não sei definir",
-  ];
-
-  const courses = [
-    "Bacharelado em Administração",
-    "Bacharelado em Ciência da Computação",
-    "Bacharelado em Engenharia Ambiental",
-    "Bacharelado em Engenharia Civil",
-    "Bacharelado em Engenharia de Controle e Automação",
-    "Bacharelado em Engenharia de Produção",
-    "Bacharelado em Engenharia de Telecomunicações",
-    "Bacharelado em Engenharia Elétrica",
-    "Bacharelado em Engenharia Eletrônica",
-    "Bacharelado em Engenharia Mecânica",
-    "Bacharelado em Física",
-    "Bacharelado em Línguas Estrangeiras Aplicadas às Negociações Internacionais",
-    "Curso Superior de Tecnologia em Gestão Ambiental",
-    "Curso Superior de Tecnologia em Sistemas para Internet",
-  ];
   
   const pcdList = [
     "Deficiência Motora",
@@ -95,15 +64,15 @@ export default function Page4() {
             <RadioInputPlusSelect
               label="PCD"
               defaultValue="Selecione uma opção"
-              value={val}
-              set={setVal}
+              value={Pcd}
+              set={setPcD}
               list={pcdList}
             />
             <RadioInputPlusSelect
               label="Neuro"
               defaultValue="Selecione uma opção"
-              value={val}
-              set={setVal}
+              value={neuroatypicality}
+              set={setNeuroatipicality}
               list={neuroList}
             />
             

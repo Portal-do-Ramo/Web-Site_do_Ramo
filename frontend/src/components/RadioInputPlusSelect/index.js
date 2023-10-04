@@ -34,25 +34,23 @@ export default function RadioInputPlusSelect(
       <div className={styles.inputsRadio}>
         <div>
           <input
-            id="yes"
+            id={`yes#${label}`}
             type="radio"
-            name="opcao"
             checked={optionYes}
             onChange={handleOptionYes}
           />
-          <label htmlFor="yes" >
+          <label htmlFor={`yes#${label}`} >
             Sim
           </label>
         </div>
         <div>
           <input
-            id="no"
+            id={`no#${label}`}
             type="radio"
-            name="opcao"
             checked={optionNo}
             onChange={handleOptionNo}
           />
-          <label htmlFor="no">
+          <label htmlFor={`no#${label}`}>
             Não
           </label>
         </div>
