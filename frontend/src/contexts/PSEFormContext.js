@@ -22,8 +22,8 @@ export function PSEFormContextProvider({children}) {
 		const [reason, setReason] = useState("");
 		const [experience, setExperience] = useState("");
 		const [course, setCourse] = useState("");
-		const [currentPeriod, setCurrentPeriod] = useState();
-		const [PcD, setPcD] = useState("");
+		const [currentPeriod, setCurrentPeriod] = useState("");
+		const [pcd, setPcd] = useState("");
 		const [neuroatypicality, setNeuroatypicality ] = useState("");
 		const [gender, setGender] = useState("");
 		const [availableDate, setAvailableDate] = useState("")
@@ -31,10 +31,9 @@ export function PSEFormContextProvider({children}) {
 
 
 
-	// const [dynamicMainDate, setDynamicMainDate] = useState("");
-	// const [dynamicSecondaryDate, setDynamicSecondaryDate] = useState("");
-    // const [motivation, setMotivation] = useState("");
-    // const [experience, setExperience] = useState("");
+	  const [dynamicMainDate, setDynamicMainDate] = useState("");
+	  const [dynamicSecondaryDate, setDynamicSecondaryDate] = useState("");
+    const [motivation, setMotivation] = useState("");
 
     const [isFistPageValidated, setIsFistPageValidated] = useState(false);
     const [isSecondPageValidated, setIsSecondPageValidated] = useState(false);
@@ -170,7 +169,17 @@ export function PSEFormContextProvider({children}) {
 				isSecondPageValidated,
         isThirdPageValidated,
         isFourthPageValidated,
-				handleSendCSV
+				handleSendCSV,
+				dynamicMainDate,
+				setDynamicMainDate,
+        dynamicSecondaryDate,
+          setDynamicSecondaryDate,
+        
+          pcd,
+          setPcd,
+          neuroatypicality,
+          setNeuroatypicality
+        
 			}}
 		>
           	{children}

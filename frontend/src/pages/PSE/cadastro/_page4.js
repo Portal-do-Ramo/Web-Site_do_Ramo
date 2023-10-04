@@ -10,15 +10,15 @@ export default function Page4() {
   const router = useRouter();
 
   const {
+    pcd,
+    setPcd,
     neuroatypicality,
-    setNeuroatipicality,
-    Pcd,
-    setPcD,
+    setNeuroatypicality,
     selfDeclaration,
     setSelfDeclaration
   } = useContext(PSEFormContext);
 
-  
+
   const pcdList = [
     "Deficiência Motora",
     "Deficiência Auditiva",
@@ -64,15 +64,15 @@ export default function Page4() {
             <RadioInputPlusSelect
               label="PCD"
               defaultValue="Selecione uma opção"
-              value={Pcd}
-              set={setPcD}
+              value={pcd}
+              set={setPcd}
               list={pcdList}
             />
             <RadioInputPlusSelect
               label="Neuro"
               defaultValue="Selecione uma opção"
               value={neuroatypicality}
-              set={setNeuroatipicality}
+              set={setNeuroatypicality}
               list={neuroList}
             />
             
