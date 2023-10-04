@@ -31,9 +31,7 @@ export function PSEFormContextProvider({children}) {
 
 
 
-	  const [dynamicMainDate, setDynamicMainDate] = useState("");
-	  const [dynamicSecondaryDate, setDynamicSecondaryDate] = useState("");
-    const [motivation, setMotivation] = useState("");
+	  
 
     const [isFistPageValidated, setIsFistPageValidated] = useState(false);
     const [isSecondPageValidated, setIsSecondPageValidated] = useState(false);
@@ -146,6 +144,10 @@ export function PSEFormContextProvider({children}) {
 				setPhone,
 				email,
 				setEmail,
+				gender,
+				setGender,
+				selfDeclaration,
+				setSelfDeclaration,
 				linkedin,
 				setLinkedin,
 				instagram,
@@ -170,15 +172,13 @@ export function PSEFormContextProvider({children}) {
         isThirdPageValidated,
         isFourthPageValidated,
 				handleSendCSV,
-				dynamicMainDate,
-				setDynamicMainDate,
-        dynamicSecondaryDate,
-          setDynamicSecondaryDate,
-        
-          pcd,
-          setPcd,
-          neuroatypicality,
-          setNeuroatypicality
+				
+        availableDate,
+				setAvailableDate,
+				pcd,
+				setPcd,
+				neuroatypicality,
+				setNeuroatypicality
         
 			}}
 		>
