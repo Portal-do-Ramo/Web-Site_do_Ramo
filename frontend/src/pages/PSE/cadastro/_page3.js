@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AiFillLock } from 'react-icons/ai';
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
@@ -9,8 +9,6 @@ import BasicSelect from '../../../components/BasicSelect';
 export default function Page3({ crewsNames }) {
 	const router = useRouter();
 
-  const [equipes, setEquipes] = useState('');
-  const [subAreas, setSubAreas] = useState('');
 	const [dynamicMainDates, setDynamicMainDates] = useState([]);
 	const handleCheckboxChange = (event, date) => {
   const checkedDates = dynamicMainDates.includes(date)
@@ -18,8 +16,8 @@ export default function Page3({ crewsNames }) {
     : [...dynamicMainDates, date];
 
   setDynamicMainDates(checkedDates);
-};
-
+  };
+  
 
   const equipesAtivas = [
     'byte',
@@ -37,7 +35,9 @@ export default function Page3({ crewsNames }) {
 		'power': ['eletrônica/programação', 'mecânica', 'divulgação'],
 		'botz': ['programação','mecânica', 'eletrônica'],
 		'wie': ['produtos','mídias sociais', 'eventos', 'projetos'],
-		'socialwolf':['educacional','mecânica','programação','eletrônica'],
+    'socialwolf': ['educacional', 'mecânica', 'programação', 'eletrônica'],
+    'marketing':['marketing'],
+		'assessoria de gestão':['assessoria de gestão']
   }
 
 
@@ -62,6 +62,32 @@ export default function Page3({ crewsNames }) {
 		handleSendCSV
 	} = useContext(PSEFormContext);
 
+  const [hideFieldArea, setHideFieldArea] = useState(true) 
+  const [previousCrew, setPreviewCrew] = useState("")
+
+  useEffect(() => {
+
+    if (crew === '' || crew === "marketing" || crew === "assessoria de gestão") {
+      
+      setHideFieldArea(true)
+      setArea(areaDasEquipes[crew] ? areaDasEquipes[crew][0] : "")
+      
+    } else if (previousCrew === '') { 
+
+      setHideFieldArea(false)
+
+    } else if (previousCrew !== '') {
+
+      setHideFieldArea(false)
+      setArea('')
+
+    }
+
+    setPreviewCrew(crew)
+
+  }, [crew])
+
+
 	return (
 		<>
 			<section className={styles.leftSide}>
@@ -85,20 +111,21 @@ export default function Page3({ crewsNames }) {
           <BasicSelect
               label={'Equipe'}
               required={true}
-              value={equipes}
-              set={setEquipes}
+              value={crew}
+              set={setCrew}
               defaultValue={'Selecione a equipe'}
               list={equipesAtivas}
           />
-
-            <BasicSelect
-              label={'Área'}
-              required={true}
-              value={subAreas}
-              set={setSubAreas}
-              defaultValue={'Selecione a area'}
-              list={areaDasEquipes[equipes] ? areaDasEquipes[equipes] : [] }
-            />
+            {!hideFieldArea &&
+              <BasicSelect
+                  label={'Área'}
+                  required={true}
+                  value={area}
+                  set={setArea}
+                  defaultValue={'Selecione a area'}
+                  list={areaDasEquipes[crew] ? areaDasEquipes[crew] : [] }
+                />     
+            }
 
 
 						{/* {crewsNames && crewsNames.length > 0 && (
