@@ -10,8 +10,8 @@ export default function Page1() {
 	const router = useRouter();
 	
 	const { 
-		name, 
-		setName,
+		fullname, 
+		setFullName,
 		phone,
 		setPhone,
 		email,
@@ -31,8 +31,8 @@ export default function Page1() {
       type: 'text',
       placeholder: 'Digite seu nome',
       required: true,
-      value: name,
-      set: setName
+      value: fullname,
+      set: setFullName
     },
     {
       label: 'Telefone',
@@ -56,9 +56,6 @@ export default function Page1() {
   ]
   
   const listSocialMedia = [
-    {
-      
-    },
     {
       label: null,
       id: 'linkedin',

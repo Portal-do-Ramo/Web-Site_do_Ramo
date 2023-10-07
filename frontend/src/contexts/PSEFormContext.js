@@ -26,7 +26,7 @@ export function PSEFormContextProvider({children}) {
 		const [pcd, setPcd] = useState("");
 		const [neuroatypicality, setNeuroatypicality ] = useState("");
 		const [gender, setGender] = useState("");
-		const [availableDate, setAvailableDate] = useState("")
+		const [availableDate, setAvailableDate] = useState([])
 		const [selfDeclaration, setSelfDeclaration] = useState("");
 
 
@@ -88,7 +88,7 @@ export function PSEFormContextProvider({children}) {
       }, [register, course, currentPeriod])
 
 	function clearAll() {
-		setName("");
+		setFullName("");
 		setPhone("");
 		setEmail("");
 		setInstagram("");

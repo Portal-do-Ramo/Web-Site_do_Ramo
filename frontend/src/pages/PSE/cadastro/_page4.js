@@ -5,6 +5,7 @@ import PSEFormHeader from "../../../components/PSEFormHeader";
 import { PSEFormContext } from "../../../contexts/PSEFormContext";
 import styles from "../../../styles/pseCadastro.module.scss";
 import RadioInputPlusSelect from "../../../components/RadioInputPlusSelect";
+import BasicSelect from '../../../components/BasicSelect';
 
 export default function Page4() {
   const router = useRouter();
@@ -61,19 +62,39 @@ export default function Page4() {
           </div>
 
           <div className={styles.leftForm}>
-            <RadioInputPlusSelect
-              label="PCD"
+            <h3>Gênero</h3>
+            <input type="radio" id="masculino"/>
+            <label for="masculino">Masculino</label>
+            <input type="radio" id="Feminino"/>
+            <label for="feminino">Feminino</label>
+            <input type="radio" id="outro"/>
+            <label for="outro">Outro</label>
+            <div className={styles.leftForm.Inputs}>
+              
+              <RadioInputPlusSelect
+                label="Você é uma Pessoa com Deficiência(PcD)?"
+                defaultValue="Selecione uma opção"
+                value={pcd}
+                set={setPcd}
+                list={pcdList}
+                
+              />
+              <RadioInputPlusSelect
+                
+                label="Você apresenta alguma neuroatipicidade?"
+                defaultValue="Selecione uma opção"
+                value={neuroatypicality}
+                set={setNeuroatypicality}
+                list={neuroList}
+                
+              />
+            </div>
+            <BasicSelect
+              label="Como você se autodeclara?"
               defaultValue="Selecione uma opção"
-              value={pcd}
-              set={setPcd}
-              list={pcdList}
-            />
-            <RadioInputPlusSelect
-              label="Neuro"
-              defaultValue="Selecione uma opção"
-              value={neuroatypicality}
-              set={setNeuroatypicality}
-              list={neuroList}
+              list={selfDeclareList}
+              value={selfDeclaration}
+              set = {setSelfDeclaration}
             />
             
 

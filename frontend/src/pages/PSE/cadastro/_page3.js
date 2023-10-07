@@ -9,13 +9,28 @@ import BasicSelect from '../../../components/BasicSelect';
 export default function Page3({ crewsNames }) {
 	const router = useRouter();
 
-	const [dynamicMainDates, setDynamicMainDates] = useState([]);
-	const handleCheckboxChange = (event, date) => {
-  const checkedDates = dynamicMainDates.includes(date)
-    ? dynamicMainDates.filter((d) => d !== date)
-    : [...dynamicMainDates, date];
 
-  setDynamicMainDates(checkedDates);
+	const {
+		crew,
+		setCrew,
+		area,
+		setArea,
+		availableDate,
+		setAvailableDate,
+		reason,
+		setReason,
+		experience,
+		setExperience,
+		
+	} = useContext(PSEFormContext);
+
+
+	const handleCheckboxChange = (event, date) => {
+  const checkedDates = availableDate.includes(date)
+    ? availableDate.filter((d) => d !== date)
+    : [...availableDate, date];
+
+  setAvailableDate(checkedDates);
   };
   
 
@@ -48,19 +63,7 @@ export default function Page3({ crewsNames }) {
 		"06/10/2023 - 10:30h (Sexta-feira)",
 	]
 
-	const {
-		crew,
-		setCrew,
-		area,
-		setArea,
-		// availableDate,
-		// setAvailableDate,
-		reason,
-		setReason,
-		experience,
-		setExperience,
-		
-	} = useContext(PSEFormContext);
+
 
   const [hideFieldArea, setHideFieldArea] = useState(true) 
   const [previousCrew, setPreviewCrew] = useState("")
@@ -143,8 +146,8 @@ export default function Page3({ crewsNames }) {
 											type="checkbox"
 											id={`dynamicMainDate-${idx}`}
 											value={dynamicDate}
-											checked={dynamicMainDates.includes(dynamicMainDates)}
-											onChange={(event) => handleCheckboxChange(event, dynamicMainDates)}
+											checked={availableDate.includes(availableDate)}
+											onChange={(event) => handleCheckboxChange(event, availableDate)}
 										/>
 									</div>
 								))}

@@ -160,7 +160,11 @@
           justify-content: space-between;
           gap: 10px;
         }
-
+				.Inputs{
+					display:flex;
+					width:100%;
+				}
+		
 		.addressInput {
 			margin-top: 7px;
 		}
