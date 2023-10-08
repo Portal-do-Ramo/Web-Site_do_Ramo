@@ -16,7 +16,9 @@ export default function Page4() {
     neuroatypicality,
     setNeuroatypicality,
     selfDeclaration,
-    setSelfDeclaration
+    setSelfDeclaration,
+    gender,
+    setGender
   } = useContext(PSEFormContext);
 
 
@@ -45,6 +47,11 @@ export default function Page4() {
     "Prefiro não dizer"
   ]
 
+
+  const handleOptionChange = (event) => {
+    setGender(event.target.value);
+  };
+
   return (
     <>
       <section className={styles.leftSide}>
@@ -65,16 +72,34 @@ export default function Page4() {
             <div className={styles.genderRadios}>
               <h3>Gênero</h3>
               <div>
-                <input type="radio" id="masculino"/>
-                <label for="masculino">Masculino</label>
+                <input
+                  type="radio"
+                  id="masculino"
+                  value={'masculino'}
+                  checked={gender === 'masculino'}
+                  onChange={handleOptionChange}
+                />
+                <label htmlFor="masculino">Masculino</label>
               </div>
               <div>
-                <input type="radio" id="feminino"/>
-                <label for="feminino">Feminino</label>
+                <input
+                  type="radio"
+                  id="feminino"
+                  value={'feminino'}
+                  checked={gender === 'feminino'}
+                  onChange={handleOptionChange}
+                />
+                <label htmlFor="feminino">Feminino</label>
               </div>
               <div>              
-                <input type="radio" id="outro"/>
-                <label for="outro">Outro</label>
+                <input
+                  type="radio"
+                  id="outro"
+                  value={'outro'}
+                  checked={gender === 'outro'}
+                  onChange={handleOptionChange}
+                />
+                <label htmlFor="outro">Outro</label>
               </div>
 
               
