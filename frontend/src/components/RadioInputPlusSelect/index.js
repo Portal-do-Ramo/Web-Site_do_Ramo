@@ -11,26 +11,34 @@ export default function RadioInputPlusSelect(
   })
 {
   const [optionYes, setoptionYes] = useState(false);
-  const [optionNo, setoptionNo] = useState(false);
+  const [optionNo, setOptionNo] = useState(false);
   const [enabledSelect, setEnabledSelect] = useState(false);
 
   useEffect(() => {
-    if (value !== "") {
+
+    if (value === 'no') {
+      setOptionNo(true);
+      setEnabledSelect(false);
+    } else if (value !== "") {
       setoptionYes(true);
       setEnabledSelect(true);
     }
   }, [])
 
   const handleOptionYes = () => {
+
+    if (value === 'no') {
+      set('')
+    } 
     setoptionYes(true);
-    setoptionNo(false);
+    setOptionNo(false);
     setEnabledSelect(true);
   };
 
   const handleOptionNo = () => {
-    set("");
+    set("no");
     setoptionYes(false);
-    setoptionNo(true);
+    setOptionNo(true);
     setEnabledSelect(false);
   };
 
@@ -91,10 +99,3 @@ export default function RadioInputPlusSelect(
     </div>
   );
 }
-
-/* 
-
-
-
-
-*/
