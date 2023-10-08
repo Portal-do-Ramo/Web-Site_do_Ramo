@@ -62,14 +62,27 @@ export default function Page4() {
           </div>
 
           <div className={styles.leftForm}>
-            <h3>Gênero</h3>
-            <input type="radio" id="masculino"/>
-            <label for="masculino">Masculino</label>
-            <input type="radio" id="Feminino"/>
-            <label for="feminino">Feminino</label>
-            <input type="radio" id="outro"/>
-            <label for="outro">Outro</label>
-            <div className={styles.leftForm.Inputs}>
+            <div className={styles.genderRadios}>
+              <h3>Gênero</h3>
+              <div>
+                <input type="radio" id="masculino"/>
+                <label for="masculino">Masculino</label>
+              </div>
+              <div>
+                <input type="radio" id="feminino"/>
+                <label for="feminino">Feminino</label>
+              </div>
+              <div>              
+                <input type="radio" id="outro"/>
+                <label for="outro">Outro</label>
+              </div>
+
+              
+            </div>
+            
+            
+           
+            <div className={styles.Inputs}>
               
               <RadioInputPlusSelect
                 label="Você é uma Pessoa com Deficiência(PcD)?"

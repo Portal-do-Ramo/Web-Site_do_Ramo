@@ -1,7 +1,7 @@
 .container {
 	display: flex;
   flex-direction: column;
-	width: 40%;
+	width: 50%;
 
 	
   .inputsRadio {
@@ -12,6 +12,7 @@
     margin-bottom: 13px;
     margin-top: 15px;
     padding-inline: 10px;
+    border-radius:5px;
     
     
       div {
@@ -21,7 +22,7 @@
         justify-content: space-between;
         
         label {
-          font-size: 0.9rem;
+          font-size: 15PX;
           font-weight: 600;
           color: #fff;
         
