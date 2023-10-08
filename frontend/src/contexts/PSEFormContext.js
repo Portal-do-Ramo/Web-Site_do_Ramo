@@ -10,7 +10,6 @@ export function PSEFormContextProvider({children}) {
 
     const [fullname, setFullName] = useState("");
     
-    const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     
@@ -27,8 +26,8 @@ export function PSEFormContextProvider({children}) {
 		const [neuroatypicality, setNeuroatypicality ] = useState("");
 		const [gender, setGender] = useState("");
 		const [availableDate, setAvailableDate] = useState([])
-		const [selfDeclaration, setSelfDeclaration] = useState("");
-
+    const [selfDeclaration, setSelfDeclaration] = useState("");
+  
 
 
 	  
@@ -40,9 +39,7 @@ export function PSEFormContextProvider({children}) {
   
     useEffect(() => {
 		if (
-			fullname.length > 3
-			
-			&& address.length > 3
+			fullname.length > 3			
 			&& phone.length > 14
 			&& email.length > 3
 		) {
@@ -50,7 +47,7 @@ export function PSEFormContextProvider({children}) {
 		} else {
 			setIsFistPageValidated(false)
 		}
-    }, [fullname, address, phone, email, instagram, linkedin])
+    }, [fullname, phone, email, instagram, linkedin])
 
     useEffect(() => {
 		if (
@@ -100,9 +97,14 @@ export function PSEFormContextProvider({children}) {
 		
 		setCrew("");
 		setArea("");
-		setAvailableDate("");
+		setAvailableDate([]);
 		setReason("")
-		setExperience("");
+    setExperience("");
+    
+    setNeuroatypicality('')
+    setGender('')
+    setPcd('')
+    setSelfDeclaration('')
     }
 
 	async function handleSendCSV() {
@@ -121,7 +123,12 @@ export function PSEFormContextProvider({children}) {
 					area: area.replace(", ", " -"),
 					availableDate: availableDate.replace(", ", " -"),
 					reason: reason.replace(",", "-"),
-					experience: experience.replace(", ", " -"),
+          experience: experience.replace(", ", " -"),
+
+          PcD:pcd.replace(", ", " -"),
+          neuroatypicality: neuroatypicality.replace(", ", " -"),
+          gender: gender.replace(", ", " -"),
+          selfDeclaration:selfDeclaration.replace(", ", " -")
 				});
 
 				toast.success("Cadastro concluído");
@@ -165,7 +172,8 @@ export function PSEFormContextProvider({children}) {
 				reason,
 				setReason,
 				experience,
-				setExperience,
+        setExperience,
+        
 				clearAll,
 				isFistPageValidated,
 				isSecondPageValidated,
