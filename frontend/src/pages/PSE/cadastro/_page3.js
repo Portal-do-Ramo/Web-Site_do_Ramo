@@ -146,8 +146,8 @@ export default function Page3({ crewsNames }) {
 											type="checkbox"
 											id={`dynamicMainDate-${idx}`}
 											value={dynamicDate}
-											checked={availableDate.includes(availableDate)}
-											onChange={(event) => handleCheckboxChange(event, availableDate)}
+											checked={availableDate.includes(dynamicDate)}
+											onChange={(event) => handleCheckboxChange(event, dynamicDate)}
 										/>
 									</div>
 								))}
@@ -166,11 +166,9 @@ export default function Page3({ crewsNames }) {
 				<span>Por quais motivos gostaria de fazer parte do Ramo?</span>
 					<textarea 
 						placeholder="Escreva seus motivos"
-						onChange={event => setMotivation(event.target.value)}
+						onChange={event => setReason(event.target.value)}
 						value={reason}
-						set = {setReason}
-					/>
-
+					/> 
 					<span>Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo?</span>
 					<textarea 
 						placeholder="Escreva suas experiências"
