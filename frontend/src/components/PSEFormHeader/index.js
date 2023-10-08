@@ -70,7 +70,7 @@ export default function PSEFormHeader({ page, showCircles = true }) {
             <article
               className={dotStyle("4")}
               onClick={() => router.push("/PSE/cadastro?page=4")}
-            > {isThirdPageValidated && <ImCheckmark/>} </article>
+            > {isFourthPageValidated && <ImCheckmark/>} </article>
         </section> ): null
       }
     </div>

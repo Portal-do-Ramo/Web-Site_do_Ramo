@@ -64,7 +64,8 @@ export function PSEFormContextProvider({children}) {
     useEffect(() => {
 		if (
 			crew.length >= 3
-			&& area.length > 3
+      && area.length > 3
+      && availableDate.length > 0
 		) {
 			setIsThirdPageValidated(true)
 		} else {
@@ -74,15 +75,16 @@ export function PSEFormContextProvider({children}) {
     
     useEffect(() => {
       if (
-        register.length > 7
-        && course.length > 3
-        && currentPeriod.length >= 1
+        pcd.length > 2
+        && neuroatypicality.length > 2
+        && gender.length > 2
+        && selfDeclaration.length > 2
       ) {
         setIsFourthPageValidated(true)
       } else {
         setIsFourthPageValidated(false)
       }
-      }, [register, course, currentPeriod])
+      }, [pcd, neuroatypicality, gender, selfDeclaration])
 
 	function clearAll() {
 		setFullName("");
