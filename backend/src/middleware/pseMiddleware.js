@@ -1,6 +1,11 @@
 const knex = require("../database");
 
-async function pseMiddleware(req, res, next){
+async function pseMiddleware(req, res, next) {
+
+  console.log('Log in pseMiddleware\n')
+  console.log('Body do Forms do PSE')
+  console.log(req.body)
+
     let response = await knex("pse").select("*");
     let currentDate = new Date();
     try{
