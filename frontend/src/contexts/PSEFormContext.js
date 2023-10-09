@@ -66,17 +66,19 @@ export function PSEFormContextProvider({children}) {
 			crew.length >= 3
       && area.length > 3
       && availableDate.length > 0
+      && reason.length > 3
+      && experience.length >3
 		) {
 			setIsThirdPageValidated(true)
 		} else {
 			setIsThirdPageValidated(false)
 		}
-    }, [crew, area, availableDate]);
+    }, [crew, area, availableDate, reason, experience]);
     
     useEffect(() => {
       if (
-        pcd.length > 2
-        && neuroatypicality.length > 2
+        pcd.length > 1
+        && neuroatypicality.length > 1
         && gender.length > 2
         && selfDeclaration.length > 2
       ) {
@@ -109,9 +111,14 @@ export function PSEFormContextProvider({children}) {
     setSelfDeclaration('')
     }
 
-	async function handleSendCSV() {
+  async function handleSendCSV() {
 		try {
-			if (isFistPageValidated && isSecondPageValidated && isThirdPageValidated) {				
+      if (
+        isFistPageValidated
+        && isSecondPageValidated
+        && isThirdPageValidated
+        && isFourthPageValidated
+      ){				
 				await api.post("/pse", {
 					fullname: fullname.replace(", ", " -") ,
 					phone: phone.replace(", ", " -"),
@@ -123,7 +130,7 @@ export function PSEFormContextProvider({children}) {
 					currentPeriod: currentPeriod.replace(", ", " -"),
 					crew: crew.replace(", ", " -"),
 					area: area.replace(", ", " -"),
-					availableDate: availableDate.replace(", ", " -"),
+					availableDate: availableDate,
 					reason: reason.replace(",", "-"),
           experience: experience.replace(", ", " -"),
 
@@ -131,7 +138,8 @@ export function PSEFormContextProvider({children}) {
           neuroatypicality: neuroatypicality.replace(", ", " -"),
           gender: gender.replace(", ", " -"),
           selfDeclaration:selfDeclaration.replace(", ", " -")
-				});
+        });
+        
 
 				toast.success("Cadastro concluído");
 				clearAll();
@@ -139,7 +147,8 @@ export function PSEFormContextProvider({children}) {
 			} else {
 				toast.error("Formulário incompleto");
 			}
-		} catch (error) {
+    } catch (error) {
+      console.log('ERRO: ', error)
 			toast.error("Não foi possível enviar");
 		}
 	}
