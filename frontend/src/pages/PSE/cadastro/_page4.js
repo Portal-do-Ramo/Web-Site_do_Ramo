@@ -18,7 +18,9 @@ export default function Page4() {
     selfDeclaration,
     setSelfDeclaration,
     gender,
-    setGender
+    setGender,
+    handleSendCSV
+
   } = useContext(PSEFormContext);
 
 
@@ -51,6 +53,10 @@ export default function Page4() {
   const handleOptionChange = (event) => {
     setGender(event.target.value);
   };
+
+  const handleFinish = () => {
+    handleSendCSV()
+  }
 
   return (
     <>
@@ -148,7 +154,7 @@ export default function Page4() {
               <button
                 type="button"
                 className={styles.next_page2}
-                onClick={() => router.push("/PSE/cadastro?page=5")} 
+                onClick={handleFinish} 
               >
                 Finalizar
               </button>
