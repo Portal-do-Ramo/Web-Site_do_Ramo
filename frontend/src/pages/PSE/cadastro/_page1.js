@@ -111,7 +111,9 @@ export default function Page1() {
                     placeholder={item.placeholder}
                     required={item.required}
                     value={item.value}
-                    set={item.set} />
+                    set={item.set}
+                    mask={item.mask? item.mask : null}
+                  />
                 )
               })
             }

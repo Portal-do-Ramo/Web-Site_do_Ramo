@@ -118,7 +118,7 @@ export function PSEFormContextProvider({children}) {
       ){				
 				await api.post("/pse", {
 					fullname: fullname.replace(", ", " -") ,
-					phone: phone.replace(", ", " -"),
+					phone: phone.replace(/\D+/g, ''),
 					email: email.replace(", ", " -"),
 					linkedin: linkedin.replace(", ", " -"),
 					instagram: instagram.replace(", ", " -"),
