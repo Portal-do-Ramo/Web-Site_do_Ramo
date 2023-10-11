@@ -34,17 +34,53 @@ module.exports = {
         if (error){
             throw new Error(error.message);
         }
+		
+		let personalInformation;
 
-		const personalInformation = {
-			fullname: value.fullname,
-			phone: value.phone,
-            email: value.email,
-            linkedin: value.linkedin,
-			instagram: value.instagram,
-			gender: value.gender,
-			neuroatypicality: value.neuroatypicality,
-			PcD: value.PcD,
-			selfDeclaration: value.selfDeclaration
+		if (!value.linkedin && !value.instagram) {
+			personalInformation = {
+				fullname: value.fullname,
+				phone: value.phone,
+				email: value.email,
+				gender: value.gender,
+				neuroatypicality: value.neuroatypicality,
+				PcD: value.PcD,
+				selfDeclaration: value.selfDeclaration
+			}
+		} else if (!value.linkedin) {
+			personalInformation = {
+				fullname: value.fullname,
+				phone: value.phone,
+				email: value.email,
+				gender: value.gender,
+				instagram: value.instagram,
+				neuroatypicality: value.neuroatypicality,
+				PcD: value.PcD,
+				selfDeclaration: value.selfDeclaration
+			}
+		} else if (!value.instagram) {
+			personalInformation = {
+				fullname: value.fullname,
+				phone: value.phone,
+				email: value.email,
+				gender: value.gender,
+				linkedin: value.linkedin,
+				neuroatypicality: value.neuroatypicality,
+				PcD: value.PcD,
+				selfDeclaration: value.selfDeclaration
+			}
+		} else {
+			personalInformation = {
+				fullname: value.fullname,
+				phone: value.phone,
+				email: value.email,
+				gender: value.gender,
+				instagram: value.instagram,
+				linkedin: value.linkedin,
+				neuroatypicality: value.neuroatypicality,
+				PcD: value.PcD,
+				selfDeclaration: value.selfDeclaration
+			}
 		}
 
 		const registrationData = {
