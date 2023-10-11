@@ -28,10 +28,6 @@ export function PSEFormContextProvider({children}) {
 		const [availableDate, setAvailableDate] = useState([])
     const [selfDeclaration, setSelfDeclaration] = useState("");
   
-
-
-	  
-
     const [isFistPageValidated, setIsFistPageValidated] = useState(false);
     const [isSecondPageValidated, setIsSecondPageValidated] = useState(false);
     const [isThirdPageValidated, setIsThirdPageValidated] = useState(false);
@@ -40,7 +36,7 @@ export function PSEFormContextProvider({children}) {
     useEffect(() => {
 		if (
 			fullname.length > 3			
-			&& phone.length > 14
+			&& phone.length > 9
 			&& email.length > 3
 		) {
 			setIsFistPageValidated(true)
@@ -111,6 +107,7 @@ export function PSEFormContextProvider({children}) {
     setSelfDeclaration('')
     }
 
+  
   async function handleSendCSV() {
 		try {
       if (
@@ -126,7 +123,7 @@ export function PSEFormContextProvider({children}) {
 					linkedin: linkedin.replace(", ", " -"),
 					instagram: instagram.replace(", ", " -"),
 					register: register.replace(", ", " -"),
-					curse: course.replace(", ", " -"),
+					course: course.replace(", ", " -"),
 					currentPeriod: currentPeriod.replace(", ", " -"),
 					crew: crew.replace(", ", " -"),
 					area: area.replace(", ", " -"),
