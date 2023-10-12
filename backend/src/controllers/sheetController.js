@@ -1,14 +1,16 @@
 const sheetService = require("../services/sheetService");
 
 module.exports = {
-    async insert(values){
-        const listValues = Object.values(values.personalInformation).concat(Object.values(values.registrationData))
-        listValues[14] = listValues[14].join(", ")
+  async insert(values) {
+    
+    values.registrationData.availableDate = values.registrationData.availableDate.join(', ');
 
+    const listValues = Object.values(values.personalInformation).concat(Object.values(values.registrationData))
+      
         const data = {
             "values": listValues
-        } 
-
+    } 
+    
         try{
             await sheetService.insert(data);
         } catch (err) {
