@@ -6,7 +6,7 @@ import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
 import BasicSelect from '../../../components/BasicSelect';
 
-export default function Page3({ crewsNames }) {
+export default function Page3({ dynamicDates }) {
 	const router = useRouter();
 
 
@@ -56,12 +56,6 @@ export default function Page3({ crewsNames }) {
   }
 
 
-	const dynamicDates = [
-		"01/10/2023 - 15:30h (Domingo)",
-		"02/10/2023 - 9:00h (Segunda-feira)",
-		"04/10/2023 - 14:30h (Quarta-feira)",
-		"06/10/2023 - 10:30h (Sexta-feira)",
-	]
 
 
 

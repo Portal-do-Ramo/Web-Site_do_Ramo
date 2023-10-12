@@ -13,7 +13,7 @@ import Head from 'next/head';
 import { isBefore } from 'date-fns';
 
 
-export default function cadastro({ hasActivePSE, crewsNames }) {
+export default function cadastro({ hasActivePSE, dynamicDates }) {
 	const router = useRouter();
 	const { page } = router.query;
 
@@ -42,7 +42,7 @@ export default function cadastro({ hasActivePSE, crewsNames }) {
 			<section className={styles.container}>
 				{ page === "1" && <Page1 /> }
 				{ page === "2" && <Page2/> }
-        { page === "3" && <Page3 crewsNames={crewsNames} />}
+        { page === "3" && <Page3 dynamicDates={dynamicDates} />}
         { page === "4" && <Page4/> }
         { page === "5" && <Page5/> }
 			</section>
@@ -51,17 +51,31 @@ export default function cadastro({ hasActivePSE, crewsNames }) {
 }
 
 export const getServerSideProps = async (ctx) => {
-	const { data } = await api.get("/crews");
 	
-	let crewsNames;
-	
-	try {
-		crewsNames = data.map( crew => {
-			return crew.name;
-		});
-	} catch (error) {
-		crewsNames = [];
-	}
+  /* 
+    const { data } = await api.get("/crews");
+  
+	  let crewsNames;
+  
+	  try {
+	  	crewsNames = data.map( crew => {
+	  		return crew.name;
+	  	});
+	  } catch (error) {
+	  	crewsNames = [];
+	  } 
+  */
+  
+  let dynamicDates;
+  
+  try {
+    const { data } = await api.get('/dinamycDates');
+    dynamicDates = Object.values(data);
+
+  } catch (error) {
+    /* toast.error('erro ao carregar as datas do pse') */
+    console.log('error: ', error)
+  }
 
 	let hasActivePSE = false;
 
@@ -81,7 +95,7 @@ export const getServerSideProps = async (ctx) => {
 	return {
 		props: {
 			hasActivePSE,
-			crewsNames
+			dynamicDates
 		}
 	}
 }
