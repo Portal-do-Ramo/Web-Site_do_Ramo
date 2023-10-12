@@ -19,7 +19,10 @@ export default function Page4() {
     setSelfDeclaration,
     gender,
     setGender,
-    handleSendCSV
+    handleSendCSV,
+    
+    buttonDisabled,
+    setButtonDisabled
 
   } = useContext(PSEFormContext);
 
@@ -55,6 +58,7 @@ export default function Page4() {
   };
 
   const handleFinish = () => {
+    setButtonDisabled(true)
     handleSendCSV()
   }
 
@@ -155,6 +159,7 @@ export default function Page4() {
                 type="button"
                 className={styles.next_page2}
                 onClick={handleFinish} 
+                disabled={buttonDisabled}
               >
                 Finalizar
               </button>

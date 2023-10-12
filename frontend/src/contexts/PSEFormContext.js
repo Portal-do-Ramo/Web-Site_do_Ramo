@@ -27,11 +27,13 @@ export function PSEFormContextProvider({children}) {
 		const [gender, setGender] = useState("");
 		const [availableDate, setAvailableDate] = useState([])
     const [selfDeclaration, setSelfDeclaration] = useState("");
-  
+    
     const [isFistPageValidated, setIsFistPageValidated] = useState(false);
     const [isSecondPageValidated, setIsSecondPageValidated] = useState(false);
     const [isThirdPageValidated, setIsThirdPageValidated] = useState(false);
     const [isFourthPageValidated, setIsFourthPageValidated] = useState(false);
+  
+    const [buttonDisabled, setButtonDisabled] = useState(false);
   
     useEffect(() => {
 		if (
@@ -105,6 +107,8 @@ export function PSEFormContextProvider({children}) {
     setGender('')
     setPcd('')
     setSelfDeclaration('')
+
+    setButtonDisabled(false)
     }
 
   
@@ -115,7 +119,9 @@ export function PSEFormContextProvider({children}) {
         && isSecondPageValidated
         && isThirdPageValidated
         && isFourthPageValidated
-      ){				
+      ) {
+        toast.info('Enviando...')
+
 				await api.post("/pse", {
 					fullname: fullname.replace(", ", " -") ,
 					phone: phone.replace(/\D+/g, ''),
@@ -141,11 +147,12 @@ export function PSEFormContextProvider({children}) {
 				toast.success("Cadastro concluído");
 				clearAll();
 				router.push("/PSE");
-			} else {
+      } else {
+        setButtonDisabled(false)
 				toast.error("Formulário incompleto");
 			}
     } catch (error) {
-      console.log('ERRO: ', error)
+      setButtonDisabled(false)
 			toast.error("Não foi possível enviar");
 		}
 	}
@@ -194,8 +201,10 @@ export function PSEFormContextProvider({children}) {
 				pcd,
 				setPcd,
 				neuroatypicality,
-				setNeuroatypicality
+				setNeuroatypicality,
         
+        buttonDisabled,
+        setButtonDisabled
 			}}
 		>
           	{children}
