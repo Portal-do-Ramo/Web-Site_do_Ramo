@@ -17,6 +17,7 @@ export default function cadastro({ hasActivePSE, dynamicDates }) {
 	const router = useRouter();
 	const { page } = router.query;
 
+
 	useEffect(() => {
 		if (!hasActivePSE) {
 			router.replace("/PSE");
@@ -66,12 +67,11 @@ export const getServerSideProps = async (ctx) => {
 	  } 
   */
   
-  let dynamicDates;
+  let dynamicDates = [];
   
   try {
     const { data } = await api.get('/dinamycDates');
-    dynamicDates = Object.values(data);
-
+    /* dynamicDates = Object.values(data); */
   } catch (error) {
     /* toast.error('erro ao carregar as datas do pse') */
     console.log('error: ', error)
