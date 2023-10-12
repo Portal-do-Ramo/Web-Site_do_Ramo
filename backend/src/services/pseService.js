@@ -14,8 +14,8 @@ module.exports = {
             fullname: Joi.string().min(3).required(),
 			phone: Joi.string().pattern(/^[0-9]+$/).required(),
             email: Joi.string().min(6).email().required(),
-            linkedin: Joi.string(),
-			instagram: Joi.string(),
+            linkedin: Joi.string().allow(null,'').optional(),
+			instagram: Joi.string().allow(null,'').optional(),
 			gender: Joi.string().required(),
 			neuroatypicality: Joi.string().required(),
 			PcD: Joi.string().required(),
@@ -35,53 +35,18 @@ module.exports = {
             throw new Error(error.message);
         }
 		
-		let personalInformation;
+      const personalInformation = {
+        fullname: value.fullname,
+        phone: value.phone,
+        email: value.email,
+        gender: value.gender,
+        instagram: value.instagram,
+        linkedin: value.linkedin,
+        neuroatypicality: value.neuroatypicality,
+        PcD: value.PcD,
+        selfDeclaration: value.selfDeclaration
+      }
 
-		if (!value.linkedin && !value.instagram) {
-			personalInformation = {
-				fullname: value.fullname,
-				phone: value.phone,
-				email: value.email,
-				gender: value.gender,
-				neuroatypicality: value.neuroatypicality,
-				PcD: value.PcD,
-				selfDeclaration: value.selfDeclaration
-			}
-		} else if (!value.linkedin) {
-			personalInformation = {
-				fullname: value.fullname,
-				phone: value.phone,
-				email: value.email,
-				gender: value.gender,
-				instagram: value.instagram,
-				neuroatypicality: value.neuroatypicality,
-				PcD: value.PcD,
-				selfDeclaration: value.selfDeclaration
-			}
-		} else if (!value.instagram) {
-			personalInformation = {
-				fullname: value.fullname,
-				phone: value.phone,
-				email: value.email,
-				gender: value.gender,
-				linkedin: value.linkedin,
-				neuroatypicality: value.neuroatypicality,
-				PcD: value.PcD,
-				selfDeclaration: value.selfDeclaration
-			}
-		} else {
-			personalInformation = {
-				fullname: value.fullname,
-				phone: value.phone,
-				email: value.email,
-				gender: value.gender,
-				instagram: value.instagram,
-				linkedin: value.linkedin,
-				neuroatypicality: value.neuroatypicality,
-				PcD: value.PcD,
-				selfDeclaration: value.selfDeclaration
-			}
-		}
 
 		const registrationData = {
 			register: value.register,
