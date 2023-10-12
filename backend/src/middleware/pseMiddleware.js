@@ -13,7 +13,7 @@ async function pseMiddleware(req, res, next) {
         if(response.length == 0){
             return res.status(403).json("PSE has not been scheduled");    
         }
-
+        return next();
         if(currentDate >= response[0].start && currentDate <= response[0].end){
             return next();
         }
