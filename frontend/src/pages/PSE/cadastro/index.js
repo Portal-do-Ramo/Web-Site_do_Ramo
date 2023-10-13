@@ -71,10 +71,11 @@ export const getServerSideProps = async (ctx) => {
   
   try {
     const { data } = await api.get('/dinamycDates');
-    /* dynamicDates = Object.values(data); */
+
+    dynamicDates = Object.values(data);
+    
   } catch (error) {
-    /* toast.error('erro ao carregar as datas do pse') */
-    console.log('error: ', error)
+    dynamicDates = []; //não precisa, mas vou deixar aqui para entendimento.
   }
 
 	let hasActivePSE = false;
