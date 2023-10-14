@@ -82,36 +82,39 @@ export default function Page4() {
             <div className={styles.genderRadios}>
               <h3>Gênero</h3>
               <div>
-                <input
-                  type="radio"
-                  id="masculino"
-                  value={'masculino'}
-                  checked={gender === 'masculino'}
-                  onChange={handleOptionChange}
-                />
-                <label htmlFor="masculino">Masculino</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="feminino"
-                  value={'feminino'}
-                  checked={gender === 'feminino'}
-                  onChange={handleOptionChange}
-                />
-                <label htmlFor="feminino">Feminino</label>
-              </div>
-              <div>              
-                <input
-                  type="radio"
-                  id="outro"
-                  value={'outro'}
-                  checked={gender === 'outro'}
-                  onChange={handleOptionChange}
-                />
-                <label htmlFor="outro">Outro</label>
-              </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="masculino"
+                    value={'masculino'}
+                    checked={gender === 'masculino'}
+                    onChange={handleOptionChange}
+                  />
+                  <label htmlFor="masculino">Masculino</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="feminino"
+                    value={'feminino'}
+                    checked={gender === 'feminino'}
+                    onChange={handleOptionChange}
+                  />
+                  <label htmlFor="feminino">Feminino</label>
+                </div>
+                <div>              
+                  <input
+                    type="radio"
+                    id="outro"
+                    value={'outro'}
+                    checked={gender === 'outro'}
+                    onChange={handleOptionChange}
+                  />
+                  <label htmlFor="outro">Outro</label>
+                </div>
 
+              </div>
+              
               
             </div>
             
