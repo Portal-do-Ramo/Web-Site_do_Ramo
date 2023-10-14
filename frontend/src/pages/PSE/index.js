@@ -12,19 +12,19 @@ export default function PSE() {
     const router = useRouter();
 
     async function handleRegister() {
-      router.push('/PSE/cadastro?page=1')
-
-        /* try {
+  
+        try {
             const { data } = await api.get("/pse");
 
-            if (!isBefore(new Date(), new Date(data.start))) {
-                window.open("https://forms.gle/uNo33xk34Jy5L7mf8", "_blank", "noopener noreferrer")
+          if (!isBefore(new Date(), new Date(data.start))) {
+              router.push('/PSE/cadastro?page=1')
+              /* window.open("https://forms.gle/uNo33xk34Jy5L7mf8", "_blank", "noopener noreferrer") */
             } else {
                 toast.error("Processo seletivo inativo!");
             }
         } catch (error) {
             toast.error("Processo seletivo inativo!");
-        } */
+        }
     }
 
     return (

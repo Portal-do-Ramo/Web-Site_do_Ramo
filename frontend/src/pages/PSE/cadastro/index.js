@@ -91,7 +91,7 @@ export const getServerSideProps = async (ctx) => {
 		hasActivePSE = false;
 	}
 
-  hasActivePSE = true;
+  //hasActivePSE = true; // Isso aqui força abrir o PSE
 
 	return {
 		props: {
