@@ -3,10 +3,13 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
 import { FiDownload } from "react-icons/fi";
+import { AiFillEye } from "react-icons/ai";
 import { MdOutlineFileDownloadOff } from "react-icons/md";
 
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
+
+
 
 function PSENaoAgendado({isDownloadActive}) {
 	const router = useRouter();
@@ -104,18 +107,20 @@ function PSENaoAgendado({isDownloadActive}) {
 				</div>
 			</section>
 
-			{/* <section className={styles.downloadPSEFile}>
-				<span>Baixe o arquivo do último PSE!</span>
+			<section className={styles.accessPSEFile}>
+				<span>Visualizar inscritos:</span>
 				<button 
 					type="button" 
-					className={!isDownloadActive ? styles.downloadButtonOff : ""} 
+					// className={!isDownloadActive ? styles.downloadButtonOff : ""} 
+					className={isDownloadActive} 
 					onClick={handleDownloadPSEFile}
-					disabled={!isDownloadActive}
+					// disabled={!isDownloadActive}
+					
 				>
-					{isDownloadActive ? <FiDownload/> : <MdOutlineFileDownloadOff/> }
-					Baixar
+					{/* {isDownloadActive ? <FiDownload/> : <MdOutlineFileDownloadOff/> } */}
+					<span>Acessar planilha de inscritos</span> <AiFillEye />  
 				</button>
-			</section> */}
+			</section>
 		</>
 	)
 }
