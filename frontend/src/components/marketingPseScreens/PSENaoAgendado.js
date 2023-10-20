@@ -23,14 +23,15 @@ function PSENaoAgendado({isDownloadActive}) {
 		setEndDate(date.toISOString().slice(0, 16));
 	}, []);
 
-	async function handleDownloadPSEFile() {
-		const { data } = await api.get("/download/pse.csv", {responseType: "blob"});
-		const url = window.URL.createObjectURL(new Blob([ data ]));
-		const link = document.createElement('a');
-		link.href = url;
-		link.setAttribute('download', 'pse.csv');
-		link.click();
-	}
+	function handleDownloadPSEFile() {
+    const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
+    
+    if (link) {
+        window.open(link, '_blank');
+    } else {
+        console.error('PSE_SPREADSHEET_LINK is not defined.');
+    }
+}
 
 	async function handleSchedulePSE() {
 		const date = new Date();
