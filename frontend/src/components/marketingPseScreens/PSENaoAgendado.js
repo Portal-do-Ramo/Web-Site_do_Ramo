@@ -11,7 +11,7 @@ import api from '../../services/api';
 
 
 
-function PSENaoAgendado({isDownloadActive}) {
+function PSENaoAgendado({isSpreadsheetAccessActive}) {
 	const router = useRouter();
 	const [beginDate, setBeginDate] = useState("");
 	const [endDate, setEndDate] = useState("");
@@ -23,10 +23,10 @@ function PSENaoAgendado({isDownloadActive}) {
 		setEndDate(date.toISOString().slice(0, 16));
 	}, []);
 
-	function handleDownloadPSEFile() {
+	function handleAccessPSEFile() {
     const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
     
-    if (link) {
+    if (link) { 
         window.open(link, '_blank');
     } else {
         console.error('PSE_SPREADSHEET_LINK is not defined.');
@@ -43,11 +43,12 @@ function PSENaoAgendado({isDownloadActive}) {
 		offset = "00" + offset;
 
 		try {
+			console.log(`${beginDate}-00:000-${offset.slice(-1)}:00`)
 			await toast.promise(
 				api.post("/pse/schedule",
 				{ 
-					startDate: `${beginDate}:00.000-${offset.slice(-2)}:00`,
-					endDate: `${endDate}:00.000-${offset.slice(-2)}:00`
+					startDate: `${beginDate}-00:000-${offset.slice(-1)}:00`,
+					endDate: `${endDate}-00:000-${offset.slice(-1)}:00`
 				}
 				),
 				{
@@ -112,9 +113,9 @@ function PSENaoAgendado({isDownloadActive}) {
 				<span>Visualizar inscritos:</span>
 				<button 
 					type="button" 
-					// className={!isDownloadActive ? styles.downloadButtonOff : ""} 
-					className={isDownloadActive} 
-					onClick={handleDownloadPSEFile}
+					// className={!isSpreadsheetAccessActive ? styles.downloadButtonOff : ""} 
+					className={isSpreadsheetAccessActive} 
+					onClick={handleAccessPSEFile}
 					// disabled={!isDownloadActive}
 					
 				>
