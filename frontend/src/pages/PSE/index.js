@@ -12,7 +12,8 @@ export default function PSE() {
     const router = useRouter();
 
     async function handleRegister() {
-  
+        // router.push('/PSE/cadastro?page=1') // apagar dps
+        // return; // apagar dps
         try {
             const { data } = await api.get("/pse");
 

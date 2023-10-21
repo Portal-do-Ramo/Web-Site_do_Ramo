@@ -43,13 +43,18 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 		offset = "00" + offset;
 
 		try {
-			console.log(`${beginDate}-00:000-${offset.slice(-1)}:00`)
 			await toast.promise(
 				api.post("/pse/schedule",
-				{ 
-					startDate: `${beginDate}-00:000-${offset.slice(-1)}:00`,
-					endDate: `${endDate}-00:000-${offset.slice(-1)}:00`
-				}
+				{
+					// startDate: `${beginDate}-00:000-${offset.slice(-1)}:00`,
+					// endDate: `${endDate}-00:000-${offset.slice(-1)}:00`
+					startDate: "2023-10-21T19:45:00.123-03:00",
+					endDate: "2023-10-30T19:40:00.123-03:00",
+					dinamycDate_1: "2023-10-31T19:40:00.123-03:00",
+					dinamycDate_2: "2023-11-01T19:40:00.123-03:00",
+					dinamycDate_3: "2023-11-02T19:40:00.123-03:00",
+					dinamycDate_4: "2023-11-03T19:40:00.123-03:00"
+				}				
 				),
 				{
 					pending: 'Carregando',
