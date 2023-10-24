@@ -3,12 +3,15 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
 import { FiDownload } from "react-icons/fi";
+import { AiFillEye } from "react-icons/ai";
 import { MdOutlineFileDownloadOff } from "react-icons/md";
 
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
 
-function PSENaoAgendado({isDownloadActive}) {
+
+
+function PSENaoAgendado({isSpreadsheetAccessActive}) {
 	const router = useRouter();
 	const [beginDate, setBeginDate] = useState("");
 	const [endDate, setEndDate] = useState("");
@@ -20,14 +23,15 @@ function PSENaoAgendado({isDownloadActive}) {
 		setEndDate(date.toISOString().slice(0, 16));
 	}, []);
 
-	async function handleDownloadPSEFile() {
-		const { data } = await api.get("/download/pse.csv", {responseType: "blob"});
-		const url = window.URL.createObjectURL(new Blob([ data ]));
-		const link = document.createElement('a');
-		link.href = url;
-		link.setAttribute('download', 'pse.csv');
-		link.click();
-	}
+	function handleAccessPSEFile() {
+    const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
+    
+    if (link) { 
+        window.open(link, '_blank');
+    } else {
+        console.error('PSE_SPREADSHEET_LINK is not defined.');
+    }
+}
 
 	async function handleSchedulePSE() {
 		const date = new Date();
@@ -41,10 +45,16 @@ function PSENaoAgendado({isDownloadActive}) {
 		try {
 			await toast.promise(
 				api.post("/pse/schedule",
-				{ 
-					startDate: `${beginDate}:00.000-${offset.slice(-2)}:00`,
-					endDate: `${endDate}:00.000-${offset.slice(-2)}:00`
-				}
+				{
+					// startDate: `${beginDate}-00:000-${offset.slice(-1)}:00`,
+					// endDate: `${endDate}-00:000-${offset.slice(-1)}:00`
+					startDate: "2023-10-21T19:45:00.123-03:00",
+					endDate: "2023-10-30T19:40:00.123-03:00",
+					dinamycDate_1: "2023-10-31T19:40:00.123-03:00",
+					dinamycDate_2: "2023-11-01T19:40:00.123-03:00",
+					dinamycDate_3: "2023-11-02T19:40:00.123-03:00",
+					dinamycDate_4: "2023-11-03T19:40:00.123-03:00"
+				}				
 				),
 				{
 					pending: 'Carregando',
@@ -104,18 +114,20 @@ function PSENaoAgendado({isDownloadActive}) {
 				</div>
 			</section>
 
-			{/* <section className={styles.downloadPSEFile}>
-				<span>Baixe o arquivo do último PSE!</span>
+			<section className={styles.accessPSEFile}>
+				<span>Visualizar inscritos:</span>
 				<button 
 					type="button" 
-					className={!isDownloadActive ? styles.downloadButtonOff : ""} 
-					onClick={handleDownloadPSEFile}
-					disabled={!isDownloadActive}
+					// className={!isSpreadsheetAccessActive ? styles.downloadButtonOff : ""} 
+					className={isSpreadsheetAccessActive} 
+					onClick={handleAccessPSEFile}
+					// disabled={!isDownloadActive}
+					
 				>
-					{isDownloadActive ? <FiDownload/> : <MdOutlineFileDownloadOff/> }
-					Baixar
+					{/* {isDownloadActive ? <FiDownload/> : <MdOutlineFileDownloadOff/> } */}
+					<span>Acessar planilha de inscritos</span> <AiFillEye />  
 				</button>
-			</section> */}
+			</section>
 		</>
 	)
 }
