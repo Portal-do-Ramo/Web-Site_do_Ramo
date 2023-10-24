@@ -1,10 +1,12 @@
-import {useState} from 'react'
+
 import {PlusCircle} from "phosphor-react"
 
 export default function Agendamento(){
+  const setHidden = hidden ? 'hidden' : '';
+
   return(
     <>
-      <div className={styles.modal}>
+      <div className={`${styles.modal}${setHidden}`}>
         <h2>Agendamento das dinâmicas</h2>
         <div className={styles.modal.InputsBlock}>
           <div className={styles.modal.InputsBlock.first}>
