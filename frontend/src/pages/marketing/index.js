@@ -32,19 +32,19 @@ export default function index() {
 		return (
 			<div className={styles.all}>
 				<Head>
-					<title>Marketing - Inicio | IEEE CEFET-RJ</title>
+					<title>Marketing - Início | IEEE CEFET-RJ</title>
 				</Head>
 	
 				<MarketingNavBar page="inicio" user={user ? user : null} />
 	
 				<div className={styles.pageContent}>
 					<section className={styles.menuRoutes}>
-						<MarketingMenuRoutes routesName={`Inicio`} routes={`/`}/>
+						<MarketingMenuRoutes routesName={`Início`} routes={`/`}/>
 					</section>
 	
 					<section className={styles.content}>
 						<article>
-							<h1>Bem Vindo, {user && user.name}!</h1>
+							<h1>Bem-vindo, {user && user.name}!</h1>
 							
 							<p>
 								Aqui você encontrará ferramentas para personalizar

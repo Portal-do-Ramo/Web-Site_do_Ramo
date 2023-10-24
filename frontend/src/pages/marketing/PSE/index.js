@@ -14,7 +14,7 @@ import { PSEAgendado } from "../../../components/marketingPseScreens/PSEAgendado
 import { PSEEmAndamento } from "../../../components/marketingPseScreens/PSEEmAndamento";
 import { PSENaoAgendado } from "../../../components/marketingPseScreens/PSENaoAgendado";
 
-export default function PSE({ startDate, endDate, page, isDownloadActive }) {
+export default function PSE({ startDate, endDate, page, isSpreadsheetAccessActive }) {
     const router = useRouter();
 
 	const { user, isAuthenticated } = useContext(AuthContext);
@@ -45,9 +45,9 @@ export default function PSE({ startDate, endDate, page, isDownloadActive }) {
                     <div className={styles.content}>
                         <MarketingMenuRoutes routesName={`PSE`} routes={`PSE`}/>
 
-                        {page === "0" && <PSENaoAgendado isDownloadActive={isDownloadActive}/>}
+                        {page === "0" && <PSENaoAgendado isSpreadsheetAccessActive={isSpreadsheetAccessActive}/>}
                         {page === "1" && <PSEAgendado start={startDate} end={endDate} styles/>}
-                        {page === "2" && <PSEEmAndamento start={startDate} end={endDate} isDownloadActive={isDownloadActive} styles/>}
+                        {page === "2" && <PSEEmAndamento start={startDate} end={endDate} isSpreadsheetAccessActive={isSpreadsheetAccessActive} styles/>}
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@ export const getServerSideProps = async () => {
     let startDate = null;
     let endDate = null;
     let page = "0";
-	let isDownloadActive = "dasd";
+	let isSpreadsheetAccessActive = true;
     
     try {
         const {data} = await api.get("/pse");
@@ -69,24 +69,19 @@ export const getServerSideProps = async () => {
 
         if (!isBefore(new Date(startDate), new Date())) {
             page = "1";
+            isSpreadsheetAccessActive = false;
         } else {
             page = "2";
+            isSpreadsheetAccessActive = false;
         }
     } catch (error) {
         startDate = null;
         endDate = null;
     }
-
-    try {
-        const {data} = await api.get("/download/check/pse.csv");
-        isDownloadActive = true;
-    } catch (error) {
-        isDownloadActive = false;
-    }
   
     return {
       props: {
-        isDownloadActive,
+        isSpreadsheetAccessActive,
         startDate,
         endDate,
         page
