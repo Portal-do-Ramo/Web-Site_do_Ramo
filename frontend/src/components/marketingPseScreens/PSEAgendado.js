@@ -7,10 +7,13 @@ import Modal from 'react-modal';
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
 
+
 function PSEAgendado({ start, end }) {
 	const [beginDate, setBeginDate] = useState(""); 
 	const [endDate, setEndDate] = useState("");
-	const [modalIsOpen, setIsOpen] = useState(false);
+	const [cancelPSEModalIsOpen, setCancelPSEModalIsOpen] = useState(false);
+
+	const [showAgendamento, setShowAgendamento] = useState(false);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -27,13 +30,15 @@ function PSEAgendado({ start, end }) {
 		document.getElementById("endDateInput").value = endDateFormatted.toISOString().slice(0, 16);
 	}, []);
 
-	function openModal() {
-		setIsOpen(true);
+	function openCancelPSEModal() {
+		setCancelPSEModalIsOpen(true);
 	}
 
-	function closeModal() {
-		setIsOpen(false);
+	function closeCancelPSEModal() {
+		setCancelPSEModalIsOpen(false);
 	}
+
+
 
 	async function handleUpdatePSE() {
 		const date = new Date();
@@ -123,9 +128,23 @@ function PSEAgendado({ start, end }) {
 						</div>
 					</section>
 
-					<button onClick={handleUpdatePSE}>Editar</button>
+					{/* <button onClick={handleUpdatePSE}>Editar</button> */}
+					{/* <button onClick={()=>setShowAgendamento(!showAgendamento)}>Editar</button> */}
+					<button onClick={openEditPSEModal}>Editar</button>
+						
 				</div>
 			</section>
+				{/* Colocar o modal de editar */}
+				{/* <Modal 
+					isOpen={editPSEModalIsOpen}
+					onRequestClose={closeEditPSEModal}
+					className={styles.modal}
+					overlayClassName={styles.overlay}
+					contentLabel="Example Modal"
+				>
+					
+					<Agendamento/>
+				</Modal> */}
 
 			<section className={styles.cancelPSE}>
 				<span>Cancelar o PSE!</span>
@@ -134,10 +153,10 @@ function PSEAgendado({ start, end }) {
 					de início e término do processo serão removidas.
 				</p>
 
-				<button onClick={openModal}>Cancelar PSE</button>
+				<button onClick={openCancelPSEModal}>Cancelar PSE</button>
 				<Modal 
-					isOpen={modalIsOpen}
-					onRequestClose={closeModal}
+					isOpen={cancelPSEModalIsOpen}
+					onRequestClose={closeCancelPSEModal}
 					className={styles.modal}
 					overlayClassName={styles.overlay}
 					contentLabel="Example Modal"
@@ -146,7 +165,7 @@ function PSEAgendado({ start, end }) {
 					<h1>Cancelar PSE</h1>
 					<p>Tem certeza que você deseja cancelar o PSE?</p>
 					<div className={styles.rowButton}>
-						<button className={styles.cancel} onClick={closeModal}>Cancelar</button>
+						<button className={styles.cancel} onClick={closeCancelPSEModal}>Cancelar</button>
 						<button className={styles.shutDown} onClick={handleCancelPSE}>Sim, cancelar</button>
 					</div>
 				</Modal>

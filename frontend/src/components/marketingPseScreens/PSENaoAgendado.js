@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
+
 
 import { FiDownload } from "react-icons/fi";
 import { AiFillEye } from "react-icons/ai";
@@ -8,14 +8,14 @@ import { MdOutlineFileDownloadOff } from "react-icons/md";
 
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
-
-
+import Agendamento from "./modal-agendamento/modal-agendamento";
+import Modal from 'react-modal';
 
 function PSENaoAgendado({isSpreadsheetAccessActive}) {
 	const router = useRouter();
 	const [beginDate, setBeginDate] = useState("");
 	const [endDate, setEndDate] = useState("");
-
+	const [editPSEModalIsOpen, setEditPSEModalIsOpen] = useState(false);
 	useEffect(() => {
 		let date = new Date();
 		date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
@@ -31,46 +31,16 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
     } else {
         console.error('PSE_SPREADSHEET_LINK is not defined.');
     }
-}
-
-	async function handleSchedulePSE() {
-		const date = new Date();
-
-		let offset = date.getTimezoneOffset();
-
-		offset = offset / 60;
-
-		offset = "00" + offset;
-
-		try {
-			await toast.promise(
-				api.post("/pse/schedule",
-				{
-					// startDate: `${beginDate}-00:000-${offset.slice(-1)}:00`,
-					// endDate: `${endDate}-00:000-${offset.slice(-1)}:00`
-					startDate: "2023-10-21T19:45:00.123-03:00",
-					endDate: "2023-10-30T19:40:00.123-03:00",
-					dinamycDate_1: "2023-10-31T19:40:00.123-03:00",
-					dinamycDate_2: "2023-11-01T19:40:00.123-03:00",
-					dinamycDate_3: "2023-11-02T19:40:00.123-03:00",
-					dinamycDate_4: "2023-11-03T19:40:00.123-03:00"
-				}				
-				),
-				{
-					pending: 'Carregando',
-					success: 'Novo PSE agendado',
-					error: 'Não foi possível agendar um novo PSE'
-				}
-			)
-		
-			setTimeout(() => {
-				router.reload();
-			}, 2000);
-
-		} catch (error) {
-			return null;
-		}
 	}
+
+	function openEditPSEModal() {
+		setEditPSEModalIsOpen(true);
+	}
+
+	function closeEditPSEModal() {
+		setEditPSEModalIsOpen(false);
+	}
+
 
 	return (
 		<>
@@ -110,7 +80,17 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 						</div>
 					</section>
 					
-					<button type='button' onClick={handleSchedulePSE}>Agendar</button>
+					<button type='button' onClick={openEditPSEModal}>Agendar</button>
+					<Modal 
+						isOpen={editPSEModalIsOpen}
+						onRequestClose={closeEditPSEModal}
+						className={styles.modal}
+						overlayClassName={styles.overlay}
+						contentLabel="Example Modal"
+					>
+						
+						<Agendamento beginDate={beginDate} endDate={endDate}/>
+					</Modal>
 				</div>
 			</section>
 
