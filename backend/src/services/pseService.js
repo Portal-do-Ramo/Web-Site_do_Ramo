@@ -14,8 +14,8 @@ module.exports = {
             fullname: Joi.string().min(3).required(),
 			phone: Joi.string().pattern(/^[0-9]+$/).required(),
             email: Joi.string().min(6).email().required(),
-            linkedin: Joi.string().allow(null,'').optional(),
-			instagram: Joi.string().allow(null,'').optional(),
+            linkedin: Joi.string().allow(null, '').optional(),
+			instagram: Joi.string().allow(null, '').optional(),
 			gender: Joi.string().required(),
 			neuroatypicality: Joi.string().required(),
 			PcD: Joi.string().required(),
@@ -34,14 +34,22 @@ module.exports = {
         if (error){
             throw new Error(error.message);
         }
-		
+
+		if (value.linkedin === undefined){
+			value.linkedin = '';
+		}
+
+		if (value.instagram === undefined){
+			value.instagram = '';
+		}
+
       const personalInformation = {
         fullname: value.fullname,
         phone: value.phone,
         email: value.email,
-        gender: value.gender,
+		linkedin: value.linkedin,
         instagram: value.instagram,
-        linkedin: value.linkedin,
+		gender: value.gender,
         neuroatypicality: value.neuroatypicality,
         PcD: value.PcD,
         selfDeclaration: value.selfDeclaration
