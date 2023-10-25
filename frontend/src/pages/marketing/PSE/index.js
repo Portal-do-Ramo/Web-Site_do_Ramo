@@ -58,7 +58,7 @@ export default function PSE({ startDate, endDate, page, isSpreadsheetAccessActiv
 export const getServerSideProps = async () => {
     let startDate = null;
     let endDate = null;
-    let page = "0";
+    let page = "1";
 	let isSpreadsheetAccessActive = true;
     
     try {

@@ -212,8 +212,18 @@
                         font-size: .9rem;
                         font-weight: bold;
                         border-radius: 5px;
-                        color: var(--contraste);
-                        background-color: #CDD9E8;
+                        
+                        .dateInput{
+                            background-color: #cdd9e8;
+                            color: var(--contraste);
+                            border-radius: 5px;
+                            
+                            
+                        }
+                        .dateInput:focus{
+                            outline: 2px solid var(--contraste);
+                        }
+                        
 
                         .beginDateInputOff {
                             color: #8D8E92;
@@ -254,6 +264,8 @@
                                 margin-left: 0px;
                                 display: none;
                             }
+                            
+                            
                         }
 
                         p {
@@ -477,7 +489,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    right: auto;
+    right: 35rem;
     bottom: auto;
     margin-right: -50%;
     transform: translate(-50%, -50%);   
@@ -488,8 +500,12 @@
 
     font-family: 'Poppins';
 
-    @media (max-width: 810px) {
-        width: 80vw;
+    @media (max-width: 1100px) {
+        width: 70vw;
+        padding: 100px 0;
+    }
+    @media (max-width: 800px) {
+        width: 90vw;
         padding: 100px 0;
     }
 
@@ -561,6 +577,7 @@
     }
 
     @media (max-width: 475px) {
+        
         width: 95vw;
         padding: 50px 0;
 
@@ -581,6 +598,146 @@
         }
     }
 }
+
+.modalAgendamento{
+        
+    margin-bottom: -2rem;
+
+    h2{
+        
+        font-family: 'Poppins', sans-serif;
+        margin-top: -3rem;
+        margin-bottom: 3rem;
+    }
+    .InputsBlock{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        justify-content: center;
+        align-items: center;
+        
+        input{
+            background-color: #cdd9e8;
+            color: var(--contraste);
+            border-radius: 5px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            width: 300px;
+            height: 50px;
+            padding: 24px 12px;
+            text-align: center;
+        }
+        input:focus {
+            outline: 2px solid var(--contraste);
+        }
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            // padding-right: 20px;
+            // font-size: 20px;
+            display: none;
+        }
+        label{
+            font-weight: bold;
+            font-size: 20px;
+            width: 100px;
+        }
+        .days{
+            
+            display: flex;
+            column-gap: 10px;
+            padding: 10px 5px;
+            align-items: center;
+            
+        }
+        .addDay{
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: var(--contraste);
+            transition: .2s ease;
+        }
+
+        .addDay:hover{
+            transform: scale(1.1);
+        }
+    }
+    .buttonsBox{
+        padding-top: 1rem;
+        display: flex;
+        
+        .Cancel {
+            color: white;
+            border-radius: 5px;
+            border: none;
+            background-color: #F93944;
+            width: 200px;
+            height: 45px;
+            margin-right: 5rem;
+            cursor: pointer;
+            font-family: 'Poppins';
+            font-weight: bold;
+            font-size: 16px;
+            transition: .2s ease;
+        }
+        .Cancel:hover{
+            background-color: #cc2d35;
+            transform: scale(1.05);
+        }
+        .Cancel:active {
+            transform: scale(0.95);
+        }
+        
+        .Create {
+            color: white;
+            border-radius: 5px;
+            border: none;
+            width: 200px;
+            height: 45px;
+            background-color: var(--azul-ramo);
+            margin-left: 2rem;
+            cursor: pointer;
+            font-family: 'Poppins';
+            font-weight: bold;
+            font-size: 16px;
+            transition: .2s ease;
+            } 
+            .Create:hover{
+            background-color: #1d5688;
+            transform: scale(1.05);
+        }
+        .Create:active {
+            transform: scale(0.95);
+        }
+
+
+    }
+    @media (max-width: 600px) {
+        h2{
+            padding-top: 2rem;
+            
+        }
+        .buttonsBox {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-around;
+          .Cancel{
+            width: 150px;
+            margin-right: 0.5rem;
+          }
+          .Create{
+            width: 150px;
+            margin-left: -2rem;
+          }
+        }
+
+
+      }
+
+}
+
 
 .overlay {
     position: fixed;

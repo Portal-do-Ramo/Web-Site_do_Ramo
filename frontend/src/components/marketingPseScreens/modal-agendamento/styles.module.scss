@@ -1,47 +1,76 @@
-.modal{
-  display: column;
-  background-color:#FFFFFF;
-  border-radius: 8px;
-  width: 678px;
-  height:491px;
-  .InputsBlock{
-    display:column;
-    input{
+.modal {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 110px 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  row-gap: 5px;
+  background-color: white;
+  border-radius: 25px;
+  font-family: 'Poppins';
+  
+  @media (max-width: 810px) {
+    width: 80vw;
+    padding: 100px 0;
+  }
+
+  .InputsBlock {
+    display: flex;
+    flex-direction: column;
+
+    input {
       background: #F2ECEC;
       border-radius: 5px;
       border: 1px solid black;
     }
-    label{
+
+    label {
       font-weight: bold;
     }
-    .first{
-      display:flex; 
-      div{padding: 10px 5px; border: 1px solid black;}}
-    .second{
-      display:flex;
-      div{padding: 10px 5px; border: 1px solid black;}}
-    .third{
-      display:flex;
-      div{padding: 10px 5px; border: 1px solid black;}}
-    .fourth{
-      display:flex;
-      div{padding: 10px 5px; border: 1px solid black;}}
+
+    .days{
+
+      padding: 10px 5px;
+      ;
+    }
+
   }
-  .Cancel{
-    color:white;
+
+  .Cancel {
+    color: white;
     border-radius: 5px;
+    border: none;
     background-color: #F60C0C;
     width: 130px;
     height: 31px;
-    opacity:3%;
     margin-right: 152px;
+    cursor: pointer;
+    font-family: 'Poppins';
   }
-  .Create{
-    color:white;
-    border-radius:5px;
+  .Cancel:hover{
+    background-color: #af0b0b;
+  }
+
+  .Create {
+    color: white;
+    border-radius: 5px;
+    border: none;
     width: 130px;
     height: 31px;
-    background-color:#0D5FAA;
+    background-color: var(--azul-ramo);
     margin-left: 152px;
+    cursor: pointer;
+    font-family: 'Poppins'
+  } 
+  .Create:hover{
+    background-color: #1d5688
   }
 }

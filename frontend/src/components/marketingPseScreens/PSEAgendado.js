@@ -118,19 +118,19 @@ function PSEAgendado({ start, end }) {
 				<div className={styles.rowDates}>
 					<section className={styles.datesContainer}>
 						<div className={styles.begin}>
-							<input type="datetime-local" max="9999-12-31T23:59" name="beginDate" id="beginDateInput"/>
+							<input className={styles.dateInput} type="datetime-local" max="9999-12-31T23:59" name="beginDate" id="beginDateInput"/>
 						</div>
 
 						<p> até </p>
 
 						<div className={styles.end}>
-							<input type="datetime-local" max="9999-12-31T23:59" name="endDate" id="endDateInput"/>
+							<input className={styles.dateInput} type="datetime-local" max="9999-12-31T23:59" name="endDate" id="endDateInput"/>
 						</div>
 					</section>
 
 					{/* <button onClick={handleUpdatePSE}>Editar</button> */}
 					{/* <button onClick={()=>setShowAgendamento(!showAgendamento)}>Editar</button> */}
-					<button onClick={openEditPSEModal}>Editar</button>
+					{/* <button onClick={openEditPSEModal}>Editar</button> */}
 						
 				</div>
 			</section>
@@ -143,7 +143,7 @@ function PSEAgendado({ start, end }) {
 					contentLabel="Example Modal"
 				>
 					
-					<Agendamento/>
+					
 				</Modal> */}
 
 			<section className={styles.cancelPSE}>
