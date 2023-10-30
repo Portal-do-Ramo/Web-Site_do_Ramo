@@ -3,6 +3,7 @@ import { format, isBefore } from "date-fns";
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
@@ -15,17 +16,20 @@ function PSEAgendado({ start, end }) {
   const [secondDay, setSecondDay] = useState('');
   const [thirdDay, setThirdDay] = useState('');
   const [fourthDay, setFourthDay] = useState('');
-	const [cancelPSEModalIsOpen, setCancelPSEModalIsOpen] = useState(false);
 
-	const [showAgendamento, setShowAgendamento] = useState(false);
+  const [fifthDay, setFifthDay] = useState('');
+	const [showFifthDay, setShowFifthDay] = useState(false);
+
+	const [cancelPSEModalIsOpen, setCancelPSEModalIsOpen] = useState(false);
 	const [editPSEModalIsOpen, setEditPSEModalIsOpen] = useState(false);
 	const router = useRouter();
 	
 
 	useEffect(() => {
+		
 		setBeginDate(format(new Date(start), "dd/MM/yyyy - H:mm"));
 		setEndDate(format(new Date(end), "dd/MM/yyyy - H:mm"));
-
+		
 		let beginDateFormatted = new Date(start);
 		beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
 		
@@ -34,63 +38,99 @@ function PSEAgendado({ start, end }) {
 	
 		document.getElementById("beginDateInput").value = beginDateFormatted.toISOString().slice(0, 16);
 		document.getElementById("endDateInput").value = endDateFormatted.toISOString().slice(0, 16);
+
 	}, []);
 
-	async function handleReSchedulePSE() {
-		const date = new Date();
 
-		let offset = date.getTimezoneOffset();
+	function converterData(dateString) {
+    const match = dateString.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    
+    if (!match) {
+        throw new Error("Formato de entrada inválido. Use yyyy-MM-ddThh:mm.");
+    }
 
-		offset = offset / 60 -1;
-		offset = "00" + offset;
+    const [, ano, mes, dia, hora, minuto] = match;
+    
+    if (parseInt(mes) < 1 || parseInt(mes) > 12 || parseInt(dia) < 1 || parseInt(dia) > 31 || parseInt(hora) < 0 || parseInt(hora) > 23 || parseInt(minuto) < 0 || parseInt(minuto) > 59) {
+        throw new Error("Valores de data ou hora fora do intervalo válido.");
+    }
 
-		let schedulePSEObject = {
-			startDate: `${beginDate}:00.000-0${offset.slice(-1)}:00`,
-			endDate: `${endDate}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_1: `${firstDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_2: `${secondDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_3: `${thirdDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_4: `${fourthDay}:00.000-0${offset.slice(-1)}:00`,
-			
-		}
+    const isoDate = `${ano}-${mes}-${dia}T${hora}:${minuto}`;
+		return isoDate;
+}
+	async function getDinamycDatesPSE() {
 
 		try {
-			console.log(schedulePSEObject)
+			// const response = await api.get("/dinamycDates");
+			const response = await api.get("/pse");
+			const { dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5 } = response.data;
+			setFirstDay(converterData(dinamycDate_1));
+			setSecondDay(converterData(dinamycDate_2));
+			setThirdDay(converterData(dinamycDate_3));
+			setFourthDay(converterData(dinamycDate_4));
+			setFifthDay(converterData(dinamycDate_5));
 			
-			await toast.promise(
-				api.post("/pse/schedule", schedulePSEObject),
-				{
-					pending: 'Carregando',
-					success: 'Datas do PSE atualizadas ',
-					error: 'Não foi possível atualizar o PSE'
-				}
-			)
-		
-			setTimeout(() => {
-				router.reload();
-			}, 2000);
-
 		} catch (error) {
+
 			console.error(error);
 			return null;
 		}
 	}
 
+	// async function handleReSchedulePSE() {
+	// 	const date = new Date();
+
+	// 	let offset = date.getTimezoneOffset();
+
+	// 	offset = offset / 60 -1;
+	// 	offset = "00" + offset;
+
+	// 	let schedulePSEObject = {
+	// 		startDate: `${beginDate}:00.000-0${offset.slice(-1)}:00`,
+	// 		endDate: `${endDate}:00.000-0${offset.slice(-1)}:00`,
+	// 		dinamycDate_1: `${firstDay}:00.000-0${offset.slice(-1)}:00`,
+	// 		dinamycDate_2: `${secondDay}:00.000-0${offset.slice(-1)}:00`,
+	// 		dinamycDate_3: `${thirdDay}:00.000-0${offset.slice(-1)}:00`,
+	// 		dinamycDate_4: `${fourthDay}:00.000-0${offset.slice(-1)}:00`,
+			
+	// 	}
+
+	
+	// 	try {
+	// 		console.log(schedulePSEObject)
+			
+	// 		await toast.promise(
+	// 			api.post("/pse/schedule", schedulePSEObject),
+	// 			{
+	// 				pending: 'Carregando',
+	// 				success: 'Datas do PSE atualizadas ',
+	// 				error: 'Não foi possível atualizar o PSE'
+	// 			}
+	// 		)
+		
+	// 		setTimeout(() => {
+	// 			router.reload();
+	// 		}, 2000);
+
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 		return null;
+	// 	}
+	// }
+
 	function openCancelPSEModal() {
 		setCancelPSEModalIsOpen(true);
 	}
-
 	function closeCancelPSEModal() {
 		setCancelPSEModalIsOpen(false);
 	}
 	function openEditPSEModal(){
+		getDinamycDatesPSE()
 		setEditPSEModalIsOpen(true);
 	}
 	function closeEditPSEModal(){
 		setEditPSEModalIsOpen(false);
 	}
-
-
 
 	async function handleUpdatePSE() {
 		const date = new Date();
@@ -101,17 +141,31 @@ function PSEAgendado({ start, end }) {
 
 		offset = "00" + offset;
 
-		offset = offset.slice(-2);
+		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-0${offset.slice(-1)}:00`;
+		let endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-0${offset.slice(-1)}:00`;
+		let schedulePSEObject = {
+			startDate: beginDateFormatted,
+			endDate: endDateFormatted,
+			dinamycDate_1: `${firstDay}:00.000-0${offset.slice(-1)}:00`,
+			dinamycDate_2: `${secondDay}:00.000-0${offset.slice(-1)}:00`,
+			dinamycDate_3: `${thirdDay}:00.000-0${offset.slice(-1)}:00`,
+			dinamycDate_4: `${fourthDay}:00.000-0${offset.slice(-1)}:00`,
+			dinamycDate_5: null
+		}
 
-		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-${offset}:00`;
-
+		if (showFifthDay) {
+			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-0${offset.slice(-1)}:00`;
+		}
 		try {
 			await toast.promise(
-				api.patch("/pse/schedule",
-				{ 
-					startDate: beginDateFormatted,
-					endDate: `${document.getElementById("endDateInput").value}:00.000-${offset}:00`
-				}
+				
+				api.patch("/pse/schedule", schedulePSEObject
+				// { 
+					
+				// 	 startDate: beginDateFormatted,
+				// 	 endDate: `${document.getElementById("endDateInput").value}:00.000-${offset}:00`
+
+				// }
 				),
 				{
 					pending: 'Carregando',
@@ -119,22 +173,19 @@ function PSEAgendado({ start, end }) {
 					error: 'Não foi possível atualizar o PSE'
 				}
 			)
-
-			setBeginDate(
-				format(new Date(document.getElementById("beginDateInput").value), 
-				"dd/MM/yyyy - H:mm")
-			);
+			// setBeginDate(
+			// 	format(new Date(document.getElementById("beginDateInput").value), 
+			// 	"dd/MM/yyyy - H:mm")
+			// );
 	
-			setEndDate (
-				format(new Date(document.getElementById("endDateInput").value),
-				"dd/MM/yyyy - H:mm")
-			);
+			// setEndDate (
+			// 	format(new Date(document.getElementById("endDateInput").value),
+			// 	"dd/MM/yyyy - H:mm")
+			// );
 
-			if (isBefore(new Date(beginDateFormatted), date)) {
-				setTimeout(() => {
-					router.reload();
-				}, 2000);	
-			}
+			setTimeout(() => {
+				router.reload();
+			}, 2000);
 		} catch (error) {
 			return null;
 		}
@@ -188,84 +239,114 @@ function PSEAgendado({ start, end }) {
 			</section>
 				{/* Colocar o modal de editar */}
 				<Modal 
-					isOpen={editPSEModalIsOpen}
-					onRequestClose={closeEditPSEModal}
-					className={styles.modal2}
-					overlayClassName={styles.overlay}
-					contentLabel="Example Modal"
-				>
-					<div className={styles.modalEdit}>
-						<h2>Edição das dinâmicas</h2>
-						<div className={styles.InputsBlock}>
-									<div className={styles.days}>
-										<label for="firstDay">1° Dia:</label>
-										{/* <input id="firstDay" placeholder="dd/mm/yy" type="date"/>
-										<div className={styles.Line}></div>
-										<input placeholder="00:00" type="time"/> */}
-										<input 
-												type="datetime-local"
-												max="9999-12-31T23:59"
-												name="firstDay"
-												id="firstDay"
-												onChange={(e) => setFirstDay(e.target.value)}
-												
-											/>
-									</div>
-									<div className={styles.days}>
-										<label for="secondDay">2° Dia:</label>
-										{/* <input type="date" id="secondDay" placeholder="dd/mm/yy"/>
-										<div className={styles.Line}></div>
-										<input type="time" placeholder="00:00"/> */}
+						isOpen={editPSEModalIsOpen}
+						onRequestClose={closeEditPSEModal}
+						className={styles.modal}
+						overlayClassName={styles.overlay}
+						contentLabel="Example Modal"
+					>
+						<div className={styles.modalAgendamento}>
+							<h2>Editar datas das dinâmicas</h2>
+							<div className={styles.InputsBlock}>
+								<div className={styles.days}>
+									<label for="firstDay">1° Dia:</label>
+									{/* <input id="firstDay" placeholder="dd/mm/yy" type="date"/>
+									<div className={styles.Line}></div>
+									<input placeholder="00:00" type="time"/> */}
+									<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="firstDay"
+											id="firstDay"
+											onChange={(e) => setFirstDay(e.target.value)}
+											value={firstDay}
+										/>
+								</div>
+								<div className={styles.days}>
+									<label for="secondDay">2° Dia:</label>
+									{/* <input type="date" id="secondDay" placeholder="dd/mm/yy"/>
+									<div className={styles.Line}></div>
+									<input type="time" placeholder="00:00"/> */}
+									<input 
+										type="datetime-local"
+										max="9999-12-31T23:59"
+										name="secondDay"
+										id="secondDay"
+										onChange={(e) => setSecondDay(e.target.value)}
+										value={secondDay}
+									/>
+								</div>
+								<div className={styles.days}>
+									<label for="thirdDay">3° Dia:</label>
+									{/* <input type="date" id="thirdDay" placeholder="dd/mm/yy"/>
+									<div className={styles.Line}></div>
+									<input type="time" placeholder="00:00"/> */}
 										<input 
 											type="datetime-local"
 											max="9999-12-31T23:59"
-											name="secondDay"
-											id="secondDay"
-											onChange={(e) => setSecondDay(e.target.value)}
-											
+											name="thirdDay"
+											id="thirdDay"
+											onChange={(e) => setThirdDay(e.target.value)}
+											value={thirdDay}
 										/>
-									</div>
-									<div className={styles.days}>
-										<label for="thirdDay">3° Dia:</label>
-										{/* <input type="date" id="thirdDay" placeholder="dd/mm/yy"/>
-										<div className={styles.Line}></div>
-										<input type="time" placeholder="00:00"/> */}
-											<input 
-												type="datetime-local"
-												max="9999-12-31T23:59"
-												name="thirdDay"
-												id="thirdDay"
-												onChange={(e) => setThirdDay(e.target.value)}
-												
-											/>
-									</div>
-									<div className={styles.days}>
-										<label for="fourthDay">4° Dia:</label>
-										{/* <input type="date" id="fourthDay" placeholder="dd/mm/yy"/>
-										<div className={styles.Line}></div>
-										<input type="time" placeholder="00:00"/> */} 
+								</div>
+								<div className={styles.days}>
+									<label for="fourthDay">4° Dia:</label>
+									{/* <input type="date" id="fourthDay" placeholder="dd/mm/yy"/>
+									<div className={styles.Line}></div>
+									<input type="time" placeholder="00:00"/> */} 
 
-											<input 
-												type="datetime-local"
-												max="9999-12-31T23:59"
-												name="fourthDay"
-												id="fourthDay"
-												onChange={(e) => setFourthDay(e.target.value)}
-												
-											/>            
-									</div>
-									
-									
-									<div className={styles.buttonsBox}>
-										<button className={styles.Cancel} onClick={closeEditPSEModal}>Cancelar</button>
-										<button className={styles.Create} type="submit" onClick={handleReSchedulePSE}>Finalizar</button>
+										<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="fourthDay"
+											id="fourthDay"
+											onChange={(e) => setFourthDay(e.target.value)}
+											value={fourthDay}
+										/>            
 								</div>
-									
-									
-								</div>
+								{showFifthDay ? (
+									<>
+										<div className={styles.days}>
+											<label for="fifthDay">5° Dia:</label>
+											{/* <input type="date" id="fifthDay" placeholder="dd/mm/yy"/>
+											<div className={styles.Line}></div>
+											<input type="time" placeholder="00:00"/> */} 
+		
+												<input 
+													type="datetime-local"
+													max="9999-12-31T23:59"
+													name="fifthDay"
+													id="fifthDay"
+													onChange={(e) => setFifthDay(e.target.value)}
+													value={fifthDay}
+												/>            
+										</div>
+										<button type="button" className={styles.addDay} onClick={()=>{
+											setShowFifthDay(false)
+											setFifthDay('')
+										}}>
+											<AiOutlineMinusCircle />
+										</button>
+											
+									</>
+									):(
+										<button type="button" className={styles.addDay} onClick={()=>setShowFifthDay(true)}>
+											<AiOutlinePlusCircle />
+										</button>
+									)
+								}
+
+								{/* <CiCirclePlus size={20} weight="fill" /> */}
+								
 							</div>
-					
-				</Modal>
+							<div className={styles.buttonsBox}>
+								<button className={styles.Cancel} onClick={closeEditPSEModal}>Cancelar</button>
+								<button className={styles.Create} type="submit" onClick={handleUpdatePSE}>Atualizar PSE</button>
+							</div>
+						</div>
+						{/* <Agendamento beginDate={beginDate} endDate={endDate}/> */}
+					</Modal>
 
 			<section className={styles.cancelPSE}>
 				<span>Cancelar o PSE!</span>

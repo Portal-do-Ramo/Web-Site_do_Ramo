@@ -47,7 +47,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 
 		let offset = date.getTimezoneOffset();
 
-		offset = offset / 60 -1;
+		offset = offset / 60 -2 ;
 		offset = "00" + offset;
 
 		let schedulePSEObject = {
