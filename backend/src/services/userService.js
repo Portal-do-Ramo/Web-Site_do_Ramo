@@ -60,10 +60,14 @@ module.exports = {
         if (!user) {
             throw new Error("Usuário não existe!");
         }
+        
+        if (password) {
+            const hash = await bcrypt.hash(password, 10);
+            await knex("users").update({name, password: hash, crew_id}).where({id});
+        } else {
+            await knex("users").update({name, crew_id}).where({id});
+        }
 
-        const hash = await bcrypt.hash(password, 10);
-
-        await knex("users").update({name, password: hash, crew_id}).where({id});
         return {message: "Usuário atualizado!"};
     },
 
