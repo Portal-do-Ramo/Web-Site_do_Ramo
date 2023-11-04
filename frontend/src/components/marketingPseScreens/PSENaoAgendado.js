@@ -43,29 +43,24 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 	}
 
 	async function handleSchedulePSE() {
-		const date = new Date();
-
-		let offset = date.getTimezoneOffset();
-
-		offset = offset / 60 -2 ;
-		offset = "00" + offset;
-
-		let schedulePSEObject = {
-			startDate: `${beginDate}:00.000-0${offset.slice(-1)}:00`,
-			endDate: `${endDate}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_1: `${firstDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_2: `${secondDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_3: `${thirdDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_4: `${fourthDay}:00.000-0${offset.slice(-1)}:00`,
-			
-		}
+    /* 
+      2023-11-04T12:19:00.000-03:00
+    */
+      let schedulePSEObject = {
+        startDate: `${beginDate}:00.000-03:00`,
+        endDate: `${endDate}:00.000-03:00`,
+        dinamycDate_1: `${firstDay}:00.000-03:00`,
+        dinamycDate_2: `${secondDay}:00.000-03:00`,
+        dinamycDate_3: `${thirdDay}:00.000-03:00`,
+        dinamycDate_4: `${fourthDay}:00.000-03:00`,
+        
+      }
 		if (showFifthDay) {
-			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-0${offset.slice(-1)}:00`;
-		}
+			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-03:00`;
+    }
+    console.log('schedulePSEObject ', schedulePSEObject )
 
-		try {
-			console.log(schedulePSEObject)
-			
+		try {			
 			await toast.promise(
 				api.post("/pse/schedule", schedulePSEObject),
 				{
@@ -146,10 +141,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 							<h2>Agendamento das dinâmicas</h2>
 							<div className={styles.InputsBlock}>
 								<div className={styles.days}>
-									<label for="firstDay">1° Dia:</label>
-									{/* <input id="firstDay" placeholder="dd/mm/yy" type="date"/>
-									<div className={styles.Line}></div>
-									<input placeholder="00:00" type="time"/> */}
+									<label htmlFor="firstDay">1° Dia:</label>
 									<input 
 											type="datetime-local"
 											max="9999-12-31T23:59"
@@ -160,10 +152,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 										/>
 								</div>
 								<div className={styles.days}>
-									<label for="secondDay">2° Dia:</label>
-									{/* <input type="date" id="secondDay" placeholder="dd/mm/yy"/>
-									<div className={styles.Line}></div>
-									<input type="time" placeholder="00:00"/> */}
+									<label htmlFor="secondDay">2° Dia:</label>
 									<input 
 										type="datetime-local"
 										max="9999-12-31T23:59"
@@ -174,10 +163,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 									/>
 								</div>
 								<div className={styles.days}>
-									<label for="thirdDay">3° Dia:</label>
-									{/* <input type="date" id="thirdDay" placeholder="dd/mm/yy"/>
-									<div className={styles.Line}></div>
-									<input type="time" placeholder="00:00"/> */}
+									<label htmlFor="thirdDay">3° Dia:</label>
 										<input 
 											type="datetime-local"
 											max="9999-12-31T23:59"
@@ -188,11 +174,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 										/>
 								</div>
 								<div className={styles.days}>
-									<label for="fourthDay">4° Dia:</label>
-									{/* <input type="date" id="fourthDay" placeholder="dd/mm/yy"/>
-									<div className={styles.Line}></div>
-									<input type="time" placeholder="00:00"/> */} 
-
+									<label htmlFor="fourthDay">4° Dia:</label>
 										<input 
 											type="datetime-local"
 											max="9999-12-31T23:59"
@@ -205,11 +187,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 								{showFifthDay ? (
 									<>
 										<div className={styles.days}>
-											<label for="fifthDay">5° Dia:</label>
-											{/* <input type="date" id="fifthDay" placeholder="dd/mm/yy"/>
-											<div className={styles.Line}></div>
-											<input type="time" placeholder="00:00"/> */} 
-		
+											<label htmlFor="fifthDay">5° Dia:</label>
 												<input 
 													type="datetime-local"
 													max="9999-12-31T23:59"
@@ -252,7 +230,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 				<button 
 					type="button" 
 					// className={!isSpreadsheetAccessActive ? styles.downloadButtonOff : ""} 
-					className={isSpreadsheetAccessActive} 
+					//className={isSpreadsheetAccessActive} 
 					onClick={handleAccessPSEFile}
 					// disabled={!isDownloadActive}
 					

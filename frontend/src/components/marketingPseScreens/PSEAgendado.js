@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { format, isBefore } from "date-fns";
+import { format } from "date-fns";
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
@@ -133,7 +133,7 @@ function PSEAgendado({ start, end }) {
 	}
 
 	async function handleUpdatePSE() {
-		const date = new Date();
+/* 		const date = new Date();
 
 		let offset = date.getTimezoneOffset();
 
@@ -142,19 +142,20 @@ function PSEAgendado({ start, end }) {
 		offset = "00" + offset;
 
 		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-0${offset.slice(-1)}:00`;
-		let endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-0${offset.slice(-1)}:00`;
+    let endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-0${offset.slice(-1)}:00`; */
+    
 		let schedulePSEObject = {
 			startDate: beginDateFormatted,
 			endDate: endDateFormatted,
-			dinamycDate_1: `${firstDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_2: `${secondDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_3: `${thirdDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_4: `${fourthDay}:00.000-0${offset.slice(-1)}:00`,
+			dinamycDate_1: `${firstDay}:00.000-03:00`,
+			dinamycDate_2: `${secondDay}:00.000-03:00`,
+			dinamycDate_3: `${thirdDay}:00.000-03:00`,
+			dinamycDate_4: `${fourthDay}:00.000-03:00`,
 			dinamycDate_5: null
 		}
 
 		if (showFifthDay) {
-			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-0${offset.slice(-1)}:00`;
+			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-03:00`;
 		}
 		try {
 			await toast.promise(
@@ -249,7 +250,7 @@ function PSEAgendado({ start, end }) {
 							<h2>Editar datas das dinâmicas</h2>
 							<div className={styles.InputsBlock}>
 								<div className={styles.days}>
-									<label for="firstDay">1° Dia:</label>
+									<label htmlFor="firstDay">1° Dia:</label>
 									{/* <input id="firstDay" placeholder="dd/mm/yy" type="date"/>
 									<div className={styles.Line}></div>
 									<input placeholder="00:00" type="time"/> */}
@@ -263,7 +264,7 @@ function PSEAgendado({ start, end }) {
 										/>
 								</div>
 								<div className={styles.days}>
-									<label for="secondDay">2° Dia:</label>
+									<label htmlFor="secondDay">2° Dia:</label>
 									{/* <input type="date" id="secondDay" placeholder="dd/mm/yy"/>
 									<div className={styles.Line}></div>
 									<input type="time" placeholder="00:00"/> */}
@@ -277,7 +278,7 @@ function PSEAgendado({ start, end }) {
 									/>
 								</div>
 								<div className={styles.days}>
-									<label for="thirdDay">3° Dia:</label>
+									<label htmlFor="thirdDay">3° Dia:</label>
 									{/* <input type="date" id="thirdDay" placeholder="dd/mm/yy"/>
 									<div className={styles.Line}></div>
 									<input type="time" placeholder="00:00"/> */}
@@ -291,7 +292,7 @@ function PSEAgendado({ start, end }) {
 										/>
 								</div>
 								<div className={styles.days}>
-									<label for="fourthDay">4° Dia:</label>
+									<label htmlFor="fourthDay">4° Dia:</label>
 									{/* <input type="date" id="fourthDay" placeholder="dd/mm/yy"/>
 									<div className={styles.Line}></div>
 									<input type="time" placeholder="00:00"/> */} 
@@ -308,7 +309,7 @@ function PSEAgendado({ start, end }) {
 								{showFifthDay ? (
 									<>
 										<div className={styles.days}>
-											<label for="fifthDay">5° Dia:</label>
+											<label htmlFor="fifthDay">5° Dia:</label>
 											{/* <input type="date" id="fifthDay" placeholder="dd/mm/yy"/>
 											<div className={styles.Line}></div>
 											<input type="time" placeholder="00:00"/> */} 
