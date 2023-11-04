@@ -16,7 +16,7 @@ module.exports = {
             email: Joi.string().min(6).email().required(),
             password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")).required(),
             isAdmin: Joi.boolean(),
-            crew_id: Joi.string()
+            crew_id: Joi.string().allow(null, '')
         });
         
         const {error} = userValidation.validate({name, email, password, isAdmin, crew_id});
@@ -29,6 +29,10 @@ module.exports = {
             throw new Error("Usuário já existe!");
         }
             
+        if (isAdmin && crew_id) {
+            throw new Error("O super usuário não pode pertencer a nenhuma equipe!")
+        }
+
         const hash = await bcrypt.hash(password, 10);
             
         await knex("users").insert({
