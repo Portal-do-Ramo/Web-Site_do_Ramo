@@ -62,7 +62,7 @@ router
 	.delete("/crew/:id", auth, admin, crewController.delete)
 	.delete("/project/:id", auth, projectController.delete)
 	.delete("/sponsor/:id", auth, sponsorController.delete)
-	.delete("/pse/schedule", pseController.deleteSchedulePSE)
+	.delete("/pse/schedule", auth, admin, pseController.deleteSchedulePSE)
 	.delete("/user/:id", auth, admin, userController.delete)
 	.delete("/sheet", sheetController.delete)
 	.delete("/pse/subscribers", pseController.deleteSubscribersData)
