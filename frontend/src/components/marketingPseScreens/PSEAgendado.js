@@ -44,7 +44,17 @@ function PSEAgendado({ start, end }) {
 
 	function converterData(dateString) {
     const match = dateString.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
-    
+      
+    /* 
+      Usar classe new Date
+
+      2023-11-13T06:00:00.000Z 
+      2023-11-13T03:00
+    */
+      console.log('dateString: ', dateString)
+    console.log('new Date: ', new Date(dateString))
+
+
     if (!match) {
         throw new Error("Formato de entrada inválido. Use yyyy-MM-ddThh:mm.");
     }
@@ -140,9 +150,9 @@ function PSEAgendado({ start, end }) {
 		offset = offset / 60;
 
 		offset = "00" + offset;
-
-		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-0${offset.slice(-1)}:00`;
-    let endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-0${offset.slice(-1)}:00`; */
+*/
+		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-03:00`;
+    let endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-03:00`; 
     
 		let schedulePSEObject = {
 			startDate: beginDateFormatted,
