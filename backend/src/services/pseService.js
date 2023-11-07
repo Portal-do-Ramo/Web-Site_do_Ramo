@@ -75,9 +75,8 @@ module.exports = {
 		const subscriberEmail = await registerPSE.where('personalInformation.email', '==', value.email).get();
 		const subscriberPhone = await registerPSE.where('personalInformation.phone', '==', value.phone).get();
 
-		await registerPSE.add(data)	
-
 		if (subscriberEmail.empty && subscriberPhone.empty){
+			await registerPSE.add(data)	
 			await sheetController.insert(data)
 			return {"message": "usuário cadastrado!"};
 		}
