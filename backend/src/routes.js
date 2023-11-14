@@ -53,7 +53,7 @@ router
 	.post("/sponsor", auth, sponsorController.create)
 	.post("/user", auth, admin, userController.create)
 	.post("/login", sessionController.create)
-	.post("/pse", /*pseMiddleware,*/ pseController.create) 
+	.post("/pse", pseMiddleware, pseController.create) 
 	.post("/pse/schedule", auth, admin, pseController.schedulePSE) 
 	.post("/image/:name", auth, upload.single('picture'), fileController.uploadOne)
 
