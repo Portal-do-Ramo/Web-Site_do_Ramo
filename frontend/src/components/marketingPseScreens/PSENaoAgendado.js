@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
 
-import { FiDownload } from "react-icons/fi";
-import { AiFillEye } from "react-icons/ai";
-import { MdOutlineFileDownloadOff } from "react-icons/md";
+import { toast } from 'react-toastify';
+import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 import styles from "../../pages/marketing/PSE/styles.module.scss";
+
 import api from '../../services/api';
 
-
+import Modal from 'react-modal';
 
 function PSENaoAgendado({isSpreadsheetAccessActive}) {
 	const router = useRouter();
 	const [beginDate, setBeginDate] = useState("");
 	const [endDate, setEndDate] = useState("");
+	const [editPSEModalIsOpen, setEditPSEModalIsOpen] = useState(false);
+
+  const [firstDay, setFirstDay] = useState('');
+  const [secondDay, setSecondDay] = useState('');
+  const [thirdDay, setThirdDay] = useState('');
+  const [fourthDay, setFourthDay] = useState('');
+  const [fifthDay, setFifthDay] = useState('');
+	const [showFifthDay, setShowFifthDay] = useState(false);
 
 	useEffect(() => {
 		let date = new Date();
@@ -22,6 +29,8 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 		setBeginDate(date.toISOString().slice(0, 16));
 		setEndDate(date.toISOString().slice(0, 16));
 	}, []);
+
+	
 
 	function handleAccessPSEFile() {
     const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
@@ -31,31 +40,29 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
     } else {
         console.error('PSE_SPREADSHEET_LINK is not defined.');
     }
-}
+	}
 
 	async function handleSchedulePSE() {
-		const date = new Date();
+    /* 
+      2023-11-04T12:19:00.000-03:00
+    */
+      let schedulePSEObject = {
+        startDate: `${beginDate}:00.000-03:00`,
+        endDate: `${endDate}:00.000-03:00`,
+        dinamycDate_1: `${firstDay}:00.000-03:00`,
+        dinamycDate_2: `${secondDay}:00.000-03:00`,
+        dinamycDate_3: `${thirdDay}:00.000-03:00`,
+        dinamycDate_4: `${fourthDay}:00.000-03:00`,
+        
+      }
+		if (showFifthDay) {
+			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-03:00`;
+    }
+    console.log('schedulePSEObject ', schedulePSEObject )
 
-		let offset = date.getTimezoneOffset();
-
-		offset = offset / 60;
-
-		offset = "00" + offset;
-
-		try {
+		try {			
 			await toast.promise(
-				api.post("/pse/schedule",
-				{
-					// startDate: `${beginDate}-00:000-${offset.slice(-1)}:00`,
-					// endDate: `${endDate}-00:000-${offset.slice(-1)}:00`
-					startDate: "2023-10-21T19:45:00.123-03:00",
-					endDate: "2023-10-30T19:40:00.123-03:00",
-					dinamycDate_1: "2023-10-31T19:40:00.123-03:00",
-					dinamycDate_2: "2023-11-01T19:40:00.123-03:00",
-					dinamycDate_3: "2023-11-02T19:40:00.123-03:00",
-					dinamycDate_4: "2023-11-03T19:40:00.123-03:00"
-				}				
-				),
+				api.post("/pse/schedule", schedulePSEObject),
 				{
 					pending: 'Carregando',
 					success: 'Novo PSE agendado',
@@ -68,9 +75,19 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 			}, 2000);
 
 		} catch (error) {
+			console.error(error);
 			return null;
 		}
 	}
+
+	function openEditPSEModal() {
+		setEditPSEModalIsOpen(true);
+	}
+
+	function closeEditPSEModal() {
+		setEditPSEModalIsOpen(false);
+	}
+
 
 	return (
 		<>
@@ -87,7 +104,8 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 				<div className={styles.rowDates}>
 					<section className={styles.datesContainer}>
 						<div className={styles.begin}>
-							<input 
+							<input
+								className={styles.dateInput}
 								type="datetime-local"
 								max="9999-12-31T23:59"
 								name="beginDate"
@@ -100,17 +118,110 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 						<p> até </p>
 
 						<div className={styles.end}>
-						<input
-							type="datetime-local"
-							max="9999-12-31T23:59"
-							name="endDate"
-							onChange={(e) => setEndDate(e.target.value)}
-							value={endDate}
-						/>
+							<input
+							className={styles.dateInput}
+								type="datetime-local"
+								max="9999-12-31T23:59"
+								name="endDate"
+								onChange={(e) => setEndDate(e.target.value)}
+								value={endDate}
+							/>
 						</div>
 					</section>
 					
-					<button type='button' onClick={handleSchedulePSE}>Agendar</button>
+					<button type='button' onClick={openEditPSEModal}>Agendar</button>
+					<Modal 
+						isOpen={editPSEModalIsOpen}
+						onRequestClose={closeEditPSEModal}
+						className={styles.modal}
+						overlayClassName={styles.overlay}
+						contentLabel="Example Modal"
+					>
+						<div className={styles.modalAgendamento}>
+							<h2>Agendamento das dinâmicas</h2>
+							<div className={styles.InputsBlock}>
+								<div className={styles.days}>
+									<label htmlFor="firstDay">1° Dia:</label>
+									<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="firstDay"
+											id="firstDay"
+											onChange={(e) => setFirstDay(e.target.value)}
+											value={firstDay}
+										/>
+								</div>
+								<div className={styles.days}>
+									<label htmlFor="secondDay">2° Dia:</label>
+									<input 
+										type="datetime-local"
+										max="9999-12-31T23:59"
+										name="secondDay"
+										id="secondDay"
+										onChange={(e) => setSecondDay(e.target.value)}
+										value={secondDay}
+									/>
+								</div>
+								<div className={styles.days}>
+									<label htmlFor="thirdDay">3° Dia:</label>
+										<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="thirdDay"
+											id="thirdDay"
+											onChange={(e) => setThirdDay(e.target.value)}
+											value={thirdDay}
+										/>
+								</div>
+								<div className={styles.days}>
+									<label htmlFor="fourthDay">4° Dia:</label>
+										<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="fourthDay"
+											id="fourthDay"
+											onChange={(e) => setFourthDay(e.target.value)}
+											value={fourthDay}
+										/>            
+								</div>
+								{showFifthDay ? (
+									<>
+										<div className={styles.days}>
+											<label htmlFor="fifthDay">5° Dia:</label>
+												<input 
+													type="datetime-local"
+													max="9999-12-31T23:59"
+													name="fifthDay"
+													id="fifthDay"
+													onChange={(e) => setFifthDay(e.target.value)}
+													value={fifthDay}
+												/>            
+										</div>
+										<button type="button" className={styles.addDay} onClick={()=>{
+											setShowFifthDay(false)
+											setFifthDay('')
+										}}>
+											<AiOutlineMinusCircle />
+										</button>
+											
+									</>
+									):(
+										<button type="button" className={styles.addDay} onClick={()=>setShowFifthDay(true)}>
+											<AiOutlinePlusCircle />
+										</button>
+									)
+								}
+
+								{/* <CiCirclePlus size={20} weight="fill" /> */}
+								
+							</div>
+							<div className={styles.buttonsBox}>
+								<button className={styles.Cancel} onClick={closeEditPSEModal}>Cancelar</button>
+								<button className={styles.Create} type="submit" onClick={handleSchedulePSE}>Criar PSE</button>
+							</div>
+						</div>
+						{/* <Agendamento beginDate={beginDate} endDate={endDate}/> */}
+					</Modal>
 				</div>
 			</section>
 
@@ -119,7 +230,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 				<button 
 					type="button" 
 					// className={!isSpreadsheetAccessActive ? styles.downloadButtonOff : ""} 
-					className={isSpreadsheetAccessActive} 
+					//className={isSpreadsheetAccessActive} 
 					onClick={handleAccessPSEFile}
 					// disabled={!isDownloadActive}
 					
