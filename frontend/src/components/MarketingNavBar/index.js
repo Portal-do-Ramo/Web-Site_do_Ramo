@@ -23,7 +23,7 @@ export default function MarketingNavBar({ page, user }) {
     document.body.style.overflowY = "scroll";
   }, [])
 
-  let nameURL = `https://ui-avatars.com/api/?name=${user ? user.name : "unknown"}`
+  let nameURL = `https://ui-avatars.com/api/?name=${user ? user.name : "Unknown"}`
   
   return (
     <div className={styles.all}>
@@ -66,8 +66,8 @@ export default function MarketingNavBar({ page, user }) {
         <img src={nameURL} className={styles.userImage}/>
 
         <section className={styles.userInfo}>
-          <span>{user ? user.name : "unknown"}</span>
-          <p onClick={handleSignOut}>sair</p>
+          <span>{user ? user.name : "Unknown"}</span>
+          <p onClick={handleSignOut}>Sair</p>
         </section>
       </div>
     </div>
