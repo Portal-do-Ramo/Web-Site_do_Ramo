@@ -84,6 +84,14 @@ export default function Page3({ dynamicDates }) {
 
   }, [crew])
 
+	const adjustedDates = dynamicDates.map(dateString => {
+		const adjustedValue = parseInt(dateString.charAt(dateString.length - 4), 10) - 3+(new Date().getTimezoneOffset())/60; // Pega o quarto caractere de trás para frente e subtrai 3
+		const adjustedString = dateString.slice(0, -4) + adjustedValue.toString() + dateString.slice(-3); // Substitui o quarto caractere de trás para frente
+		console.log(dateString, adjustedString)
+;
+		
+		return adjustedString;
+	});
 
 	return (
 		<>
@@ -131,7 +139,7 @@ export default function Page3({ dynamicDates }) {
 						<>
 							<span>Data de preferência da dinâmica <strong>*</strong></span>
 							<div className={styles.dynamicDate}>
-								{dynamicDates.map((dynamicDate, idx) => (
+								{adjustedDates.map((dynamicDate, idx) => (
 									<div className={styles.dynamicDateItem} key={idx}>
 										<label htmlFor={`dynamicMainDate-${idx}`}>
 											{dynamicDate}
