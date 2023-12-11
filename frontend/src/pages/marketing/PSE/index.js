@@ -24,12 +24,13 @@ export default function PSE({ startDate, endDate, page, isSpreadsheetAccessActiv
 		if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
+            } else if(!user.isAdmin){
+                router.push("/marketing");
             } else {
 				setIsLoading(false);
 			}
         }
     }, [user, isAuthenticated]);
-
 	if (isLoading) {
         return ( <></> )
     } else {
@@ -38,7 +39,7 @@ export default function PSE({ startDate, endDate, page, isSpreadsheetAccessActiv
                 <Head>
                     <title>Marketing - PSE | IEEE CEFET-RJ</title>
                 </Head>
-    
+                
                 <MarketingNavBar page="pse" user={user ? user : null} />
                 
                 <div className={styles.pageContent}>

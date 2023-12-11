@@ -20,10 +20,10 @@ export function AuthContextProvider({children}) {
 			try {
 				const verify = jwt.verify(token, process.env.TOKEN_SECRET);
 				api.defaults.headers.Authorization = `Bearer ${token}`;
-				
 				setUser({
 					name: verify.name, 
-					email: verify.email
+					email: verify.email,
+					isAdmin: verify.isAdmin
 				});
           } catch (error) {
 			signOut();
@@ -45,7 +45,8 @@ export function AuthContextProvider({children}) {
 			
 			setUser({
 				name: verify.name, 
-				email: verify.email	
+				email: verify.email,
+				isAdmin: verify.isAdmin
 			});
 		} catch (error) {
 			throw new Error("Email ou senha incorreta!");
@@ -80,8 +81,8 @@ export function AuthContextProvider({children}) {
         value={{
             user,
             signIn,
-			isAuthenticated,
-			signOut
+						isAuthenticated,
+						signOut,
         }}>
             {children}
         </AuthContext.Provider>

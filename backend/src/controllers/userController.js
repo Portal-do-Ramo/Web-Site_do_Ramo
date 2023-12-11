@@ -8,7 +8,7 @@ module.exports = {
 
     async create(req, res) {
         const {name, email, password, isAdmin, crew_id} = req.body;
-        
+
         try {
             const response = await userService.create(name, email.toLowerCase(), password, isAdmin, crew_id);
             return res.status(201).json(response); 
