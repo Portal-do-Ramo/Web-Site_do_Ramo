@@ -109,19 +109,19 @@ module.exports = {
 		let dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5;
 
 		if (data.dinamycDate_1) {
-			dinamycDate_1 = `Dia ${moment(data.dinamycDate_1).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+			dinamycDate_1 = `Dia ${moment(data.dinamycDate_1).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
 		}
 		if (data.dinamycDate_2) {
-			dinamycDate_2 = `Dia ${moment(data.dinamycDate_2).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+			dinamycDate_2 = `Dia ${moment(data.dinamycDate_2).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
 		}
 		if (data.dinamycDate_3) {
-			dinamycDate_3 = `Dia ${moment(data.dinamycDate_3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+			dinamycDate_3 = `Dia ${moment(data.dinamycDate_3).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
 		}
 		if (data.dinamycDate_4) {
-			dinamycDate_4 = `Dia ${moment(data.dinamycDate_4).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+			dinamycDate_4 = `Dia ${moment(data.dinamycDate_4).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
 		}
 		if (data.dinamycDate_5){
-			dinamycDate_5 = `Dia ${moment(data.dinamycDate_5).locale('pt').format("D/MM (dddd) - kk:mm")}`;
+			dinamycDate_5 = `Dia ${moment(data.dinamycDate_5).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
 		}
 		
 		data.dinamycDate_1 = dinamycDate_1;
