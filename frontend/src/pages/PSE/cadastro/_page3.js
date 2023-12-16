@@ -34,26 +34,27 @@ export default function Page3({ dynamicDates }) {
   };
   
 
-  const equipesAtivas = [
-    'byte',
-    'rocket',
-		'power',
-		'botz',
-		'wie',
-		'socialwolf',
-		'marketing',
-		'assessoria de gestão'
-  ]
-  const areaDasEquipes = {
-    'byte': ['programação', 'arte e som', 'eletrônica','mecânica'],
-    'rocket': ['propulsão', 'aerodinâmica', 'recuperação', 'estruturas', 'eletrônica'],
-		'power': ['eletrônica/programação', 'mecânica', 'divulgação'],
-		'botz': ['programação','mecânica', 'eletrônica'],
-		'wie': ['produtos','mídias sociais', 'eventos', 'projetos'],
-    'socialwolf': ['educacional', 'mecânica', 'programação', 'eletrônica'],
-    'marketing':['marketing'],
-		'assessoria de gestão':['assessoria de gestão']
-  }
+	const equipesAtivas = [
+		'Byte',
+		'Rocket',
+		'Power',
+		'Botz',
+		'Wie',
+		'Socialwolf',
+		'Marketing',
+		'Assessoria de Gestão'
+	];
+	
+	const areaDasEquipes = {
+		'Byte': ['Programação', 'Arte e Som', 'Eletrônica', 'Mecânica'],
+		'Rocket': ['Propulsão', 'Aerodinâmica', 'Recuperação', 'Estruturas', 'Eletrônica'],
+		'Power': ['Eletrônica/Programação', 'Mecânica', 'Divulgação'],
+		'Botz': ['Programação', 'Mecânica', 'Eletrônica'],
+		'Wie': ['Produtos', 'Mídias Sociais', 'Eventos', 'Projetos'],
+		'Socialwolf': ['Educacional', 'Mecânica', 'Programação', 'Eletrônica'],
+		'Marketing': ['Marketing'],
+		'Assessoria de Gestão': ['Assessoria de Gestão']
+	};
 
 
 
@@ -84,6 +85,14 @@ export default function Page3({ dynamicDates }) {
 
   }, [crew])
 
+	// const adjustedDates = dynamicDates.map(dateString => {
+	// 	// const adjustedValue = parseInt(dateString.charAt(dateString.length - 4), 10) - 3+(new Date().getTimezoneOffset())/60; // Pega o quarto caractere de trás para frente e subtrai 3
+	// 	// const adjustedString = dateString.slice(0, -4) + adjustedValue.toString() + dateString.slice(-3); // Substitui o quarto caractere de trás para frente
+	// 	// console.log(dateString, adjustedString)
+
+	// 	return dateString
+	// 	// return adjustedString;
+	// });
 
 	return (
 		<>

@@ -58,7 +58,7 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 		if (showFifthDay) {
 			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-03:00`;
     }
-    console.log('schedulePSEObject ', schedulePSEObject )
+    // console.log('schedulePSEObject ', schedulePSEObject )
 
 		try {			
 			await toast.promise(
