@@ -14,17 +14,20 @@ export default function Criar() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
 
-	const { user, isAuthenticated } = useContext(AuthContext);
+	const { user, isAuthenticated, isAdmin } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
 		if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
+            }else if(!isAdmin){
+                router.push("/marketing");
             } else {
 				setIsLoading(false);
 			}
         }
+        
     }, [user, isAuthenticated]);
 
     let imageHandler = e => {

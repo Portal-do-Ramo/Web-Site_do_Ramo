@@ -54,8 +54,10 @@ export default function MarketingNavBar({ page, user }) {
         </Link>
 
         <Link href={`/marketing/equipes`}>
+          
           <h1 className={page === "equipes" ? styles.border : null}>Equipes</h1>
         </Link>
+
 
         {user && user.isAdmin && (
           <>

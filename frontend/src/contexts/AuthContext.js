@@ -23,7 +23,8 @@ export function AuthContextProvider({children}) {
 				setUser({
 					name: verify.name, 
 					email: verify.email,
-					isAdmin: verify.isAdmin
+					isAdmin: verify.isAdmin,
+					crewId: verify.crew_id
 				});
           } catch (error) {
 			signOut();
@@ -46,7 +47,8 @@ export function AuthContextProvider({children}) {
 			setUser({
 				name: verify.name, 
 				email: verify.email,
-				isAdmin: verify.isAdmin
+				isAdmin: verify.isAdmin,
+				crewId: verify.crew_id
 			});
 		} catch (error) {
 			throw new Error("Email ou senha incorreta!");
