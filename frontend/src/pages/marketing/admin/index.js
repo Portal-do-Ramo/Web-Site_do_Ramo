@@ -71,11 +71,12 @@ export default function admin(){
 		async function handleSaveUserChanges() {
 			try {
 				if (updatedUser && updatedUser.password && updatedUser.password.trim() !== "") {
+					
 					let requestBody = {
 						name: updatedUser.name,
 						email: updatedUser.email,
-						crew_id: updatedUser.crew_id,
-						isAdmin: updatedUser.isAdmin,
+						crew_id: user.crew_id,
+						isAdmin: user.isAdmin,
 						password: updatedUser.password,
 					};
 		
@@ -86,10 +87,11 @@ export default function admin(){
 					let requestBody = {
 						name: updatedUser.name,
 						email: updatedUser.email,
-						crew_id: updatedUser.crew_id,
-						isAdmin: updatedUser.isAdmin,
+						crew_id: user.crew_id,
+						isAdmin: user.isAdmin,
 					};
-		
+					console.log(requestBody);
+					
 					const { data } = await api.patch(`/user/${selectedUser.id}`, requestBody);
 					console.log(data);
 					router.reload();

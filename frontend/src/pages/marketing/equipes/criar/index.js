@@ -14,15 +14,15 @@ export default function Criar() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
 
-	const { user, isAuthenticated, isAdmin } = useContext(AuthContext);
+	const { user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
 		if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
-            }else if(!isAdmin){
-                router.push("/marketing");
+            }else if(!user.isAdmin){
+                router.push("/marketing/equipes");
             } else {
 				setIsLoading(false);
 			}

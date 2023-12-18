@@ -17,14 +17,14 @@ export default function index() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-	const { user, isAuthenticated, isAdmin } = useContext(AuthContext);
+	const { user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
 		if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
-            } else if(!isAdmin){
+            } else if(!user.isAdmin){
                 router.push("/marketing");
             }
             else {

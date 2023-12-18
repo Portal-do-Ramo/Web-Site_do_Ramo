@@ -58,7 +58,7 @@ export default function index() {
 								Além de poder controlar o sistema do PSE. 
 							</p>
 
-							{user.isAdmin ? (
+							{user && user.isAdmin ? (
 									<Link href={"/marketing/cadastro"}>
 										<span className={styles.link}>
 											<HiUserAdd/>
