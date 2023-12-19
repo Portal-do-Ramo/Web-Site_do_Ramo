@@ -146,7 +146,7 @@ export function PSEFormContextProvider({children}) {
 
 				toast.success("Cadastro concluído");
 				clearAll();
-				router.push("/PSE");
+				router.push("/PSE/cadastro?page=5")
       } else {
         setButtonDisabled(false)
 				toast.error("Formulário incompleto");

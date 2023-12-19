@@ -104,7 +104,7 @@ function PSEAgendado({ start, end }) {
 			setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16));
 			setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16));
 			setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16));
-			setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16));
+			dinamycDate_5 ? setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16)) : null
 			
 		} catch (error) {
 
@@ -187,38 +187,30 @@ function PSEAgendado({ start, end }) {
 			dinamycDate_2: `${secondDay}:00.000-03:00`,
 			dinamycDate_3: `${thirdDay}:00.000-03:00`,
 			dinamycDate_4: `${fourthDay}:00.000-03:00`,
-			dinamycDate_5: null
-		}
-
-		if (showFifthDay) {
-			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-03:00`;
+			dinamycDate_5: fifthDay ? `${fifthDay}:00.000-03:00` : null 
 		}
 		try {
-			await toast.promise(
-				
-				api.patch("/pse/schedule", schedulePSEObject
-				// { 
-					
-				// 	 startDate: beginDateFormatted,
-				// 	 endDate: `${document.getElementById("endDateInput").value}:00.000-${offset}:00`
-
-				// }
+			await Promise.all([
+				toast.promise(
+					api.patch("/pse/schedule", schedulePSEObject),
+					{
+						pending: 'Carregando',
+						success: 'PSE atualizado!',
+						error: 'Não foi possível atualizar o PSE'
+					}
 				),
-				{
-					pending: 'Carregando',
-					success: 'PSE atualizado!',
-					error: 'Não foi possível atualizar o PSE'
-				}
-			)
-			// setBeginDate(
-			// 	format(new Date(document.getElementById("beginDateInput").value), 
-			// 	"dd/MM/yyyy - H:mm")
-			// );
-	
-			// setEndDate (
-			// 	format(new Date(document.getElementById("endDateInput").value),
-			// 	"dd/MM/yyyy - H:mm")
-			// );
+				!fifthDay ?
+					toast.promise(
+						api.patch(`/pse/dinamycDate/dinamycDate_5`),
+						{
+							pending: 'Carregando',
+							success: 'PSE sem 5ª dinâmica!',
+							error: 'Não foi possível atualizar a dinâmica 5'
+						}
+					) :
+					null
+			]);
+
 
 			setTimeout(() => {
 				router.reload();
@@ -342,7 +334,7 @@ function PSEAgendado({ start, end }) {
 											value={fourthDay}
 										/>            
 								</div>
-								{showFifthDay ? (
+								{fifthDay || showFifthDay ? (
 									<>
 										<div className={styles.days}>
 											<label htmlFor="fifthDay">5° Dia:</label>
