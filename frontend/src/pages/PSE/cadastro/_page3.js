@@ -5,10 +5,11 @@ import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
 import BasicSelect from '../../../components/BasicSelect';
+import api from '../../../services/api';
 
 export default function Page3({ dynamicDates }) {
 	const router = useRouter();
-
+  const [equipesAtivas, setEquipesAtivas] = useState([]);
 
 	const {
 		crew,
@@ -26,39 +27,38 @@ export default function Page3({ dynamicDates }) {
 
 
 	const handleCheckboxChange = (event, date) => {
-  const checkedDates = availableDate.includes(date)
-    ? availableDate.filter((d) => d !== date)
-    : [...availableDate, date];
+		const checkedDates = availableDate.includes(date)
+			? availableDate.filter((d) => d !== date)
+			: [...availableDate, date];
 
-  setAvailableDate(checkedDates);
+		setAvailableDate(checkedDates);
   };
   
+	useEffect(() => {
+    async function fetchEquipesAtivas() {
+      try {
 
-	const equipesAtivas = [
-		'Byte',
-		'Rocket',
-		'Power',
-		'Botz',
-		'Wie',
-		'Socialwolf',
-		'Marketing',
-		'Assessoria de Gestão'
-	];
+        const response = await api.get("/crews");
+				setEquipesAtivas(response.data.map(equipes => equipes.name))
+      } catch (error) {
+        console.error("Erro ao obter as equipes ativas:", error);
+      }
+    }
+
+    fetchEquipesAtivas(); 
+  }, []);
+
 	
 	const areaDasEquipes = {
-		'Byte': ['Programação', 'Arte e Som', 'Eletrônica', 'Mecânica'],
-		'Rocket': ['Propulsão', 'Aerodinâmica', 'Recuperação', 'Estruturas', 'Eletrônica'],
-		'Power': ['Eletrônica/Programação', 'Mecânica', 'Divulgação'],
-		'Botz': ['Programação', 'Mecânica', 'Eletrônica'],
-		'Wie': ['Produtos', 'Mídias Sociais', 'Eventos', 'Projetos'],
-		'Socialwolf': ['Educacional', 'Mecânica', 'Programação', 'Eletrônica'],
+		'WolfByte': ['Programação', 'Arte e Som', 'Eletrônica', 'Mecânica'],
+		'RocketWolf': ['Propulsão', 'Aerodinâmica', 'Recuperação', 'Estruturas', 'Eletrônica'],
+		'WolfPower': ['Eletrônica/Programação', 'Mecânica', 'Divulgação'],
+		'WolfBotz': ['Programação', 'Mecânica', 'Eletrônica'],
+		'WIE': ['Produtos', 'Mídias Sociais', 'Eventos', 'Projetos'],
+		'SocialWolf': ['Educacional', 'Mecânica', 'Programação', 'Eletrônica'],
 		'Marketing': ['Marketing'],
-		'Assessoria de Gestão': ['Assessoria de Gestão']
+		'Gestão': ['Assessoria de Gestão']
 	};
-
-
-
-
 
   const [hideFieldArea, setHideFieldArea] = useState(true) 
   const [previousCrew, setPreviewCrew] = useState("")
@@ -85,14 +85,7 @@ export default function Page3({ dynamicDates }) {
 
   }, [crew])
 
-	// const adjustedDates = dynamicDates.map(dateString => {
-	// 	// const adjustedValue = parseInt(dateString.charAt(dateString.length - 4), 10) - 3+(new Date().getTimezoneOffset())/60; // Pega o quarto caractere de trás para frente e subtrai 3
-	// 	// const adjustedString = dateString.slice(0, -4) + adjustedValue.toString() + dateString.slice(-3); // Substitui o quarto caractere de trás para frente
-	// 	// console.log(dateString, adjustedString)
 
-	// 	return dateString
-	// 	// return adjustedString;
-	// });
 
 	return (
 		<>
