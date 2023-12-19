@@ -37,6 +37,7 @@ export default function Page2() {
   const courses = [
     "Bacharelado em Administração", 
     "Bacharelado em Ciência da Computação", 
+    "Bacharelado em Sistema de Informação", 
     "Bacharelado em Engenharia Ambiental", 
     "Bacharelado em Engenharia Civil",
     "Bacharelado em Engenharia de Controle e Automação",

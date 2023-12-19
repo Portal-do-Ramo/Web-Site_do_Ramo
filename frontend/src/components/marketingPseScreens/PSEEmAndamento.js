@@ -110,7 +110,8 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 			setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16));
 			setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16));
 			setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16));
-			setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16));
+			dinamycDate_5 ? setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16)) : null
+			
 			
 			
 		} catch (error) {
@@ -121,7 +122,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 	}
 
 	function openEditPSEModal(){
-
+		console.log(fifthDay)
 		setEditPSEModalIsOpen(true);
 
 	}
@@ -147,22 +148,30 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 			dinamycDate_2: `${secondDay}:00.000-03:00`,
 			dinamycDate_3: `${thirdDay}:00.000-03:00`,
 			dinamycDate_4: `${fourthDay}:00.000-03:00`,
-			dinamycDate_5: null
+			dinamycDate_5: fifthDay ? `${fifthDay}:00.000-03:00` : null 
 		}
 
-		if (showFifthDay) {
-			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-0${offset.slice(-1)}:00`;
-		}
 		try {
-			await toast.promise(
-				
-				api.patch("/pse/schedule", schedulePSEObject),
-				{
-					pending: 'Carregando',
-					success: 'PSE atualizado!',
-					error: 'Não foi possível atualizar o PSE'
-				}
-			)
+			await Promise.all([
+				toast.promise(
+					api.patch("/pse/schedule", schedulePSEObject),
+					{
+						pending: 'Carregando',
+						success: 'PSE atualizado!',
+						error: 'Não foi possível atualizar o PSE'
+					}
+				),
+				!fifthDay ?
+					toast.promise(
+						api.patch(`/pse/dinamycDate/dinamycDate_5`),
+						{
+							pending: 'Carregando',
+							success: 'PSE sem 5ª dinâmica!',
+							error: 'Não foi possível atualizar a dinâmica 5'
+						}
+					) :
+					null
+			]);
 
 
 			setTimeout(() => {
@@ -297,7 +306,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											value={fourthDay}
 										/>            
 								</div>
-								{showFifthDay ? (
+								{fifthDay || showFifthDay ? (
 									<>
 										<div className={styles.days}>
 											<label for="fifthDay">5° Dia:</label>
