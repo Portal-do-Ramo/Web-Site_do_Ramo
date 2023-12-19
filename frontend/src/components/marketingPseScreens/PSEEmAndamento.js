@@ -162,15 +162,9 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 					}
 				),
 				!fifthDay ?
-					toast.promise(
-						api.patch(`/pse/dinamycDate/dinamycDate_5`),
-						{
-							pending: 'Carregando',
-							success: 'PSE sem 5ª dinâmica!',
-							error: 'Não foi possível atualizar a dinâmica 5'
-						}
-					) :
-					null
+
+						api.patch(`/pse/dinamycDate/dinamycDate_5`) : null
+
 			]);
 
 
