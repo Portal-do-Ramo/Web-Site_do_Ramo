@@ -9,26 +9,26 @@ import { toast } from "react-toastify";
 
 export default function Page5() {
   const router = useRouter();
-  const {
-    isFistPageValidated,
-    isSecondPageValidated,
-    isThirdPageValidated,
-    isFourthPageValidated,
+  // const {
+  //   isFistPageValidated,
+  //   isSecondPageValidated,
+  //   isThirdPageValidated,
+  //   isFourthPageValidated,
 
-  } = useContext(PSEFormContext);
+  // } = useContext(PSEFormContext);
 
-  const [shouldRender, setShouldRender] = useState(false);
+  // const [shouldRender, setShouldRender] = useState(false);
 
-  useEffect(() => {
-    if (isFistPageValidated && isSecondPageValidated && isThirdPageValidated && isFourthPageValidated) {
-      setShouldRender(true);
-    } else {
-      toast.error("Algumas páginas não foram validadas com sucesso.");
-      router.push('/');
-    }
-  }, [isFistPageValidated, isSecondPageValidated, isThirdPageValidated, isFourthPageValidated]);
+  // useEffect(() => {
+  //   if (isFistPageValidated && isSecondPageValidated && isThirdPageValidated && isFourthPageValidated) {
+  //     setShouldRender(true);
+  //   } else {
+  //     toast.error("Algumas páginas não foram validadas com sucesso.");
+  //     router.push('/');
+  //   }
+  // }, [isFistPageValidated, isSecondPageValidated, isThirdPageValidated, isFourthPageValidated]);
 
-  return shouldRender ? (
+  return  (
     <>
       <section className={styles.leftSide}>
         <PSEFormHeader page="5" showCircles={false} />
@@ -61,5 +61,5 @@ export default function Page5() {
         <article className={styles.rightForm_page2}></article>
       </section>
     </>
-  ) : null;
+  )
 }
