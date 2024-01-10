@@ -17,18 +17,27 @@ import { AuthContext } from "../../../contexts/AuthContext";
 export default function equipes({ crews }){
 	const router = useRouter();
 
-	const { user, isAuthenticated } = useContext(AuthContext);
+		const { user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
+		const [userCrews, setUserCrews] = useState([]);
 
     useEffect(() => {
-		if (isAuthenticated) {
+				if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
             } else {
-				setIsLoading(false);
-			}
+								if(user.isAdmin){
+									setUserCrews(crews)
+								}
+								else{
+									const userSpecificCrews = crews.filter(crew => crew.id === user.crewId)
+									setUserCrews(userSpecificCrews);
+								}
+								setIsLoading(false);
+						}
         }
-    }, [user, isAuthenticated]);
+    }, [user, isAuthenticated, crews]);
+
 
 	if (isLoading) {
         return ( <></> )
@@ -47,30 +56,34 @@ export default function equipes({ crews }){
 					<div className={styles.row}>
 						<div className={styles.text}>
 							<h1>Lista de Equipes</h1>
-							<p>{crews.length} Equipes</p>
+							<p>{userCrews.length} Equipes</p>
 						</div>
-						<Link href={"/marketing/equipes/criar"}>
-						  <span className={styles.link}>
-							<BiPlusMedical/>
-							Criar Equipe
-						  </span>
-						</Link>
+						
+						{user && user.isAdmin ? (
+									<Link href={"/marketing/equipes/criar"}>
+										<span className={styles.link}>
+										<BiPlusMedical/>
+										Criar Equipe
+										</span>
+									</Link>
+								) : null}
+
 					</div>
 	  
 					<div className={styles.crewsList}>
-						  {crews.map((crew) => { 
-							return(
-							  <div className={styles.crewRow} key={crew.id}>
-								<div className={styles.name}>
-								  <img src={crew.imageURL}/>
-								  <h2>{crew.name}</h2>
-								</div>
-								<Link href={`/marketing/equipes/${crew.id}`}>
-								  <span className={styles.gearConfig}><BsFillGearFill/></span>
-								</Link>
-							  </div>
-							)
-						  })}
+						  {userCrews.map((crew) => { 
+										return(
+											<div className={styles.crewRow} key={crew.id}>
+											<div className={styles.name}>
+												<img src={crew.imageURL}/>
+												<h2>{crew.name}</h2>
+											</div>
+											<Link href={`/marketing/equipes/${crew.id}`}>
+												<span className={styles.gearConfig}><BsFillGearFill/></span>
+											</Link>
+											</div>
+										)
+						  })} 
 					</div>
 				</div>
 			</div>

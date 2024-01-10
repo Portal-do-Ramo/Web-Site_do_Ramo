@@ -1,0 +1,386 @@
+.all {
+  display: flex;
+  font-family: 'Poppins';
+  min-height: 100vh;
+  background-color: var(--marketing-brackground);
+  padding-bottom: 50px;
+  overflow-y: auto;
+  
+  .pageContent {
+      display: flex;
+      margin-left: 300px;
+      justify-content: center;
+
+      width: 100%;
+
+      .content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 0 30px;
+          width: 80%;
+          row-gap: 40px;
+
+          .row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              width: 100%;
+
+              h1 {
+                  font-size: 1.6rem;
+                  font-weight: 500;
+              }
+
+              p {
+                  font-size: 1rem;
+              }
+
+              .link {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  column-gap: 10px;
+                  padding: 13px 30px;
+                  border: 0;
+                  border-radius: 12px;
+                  color: #fff;
+                  background-color: var(--azul-ramo);
+                  font-size: 1rem;
+                  cursor: pointer;
+              }
+
+              .link:hover {
+                  transform: scale(1.05);
+                  transition: .2s ease;
+              }
+          }
+
+          .usersList {
+              display: flex;
+              flex-direction: column;
+              
+
+              width: 100%;
+
+              .userRow {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 20px 0;
+                  padding-right: 30px;
+                  width: 100%;
+                  border-top: 2px solid #E2E2E7;
+
+                  .gearConfig {
+                      background: none;
+                      color: var(--azul-ramo);
+                      width: 60px;
+                      height: 60px;
+
+                      &:hover {
+                          background: #BFD6EC;
+                      }
+                  }
+
+                  .name {
+                      display: flex;
+                      align-items: center;
+                      column-gap: 35px;
+
+                      img {
+                          padding: 4px;
+                          border-radius: 12px;
+                          background-color: var(--contraste);
+                          height: 70px;
+                      }
+  
+                      h2 {
+                          justify-self: flex-start;
+                          font-size: 1rem;
+                          font-weight: 500;
+                      }
+                  }
+
+                  span {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 15px;
+                      border: 0;
+                      border-radius: 12px;
+                      color: white;
+                      background-color: var(--azul-ramo);
+                      font-size: 1.5rem;
+                      cursor: pointer;
+                  }
+  
+                  span:hover {
+                      transform: scale(1.05);
+                      transition: .2s ease;
+                  }
+              }
+          }
+      }
+  }
+}
+
+@media (max-width: 1000px) {
+  .pageContent {
+      align-items: flex-start !important;
+      margin-left: 0px !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .content {
+      margin: 0px !important;
+      .row {
+          column-gap: 20px;
+
+          h1 {
+              font-size: 1.3rem !important;
+          }
+
+          p {
+              font-size: 0.9rem !important;
+          }
+
+          .link {
+              padding: 10px 20px !important;
+              font-size: 0.9rem !important;
+          }
+      }
+  }
+}
+
+@media (max-width: 450px) {
+  .content {
+      .row {
+          column-gap: 20px;
+
+          h1 {
+              font-size: 1.1rem !important;
+          }
+
+          p {
+              font-size: 0.9rem !important;
+          }
+
+          .link {
+              padding: 10px 10px !important;
+              font-size: 0.8rem !important;
+          }
+      }
+
+      .usersList {
+          .userRow {
+              .name {
+                  column-gap: 20px !important;
+              }
+          }
+      }
+  }
+}
+
+@media (max-width: 360px) {
+  .content {
+      width: 90% !important;
+
+      .usersList {
+          .userRow {
+              .name {
+                  column-gap: 20px !important;
+
+                  img {
+                      height: 60px !important;
+                  }
+              }
+          }
+      }
+  }
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 110px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    row-gap: 5px;
+    background-color: white;
+    border-radius: 25px;
+    font-family: 'Poppins';
+  
+    @media (max-width: 1100px) {
+      width: 50vw;
+      padding: 40px ;
+    }
+    @media (max-width: 1000px) {
+      width: 60vw;
+      padding: 40px;
+    }
+    @media (max-width: 800px) {
+      width: 60vw;
+      padding: 40px ;
+    }
+    @media (max-width: 750px) {
+      width: 80vw;
+      padding: 40px ;
+    }
+    @media (max-width: 600px) {
+      width: 90vw;
+      padding: 40px;
+      
+    }
+    @media (max-width: 400px) {
+      width: 90vw;
+      padding: 30px;
+
+    }
+  
+    img {
+      width: 75px;
+      margin-bottom: 20px;
+    }
+  
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  
+    .modalHeader {
+      display: flex;
+      gap: 200px;
+  
+      .userImage {
+        position: relative;
+        right: 50px;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        @media (max-width:500px) {
+          right: 0px;
+        }
+        @media (max-width:350px) {
+          right: -30px;
+        }
+        @media (max-width:280px) {
+          right: -50px;
+        }
+      }
+  
+      span {
+        
+        top: 15px;
+        left: 50px;
+        cursor: pointer;
+        
+        @media (max-width:500px) {
+          display: block;
+          left: 0px;
+          width: 30px;
+          height: 30px;
+          
+        }
+        @media (max-width:350px) {
+          left: -35px;
+          width: 30px;
+          height: 30px;
+        }
+        @media (max-width:280px) {
+          left: -55px;
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+    
+    .inputContainer{
+      display: flex;
+      flex-direction: column;
+
+      @media  (max-width: 500px){
+        width: 100%;
+        padding-left: 15%;
+        padding-right: 15%;
+      }
+    }
+    
+    /* Estilos para os inputs e botões */
+    input[type="text"],
+    input[type="password"] {
+      width:100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 1rem;
+      background-color: #E8E8E8;
+      border: none;
+      display: flex;
+      ;
+      &:focus {
+        outline: none;
+        box-shadow: inset 0 0 0 2px var(--azul-ramo);
+      }
+
+    }
+  
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--azul-ramo);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+    /* Estilos para o box de botões */
+    .buttonsBox {
+      padding-top: 1rem;
+      display: flex;
+      justify-content: center;
+      .Create {
+        color: white;
+        border-radius: 5px;
+        border: none;
+        width: 200px;
+        height: 45px;
+        background-color: var(--azul-ramo);
+
+        cursor: pointer;
+        font-family: 'Poppins';
+        font-weight: bold;
+        font-size: 16px;
+        transition: 0.2s ease;
+      }
+      .Create:hover {
+        background-color: #1d5688;
+        transform: scale(1.05);
+      }
+      .Create:active {
+        transform: scale(0.95);
+      }
+    }
+    outline: none;
+}
+
+  
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.089);
+}

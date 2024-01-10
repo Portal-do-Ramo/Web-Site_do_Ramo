@@ -24,7 +24,10 @@ export default function index() {
 		if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
-            } else {
+            } else if(!user.isAdmin){
+                router.push("/marketing");
+            }
+            else {
 				setIsLoading(false);
 			}
         }

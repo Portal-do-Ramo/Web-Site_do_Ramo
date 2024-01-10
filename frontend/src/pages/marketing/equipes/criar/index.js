@@ -21,10 +21,13 @@ export default function Criar() {
 		if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
+            }else if(!user.isAdmin){
+                router.push("/marketing/equipes");
             } else {
 				setIsLoading(false);
 			}
         }
+        
     }, [user, isAuthenticated]);
 
     let imageHandler = e => {

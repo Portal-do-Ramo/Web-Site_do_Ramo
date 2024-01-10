@@ -16,15 +16,22 @@ export default function equipe({ crew }){
     const [modalIsOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-		if (isAuthenticated) {
-            if (user === null) {
-                router.push("/login");
-            } else {
-				setIsLoading(false);
+		useEffect(() => {
+			if (isAuthenticated) {
+					if (user === null) {
+							router.push("/login");
+					} else if (user.crewId !== crew.id) {
+							if (user.isAdmin) {
+									setIsLoading(false);
+							} else {
+									router.push("/marketing/equipes");
+							}
+					} else {
+							setIsLoading(false);
+					}
 			}
-        }
-    }, [user, isAuthenticated]);
+		}, [user, isAuthenticated]);
+	
 
 	function handleSelectOption(option) {
 		router.push(`${crew.id}/${option}`);    

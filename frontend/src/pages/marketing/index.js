@@ -11,7 +11,7 @@ import Link from "next/link";
 export default function index() {
     const router = useRouter();
 
-	const { user, isAuthenticated } = useContext(AuthContext);
+		const { user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -24,12 +24,14 @@ export default function index() {
         }
     }, [user, isAuthenticated]);
 
-	if (isLoading) {
+	if (isLoading || user === undefined) {
         return (
             <></>
         )
     } else {
-		return (
+			
+			return (
+			
 			<div className={styles.all}>
 				<Head>
 					<title>Marketing - Início | IEEE CEFET-RJ</title>
@@ -56,12 +58,15 @@ export default function index() {
 								Além de poder controlar o sistema do PSE. 
 							</p>
 
-							<Link href={"/marketing/cadastro"}>
-								<span className={styles.link}>
-									<HiUserAdd/>
-									Criar novo usuário
-								</span>
-							</Link>
+							{user && user.isAdmin ? (
+									<Link href={"/marketing/cadastro"}>
+										<span className={styles.link}>
+											<HiUserAdd/>
+											Criar novo usuário
+										</span>
+									</Link>
+							) : null}
+
 						</article>
 					</section>
 				</div>
