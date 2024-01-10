@@ -25,18 +25,16 @@ export default function equipes({ crews }){
 				if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
-            } else {
-								if(user.isAdmin){
-									setUserCrews(crews)
-								}
-								else{
-									const userSpecificCrews = crews.filter(crew => crew.id === user.crewId)
-									setUserCrews(userSpecificCrews);
-								}
-								setIsLoading(false);
+            } else if (user.isAdmin){
+							setUserCrews(crews)
+							setIsLoading(false);
+						}else {
+								router.push(`/marketing/equipes/${user.crewId}`);
+								setIsLoading(true)
 						}
-        }
-    }, [user, isAuthenticated, crews]);
+						
+				}
+		}, [user, isAuthenticated, crews]);
 
 
 	if (isLoading) {
