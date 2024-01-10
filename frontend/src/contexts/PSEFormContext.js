@@ -153,7 +153,7 @@ export function PSEFormContextProvider({children}) {
 			}
     } catch (error) {
       setButtonDisabled(false)
-			toast.error("Não foi possível enviar");
+			toast.error("Não foi possível enviar.\n"+ error.response.data.message);
 		}
 	}
 
