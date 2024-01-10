@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { format } from "date-fns";
 import Modal from 'react-modal';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 
 async function handleDownloadPSEFile() {
@@ -90,7 +90,17 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 
     const isoDate = `${ano}-${mes}-${dia}T${hora}:${minuto}`;
 		return isoDate;
-}
+	}
+
+	function handleAccessPSEFile() {
+		const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
+		
+		if (link) { 
+				window.open(link, '_blank');
+		} else {
+				console.error('PSE_SPREADSHEET_LINK is not defined.');
+		}
+	}
 
 	async function getDinamycDatesPSE() {
 
@@ -355,33 +365,42 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 				</button>
 			</section> */}
 
-			<section className={styles.closePSE}>
-				<span>Encerrar o PSE!</span>
-				<p>
-					Ao cancelar o processo seletivo externo as informações
-					de início e término do processo serão removidas.
-				</p>
 
-				<button type='button' onClick={openModal}>Encerrar PSE</button>
+				<section className={styles.closePSE}>
+					<span>Encerrar o PSE!</span>
+					<p>
+						Ao cancelar o processo seletivo externo as informações
+						de início e término do processo serão removidas.
+					</p>
 
-				<Modal 
-					isOpen={modalIsOpen}
-					onRequestClose={handleCloseModal}
-					className={styles.modal}
-					overlayClassName={styles.overlay}
-					contentLabel="Example Modal"
-					shouldCloseOnEsc={true}  
-				>
-					<img src="/finish.svg"></img>
-					<h1>Encerrar PSE</h1>
-					<p>Tem certeza que você deseja cancelar o PSE?</p>
-					<div className={styles.rowButton}>
-						<button type='button' className={styles.cancel} onClick={handleCloseModal}>Cancelar</button>
-						<button type='button' className={styles.finishButton} onClick={handleCancelPSE}>Sim, encerrar</button>
-					</div>
-				</Modal>
 
-			</section>
+					<Modal 
+						isOpen={modalIsOpen}
+						onRequestClose={handleCloseModal}
+						className={styles.modal}
+						overlayClassName={styles.overlay}
+						contentLabel="Example Modal"
+						shouldCloseOnEsc={true}  
+					>
+						<img src="/finish.svg"></img>
+						<h1>Encerrar PSE</h1>
+						<p>Tem certeza que você deseja cancelar o PSE?</p>
+						<div className={styles.rowButton}>
+							<button type='button' className={styles.cancel} onClick={handleCloseModal}>Cancelar</button>
+							<button type='button' className={styles.finishButton} onClick={handleCancelPSE}>Sim, encerrar</button>
+						</div>
+					</Modal>
+						<div className={styles.buttonContainerPSEEmAndamento}>
+							<button type='button' onClick={openModal} className={styles.closePSEButton}>Encerrar PSE</button>
+
+							<button 
+								type="button" onClick={handleAccessPSEFile} className={styles.spreadsheetButton}
+							>
+								<span>Acessar planilha de inscritos</span> <AiFillEye />  
+							</button>
+						</div>
+
+				</section>
 		</>
 	)
 }
