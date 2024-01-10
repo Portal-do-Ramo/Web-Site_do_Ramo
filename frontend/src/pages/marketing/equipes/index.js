@@ -73,8 +73,9 @@ export default function equipes({ crews }){
 										return(
 											<div className={styles.crewRow} key={crew.id}>
 											<div className={styles.name}>
-												<img src={crew.imageURL}/>
+												<img src={crew.imageURL} alt="Avatar"/>
 												<h2>{crew.name}</h2>
+												
 											</div>
 											<Link href={`/marketing/equipes/${crew.id}`}>
 												<span className={styles.gearConfig}><BsFillGearFill/></span>
