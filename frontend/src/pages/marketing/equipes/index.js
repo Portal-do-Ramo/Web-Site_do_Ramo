@@ -25,16 +25,18 @@ export default function equipes({ crews }){
 				if (isAuthenticated) {
             if (user === null) {
                 router.push("/login");
-            } else if (user.isAdmin){
-							setUserCrews(crews)
-							setIsLoading(false);
-						}else {
-								router.push(`/marketing/equipes/${user.crewId}`);
-								setIsLoading(true)
+            } else {
+								if(user.isAdmin){
+									setUserCrews(crews)
+								}
+								else{
+									const userSpecificCrews = crews.filter(crew => crew.id === user.crewId)
+									setUserCrews(userSpecificCrews);
+								}
+								setIsLoading(false);
 						}
-						
-				}
-		}, [user, isAuthenticated, crews]);
+        }
+    }, [user, isAuthenticated, crews]);
 
 
 	if (isLoading) {
@@ -73,9 +75,8 @@ export default function equipes({ crews }){
 										return(
 											<div className={styles.crewRow} key={crew.id}>
 											<div className={styles.name}>
-												<img src={crew.imageURL} alt="Avatar"/>
+												<img src={crew.imageURL}/>
 												<h2>{crew.name}</h2>
-												
 											</div>
 											<Link href={`/marketing/equipes/${crew.id}`}>
 												<span className={styles.gearConfig}><BsFillGearFill/></span>

@@ -63,7 +63,7 @@ export default function equipe({ crew }){
 	  
 			<div className={styles.pageContent}>
 			  <div className={styles.content}>
-				<MarketingMenuRoutes routesName={user && user.isAdmin ? `Equipes/${crew.name}` : `${crew.name}`} routes={ `equipes/${crew.id}`}/>
+				<MarketingMenuRoutes routesName={`Equipes/${crew.name}`} routes={`equipes/${crew.id}`}/>
 	  
 				<section className={styles.grid}>
 				  <button type="button" onClick={() => handleSelectOption("projetos")}>

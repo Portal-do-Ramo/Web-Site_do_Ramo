@@ -70,7 +70,7 @@
 					margin-right: 20px;
 				}
 
-				input, select {
+				input {
 					width: 100%;
 					font-family: 'Poppins', sans-serif;
 					margin: none;
@@ -82,10 +82,10 @@
 					&::placeholder {
 						color: #9A9A9A;
 					}
+
 					@media (max-width: 300px) {
 						font-size: 0.7rem;
 					}
-
 				}
 			}
 
@@ -161,4 +161,3 @@
 		}
 	}
 }
-
