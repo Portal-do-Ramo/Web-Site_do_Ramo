@@ -137,6 +137,12 @@ export default function admin({crews}){
 								return(
 									<div key={user.id} className={styles.userRow}>
 										<div className={styles.name}>
+
+											{/* faz a verificação para renderizar 
+											a foto corretamente se for a conta
+											Site do Ramo renderiza a logo do IEEE
+											*/}
+
 											{user.name === "Site do Ramo" ? (
 												<img src="/Ramo_logo.svg" className={styles.userImage} />
 											) : (
