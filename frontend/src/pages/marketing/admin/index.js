@@ -81,7 +81,6 @@ export default function admin(){
 					};
 		
 					const { data } = await api.patch(`/user/${selectedUser.id}`, requestBody);
-					console.log(data);
 					router.reload();
 				} else {
 					let requestBody = {
@@ -127,7 +126,7 @@ export default function admin(){
 					<div className={styles.usersList}>
 						  {users.map((user) => { 
 								return(
-									<div className={styles.userRow}>
+									<div key={user.id} className={styles.userRow}>
 										<div className={styles.name}>
 											<img src={nameURL} className={styles.userImage}/>
 											<h2>{user.name}</h2>
