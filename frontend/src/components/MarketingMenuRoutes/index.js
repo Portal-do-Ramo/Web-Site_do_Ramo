@@ -13,7 +13,7 @@ export default function MarketingMenuRoutes({ routesName, routes }) {
     }
 
     return (
-        <div className={styles.all}>
+        <div className={styles.all} >
             <section className={styles.content}>
                 { splittedRoutesName.map((route, index) => {
                     return (
