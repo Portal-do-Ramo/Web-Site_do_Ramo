@@ -92,7 +92,6 @@ export default function MarketingNavBar({ page, user }) {
         {user && user.name === "Site do Ramo" ? (
             <img src="/Ramo_logo.svg" className={styles.userImage} />
           ) : (
-            // Ajuste para usar a equipe correspondente passada como propriedade
             crews && user && user.crewId ? (
               <img src={crews.find(crew => crew.id === user.crewId)?.imageURL} className={styles.userImage} />
             ) : (
