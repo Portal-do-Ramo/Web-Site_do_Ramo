@@ -210,10 +210,12 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 637px;
+    height: 570px;
     transform: translate(-50%, -50%);
     row-gap: 5px;
     background-color: white;
-    border-radius: 25px;
+    border-radius: 15px;
     font-family: 'Poppins';
   
     @media (max-width: 1100px) {
@@ -259,14 +261,19 @@
   
       .userImage {
         position: relative;
-        right: 50px;
-        width: 70px;
-        height: 70px;
+        right: 70px;
+        width: 78px;
+        height: 78px;
         padding: 8px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        @media (max-width:500px) {
-          right: 0px;
+        border-radius: 50%;
+        margin-top: -60px;
+        margin-left: -20px;
+        background-color: var(--contraste);
+        @media (max-width:650px) {
+          right: 30px;
+        }
+        @media (max-width:550px) {
+          right: 20px;
         }
         @media (max-width:350px) {
           right: -30px;
@@ -277,9 +284,8 @@
       }
   
       span {
-        
-        top: 15px;
-        left: 50px;
+        top: -30px;
+        left: 80px;
         cursor: pointer;
         
         @media (max-width:500px) {
@@ -305,7 +311,11 @@
     .inputContainer{
       display: flex;
       flex-direction: column;
-
+      width: 300px;
+      h3{
+        font-size: 20px;
+        font-weight: 600;
+      }
       @media  (max-width: 500px){
         width: 100%;
         padding-left: 15%;
@@ -317,25 +327,31 @@
     input[type="text"],
     input[type="password"] {
       width:100%;
-      padding: 8px;
+      padding: 6px 8px;
+      
       margin-bottom: 15px;
-      border-radius: 4px;
+      border-radius: 10px;
       font-size: 1rem;
       background-color: #E8E8E8;
       border: none;
       display: flex;
-      ;
+      font-family: 'Poppins';
       &:focus {
         outline: none;
         box-shadow: inset 0 0 0 2px var(--azul-ramo);
+      }
+      &::placeholder{
+        text-align: center;
+        color: #00000028;
       }
 
     }
   
     button {
+      
       padding: 10px 20px;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       background-color: var(--azul-ramo);
       color: white;
       font-size: 1rem;
@@ -352,10 +368,11 @@
       justify-content: center;
       .Create {
         color: white;
-        border-radius: 5px;
+        margin-top: 20px;
+        border-radius: 10px;
         border: none;
-        width: 200px;
-        height: 45px;
+        width: 212px;
+        height: 54px;
         background-color: var(--azul-ramo);
 
         cursor: pointer;
@@ -383,5 +400,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.089);
+    background-color: rgba(0, 0, 0, 0.30);
+    backdrop-filter: blur(1px);
 }

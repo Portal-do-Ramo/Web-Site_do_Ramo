@@ -156,7 +156,15 @@ export default function admin({crews}){
 												<Modal overlayClassName={styles.overlay} isOpen={true} onRequestClose={handleCloseModal} className={styles.modal}>
 													<div >
 														<div className={styles.modalHeader}>
-															<img src={nameURL} className={styles.userImage}/>
+														{user.name === "Site do Ramo" ? (
+																<img src="/Ramo_logo.svg" className={styles.userImage} />
+															) : (
+																userCrew ? (
+																	<img src={userCrew.imageURL} className={styles.userImage} />
+																) : (
+																	<img src={nameURL} className={styles.userImage} />
+																)
+															)}
 															<span onClick={handleCloseModal}>
 																<Image src={X} width={20} height={20} />
 															</span>
@@ -170,16 +178,18 @@ export default function admin({crews}){
 																	onChange={(e) =>
 																		setUpdatedUser({ ...updatedUser, name: e.target.value })
 																	}
+																	placeholder="Nome da equipe"
 																/>
 															</div>
 															<div>
-																<h3>Email:</h3>
+																<h3>E-mail:</h3>
 																<input
 																 type="text" 
 																 value={updatedUser.email}
 																 onChange={(e) =>
 																	 setUpdatedUser({ ...updatedUser, email: e.target.value })
 																 }
+																 placeholder="Equipe@gmail.com"
 															 />
 															</div>
 															<div>
@@ -190,6 +200,7 @@ export default function admin({crews}){
 																 onChange={(e) =>
 																	 setUpdatedUser({ ...updatedUser, password: e.target.value })
 																 }
+																 placeholder="*********"
 															 />
 															</div>
 														</div>
