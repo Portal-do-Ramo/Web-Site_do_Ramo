@@ -72,7 +72,7 @@ export default function MarketingNavBar({ page, user }) {
 
         <Link href={`/marketing/equipes`}>
           
-          <h1 className={page === "equipes" ? styles.border : null}>Equipes</h1>
+          <h1 className={page === "equipes" ? styles.border : null}>{user && user.isAdmin ? "Equipes" : "Equipe"}</h1>
         </Link>
 
         {user && user.isAdmin && (

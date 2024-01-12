@@ -86,7 +86,6 @@ export default function admin({crews}){
 					};
 		
 					const { data } = await api.patch(`/user/${selectedUser.id}`, requestBody);
-					console.log(data);
 					router.reload();
 				} else {
 					let requestBody = {
@@ -136,7 +135,7 @@ export default function admin({crews}){
 								const userCrew = findCrewByUserName(user.name);
 
 								return(
-									<div className={styles.userRow}>
+									<div key={user.id} className={styles.userRow}>
 										<div className={styles.name}>
 											{user.name === "Site do Ramo" ? (
 												<img src="/Ramo_logo.svg" className={styles.userImage} />
