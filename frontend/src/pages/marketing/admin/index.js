@@ -17,7 +17,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Modal from "react-modal";
 import Image from "next/image";
 
-export default function admin(){
+export default function admin({crews}){
 	const router = useRouter();
 
 		const { user, isAuthenticated } = useContext(AuthContext);
@@ -48,6 +48,7 @@ export default function admin(){
 				try {
 					const { data } = await api.get("/users");
 					setUsers(data.users);
+					
 				} catch (error) {
 					router.push("/marketing");
 				}
@@ -66,6 +67,10 @@ export default function admin(){
 	
 		const handleCloseModal = () => {
 			setSelectedUser(null);
+		};
+
+		const findCrewByUserName = (userName) => {
+			return crews.find((crew) => crew.name === userName);
 		};
 
 		async function handleSaveUserChanges() {
@@ -125,11 +130,23 @@ export default function admin(){
 					</div>
 	  
 					<div className={styles.usersList}>
-						  {users.map((user) => { 
+						  {users.map((user) => {
+								const nameURL = `https://ui-avatars.com/api/?name=${user ? user.name : "Unknown"}`
+
+								const userCrew = findCrewByUserName(user.name);
+
 								return(
 									<div className={styles.userRow}>
 										<div className={styles.name}>
-											<img src={nameURL} className={styles.userImage}/>
+											{user.name === "Site do Ramo" ? (
+												<img src="/Ramo_logo.svg" className={styles.userImage} />
+											) : (
+												userCrew ? (
+													<img src={userCrew.imageURL} className={styles.userImage} />
+												) : (
+													<img src={nameURL} className={styles.userImage} />
+												)
+											)}
 											<h2>{user.name}</h2>
 										</div>
 										
@@ -195,6 +212,12 @@ export default function admin(){
 	}
 }
 
-// export const getServerSideProps = async ({ res }) => {
+export const getServerSideProps = async () => {
+  let {data : crews} = await api.get("/crews");
 
-// };
+  return {
+    props: {
+      crews
+    }
+  }
+}

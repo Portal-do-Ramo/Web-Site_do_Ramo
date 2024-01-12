@@ -89,7 +89,7 @@
                       column-gap: 35px;
 
                       img {
-                          padding: 4px;
+                          padding: 8px;
                           border-radius: 12px;
                           background-color: var(--contraste);
                           height: 70px;
@@ -262,7 +262,8 @@
         right: 50px;
         width: 70px;
         height: 70px;
-        border-radius: 50%;
+        padding: 8px;
+        border-radius: 15px;
         margin-bottom: 20px;
         @media (max-width:500px) {
           right: 0px;

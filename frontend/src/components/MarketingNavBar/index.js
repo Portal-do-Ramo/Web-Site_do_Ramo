@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useRouter } from "next/router";
+import api from "../../services/api";
+
 
 export default function MarketingNavBar({ page, user }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useContext(AuthContext);
-
+  const [crews, setCrews] = useState([]);
   function open() {
     document.body.style.overflowY = isOpen ? "scroll" : "hidden";
     setIsOpen(!isOpen);
@@ -20,11 +22,26 @@ export default function MarketingNavBar({ page, user }) {
   }
   
   useEffect(() => {
+    const fetchCrews = async() => {
+      try {
+        const {data} = await api.get("/crews")
+        setCrews(data);
+        
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+    fetchCrews();;
+  }, [])
+  
+
+  useEffect(() => {
     document.body.style.overflowY = "scroll";
   }, [])
 
   let nameURL = `https://ui-avatars.com/api/?name=${user ? user.name : "Unknown"}`
-  
+
   return (
     <div className={styles.all}>
       <div className={styles.title}>
@@ -58,7 +75,6 @@ export default function MarketingNavBar({ page, user }) {
           <h1 className={page === "equipes" ? styles.border : null}>Equipes</h1>
         </Link>
 
-
         {user && user.isAdmin && (
           <>
             <Link href={`/marketing/PSE`}>
@@ -73,7 +89,16 @@ export default function MarketingNavBar({ page, user }) {
       </div>
 
       <div className={styles.user}>
-        <img src={nameURL} className={styles.userImage}/>
+        {user && user.name === "Site do Ramo" ? (
+            <img src="/Ramo_logo.svg" className={styles.userImage} />
+          ) : (
+            // Ajuste para usar a equipe correspondente passada como propriedade
+            crews && user && user.crewId ? (
+              <img src={crews.find(crew => crew.id === user.crewId)?.imageURL} className={styles.userImage} />
+            ) : (
+              <img src={nameURL} className={styles.userImage} />
+            )
+          )}
 
         <section className={styles.userInfo}>
           <span>{user ? user.name : "Unknown"}</span>

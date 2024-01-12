@@ -54,9 +54,9 @@ export default function index() {
 								prêmios e seus projetos.
 							</p>
 	
-							<p>
+							{user && user.isAdmin && 							<p>
 								Além de poder controlar o sistema do PSE. 
-							</p>
+							</p>}
 
 							{user && user.isAdmin ? (
 									<Link href={"/marketing/cadastro"}>
