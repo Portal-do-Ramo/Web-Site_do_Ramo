@@ -261,30 +261,33 @@
   
       .userImage {
         position: relative;
-        right: 70px;
+        right: 40px;
         width: 78px;
         height: 78px;
         padding: 8px;
         border-radius: 50%;
-        margin-top: -60px;
+        margin-top: -10px;
         margin-left: -20px;
         background-color: var(--contraste);
         @media (max-width:650px) {
           right: 30px;
         }
         @media (max-width:550px) {
-          right: 20px;
+          right: -20px;
         }
         @media (max-width:350px) {
           right: -30px;
         }
-        @media (max-width:280px) {
+        @media (max-width:300px) {
           right: -50px;
+        }
+        @media (max-width:250px) {
+          right: -60px;
         }
       }
   
       span {
-        top: -30px;
+        top: 0px;
         left: 80px;
         cursor: pointer;
         
@@ -323,12 +326,11 @@
       }
     }
     
-    /* Estilos para os inputs e botões */
+
     input[type="text"],
-    input[type="password"] {
+    input[type="password"],select {
       width:100%;
       padding: 6px 8px;
-      
       margin-bottom: 15px;
       border-radius: 10px;
       font-size: 1rem;
@@ -340,13 +342,30 @@
         outline: none;
         box-shadow: inset 0 0 0 2px var(--azul-ramo);
       }
+      &:hover{
+        background-color: #dadada;
+      }
+
       &::placeholder{
         text-align: center;
-        color: #00000028;
+        color: #00000044;
       }
 
     }
-  
+
+    select:hover{
+      
+      cursor: pointer;
+    }
+
+    .emailInput{
+      cursor: not-allowed;
+      
+      &::placeholder{
+        color: #00000086;
+        
+      }
+    }
     button {
       
       padding: 10px 20px;
@@ -368,7 +387,7 @@
       justify-content: center;
       .Create {
         color: white;
-        margin-top: 20px;
+        margin-top: 4px;
         border-radius: 10px;
         border: none;
         width: 212px;
