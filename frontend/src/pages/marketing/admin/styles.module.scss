@@ -72,16 +72,20 @@
                   width: 100%;
                   border-top: 2px solid #E2E2E7;
 
-                  .gearConfig {
+                  .gearConfig, .adminGearConfig {
                       background: none;
                       color: var(--azul-ramo);
                       width: 60px;
                       height: 60px;
-
                       &:hover {
                           background: #BFD6EC;
                       }
+
                   }
+                  .adminGearConfig:hover{
+                    background: #a7c4df;
+                  }
+
 
                   .name {
                       display: flex;
@@ -89,6 +93,7 @@
                       column-gap: 35px;
 
                       img {
+                          margin-left: 16px;
                           padding: 8px;
                           border-radius: 12px;
                           background-color: var(--contraste);

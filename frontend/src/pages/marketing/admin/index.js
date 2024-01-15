@@ -72,8 +72,8 @@ export default function admin({crews}){
 			setSelectedUser(null);
 		};
 
-		const findCrewByUserName = (userName) => {
-			return crews.find((crew) => crew.name === userName);
+		const findCrewById = (userCrewId) => {
+			return crews.find((crew) => crew.id === userCrewId);
 		};
 
 		async function handleSaveUserChanges() {
@@ -89,7 +89,6 @@ export default function admin({crews}){
 					};
 					
 					const { data } = await api.patch(`/user/${selectedUser.id}`, requestBody);
-					console.log(data);
 					router.reload();
 				} else {
 					let requestBody = {
@@ -109,12 +108,13 @@ export default function admin({crews}){
 		}
 
 
-
-
+	const countSuperUsers = users.filter(user => user.isAdmin).length
+	const countCoordinators = users.length - countSuperUsers
 		
 	if (isLoading) {
         return ( <></> )
     } else {
+
 		return (
 		  <div className={styles.all}>
 			<Head>
@@ -128,23 +128,27 @@ export default function admin({crews}){
 					<MarketingMenuRoutes routesName={`Administradores`} routes={`admin`}/>
 					<div className={styles.row}>
 						<div className={styles.text}>
-							<h1>Lista de Coordenadores</h1>
-							<p>{users.length-1} Coordenadores</p> {/*tira 1 por causa do superUser*/}
+							<h1>Lista de Administradores</h1>
+							<p>
+								{countCoordinators > 1 ? `${countCoordinators} coordenadores e` : `1 coordenador e`}
+								 {countSuperUsers > 1 ? ` ${countSuperUsers} administradores` : ` 1 administrador`}
+							</p>
 						</div>
 					</div>
 	  
 					<div className={styles.usersList}>
 						  {users.map((user) => {
 								const nameURL = `https://ui-avatars.com/api/?name=${user ? user.name : "Unknown"}`
-								
-								const userCrew = findCrewByUserName(user.name);
-								
-								if(user.name !== "Site do Ramo"){
-									return (
-									<div key={user.id} className={styles.userRow}>
+								const userCrew = findCrewById(user.crew_id);
+
+								return (
+									<div key={user.id} 
+										className={styles.userRow}
+										style={user.isAdmin ? { backgroundColor: 'rgba(13, 95, 170, 0.2)' } : {}}
+									>
 										<div className={styles.name}>
 
-											{user.name === "Site do Ramo" ? (
+											{user.isAdmin ? (
 												<img src="/Ramo_logo.svg" className={styles.userImage} />
 											) : (
 												userCrew ? (
@@ -156,13 +160,17 @@ export default function admin({crews}){
 											<h2>{user.name}</h2>
 										</div>
 										
-										<span className={styles.gearConfig} onClick={()=>handleOpenModal(user)}><BsFillGearFill/></span>
+										<span
+											
+											className={user.isAdmin ?  styles.adminGearConfig: styles.gearConfig}
+											onClick={()=>handleOpenModal(user)}><BsFillGearFill/>
+										</span>
 										{selectedUser && selectedUser.id === user.id && (
 												
 												<Modal overlayClassName={styles.overlay} isOpen={true} onRequestClose={handleCloseModal} className={styles.modal}>
 													<div >
 														<div className={styles.modalHeader}>
-														{user.name === "Site do Ramo" ? (
+														{user.isAdmin ? (
 																<img src="/Ramo_logo.svg" className={styles.userImage} />
 															) : (
 																userCrew ? (
@@ -195,24 +203,26 @@ export default function admin({crews}){
 																 placeholder={updatedUser.email}
 															 />
 															</div>
+														{updatedUser.isAdmin !== true && (
+																<div onClick={() => focusInput("crewSelector")}>
+																	<h3>Equipe:</h3>
+																	<select
+	
+																			id="crewSelector"
+																			onChange={(e) => setUpdatedUser({ ...updatedUser, crew_id: e.target.value })}// 
+																			value={updatedUser.crew_id}
+																			style={{ color: updatedUser.crew === "" ? "#9A9A9A" : "" }}
+																	>
+																			<option value="" disabled>Selecione uma equipe</option>
+																			{crews.map(crew => (
+																					<option key={crew.id} value={crew.id} style={{ color: "black"}}>
+																							{crew.name}
+																					</option>
+																			))}
+																	</select>
+																</div>
+															)}	
 
-															<div onClick={() => focusInput("crewSelector")}>
-																<h3>Equipe:</h3>
-																<select
-
-																		id="crewSelector"
-																		onChange={(e) => setUpdatedUser({ ...updatedUser, crew_id: e.target.value })}// 
-																		value={updatedUser.crew_id}
-																		style={{ color: updatedUser.crew === "" ? "#9A9A9A" : "" }}
-																>
-																		<option value="" disabled>Selecione uma equipe</option>
-																		{crews.map(crew => (
-																				<option key={crew.id} value={crew.id} style={{ color: "black"}}>
-																						{crew.name}
-																				</option>
-																		))}
-																</select>
-															</div>
 															
 
 															<div>
@@ -236,7 +246,7 @@ export default function admin({crews}){
 										}
 
 									</div>
-								)}
+								)
 						  })}
 					</div>
 				</div>
