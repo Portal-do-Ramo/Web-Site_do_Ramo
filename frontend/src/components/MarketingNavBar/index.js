@@ -89,7 +89,7 @@ export default function MarketingNavBar({ page, user }) {
       </div>
 
       <div className={styles.user}>
-        {user && user.name === "Site do Ramo" ? (
+        {user && user.isAdmin ? (
             <img src="/Ramo_logo.svg" className={styles.userImage} />
           ) : (
             crews && user && user.crewId ? (
