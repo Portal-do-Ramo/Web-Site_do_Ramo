@@ -52,7 +52,7 @@ module.exports = {
         const userValidation = Joi.object({
             name: Joi.string().min(3),
             password: Joi.string().min(8).pattern(new RegExp("^[a-zA-z0-9]{3,30}$")),
-            crew_id: Joi.string()
+            crew_id: Joi.string().allow(null, '')
         });
         
         const {error} = userValidation.validate({name, password, crew_id});
