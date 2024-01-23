@@ -74,12 +74,7 @@ export default function ContactButton() {
                     Linkedin
                 </button>
 
-                <button className={styles.socialButton} onClick={() => window.open("https://www.linkedin.com/company/ieeecefet", "_blank")}>
-                    <span id={styles.facebook}>
-                        <FaFacebookF className={styles.icon}/>
-                    </span>   
-                    Facebook
-                </button>
+                
 
                 <button className={styles.socialButton} onClick={() => window.open("https://www.instagram.com/ieeecefet", "_blank")}>
                     <span id={styles.instagram}>
