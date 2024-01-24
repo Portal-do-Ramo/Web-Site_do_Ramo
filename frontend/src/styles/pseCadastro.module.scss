@@ -212,9 +212,7 @@
           justify-content: space-between;
           gap: 10px;
         }
-				
-				
-		
+
 		.addressInput {
 			margin-top: 7px;
 		}
@@ -229,6 +227,12 @@
             margin-top: 0;
           }
         }
+
+		@media (max-width: 455px) {
+			.checkAgradecimento {
+				width: 150px;
+			}
+		}
 	}
 	.centered{
 		margin-top: 2rem;
@@ -399,7 +403,7 @@
 		font-size: 0.9rem;
 
 		@media (max-width: 420px) {
-			padding: 15px 0px;
+			padding: 15px 60px;
 			flex: 1;
 		}
 	}
