@@ -151,6 +151,11 @@
 		display:flex;
 		width:100%;
 		gap:100px;
+
+		@media (max-width: 455px) {
+			flex-direction: column;
+			row-gap: 25px;
+		}
 	}
 	.genderRadios{
 		
@@ -161,14 +166,22 @@
 		margin-top: 15px;
 		border-radius:5px;
 		display:column;
+
 		div {
 			display: flex;
 			padding-inline: 4px;
 			align-items: center;
 			margin: 8px 0px;
+			
+			@media (max-width: 455px) {
+				justify-content: space-around;
+			}
 		
 			&:not(:first-child) {
 				margin-left: 24px;
+				@media (max-width: 455px) {
+					margin-left: 0;
+				}
 			}
 		
 			label {
