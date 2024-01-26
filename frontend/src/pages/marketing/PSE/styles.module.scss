@@ -75,6 +75,7 @@
 
                     @media (max-width: 475px) {
                         min-width: 0;
+
                     }
                     
                     span {
@@ -94,7 +95,7 @@
 
                     @media (max-width: 475px) {
                         span {
-                            font-size: .7rem;
+                            font-size: .9rem;
                         }
 
                         p {
@@ -132,7 +133,7 @@
                             flex-direction: column;
 
                             .begin, .end {
-                                font-size: 0.7rem;
+                                font-size: 0.8rem;
                             }
 
                             .divider {
@@ -161,7 +162,7 @@
                     font-weight: 800;
 
                     @media (max-width: 475px) {
-                        font-size: 1rem;
+                        font-size: 1.2rem;
                     }
                 }
 
@@ -283,10 +284,11 @@
                         }
                         
                         @media (max-width: 475px) {
-                            width: 100%;
-                            padding: 10px 10px;
+                            width: auto;
+                            padding: 0px 0px;
                             font-size: .8rem;
                         }
+
                     }
 
                     button {
@@ -314,6 +316,7 @@
 
                         @media (max-width: 475px) {
                             font-size: .9rem;
+                            
                         }
                     }
                 }
@@ -455,7 +458,7 @@
 
                 @media (max-width: 475px) {
                     span {
-                        font-size: 1rem;
+                        font-size: 1.2rem;
                     }
 
                     p {
@@ -623,11 +626,13 @@
     @media (max-width: 475px) {
         
         width: 95vw;
-        padding: 50px 0;
+        padding: 50px 10px;
 
         p {
             max-width: 70%;
         }
+
+       
 
         .rowButton {
             flex-direction: column;
@@ -659,6 +664,7 @@
         row-gap: 10px;
         justify-content: center;
         align-items: center;
+        
         
         input{
             background-color: #cdd9e8;
@@ -692,6 +698,10 @@
             column-gap: 10px;
             padding: 10px 5px;
             align-items: center;
+
+            @media (max-width: 475px) {
+                width: 300px;
+            }
             
         }
         .addDay{
@@ -711,6 +721,7 @@
     .buttonsBox{
         padding-top: 1rem;
         display: flex;
+        
         
         .Cancel {
             color: white;
@@ -756,11 +767,16 @@
             transform: scale(0.95);
         }
 
+        @media (max-width: 475px) {
+            gap: 30px;
+        }
+
 
     }
     @media (max-width: 600px) {
         h2{
             padding-top: 2rem;
+            
             
         }
         .buttonsBox {
@@ -779,6 +795,7 @@
 
 
       }
+
 
 }
 .modal2 {
