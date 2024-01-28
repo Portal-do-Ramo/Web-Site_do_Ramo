@@ -5,6 +5,10 @@
     background-color: var(--marketing-brackground);
     padding-bottom: 50px;
     overflow-y: auto;
+
+    button {
+		font-family: 'Poppins', sans-serif;	
+	}
     
     .pageContent {
         display: flex;
