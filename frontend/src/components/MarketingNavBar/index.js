@@ -60,6 +60,11 @@ export default function MarketingNavBar({ page, user }) {
         <Link href={`/marketing/PSE`}>
           <h1 className={page === "pse" ? styles.border : null}>PSE</h1>
         </Link>
+
+        <button>
+          <p onClick={handleSignOut}>Sair</p>
+        </button>
+        
       </div>
 
       <div className={styles.user}>
