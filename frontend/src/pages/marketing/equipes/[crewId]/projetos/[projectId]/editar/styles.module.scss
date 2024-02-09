@@ -6,6 +6,10 @@
     padding-bottom: 50px;
     overflow-y: auto;
 
+    button {
+		font-family: 'Poppins', sans-serif;	
+	}
+
     input, textarea {
         font-family: 'Poppins', sans-serif;
     }
@@ -41,6 +45,7 @@
                     row-gap: 15px;
                     white-space: nowrap;
                     z-index: 0;
+                    width: auto;
 
                     #bannerImg {
                         img {
@@ -75,6 +80,7 @@
                             cursor: pointer;
                             transition: .5s ease;
                             background-position: center;
+            
                             
                         }
 
@@ -86,7 +92,7 @@
                             background-image: url('/camera_icon.svg');
                             background-repeat: no-repeat;
                             background-size: 60px;
-                            background-color: rgba($color: #0e2738, $alpha: 0.6);
+                            background-color: rgba($color: #0e2738, $alpha: 0.6);     
                         }
                     }
                 }
@@ -98,7 +104,18 @@
                         input {
                             width: 410px;
                         }
+
+                        @media (max-width: 440px) {
+                            input {
+                                width: 90vw;   
+                            }
+                            input:hover {
+                                width: 90vw;
+                            }
+                        }
+                       
                     }
+
 
                     @media (max-width: 600px) {
                         margin-top: 25px;
@@ -106,6 +123,7 @@
 
                     @media (max-width: 440px) {
                         margin-top: 25px;
+
                         
                         .img {
                             width: 90vw;

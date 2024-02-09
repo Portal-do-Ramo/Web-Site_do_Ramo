@@ -41,7 +41,7 @@ export default function Page5() {
 
           <div className={`${styles.leftForm} ${styles.centered}`}>
             
-              <img src="/check_circle.svg" width={300} alt="logo do Ramo"/>
+              <img src="/check_circle.svg" width={300} alt="concluido" className={styles.checkAgradecimento}/>
 
               <div className={styles.buttonsHolder}>
                 <button

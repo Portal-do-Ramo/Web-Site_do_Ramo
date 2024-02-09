@@ -13,6 +13,10 @@
 	width: 100%;
 	height: 100%;
 	font-family: 'Poppins', sans-serif;
+	
+	button {
+		font-family: 'Poppins', sans-serif;	
+	}
 
 	@media (max-width: 920px) {
 		flex-direction: column;
@@ -151,6 +155,11 @@
 		display:flex;
 		width:100%;
 		gap:100px;
+
+		@media (max-width: 455px) {
+			flex-direction: column;
+			row-gap: 25px;
+		}
 	}
 	.genderRadios{
 		
@@ -161,14 +170,22 @@
 		margin-top: 15px;
 		border-radius:5px;
 		display:column;
+
 		div {
 			display: flex;
 			padding-inline: 4px;
 			align-items: center;
 			margin: 8px 0px;
+			
+			@media (max-width: 455px) {
+				justify-content: space-around;
+			}
 		
 			&:not(:first-child) {
 				margin-left: 24px;
+				@media (max-width: 455px) {
+					margin-left: 0;
+				}
 			}
 		
 			label {
@@ -199,9 +216,7 @@
           justify-content: space-between;
           gap: 10px;
         }
-				
-				
-		
+
 		.addressInput {
 			margin-top: 7px;
 		}
@@ -216,6 +231,12 @@
             margin-top: 0;
           }
         }
+
+		@media (max-width: 455px) {
+			.checkAgradecimento {
+				width: 150px;
+			}
+		}
 	}
 	.centered{
 		margin-top: 2rem;
@@ -328,7 +349,7 @@
 
 .buttonsHolder {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 
 	margin-top: 25px;
 
@@ -386,7 +407,7 @@
 		font-size: 0.9rem;
 
 		@media (max-width: 420px) {
-			padding: 15px 0px;
+			padding: 15px 60px;
 			flex: 1;
 		}
 	}

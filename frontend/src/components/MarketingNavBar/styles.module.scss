@@ -37,6 +37,10 @@
       color: #e3e3e3;
     }
 
+    button {
+      display: none;
+    }
+
     .border {
       border-radius: 2px;
       border-bottom: 4px solid #fff;
@@ -62,6 +66,10 @@
       color: e3e3e3;
     }
 
+    button {
+      display: none;
+    }
+    
     .border {
       border-radius: 2px;
       border-bottom: 4px solid #fff;
@@ -179,7 +187,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1001px) {
   .ham, .hamActivated {
     display: none;
   }
@@ -191,6 +199,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 30px;
+    z-index: 1;
 
     .ham, .hamActivated {
       margin-top: 10px;
@@ -223,6 +232,42 @@
 
     .user {
       display: none;
+    }
+
+    .routesActivated {
+      button {
+        display: block;
+        background-color: #F93944;
+        color: white;
+        border: none;
+        padding: 7px 40px;
+        font-family: "Poppins";
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        position: absolute;
+        bottom: 35px;
+        left: 40px;
+      }
+    }
+
+    .routes {
+      button {
+        display: block;
+        background-color: #F93944;
+        color: white;
+        border: none;
+        padding: 7px 40px;
+        font-family: "Poppins";
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        position: absolute;
+        bottom: 35px;
+        left: 40px;
+      }  
     }
   }
 }

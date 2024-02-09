@@ -4,6 +4,10 @@
 	min-height: 100vh;
 	background-color: var(--marketing-brackground);
 	overflow-y: auto;
+
+	button {
+		font-family: 'Poppins', sans-serif;	
+	}
 	
 	.pageContent {
 		display: flex;

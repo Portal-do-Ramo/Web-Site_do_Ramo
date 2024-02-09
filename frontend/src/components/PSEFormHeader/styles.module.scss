@@ -1,7 +1,7 @@
 .container {
 	display: flex;
 	width: 100%;
-	
+
 	align-items: center;
 	justify-content: space-between;
 	padding: 30px 0 50px 0;
@@ -9,6 +9,7 @@
 
 	img {
 		width: 80px;
+		margin-right: 10px;
 		cursor: pointer;
 	}
 
@@ -65,6 +66,7 @@
 
     .progressContainer {
       margin-left: 0px;
+	  
     }
   }
 }
@@ -73,26 +75,29 @@
 	.container {
 		width: 100%;
 	}
+
+	.progressContainer {
+		.lines {
+		  width: 55px !important;
+		  height: 2px;
+		  margin: 0 10px;
+		  background: #fff;
+		}
+	  }
 }
 
 @media (max-width: 490px) {
   .progressContainer {
     .lines {
       width: 40px !important;
-      height: 2px;
-      margin: 0 10px;
-      background: #fff;
     }
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 390px) {
   .progressContainer {
     .lines {
-      width: 20px !important;
-      height: 2px;
-      margin: 0 10px;
-      background: #fff;
+      width: 30px !important;
     }
   }
 }
