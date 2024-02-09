@@ -81,7 +81,7 @@ module.exports = {
 			return {"message": "usuário cadastrado!"};
 		}
 		
-		return {"message": "Email ou número inserido já foi cadastrado!"};
+		throw new Error("Email ou número inserido já foi cadastrado!");
 	},
 	
 	async getSchedulePSE() {
