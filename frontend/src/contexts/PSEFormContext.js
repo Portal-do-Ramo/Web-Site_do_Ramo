@@ -146,14 +146,14 @@ export function PSEFormContextProvider({children}) {
 
 				toast.success("Cadastro concluído");
 				clearAll();
-				router.push("/PSE");
+				router.push("/PSE/cadastro?page=5")
       } else {
         setButtonDisabled(false)
 				toast.error("Formulário incompleto");
 			}
     } catch (error) {
       setButtonDisabled(false)
-			toast.error("Não foi possível enviar");
+			toast.error("Não foi possível enviar.\n"+ error.response.data.message);
 		}
 	}
 

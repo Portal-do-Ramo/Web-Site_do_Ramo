@@ -213,7 +213,9 @@
     }
 
     @media (max-width: 530px) {
+        
         .copyEmailButton {
+            width: 300px;
             img {
                 width: 40px;
             }

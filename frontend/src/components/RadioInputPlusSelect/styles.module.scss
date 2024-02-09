@@ -59,8 +59,13 @@
 	}
 }
 
-@media (max-width: 490px) {
-
+@media (max-width: 455px) {
+  .container {
+    .inputsRadio {
+      justify-content: space-around;
+    }
+  }
+ 
 }
 
 @media (max-width: 340px) {

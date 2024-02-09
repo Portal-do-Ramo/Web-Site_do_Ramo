@@ -45,6 +45,10 @@
                         color: var(--contraste);
                         font-size: 1.4rem;
                         font-weight: 700;
+
+                        @media (max-width: 475px) {
+                            top: 30px;
+                        }
                     }
                     
                     img {

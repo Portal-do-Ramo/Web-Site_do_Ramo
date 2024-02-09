@@ -16,7 +16,6 @@ import { PSENaoAgendado } from "../../../components/marketingPseScreens/PSENaoAg
 
 export default function PSE({ startDate, endDate, page, isSpreadsheetAccessActive }) {
     const router = useRouter();
-
 	const { user, isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -61,14 +60,19 @@ export const getServerSideProps = async () => {
     let endDate = null;
     let page = "0";
 	let isSpreadsheetAccessActive = true;
-    
+    let startDateChangedToBrazilDate = null;
+    let currentDate = null;
     try {
         const {data} = await api.get("/pse");
-        
         startDate = data.start;
         endDate = data.end;
+        
+        startDateChangedToBrazilDate = new Date(data.start);
+        startDateChangedToBrazilDate.setHours(startDateChangedToBrazilDate.getHours() - 3)
+        
+        currentDate = new Date(new Date().setHours(new Date().getHours()-3))
 
-        if (!isBefore(new Date(startDate), new Date())) {
+        if (!isBefore(startDateChangedToBrazilDate, currentDate)) {
             page = "1";
             isSpreadsheetAccessActive = false;
         } else {

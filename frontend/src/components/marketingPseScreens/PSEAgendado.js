@@ -23,22 +23,42 @@ function PSEAgendado({ start, end }) {
 	const [cancelPSEModalIsOpen, setCancelPSEModalIsOpen] = useState(false);
 	const [editPSEModalIsOpen, setEditPSEModalIsOpen] = useState(false);
 	const router = useRouter();
+	const adjustTime = (date) => new Date(new Date(date).getTime() - (3 * 60 * 60 * 1000));
 	
-
 	useEffect(() => {
+
+		const dateFormatterOptions = {
+			timeZone: 'America/Sao_Paulo',
+			hour: 'numeric',
+			minute: 'numeric',
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit'
+		};
 		
-		setBeginDate(format(new Date(start), "dd/MM/yyyy - H:mm"));
-		setEndDate(format(new Date(end), "dd/MM/yyyy - H:mm"));
+		const dateTimeFormatter = new Intl.DateTimeFormat('pt-BR', dateFormatterOptions);
 		
+		const formattedStartDate = dateTimeFormatter.format(new Date(start));
+		const formattedEndDate = dateTimeFormatter.format(new Date(end));
+		
+		setBeginDate(`${formattedStartDate.split(',')[0]} - ${formattedStartDate.split(' ')[1]}`);
+		setEndDate(`${formattedEndDate.split(',')[0]} - ${formattedEndDate.split(' ')[1]}`);
+		
+
 		let beginDateFormatted = new Date(start);
-		beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
-		
+		// beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
+		beginDateFormatted.setUTCHours(beginDateFormatted.getUTCHours() - 3); // muda para a hora do brasil
+
+
+
 		let endDateFormatted = new Date(end);
-		endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
+		// endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
+		endDateFormatted.setUTCHours(endDateFormatted.getUTCHours() - 3); // muda para a hora do brasil
+
 	
 		document.getElementById("beginDateInput").value = beginDateFormatted.toISOString().slice(0, 16);
 		document.getElementById("endDateInput").value = endDateFormatted.toISOString().slice(0, 16);
-
+		getDinamycDatesPSE();
 	}, []);
 
 
@@ -51,8 +71,8 @@ function PSEAgendado({ start, end }) {
       2023-11-13T06:00:00.000Z 
       2023-11-13T03:00
     */
-      console.log('dateString: ', dateString)
-    console.log('new Date: ', new Date(dateString))
+      // console.log('dateString: ', dateString)
+    // console.log('new Date: ', new Date(dateString))
 
 
     if (!match) {
@@ -74,11 +94,17 @@ function PSEAgendado({ start, end }) {
 			// const response = await api.get("/dinamycDates");
 			const response = await api.get("/pse");
 			const { dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5 } = response.data;
-			setFirstDay(converterData(dinamycDate_1));
-			setSecondDay(converterData(dinamycDate_2));
-			setThirdDay(converterData(dinamycDate_3));
-			setFourthDay(converterData(dinamycDate_4));
-			setFifthDay(converterData(dinamycDate_5));
+			// setFirstDay(converterData(dinamycDate_1));
+			// setSecondDay(converterData(dinamycDate_2));
+			// setThirdDay(converterData(dinamycDate_3));
+			// setFourthDay(converterData(dinamycDate_4));
+			// setFifthDay(converterData(dinamycDate_5));
+
+			setFirstDay(adjustTime(dinamycDate_1).toISOString().slice(0, 16));
+			setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16));
+			setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16));
+			setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16));
+			dinamycDate_5 ? setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16)) : null
 			
 		} catch (error) {
 
@@ -135,7 +161,7 @@ function PSEAgendado({ start, end }) {
 		setCancelPSEModalIsOpen(false);
 	}
 	function openEditPSEModal(){
-		getDinamycDatesPSE()
+
 		setEditPSEModalIsOpen(true);
 	}
 	function closeEditPSEModal(){
@@ -161,38 +187,30 @@ function PSEAgendado({ start, end }) {
 			dinamycDate_2: `${secondDay}:00.000-03:00`,
 			dinamycDate_3: `${thirdDay}:00.000-03:00`,
 			dinamycDate_4: `${fourthDay}:00.000-03:00`,
-			dinamycDate_5: null
-		}
-
-		if (showFifthDay) {
-			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-03:00`;
+			dinamycDate_5: fifthDay ? `${fifthDay}:00.000-03:00` : null 
 		}
 		try {
-			await toast.promise(
-				
-				api.patch("/pse/schedule", schedulePSEObject
-				// { 
-					
-				// 	 startDate: beginDateFormatted,
-				// 	 endDate: `${document.getElementById("endDateInput").value}:00.000-${offset}:00`
-
-				// }
+			await Promise.all([
+				toast.promise(
+					api.patch("/pse/schedule", schedulePSEObject),
+					{
+						pending: 'Carregando',
+						success: 'PSE atualizado!',
+						error: 'Não foi possível atualizar o PSE'
+					}
 				),
-				{
-					pending: 'Carregando',
-					success: 'PSE atualizado!',
-					error: 'Não foi possível atualizar o PSE'
-				}
-			)
-			// setBeginDate(
-			// 	format(new Date(document.getElementById("beginDateInput").value), 
-			// 	"dd/MM/yyyy - H:mm")
-			// );
-	
-			// setEndDate (
-			// 	format(new Date(document.getElementById("endDateInput").value),
-			// 	"dd/MM/yyyy - H:mm")
-			// );
+				!fifthDay ?
+					toast.promise(
+						api.patch(`/pse/dinamycDate/dinamycDate_5`),
+						{
+							pending: 'Carregando',
+							success: 'PSE sem 5ª dinâmica!',
+							error: 'Não foi possível atualizar a dinâmica 5'
+						}
+					) :
+					null
+			]);
+
 
 			setTimeout(() => {
 				router.reload();
@@ -316,7 +334,7 @@ function PSEAgendado({ start, end }) {
 											value={fourthDay}
 										/>            
 								</div>
-								{showFifthDay ? (
+								{fifthDay || showFifthDay ? (
 									<>
 										<div className={styles.days}>
 											<label htmlFor="fifthDay">5° Dia:</label>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { format } from "date-fns";
 import Modal from 'react-modal';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 
 async function handleDownloadPSEFile() {
@@ -31,18 +31,40 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 	const [editPSEModalIsOpen, setEditPSEModalIsOpen] = useState(false);
 	const router = useRouter();
 	
-	useEffect(() => {
-		setBeginDate(format(new Date(start), "dd/MM/yyyy - H:mm"));
-		setEndDate(format(new Date(end), "dd/MM/yyyy - H:mm"));
+	const adjustTime = (date) => new Date(new Date(date).getTime() - (3 * 60 * 60 * 1000));
 
-		let beginDateFormatted = new Date(start);
-		beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
+	useEffect(() => {
+		const dateFormatterOptions = {
+			timeZone: 'America/Sao_Paulo',
+			hour: 'numeric',
+			minute: 'numeric',
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit'
+		};
 		
+		const dateTimeFormatter = new Intl.DateTimeFormat('pt-BR', dateFormatterOptions);
+		
+		const formattedStartDate = dateTimeFormatter.format(new Date(start));
+		const formattedEndDate = dateTimeFormatter.format(new Date(end));
+		
+		setBeginDate(`${formattedStartDate.split(',')[0]} - ${formattedStartDate.split(' ')[1]}`);
+		setEndDate(`${formattedEndDate.split(',')[0]} - ${formattedEndDate.split(' ')[1]}`);
+		
+		let beginDateFormatted = new Date(start);
+		// beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
+		beginDateFormatted.setUTCHours(beginDateFormatted.getUTCHours() - 3); // Ajuste de 3 horas para o fuso horário do Brasil
+
+
+
 		let endDateFormatted = new Date(end);
-		endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
+		// endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
+		endDateFormatted.setUTCHours(endDateFormatted.getUTCHours() - 3); // Ajuste de 3 horas para o fuso horário do Brasil
+
 	
 		document.getElementById("beginDateInput").value = beginDateFormatted.toISOString().slice(0, 16);
 		document.getElementById("endDateInput").value = endDateFormatted.toISOString().slice(0, 16);
+		getDinamycDatesPSE();
 	}, []);
 
 	function openModal() {
@@ -68,7 +90,17 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 
     const isoDate = `${ano}-${mes}-${dia}T${hora}:${minuto}`;
 		return isoDate;
-}
+	}
+
+	function handleAccessPSEFile() {
+		const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
+		
+		if (link) { 
+				window.open(link, '_blank');
+		} else {
+				console.error('PSE_SPREADSHEET_LINK is not defined.');
+		}
+	}
 
 	async function getDinamycDatesPSE() {
 
@@ -78,11 +110,19 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 			
 			const { dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5 } = response.data;
 
-			setFirstDay(converterData(dinamycDate_1));
-			setSecondDay(converterData(dinamycDate_2));
-			setThirdDay(converterData(dinamycDate_3));
-			setFourthDay(converterData(dinamycDate_4));
-			setFifthDay(converterData(dinamycDate_5));
+			// setFirstDay(converterData(dinamycDate_1));
+			// setSecondDay(converterData(dinamycDate_2));
+			// setThirdDay(converterData(dinamycDate_3));
+			// setFourthDay(converterData(dinamycDate_4));
+			// setFifthDay(converterData(dinamycDate_5));
+
+			setFirstDay(adjustTime(dinamycDate_1).toISOString().slice(0, 16));
+			setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16));
+			setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16));
+			setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16));
+			dinamycDate_5 ? setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16)) : null
+			
+			
 			
 		} catch (error) {
 
@@ -92,48 +132,50 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 	}
 
 	function openEditPSEModal(){
-		getDinamycDatesPSE()
+		console.log(fifthDay)
 		setEditPSEModalIsOpen(true);
-		console.log(firstDay)
+
 	}
 	function closeEditPSEModal(){
 		setEditPSEModalIsOpen(false);
 	}
 
 	async function handleUpdatePSE() {
-		const date = new Date();
+		// const date = new Date();
 
-		let offset = date.getTimezoneOffset();
+		// let offset = date.getTimezoneOffset();
 
-		offset = offset / 60;
+		// offset = offset / 60;
 
-		offset = "00" + offset;
+		// offset = "00" + offset;
 
-		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-0${offset.slice(-1)}:00`;
-		let endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-0${offset.slice(-1)}:00`;
+		let beginDateFormatted = `${document.getElementById("beginDateInput").value}:00.000-03:00`;
+    let endDateFormatted = `${document.getElementById("endDateInput").value}:00.000-03:00`; 
 		let schedulePSEObject = {
 			startDate: beginDateFormatted,
 			endDate: endDateFormatted,
-			dinamycDate_1: `${firstDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_2: `${secondDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_3: `${thirdDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_4: `${fourthDay}:00.000-0${offset.slice(-1)}:00`,
-			dinamycDate_5: null
+			dinamycDate_1: `${firstDay}:00.000-03:00`,
+			dinamycDate_2: `${secondDay}:00.000-03:00`,
+			dinamycDate_3: `${thirdDay}:00.000-03:00`,
+			dinamycDate_4: `${fourthDay}:00.000-03:00`,
+			dinamycDate_5: fifthDay ? `${fifthDay}:00.000-03:00` : null 
 		}
 
-		if (showFifthDay) {
-			schedulePSEObject.dinamycDate_5 = `${fifthDay}:00.000-0${offset.slice(-1)}:00`;
-		}
 		try {
-			await toast.promise(
-				
-				api.patch("/pse/schedule", schedulePSEObject),
-				{
-					pending: 'Carregando',
-					success: 'PSE atualizado!',
-					error: 'Não foi possível atualizar o PSE'
-				}
-			)
+			await Promise.all([
+				toast.promise(
+					api.patch("/pse/schedule", schedulePSEObject),
+					{
+						pending: 'Carregando',
+						success: 'PSE atualizado!',
+						error: 'Não foi possível atualizar o PSE'
+					}
+				),
+				!fifthDay ?
+
+						api.patch(`/pse/dinamycDate/dinamycDate_5`) : null
+
+			]);
 
 
 			setTimeout(() => {
@@ -268,7 +310,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											value={fourthDay}
 										/>            
 								</div>
-								{showFifthDay ? (
+								{fifthDay || showFifthDay ? (
 									<>
 										<div className={styles.days}>
 											<label for="fifthDay">5° Dia:</label>
@@ -323,33 +365,42 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 				</button>
 			</section> */}
 
-			<section className={styles.closePSE}>
-				<span>Encerrar o PSE!</span>
-				<p>
-					Ao cancelar o processo seletivo externo as informações
-					de início e término do processo serão removidas.
-				</p>
 
-				<button type='button' onClick={openModal}>Encerrar PSE</button>
+				<section className={styles.closePSE}>
+					<span>Encerrar o PSE!</span>
+					<p>
+						Ao cancelar o processo seletivo externo as informações
+						de início e término do processo serão removidas.
+					</p>
 
-				<Modal 
-					isOpen={modalIsOpen}
-					onRequestClose={handleCloseModal}
-					className={styles.modal}
-					overlayClassName={styles.overlay}
-					contentLabel="Example Modal"
-					shouldCloseOnEsc={true}  
-				>
-					<img src="/finish.svg"></img>
-					<h1>Encerrar PSE</h1>
-					<p>Tem certeza que você deseja cancelar o PSE?</p>
-					<div className={styles.rowButton}>
-						<button type='button' className={styles.cancel} onClick={handleCloseModal}>Cancelar</button>
-						<button type='button' className={styles.finishButton} onClick={handleCancelPSE}>Sim, encerrar</button>
-					</div>
-				</Modal>
 
-			</section>
+					<Modal 
+						isOpen={modalIsOpen}
+						onRequestClose={handleCloseModal}
+						className={styles.modal}
+						overlayClassName={styles.overlay}
+						contentLabel="Example Modal"
+						shouldCloseOnEsc={true}  
+					>
+						<img src="/finish.svg"></img>
+						<h1>Encerrar PSE</h1>
+						<p>Tem certeza que você deseja cancelar o PSE?</p>
+						<div className={styles.rowButton}>
+							<button type='button' className={styles.cancel} onClick={handleCloseModal}>Cancelar</button>
+							<button type='button' className={styles.finishButton} onClick={handleCancelPSE}>Sim, encerrar</button>
+						</div>
+					</Modal>
+						<div className={styles.buttonContainerPSEEmAndamento}>
+							<button type='button' onClick={openModal} className={styles.closePSEButton}>Encerrar PSE</button>
+
+							<button 
+								type="button" onClick={handleAccessPSEFile} className={styles.spreadsheetButton}
+							>
+								<span>Acessar planilha de inscritos</span> <AiFillEye />  
+							</button>
+						</div>
+
+				</section>
 		</>
 	)
 }

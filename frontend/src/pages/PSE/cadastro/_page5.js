@@ -1,15 +1,34 @@
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiFillLock } from "react-icons/ai";
 import PSEFormHeader from "../../../components/PSEFormHeader";
 import { PSEFormContext } from "../../../contexts/PSEFormContext";
 import styles from "../../../styles/pseCadastro.module.scss";
 import RadioInputPlusSelect from "../../../components/RadioInputPlusSelect";
+import { toast } from "react-toastify";
 
 export default function Page5() {
   const router = useRouter();
+  // const {
+  //   isFistPageValidated,
+  //   isSecondPageValidated,
+  //   isThirdPageValidated,
+  //   isFourthPageValidated,
 
-  return (
+  // } = useContext(PSEFormContext);
+
+  // const [shouldRender, setShouldRender] = useState(false);
+
+  // useEffect(() => {
+  //   if (isFistPageValidated && isSecondPageValidated && isThirdPageValidated && isFourthPageValidated) {
+  //     setShouldRender(true);
+  //   } else {
+  //     toast.error("Algumas páginas não foram validadas com sucesso.");
+  //     router.push('/');
+  //   }
+  // }, [isFistPageValidated, isSecondPageValidated, isThirdPageValidated, isFourthPageValidated]);
+
+  return  (
     <>
       <section className={styles.leftSide}>
         <PSEFormHeader page="5" showCircles={false} />
@@ -22,7 +41,7 @@ export default function Page5() {
 
           <div className={`${styles.leftForm} ${styles.centered}`}>
             
-              <img src="/check_circle.svg" width={300} alt="logo do Ramo"/>
+              <img src="/check_circle.svg" width={300} alt="concluido" className={styles.checkAgradecimento}/>
 
               <div className={styles.buttonsHolder}>
                 <button
@@ -42,5 +61,5 @@ export default function Page5() {
         <article className={styles.rightForm_page2}></article>
       </section>
     </>
-  );
+  )
 }

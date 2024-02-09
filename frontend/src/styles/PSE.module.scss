@@ -443,10 +443,11 @@
                 }
                 
                 @media (max-width: 480px) {
-                    min-width: 0;
-                    width: 0;
-                    background-image: none;
-                    margin: 0;
+                    min-width: 100px;
+                    width: 200px;
+                    background-position: -50px center;
+                    background-size: 300px;
+                    margin: -70px 0px -65px -60px;
                 }
             }
             

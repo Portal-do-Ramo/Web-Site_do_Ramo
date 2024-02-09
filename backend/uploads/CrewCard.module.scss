@@ -1,0 +1,87 @@
+cards, .wieCard {
+    width: 230px;
+    height: 260px;
+    border-radius: 10px;
+
+    background-color: var(--contraste);
+    transition: background-color .7s ease;
+
+    article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        text-decoration: none;
+
+        cursor: pointer;
+
+        img {
+            height: 120px;
+            display: inline;
+            justify-self: center;
+
+            margin-bottom: 20px;
+        }
+
+        p {
+            letter-spacing: 1px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .cards, .wieCard {
+        width: 210px;
+        height: 230px;
+        
+        article {
+            img {
+                height: 110px;
+            }
+
+            p {
+                font-size: 1.15rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .cards, .wieCard {
+        width: 150px;
+        height: 170px;
+
+        article {
+            img {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 0.9rem;
+                letter-spacing: 0px;
+            }
+        }
+    }
+}
+
+.cards:hover {
+    background: #0a4e8a;
+    transition: background-color .2s ease;
+}
+
+.wieCard {
+    background-color: var(--wie);
+}
+
+.wieCard:hover {
+    background-color: var(--wie-trasition);
+    transition: background-color .2s ease;
+}
