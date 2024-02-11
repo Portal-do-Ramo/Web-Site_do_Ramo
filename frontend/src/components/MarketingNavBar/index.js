@@ -75,6 +75,10 @@ export default function MarketingNavBar({ page, user }) {
           <h1 className={page === "equipes" ? styles.border : null}>{user && user.isAdmin ? "Equipes" : "Equipe"}</h1>
         </Link>
 
+        <button>
+          <p onClick={handleSignOut}>Sair</p>
+        </button>
+
         {user && user.isAdmin && (
           <>
             <Link href={`/marketing/PSE`}>
