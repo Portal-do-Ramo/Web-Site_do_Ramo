@@ -110,6 +110,7 @@ export default function admin({crews}){
 
 	const countSuperUsers = users.filter(user => user.isAdmin).length
 	const countCoordinators = users.length - countSuperUsers
+	const DeleteCoordinator = ()_ => {}
 		
 	if (isLoading) {
         return ( <></> )
