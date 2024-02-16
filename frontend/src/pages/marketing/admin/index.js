@@ -110,7 +110,16 @@ export default function admin({crews}){
 
 	const countSuperUsers = users.filter(user => user.isAdmin).length
 	const countCoordinators = users.length - countSuperUsers
-	const DeleteCoordinator = ()_ => {}
+	/*async function DeleteCoord(){
+		try{
+			await api.delete(`/user`, {name, email, password, crew_id:selectedCrew})
+			toast.success("Usuário deletado com sucesso")
+			router.replace("/marketing")
+		} catch(error){
+			toast.error("Não foi possível deletar o usuário")
+		}
+	}
+	*/
 		
 	if (isLoading) {
         return ( <></> )
