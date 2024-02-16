@@ -78,33 +78,22 @@ export default function admin({crews}){
 
 		async function handleSaveUserChanges() {
 			try {
-				if (updatedUser && updatedUser.crew_id && updatedUser.password && updatedUser.password.trim() !== "") {
-					
-					let requestBody = {
-						name: updatedUser.name,
-						email: user.email,
-						crew_id: updatedUser.crew_id,
-						isAdmin: user.isAdmin,
-						password: updatedUser.password,
-					};
-					
-					const { data } = await api.patch(`/user/${selectedUser.id}`, requestBody);
-					router.reload();
-				} else {
-					let requestBody = {
-						name: updatedUser.name,
-						email: user.email,
-						crew_id: updatedUser.crew_id,
-						isAdmin: user.isAdmin,
-					};
-
-					
-					const { data } = await api.patch(`/user/${selectedUser.id}`, requestBody);
-					router.reload();
-				}
-			} catch (error) {
-				console.error(error);
-			}
+        let requestBody = {
+          name: updatedUser.name.trim(),
+          email: user.email,
+          crew_id: updatedUser.crew_id,
+          isAdmin: user.isAdmin,
+        };
+  
+        if (updatedUser.password) {
+          requestBody.password = updatedUser.password.trim();
+        }
+  
+        await api.patch(`/user/${selectedUser.id}`, requestBody);
+        router.reload();
+      } catch (error) {
+        console.error(error);
+      }
 		}
 
 
@@ -230,7 +219,7 @@ export default function admin({crews}){
 																<h3>Senha:</h3>
 																<input 
 																	type="password" 
-																	value={updatedUser.password}
+																	value={updatedUser.password || ""}
 																	onChange={(e) =>
 																		setUpdatedUser({ ...updatedUser, password: e.target.value })
 																	}
