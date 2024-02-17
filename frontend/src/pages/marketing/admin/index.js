@@ -109,9 +109,10 @@ export default function admin({ crews }) {
   async function handleDeleteCoord() {
     try {
       await api.delete(`/user/${selectedUser.id}`);
+      toast.success("Usuário deletado com sucesso");
       router.reload();
     } catch (error) {
-      console.error(error);
+      toast.error("Não foi possível deletar o usuário");
     }
   }
 
