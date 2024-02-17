@@ -71,8 +71,12 @@
                   padding-right: 30px;
                   width: 100%;
                   border-top: 2px solid #E2E2E7;
+                  
+                  .options {
+                    display: flex;
+                    flex-wrap: wrap;
 
-                  .gearConfig, .adminGearConfig {
+                    .gearConfig, .adminGearConfig {
                       background: none;
                       color: var(--azul-ramo);
                       width: 60px;
@@ -86,6 +90,18 @@
                     background: #a7c4df;
                   }
 
+                  .deleteButtonCoord {
+                    background: none;
+                    color: red;
+                    width: 60px;
+                    height: 60px;
+                    &:hover {
+                      background: #f1c8c8;
+                    }
+                  }
+                  }
+
+                  
 
                   .name {
                       display: flex;
