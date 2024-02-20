@@ -18,7 +18,7 @@ export default function ContactButton() {
     const router = useRouter();
 
     function handleCopyEmail() {
-        navigator.clipboard.writeText("sitedoramo@gmail.com");
+        navigator.clipboard.writeText("gp.ramocefetrj@gmail.com");
 
         setIsEmailCopied(true);
         
@@ -87,7 +87,7 @@ export default function ContactButton() {
             <section className={styles.mail} id={buttonSelected !== 2 ? styles.disableMail : ""}>
                 <article className={styles.copyEmailButton} onClick={() => handleCopyEmail()}>
                     <img src="/Envelope.svg" alt="Envelope Illustration" />
-                    <p>sitedoramo@gmail.com</p>
+                    <p>gp.ramocefetrj@gmail.com</p>
                     {isEmailCopied ? <MdDone size={30}/> : <MdCopyAll size={30}/>}
                 </article>
             </section>

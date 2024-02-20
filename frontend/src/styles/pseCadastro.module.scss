@@ -38,6 +38,22 @@
 		color: rgb(255, 55, 55);
 	}
 
+	.containerTextos {
+		p {
+			margin-bottom: 15px;
+		}
+
+		p:nth-last-child(1) {
+			margin-bottom: 0;
+		}
+
+		.observacao {
+			font-weight: bold;
+			color: white;
+		}
+	}
+	
+
 	input, select, textarea {
 		margin: none;
 		border-radius: 5px;

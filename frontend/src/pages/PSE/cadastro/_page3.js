@@ -131,7 +131,7 @@ export default function Page3({ dynamicDates }) {
 
 					{dynamicDates && dynamicDates.length > 0 && (
 						<>
-							<span>Data de preferência da dinâmica <strong>*</strong></span>
+							<span>Datas que está disponível para dinâmica <strong>*</strong></span>
 							<div className={styles.dynamicDate}>
 								{dynamicDates.map((dynamicDate, idx) => (
 									<div className={styles.dynamicDateItem} key={idx}>
@@ -159,13 +159,13 @@ export default function Page3({ dynamicDates }) {
 
 			<section className={styles.rightSide}>
 				<article className={styles.rightForm}>
-				<span>Por quais motivos gostaria de fazer parte do Ramo?</span>
+				<span>Por quais motivos gostaria de fazer parte do Ramo? <strong>*</strong></span>
 					<textarea 
 						placeholder="Escreva seus motivos"
 						onChange={event => setReason(event.target.value)}
 						value={reason}
 					/> 
-					<span>Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo?</span>
+					<span>Você teve alguma experiência que pode agregar positivamente na sua trajetória dentro do ramo? <strong>*</strong></span>
 					<textarea 
 						placeholder="Escreva suas experiências"
 						onChange={event => setExperience(event.target.value)}
