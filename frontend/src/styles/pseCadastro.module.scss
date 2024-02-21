@@ -233,10 +233,17 @@
           gap: 10px;
         }
 
-		.addressInput {
-			margin-top: 7px;
-		}
-
+				.addressInput {
+					margin-top: 7px;
+				}
+				a {
+					font-size: 0.8rem;
+					text-decoration:none;
+					color: #fff;
+				}
+				a:hover{
+					text-decoration: underline;
+				}
         span {
           margin-top: 20px;
           font-size: 0.9rem;

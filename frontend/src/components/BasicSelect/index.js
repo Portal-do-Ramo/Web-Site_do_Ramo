@@ -1,4 +1,4 @@
-
+import Link from 'next/link'
 
 export default function BasicSelect(
   { label,
@@ -12,7 +12,23 @@ export default function BasicSelect(
 
   return (
     <>
-      {label && <span>{label} {required && <strong>*</strong>}</span>}
+      
+      {
+        label && 
+        <span>
+          {label} {required && <strong>*</strong>}
+        </span>
+
+      }
+       {label == 'Equipe' && 
+            <a href="/equipes" target="_blank">
+                Confira as equipes do ramo clicando aqui!
+            </a>
+        }
+
+
+
+
       <select 
 				required={required}
 				value={value} 

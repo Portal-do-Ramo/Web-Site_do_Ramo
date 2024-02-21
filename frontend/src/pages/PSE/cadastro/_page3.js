@@ -107,14 +107,14 @@ export default function Page3({ dynamicDates }) {
 
           <div className={styles.leftForm}>
             
-          <BasicSelect
-              label={'Equipe'}
-              required={true}
-              value={crew}
-              set={setCrew}
-              defaultValue={'Selecione a equipe'}
-              list={equipesAtivas}
-          />
+						<BasicSelect
+								label={'Equipe'}
+								required={true}
+								value={crew}
+								set={setCrew}
+								defaultValue={'Selecione a equipe'}
+								list={equipesAtivas}
+						/>
             {!hideFieldArea &&
               <BasicSelect
                   label={'Área'}
