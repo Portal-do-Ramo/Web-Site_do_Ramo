@@ -26,7 +26,7 @@ module.exports = {
             await googleSheets.spreadsheets.values.clear({
                 auth,
                 spreadsheetId,
-                range: "'Sheet1'!A2:Q"
+                range: "'Sheet1'!A2:S"
             })
         } catch(err){
             throw new Error(err.message)
