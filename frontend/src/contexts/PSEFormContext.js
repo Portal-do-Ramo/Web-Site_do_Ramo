@@ -9,6 +9,7 @@ export function PSEFormContextProvider({children}) {
 	const router = useRouter();
 
     const [fullname, setFullName] = useState("");
+		const [birthday, setBirthday] = useState("");
     
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
@@ -37,7 +38,8 @@ export function PSEFormContextProvider({children}) {
   
     useEffect(() => {
 		if (
-			fullname.length > 3			
+			fullname.length > 3	
+			&& birthday.length == 10
 			&& phone.length > 9
 			&& email.length > 3
 		) {
@@ -45,7 +47,7 @@ export function PSEFormContextProvider({children}) {
 		} else {
 			setIsFistPageValidated(false)
 		}
-    }, [fullname, phone, email, instagram, linkedin])
+    }, [fullname, birthday, phone, email, instagram, linkedin])
 
     useEffect(() => {
 		if (
@@ -88,6 +90,7 @@ export function PSEFormContextProvider({children}) {
 
 	function clearAll() {
 		setFullName("");
+		setBirthday("");
 		setPhone("");
 		setEmail("");
 		setInstagram("");
@@ -124,6 +127,7 @@ export function PSEFormContextProvider({children}) {
 
 				await api.post("/pse", {
 					fullname: fullname.replace(", ", " -") ,
+					birthday: birthday.replace(/\D+/g, ''),
 					phone: phone.replace(/\D+/g, ''),
 					email: email.replace(", ", " -"),
 					linkedin: linkedin.replace(", ", " -"),
@@ -162,6 +166,8 @@ export function PSEFormContextProvider({children}) {
 			value={{
 				fullname,
 				setFullName,
+				birthday,
+				setBirthday,
 				phone,
 				setPhone,
 				email,

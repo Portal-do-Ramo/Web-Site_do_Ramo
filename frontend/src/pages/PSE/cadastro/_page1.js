@@ -20,6 +20,8 @@ export default function Page1() {
 		setLinkedin,
 		instagram,
 		setInstagram,
+    birthday,
+    setBirthday,
 		clearAll
 	} = useContext(PSEFormContext);
 
@@ -33,6 +35,16 @@ export default function Page1() {
       required: true,
       value: fullname,
       set: setFullName
+    },
+    {
+      label: 'Data de nascimento',
+      id: 'nascimento',
+      type: 'date',
+      placeholder: 'DD/MM/AAAA',
+      required: true,
+      value: birthday,
+      set: setBirthday,
+      mask:"00/00/0000"
     },
     {
       label: 'Telefone',
