@@ -37,7 +37,7 @@ export default function Page1() {
       set: setFullName
     },
     {
-      label: 'Data de nascimento',
+      label: 'Data de Nascimento',
       id: 'nascimento',
       type: 'date',
       placeholder: 'DD/MM/AAAA',
