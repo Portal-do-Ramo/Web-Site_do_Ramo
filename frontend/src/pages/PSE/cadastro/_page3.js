@@ -121,7 +121,7 @@ export default function Page3({ dynamicDates }) {
                   required={true}
                   value={area}
                   set={setArea}
-                  defaultValue={'Selecione a area'}
+                  defaultValue={'Selecione a área'}
                   list={areaDasEquipes[crew] ? areaDasEquipes[crew] : [] }
                 />     
             }

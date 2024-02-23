@@ -116,6 +116,10 @@ export function PSEFormContextProvider({children}) {
 
   
   async function handleSendCSV() {
+
+		let formattedBirthday = `${birthday.slice(6, 10)}-${birthday.slice(3, 5)}-${birthday.slice(0,2)}`;
+
+
 		try {
       if (
         isFistPageValidated
@@ -124,10 +128,9 @@ export function PSEFormContextProvider({children}) {
         && isFourthPageValidated
       ) {
         toast.info('Enviando...')
-
 				await api.post("/pse", {
 					fullname: fullname.replace(", ", " -") ,
-					birthday: birthday.replace(/\D+/g, ''),
+					birthday: formattedBirthday,
 					phone: phone.replace(/\D+/g, ''),
 					email: email.replace(", ", " -"),
 					linkedin: linkedin.replace(", ", " -"),
