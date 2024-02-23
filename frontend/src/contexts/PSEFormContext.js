@@ -10,7 +10,8 @@ export function PSEFormContextProvider({children}) {
 
     const [fullname, setFullName] = useState("");
 		const [birthday, setBirthday] = useState("");
-    
+		const [howFoundIeee, setHowFoundIeee] = useState('');
+	
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     
@@ -68,6 +69,7 @@ export function PSEFormContextProvider({children}) {
       && availableDate.length > 0
       && reason.length > 3
       && experience.length >3
+			&& howFoundIeee.length > 3
 		) {
 			setIsThirdPageValidated(true)
 		} else {
@@ -95,7 +97,8 @@ export function PSEFormContextProvider({children}) {
 		setEmail("");
 		setInstagram("");
 		setLinkedin("");
-
+		setHowFoundIeee("");
+		
 		setRegister("");
 		setCourse("");
 		setCurrentPeriod("");
@@ -143,7 +146,7 @@ export function PSEFormContextProvider({children}) {
 					availableDate: availableDate,
 					reason: reason.replace(",", "-"),
           experience: experience.replace(", ", " -"),
-
+					howFoundIeee: howFoundIeee.replace(", ", " -"),
           PcD:pcd.replace(", ", " -"),
           neuroatypicality: neuroatypicality.replace(", ", " -"),
           gender: gender.replace(", ", " -"),
@@ -197,7 +200,8 @@ export function PSEFormContextProvider({children}) {
 				setReason,
 				experience,
         setExperience,
-        
+        howFoundIeee,
+				setHowFoundIeee,
 				clearAll,
 				isFistPageValidated,
 				isSecondPageValidated,

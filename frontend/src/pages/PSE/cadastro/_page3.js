@@ -9,6 +9,7 @@ import api from '../../../services/api';
 
 export default function Page3({ dynamicDates }) {
 	const router = useRouter();
+	
   const [equipesAtivas, setEquipesAtivas] = useState([]);
 
 	const {
@@ -22,6 +23,8 @@ export default function Page3({ dynamicDates }) {
 		setReason,
 		experience,
 		setExperience,
+		howFoundIeee,
+		setHowFoundIeee
 		
 	} = useContext(PSEFormContext);
 
@@ -86,6 +89,7 @@ export default function Page3({ dynamicDates }) {
   }, [crew])
 
 
+	const arrayHowFoundIeee = ['Instagram', 'WhatsApp', 'LinkedIn', 'Indicação de amigos', 'Marketing de Sala', 'Programa de Acolhimento ao Calouro (PAC)', 'Estande do Ramo']
 
 	return (
 		<>
@@ -171,7 +175,14 @@ export default function Page3({ dynamicDates }) {
 						onChange={event => setExperience(event.target.value)}
 						value={experience}
 					/>
-
+					<BasicSelect
+								label={'Como soube do nosso Processo Seletivo?'}
+								required={true}
+								value={howFoundIeee}
+								set={setHowFoundIeee}
+								defaultValue={'Selecione como soube do Processo Seletivo'}
+								list={arrayHowFoundIeee}
+						/>
 					<div className={styles.buttonsHolder}>
 						<button type='button' className={styles.cancel} onClick={() => router.push("/PSE/cadastro?page=2")}>Voltar</button>
 						<button type='button' className={styles.next} onClick={() => router.push("/PSE/cadastro?page=4")}>Próximo</button>
