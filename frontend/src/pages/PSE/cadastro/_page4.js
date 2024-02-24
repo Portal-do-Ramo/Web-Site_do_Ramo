@@ -70,7 +70,7 @@ export default function Page4() {
         <article>
           <h1>Censo</h1>
           <div className={styles.containerTextos}>
-            <p>Os dados coletados nesta parte do formulário serão utilizados no nosso censo para entendermos o público atigindo pelo processo seletivo externo do IEEE e para possíveis adaptações nas futuras fases do nosso processo.</p>
+            <p>Os dados coletados nesta parte do formulário serão utilizados no nosso censo para entendermos o público atingido pelo processo seletivo externo do IEEE e para possíveis adaptações nas futuras fases do nosso processo.</p>
             <p>Todas as suas respostas serão protegidas e não divulgadas, por isso pedimos honestidade na hora de responder as perguntas.</p>
             <p><strong className={styles.observacao}>OBS: Essas perguntas não tem o objetivo NENHUM de classificar os candidatos, apenas pela coleta de informações para deixarmos a nossa extensão com um ambiente mais acolhedor e agradável.</strong></p>
           </div>
