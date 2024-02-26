@@ -1,0 +1,123 @@
+.join_us {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  padding: 200px 0;
+
+  article {
+    display: flex;
+    margin: 0 12% 0 12%;
+
+    img {
+      width: 24.25rem;
+    }
+
+    div {
+      margin-left: 80px;
+      max-width: 500px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      span {
+        font-size: 2rem;
+        color: var(--azul-ramo);
+        font-weight: 800;
+      }
+
+      > p {
+        font-size: 1rem;
+        color: var(--azul-ramo);
+        font-weight: 600;
+        margin-top: 1rem;
+      }
+
+      button {
+        margin-top: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--azul-ramo);
+        width: 13rem;
+        height: 4rem;
+        border-radius: 10px;
+        border: none;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: white;
+        text-indent: 0;
+      }
+
+      button:hover {
+        background-color: var(--button-trasition);
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background-color: #a0a0a0;
+      }
+    }
+  }
+
+  @media (max-width: 850px) {
+    article {
+      img {
+        width: 20rem;
+      }
+
+      div {
+        margin-left: 30px;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    padding: 100px 0;
+    article {
+      flex-direction: column;
+      align-items: center;
+
+      div {
+        align-items: center;
+        margin-left: 0;
+        margin-top: 20px;
+
+        span {
+          text-align: center;
+        }
+
+        p {
+          text-align: justify;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    article {
+      img {
+        width: 17rem;
+      }
+
+      div {
+        span {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.875rem;
+        }
+
+        .button {
+          margin-top: 2.5rem;
+          p {
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+  }
+}

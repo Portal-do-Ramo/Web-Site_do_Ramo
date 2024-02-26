@@ -14,6 +14,7 @@ module.exports = {
             fullname: Joi.string().min(3).required(),
 			phone: Joi.string().pattern(/^[0-9]+$/).required(),
             email: Joi.string().min(6).email().required(),
+			birthday: Joi.date().required(),
             linkedin: Joi.string().allow(null, '').optional(),
 			instagram: Joi.string().allow(null, '').optional(),
 			gender: Joi.string().required(),
@@ -26,6 +27,7 @@ module.exports = {
 			crew: Joi.string().required(),
 			area: Joi.string().required(),
 			availableDate: Joi.array().required(),
+			HowFoundIeee: Joi.string().required(),
 			reason: Joi.string().required(),
 			experience: Joi.string().required(),
         });
@@ -43,10 +45,13 @@ module.exports = {
 			value.instagram = '';
 		}
 
+		value.birthday = moment(value.birthday).format("DD/MM/yyyy");
+		
       const personalInformation = {
         fullname: value.fullname,
         phone: value.phone,
         email: value.email,
+		birthday: value.birthday,
 		linkedin: value.linkedin,
         instagram: value.instagram,
 		gender: value.gender,
@@ -63,6 +68,7 @@ module.exports = {
 			crew: value.crew,
 			area: value.area,
 			availableDate: value.availableDate,
+			HowFoundIeee: value.HowFoundIeee,
 			reason: value.reason,
 			experience: value.experience
 		}

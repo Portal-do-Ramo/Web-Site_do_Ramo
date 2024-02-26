@@ -6,12 +6,10 @@ module.exports = {
     values.registrationData.availableDate = values.registrationData.availableDate.join(', ');
 
     const listValues = Object.values(values.personalInformation).concat(Object.values(values.registrationData))
-
-    //console.log(listValues)
       
         const data = {
             "values": listValues
-    } 
+        } 
     
         try{
             await sheetService.insert(data);

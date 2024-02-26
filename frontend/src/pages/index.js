@@ -5,6 +5,7 @@ import "swiper/css/free-mode";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { FacaParteDaNossaEquipe } from '../components/FacaParteDaNossaEquipe'
 import CrewsCard from "../components/CrewsCard";
 
 import Image from "next/image";
@@ -98,20 +99,7 @@ export default function Home({ crews }) {
 						</div>
 					</article>
 				</section>
-				
-				<section className={styles.join_us}>
-					<article>
-						<img src="/pessoas_quebra_cabeca.svg" alt="ilustração de uma equipe trabalhando junto" />
-
-						<div>
-							<span>Faça parte da nossa equipe!</span>
-							<p>Se você é estudante de graduação do CEFET-RJ, se inscreva no nosso processo seletivo para trabalhar junto com o maior projeto de extensão do CEFET-RJ. </p>
-							<a href="/PSE" className={styles.button}>
-								<p>Se inscreva já</p>
-							</a>
-						</div>
-					</article>
-				</section>
+				<FacaParteDaNossaEquipe/>
 			</div>
 			<Footer />
 		</div>
