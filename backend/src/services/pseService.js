@@ -8,6 +8,14 @@ const registerPSE = db.collection("registerPSE");
 const sheetController = require("../controllers/sheetController")
 const moment = require("moment");
 
+function validateDate(date){
+	const currentDate = new Date();
+
+	if (isBefore(currentDate, date)){
+		throw new Error("Data de aniversário inválida!");
+	}
+}
+
 module.exports = {
 	async create(info){
 		const pseValidation = Joi.object({
@@ -45,21 +53,21 @@ module.exports = {
 			value.instagram = '';
 		}
 
-		value.birthday = moment(value.birthday).format("DD/MM/yyyy");
+		validateDate(value.birthday);
+		value.birthday = moment.utc(value.birthday).format('DD/MM/YYYY');
 		
-      const personalInformation = {
-        fullname: value.fullname,
-        phone: value.phone,
-        email: value.email,
+		const personalInformation = {
+		fullname: value.fullname,
+		phone: value.phone,
+		email: value.email,
 		birthday: value.birthday,
 		linkedin: value.linkedin,
-        instagram: value.instagram,
+		instagram: value.instagram,
 		gender: value.gender,
-        neuroatypicality: value.neuroatypicality,
-        PcD: value.PcD,
-        selfDeclaration: value.selfDeclaration
-      }
-
+		neuroatypicality: value.neuroatypicality,
+		PcD: value.PcD,
+		selfDeclaration: value.selfDeclaration
+		}
 
 		const registrationData = {
 			register: value.register,
