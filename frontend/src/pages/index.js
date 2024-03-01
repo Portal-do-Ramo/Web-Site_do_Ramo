@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper";
+import { isBefore } from "date-fns";
 import "swiper/css";
 import "swiper/css/free-mode";
 
@@ -7,14 +8,13 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { FacaParteDaNossaEquipe } from '../components/FacaParteDaNossaEquipe'
 import CrewsCard from "../components/CrewsCard";
-
 import Image from "next/image";
 
 import api from '../services/api'
 
 import styles from "../styles/index.module.scss";
 
-export default function Home({ crews }) {
+export default function Home({ crews, havePSE }) {
 	return (
 		<div className={styles.container}>
 			<Header page="inicio">
@@ -99,7 +99,7 @@ export default function Home({ crews }) {
 						</div>
 					</article>
 				</section>
-				<FacaParteDaNossaEquipe/>
+				<FacaParteDaNossaEquipe havePSE={havePSE}/>
 			</div>
 			<Footer />
 		</div>
@@ -109,9 +109,25 @@ export default function Home({ crews }) {
 export const getStaticProps = async () => {
   let {data : crews} = await api.get("/crews");
 
+  let havePSE = false;
+  
+  try {
+    let { data: resData } = await api.get("/pse");
+    d = resData;
+    if (!isBefore(new Date(), new Date(resData.start))) {
+      havePSE = true;
+    } else {
+      havePSE = false;
+    }
+  } catch (error) {
+    havePSE = false;
+  }
+
+
   return {
     props: {
-      crews
+      crews,
+      havePSE,
     },
     revalidate: 60 * 60 * 4 // 4 Horas
   }
