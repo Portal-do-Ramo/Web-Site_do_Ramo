@@ -23,7 +23,7 @@ export default function Page3({ dynamicDates }) {
 		setReason,
 		experience,
 		setExperience,
-		howFoundIeee,
+		HowFoundIeee,
 		setHowFoundIeee
 		
 	} = useContext(PSEFormContext);
@@ -178,7 +178,7 @@ export default function Page3({ dynamicDates }) {
 					<BasicSelect
 								label={'Como soube do nosso Processo Seletivo?'}
 								required={true}
-								value={howFoundIeee}
+								value={HowFoundIeee}
 								set={setHowFoundIeee}
 								defaultValue={'Selecione como soube do Processo Seletivo'}
 								list={arrayHowFoundIeee}
