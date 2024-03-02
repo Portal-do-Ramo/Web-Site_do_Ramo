@@ -43,24 +43,3 @@ export const FacaParteDaNossaEquipe = ({ havePSE }) => {
     </>
   );
 };
-
-export const getServerSideProps = async () => {
-  let havePSE = false;
-  try {
-    let { data: resData } = await api.get("/pse");
-
-    if (!isBefore(new Date(), new Date(resData.start))) {
-      havePSE = false;
-    } else {
-      havePSE = true;
-    }
-  } catch (error) {
-    havePSE = false;
-  }
-
-  return {
-    props: {
-      havePSE,
-    },
-  };
-};
