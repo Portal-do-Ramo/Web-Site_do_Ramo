@@ -62,7 +62,7 @@ export default function premio({ crew, award }){
 			
 						<section className={styles.upper}>
 							<article className={styles.awardImg}>
-								<img src="../../../../award.svg" alt="award image"/>
+								<img src="../../../../award.svg" alt="Prêmio imagem"/>
 								<strong>{award.placing}</strong>
 							</article>
 

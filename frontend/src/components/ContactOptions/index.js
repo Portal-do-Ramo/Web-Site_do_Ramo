@@ -86,7 +86,7 @@ export default function ContactButton() {
 
             <section className={styles.mail} id={buttonSelected !== 2 ? styles.disableMail : ""}>
                 <article className={styles.copyEmailButton} onClick={() => handleCopyEmail()}>
-                    <img src="/Envelope.svg" alt="Envelope Illustration" />
+                    <img src="/Envelope.svg" alt="Envelope Ilustração" />
                     <p>gp.ramocefetrj@gmail.com</p>
                     {isEmailCopied ? <MdDone size={30}/> : <MdCopyAll size={30}/>}
                 </article>

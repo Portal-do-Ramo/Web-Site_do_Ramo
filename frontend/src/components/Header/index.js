@@ -20,7 +20,7 @@ export default function Header({page, children}) {
 		<>
 			<header className={page === "inicio" ? styles.homeHeader : styles.headerContainer}>
 				<div className={styles.logoContainer}>
-					<img src="/Ramo_logo.svg" alt="logo" className={styles.logo} onClick={() => router.push("/")}/>
+					<img src="/Ramo_logo.svg" alt="Logo do Ramo" className={styles.logo} onClick={() => router.push("/")}/>
 
 					<section>
 						<h1>Ramo Estudantil IEEE CEFET/RJ</h1>

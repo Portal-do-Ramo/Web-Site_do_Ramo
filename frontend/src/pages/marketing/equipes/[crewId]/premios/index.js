@@ -58,7 +58,7 @@ export default function premios({ crew, awards }){
 							  <div className={styles.awardRow} key={idx}>
 								<div className={styles.award}>
 								  <article className={styles.awardImg}>
-									<img src="../../../award.svg" alt="award image"/>
+									<img src="../../../award.svg" alt="Prêmio imagem"/>
 									<strong>{award.placing}</strong>
 								  </article>
 								  <h2>{award.name}</h2>
