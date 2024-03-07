@@ -285,7 +285,7 @@ export default function Equipes({ crews }) {
 													crews[crewIndex].awards.map((award, idx) => {
 														return (
 														<article className={styles.award} key={idx}>
-															<img src="award.svg" alt="award image"/>
+															<img src="award.svg" alt="Prêmio imagem"/>
 															<strong>{award.placing}</strong>
 															<span>{award.name}</span>
 															<p>{award.year && award.year}</p>
