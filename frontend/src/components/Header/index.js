@@ -72,7 +72,7 @@ export default function Header({page, children}) {
 			</header>
 
 			{page === "inicio" && 
-				<img className={styles.curvedBorder} src="/curved-border.svg" width="100%" />
+				<img className={styles.curvedBorder} src="/curved-border2.svg" width="100%" />
 			}
 		</>
 	);

@@ -20,7 +20,7 @@ export default function Home({ crews, havePSE }) {
       <Header page="inicio">
         <div className={styles.wolfImageContainer}>
           <Image
-            src="/seu_pai.svg"
+            src="/seu_pai2.svg"
             alt="Lobo do Ramo IEEE CEFET-RJ"
             width={300}
             height={300}
