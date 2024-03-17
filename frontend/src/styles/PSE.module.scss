@@ -491,6 +491,10 @@
                     &:hover {
                         background-color: #0270b8;
                     }
+
+                    &:disabled {
+                      background-color: #a0a0a0;
+                    }
                 }
 
                 @media (max-width: 740px) {

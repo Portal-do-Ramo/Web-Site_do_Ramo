@@ -8,7 +8,7 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 import { isBefore } from "date-fns";
 
-export default function PSE() {
+export default function PSE({havePSE}) {
     const router = useRouter();
 
     async function handleRegister() {
@@ -115,14 +115,27 @@ export default function PSE() {
                 <section className={styles.registerContainer}>
                     <article className={styles.register}>
                         <div className={styles.whiteSpace}></div>
-                        <div className={styles.joinContainer}>
-                            <span>Faça parte do nosso time</span>
+              <div className={styles.joinContainer}>
+                <span>Faça parte do nosso time</span>
+                {
+                  havePSE ? (
                             <button 
                                 type="button"
                                 onClick={handleRegister}
                             >
                                 Inscrever-se
                             </button>
+                ) :
+                    (
+                            <button 
+                        type="button"
+                        disabled
+                            >
+                                Em breve
+                            </button>
+                    )
+              }
+                          
                         </div>
                     </article>
                 </section>
@@ -132,3 +145,26 @@ export default function PSE() {
         </>
     )
 }
+
+
+export const getStaticProps = async () => {
+
+  let havePSE = false;
+  try {
+    let { data: resData } = await api.get("/pse");
+    if (!isBefore(new Date(), new Date(resData.start))) {
+      havePSE = true;
+    } else {
+      havePSE = false;
+    }
+  } catch (error) {
+    havePSE = false;
+  }
+
+  return {
+    props: {
+      havePSE,
+    },
+    revalidate: 60 * 60 * 4, // 4 Horas
+  };
+};
