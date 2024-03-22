@@ -70,7 +70,7 @@ export function AuthContextProvider({ children }) {
 
   async function register({ email, password, name }) {
     try {
-      const { data } = await api.post('/user', { email, password, name });
+      await api.post('/user', { email, password, name });
 
       toast.success('Usuário cadastrado');
     } catch (error) {

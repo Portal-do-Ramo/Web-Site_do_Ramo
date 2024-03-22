@@ -8,14 +8,14 @@ import {
   AiOutlineMinusCircle
 } from 'react-icons/ai';
 
-async function handleDownloadPSEFile() {
+/* async function handleDownloadPSEFile() {
   const { data } = await api.get('/download/pse.csv', { responseType: 'blob' });
   const url = window.URL.createObjectURL(new Blob([data]));
   const link = document.createElement('a');
   link.href = url;
   link.setAttribute('download', 'pse.csv');
   link.click();
-}
+} */
 
 import styles from '../../pages/marketing/PSE/styles.module.scss';
 import api from '../../services/api';
@@ -86,7 +86,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
     setIsOpen(false);
   }
 
-  function converterData(dateString) {
+  /* function converterData(dateString) {
     const match = dateString.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
 
     if (!match) {
@@ -110,7 +110,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 
     const isoDate = `${ano}-${mes}-${dia}T${hora}:${minuto}`;
     return isoDate;
-  }
+  } */
 
   function handleAccessPSEFile() {
     const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;

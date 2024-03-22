@@ -66,15 +66,15 @@ function PSEAgendado({ start, end }) {
     getDinamycDatesPSE();
   }, []);
 
-  function converterData(dateString) {
+  /* function converterData(dateString) {
     const match = dateString.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
 
-    /* 
-      Usar classe new Date
+    
+    //  Usar classe new Date
 
-      2023-11-13T06:00:00.000Z 
-      2023-11-13T03:00
-    */
+    //  2023-11-13T06:00:00.000Z 
+    //  2023-11-13T03:00
+   
     // console.log('dateString: ', dateString)
     // console.log('new Date: ', new Date(dateString))
 
@@ -99,7 +99,8 @@ function PSEAgendado({ start, end }) {
 
     const isoDate = `${ano}-${mes}-${dia}T${hora}:${minuto}`;
     return isoDate;
-  }
+  } */
+  
   async function getDinamycDatesPSE() {
     try {
       // const response = await api.get("/dinamycDates");

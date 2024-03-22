@@ -89,7 +89,6 @@ export default function CriarProjeto({ crew }) {
             members,
             beginning: beginDateFormatted,
             ended: endDateFormatted,
-            members,
             crew_id: crew.id
           });
         } else {
@@ -98,7 +97,6 @@ export default function CriarProjeto({ crew }) {
             description,
             members,
             beginning: beginDateFormatted,
-            members,
             crew_id: crew.id
           });
         }
