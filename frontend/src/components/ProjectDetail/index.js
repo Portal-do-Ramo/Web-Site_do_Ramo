@@ -1,48 +1,51 @@
-import React from "react";
-import styles from "./styles.module.scss";
+import React from 'react';
+import styles from './styles.module.scss';
 
 export function ProjectDetail({ project }) {
-	const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
 
-	return (
-		<div className={styles.main}>
-			<div className={styles.imageHolder}>
-				<img src={project.imageURL}/>
-			</div>
+  return (
+    <div className={styles.main}>
+      <div className={styles.imageHolder}>
+        <img src={project.imageURL} />
+      </div>
 
-			<div className={styles.projectDescription}>
-				<strong> {project.name} </strong>
-				{project.description.split(/\r?\n/g).map(info => {
-					if (info !== "") {
-						return (
-							info.split(urlRegex).map(description => {
-								if (description.match(urlRegex)) {
-									return <a href={description}>{description}</a>
-								} else if (description !== "") {
-									return <p>{description}</p>; 
-								}
-							})
-						)
-					}
-				})}
-				
-				{project.ended ? (
-					<span>Status: <strong>Finalizado</strong></span>
-				) : (
-					<span>Status: <strong>Em Andamento</strong></span>
-				)
-				}
+      <div className={styles.projectDescription}>
+        <strong> {project.name} </strong>
+        {project.description.split(/\r?\n/g).map((info) => {
+          if (info !== '') {
+            return info.split(urlRegex).map((description) => {
+              if (description.match(urlRegex)) {
+                return <a href={description}>{description}</a>;
+              } else if (description !== '') {
+                return <p>{description}</p>;
+              }
+            });
+          }
+        })}
 
-				<span>Membros</span>
-				
-				<div className={styles.members}>
-					{ project.members.split(",").map((member, idx) => {
-						return (
-							<div className={styles.memberHolder} key={idx}>{member}</div>
-						)
-					})}
-				</div>
-			</div>
-		</div>
-	);
+        {project.ended ? (
+          <span>
+            Status: <strong>Finalizado</strong>
+          </span>
+        ) : (
+          <span>
+            Status: <strong>Em Andamento</strong>
+          </span>
+        )}
+
+        <span>Membros</span>
+
+        <div className={styles.members}>
+          {project.members.split(',').map((member, idx) => {
+            return (
+              <div className={styles.memberHolder} key={idx}>
+                {member}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }

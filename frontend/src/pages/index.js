@@ -1,27 +1,27 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper";
-import { isBefore } from "date-fns";
-import "swiper/css";
-import "swiper/css/free-mode";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, FreeMode } from 'swiper';
+import { isBefore } from 'date-fns';
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import { FacaParteDaNossaEquipe } from "../components/FacaParteDaNossaEquipe";
-import CrewsCard from "../components/CrewsCard";
-import Image from "next/image";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { FacaParteDaNossaEquipe } from '../components/FacaParteDaNossaEquipe';
+import CrewsCard from '../components/CrewsCard';
+import Image from 'next/image';
 
-import api from "../services/api";
+import api from '../services/api';
 
-import styles from "../styles/index.module.scss";
+import styles from '../styles/index.module.scss';
 
 export default function Home({ crews, havePSE }) {
   return (
     <div className={styles.container}>
-      <Header page="inicio">
+      <Header page='inicio'>
         <div className={styles.wolfImageContainer}>
           <Image
-            src="/seu_pai2.svg"
-            alt="Lobo do Ramo IEEE CEFET-RJ"
+            src='/seu_pai2.svg'
+            alt='Lobo do Ramo IEEE CEFET-RJ'
             width={300}
             height={300}
           />
@@ -49,16 +49,16 @@ export default function Home({ crews, havePSE }) {
           </article>
 
           <article className={styles.main_container}>
-            <a href="/sobre" className={styles.button}>
+            <a href='/sobre' className={styles.button}>
               <p>Saiba mais</p>
-              <Image src="/right-arrow.svg" width={20} height={20} />
+              <Image src='/right-arrow.svg' width={20} height={20} />
             </a>
           </article>
         </section>
 
         <section className={styles.sponsors}>
           <Swiper
-            slidesPerView="auto"
+            slidesPerView='auto'
             spaceBetween={40}
             freeMode={true}
             loop={true}
@@ -68,45 +68,45 @@ export default function Home({ crews, havePSE }) {
             autoplay={{
               delay: 5,
               disableOnInteraction: false,
-              pauseOnMouseEnter: true,
+              pauseOnMouseEnter: true
             }}
             modules={[FreeMode, Autoplay]}
             className={styles.swiper}
           >
             <SwiperSlide className={styles.swiper_slide}>
-              {" "}
-              <img src="/sponsor_botz.svg" alt="botz logo" />{" "}
+              {' '}
+              <img src='/sponsor_botz.svg' alt='botz logo' />{' '}
             </SwiperSlide>
             <SwiperSlide className={styles.swiper_slide}>
-              {" "}
-              <img src="/sponsor_motin.svg" alt="motin logo" />{" "}
+              {' '}
+              <img src='/sponsor_motin.svg' alt='motin logo' />{' '}
             </SwiperSlide>
             <SwiperSlide className={styles.swiper_slide}>
-              {" "}
-              <img src="/sponsor_polozulu.svg" alt="polozulu logo" />{" "}
+              {' '}
+              <img src='/sponsor_polozulu.svg' alt='polozulu logo' />{' '}
             </SwiperSlide>
             <SwiperSlide className={styles.swiper_slide}>
-              {" "}
+              {' '}
               <img
-                src="/sponsor_squair.svg"
-                alt="squair logo"
+                src='/sponsor_squair.svg'
+                alt='squair logo'
                 id={styles.squair_logo}
-              />{" "}
+              />{' '}
             </SwiperSlide>
             <SwiperSlide className={styles.swiper_slide}>
-              {" "}
-              <img src="/sponsor_tecci.svg" alt="tecci logo" />{" "}
+              {' '}
+              <img src='/sponsor_tecci.svg' alt='tecci logo' />{' '}
             </SwiperSlide>
             <SwiperSlide className={styles.swiper_slide}>
-              {" "}
+              {' '}
               <img
-                src="/sponsor_universinagem.svg"
-                alt="universinagem logo"
-              />{" "}
+                src='/sponsor_universinagem.svg'
+                alt='universinagem logo'
+              />{' '}
             </SwiperSlide>
             <SwiperSlide className={styles.swiper_slide}>
-              {" "}
-              <img src="/sponsor_voitto.svg" alt="voitto logo" />{" "}
+              {' '}
+              <img src='/sponsor_voitto.svg' alt='voitto logo' />{' '}
             </SwiperSlide>
           </Swiper>
         </section>
@@ -137,11 +137,11 @@ export default function Home({ crews, havePSE }) {
 }
 
 export const getStaticProps = async () => {
-  let { data: crews } = await api.get("/crews");
+  let { data: crews } = await api.get('/crews');
 
   let havePSE = false;
   try {
-    let { data: resData } = await api.get("/pse");
+    let { data: resData } = await api.get('/pse');
     if (!isBefore(new Date(), new Date(resData.start))) {
       havePSE = true;
     } else {
@@ -154,8 +154,8 @@ export const getStaticProps = async () => {
   return {
     props: {
       crews,
-      havePSE,
+      havePSE
     },
-    revalidate: 60 * 60 * 4, // 4 Horas
+    revalidate: 60 * 60 * 4 // 4 Horas
   };
 };

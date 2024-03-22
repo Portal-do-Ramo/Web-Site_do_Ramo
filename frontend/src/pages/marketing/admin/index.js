@@ -1,21 +1,21 @@
-import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Head from "next/head";
+import { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 
-import X from "../../../../public/X.svg";
-import { BsFillGearFill } from "react-icons/bs";
-import { FaRegTrashAlt } from "react-icons/fa";
-import styles from "./styles.module.scss";
-import api from "../../../services/api";
+import X from '../../../../public/X.svg';
+import { BsFillGearFill } from 'react-icons/bs';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import styles from './styles.module.scss';
+import api from '../../../services/api';
 
-import MarketingNavBar from "../../../components/MarketingNavBar";
-import MarketingMenuRoutes from "../../../components/MarketingMenuRoutes";
+import MarketingNavBar from '../../../components/MarketingNavBar';
+import MarketingMenuRoutes from '../../../components/MarketingMenuRoutes';
 
-import { AuthContext } from "../../../contexts/AuthContext";
-import Modal from "react-modal";
-import Image from "next/image";
-import { DeleteAlertModal } from "../../../components/DeleteAlertModal";
-import { toast } from "react-toastify";
+import { AuthContext } from '../../../contexts/AuthContext';
+import Modal from 'react-modal';
+import Image from 'next/image';
+import { DeleteAlertModal } from '../../../components/DeleteAlertModal';
+import { toast } from 'react-toastify';
 
 export default function admin({ crews }) {
   const router = useRouter();
@@ -25,9 +25,9 @@ export default function admin({ crews }) {
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [updatedUser, setUpdatedUser] = useState({
-    name: "",
-    password: "",
-    crew: "",
+    name: '',
+    password: '',
+    crew: ''
   });
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
   const [modalUpdateIsOpen, setModalUpdateIsOpen] = useState(false);
@@ -35,9 +35,9 @@ export default function admin({ crews }) {
   useEffect(() => {
     if (isAuthenticated) {
       if (user === null) {
-        router.push("/login");
+        router.push('/login');
       } else if (!user.isAdmin) {
-        router.push("/marketing");
+        router.push('/marketing');
       } else {
         setIsLoading(false);
       }
@@ -47,10 +47,10 @@ export default function admin({ crews }) {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const { data } = await api.get("/users");
+        const { data } = await api.get('/users');
         setUsers(data.users);
       } catch (error) {
-        router.push("/marketing");
+        router.push('/marketing');
       }
     };
 
@@ -90,7 +90,7 @@ export default function admin({ crews }) {
         name: updatedUser.name.trim(),
         email: user.email,
         crew_id: updatedUser.crew_id,
-        isAdmin: user.isAdmin,
+        isAdmin: user.isAdmin
       };
 
       if (updatedUser.password) {
@@ -110,10 +110,10 @@ export default function admin({ crews }) {
   async function handleDeleteCoord() {
     try {
       await api.delete(`/user/${selectedUser.id}`);
-      toast.success("Usuário deletado com sucesso");
+      toast.success('Usuário deletado com sucesso');
       router.reload();
     } catch (error) {
-      toast.error("Não foi possível deletar o usuário");
+      toast.error('Não foi possível deletar o usuário');
     }
   }
 
@@ -126,7 +126,7 @@ export default function admin({ crews }) {
           <title>Marketing - Admin | IEEE CEFET-RJ</title>
         </Head>
 
-        <MarketingNavBar page="admin" user={user ? user : null} />
+        <MarketingNavBar page='admin' user={user ? user : null} />
 
         <div className={styles.pageContent}>
           <div className={styles.content}>
@@ -151,7 +151,7 @@ export default function admin({ crews }) {
             <div className={styles.usersList}>
               {users.map((user) => {
                 const nameURL = `https://ui-avatars.com/api/?name=${
-                  user ? user.name : "Unknown"
+                  user ? user.name : 'Unknown'
                 }`;
                 const userCrew = findCrewById(user.crew_id);
 
@@ -161,14 +161,14 @@ export default function admin({ crews }) {
                     className={styles.userRow}
                     style={
                       user.isAdmin
-                        ? { backgroundColor: "rgba(13, 95, 170, 0.2)" }
+                        ? { backgroundColor: 'rgba(13, 95, 170, 0.2)' }
                         : {}
                     }
                   >
                     <div className={styles.name}>
                       {user.isAdmin ? (
                         <img
-                          src="/Ramo_logo.svg"
+                          src='/Ramo_logo.svg'
                           className={styles.userImage}
                         />
                       ) : userCrew ? (
@@ -206,9 +206,9 @@ export default function admin({ crews }) {
                             handleCloseModal={handleCloseModal}
                             id={user.id}
                             text={
-                              "Tem certeza que você deseja excluir este coordenador?"
+                              'Tem certeza que você deseja excluir este coordenador?'
                             }
-                            title={"Excluir coordenador"}
+                            title={'Excluir coordenador'}
                             modalIsOpen={modalDeleteIsOpen}
                           />
                         </>
@@ -225,7 +225,7 @@ export default function admin({ crews }) {
                         <div className={styles.modalHeader}>
                           {user.isAdmin ? (
                             <img
-                              src="/Ramo_logo.svg"
+                              src='/Ramo_logo.svg'
                               className={styles.userImage}
                             />
                           ) : userCrew ? (
@@ -244,12 +244,12 @@ export default function admin({ crews }) {
                           <div>
                             <h3>Nome:</h3>
                             <input
-                              type="text"
+                              type='text'
                               value={updatedUser.name}
                               onChange={(e) =>
                                 setUpdatedUser({
                                   ...updatedUser,
-                                  name: e.target.value,
+                                  name: e.target.value
                                 })
                               }
                             />
@@ -257,37 +257,37 @@ export default function admin({ crews }) {
                           <div>
                             <h3>E-mail:</h3>
                             <input
-                              type="text"
+                              type='text'
                               className={styles.emailInput}
                               disabled
                               placeholder={updatedUser.email}
                             />
                           </div>
                           {updatedUser.isAdmin !== true && (
-                            <div onClick={() => focusInput("crewSelector")}>
+                            <div onClick={() => focusInput('crewSelector')}>
                               <h3>Equipe:</h3>
                               <select
-                                id="crewSelector"
+                                id='crewSelector'
                                 onChange={(e) =>
                                   setUpdatedUser({
                                     ...updatedUser,
-                                    crew_id: e.target.value,
+                                    crew_id: e.target.value
                                   })
                                 } //
                                 value={updatedUser.crew_id}
                                 style={{
                                   color:
-                                    updatedUser.crew === "" ? "#9A9A9A" : "",
+                                    updatedUser.crew === '' ? '#9A9A9A' : ''
                                 }}
                               >
-                                <option value="" disabled>
+                                <option value='' disabled>
                                   Selecione uma equipe
                                 </option>
                                 {crews.map((crew) => (
                                   <option
                                     key={crew.id}
                                     value={crew.id}
-                                    style={{ color: "black" }}
+                                    style={{ color: 'black' }}
                                   >
                                     {crew.name}
                                   </option>
@@ -299,22 +299,22 @@ export default function admin({ crews }) {
                           <div>
                             <h3>Senha:</h3>
                             <input
-                              type="password"
-                              value={updatedUser.password || ""}
+                              type='password'
+                              value={updatedUser.password || ''}
                               onChange={(e) =>
                                 setUpdatedUser({
                                   ...updatedUser,
-                                  password: e.target.value,
+                                  password: e.target.value
                                 })
                               }
-                              placeholder="*********"
+                              placeholder='*********'
                             />
                           </div>
                         </div>
                         <div className={styles.buttonsBox}>
                           <button
                             className={styles.Create}
-                            type="submit"
+                            type='submit'
                             onClick={handleSaveUserChanges}
                           >
                             Salvar alterações
@@ -334,11 +334,11 @@ export default function admin({ crews }) {
 }
 
 export const getServerSideProps = async () => {
-  let { data: crews } = await api.get("/crews");
+  let { data: crews } = await api.get('/crews');
 
   return {
     props: {
-      crews,
-    },
+      crews
+    }
   };
 };

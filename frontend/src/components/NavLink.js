@@ -1,16 +1,12 @@
-import React, { Children } from "react";
-import { useRouter } from "next/router";
-import cx from "classnames";
-import Link from "next/link";
+import React, { Children } from 'react';
+import { useRouter } from 'next/router';
+import cx from 'classnames';
+import Link from 'next/link';
 
-export const NavLink = ({
-  children,
-  activeClassName = "active",
-  ...props
-}) => {
+export const NavLink = ({ children, activeClassName = 'active', ...props }) => {
   const { asPath } = useRouter();
   const child = Children.only(children);
-  const childClassName = child.props.className || "";
+  const childClassName = child.props.className || '';
 
   const isActive = asPath === props.href || asPath === props.as;
 

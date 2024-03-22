@@ -1,92 +1,93 @@
-import { createContext, useEffect, useState } from "react";
-import api from '../services/api'
+import { createContext, useEffect, useState } from 'react';
+import api from '../services/api';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
-import { toast } from "react-toastify";
-import { useRouter } from "next/router";
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
-export const AuthContext = createContext({})
+export const AuthContext = createContext({});
 
-export function AuthContextProvider({children}) {
-	const router = useRouter();
-    const [user, setUser] = useState(null);
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+export function AuthContextProvider({ children }) {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
-		setIsAuthenticated(false);
-        const token = Cookies.get('token');
+  useEffect(() => {
+    setIsAuthenticated(false);
+    const token = Cookies.get('token');
 
-        if (token) {
-			try {
-				const verify = jwt.verify(token, process.env.TOKEN_SECRET);
-				api.defaults.headers.Authorization = `Bearer ${token}`;
-				setUser({
-					name: verify.name, 
-					email: verify.email,
-					isAdmin: verify.isAdmin,
-					crewId: verify.crew_id
-				});
-          } catch (error) {
-			signOut();
-		  }
-        }
+    if (token) {
+      try {
+        const verify = jwt.verify(token, process.env.TOKEN_SECRET);
+        api.defaults.headers.Authorization = `Bearer ${token}`;
+        setUser({
+          name: verify.name,
+          email: verify.email,
+          isAdmin: verify.isAdmin,
+          crewId: verify.crew_id
+        });
+      } catch (error) {
+        signOut();
+      }
+    }
 
-		setIsAuthenticated(true);
-      }, []);
+    setIsAuthenticated(true);
+  }, []);
 
-	async function signIn ({email, password}) {
-		try {
-			const { data } = await api.post('/login', { email, password });
-			
-			Cookies.set('token', data.token, { expires: 60000 });
+  async function signIn({ email, password }) {
+    try {
+      const { data } = await api.post('/login', { email, password });
 
-			api.defaults.headers.Authorization = `Bearer ${data.token}`
+      Cookies.set('token', data.token, { expires: 60000 });
 
-			const verify = jwt.verify(data.token, process.env.TOKEN_SECRET);
-			
-			setUser({
-				name: verify.name, 
-				email: verify.email,
-				isAdmin: verify.isAdmin,
-				crewId: verify.crew_id
-			});
-		} catch (error) {
-			throw new Error("Email ou senha incorreta!");
-		}
-	}
+      api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
-	async function signOut() {
-		try {
-			Cookies.remove('token');
-			delete api.defaults.headers.Authorization;
+      const verify = jwt.verify(data.token, process.env.TOKEN_SECRET);
 
-			router.push("/login");
-			
-			setUser(null);
-		} catch (error) {
-			throw new Error("Nenhum usuário logado!");
-		}
-	}
+      setUser({
+        name: verify.name,
+        email: verify.email,
+        isAdmin: verify.isAdmin,
+        crewId: verify.crew_id
+      });
+    } catch (error) {
+      throw new Error('Email ou senha incorreta!');
+    }
+  }
 
-	async function register({ email, password, name }) {
-		try {
-			const { data } = await api.post('/user', { email, password, name });
+  async function signOut() {
+    try {
+      Cookies.remove('token');
+      delete api.defaults.headers.Authorization;
 
-			toast.success("Usuário cadastrado");
-		} catch (error) {
-			throw new Error("Não foi possível realizar o cadastro");
-		}
-	}
+      router.push('/login');
 
-    return (
-        <AuthContext.Provider 
-        value={{
-            user,
-            signIn,
-						isAuthenticated,
-						signOut,
-        }}>
-            {children}
-        </AuthContext.Provider>
-    )
+      setUser(null);
+    } catch (error) {
+      throw new Error('Nenhum usuário logado!');
+    }
+  }
+
+  async function register({ email, password, name }) {
+    try {
+      const { data } = await api.post('/user', { email, password, name });
+
+      toast.success('Usuário cadastrado');
+    } catch (error) {
+      throw new Error('Não foi possível realizar o cadastro');
+    }
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        signIn,
+        isAuthenticated,
+        signOut
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }

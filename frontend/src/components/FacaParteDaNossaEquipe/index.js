@@ -1,11 +1,11 @@
-import styles from "./FacaParteDaNossaEquipe.module.scss";
-import { useRouter } from "next/router";
+import styles from './FacaParteDaNossaEquipe.module.scss';
+import { useRouter } from 'next/router';
 
 export const FacaParteDaNossaEquipe = ({ havePSE }) => {
   const router = useRouter();
 
   const handlerButton = () => {
-    router.push("/PSE");
+    router.push('/PSE');
   };
 
   return (
@@ -13,8 +13,8 @@ export const FacaParteDaNossaEquipe = ({ havePSE }) => {
       <section className={styles.join_us}>
         <article>
           <img
-            src="/pessoas_quebra_cabeca.svg"
-            alt="ilustração de uma equipe trabalhando junto"
+            src='/pessoas_quebra_cabeca.svg'
+            alt='ilustração de uma equipe trabalhando junto'
           />
           {havePSE ? (
             <div>
@@ -22,7 +22,7 @@ export const FacaParteDaNossaEquipe = ({ havePSE }) => {
               <p>
                 Se você é estudante de graduação do CEFET-RJ, se inscreva no
                 nosso processo seletivo para trabalhar junto com o maior projeto
-                de extensão do CEFET-RJ.{" "}
+                de extensão do CEFET-RJ.{' '}
               </p>
               <button onClick={handlerButton}>Se inscreva já</button>
             </div>

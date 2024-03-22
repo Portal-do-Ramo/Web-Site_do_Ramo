@@ -1,11 +1,6 @@
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
-import { AiFillLock } from "react-icons/ai";
-import PSEFormHeader from "../../../components/PSEFormHeader";
-import { PSEFormContext } from "../../../contexts/PSEFormContext";
-import styles from "../../../styles/pseCadastro.module.scss";
-import RadioInputPlusSelect from "../../../components/RadioInputPlusSelect";
-import { toast } from "react-toastify";
+import { useRouter } from 'next/router';
+import PSEFormHeader from '../../../components/PSEFormHeader';
+import styles from '../../../styles/pseCadastro.module.scss';
 
 export default function Page5() {
   const router = useRouter();
@@ -28,31 +23,32 @@ export default function Page5() {
   //   }
   // }, [isFistPageValidated, isSecondPageValidated, isThirdPageValidated, isFourthPageValidated]);
 
-  return  (
+  return (
     <>
       <section className={styles.leftSide}>
-        <PSEFormHeader page="5" showCircles={false} />
+        <PSEFormHeader page='5' showCircles={false} />
 
         <article>
           <h1>Muito obrigadx!</h1>
           <p>Em breve entraremos em contato com você.</p>
 
-
-
           <div className={`${styles.leftForm} ${styles.centered}`}>
-            
-              <img src="/check_circle.svg" width={300} alt="check de concluído" className={styles.checkAgradecimento}/>
+            <img
+              src='/check_circle.svg'
+              width={300}
+              alt='check de concluído'
+              className={styles.checkAgradecimento}
+            />
 
-              <div className={styles.buttonsHolder}>
-                <button
-                  type="button"
-                  className={styles.back_page2}
-                  onClick={() => router.push("/PSE")}
-                >
-                  Voltar
-                </button>
-              </div>
-            
+            <div className={styles.buttonsHolder}>
+              <button
+                type='button'
+                className={styles.back_page2}
+                onClick={() => router.push('/PSE')}
+              >
+                Voltar
+              </button>
+            </div>
           </div>
         </article>
       </section>
@@ -61,5 +57,5 @@ export default function Page5() {
         <article className={styles.rightForm_page2}></article>
       </section>
     </>
-  )
+  );
 }

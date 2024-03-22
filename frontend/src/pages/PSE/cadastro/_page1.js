@@ -7,24 +7,23 @@ import styles from '../../../styles/pseCadastro.module.scss';
 import BasicInput from '../../../components/BasicInput';
 
 export default function Page1() {
-	const router = useRouter();
-	
-	const { 
-		fullname, 
-		setFullName,
-		phone,
-		setPhone,
-		email,
-		setEmail,
-		linkedin,
-		setLinkedin,
-		instagram,
-		setInstagram,
+  const router = useRouter();
+
+  const {
+    fullname,
+    setFullName,
+    phone,
+    setPhone,
+    email,
+    setEmail,
+    linkedin,
+    setLinkedin,
+    instagram,
+    setInstagram,
     birthday,
     setBirthday,
-		clearAll
-	} = useContext(PSEFormContext);
-
+    clearAll
+  } = useContext(PSEFormContext);
 
   const listFormRegistro = [
     {
@@ -44,119 +43,127 @@ export default function Page1() {
       required: true,
       value: birthday,
       set: setBirthday,
-      mask:"00/00/0000"
+      mask: '00/00/0000'
     },
     {
       label: 'Telefone',
       id: 'telefone',
-      type:'text',
-      placeholder:'(21) 9xxxx-xxxx',
+      type: 'text',
+      placeholder: '(21) 9xxxx-xxxx',
       required: true,
       value: phone,
       set: setPhone,
-      mask:"(00) 00000-0000"
+      mask: '(00) 00000-0000'
     },
     {
       label: 'E-mail',
       id: 'email',
-      type:'text',
+      type: 'text',
       placeholder: 'Digite seu email',
       required: true,
       value: email,
-      set: setEmail,
+      set: setEmail
     }
-  ]
-  
+  ];
+
   const listSocialMedia = [
     {
       label: null,
       id: 'linkedin',
-      type:'text',
+      type: 'text',
       placeholder: 'Linkedin',
       required: false,
-      value:linkedin,
+      value: linkedin,
       set: setLinkedin
     },
     {
       label: null,
       id: 'instagram',
-      type:'text',
+      type: 'text',
       placeholder: 'Instagram',
       required: false,
-      value:instagram,
+      value: instagram,
       set: setInstagram
     }
-  ]
-  
-	function handleCancel() {
-		clearAll();
-		router.push("/PSE");
-	}
+  ];
 
-	return (
-		<>
-			<section className={styles.leftSide}>
-				<PSEFormHeader page='1'/>
-				
-				<article>
-					<h1>Registro</h1>
-					<p>Insira suas informações pessoais.</p>
+  function handleCancel() {
+    clearAll();
+    router.push('/PSE');
+  }
 
-					<div className={styles.message}>
-						<AiFillLock/>
-						<p>
-							Levamos as questões de privacidade a sério. Você pode ter
-							certeza de que seus dados pessoais estão protegidos com 
-							segurança.
-						</p>
-					</div>
+  return (
+    <>
+      <section className={styles.leftSide}>
+        <PSEFormHeader page='1' />
 
-					<div className={styles.leftForm}>
-            {
-              listFormRegistro.map(item => {
-                return (
-                  <BasicInput
-                    key={item.id}
-                    label={item.label}
-                    id={item.id}
-                    type= {item.type}
-                    placeholder={item.placeholder}
-                    required={item.required}
-                    value={item.value}
-                    set={item.set}
-                    mask={item.mask? item.mask : null}
-                  />
-                )
-              })
-            }
-					</div>
-				</article>
-			</section>
+        <article>
+          <h1>Registro</h1>
+          <p>Insira suas informações pessoais.</p>
 
-			<section className={styles.rightSide}>
-				<article className={styles.rightForm}>
-          <span>Redes Sociais</span>
-          {
-            listSocialMedia.map(item => { 
+          <div className={styles.message}>
+            <AiFillLock />
+            <p>
+              Levamos as questões de privacidade a sério. Você pode ter certeza
+              de que seus dados pessoais estão protegidos com segurança.
+            </p>
+          </div>
+
+          <div className={styles.leftForm}>
+            {listFormRegistro.map((item) => {
               return (
                 <BasicInput
                   key={item.id}
                   label={item.label}
                   id={item.id}
-                  type= {item.type}
+                  type={item.type}
                   placeholder={item.placeholder}
                   required={item.required}
                   value={item.value}
-                  set={item.set} />
-              )
-            })
-          }
-					<div className={styles.buttonsHolder}>
-						<button type='button' className={styles.cancel} onClick={handleCancel}>Cancelar</button>
-						<button type='button' className={styles.next} onClick={() => router.push("/PSE/cadastro?page=2")}>Próximo</button>
-					</div>
-				</article>
-			</section>
+                  set={item.set}
+                  mask={item.mask ? item.mask : null}
+                />
+              );
+            })}
+          </div>
+        </article>
+      </section>
+
+      <section className={styles.rightSide}>
+        <article className={styles.rightForm}>
+          <span>Redes Sociais</span>
+          {listSocialMedia.map((item) => {
+            return (
+              <BasicInput
+                key={item.id}
+                label={item.label}
+                id={item.id}
+                type={item.type}
+                placeholder={item.placeholder}
+                required={item.required}
+                value={item.value}
+                set={item.set}
+              />
+            );
+          })}
+          <div className={styles.buttonsHolder}>
+            <button
+              type='button'
+              className={styles.cancel}
+              onClick={handleCancel}
+            >
+              Cancelar
+            </button>
+            <button
+              type='button'
+              className={styles.next}
+              onClick={() => router.push('/PSE/cadastro?page=2')}
+            >
+              Próximo
+            </button>
+          </div>
+        </article>
+      </section>
     </>
-	)
+  );
 }

@@ -1,12 +1,12 @@
-import Modal from "react-modal";
-import styles from "./DeleteAlertModal.module.scss";
+import Modal from 'react-modal';
+import styles from './DeleteAlertModal.module.scss';
 
 export const DeleteAlertModal = ({
   modalIsOpen,
   handleCloseModal,
   title,
   text,
-  clickFunction,
+  clickFunction
 }) => {
   return (
     <Modal
@@ -14,23 +14,23 @@ export const DeleteAlertModal = ({
       onRequestClose={handleCloseModal}
       className={styles.modal}
       overlayClassName={styles.overlay}
-      contentLabel="Example Modal"
+      contentLabel='Example Modal'
       shouldCloseOnEsc={true}
       style={{ overlay: { zIndex: 10 } }}
     >
-      <img src="/cancel.svg"></img>
+      <img src='/cancel.svg'></img>
       <h1>{title}</h1>
       <p>{text}</p>
       <div className={styles.rowButton}>
         <button
-          type="button"
+          type='button'
           className={styles.cancel}
           onClick={handleCloseModal}
         >
           Cancelar
         </button>
         <button
-          type="button"
+          type='button'
           className={styles.shutDown}
           onClick={clickFunction}
         >
