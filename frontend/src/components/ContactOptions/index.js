@@ -14,7 +14,6 @@ export default function ContactButton() {
   const [buttonSelected, setButtonSelected] = useState(0);
   const [isEmailCopied, setIsEmailCopied] = useState(false);
 
-
   function handleCopyEmail() {
     navigator.clipboard.writeText('gp.ramocefetrj@gmail.com');
 

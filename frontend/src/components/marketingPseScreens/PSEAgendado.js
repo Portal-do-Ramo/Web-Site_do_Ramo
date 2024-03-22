@@ -100,7 +100,7 @@ function PSEAgendado({ start, end }) {
     const isoDate = `${ano}-${mes}-${dia}T${hora}:${minuto}`;
     return isoDate;
   } */
-  
+
   async function getDinamycDatesPSE() {
     try {
       // const response = await api.get("/dinamycDates");
