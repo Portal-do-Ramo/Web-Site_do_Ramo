@@ -2,13 +2,13 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 function auth(req, res, next){
-    let authHeader = req.headers.authorization;
+	let authHeader = req.headers.authorization;
 
-    if(!authHeader) {
-        return res
-            .status(401)
-            .json({"erro": "Nenhum token fornecido"});
-    }
+	if(!authHeader) {
+		return res
+			.status(401)
+			.json({'erro': 'Nenhum token fornecido'});
+	}
 
 	const parts = authHeader.split(' ');
 
@@ -23,8 +23,8 @@ function auth(req, res, next){
 	jwt.verify(token, process.env.TOKEN_HASH, (err) => {
 		if(err) return res.status(401).send({ error: 'Token invalid'});
 
-		return next()
-	})
- }
+		return next();
+	});
+}
 
 module.exports = auth;

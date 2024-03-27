@@ -1,4 +1,4 @@
-const pseService = require("../services/pseService");
+const pseService = require('../services/pseService');
 
 module.exports =  {
 	async create(req, res){
@@ -42,19 +42,11 @@ module.exports =  {
 
 	async updateSchedulePSE(req, res) {
 		
-		const pse = {
-			startDate: req.body.startDate,
-			endDate: req.body.endDate,
-			dinamycDate_1: req.body.dinamycDate_1,
-			dinamycDate_2: req.body.dinamycDate_2,
-			dinamycDate_3: req.body.dinamycDate_3,
-			dinamycDate_4: req.body.dinamycDate_4,
-			dinamycDate_5: req.body.dinamycDate_5
-		};
+		const { pse } = req.body;
 		
 		try {
 			const { pseDatesFormatted } = await pseService.updateSchedulePSE(pse);
-			return res.status(200).json({"message": "Schedule update", pseDatesFormatted});
+			return res.status(200).json({'message': 'Schedule update', pseDatesFormatted});
 		} catch(err) {
 			return res.status(405).json({message: err.message});
 		}
@@ -70,11 +62,11 @@ module.exports =  {
 	},
 
 	async deleteOnePseDate(req, res) {
-		const { name } = req.params
+		const { name } = req.params;
 
 		try{
 			const response = await pseService.deleteOnePseDate(name);
-			return res.status(200).json(response)
+			return res.status(200).json(response);
 		} catch(err){
 			return res.status(405).json({message: err.message});
 		}
@@ -83,7 +75,7 @@ module.exports =  {
 	async checkSchedulePSE() {
 		try {
 			await pseService.checkSchedulePSE();
-			console.log("🆗 service scheduled!");
+			console.log('🆗 service scheduled!');
 		} catch (error) {
 			console.log(error.message);
 		}
@@ -97,5 +89,5 @@ module.exports =  {
 			return res.status(405).json({message: err.message});
 		}
 	}
-}
+};
 

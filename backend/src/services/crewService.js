@@ -1,73 +1,73 @@
 const knex = require('../database');
 const {v4} = require('uuid');
-const fs = require("fs");
+const fs = require('fs');
 
 module.exports = {
-    async index() {
-        let crews = await knex("crews")
-            .select("id", "name", "about", "imageURL")
-            .orderBy([ {column: "created_at", order: "desc"} ]);
-        return crews;
-    },
+	async index() {
+		let crews = await knex('crews')
+			.select('id', 'name', 'about', 'imageURL')
+			.orderBy([ {column: 'created_at', order: 'desc'} ]);
+		return crews;
+	},
 
-    async getCrew(id) {
-        const crew = await knex("crews").select("id", "name", "about", "imageURL").where({id}).first();
+	async getCrew(id) {
+		const crew = await knex('crews').select('id', 'name', 'about', 'imageURL').where({id}).first();
         
-        if(!crew) {
-            throw new Error("Equipe não existe!");
-        }
+		if(!crew) {
+			throw new Error('Equipe não existe!');
+		}
         
-        return crew;
-    },
+		return crew;
+	},
 
-    async create(name, about) {
-        let crewExists = await knex("crews").where({name}).first();
+	async create(name, about) {
+		let crewExists = await knex('crews').where({name}).first();
     
-        if(crewExists){
-            throw new Error("Equipe já existe!");
-        }
+		if(crewExists){
+			throw new Error('Equipe já existe!');
+		}
 
-        const id = v4();
+		const id = v4();
 
-        const crew = await knex("crews").insert({
-            id: id,
-            name, 
-            about,
-            imageURL: id.toLowerCase() + "_crew_avatar.png"
-        }).returning('id');
+		const crew = await knex('crews').insert({
+			id: id,
+			name, 
+			about,
+			imageURL: id.toLowerCase() + '_crew_avatar.png'
+		}).returning('id');
 
-        return { id: crew[0] }
-    },
+		return { id: crew[0] };
+	},
 
-    async update(id, crew) {
-        let Crew = await knex("crews").where({id}).first();
+	async update(id, crew) {
+		let Crew = await knex('crews').where({id}).first();
         
-        if (!Crew){
-            throw new Error("Equipe não existe!");
-        }
+		if (!Crew){
+			throw new Error('Equipe não existe!');
+		}
 
-        await knex("crews").where({id}).update(crew);
+		await knex('crews').where({id}).update(crew);
 
-        return {message: "Equipe atualizada!"}
-    },
+		return {message: 'Equipe atualizada!'};
+	},
 
-    async delete(id) {
-        let crew = await knex("crews").where({id}).first();
+	async delete(id) {
+		let crew = await knex('crews').where({id}).first();
 
-        if(!crew){
-            throw new Error("Equipe não existe!");
-        }
+		if(!crew){
+			throw new Error('Equipe não existe!');
+		}
 
-        if (fs.existsSync(`./uploads/${crew.imageURL}`))
-            fs.unlinkSync(`./uploads/${crew.imageURL}`);
+		if (fs.existsSync(`./uploads/${crew.imageURL}`))
+			fs.unlinkSync(`./uploads/${crew.imageURL}`);
 
-        let confirmation = await knex("crews").where({id}).delete();
+		let confirmation = await knex('crews').where({id}).delete();
 
-        if(confirmation > 1) {
-            return {message: "Equipes deletadas!"};
-        }
+		if(confirmation > 1) {
+			return {message: 'Equipes deletadas!'};
+		}
 
             
-        return {message: "Equipe deletada!"};
-    }
-}
+		return {message: 'Equipe deletada!'};
+	}
+};

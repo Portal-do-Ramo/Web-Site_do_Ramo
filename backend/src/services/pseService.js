@@ -1,29 +1,29 @@
-const knex = require("../database");
-const { v4 } = require("uuid");
-const { scheduleJob, scheduledJobs } = require("node-schedule");
-const { isBefore } = require("date-fns");
-const Joi = require("joi");
-const db = require("../database/firebase");
-const registerPSE = db.collection("registerPSE");
-const sheetController = require("../controllers/sheetController")
-const moment = require("moment");
+const knex = require('../database');
+const { v4 } = require('uuid');
+const { scheduleJob, scheduledJobs } = require('node-schedule');
+const { isBefore } = require('date-fns');
+const Joi = require('joi');
+const db = require('../database/firebase');
+const registerPSE = db.collection('registerPSE');
+const sheetController = require('../controllers/sheetController');
+const moment = require('moment');
 
 function validateDate(date){
 	const currentDate = new Date();
 
 	if (isBefore(currentDate, date)){
-		throw new Error("Data de aniversário inválida!");
+		throw new Error('Data de aniversário inválida!');
 	}
 }
 
 module.exports = {
 	async create(info){
 		const pseValidation = Joi.object({
-            fullname: Joi.string().min(3).required(),
+			fullname: Joi.string().min(3).required(),
 			phone: Joi.string().pattern(/^[0-9]+$/).required(),
-            email: Joi.string().min(6).email().required(),
+			email: Joi.string().min(6).email().required(),
 			birthday: Joi.date().required(),
-            linkedin: Joi.string().allow(null, '').optional(),
+			linkedin: Joi.string().allow(null, '').optional(),
 			instagram: Joi.string().allow(null, '').optional(),
 			gender: Joi.string().required(),
 			neuroatypicality: Joi.string().required(),
@@ -38,12 +38,12 @@ module.exports = {
 			HowFoundIeee: Joi.string().required(),
 			reason: Joi.string().required(),
 			experience: Joi.string().required(),
-        });
+		});
         
-        const {error, value} = pseValidation.validate(info);
-        if (error){
-            throw new Error(error.message);
-        }
+		const {error, value} = pseValidation.validate(info);
+		if (error){
+			throw new Error(error.message);
+		}
 
 		if (value.linkedin === undefined){
 			value.linkedin = '';
@@ -57,17 +57,17 @@ module.exports = {
 		value.birthday = moment.utc(value.birthday).format('DD/MM/YYYY');
 		
 		const personalInformation = {
-		fullname: value.fullname,
-		phone: value.phone,
-		email: value.email,
-		birthday: value.birthday,
-		linkedin: value.linkedin,
-		instagram: value.instagram,
-		gender: value.gender,
-		neuroatypicality: value.neuroatypicality,
-		PcD: value.PcD,
-		selfDeclaration: value.selfDeclaration
-		}
+			fullname: value.fullname,
+			phone: value.phone,
+			email: value.email,
+			birthday: value.birthday,
+			linkedin: value.linkedin,
+			instagram: value.instagram,
+			gender: value.gender,
+			neuroatypicality: value.neuroatypicality,
+			PcD: value.PcD,
+			selfDeclaration: value.selfDeclaration
+		};
 
 		const registrationData = {
 			register: value.register,
@@ -79,31 +79,31 @@ module.exports = {
 			HowFoundIeee: value.HowFoundIeee,
 			reason: value.reason,
 			experience: value.experience
-		}
+		};
 
 		const data = {
 			personalInformation,
 			registrationData
-		}
+		};
 	
 		const subscriberEmail = await registerPSE.where('personalInformation.email', '==', value.email).get();
 		const subscriberPhone = await registerPSE.where('personalInformation.phone', '==', value.phone).get();
 
 		if (subscriberEmail.empty && subscriberPhone.empty){
-			await registerPSE.add(data)	
-			await sheetController.insert(data)
-			return {"message": "usuário cadastrado!"};
+			await registerPSE.add(data);	
+			await sheetController.insert(data);
+			return {'message': 'usuário cadastrado!'};
 		}
 		
-		throw new Error("Email ou número inserido já foi cadastrado!");
+		throw new Error('Email ou número inserido já foi cadastrado!');
 	},
 	
 	async getSchedulePSE() {
 		try {	
-			const data = await knex("pse").select("start", "end", "dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
+			const data = await knex('pse').select('start', 'end', 'dinamycDate_1', 'dinamycDate_2', 'dinamycDate_3', 'dinamycDate_4', 'dinamycDate_5').first();
 			
 			if (!data) {
-				throw new Error("PSE has not been scheduled!");
+				throw new Error('PSE has not been scheduled!');
 			}
 
 			return data;
@@ -114,39 +114,39 @@ module.exports = {
 
 	async getDinamycDatesPSE(){
 		try {
-		let data = await knex("pse").select("dinamycDate_1", "dinamycDate_2", "dinamycDate_3", "dinamycDate_4", "dinamycDate_5").first();
+			let data = await knex('pse').select('dinamycDate_1', 'dinamycDate_2', 'dinamycDate_3', 'dinamycDate_4', 'dinamycDate_5').first();
 		
-		if (!data) {
-			throw new Error("PSE has not been scheduled!");
-		}
+			if (!data) {
+				throw new Error('PSE has not been scheduled!');
+			}
 
-		let dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5;
+			let dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5;
 
-		if (data.dinamycDate_1) {
-			dinamycDate_1 = `Dia ${moment(data.dinamycDate_1).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
-		}
-		if (data.dinamycDate_2) {
-			dinamycDate_2 = `Dia ${moment(data.dinamycDate_2).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
-		}
-		if (data.dinamycDate_3) {
-			dinamycDate_3 = `Dia ${moment(data.dinamycDate_3).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
-		}
-		if (data.dinamycDate_4) {
-			dinamycDate_4 = `Dia ${moment(data.dinamycDate_4).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
-		}
-		if (data.dinamycDate_5){
-			dinamycDate_5 = `Dia ${moment(data.dinamycDate_5).utcOffset(-3).locale('pt').format("D/MM (dddd) - kk:mm")}`;
-		}
+			if (data.dinamycDate_1) {
+				dinamycDate_1 = `Dia ${moment(data.dinamycDate_1).utcOffset(-3).locale('pt').format('D/MM (dddd) - kk:mm')}`;
+			}
+			if (data.dinamycDate_2) {
+				dinamycDate_2 = `Dia ${moment(data.dinamycDate_2).utcOffset(-3).locale('pt').format('D/MM (dddd) - kk:mm')}`;
+			}
+			if (data.dinamycDate_3) {
+				dinamycDate_3 = `Dia ${moment(data.dinamycDate_3).utcOffset(-3).locale('pt').format('D/MM (dddd) - kk:mm')}`;
+			}
+			if (data.dinamycDate_4) {
+				dinamycDate_4 = `Dia ${moment(data.dinamycDate_4).utcOffset(-3).locale('pt').format('D/MM (dddd) - kk:mm')}`;
+			}
+			if (data.dinamycDate_5){
+				dinamycDate_5 = `Dia ${moment(data.dinamycDate_5).utcOffset(-3).locale('pt').format('D/MM (dddd) - kk:mm')}`;
+			}
 		
-		data.dinamycDate_1 = dinamycDate_1;
-		data.dinamycDate_2 = dinamycDate_2;
-		data.dinamycDate_3 = dinamycDate_3;
-		data.dinamycDate_4 = dinamycDate_4;
-		data.dinamycDate_5 = dinamycDate_5;
+			data.dinamycDate_1 = dinamycDate_1;
+			data.dinamycDate_2 = dinamycDate_2;
+			data.dinamycDate_3 = dinamycDate_3;
+			data.dinamycDate_4 = dinamycDate_4;
+			data.dinamycDate_5 = dinamycDate_5;
 
-		return data;
+			return data;
 		} catch (error) {
-		throw new Error(error.message);
+			throw new Error(error.message);
 		}
 	},
 
@@ -158,7 +158,7 @@ module.exports = {
 			getDocuments.forEach(doc => batch.delete(doc.ref));
 
 			await batch.commit();
-			return {message: "Documents deleted!"}
+			return {message: 'Documents deleted!'};
 		} catch(err){
 			throw new Error(err.message);
 		}
@@ -169,23 +169,23 @@ module.exports = {
 		try {
 			const endDateFormatted = new Date(endDate);
 			const startDateFormatted = new Date(startDate);
-			const dinamycDates = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5]
-			const dinamycDatesFormatted = []
+			const dinamycDates = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5];
+			const dinamycDatesFormatted = [];
 
-			const jobExists = scheduledJobs["scheduleJobPSE"]
+			const jobExists = scheduledJobs['scheduleJobPSE'];
 
 			if (jobExists) {
-				throw new Error("Job already exists!");
+				throw new Error('Job already exists!');
 			}
 
 			if (!regex.test(startDate) || !regex.test(endDate)) {
-				throw new Error("Date bad formatted");
+				throw new Error('Date bad formatted');
 			}
 			
-			for (i = 0; i<5; i++) {
+			for (let i = 0; i<5; i++) {
 				if (dinamycDates[i]) {
 					if (!regex.test(dinamycDates[i])) {
-						throw new Error("Dinamyc date bad formatted");
+						throw new Error('Dinamyc date bad formatted');
 					}
 				}
 
@@ -197,35 +197,35 @@ module.exports = {
 			}
 
 			if (isBefore(endDateFormatted, startDateFormatted)) {
-				throw new Error("start date can't be greater than end date");
+				throw new Error('start date can\'t be greater than end date');
 			}
 
-			const data = await knex("pse").select("*");
+			const data = await knex('pse').select('*');
 
 			if(data.length === 0) {
 				let currentDate = new Date();
 
 				if (isBefore(startDateFormatted, currentDate)) {
-					throw new Error("current date can't be greater than start date");
+					throw new Error('current date can\'t be greater than start date');
 				}
 
-				for(i = 0; i<5; i++) {
+				for(let i = 0; i<5; i++) {
 					if (dinamycDatesFormatted[i]) {
 						if (isBefore(dinamycDatesFormatted[i], currentDate)) {
-							throw new Error("current date can't be greater than dinamyc date");
+							throw new Error('current date can\'t be greater than dinamyc date');
 						}
 
 						if (isBefore(dinamycDatesFormatted[i], startDateFormatted)) {
-							throw new Error("start date can't be greater than dinamyc date");
+							throw new Error('start date can\'t be greater than dinamyc date');
 						}
 
 						if (isBefore(dinamycDatesFormatted[i], endDateFormatted)) {
-							throw new Error("end date can't be greater than dinamyc date");
+							throw new Error('end date can\'t be greater than dinamyc date');
 						}
 					}
 				}
 				
-				await knex("pse").insert({
+				await knex('pse').insert({
 					id: v4(),
 					start: startDate,
 					end: endDate,
@@ -240,18 +240,18 @@ module.exports = {
 				await this.deleteSubscribersData();
 				
 			} else {
-				throw new Error("pse already scheduled!");
+				throw new Error('pse already scheduled!');
 			}
 		
-			scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
+			scheduleJob('scheduleJobPSE', endDateFormatted, async () => {
 				try {
-					await knex("pse").delete();
+					await knex('pse').delete();
 				} catch (error) {
-					console.log("Error: ", error.message);
+					console.log('Error: ', error.message);
 				}
 			});
 
-			return { message: "service scheduled to " + endDate};
+			return { message: 'service scheduled to ' + endDate};
 		} catch(err) {
 			throw new Error(err.message);
 		}
@@ -261,14 +261,14 @@ module.exports = {
 		const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}-03:00$/;
 		const pseDatesFormatted = {};
 		let verifyUpdateSchedule = false;
-		const jobExists = scheduledJobs["scheduleJobPSE"];
-		const {end, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5} = await knex("pse").select("*").first();
-		let dinamycDatesList = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5]
+		const jobExists = scheduledJobs['scheduleJobPSE'];
+		const {end, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5} = await knex('pse').select('*').first();
+		let dinamycDatesList = [dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5];
 		let endDate;
-
+		
 		try {
 			if (!jobExists) {
-				throw new Error("scheduling does not exist!");
+				throw new Error('scheduling does not exist!');
 			}
 			
 			if (pse.startDate && regex.test(pse.startDate)) {
@@ -310,21 +310,21 @@ module.exports = {
 
 			if (pseDatesFormatted.end && pseDatesFormatted.start) {
 				if (isBefore(pseDatesFormatted.end, pseDatesFormatted.start)) {
-					throw new Error("start date can't be greater than end date");
+					throw new Error('start date can\'t be greater than end date');
 				}
 			} 
 			else if (pseDatesFormatted.start) {
 				if (isBefore(end, pseDatesFormatted.start)){
-					throw new Error("start date can't be greater than end date");
+					throw new Error('start date can\'t be greater than end date');
 				}
 
 				if (isBefore(pseDatesFormatted.start, currentDate)) {
-					throw new Error("current date can't be greater than start date");
+					throw new Error('current date can\'t be greater than start date');
 				}
 			}
 
 			if (verifyUpdateSchedule && isBefore(pseDatesFormatted.end, currentDate)) {
-				throw new Error("current date can't be greater than end date");
+				throw new Error('current date can\'t be greater than end date');
 			}
 
 			if (isBefore(pseDatesFormatted.dinamycDate_1, currentDate) || 
@@ -332,27 +332,27 @@ module.exports = {
 				isBefore(pseDatesFormatted.dinamycDate_3, currentDate) ||
 				isBefore(pseDatesFormatted.dinamycDate_4, currentDate) ||
 				isBefore(pseDatesFormatted.dinamycDate_5, currentDate)) {
-				throw new Error("current date can't be greater than dinamyc date");
+				throw new Error('current date can\'t be greater than dinamyc date');
 			}
 
-			for (i = 0; i < 5; i++){
+			for (let i = 0; i < 5; i++){
 				if (isBefore(dinamycDatesList[i], endDate)){
-					throw new Error("end pse date can't be greater than dinamyc date")
+					throw new Error('end pse date can\'t be greater than dinamyc date');
 				}
 			}
 
 			if (jobExists && verifyUpdateSchedule) {
 				jobExists.cancel();
 			}
-			
-			await knex("pse").select("*").update(pseDatesFormatted);
+	
+			await knex('pse').select('*').update(pseDatesFormatted);
 			
 			if (verifyUpdateSchedule) {
-				scheduleJob("scheduleJobPSE", pseDatesFormatted.end, async () => {
+				scheduleJob('scheduleJobPSE', pseDatesFormatted.end, async () => {
 					try {
-						await knex("pse").delete();
+						await knex('pse').delete();
 					} catch (error) {
-						console.log("Error: ", error.message);
+						console.log('Error: ', error.message);
 					}
 				});
 			}
@@ -364,17 +364,17 @@ module.exports = {
 	},
 
 	async deleteSchedulePSE() {
-		const jobScheduled = scheduledJobs["scheduleJobPSE"];
+		const jobScheduled = scheduledJobs['scheduleJobPSE'];
 
 		try {
 			if (jobScheduled) {
 				jobScheduled.cancel();
-				await knex("pse").delete();
+				await knex('pse').delete();
 				
-				return {message: "PSE schedule deleted!"};
+				return {message: 'PSE schedule deleted!'};
 			}
 			
-			throw new Error("Schedule does not exists");
+			throw new Error('Schedule does not exists');
 		} catch(err) {
 			throw new Error(err.message);
 		}
@@ -383,15 +383,15 @@ module.exports = {
 	async deleteOnePseDate(date) {
 		try{
 
-			if (date === "startDate" || date === "endDate"){
-				throw new Error("Não é permitido apagar horário de agendamento do pse");
+			if (date === 'startDate' || date === 'endDate'){
+				throw new Error('Não é permitido apagar horário de agendamento do pse');
 			}
 
-			const updateDate = {}
-			updateDate[date] = null
+			const updateDate = {};
+			updateDate[date] = null;
 
-			await knex("pse").update(updateDate)
-			return {message: "Data removida"};
+			await knex('pse').update(updateDate);
+			return {message: 'Data removida'};
 		} catch (err){
 			throw new Error(err.message);
 		}
@@ -399,29 +399,29 @@ module.exports = {
 
 	async checkSchedulePSE() {
 		try {
-			const data = await knex("pse").select("*");
+			const data = await knex('pse').select('*');
 			
 			if (data[0]) {
 				const endDateFormatted = new Date(data[0].end);
 				
 				if (endDateFormatted < new Date()) {
-				await knex("pse").delete();
+					await knex('pse').delete();
 				} else {
-				scheduleJob("scheduleJobPSE", endDateFormatted, async () => {
-					try {
-						await knex("pse").delete();
-					} catch (error) {
-						console.log("Error: ", error.message);
-					}
-				});
+					scheduleJob('scheduleJobPSE', endDateFormatted, async () => {
+						try {
+							await knex('pse').delete();
+						} catch (error) {
+							console.log('Error: ', error.message);
+						}
+					});
 				}
 
-				return "";
+				return '';
 			} else {
-				throw new Error("⛔ Schedule does not exists!");
+				throw new Error('⛔ Schedule does not exists!');
 			}
 		} catch (error) {
 			throw new Error(error.message);
 		}
 	}
-}
+};
