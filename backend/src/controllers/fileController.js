@@ -27,7 +27,6 @@ module.exports = {
     
 	async removeImage(req, res) { // verificar onde está sendo usado, pois não existe a rota
 		const { imgName } = req.params;
-		const fileService = new ImageService(); // ImageService não existe
 		
 		try {
 			const result = await fileService.removeImage(imgName);
