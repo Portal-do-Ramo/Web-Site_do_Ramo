@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { FaTrash } from "react-icons/fa";
 
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 import api from '../../services/api';
@@ -18,6 +19,11 @@ function PSEAgendado({ start, end }) {
   const [fourthDay, setFourthDay] = useState('');
 
   const [fifthDay, setFifthDay] = useState('');
+
+	const [showFirstDay, setShowFirstDay] = useState(true);
+	const [showSecondDay, setShowSecondDay] = useState(true);
+	const [showThirdDay, setShowThirdDay] = useState(true);
+	const [showFourthDay, setShowFourthDay] = useState(true);
 	const [showFifthDay, setShowFifthDay] = useState(false);
 
 	const [cancelPSEModalIsOpen, setCancelPSEModalIsOpen] = useState(false);
@@ -100,10 +106,10 @@ function PSEAgendado({ start, end }) {
 			// setFourthDay(converterData(dinamycDate_4));
 			// setFifthDay(converterData(dinamycDate_5));
 
-			setFirstDay(adjustTime(dinamycDate_1).toISOString().slice(0, 16));
-			setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16));
-			setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16));
-			setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16));
+			dinamycDate_1 ? setFirstDay(adjustTime(dinamycDate_1).toISOString().slice(0, 16)) : null
+			dinamycDate_2 ? setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16)) : null
+			dinamycDate_3 ? setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16)) : null
+			dinamycDate_4 ? setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16)) : null
 			dinamycDate_5 ? setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16)) : null
 			
 		} catch (error) {
@@ -225,6 +231,28 @@ function PSEAgendado({ start, end }) {
 		router.reload();
 	}
 
+	function removeDay(day) {
+		switch (day) {
+			case 1:
+				setFirstDay('');
+				break;
+			case 2:
+				setSecondDay('');
+				break;
+			case 3:
+				setThirdDay('');
+				break;
+			case 4:
+				setFourthDay('');
+				break;
+			case 5:
+				setFifthDay('');
+				break;
+			default:
+				break;
+		}
+	}
+	
 	return (
 		<>
 			<section className={styles.showInformation}>
@@ -290,6 +318,9 @@ function PSEAgendado({ start, end }) {
 											onChange={(e) => setFirstDay(e.target.value)}
 											value={firstDay}
 										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+											<FaTrash size={24} />    
+										</button> 
 								</div>
 								<div className={styles.days}>
 									<label htmlFor="secondDay">2° Dia:</label>
@@ -304,6 +335,9 @@ function PSEAgendado({ start, end }) {
 										onChange={(e) => setSecondDay(e.target.value)}
 										value={secondDay}
 									/>
+									<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
+											<FaTrash size={24} />    
+									</button> 
 								</div>
 								<div className={styles.days}>
 									<label htmlFor="thirdDay">3° Dia:</label>
@@ -318,6 +352,9 @@ function PSEAgendado({ start, end }) {
 											onChange={(e) => setThirdDay(e.target.value)}
 											value={thirdDay}
 										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
+											<FaTrash size={24} />    
+										</button> 
 								</div>
 								<div className={styles.days}>
 									<label htmlFor="fourthDay">4° Dia:</label>
@@ -332,7 +369,10 @@ function PSEAgendado({ start, end }) {
 											id="fourthDay"
 											onChange={(e) => setFourthDay(e.target.value)}
 											value={fourthDay}
-										/>            
+										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
+											<FaTrash size={24} />    
+										</button>      
 								</div>
 								{fifthDay || showFifthDay ? (
 									<>
@@ -349,7 +389,10 @@ function PSEAgendado({ start, end }) {
 													id="fifthDay"
 													onChange={(e) => setFifthDay(e.target.value)}
 													value={fifthDay}
-												/>            
+												/>
+											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+												<FaTrash size={24} />    
+											</button>               
 										</div>
 										<button type="button" className={styles.addDay} onClick={()=>{
 											setShowFifthDay(false)

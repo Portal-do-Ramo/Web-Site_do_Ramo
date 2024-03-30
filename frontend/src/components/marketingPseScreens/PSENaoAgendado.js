@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import { toast } from 'react-toastify';
 import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { FaTrash } from "react-icons/fa";
 
 import styles from "../../pages/marketing/PSE/styles.module.scss";
 
@@ -31,6 +32,28 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 	}, []);
 
 	
+	function removeDay(day) {
+		switch (day) {
+			case 1:
+				setFirstDay('');
+				break;
+			case 2:
+				setSecondDay('');
+				break;
+			case 3:
+				setThirdDay('');
+				break;
+			case 4:
+				setFourthDay('');
+				break;
+			case 5:
+				setFifthDay('');
+				break;
+			default:
+				break;
+		}
+	}
+
 
 	function handleAccessPSEFile() {
     const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
@@ -150,6 +173,9 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 											onChange={(e) => setFirstDay(e.target.value)}
 											value={firstDay}
 										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+											<FaTrash size={24} />    
+										</button>  
 								</div>
 								<div className={styles.days}>
 									<label htmlFor="secondDay">2° Dia:</label>
@@ -161,6 +187,9 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 										onChange={(e) => setSecondDay(e.target.value)}
 										value={secondDay}
 									/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
+											<FaTrash size={24} />    
+										</button>  
 								</div>
 								<div className={styles.days}>
 									<label htmlFor="thirdDay">3° Dia:</label>
@@ -172,6 +201,9 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 											onChange={(e) => setThirdDay(e.target.value)}
 											value={thirdDay}
 										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
+											<FaTrash size={24} />    
+										</button>    
 								</div>
 								<div className={styles.days}>
 									<label htmlFor="fourthDay">4° Dia:</label>
@@ -183,6 +215,9 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 											onChange={(e) => setFourthDay(e.target.value)}
 											value={fourthDay}
 										/>            
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
+											<FaTrash size={24} />    
+										</button>  
 								</div>
 								{showFifthDay ? (
 									<>
@@ -195,7 +230,10 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 													id="fifthDay"
 													onChange={(e) => setFifthDay(e.target.value)}
 													value={fifthDay}
-												/>            
+												/>       
+												<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+											<FaTrash size={24} />    
+										</button>  
 										</div>
 										<button type="button" className={styles.addDay} onClick={()=>{
 											setShowFifthDay(false)
