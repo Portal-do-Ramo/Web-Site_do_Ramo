@@ -169,7 +169,7 @@ export default function Page3({ dynamicDates }) {
             <strong>*</strong>
           </span>
           <textarea
-            placeholder='Escreva seus motivos (mínimo de 4 caracteres)'
+            placeholder='Escreva seus motivos'
             onChange={(event) => setReason(event.target.value)}
             value={reason}
           />
@@ -178,7 +178,7 @@ export default function Page3({ dynamicDates }) {
             trajetória dentro do ramo? <strong>*</strong>
           </span>
           <textarea
-            placeholder='Escreva suas experiências (mínimo de 4 caracteres)'
+            placeholder='Escreva suas experiências'
             onChange={(event) => setExperience(event.target.value)}
             value={experience}
           />
