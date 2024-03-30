@@ -71,7 +71,7 @@ export function PSEFormContextProvider({ children }) {
     } else {
       setIsThirdPageValidated(false);
     }
-  }, [crew, area, availableDate, reason, experience]);
+  }, [crew, area, availableDate, reason, experience, HowFoundIeee]);
 
   useEffect(() => {
     if (
