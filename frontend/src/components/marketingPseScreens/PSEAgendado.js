@@ -189,10 +189,10 @@ function PSEAgendado({ start, end }) {
 		let schedulePSEObject = {
 			startDate: beginDateFormatted,
 			endDate: endDateFormatted,
-			dinamycDate_1: `${firstDay}:00.000-03:00`,
-			dinamycDate_2: `${secondDay}:00.000-03:00`,
-			dinamycDate_3: `${thirdDay}:00.000-03:00`,
-			dinamycDate_4: `${fourthDay}:00.000-03:00`,
+			dinamycDate_1: firstDay ? `${firstDay}:00.000-03:00` : null,
+			dinamycDate_2: secondDay ? `${secondDay}:00.000-03:00`: null,
+			dinamycDate_3: thirdDay ? `${thirdDay}:00.000-03:00` : null,
+			dinamycDate_4: fourthDay ? `${fourthDay}:00.000-03:00`: null,
 			dinamycDate_5: fifthDay ? `${fifthDay}:00.000-03:00` : null 
 		}
 		try {

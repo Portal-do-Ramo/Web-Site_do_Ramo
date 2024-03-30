@@ -371,7 +371,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 					<p>
 						Ao cancelar o processo seletivo externo as informações
 						de início e término do processo serão removidas.
-					</p>
+					</p>	
 
 
 					<Modal 
