@@ -111,6 +111,27 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 		setEditPSEModalIsOpen(false);
 	}
 
+	function removeDay(day) {
+		switch (day) {
+			case 1:
+				setFirstDay('');
+				break;
+			case 2:
+				setSecondDay('');
+				break;
+			case 3:
+				setThirdDay('');
+				break;
+			case 4:
+				setFourthDay('');
+				break;
+			case 5:
+				setFifthDay('');
+				break;
+			default:
+				break;
+		}
+	}
 
 	return (
 		<>
@@ -231,9 +252,9 @@ function PSENaoAgendado({isSpreadsheetAccessActive}) {
 													onChange={(e) => setFifthDay(e.target.value)}
 													value={fifthDay}
 												/>       
-												<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
-											<FaTrash size={24} />    
-										</button>  
+											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+												<FaTrash size={24} />    
+											</button>  
 										</div>
 										<button type="button" className={styles.addDay} onClick={()=>{
 											setShowFifthDay(false)

@@ -231,21 +231,31 @@ function PSEAgendado({ start, end }) {
 		router.reload();
 	}
 
+	async function handleRemoveDate(name) {
+		await api.patch(`/pse/dinamycDate/${name}`);
+		router.reload();
+	}
+
 	function removeDay(day) {
 		switch (day) {
 			case 1:
+				handleRemoveDate('dinamycDate_1');
 				setFirstDay('');
 				break;
 			case 2:
+				handleRemoveDate('dinamycDate_2');
 				setSecondDay('');
 				break;
 			case 3:
+				handleRemoveDate('dinamycDate_3');
 				setThirdDay('');
 				break;
 			case 4:
+				handleRemoveDate('dinamycDate_4');
 				setFourthDay('');
 				break;
 			case 5:
+				handleRemoveDate('dinamycDate_5');
 				setFifthDay('');
 				break;
 			default:

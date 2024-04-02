@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { format } from "date-fns";
 import Modal from 'react-modal';
 import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { FaTrash } from "react-icons/fa";
 
 
 async function handleDownloadPSEFile() {
@@ -54,8 +55,6 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 		let beginDateFormatted = new Date(start);
 		// beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
 		beginDateFormatted.setUTCHours(beginDateFormatted.getUTCHours() - 3); // Ajuste de 3 horas para o fuso horário do Brasil
-
-
 
 		let endDateFormatted = new Date(end);
 		// endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
@@ -110,20 +109,12 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 			
 			const { dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5 } = response.data;
 
-			// setFirstDay(converterData(dinamycDate_1));
-			// setSecondDay(converterData(dinamycDate_2));
-			// setThirdDay(converterData(dinamycDate_3));
-			// setFourthDay(converterData(dinamycDate_4));
-			// setFifthDay(converterData(dinamycDate_5));
-
-			setFirstDay(adjustTime(dinamycDate_1).toISOString().slice(0, 16));
-			setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16));
-			setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16));
-			setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16));
+			dinamycDate_1 ? setFirstDay(adjustTime(dinamycDate_1).toISOString().slice(0, 16)) : null
+			dinamycDate_2 ? setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16)) : null
+			dinamycDate_3 ? setThirdDay(adjustTime(dinamycDate_3).toISOString().slice(0, 16)) : null
+			dinamycDate_4 ? setFourthDay(adjustTime(dinamycDate_4).toISOString().slice(0, 16)) : null
 			dinamycDate_5 ? setFifthDay(adjustTime(dinamycDate_5).toISOString().slice(0, 16)) : null
-			
-			
-			
+						
 		} catch (error) {
 
 			console.error(error);
@@ -154,10 +145,10 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 		let schedulePSEObject = {
 			startDate: beginDateFormatted,
 			endDate: endDateFormatted,
-			dinamycDate_1: `${firstDay}:00.000-03:00`,
-			dinamycDate_2: `${secondDay}:00.000-03:00`,
-			dinamycDate_3: `${thirdDay}:00.000-03:00`,
-			dinamycDate_4: `${fourthDay}:00.000-03:00`,
+			dinamycDate_1: firstDay ? `${firstDay}:00.000-03:00` : null ,
+			dinamycDate_2: secondDay ? `${secondDay}:00.000-03:00` : null ,
+			dinamycDate_3: thirdDay ? `${thirdDay}:00.000-03:00` : null ,
+			dinamycDate_4: fourthDay ? `${fourthDay}:00.000-03:00` : null ,
 			dinamycDate_5: fifthDay ? `${fifthDay}:00.000-03:00` : null 
 		}
 
@@ -189,6 +180,38 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 	async function handleCancelPSE() {
 		await api.delete("/pse/schedule");
 		router.reload();
+	}
+
+	async function handleRemoveDate(name) {
+		await api.patch(`/pse/dinamycDate/${name}`);
+		router.reload();
+	}
+
+	function removeDay(day) {
+		switch (day) {
+			case 1:
+				handleRemoveDate('dinamycDate_1');
+				setFirstDay('');
+				break;
+			case 2:
+				handleRemoveDate('dinamycDate_2');
+				setSecondDay('');
+				break;
+			case 3:
+				handleRemoveDate('dinamycDate_3');
+				setThirdDay('');
+				break;
+			case 4:
+				handleRemoveDate('dinamycDate_4');
+				setFourthDay('');
+				break;
+			case 5:
+				handleRemoveDate('dinamycDate_5');
+				setFifthDay('');
+				break;
+			default:
+				break;
+		}
 	}
 
 	return (
@@ -266,6 +289,9 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											onChange={(e) => setFirstDay(e.target.value)}
 											value={firstDay}
 										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+											<FaTrash size={24} />    
+										</button>
 								</div>
 								<div className={styles.days}>
 									<label for="secondDay">2° Dia:</label>
@@ -280,6 +306,9 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 										onChange={(e) => setSecondDay(e.target.value)}
 										value={secondDay}
 									/>
+									<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
+											<FaTrash size={24} />    
+										</button>
 								</div>
 								<div className={styles.days}>
 									<label for="thirdDay">3° Dia:</label>
@@ -294,6 +323,9 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											onChange={(e) => setThirdDay(e.target.value)}
 											value={thirdDay}
 										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
+											<FaTrash size={24} />    
+										</button>
 								</div>
 								<div className={styles.days}>
 									<label for="fourthDay">4° Dia:</label>
@@ -309,6 +341,9 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											onChange={(e) => setFourthDay(e.target.value)}
 											value={fourthDay}
 										/>            
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
+											<FaTrash size={24} />    
+										</button>
 								</div>
 								{fifthDay || showFifthDay ? (
 									<>
@@ -326,6 +361,9 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 													onChange={(e) => setFifthDay(e.target.value)}
 													value={fifthDay}
 												/>            
+											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+												<FaTrash size={24} />    
+											</button>
 										</div>
 										<button type="button" className={styles.addDay} onClick={()=>{
 											setShowFifthDay(false)
