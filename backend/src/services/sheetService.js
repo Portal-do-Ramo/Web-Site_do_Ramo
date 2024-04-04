@@ -1,35 +1,35 @@
-const sheetConfig = require("../config/sheetConfig");
+const sheetConfig = require('../config/sheetConfig');
 
 module.exports = {
-    async insert(values){
-        const { googleSheets, auth, spreadsheetId } = await sheetConfig.getAuthSheets();
+	async insert(values){
+		const { googleSheets, auth, spreadsheetId } = await sheetConfig.getAuthSheets();
 
-        try{
-            await googleSheets.spreadsheets.values.append({
-                auth,
-                spreadsheetId,
-                range: "Sheet1",
-                valueInputOption: "USER_ENTERED",
-                resource: {
-                    values: values,
-                }
-            })
-        } catch(err){
-            throw new Error(err.message)
-        }
+		try{
+			await googleSheets.spreadsheets.values.append({
+				auth,
+				spreadsheetId,
+				range: 'Sheet1',
+				valueInputOption: 'USER_ENTERED',
+				resource: {
+					values: values,
+				}
+			});
+		} catch(err){
+			throw new Error(err.message);
+		}
         
-    },
-    async delete(){
-        const { googleSheets, auth, spreadsheetId } = await sheetConfig.getAuthSheets();
+	},
+	async delete(){
+		const { googleSheets, auth, spreadsheetId } = await sheetConfig.getAuthSheets();
 
-        try{
-            await googleSheets.spreadsheets.values.clear({
-                auth,
-                spreadsheetId,
-                range: "'Sheet1'!A2:S"
-            })
-        } catch(err){
-            throw new Error(err.message)
-        }
-    }
-}
+		try{
+			await googleSheets.spreadsheets.values.clear({
+				auth,
+				spreadsheetId,
+				range: '\'Sheet1\'!A2:S'
+			});
+		} catch(err){
+			throw new Error(err.message);
+		}
+	}
+};

@@ -1,4 +1,4 @@
-const sponsorService = require("../services/sponsorService");
+const sponsorService = require('../services/sponsorService');
 
 module.exports = {
 	async index(req, res) {
@@ -39,4 +39,4 @@ module.exports = {
 			return res.status(405).json({ message: err.message });
 		}
 	}
-}
+};

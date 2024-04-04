@@ -1,9 +1,10 @@
-const {v4} = require("uuid");
+/* eslint-disable no-mixed-spaces-and-tabs */
+const {v4} = require('uuid');
 
 exports.seed = function(knex) {
   
-  return knex('crews').del()
-    .then(function () {
+	return knex('crews').del()
+		.then(function () {
       
       return knex('crews').insert([
 		    {id: v4(), name: "WIE", about: 'A equipe de afinidade para mulheres na engenharia, o WIE (Women in Engineering), é uma equipe de desenvolvimento de projetos sociais e ações afirmativas para estudantes e profissionais da área de STEM, sigla que consiste em ciências, tecnologia, engenharia e matemática. Os projetos da equipe de afinidade visam o desenvolvimento técnico e pessoal de seus integrantes assim como disseminação de conhecimento e de impacto social positivo a partir do público afetado pelas ações afirmativas. \
