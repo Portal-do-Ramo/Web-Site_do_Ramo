@@ -390,19 +390,6 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 						</div>
 						{/* <Agendamento beginDate={beginDate} endDate={endDate}/> */}
 					</Modal>
-			{/* <section className={styles.downloadPSEFile}>
-				<span>Baixe o arquivo do último PSE!</span>
-				<button
-					type="button"
-					className={!isDownloadActive ? styles.downloadButtonOff : ""}
-					onClick={handleDownloadPSEFile}
-					disabled={!isDownloadActive}
-				>
-					{isDownloadActive ? <FiDownload /> : <MdOutlineFileDownloadOff />}
-					Baixar
-				</button>
-			</section> */}
-
 
 				<section className={styles.closePSE}>
 					<span>Encerrar o PSE!</span>
