@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "server-json": "json-server --watch --port 5000 --routes routes.json equipes.json"
+    "server-json": "json-server --watch --port 5000 --routes routes.json equipes.json",
+    "lint": "eslint ./src --ext .js ",
+    "lint:fix": "eslint ./src --ext .js --fix ",
+    "style:check": "prettier --check 'src/**/*.js'",
+    "style:fix": "prettier --write 'src/**/*.js'"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -29,6 +33,10 @@
     "swiper": "^8.4.5"
   },
   "devDependencies": {
-    "json-server": "^0.17.0"
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-unused-imports": "^3.1.0",
+    "json-server": "^0.17.0",
+    "prettier": "3.2.5"
   }
 }
