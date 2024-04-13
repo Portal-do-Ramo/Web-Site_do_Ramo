@@ -11,6 +11,7 @@ import { isBefore } from 'date-fns';
 export default function PSE({ havePSE }) {
   const router = useRouter();
 
+  //Verifica se o processo seletivo está ativo ou não
   async function handleRegister() {
     // router.push('/PSE/cadastro?page=1') // apagar dps
     // return; // apagar dps
@@ -136,6 +137,7 @@ export default function PSE({ havePSE }) {
   );
 }
 
+//Verifica se o processo seletivo está ativo 
 export const getStaticProps = async () => {
   let havePSE = false;
   try {

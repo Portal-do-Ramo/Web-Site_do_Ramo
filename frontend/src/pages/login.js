@@ -14,6 +14,7 @@ export default function Login() {
   const { signIn, user, isAuthenticated } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
 
+  //Alterna a visibilidade da senha no campo senha
   function changePasswordInputVisibility() {
     if (document.getElementById('show_password_input').checked) {
       document.getElementById('password_input').type = 'text';
@@ -39,6 +40,7 @@ export default function Login() {
     }
   }, [errMessage]);
 
+  //Responsável pelo login
   async function handleSignIn(data) {
     try {
       await signIn(data);

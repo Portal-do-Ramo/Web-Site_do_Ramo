@@ -6,16 +6,20 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { useRouter } from 'next/router';
 import api from '../../services/api';
 
+//Renderiza a barra de navegação do administrador
 export default function MarketingNavBar({ page, user }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useContext(AuthContext);
   const [crews, setCrews] = useState([]);
+
+  //Controla a abertura e o fechamento do menu de navegação
   function open() {
     document.body.style.overflowY = isOpen ? 'scroll' : 'hidden';
     setIsOpen(!isOpen);
   }
 
+  //Realiza o logout do usuário
   function handleSignOut() {
     signOut();
   }

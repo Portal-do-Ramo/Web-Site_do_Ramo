@@ -73,6 +73,7 @@ export default function PSE({
   }
 }
 
+//Busca informações do PSE (início, fim, status com base na data atual etc)
 export const getServerSideProps = async () => {
   let startDate = null;
   let endDate = null;

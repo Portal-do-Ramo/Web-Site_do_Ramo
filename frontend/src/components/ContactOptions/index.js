@@ -10,10 +10,12 @@ import Map from '../Map';
 import styles from './styles.module.scss';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+//Componente oferece opções para acessar redes sociais e e-mail
 export default function ContactButton() {
   const [buttonSelected, setButtonSelected] = useState(0);
   const [isEmailCopied, setIsEmailCopied] = useState(false);
 
+  //Copia endereço de e-mail para área de transferência do navegador
   function handleCopyEmail() {
     navigator.clipboard.writeText('gp.ramocefetrj@gmail.com');
 

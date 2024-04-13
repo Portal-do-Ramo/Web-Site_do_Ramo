@@ -113,6 +113,7 @@ export function PSEFormContextProvider({ children }) {
     setButtonDisabled(false);
   }
 
+  //Envia os dados do formulário quando as páginas estão validadas
   async function handleSendCSV() {
     let formattedBirthday = `${birthday.slice(6, 10)}-${birthday.slice(3, 5)}-${birthday.slice(0, 2)}`;
 

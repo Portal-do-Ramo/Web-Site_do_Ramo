@@ -34,6 +34,7 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
     setEndDate(date.toISOString().slice(0, 16));
   }, []);
 
+   //Abre a planilha de inscritos do PSE em uma nova aba
   function handleAccessPSEFile() {
     const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
 
@@ -44,6 +45,7 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
     }
   }
 
+  //Agenda um novo PSE
   async function handleSchedulePSE() {
     /* 
       2023-11-04T12:19:00.000-03:00

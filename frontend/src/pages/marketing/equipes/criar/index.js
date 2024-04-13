@@ -39,6 +39,7 @@ export default function Criar() {
     reader.readAsDataURL(e.target.files[0]);
   };
 
+  //Cria uma nova equipe
   async function handleCreateCrew() {
     try {
       if (name.length > 0 && description.length > 0 && image) {

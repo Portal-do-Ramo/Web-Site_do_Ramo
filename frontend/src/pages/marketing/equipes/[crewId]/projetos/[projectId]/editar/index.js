@@ -33,6 +33,7 @@ export default function projetoEditar({ crew, project }) {
   }, [user, isAuthenticated]);
 
   useEffect(() => {
+    //Converte as URLs das imagens em URLs base64
     async function convertImage(image) {
       let blob = await fetch(image).then((r) => r.blob());
       let dataUrl = await new Promise((resolve) => {
@@ -44,6 +45,7 @@ export default function projetoEditar({ crew, project }) {
       return dataUrl;
     }
 
+    //Converte imagens, forma data de início do projeto e se concluído a data de término
     async function execute() {
       setLogo(await convertImage(logo));
       setBanner(await convertImage(banner));

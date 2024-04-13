@@ -52,6 +52,7 @@ export default function CriarProjeto({ crew }) {
     reader.readAsDataURL(e.target.files[0]);
   };
 
+  //Cria projeto
   async function handleCreateProject() {
     try {
       if (

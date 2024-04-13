@@ -27,6 +27,7 @@ export default function Page3({ dynamicDates }) {
     setHowFoundIeee
   } = useContext(PSEFormContext);
 
+  //Controla a seleção de datas disponíveis para a dinâmica
   const handleCheckboxChange = (event, date) => {
     const checkedDates = availableDate.includes(date)
       ? availableDate.filter((d) => d !== date)

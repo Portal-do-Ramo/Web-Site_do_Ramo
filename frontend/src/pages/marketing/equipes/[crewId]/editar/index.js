@@ -27,6 +27,7 @@ export default function equipeEditar({ crew }) {
   }, [user, isAuthenticated]);
 
   useEffect(() => {
+    //Converte uma URL de imagem em um formato base64
     async function convertImage() {
       let blob = await fetch(image).then((r) => r.blob());
       let dataUrl = await new Promise((resolve) => {

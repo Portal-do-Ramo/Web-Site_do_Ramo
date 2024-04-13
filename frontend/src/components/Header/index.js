@@ -7,6 +7,7 @@ export default function Header({ page, children }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
+  //Controla a abertura e o fechamento do menu de navegação
   function open() {
     document.body.style.overflowY = isOpen ? 'scroll' : 'hidden';
     setIsOpen(!isOpen);

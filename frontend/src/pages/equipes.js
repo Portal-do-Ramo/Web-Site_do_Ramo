@@ -90,6 +90,7 @@ export default function Equipes({ crews }) {
     }
   }, [projectsTranslateX]);
 
+  //Permite alterar a equipe selecionada, para navegar entre as equipes
   function handleChangeCrewSelected(operation) {
     let imageContainerShift = document.querySelector(
       '.' + styles.currentProjectImage
@@ -147,6 +148,7 @@ export default function Equipes({ crews }) {
     }
   }
 
+  //Altera a seleção dos prêmios exibidos em uma equipe
   function handleChangeAwardSelected(operation) {
     let awardWidth = document.querySelector('.' + styles.award).offsetWidth;
     let awardGridGap = getComputedStyle(
@@ -167,6 +169,7 @@ export default function Equipes({ crews }) {
     }
   }
 
+  //Altera a seleção dos projetos exibidos em uma equipe 
   function handleChangeProjectsSelected(operation) {
     let cardCardWidth = document.querySelector(
       '.' + styles.projectCard
@@ -199,6 +202,7 @@ export default function Equipes({ crews }) {
     }
   }
 
+  //Verifica se as setas de navegação dos prêmios devem ser desativadas 
   function verifyIsAwardArrowDisabled() {
     if (process.browser && document.querySelector('.' + styles.award)) {
       let awardWidth = document.querySelector('.' + styles.award).offsetWidth;
@@ -412,6 +416,7 @@ export default function Equipes({ crews }) {
   );
 }
 
+//Obtém dados das equipes
 export const getStaticProps = async () => {
   let { data: crewsAllData } = await api.get('/crewsAllData');
 

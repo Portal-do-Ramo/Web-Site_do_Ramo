@@ -6,6 +6,7 @@ export default function MarketingMenuRoutes({ routesName, routes }) {
   const splittedRoute = routes.split('/');
   const router = useRouter();
 
+  //Atualiza dinamicamente a rota com base no índice
   function handleChangeRoute(index) {
     let selectedRoute = splittedRoute.slice(0, index + 1).join('/');
 

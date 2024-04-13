@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
 import styles from './DeleteAlertModal.module.scss';
 
+//Componente de alerta para confirmação de exclusão de algum item
 export const DeleteAlertModal = ({
   modalIsOpen,
   handleCloseModal,

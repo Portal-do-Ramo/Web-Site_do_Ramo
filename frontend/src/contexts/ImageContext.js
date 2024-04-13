@@ -11,6 +11,7 @@ export function ImageContextProvider({ children }) {
     setImages(newArray);
   }
 
+  //Lida com a seleção de imagens em um evento de arquivo
   function handleSelectImages(event) {
     if (!event.target.files) return;
     const selectedImage = event.target.files[0];

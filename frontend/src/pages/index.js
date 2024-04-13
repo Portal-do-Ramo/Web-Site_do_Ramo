@@ -136,6 +136,7 @@ export default function Home({ crews, havePSE }) {
   );
 }
 
+//Busca informações sobre as equipes e se o pse está ocorrendo
 export const getStaticProps = async () => {
   let { data: crews } = await api.get('/crews');
 

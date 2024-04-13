@@ -1,6 +1,7 @@
 import styles from './FacaParteDaNossaEquipe.module.scss';
 import { useRouter } from 'next/router';
 
+//Componente de convite para processo seletivo
 export const FacaParteDaNossaEquipe = ({ havePSE }) => {
   const router = useRouter();
 

@@ -1,3 +1,4 @@
+//Componente de menu suspenso, recebe props como label, value, etc, renderiza um menu suspenso com as opções fornecidas. Se o rótulo for 'Equipe', exibe um link específico
 export default function BasicSelect({
   label,
   value,

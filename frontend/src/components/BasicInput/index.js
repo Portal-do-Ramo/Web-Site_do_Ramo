@@ -1,5 +1,6 @@
 import { IMaskInput } from 'react-imask';
 
+//Compontente de entrada de texto, recebe props como mask, label, id etc, renderiza um campos de entrada com ou sem máscara dependendo da prop mask
 export default function BasicInput({
   mask,
   label,

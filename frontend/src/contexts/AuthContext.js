@@ -34,6 +34,7 @@ export function AuthContextProvider({ children }) {
     setIsAuthenticated(true);
   }, []);
 
+  //Autentica um usuário no sistema
   async function signIn({ email, password }) {
     try {
       const { data } = await api.post('/login', { email, password });

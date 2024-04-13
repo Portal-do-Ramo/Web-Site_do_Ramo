@@ -112,6 +112,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
     return isoDate;
   } */
 
+  //Abre a planilha de inscritos do PSE em uma nova aba
   function handleAccessPSEFile() {
     const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
 
@@ -122,6 +123,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
     }
   }
 
+  //Requisita as datas das dinâmicas do PSE
   async function getDinamycDatesPSE() {
     try {
       // const response = await api.get("/dinamycDates");
@@ -200,7 +202,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
       return null;
     }
   }
-
+  //Realiza o cancelamento do PSE
   async function handleCancelPSE() {
     await api.delete('/pse/schedule');
     router.reload();

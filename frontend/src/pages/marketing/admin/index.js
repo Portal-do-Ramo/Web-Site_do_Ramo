@@ -63,27 +63,33 @@ export default function admin({ crews }) {
     const input = document.getElementById(inputId);
     input.focus();
   }
+
+  //Abre modal de de edição de usuário
   const handleOpenModalUpdate = (user) => {
     setSelectedUser(user);
     setUpdatedUser({ ...user });
     setModalUpdateIsOpen(true);
   };
 
+  //Abre um modal de confirmação de exclusão de usuário
   const handleOpenModalDelete = (user) => {
     setSelectedUser(user);
     setModalDeleteIsOpen(true);
   };
 
+  //Fecha o modal de edição/confirmação de exclusão
   const handleCloseModal = () => {
     setSelectedUser(null);
     setModalUpdateIsOpen(false);
     setModalDeleteIsOpen(false);
   };
 
+  //Recebe o ID de equipe do usuário e retorna o obj correspondente a essa equipe
   const findCrewById = (userCrewId) => {
     return crews.find((crew) => crew.id === userCrewId);
   };
 
+  //Salva as alterações feitas em um usuário
   async function handleSaveUserChanges() {
     try {
       let requestBody = {
@@ -107,6 +113,7 @@ export default function admin({ crews }) {
   const countSuperUsers = users.filter((user) => user.isAdmin).length;
   const countCoordinators = users.length - countSuperUsers;
 
+  //Deleta coordenador
   async function handleDeleteCoord() {
     try {
       await api.delete(`/user/${selectedUser.id}`);

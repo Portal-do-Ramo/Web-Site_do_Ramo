@@ -14,6 +14,7 @@ export default function PSEFormHeader({ page, showCircles = true }) {
     isFourthPageValidated
   } = useContext(PSEFormContext);
 
+  //Determina o estilo dos círculos de progresso
   function dotStyle(pageStyle) {
     if (pageStyle === page) {
       return styles.activeDot;
