@@ -2,11 +2,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { toast } from 'react-toastify';
-import {
-  AiFillEye,
-  AiOutlinePlusCircle,
-  AiOutlineMinusCircle
-} from 'react-icons/ai';
+import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { FaTrash } from "react-icons/fa";
 
 import styles from '../../pages/marketing/PSE/styles.module.scss';
 
@@ -34,8 +31,31 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
     setEndDate(date.toISOString().slice(0, 16));
   }, []);
 
-   //Abre a planilha de inscritos do PSE em uma nova aba
-  function handleAccessPSEFile() {
+	
+	function removeDay(day) {
+		switch (day) {
+			case 1:
+				setFirstDay('');
+				break;
+			case 2:
+				setSecondDay('');
+				break;
+			case 3:
+				setThirdDay('');
+				break;
+			case 4:
+				setFourthDay('');
+				break;
+			case 5:
+				setFifthDay('');
+				break;
+			default:
+				break;
+		}
+	}
+
+
+	function handleAccessPSEFile() {
     const link = process.env.NEXT_PUBLIC_PSE_SPREADSHEET_LINK;
 
     if (link) {
@@ -83,9 +103,31 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
     setEditPSEModalIsOpen(true);
   }
 
-  function closeEditPSEModal() {
-    setEditPSEModalIsOpen(false);
-  }
+	function closeEditPSEModal() {
+		setEditPSEModalIsOpen(false);
+	}
+
+	function removeDay(day) {
+		switch (day) {
+			case 1:
+				setFirstDay('');
+				break;
+			case 2:
+				setSecondDay('');
+				break;
+			case 3:
+				setThirdDay('');
+				break;
+			case 4:
+				setFourthDay('');
+				break;
+			case 5:
+				setFifthDay('');
+				break;
+			default:
+				break;
+		}
+	}
 
   return (
     <>
@@ -115,108 +157,115 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
 
             <p> até </p>
 
-            <div className={styles.end}>
-              <input
-                className={styles.dateInput}
-                type='datetime-local'
-                max='9999-12-31T23:59'
-                name='endDate'
-                onChange={(e) => setEndDate(e.target.value)}
-                value={endDate}
-              />
-            </div>
-          </section>
-
-          <button type='button' onClick={openEditPSEModal}>
-            Agendar
-          </button>
-          <Modal
-            isOpen={editPSEModalIsOpen}
-            onRequestClose={closeEditPSEModal}
-            className={styles.modal}
-            overlayClassName={styles.overlay}
-            contentLabel='Example Modal'
-          >
-            <div className={styles.modalAgendamento}>
-              <h2>Agendamento das dinâmicas</h2>
-              <div className={styles.InputsBlock}>
-                <div className={styles.days}>
-                  <label htmlFor='firstDay'>1° Dia:</label>
-                  <input
-                    type='datetime-local'
-                    max='9999-12-31T23:59'
-                    name='firstDay'
-                    id='firstDay'
-                    onChange={(e) => setFirstDay(e.target.value)}
-                    value={firstDay}
-                  />
-                </div>
-                <div className={styles.days}>
-                  <label htmlFor='secondDay'>2° Dia:</label>
-                  <input
-                    type='datetime-local'
-                    max='9999-12-31T23:59'
-                    name='secondDay'
-                    id='secondDay'
-                    onChange={(e) => setSecondDay(e.target.value)}
-                    value={secondDay}
-                  />
-                </div>
-                <div className={styles.days}>
-                  <label htmlFor='thirdDay'>3° Dia:</label>
-                  <input
-                    type='datetime-local'
-                    max='9999-12-31T23:59'
-                    name='thirdDay'
-                    id='thirdDay'
-                    onChange={(e) => setThirdDay(e.target.value)}
-                    value={thirdDay}
-                  />
-                </div>
-                <div className={styles.days}>
-                  <label htmlFor='fourthDay'>4° Dia:</label>
-                  <input
-                    type='datetime-local'
-                    max='9999-12-31T23:59'
-                    name='fourthDay'
-                    id='fourthDay'
-                    onChange={(e) => setFourthDay(e.target.value)}
-                    value={fourthDay}
-                  />
-                </div>
-                {showFifthDay ? (
-                  <>
-                    <div className={styles.days}>
-                      <label htmlFor='fifthDay'>5° Dia:</label>
-                      <input
-                        type='datetime-local'
-                        max='9999-12-31T23:59'
-                        name='fifthDay'
-                        id='fifthDay'
-                        onChange={(e) => setFifthDay(e.target.value)}
-                        value={fifthDay}
-                      />
-                    </div>
-                    <button
-                      type='button'
-                      className={styles.addDay}
-                      onClick={() => {
-                        setShowFifthDay(false);
-                        setFifthDay('');
-                      }}
-                    >
-                      <AiOutlineMinusCircle />
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    type='button'
-                    className={styles.addDay}
-                    onClick={() => setShowFifthDay(true)}
-                  >
-                    <AiOutlinePlusCircle />
-                  </button>
-                )}
+						<div className={styles.end}>
+							<input
+							className={styles.dateInput}
+								type="datetime-local"
+								max="9999-12-31T23:59"
+								name="endDate"
+								onChange={(e) => setEndDate(e.target.value)}
+								value={endDate}
+							/>
+						</div>
+					</section>
+					
+					<button type='button' onClick={openEditPSEModal}>Agendar</button>
+					<Modal 
+						isOpen={editPSEModalIsOpen}
+						onRequestClose={closeEditPSEModal}
+						className={styles.modal}
+						overlayClassName={styles.overlay}
+						contentLabel="Example Modal"
+					>
+						<div className={styles.modalAgendamento}>
+							<h2>Agendamento das dinâmicas</h2>
+							<div className={styles.InputsBlock}>
+								<div className={styles.days}>
+									<label htmlFor="firstDay">1° Dia:</label>
+									<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="firstDay"
+											id="firstDay"
+											onChange={(e) => setFirstDay(e.target.value)}
+											value={firstDay}
+										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+											<FaTrash size={24} />    
+										</button>  
+								</div>
+								<div className={styles.days}>
+									<label htmlFor="secondDay">2° Dia:</label>
+									<input 
+										type="datetime-local"
+										max="9999-12-31T23:59"
+										name="secondDay"
+										id="secondDay"
+										onChange={(e) => setSecondDay(e.target.value)}
+										value={secondDay}
+									/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
+											<FaTrash size={24} />    
+										</button>  
+								</div>
+								<div className={styles.days}>
+									<label htmlFor="thirdDay">3° Dia:</label>
+										<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="thirdDay"
+											id="thirdDay"
+											onChange={(e) => setThirdDay(e.target.value)}
+											value={thirdDay}
+										/>
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
+											<FaTrash size={24} />    
+										</button>    
+								</div>
+								<div className={styles.days}>
+									<label htmlFor="fourthDay">4° Dia:</label>
+										<input 
+											type="datetime-local"
+											max="9999-12-31T23:59"
+											name="fourthDay"
+											id="fourthDay"
+											onChange={(e) => setFourthDay(e.target.value)}
+											value={fourthDay}
+										/>            
+										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
+											<FaTrash size={24} />    
+										</button>  
+								</div>
+								{showFifthDay ? (
+									<>
+										<div className={styles.days}>
+											<label htmlFor="fifthDay">5° Dia:</label>
+												<input 
+													type="datetime-local"
+													max="9999-12-31T23:59"
+													name="fifthDay"
+													id="fifthDay"
+													onChange={(e) => setFifthDay(e.target.value)}
+													value={fifthDay}
+												/>       
+											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+												<FaTrash size={24} />    
+											</button>  
+										</div>
+										<button type="button" className={styles.addDay} onClick={()=>{
+											setShowFifthDay(false)
+											setFifthDay('')
+										}}>
+											<AiOutlineMinusCircle />
+										</button>
+											
+									</>
+									):(
+										<button type="button" className={styles.addDay} onClick={()=>setShowFifthDay(true)}>
+											<AiOutlinePlusCircle />
+										</button>
+									)
+								}
 
                 {/* <CiCirclePlus size={20} weight="fill" /> */}
               </div>

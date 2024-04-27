@@ -40,6 +40,7 @@ export default function admin({ crews }) {
         router.push('/marketing');
       } else {
         setIsLoading(false);
+        
       }
     }
   }, [user, isAuthenticated]);

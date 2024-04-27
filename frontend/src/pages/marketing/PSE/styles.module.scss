@@ -1099,3 +1099,17 @@
     }
 }
 
+
+.Trash{
+    color: var(--azul-ramo);
+    background-color:transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: .2s ease;
+    &:hover{
+        transform: scale(1.1);
+        color: var(--contraste);
+        
+    }
+}
