@@ -107,28 +107,6 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
 		setEditPSEModalIsOpen(false);
 	}
 
-	function removeDay(day) {
-		switch (day) {
-			case 1:
-				setFirstDay('');
-				break;
-			case 2:
-				setSecondDay('');
-				break;
-			case 3:
-				setThirdDay('');
-				break;
-			case 4:
-				setFourthDay('');
-				break;
-			case 5:
-				setFifthDay('');
-				break;
-			default:
-				break;
-		}
-	}
-
   return (
     <>
       <section className={styles.showInformation}>
