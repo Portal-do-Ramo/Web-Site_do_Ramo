@@ -42,7 +42,15 @@ module.exports =  {
 
 	async updateSchedulePSE(req, res) {
 		
-		const { pse } = req.body;
+		const pse = {
+			startDate: req.body.startDate,
+			endDate: req.body.endDate,
+			dinamycDate_1: req.body.dinamycDate_1,
+			dinamycDate_2: req.body.dinamycDate_2,
+			dinamycDate_3: req.body.dinamycDate_3,
+			dinamycDate_4: req.body.dinamycDate_4,
+			dinamycDate_5: req.body.dinamycDate_5
+		};
 		
 		try {
 			const { pseDatesFormatted } = await pseService.updateSchedulePSE(pse);
