@@ -182,6 +182,10 @@ module.exports = {
 				throw new Error('Date bad formatted');
 			}
 			
+			if (!dinamycDate_1 || !dinamycDate_2 || !dinamycDate_3 || !dinamycDate_4) {
+				throw new Error('Requires 4 dinamyc dates');
+			}
+			
 			for (let i = 0; i<5; i++) {
 				if (dinamycDates[i]) {
 					if (!regex.test(dinamycDates[i])) {
