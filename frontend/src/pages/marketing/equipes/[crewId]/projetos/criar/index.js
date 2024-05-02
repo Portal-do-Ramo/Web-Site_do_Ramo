@@ -60,7 +60,7 @@ export default function CriarProjeto({ crew }) {
         banner.length > 0 &&
         name.length > 1 &&
         description.length > 1 &&
-        members.length > 0
+        members.length >= 0
       ) {
         const date = new Date();
 
@@ -75,31 +75,32 @@ export default function CriarProjeto({ crew }) {
         let beginDateFormatted = `${document.getElementById('beginDateInput').value}:00.000-${offset}:00`;
         let endDateFormatted = null;
 
+        let projectData = {
+          name,
+          description,
+          beginning: beginDateFormatted,
+          crew_id: crew.id
+        };
+
         let project;
 
         if (isFinished) {
           endDateFormatted = `${document.getElementById('endDateInput').value}:00.000-${offset}:00`;
+          projectData.ended = endDateFormatted;
           console.log('====================================');
           console.log(beginDateFormatted);
           console.log(endDateFormatted);
           console.log('====================================');
-
-          project = await api.post('/project', {
-            name,
-            description,
-            members,
-            beginning: beginDateFormatted,
-            ended: endDateFormatted,
-            crew_id: crew.id
-          });
+          
+          if(members.length != 0) {
+            projectData.members = members;
+          }
+          project = await api.post('/project', projectData);
         } else {
-          project = await api.post('/project', {
-            name,
-            description,
-            members,
-            beginning: beginDateFormatted,
-            crew_id: crew.id
-          });
+          if(members.length != 0) {
+            projectData.members = members;
+          }
+          project = await api.post('/project', projectData);
         }
 
         let formData = new FormData();

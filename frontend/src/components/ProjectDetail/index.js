@@ -37,13 +37,15 @@ export function ProjectDetail({ project }) {
         <span>Membros</span>
 
         <div className={styles.members}>
-          {project.members.split(',').map((member, idx) => {
-            return (
+        {project.members ? (
+            project.members.split(',').map((member, idx) => (
               <div className={styles.memberHolder} key={idx}>
                 {member}
               </div>
-            );
-          })}
+            ))
+          ) : (
+            <div className={styles.memberHolder}>Não possui membros</div>
+          )}
         </div>
       </div>
     </div>

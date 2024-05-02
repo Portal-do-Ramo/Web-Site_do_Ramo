@@ -16,6 +16,17 @@ export default function projeto({ crew, project }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  function verificaMembros() {
+    if(project.members == null) {
+      return '0';
+    }
+    if(project.members.split(',').length == 1) {
+      const test = project.members.split(',');
+      if(test[0] == "") {
+        return '0';
+      }
+   }
+  }
   useEffect(() => {
     if (isAuthenticated) {
       if (user === null) {
@@ -67,7 +78,7 @@ export default function projeto({ crew, project }) {
               <img src={project.logoURL}></img>
               <div className={styles.nameSub}>
                 <span>{project.name}</span>
-                <p>{project.members.split(',').length} Membros</p>
+                <p>{verificaMembros() || project.members.split(",").length} Membros</p>
               </div>
             </section>
 
