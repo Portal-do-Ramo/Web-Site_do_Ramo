@@ -33,7 +33,6 @@ export function ProjectDetail({ project }) {
             Status: <strong>Em Andamento</strong>
           </span>
         )}
-
         <span>Membros</span>
 
         <div className={styles.members}>
@@ -44,7 +43,7 @@ export function ProjectDetail({ project }) {
               </div>
             ))
           ) : (
-            <div className={styles.memberHolder}>Não possui membros</div>
+            <div className={styles.memberHolder}>Sem membros especificados</div>
           )}
         </div>
       </div>
