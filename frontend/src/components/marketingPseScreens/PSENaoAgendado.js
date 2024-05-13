@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
-
+import { DeleteAlertModal } from '../DeleteAlertModal';
 import styles from '../../pages/marketing/PSE/styles.module.scss';
 
 import api from '../../services/api';
@@ -23,7 +23,8 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
   const [fourthDay, setFourthDay] = useState('');
   const [fifthDay, setFifthDay] = useState('');
   const [showFifthDay, setShowFifthDay] = useState(false);
-
+	const [deleteDayModalIsOpen, setDeleteDayModalIsOpen] = useState(false);
+  const [dayToRemove, setDayToRemove] = useState('');
   useEffect(() => {
     let date = new Date();
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
@@ -31,23 +32,37 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
     setEndDate(date.toISOString().slice(0, 16));
   }, []);
 
+	function openDeleteDayModal(day) {
+    setDayToRemove(day);
+    setDeleteDayModalIsOpen(true);
+  }
+
+  function closeDeleteDayModal() {
+    setDayToRemove('');
+    setDeleteDayModalIsOpen(false);
+  }
 	
 	function removeDay(day) {
 		switch (day) {
 			case 1:
 				setFirstDay('');
+				closeDeleteDayModal();
 				break;
 			case 2:
 				setSecondDay('');
+				closeDeleteDayModal();
 				break;
 			case 3:
 				setThirdDay('');
+				closeDeleteDayModal();
 				break;
 			case 4:
 				setFourthDay('');
+				closeDeleteDayModal();
 				break;
 			case 5:
 				setFifthDay('');
+				closeDeleteDayModal();
 				break;
 			default:
 				break;
@@ -168,7 +183,7 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
 											onChange={(e) => setFirstDay(e.target.value)}
 											value={firstDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(1)}>
 											<FaTrash size={24} />    
 										</button>  
 								</div>
@@ -182,7 +197,7 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
 										onChange={(e) => setSecondDay(e.target.value)}
 										value={secondDay}
 									/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(2)}>
 											<FaTrash size={24} />    
 										</button>  
 								</div>
@@ -196,7 +211,7 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
 											onChange={(e) => setThirdDay(e.target.value)}
 											value={thirdDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(3)}>
 											<FaTrash size={24} />    
 										</button>    
 								</div>
@@ -210,7 +225,7 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
 											onChange={(e) => setFourthDay(e.target.value)}
 											value={fourthDay}
 										/>            
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(4)}>
 											<FaTrash size={24} />    
 										</button>  
 								</div>
@@ -226,7 +241,7 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
 													onChange={(e) => setFifthDay(e.target.value)}
 													value={fifthDay}
 												/>       
-											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+											<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(5)}>
 												<FaTrash size={24} />    
 											</button>  
 										</div>
@@ -278,6 +293,13 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
           <span>Acessar planilha de inscritos</span> <AiFillEye />
         </button>
       </section>
+			<DeleteAlertModal
+        modalIsOpen={deleteDayModalIsOpen}
+        handleCloseModal={closeDeleteDayModal}
+        title="Excluir Data"
+        text={`Tem certeza que deseja excluir o ${dayToRemove}º dia?`}
+        clickFunction={() => removeDay(dayToRemove)}
+      />
     </>
   );
 }

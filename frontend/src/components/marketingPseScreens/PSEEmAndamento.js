@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
-
+import { DeleteAlertModal } from '../DeleteAlertModal';
 /* async function handleDownloadPSEFile() {
   const { data } = await api.get('/download/pse.csv', { responseType: 'blob' });
   const url = window.URL.createObjectURL(new Blob([data]));
@@ -33,6 +33,8 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
   const adjustTime = (date) =>
     new Date(new Date(date).getTime() - 3 * 60 * 60 * 1000);
 
+  const [deleteDayModalIsOpen, setDeleteDayModalIsOpen] = useState(false);
+  const [dayToRemove, setDayToRemove] = useState('');
 	useEffect(() => {
 		const dateFormatterOptions = {
 			timeZone: 'America/Sao_Paulo',
@@ -197,6 +199,16 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 		router.reload();
 	}
 
+  function openDeleteDayModal(day) {
+    setDayToRemove(day);
+    setDeleteDayModalIsOpen(true);
+  }
+
+  function closeDeleteDayModal() {
+    setDayToRemove('');
+    setDeleteDayModalIsOpen(false);
+  }
+
 	function removeDay(day) {
 		switch (day) {
 			case 1:
@@ -296,7 +308,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											onChange={(e) => setFirstDay(e.target.value)}
 											value={firstDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(1)}>
 											<FaTrash size={24} />    
 										</button>
 								</div>
@@ -313,7 +325,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 										onChange={(e) => setSecondDay(e.target.value)}
 										value={secondDay}
 									/>
-									<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
+									<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(2)}>
 											<FaTrash size={24} />    
 										</button>
 								</div>
@@ -330,7 +342,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											onChange={(e) => setThirdDay(e.target.value)}
 											value={thirdDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(3)}>
 											<FaTrash size={24} />    
 										</button>
 								</div>
@@ -348,7 +360,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											onChange={(e) => setFourthDay(e.target.value)}
 											value={fourthDay}
 										/>            
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(4)}>
 											<FaTrash size={24} />    
 										</button>
 								</div>
@@ -368,7 +380,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 													onChange={(e) => setFifthDay(e.target.value)}
 													value={fifthDay}
 												/>            
-											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+											<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(5)}>
 												<FaTrash size={24} />    
 											</button>
 										</div>
@@ -452,6 +464,13 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
           </button>
         </div>
       </section>
+      <DeleteAlertModal
+        modalIsOpen={deleteDayModalIsOpen}
+        handleCloseModal={closeDeleteDayModal}
+        title="Excluir Data"
+        text={`Tem certeza que deseja excluir o ${dayToRemove}º dia?`}
+        clickFunction={() => removeDay(dayToRemove)}
+      />
     </>
   );
 }
