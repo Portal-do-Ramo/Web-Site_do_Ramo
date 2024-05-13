@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
-
+import { DeleteAlertModal } from '../DeleteAlertModal';
 import styles from '../../pages/marketing/PSE/styles.module.scss';
 import api from '../../services/api';
 
@@ -27,6 +27,9 @@ function PSEAgendado({ start, end }) {
   const [cancelPSEModalIsOpen, setCancelPSEModalIsOpen] = useState(false);
   const [editPSEModalIsOpen, setEditPSEModalIsOpen] = useState(false);
   const router = useRouter();
+
+  const [deleteDayModalIsOpen, setDeleteDayModalIsOpen] = useState(false);
+  const [dayToRemove, setDayToRemove] = useState('');
   const adjustTime = (date) =>
     new Date(new Date(date).getTime() - 3 * 60 * 60 * 1000);
 
@@ -56,11 +59,11 @@ function PSEAgendado({ start, end }) {
     );
 
     let beginDateFormatted = new Date(start);
-    // beginDateFormatted.setMinutes(beginDateFormatted.getMinutes() - beginDateFormatted.getTimezoneOffset());
+   
     beginDateFormatted.setUTCHours(beginDateFormatted.getUTCHours() - 3); // muda para a hora do brasil
 
     let endDateFormatted = new Date(end);
-    // endDateFormatted.setMinutes(endDateFormatted.getMinutes() - endDateFormatted.getTimezoneOffset());
+  
     endDateFormatted.setUTCHours(endDateFormatted.getUTCHours() - 3); // muda para a hora do brasil
 
     document.getElementById('beginDateInput').value = beginDateFormatted
@@ -72,41 +75,7 @@ function PSEAgendado({ start, end }) {
     getDinamycDatesPSE();
   }, []);
 
-  /* function converterData(dateString) {
-    const match = dateString.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
-
-    
-    //  Usar classe new Date
-
-    //  2023-11-13T06:00:00.000Z 
-    //  2023-11-13T03:00
-   
-    // console.log('dateString: ', dateString)
-    // console.log('new Date: ', new Date(dateString))
-
-    if (!match) {
-      throw new Error('Formato de entrada inválido. Use yyyy-MM-ddThh:mm.');
-    }
-
-    const [, ano, mes, dia, hora, minuto] = match;
-
-    if (
-      parseInt(mes) < 1 ||
-      parseInt(mes) > 12 ||
-      parseInt(dia) < 1 ||
-      parseInt(dia) > 31 ||
-      parseInt(hora) < 0 ||
-      parseInt(hora) > 23 ||
-      parseInt(minuto) < 0 ||
-      parseInt(minuto) > 59
-    ) {
-      throw new Error('Valores de data ou hora fora do intervalo válido.');
-    }
-
-    const isoDate = `${ano}-${mes}-${dia}T${hora}:${minuto}`;
-    return isoDate;
-  } */
-  //Requisita as datas das dinâmicas do PSE
+  
   async function getDinamycDatesPSE() {
     try {
       // const response = await api.get("/dinamycDates");
@@ -118,11 +87,7 @@ function PSEAgendado({ start, end }) {
         dinamycDate_4,
         dinamycDate_5
       } = response.data;
-      // setFirstDay(converterData(dinamycDate_1));
-      // setSecondDay(converterData(dinamycDate_2));
-      // setThirdDay(converterData(dinamycDate_3));
-      // setFourthDay(converterData(dinamycDate_4));
-      // setFifthDay(converterData(dinamycDate_5));
+     
 
 			dinamycDate_1 ? setFirstDay(adjustTime(dinamycDate_1).toISOString().slice(0, 16)) : null
 			dinamycDate_2 ? setSecondDay(adjustTime(dinamycDate_2).toISOString().slice(0, 16)) : null
@@ -137,45 +102,7 @@ function PSEAgendado({ start, end }) {
 		}
 	}
 
-  // async function handleReSchedulePSE() {
-  // 	const date = new Date();
 
-  // 	let offset = date.getTimezoneOffset();
-
-  // 	offset = offset / 60 -1;
-  // 	offset = "00" + offset;
-
-  // 	let schedulePSEObject = {
-  // 		startDate: `${beginDate}:00.000-0${offset.slice(-1)}:00`,
-  // 		endDate: `${endDate}:00.000-0${offset.slice(-1)}:00`,
-  // 		dinamycDate_1: `${firstDay}:00.000-0${offset.slice(-1)}:00`,
-  // 		dinamycDate_2: `${secondDay}:00.000-0${offset.slice(-1)}:00`,
-  // 		dinamycDate_3: `${thirdDay}:00.000-0${offset.slice(-1)}:00`,
-  // 		dinamycDate_4: `${fourthDay}:00.000-0${offset.slice(-1)}:00`,
-
-  // 	}
-
-  // 	try {
-  // 		console.log(schedulePSEObject)
-
-  // 		await toast.promise(
-  // 			api.post("/pse/schedule", schedulePSEObject),
-  // 			{
-  // 				pending: 'Carregando',
-  // 				success: 'Datas do PSE atualizadas ',
-  // 				error: 'Não foi possível atualizar o PSE'
-  // 			}
-  // 		)
-
-  // 		setTimeout(() => {
-  // 			router.reload();
-  // 		}, 2000);
-
-  // 	} catch (error) {
-  // 		console.error(error);
-  // 		return null;
-  // 	}
-  // }
 
   function openCancelPSEModal() {
     setCancelPSEModalIsOpen(true);
@@ -249,10 +176,20 @@ function PSEAgendado({ start, end }) {
 
 	async function handleRemoveDate(name) {
 		await api.patch(`/pse/dinamycDate/${name}`);
-		router.reload();
+    router.reload();
 	}
 
-	function removeDay(day) {
+	function openDeleteDayModal(day) {
+    setDayToRemove(day);
+    setDeleteDayModalIsOpen(true);
+  }
+
+  function closeDeleteDayModal() {
+    setDayToRemove('');
+    setDeleteDayModalIsOpen(false);
+  }
+
+  function removeDay(day) {
 		switch (day) {
 			case 1:
 				handleRemoveDate('dinamycDate_1');
@@ -278,6 +215,7 @@ function PSEAgendado({ start, end }) {
 				break;
 		}
 	}
+
 	
 	return (
 		<>
@@ -353,7 +291,7 @@ function PSEAgendado({ start, end }) {
 											onChange={(e) => setFirstDay(e.target.value)}
 											value={firstDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(1)}>
 											<FaTrash size={24} />    
 										</button> 
 								</div>
@@ -370,7 +308,7 @@ function PSEAgendado({ start, end }) {
 										onChange={(e) => setSecondDay(e.target.value)}
 										value={secondDay}
 									/>
-									<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
+									<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(2)}>
 											<FaTrash size={24} />    
 									</button> 
 								</div>
@@ -387,7 +325,7 @@ function PSEAgendado({ start, end }) {
 											onChange={(e) => setThirdDay(e.target.value)}
 											value={thirdDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(3)}>
 											<FaTrash size={24} />    
 										</button> 
 								</div>
@@ -405,7 +343,7 @@ function PSEAgendado({ start, end }) {
 											onChange={(e) => setFourthDay(e.target.value)}
 											value={fourthDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
+										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(4)}>
 											<FaTrash size={24} />    
 										</button>      
 								</div>
@@ -425,12 +363,12 @@ function PSEAgendado({ start, end }) {
 													onChange={(e) => setFifthDay(e.target.value)}
 													value={fifthDay}
 												/>
-											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
+											<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(5)}>
 												<FaTrash size={24} />    
 											</button>               
 										</div>
 										<button type="button" className={styles.addDay} onClick={()=>{
-											setShowFifthDay(false)
+                      setShowFifthDay(false)
 											setFifthDay('')
 										}}>
 											<AiOutlineMinusCircle />
@@ -490,6 +428,13 @@ function PSEAgendado({ start, end }) {
           </div>
         </Modal>
       </section>
+      <DeleteAlertModal
+        modalIsOpen={deleteDayModalIsOpen}
+        handleCloseModal={closeDeleteDayModal}
+        title="Excluir Data"
+        text={`Tem certeza que deseja excluir o ${dayToRemove}º dia?`}
+        clickFunction={() => removeDay(dayToRemove)}
+      />
     </>
   );
 }
