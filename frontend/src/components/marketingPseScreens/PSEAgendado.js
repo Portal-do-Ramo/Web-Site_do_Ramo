@@ -190,6 +190,12 @@ function PSEAgendado({ start, end }) {
   }
 
   function removeDay(day) {
+    const dates = [firstDay, secondDay, thirdDay, fourthDay, fifthDay];
+    const nonEmptyDates = dates.filter(date => date !== '').length;
+    if (nonEmptyDates <= 1) {
+      toast.error("Não é possível deletar a última data restante!");
+      return;
+    }
 		switch (day) {
 			case 1:
 				handleRemoveDate('dinamycDate_1');
