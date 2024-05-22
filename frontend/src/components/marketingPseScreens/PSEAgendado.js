@@ -30,6 +30,9 @@ function PSEAgendado({ start, end }) {
 
   const [deleteDayModalIsOpen, setDeleteDayModalIsOpen] = useState(false);
   const [dayToRemove, setDayToRemove] = useState('');
+
+  const [pseUpdated, setPseUpdated] = useState(true);
+
   const adjustTime = (date) =>
     new Date(new Date(date).getTime() - 3 * 60 * 60 * 1000);
 
@@ -165,8 +168,9 @@ function PSEAgendado({ start, end }) {
         router.reload();
       }, 2000);
     } catch (error) {
-      return null;
+      
     }
+    setPseUpdated(true);
   }
 
 	async function handleCancelPSE() {
@@ -175,6 +179,10 @@ function PSEAgendado({ start, end }) {
 	}
 
 	async function handleRemoveDate(name) {
+    if (!pseUpdated) {
+      toast.error("Por favor, atualize o PSE antes de deletar uma data!");
+      return;
+    }
 		await api.patch(`/pse/dinamycDate/${name}`);
     router.reload();
 	}
@@ -199,28 +207,39 @@ function PSEAgendado({ start, end }) {
 		switch (day) {
 			case 1:
 				handleRemoveDate('dinamycDate_1');
-				setFirstDay('');
+        if(pseUpdated) {
+				  setFirstDay('');
+        }
 				break;
 			case 2:
 				handleRemoveDate('dinamycDate_2');
-				setSecondDay('');
+        if(pseUpdated) {
+				  setSecondDay('');
+        }
 				break;
 			case 3:
 				handleRemoveDate('dinamycDate_3');
-				setThirdDay('');
+        if(pseUpdated) {
+				  setThirdDay('');
+        }
 				break;
 			case 4:
 				handleRemoveDate('dinamycDate_4');
-				setFourthDay('');
+        if(pseUpdated) {
+				  setFourthDay('');
+        }
 				break;
 			case 5:
 				handleRemoveDate('dinamycDate_5');
-				setFifthDay('');
+        if(pseUpdated) {
+				  setFifthDay('');
+        }
 				break;
 			default:
 				break;
 		}
-	}
+  }
+	
 
 	
 	return (
@@ -294,7 +313,10 @@ function PSEAgendado({ start, end }) {
 											max="9999-12-31T23:59"
 											name="firstDay"
 											id="firstDay"
-											onChange={(e) => setFirstDay(e.target.value)}
+											onChange={(e) => {
+                        setFirstDay(e.target.value);
+                        setPseUpdated(false);
+                      }}
 											value={firstDay}
 										/>
 										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(1)}>
@@ -311,7 +333,9 @@ function PSEAgendado({ start, end }) {
 										max="9999-12-31T23:59"
 										name="secondDay"
 										id="secondDay"
-										onChange={(e) => setSecondDay(e.target.value)}
+										onChange={(e) => {setSecondDay(e.target.value);
+                      setPseUpdated(false);
+                    }}
 										value={secondDay}
 									/>
 									<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(2)}>
@@ -328,7 +352,9 @@ function PSEAgendado({ start, end }) {
 											max="9999-12-31T23:59"
 											name="thirdDay"
 											id="thirdDay"
-											onChange={(e) => setThirdDay(e.target.value)}
+											onChange={(e) => {setThirdDay(e.target.value);
+                        setPseUpdated(false);
+                      }}
 											value={thirdDay}
 										/>
 										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(3)}>
@@ -346,7 +372,9 @@ function PSEAgendado({ start, end }) {
 											max="9999-12-31T23:59"
 											name="fourthDay"
 											id="fourthDay"
-											onChange={(e) => setFourthDay(e.target.value)}
+											onChange={(e) => {setFourthDay(e.target.value);
+                        setPseUpdated(false);
+                      }}
 											value={fourthDay}
 										/>
 										<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(4)}>
@@ -366,7 +394,9 @@ function PSEAgendado({ start, end }) {
 													max="9999-12-31T23:59"
 													name="fifthDay"
 													id="fifthDay"
-													onChange={(e) => setFifthDay(e.target.value)}
+													onChange={(e) => {setFifthDay(e.target.value);
+                            setPseUpdated(false);
+                          }}
 													value={fifthDay}
 												/>
 											<button type="button" className={styles.Trash} onClick={()=>openDeleteDayModal(5)}>
