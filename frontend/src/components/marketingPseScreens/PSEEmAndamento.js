@@ -202,7 +202,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
       return;
     }
 		await api.patch(`/pse/dinamycDate/${name}`);
-		router.reload();
+		// router.reload(); //Poderia tirar esse reload??
 	}
 
   function openDeleteDayModal(day) {
@@ -222,32 +222,55 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
       toast.error("Não é possível deletar a última data restante!");
       return;
     }
+    else {
+      closeDeleteDayModal();
+    }
 		switch (day) {
 			case 1:
+        if(firstDay == '') {
+          toast.error("Essa data já foi deletada");
+          return;
+        }
 				handleRemoveDate('dinamycDate_1');
         if(pseUpdated) {
           setFirstDay('');
         }
 				break;
 			case 2:
+        if(secondDay == '') {
+          toast.error("Essa data já foi deletada");
+          return;
+        }
 				handleRemoveDate('dinamycDate_2');
 				if(pseUpdated) {
           setSecondDay('');
         }
 				break;
 			case 3:
+        if(thirdDay == '') {
+          toast.error("Essa data já foi deletada");
+          return;
+        }
 				handleRemoveDate('dinamycDate_3');
 				if(pseUpdated) {
           setThirdDay('');
         }
 				break;
 			case 4:
+        if(fourthDay == '') {
+          toast.error("Essa data já foi deletada");
+          return;
+        }
 				handleRemoveDate('dinamycDate_4');
 				if(pseUpdated) {
           setFourthDay('');
         }
 				break;
 			case 5:
+        if(fifthDay == '') {
+          toast.error("Essa data já foi deletada");
+          return;
+        }
 				handleRemoveDate('dinamycDate_5');
 				if(pseUpdated) {
           setFifthDay('');
