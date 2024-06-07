@@ -1112,4 +1112,40 @@
         color: var(--contraste);
         
     }
+.selected {
+        color: red;
+        border: 2px solid red;
+    }
+      
 }
+
+.deleteSelected {
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    color: var(--azul-ramo);
+    border-radius: 5px;
+    border: 2px solid var(--azul-ramo);
+    background-color: transparent;
+    width: 170px;
+    height: 50px;
+    margin: 1rem 0;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 14px;
+    transition: .2s ease; 
+    margin-bottom: 1rem; 
+    @media (max-width: 475px) {
+        width: 150px;
+    }
+}
+.deleteSelected:hover{
+    color: white;
+    background-color:  var(--azul-ramo);
+    transform: scale(1.05);
+}
+

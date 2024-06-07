@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import { AiFillEye, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
-import { FaTrash } from "react-icons/fa";
-
+import { FaTrash, FaCheckCircle  } from "react-icons/fa";
+import { DeleteAlertModal } from '../DeleteAlertModal';
 /* async function handleDownloadPSEFile() {
   const { data } = await api.get('/download/pse.csv', { responseType: 'blob' });
   const url = window.URL.createObjectURL(new Blob([data]));
@@ -33,6 +33,10 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
   const adjustTime = (date) =>
     new Date(new Date(date).getTime() - 3 * 60 * 60 * 1000);
 
+  const [deleteDayModalIsOpen, setDeleteDayModalIsOpen] = useState(false);
+  const [dayToRemove, setDayToRemove] = useState('');
+  const [pseUpdated, setPseUpdated] = useState(true);
+  const [selectedDays, setSelectedDays] = useState([]);
 	useEffect(() => {
 		const dateFormatterOptions = {
 			timeZone: 'America/Sao_Paulo',
@@ -183,8 +187,9 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 				router.reload();
 			}, 2000);
 		} catch (error) {
-			return null;
+			
 		}
+    setPseUpdated(true);
 	}
 
 	async function handleCancelPSE() {
@@ -193,36 +198,185 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 	}
 
 	async function handleRemoveDate(name) {
+    if (!pseUpdated) {
+      toast.error("Por favor, atualize o PSE antes de deletar uma data!");
+      return;
+    }
 		await api.patch(`/pse/dinamycDate/${name}`);
-		router.reload();
+		// router.reload(); //Poderia tirar esse reload??
 	}
 
-	function removeDay(day) {
-		switch (day) {
-			case 1:
-				handleRemoveDate('dinamycDate_1');
-				setFirstDay('');
-				break;
-			case 2:
-				handleRemoveDate('dinamycDate_2');
-				setSecondDay('');
-				break;
-			case 3:
-				handleRemoveDate('dinamycDate_3');
-				setThirdDay('');
-				break;
-			case 4:
-				handleRemoveDate('dinamycDate_4');
-				setFourthDay('');
-				break;
-			case 5:
-				handleRemoveDate('dinamycDate_5');
-				setFifthDay('');
-				break;
-			default:
-				break;
-		}
-	}
+  function openDeleteDayModal(day) {
+    setDayToRemove(day);
+    setDeleteDayModalIsOpen(true);
+  }
+
+  function closeDeleteDayModal() {
+    setDayToRemove('');
+    setDeleteDayModalIsOpen(false);
+  }
+
+	// function removeDay(day) {
+  //   const dates = [firstDay, secondDay, thirdDay, fourthDay, fifthDay];
+  //   const nonEmptyDates = dates.filter(date => date !== '').length;
+  //   if (nonEmptyDates <= 1) {
+  //     toast.error("Não é possível deletar a última data restante!");
+  //     return;
+  //   }
+  //   else {
+  //     closeDeleteDayModal();
+  //   }
+	// 	switch (day) {
+	// 		case 1:
+  //       if(firstDay == '') {
+  //         toast.error("Essa data já foi deletada");
+  //         return;
+  //       }
+	// 			handleRemoveDate('dinamycDate_1');
+  //       if(pseUpdated) {
+  //         setFirstDay('');
+  //       }
+	// 			break;
+	// 		case 2:
+  //       if(secondDay == '') {
+  //         toast.error("Essa data já foi deletada");
+  //         return;
+  //       }
+	// 			handleRemoveDate('dinamycDate_2');
+	// 			if(pseUpdated) {
+  //         setSecondDay('');
+  //       }
+	// 			break;
+	// 		case 3:
+  //       if(thirdDay == '') {
+  //         toast.error("Essa data já foi deletada");
+  //         return;
+  //       }
+	// 			handleRemoveDate('dinamycDate_3');
+	// 			if(pseUpdated) {
+  //         setThirdDay('');
+  //       }
+	// 			break;
+	// 		case 4:
+  //       if(fourthDay == '') {
+  //         toast.error("Essa data já foi deletada");
+  //         return;
+  //       }
+	// 			handleRemoveDate('dinamycDate_4');
+	// 			if(pseUpdated) {
+  //         setFourthDay('');
+  //       }
+	// 			break;
+	// 		case 5:
+  //       if(fifthDay == '') {
+  //         toast.error("Essa data já foi deletada");
+  //         return;
+  //       }
+	// 			handleRemoveDate('dinamycDate_5');
+	// 			if(pseUpdated) {
+  //         setFifthDay('');
+  //       }
+	// 			break;
+	// 		default:
+	// 			break;
+	// 	}
+	// }
+
+  function toggleSelectDay(day) {
+    setSelectedDays(prev => {
+      if (prev.includes(day)) {
+        return prev.filter(d => d !== day);
+      } else {
+        return [...prev, day];
+      }
+    });
+  }
+	
+
+  async function removeSelectedDays() {
+    if (selectedDays.length === 0) {
+      toast.error("Nenhuma data selecionada para deletar!");
+      return;
+    }
+  
+    const dates = [firstDay, secondDay, thirdDay, fourthDay, fifthDay];
+    const nonEmptyDates = dates.filter(date => date !== '').length;
+  
+    if (selectedDays.length >= nonEmptyDates) {
+      toast.error("Não é possível deletar todas as datas!");
+      return;
+    }
+    else {
+      closeDeleteDayModal();
+    }
+  
+    try {
+      for (const day of selectedDays) {
+        switch (day) {
+          case 1:
+            if(firstDay == '') {
+              toast.error("Essa data já foi deletada");
+              return;
+            }
+            await handleRemoveDate('dinamycDate_1');
+            if(pseUpdated) {
+              setFirstDay('');
+            }
+            break;
+          case 2:
+             if(secondDay == '') {
+          toast.error("Essa data já foi deletada");
+          return;
+        }
+            await handleRemoveDate('dinamycDate_2');
+            if(pseUpdated) {
+              setSecondDay('');
+            }
+            break;
+          case 3:
+            if(thirdDay == '') {
+              toast.error("Essa data já foi deletada");
+              return;
+            }
+            await handleRemoveDate('dinamycDate_3');
+            if(pseUpdated) {
+              setThirdDay('');
+            }
+            break;
+          case 4:
+            if(fourthDay == '') {
+              toast.error("Essa data já foi deletada");
+              return;
+            }
+            await handleRemoveDate('dinamycDate_4');
+            if(pseUpdated) {
+              setFourthDay('');
+            }
+            break;
+          case 5:
+            if(fifthDay == '') {
+              toast.error("Essa data já foi deletada");
+              return;
+            }
+            await handleRemoveDate('dinamycDate_5');
+            if(fifthDay == '') {
+              toast.error("Essa data já foi deletada");
+              return;
+            }
+            break;
+          default:
+            break;
+        }
+      }
+  
+      toast.success("Datas deletadas com sucesso!");
+      setSelectedDays([]);
+    } catch (error) {
+      toast.error("Erro ao deletar datas!");
+    }
+  }
+  
+	
 
   return (
     <>
@@ -293,12 +447,16 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											max="9999-12-31T23:59"
 											name="firstDay"
 											id="firstDay"
-											onChange={(e) => setFirstDay(e.target.value)}
+											onChange={(e) => {
+                        setFirstDay(e.target.value);
+                        setPseUpdated(false);
+                      }}
 											value={firstDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(1)}>
+										<button type="button"  className={`${styles.Trash} ${selectedDays.includes(1) ? styles.selected : ''}`} onClick={() => toggleSelectDay(1)}>
 											<FaTrash size={24} />    
-										</button>
+                      {selectedDays.includes(1) && <FaCheckCircle size={20} />}
+										</button> 
 								</div>
 								<div className={styles.days}>
 									<label for="secondDay">2° Dia:</label>
@@ -310,13 +468,18 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 										max="9999-12-31T23:59"
 										name="secondDay"
 										id="secondDay"
-										onChange={(e) => setSecondDay(e.target.value)}
+										onChange={(e) => {setSecondDay(e.target.value);
+                      setPseUpdated(false);
+                    }}
 										value={secondDay}
 									/>
-									<button type="button" className={styles.Trash} onClick={()=>removeDay(2)}>
-											<FaTrash size={24} />    
-										</button>
-								</div>
+									<button type="button" className={`${styles.Trash} ${selectedDays.includes(2) ? styles.selected : ''}`} 
+  onClick={() => toggleSelectDay(2)}
+>
+											<FaTrash size={24} /> 
+                      {selectedDays.includes(2) && <FaCheckCircle size={20} />}   
+									</button> 
+                </div>
 								<div className={styles.days}>
 									<label for="thirdDay">3° Dia:</label>
 									{/* <input type="date" id="thirdDay" placeholder="dd/mm/yy"/>
@@ -327,12 +490,17 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											max="9999-12-31T23:59"
 											name="thirdDay"
 											id="thirdDay"
-											onChange={(e) => setThirdDay(e.target.value)}
+											onChange={(e) => {setThirdDay(e.target.value);
+                        setPseUpdated(false);
+                      }}
 											value={thirdDay}
 										/>
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(3)}>
-											<FaTrash size={24} />    
-										</button>
+										<button type="button" className={`${styles.Trash} ${selectedDays.includes(3) ? styles.selected : ''}`} 
+  onClick={() => toggleSelectDay(3)}
+>
+											<FaTrash size={24} />  
+                      {selectedDays.includes(3) && <FaCheckCircle size={20} />}  
+										</button> 
 								</div>
 								<div className={styles.days}>
 									<label for="fourthDay">4° Dia:</label>
@@ -345,12 +513,17 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 											max="9999-12-31T23:59"
 											name="fourthDay"
 											id="fourthDay"
-											onChange={(e) => setFourthDay(e.target.value)}
+											onChange={(e) => {setFourthDay(e.target.value);
+                        setPseUpdated(false);
+                      }}
 											value={fourthDay}
 										/>            
-										<button type="button" className={styles.Trash} onClick={()=>removeDay(4)}>
-											<FaTrash size={24} />    
-										</button>
+										<button type="button" className={`${styles.Trash} ${selectedDays.includes(4) ? styles.selected : ''}`} 
+  onClick={() => toggleSelectDay(4)}
+>
+											<FaTrash size={24} /> 
+                      {selectedDays.includes(4) && <FaCheckCircle size={20} />}   
+										</button>   
 								</div>
 								{fifthDay || showFifthDay ? (
 									<>
@@ -365,12 +538,17 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 													max="9999-12-31T23:59"
 													name="fifthDay"
 													id="fifthDay"
-													onChange={(e) => setFifthDay(e.target.value)}
+													onChange={(e) => {setFifthDay(e.target.value);
+                            setPseUpdated(false);
+                          }}
 													value={fifthDay}
 												/>            
-											<button type="button" className={styles.Trash} onClick={()=>removeDay(5)}>
-												<FaTrash size={24} />    
-											</button>
+											<button type="button" className={`${styles.Trash} ${selectedDays.includes(5) ? styles.selected : ''}`} 
+  onClick={() => toggleSelectDay(5)}
+>
+												<FaTrash size={24} />  
+                        {selectedDays.includes(5) && <FaCheckCircle size={20} />}  
+											</button>    
 										</div>
 										<button type="button" className={styles.addDay} onClick={()=>{
 											setShowFifthDay(false)
@@ -386,7 +564,15 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 										</button>
 									)
 								}
-
+              
+              <button 
+                type="button" 
+                className={styles.deleteSelected} 
+                onClick={openDeleteDayModal}
+                >
+                <FaTrash size={20} /> 
+                Deletar Datas 
+              </button>
 								{/* <CiCirclePlus size={20} weight="fill" /> */}
 								
 							</div>
@@ -452,6 +638,13 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
           </button>
         </div>
       </section>
+      <DeleteAlertModal
+        modalIsOpen={deleteDayModalIsOpen}
+        handleCloseModal={closeDeleteDayModal}
+        title="Excluir Data"
+        text={`Tem certeza que deseja excluir o(s) dia(s) selecionado(s)?`}
+        clickFunction={() => removeSelectedDays()}
+      />
     </>
   );
 }
