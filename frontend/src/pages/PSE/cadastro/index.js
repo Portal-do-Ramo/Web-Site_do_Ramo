@@ -56,20 +56,7 @@ export default function cadastro({ hasActivePSE, dynamicDates }) {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
-  /* 
-    const { data } = await api.get("/crews");
-  
-	  let crewsNames;
-  
-	  try {
-	  	crewsNames = data.map( crew => {
-	  		return crew.name;
-	  	});
-	  } catch (error) {
-	  	crewsNames = [];
-	  } 
-  */
+export const getServerSideProps = async () => {
 
   let dynamicDates = [];
 
