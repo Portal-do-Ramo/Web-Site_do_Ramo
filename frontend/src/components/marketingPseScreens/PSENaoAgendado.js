@@ -11,7 +11,7 @@ import api from '../../services/api';
 
 import Modal from 'react-modal';
 
-function PSENaoAgendado({ isSpreadsheetAccessActive }) {
+function PSENaoAgendado() {
   const router = useRouter();
   const [beginDate, setBeginDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -284,12 +284,8 @@ function PSENaoAgendado({ isSpreadsheetAccessActive }) {
         <span>Visualizar inscritos:</span>
         <button
           type='button'
-          // className={!isSpreadsheetAccessActive ? styles.downloadButtonOff : ""}
-          //className={isSpreadsheetAccessActive}
           onClick={handleAccessPSEFile}
-          // disabled={!isDownloadActive}
         >
-          {/* {isDownloadActive ? <FiDownload/> : <MdOutlineFileDownloadOff/> } */}
           <span>Acessar planilha de inscritos</span> <AiFillEye />
         </button>
       </section>

@@ -17,7 +17,7 @@ import { DeleteAlertModal } from '../DeleteAlertModal';
 import styles from '../../pages/marketing/PSE/styles.module.scss';
 import api from '../../services/api';
 
-function PSEEmAndamento({ start, end, isDownloadActive }) {
+function PSEEmAndamento({ start, end }) {
   const [beginDate, setBeginDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [firstDay, setFirstDay] = useState('');
@@ -34,7 +34,7 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
     new Date(new Date(date).getTime() - 3 * 60 * 60 * 1000);
 
   const [deleteDayModalIsOpen, setDeleteDayModalIsOpen] = useState(false);
-  const [dayToRemove, setDayToRemove] = useState('');
+  const [_, setDayToRemove] = useState('');
   const [pseUpdated, setPseUpdated] = useState(true);
   const [selectedDays, setSelectedDays] = useState([]);
 	useEffect(() => {
@@ -187,7 +187,8 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
 				router.reload();
 			}, 2000);
 		} catch (error) {
-			
+			toast.error(error.message);
+      return null;
 		}
     setPseUpdated(true);
 	}
@@ -203,7 +204,6 @@ function PSEEmAndamento({ start, end, isDownloadActive }) {
       return;
     }
 		await api.patch(`/pse/dinamycDate/${name}`);
-		// router.reload(); //Poderia tirar esse reload??
 	}
 
   function openDeleteDayModal(day) {

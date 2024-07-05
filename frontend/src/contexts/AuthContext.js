@@ -85,7 +85,8 @@ export function AuthContextProvider({ children }) {
         user,
         signIn,
         isAuthenticated,
-        signOut
+        signOut,
+        register
       }}
     >
       {children}

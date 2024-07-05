@@ -299,10 +299,7 @@ export default function Equipes({ crews }) {
                   .map((info, idx) => {
                     if (info !== '') {
                       return (
-                        <>
                           <p key={idx}>{info}</p>
-                          <br />
-                        </>
                       );
                     }
                   })}
@@ -360,7 +357,6 @@ export default function Equipes({ crews }) {
                     })}
                   </div>
                 </div>
-
                 <div className={styles.rightContainer}>
                   <ProjectDetail
                     project={crews[crewIndex].projects[projectIndex]}
@@ -417,6 +413,7 @@ export default function Equipes({ crews }) {
 }
 
 //Obtém dados das equipes
+
 export const getStaticProps = async () => {
   let { data: crewsAllData } = await api.get('/crewsAllData');
 

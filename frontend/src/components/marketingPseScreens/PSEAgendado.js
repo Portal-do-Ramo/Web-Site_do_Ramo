@@ -17,11 +17,6 @@ function PSEAgendado({ start, end }) {
   const [fourthDay, setFourthDay] = useState('');
 
   const [fifthDay, setFifthDay] = useState('');
-
-	const [showFirstDay, setShowFirstDay] = useState(true);
-	const [showSecondDay, setShowSecondDay] = useState(true);
-	const [showThirdDay, setShowThirdDay] = useState(true);
-	const [showFourthDay, setShowFourthDay] = useState(true);
 	const [showFifthDay, setShowFifthDay] = useState(false);
 
   const [cancelPSEModalIsOpen, setCancelPSEModalIsOpen] = useState(false);
@@ -29,7 +24,7 @@ function PSEAgendado({ start, end }) {
   const router = useRouter();
 
   const [deleteDayModalIsOpen, setDeleteDayModalIsOpen] = useState(false);
-  const [dayToRemove, setDayToRemove] = useState('');
+  const [_, setDayToRemove] = useState('');
 
   const [pseUpdated, setPseUpdated] = useState(true);
   const [selectedDays, setSelectedDays] = useState([]);
@@ -169,7 +164,8 @@ function PSEAgendado({ start, end }) {
         router.reload();
       }, 2000);
     } catch (error) {
-      
+      toast.error(error.response.data.message);
+      return null;
     }
     setPseUpdated(true);
   }
