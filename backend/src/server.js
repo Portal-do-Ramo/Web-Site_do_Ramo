@@ -15,7 +15,7 @@ app.use(express.json());
 app.use('/api', routes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, async () => {
 	await checkSchedulePSE();
