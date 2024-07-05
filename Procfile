@@ -1,2 +1,2 @@
 web: docker-compose up -d
-web: cd backend && yarn start
+web: cd /backend && yarn install && yarn start
