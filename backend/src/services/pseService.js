@@ -18,6 +18,7 @@ function validateDate(date) {
 
 module.exports = {
 	async create(info) {
+		console.log('Validando dados de inscrição do pse');
 		const pseValidation = Joi.object({
 			fullname: Joi.string().min(3).required(),
 			phone: Joi.string().pattern(/^[0-9]+$/).required(),
@@ -56,6 +57,8 @@ module.exports = {
 		validateDate(value.birthday);
 		value.birthday = moment.utc(value.birthday).format('DD/MM/YYYY');
 
+		console.log('Dados do formulário de inscrição válidos.')
+
 		const personalInformation = {
 			fullname: value.fullname,
 			phone: value.phone,
@@ -86,8 +89,12 @@ module.exports = {
 			registrationData
 		};
 
+		console.log('Verificando duplicação de email e telefone.');
+
 		const subscriberEmail = await registerPSE.where('personalInformation.email', '==', value.email).get();
 		const subscriberPhone = await registerPSE.where('personalInformation.phone', '==', value.phone).get();
+
+		console.log('Sem registros duplicados.');
 
 		if (subscriberEmail.empty && subscriberPhone.empty) {
 			await registerPSE.add(data);
@@ -114,11 +121,14 @@ module.exports = {
 
 	async getDinamycDatesPSE() {
 		try {
+			console.log('Buscando datas de dinâmica do processo seletivo.');
 			let data = await knex('pse').select('dinamycDate_1', 'dinamycDate_2', 'dinamycDate_3', 'dinamycDate_4', 'dinamycDate_5').first();
 
 			if (!data) {
 				throw new Error('PSE has not been scheduled!');
 			}
+
+			console.log('Datas de dinâmicas encontradas.', data);
 
 			let dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5;
 
@@ -146,18 +156,21 @@ module.exports = {
 
 			return data;
 		} catch (error) {
+			console.log('Erro no service getDinamycDatesPSE:  ', error);
 			throw new Error(error.message);
 		}
 	},
 
 	async deleteSubscribersData() {
 		try {
+			console.log('Removendo inscritos do firebase.')
 			const getDocuments = await registerPSE.get();
 			const batch = db.batch();
 
 			getDocuments.forEach(doc => batch.delete(doc.ref));
 
 			await batch.commit();
+			console.log('Documentos deletados.');
 			return { message: 'Documents deleted!' };
 		} catch (err) {
 			throw new Error(err.message);
@@ -174,61 +187,72 @@ module.exports = {
 
 			const jobExists = scheduledJobs['scheduleJobPSE'];
 
+			console.log('Verificação se job de agendamento existe.', jobExists);
+
 			if (jobExists) {
+				console.log('Erro: Job já existe!');
 				throw new Error('Job already exists!');
 			}
 
 			if (!regex.test(startDate) || !regex.test(endDate)) {
+				console.log('Erro: Data mal formatada');
 				throw new Error('Date bad formatted');
 			}
-
+	
 			if (!dinamycDate_1 || !dinamycDate_2 || !dinamycDate_3 || !dinamycDate_4) {
+				console.log('Erro: Requer 4 datas dinâmicas');
 				throw new Error('Requires 4 dinamyc dates');
 			}
-
+	
 			for (let i = 0; i < 5; i++) {
 				if (dinamycDates[i]) {
 					if (!regex.test(dinamycDates[i])) {
+						console.log(`Erro: Data dinâmica ${i + 1} mal formatada`);
 						throw new Error('Dinamyc date bad formatted');
 					}
 				}
-
+	
 				if (!dinamycDates[i]) {
 					dinamycDatesFormatted.push(dinamycDates[i]);
 				} else {
 					dinamycDatesFormatted.push(new Date(dinamycDates[i]));
 				}
 			}
-
+	
 			if (isBefore(endDateFormatted, startDateFormatted)) {
+				console.log('Erro: Data de início não pode ser maior que a data de término');
 				throw new Error('start date can\'t be greater than end date');
 			}
-
+	
 			const data = await knex('pse').select('*');
-
+	
 			if (data.length === 0) {
 				let currentDate = new Date();
-
+	
 				if (isBefore(startDateFormatted, currentDate)) {
+					console.log('Erro: Data atual não pode ser maior que a data de início');
 					throw new Error('current date can\'t be greater than start date');
 				}
-
+	
 				for (let i = 0; i < 5; i++) {
 					if (dinamycDatesFormatted[i]) {
 						if (isBefore(dinamycDatesFormatted[i], currentDate)) {
+							console.log('Erro: Data atual não pode ser maior que a data dinâmica');
 							throw new Error('current date can\'t be greater than dinamyc date');
 						}
-
+	
 						if (isBefore(dinamycDatesFormatted[i], startDateFormatted)) {
+							console.log('Erro: Data de início não pode ser maior que a data dinâmica');
 							throw new Error('start date can\'t be greater than dinamyc date');
 						}
-
+	
 						if (isBefore(dinamycDatesFormatted[i], endDateFormatted)) {
+							console.log('Erro: Data de término não pode ser maior que a data dinâmica');
 							throw new Error('end date can\'t be greater than dinamyc date');
 						}
 					}
 				}
-
+	
 				await knex('pse').insert({
 					id: v4(),
 					start: startDate,
@@ -239,22 +263,24 @@ module.exports = {
 					dinamycDate_4: dinamycDatesFormatted[3],
 					dinamycDate_5: dinamycDatesFormatted[4]
 				});
-
+	
 				await sheetController.delete();
 				await this.deleteSubscribersData();
-
+	
 			} else {
+				console.log('Erro: PSE já agendado!');
 				throw new Error('pse already scheduled!');
 			}
-
+	
 			scheduleJob('scheduleJobPSE', endDateFormatted, async () => {
 				try {
 					await knex('pse').delete();
 				} catch (error) {
-					console.log('Error: ', error.message);
+					console.log('Erro: ', error.message);
 				}
 			});
-
+	
+			console.log('Serviço agendado para ', endDate);
 			return { message: 'service scheduled to ' + endDate };
 		} catch (err) {
 			throw new Error(err.message);
@@ -369,82 +395,109 @@ module.exports = {
 
 	async deleteSchedulePSE() {
 		const jobScheduled = scheduledJobs['scheduleJobPSE'];
+		console.log('deleteSchedulePSE service executado.');
 
 		try {
 			if (jobScheduled) {
+				console.log('Job encontrado: ', jobScheduled);
 				jobScheduled.cancel();
 				await knex('pse').delete();
 
+				console.log('Agendamento do pse deletado.');
 				return { message: 'PSE schedule deleted!' };
 			}
 
+			console.log('Agendamento não existe.', jobScheduled);
 			throw new Error('Schedule does not exists');
 		} catch (err) {
+			console.log('Erro no deleteSchedulePSE service: ', err);
 			throw new Error(err.message);
 		}
 	},
 
 	async deleteOnePseDate(date) {
 		try {
-
+			console.log('Iniciando a função deleteOnePseDate com a data:', date);
+	
 			if (date === 'startDate' || date === 'endDate') {
-				throw new Error('It is not allowed to delete pse scheduling times');
+				const errorMessage = 'Não é permitido deletar os horários de agendamento do PSE';
+				console.log(errorMessage);
+				throw new Error(errorMessage);
 			}
-
+	
 			const updateDate = {};
 			updateDate[date] = null;
 			let cont = 0;
+			console.log('Preparando para buscar datas dinâmicas do PSE no banco de dados.');
 			const pseDates = await knex('pse').select('dinamycDate_1', 'dinamycDate_2', 'dinamycDate_3', 'dinamycDate_4', 'dinamycDate_5').first();
-			const arrayPseDates = Object.keys(pseDates); // Retorna um array com as propriedades do objeto
-
+			const arrayPseDates = Object.keys(pseDates);
+			console.log('Datas dinâmicas obtidas:', pseDates);
+	
 			if (pseDates[date] == null) {
-				throw new Error('Dynamic date does not exist');
+				const errorMessage = 'A data dinâmica não existe';
+				console.log(errorMessage);
+				throw new Error(errorMessage);
 			}
-
-			// Percorre o array de propriedades verificando cada data de dinâmica e caso a data seja diferente de "null", soma 1 no contador
+	
 			arrayPseDates.forEach((pseDate) => {
 				if (pseDates[pseDate]) {
 					cont++;
 				}
 			});
-
-			// Caso haja apenas uma data de dinâmica (cont=1) e essa data seja diferente de null, impede que ela seja removida
+			console.log('Contagem de datas dinâmicas não nulas:', cont);
+	
 			if (cont == 1 && pseDates[date] != null) {
-				throw new Error('There must be at least one dynamic date');
+				const errorMessage = 'Deve haver pelo menos uma data dinâmica';
+				console.log(errorMessage);
+				throw new Error(errorMessage);
 			}
-
+	
+			console.log('Atualizando banco de dados para remover a data:', date);
 			await knex('pse').update(updateDate);
-			return { message: 'Date removed' };
+			const successMessage = 'Data removida';
+			console.log(successMessage);
+			return { message: successMessage };
 		} catch (err) {
+			console.log('Erro ao executar deleteOnePseDate:', err.message);
 			throw new Error(err.message);
 		}
 	},
 
 	async checkSchedulePSE() {
 		try {
+			console.log('Buscando PSE no banco de dados.');
 			const data = await knex('pse').select('*');
-
+			console.log('Dados obtidos do banco de dados:', data);
+	
 			if (data[0]) {
+				console.log('Formatando data de término do pse:', data[0]);
 				const endDateFormatted = new Date(data[0].end);
-
+				console.log('Data de término formatada:', endDateFormatted);
+	
 				if (endDateFormatted < new Date()) {
+					console.log('Data de término já passou, deletando registro.');
 					await knex('pse').delete();
 				} else {
+					console.log('Agendando job para deletar registro na data de término.');
 					scheduleJob('scheduleJobPSE', endDateFormatted, async () => {
 						try {
+							console.log('Executando job agendado para deletar registro.');
 							await knex('pse').delete();
 						} catch (error) {
-							console.log('Error: ', error.message);
+							console.log('Erro ao deletar registro no job agendado:', error.message);
 						}
 					});
 				}
-
+	
 				return '';
 			} else {
-				throw new Error('⛔ Schedule does not exists!');
+				const errorMessage = '⛔ Schedule não existe!';
+				console.log(errorMessage);
+				throw new Error(errorMessage);
 			}
 		} catch (error) {
+			console.log('Erro na execução de checkSchedulePSE:', error.message);
 			throw new Error(error.message);
 		}
 	}
-};
+}
