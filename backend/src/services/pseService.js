@@ -94,9 +94,9 @@ module.exports = {
 		const subscriberEmail = await registerPSE.where('personalInformation.email', '==', value.email).get();
 		const subscriberPhone = await registerPSE.where('personalInformation.phone', '==', value.phone).get();
 
-		console.log('Sem registros duplicados.');
-
 		if (subscriberEmail.empty && subscriberPhone.empty) {
+			console.log('Sem registros de email e telefone duplicados.');
+			console.log('Inserindo dados no firebase e na planilha.');
 			await registerPSE.add(data);
 			await sheetController.insert(data);
 			return { 'message': 'usuário cadastrado!' };
