@@ -41,6 +41,8 @@ module.exports =  {
 	},
 
 	async updateSchedulePSE(req, res) {
+
+		console.log('Controller updateSchedulePSE');
 		
 		const pse = {
 			startDate: req.body.startDate,
@@ -52,6 +54,7 @@ module.exports =  {
 			dinamycDate_5: req.body.dinamycDate_5
 		};
 		
+		console.log('Novas informações do pse: ', pse);
 		try {
 			const { pseDatesFormatted } = await pseService.updateSchedulePSE(pse);
 			return res.status(200).json({'message': 'Schedule update', pseDatesFormatted});
@@ -62,6 +65,7 @@ module.exports =  {
 
 	async deleteSchedulePSE(req, res) {
 		try {
+			console.log('Controller deleteSchedulePSE')
 			const response = await pseService.deleteSchedulePSE();
 			return res.status(200).json(response);
 		} catch(err) {
