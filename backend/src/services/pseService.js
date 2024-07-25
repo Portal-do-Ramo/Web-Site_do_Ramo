@@ -196,6 +196,7 @@ module.exports = {
 			const jobExists = scheduledJobs['scheduleJobPSE'];
 
 			console.log('Verificação se job de agendamento existe.', jobExists);
+			console.log('ScheduleJobs: ', scheduledJobs);
 
 			if (jobExists) {
 				console.log('Erro: Job já existe!');
@@ -422,7 +423,9 @@ module.exports = {
 
 	async deleteSchedulePSE() {
 		const jobScheduled = scheduledJobs['scheduleJobPSE'];
+
 		console.log('deleteSchedulePSE service executado.');
+		console.log('ScheduleJobs: ', scheduledJobs);
 
 		try {
 			if (jobScheduled) {
