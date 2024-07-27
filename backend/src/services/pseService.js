@@ -275,10 +275,10 @@ module.exports = {
 				});
 
 
-				console.log('Apagando informações dos inscritos da planilha e do firebase.');
-				await sheetController.delete();
-				await this.deleteSubscribersData();
-				console.log('Informações dos inscritos da planilha e do firebase apagados com sucesso.');
+				// console.log('Apagando informações dos inscritos da planilha e do firebase.');
+				// await sheetController.delete();
+				// await this.deleteSubscribersData();
+				// console.log('Informações dos inscritos da planilha e do firebase apagados com sucesso.');
 	
 			} else {
 				console.log('Erro: PSE já agendado!');
@@ -292,7 +292,8 @@ module.exports = {
 					console.log('Erro: ', error.message);
 				}
 			});
-	
+			
+			console.log('Serviço agendado: ', scheduleJobs);
 			console.log('Serviço agendado para ', endDate);
 			return { message: 'service scheduled to ' + endDate };
 		} catch (err) {
