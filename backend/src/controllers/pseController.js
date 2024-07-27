@@ -36,6 +36,7 @@ module.exports =  {
 			const response = await pseService.schedulePSE(startDate, endDate, dinamycDate_1, dinamycDate_2, dinamycDate_3, dinamycDate_4, dinamycDate_5);
 			return res.status(200).json(response);
 		} catch(err) {
+			console.log('Controller - Erro ao agendar PSE: ', err);
 			return res.status(405).json({message: err.message});
 		}
 	},
@@ -59,6 +60,7 @@ module.exports =  {
 			const { pseDatesFormatted } = await pseService.updateSchedulePSE(pse);
 			return res.status(200).json({'message': 'Schedule update', pseDatesFormatted});
 		} catch(err) {
+			console.log('Controller - Erro ao atualizar PSE: ', err);
 			return res.status(405).json({message: err.message});
 		}
 	},
@@ -69,6 +71,7 @@ module.exports =  {
 			const response = await pseService.deleteSchedulePSE();
 			return res.status(200).json(response);
 		} catch(err) {
+			console.log('Controller - Erro ao deletar PSE: ', err);
 			return res.status(405).json({message: err.message});
 		}		
 	},
