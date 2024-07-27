@@ -293,10 +293,11 @@ module.exports = {
 				}
 			});
 			
-			console.log('Serviço agendado: ', scheduleJobs);
+			console.log('Serviço agendado: ', scheduledJobs);
 			console.log('Serviço agendado para ', endDate);
 			return { message: 'service scheduled to ' + endDate };
 		} catch (err) {
+			console.log('Service - erro ao agendar PSE: ', err);
 			throw new Error(err.message);
 		}
 	},
