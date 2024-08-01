@@ -277,8 +277,9 @@ module.exports = {
 
 				// console.log('Apagando informações dos inscritos da planilha e do firebase.');
 				// await sheetController.delete();
-				// await this.deleteSubscribersData();
-				// console.log('Informações dos inscritos da planilha e do firebase apagados com sucesso.');
+				await this.deleteSubscribersData();
+				console.log('Informações do firebase apagadas com sucesso!');
+				//console.log('Informações dos inscritos da planilha e do firebase apagados com sucesso.');
 	
 			} else {
 				console.log('Erro: PSE já agendado!');
