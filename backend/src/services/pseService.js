@@ -94,15 +94,17 @@ module.exports = {
 		const subscriberEmail = await registerPSE.where('personalInformation.email', '==', value.email).get();
 		const subscriberPhone = await registerPSE.where('personalInformation.phone', '==', value.phone).get();
 
-		if (subscriberEmail.empty && subscriberPhone.empty) {
-			console.log('Sem registros de email e telefone duplicados.');
-			console.log('Inserindo dados no firebase e na planilha.');
-			await registerPSE.add(data);
-			await sheetController.insert(data);
-			return { 'message': 'usuário cadastrado!' };
-		}
+		if (!subscriberEmail.empty) {
+			throw new Error('Email inserido já foi cadastrado!')
+		};
 
-		throw new Error('Email ou número inserido já foi cadastrado!');
+		if (!subscriberPhone.empty) {
+			throw new Error('Número de telefone inserido já foi cadastrado!')
+		};
+
+		await registerPSE.add(data);
+		await sheetController.insert(data);
+		return { 'message': 'usuário cadastrado!' };
 	},
 
 	async getSchedulePSE() {
