@@ -39,6 +39,24 @@ export default function PSEFormHeader({ page, showCircles = true }) {
     return styles.dots;
   }
 
+  function handleNavigation(targetPage) {
+    switch (targetPage) {
+      case '2':
+        if (!isFistPageValidated) return;
+        break;
+      case '3':
+        if (!isSecondPageValidated) return;
+        break;
+      case '4':
+        if (!isThirdPageValidated) return;
+        break;
+      default:
+        break;
+    }
+
+    router.push(`/PSE/cadastro?page=${targetPage}`);
+  }
+
   return (
     <div className={styles.container}>
       <section>
@@ -53,7 +71,7 @@ export default function PSEFormHeader({ page, showCircles = true }) {
         <section className={styles.progressContainer}>
           <article
             className={dotStyle('1')}
-            onClick={() => router.push('/PSE/cadastro?page=1')}
+            onClick={() => handleNavigation('1')}
           >
             {' '}
             {isFistPageValidated && <ImCheckmark />}{' '}
@@ -63,7 +81,7 @@ export default function PSEFormHeader({ page, showCircles = true }) {
 
           <article
             className={dotStyle('2')}
-            onClick={() => router.push('/PSE/cadastro?page=2')}
+            onClick={() => handleNavigation('2')}
           >
             {' '}
             {isSecondPageValidated && <ImCheckmark />}{' '}
@@ -73,7 +91,7 @@ export default function PSEFormHeader({ page, showCircles = true }) {
 
           <article
             className={dotStyle('3')}
-            onClick={() => router.push('/PSE/cadastro?page=3')}
+            onClick={() => handleNavigation('3')}
           >
             {' '}
             {isThirdPageValidated && <ImCheckmark />}{' '}
@@ -83,7 +101,7 @@ export default function PSEFormHeader({ page, showCircles = true }) {
 
           <article
             className={dotStyle('4')}
-            onClick={() => router.push('/PSE/cadastro?page=4')}
+            onClick={() => handleNavigation('4')}
           >
             {' '}
             {isFourthPageValidated && <ImCheckmark />}{' '}

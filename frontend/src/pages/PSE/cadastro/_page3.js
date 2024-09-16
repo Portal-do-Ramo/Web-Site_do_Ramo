@@ -6,9 +6,14 @@ import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
 import BasicSelect from '../../../components/BasicSelect';
 import api from '../../../services/api';
+import { toast } from 'react-toastify';
 
 export default function Page3({ dynamicDates }) {
   const router = useRouter();
+  const [error, setError] = useState(false);
+  const {
+    isThirdPageValidated
+  } = useContext(PSEFormContext);
 
   const [equipesAtivas, setEquipesAtivas] = useState([]);
 
@@ -96,6 +101,20 @@ export default function Page3({ dynamicDates }) {
     'Programa de Acolhimento ao Calouro (PAC)',
     'Estande do Ramo'
   ];
+
+   
+  // Função que lida com o clique no botão "Próximo"
+  function handleNext() {
+    if (isThirdPageValidated) {
+      // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
+      setError(false);
+      router.push('/PSE/cadastro?page=4');
+    } else {
+      // Campos obrigatórios não preenchidos, exibe mensagem de erro
+      setError(true);
+      toast.error("Campo(s) obrigatório(s) incompleto(s)");
+    }
+  }
 
   return (
     <>
@@ -202,7 +221,7 @@ export default function Page3({ dynamicDates }) {
             <button
               type='button'
               className={styles.next}
-              onClick={() => router.push('/PSE/cadastro?page=4')}
+              onClick={handleNext}
             >
               Próximo
             </button>

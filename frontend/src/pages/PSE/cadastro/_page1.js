@@ -1,13 +1,18 @@
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AiFillLock } from 'react-icons/ai';
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
 import BasicInput from '../../../components/BasicInput';
+import { toast } from 'react-toastify';
 
 export default function Page1() {
   const router = useRouter();
+  const [error, setError] = useState(false);
+  const {
+    isFistPageValidated
+  } = useContext(PSEFormContext);
 
   const {
     fullname,
@@ -87,6 +92,21 @@ export default function Page1() {
     }
   ];
 
+  
+
+  // Função que lida com o clique no botão "Próximo"
+  function handleNext() {
+    if (isFistPageValidated) {
+      // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
+      setError(false);
+      router.push('/PSE/cadastro?page=2');
+    } else {
+      // Campos obrigatórios não preenchidos, exibe mensagem de erro
+      setError(true);
+      toast.error("Campo(s) obrigatório(s) incompleto(s)");
+    }
+  }
+
   function handleCancel() {
     clearAll();
     router.push('/PSE');
@@ -157,7 +177,7 @@ export default function Page1() {
             <button
               type='button'
               className={styles.next}
-              onClick={() => router.push('/PSE/cadastro?page=2')}
+              onClick={handleNext}
             >
               Próximo
             </button>
