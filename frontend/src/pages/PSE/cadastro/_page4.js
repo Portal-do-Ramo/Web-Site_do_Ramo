@@ -1,14 +1,19 @@
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AiFillLock } from 'react-icons/ai';
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
 import RadioInputPlusSelect from '../../../components/RadioInputPlusSelect';
 import BasicSelect from '../../../components/BasicSelect';
+import { toast } from 'react-toastify';
 
 export default function Page4() {
   const router = useRouter();
+  const [error, setError] = useState(false);
+  const {
+    isFourthPageValidated
+  } = useContext(PSEFormContext);
 
   const {
     pcd,
@@ -54,10 +59,21 @@ export default function Page4() {
     setGender(event.target.value);
   };
 
-  const handleFinish = () => {
-    setButtonDisabled(true);
-    handleSendCSV();
-  };
+    
+  // Função que lida com o clique no botão "Próximo"
+  function handleNext() {
+    if (isFourthPageValidated) {
+      // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
+      setButtonDisabled(true);
+      handleSendCSV();
+      setError(false);
+      router.push('/PSE/cadastro?page=5');
+    } else {
+      // Campos obrigatórios não preenchidos, exibe mensagem de erro
+      setError(true);
+      toast.error("Campo(s) obrigatório(s) incompleto(s)");
+    }
+  }
 
   return (
     <>
@@ -95,7 +111,7 @@ export default function Page4() {
 
           <div className={styles.leftForm}>
             <div className={styles.genderRadios}>
-              <h3>Gênero</h3>
+              <h3>Gênero <strong>*</strong></h3>
               <div>
                 <div>
                   <input
@@ -132,14 +148,14 @@ export default function Page4() {
 
             <div className={styles.Inputs}>
               <RadioInputPlusSelect
-                label='Você é uma Pessoa com Deficiência(PcD)?'
+                label={<>Você é uma Pessoa com Deficiência(PcD)? <strong>*</strong></>} 
                 defaultValue='Selecione uma opção'
                 value={pcd}
                 set={setPcd}
                 list={pcdList}
               />
               <RadioInputPlusSelect
-                label='Você apresenta alguma neuroatipicidade?'
+                label={<>Você apresenta alguma neuroatipicidade? <strong>*</strong></>}
                 defaultValue='Selecione uma opção'
                 value={neuroatypicality}
                 set={setNeuroatypicality}
@@ -147,7 +163,7 @@ export default function Page4() {
               />
             </div>
             <BasicSelect
-              label='Como você se autodeclara?'
+              label={<>Como você se autodeclara? <strong>*</strong></>}
               defaultValue='Selecione uma opção'
               list={selfDeclareList}
               value={selfDeclaration}
@@ -166,7 +182,7 @@ export default function Page4() {
               <button
                 type='button'
                 className={styles.next_page2}
-                onClick={handleFinish}
+                onClick={handleNext}
                 disabled={buttonDisabled}
               >
                 Finalizar

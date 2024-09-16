@@ -26,7 +26,7 @@ export default function Header({ page, children }) {
       >
         <div className={styles.logoContainer}>
           <img
-            src='/Ramo_logo.svg'
+            src='/logoPrincipal.svg'
             alt='Logo do Ramo'
             className={styles.logo}
             onClick={() => router.push('/')}
@@ -67,7 +67,7 @@ export default function Header({ page, children }) {
         >
           <Link href='/'>
             <a className={page === 'inicio' ? styles.activeLink : null}>
-              Inicio
+              Início
             </a>
           </Link>
 
