@@ -67,7 +67,6 @@ export default function Page4() {
       setButtonDisabled(true);
       handleSendCSV();
       setError(false);
-      router.push('/PSE/cadastro?page=5');
     } else {
       // Campos obrigatórios não preenchidos, exibe mensagem de erro
       setError(true);
