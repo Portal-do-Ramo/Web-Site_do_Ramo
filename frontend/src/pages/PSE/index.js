@@ -155,6 +155,6 @@ export const getStaticProps = async () => {
     props: {
       havePSE
     },
-    revalidate: 60 * 60 * 4 // 4 Horas
+    revalidate: 30 // 30 seg
   };
 };
