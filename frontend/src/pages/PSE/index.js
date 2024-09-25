@@ -13,8 +13,6 @@ export default function PSE({ havePSE }) {
 
   //Verifica se o processo seletivo está ativo ou não
   async function handleRegister() {
-    // router.push('/PSE/cadastro?page=1') // apagar dps
-    // return; // apagar dps
     try {
       const { data } = await api.get('/pse');
 
@@ -138,7 +136,7 @@ export default function PSE({ havePSE }) {
 }
 
 //Verifica se o processo seletivo está ativo 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   let havePSE = false;
   try {
     let { data: resData } = await api.get('/pse');
@@ -155,6 +153,5 @@ export const getStaticProps = async () => {
     props: {
       havePSE
     },
-    revalidate: 30 // 30 seg
   };
 };
