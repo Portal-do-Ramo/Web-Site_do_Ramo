@@ -99,7 +99,8 @@ export default function Page3({ dynamicDates }) {
     'Indicação de amigos',
     'Marketing de Sala',
     'Programa de Acolhimento ao Calouro (PAC)',
-    'Estande do Ramo'
+    'Estande do Ramo',
+    'Outro'
   ];
 
    
@@ -115,6 +116,26 @@ export default function Page3({ dynamicDates }) {
       toast.error("Campo(s) obrigatório(s) incompleto(s)");
     }
   }
+
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+
+  useEffect(() => {
+    //Função para checar o tamanho da tela
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.matchMedia("(max-width: 720px)").matches);
+    };
+
+
+    checkScreenSize();
+
+    //listener para monitorar redimensionamentos
+    window.addEventListener('resize', checkScreenSize);
+
+   
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   return (
     <>
@@ -159,10 +180,14 @@ export default function Page3({ dynamicDates }) {
                   Datas que está disponível para dinâmica <strong>*</strong>
                 </span>
                 <div className={styles.dynamicDate}>
-                  {dynamicDates.map((dynamicDate, idx) => (
+                  {dynamicDates.map((dynamicDate, idx) => {
+                    const formattedDate = isSmallScreen
+                    ? dynamicDate.replace('-feira', '')
+                    : dynamicDate;
+                    return (
                     <div className={styles.dynamicDateItem} key={idx}>
                       <label htmlFor={`dynamicMainDate-${idx}`}>
-                        {dynamicDate}
+                        {formattedDate}
                       </label>
                       <input
                         type='checkbox'
@@ -174,7 +199,8 @@ export default function Page3({ dynamicDates }) {
                         }
                       />
                     </div>
-                  ))}
+                  );
+})}
                 </div>
               </>
             )}
