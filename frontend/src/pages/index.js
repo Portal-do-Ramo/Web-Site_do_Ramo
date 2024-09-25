@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper';
-import { isBefore } from 'date-fns';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
@@ -9,14 +8,18 @@ import Footer from '../components/Footer';
 import { FacaParteDaNossaEquipe } from '../components/FacaParteDaNossaEquipe';
 import CrewsCard from '../components/CrewsCard';
 import Image from 'next/image';
-
+import Head from 'next/head';
 import api from '../services/api';
 
 import styles from '../styles/index.module.scss';
 
-export default function Home({ crews, havePSE }) {
+export default function Home({ crews }) {
   return (
-    <div className={styles.container}>
+    <>
+      <Head>
+        <title>Início | IEEE CEFET-RJ</title>
+      </Head>
+      <div className={styles.container}>
       <Header page='inicio'>
         <div className={styles.wolfImageContainer}>
           <Image
@@ -129,10 +132,12 @@ export default function Home({ crews, havePSE }) {
             </div>
           </article>
         </section>
-        <FacaParteDaNossaEquipe havePSE={havePSE} />
+        <FacaParteDaNossaEquipe />
       </div>
       <Footer />
     </div>
+    </>
+    
   );
 }
 
@@ -140,22 +145,9 @@ export default function Home({ crews, havePSE }) {
 export const getStaticProps = async () => {
   let { data: crews } = await api.get('/crews');
 
-  let havePSE = false;
-  try {
-    let { data: resData } = await api.get('/pse');
-    if (!isBefore(new Date(), new Date(resData.start))) {
-      havePSE = true;
-    } else {
-      havePSE = false;
-    }
-  } catch (error) {
-    havePSE = false;
-  }
-
   return {
     props: {
       crews,
-      havePSE
     },
     revalidate: 60 * 60 * 4 // 4 Horas
   };

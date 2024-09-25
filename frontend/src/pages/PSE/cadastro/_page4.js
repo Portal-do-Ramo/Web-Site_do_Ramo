@@ -39,9 +39,9 @@ export default function Page4() {
     'Prefiro não dizer'
   ];
   const neuroList = [
-    'Transtorno do Déficit de atenção com hiperatividade(TDAH)',
+    'Transtorno do Déficit de Atenção com Hiperatividade(TDAH)',
     'Transtorno do Déficit de Atenção',
-    'Transtorno do Espectro Autirsta(TEA)',
+    'Transtorno do Espectro Autista(TEA)',
     'Dislexia',
     'Outro'
   ];
