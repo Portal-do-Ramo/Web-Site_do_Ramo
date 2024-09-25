@@ -2,7 +2,7 @@ import styles from './FacaParteDaNossaEquipe.module.scss';
 import { useRouter } from 'next/router';
 
 //Componente de convite para processo seletivo
-export const FacaParteDaNossaEquipe = ({ havePSE }) => {
+export const FacaParteDaNossaEquipe = ( ) => {
   const router = useRouter();
 
   const handlerButton = () => {
@@ -15,30 +15,17 @@ export const FacaParteDaNossaEquipe = ({ havePSE }) => {
         <article>
           <img
             src='/pessoas_quebra_cabeca.svg'
-            alt='ilustração de uma equipe trabalhando junto'
+            alt='Ilustração de uma equipe trabalhando junto'
           />
-          {havePSE ? (
-            <div>
-              <span>Faça parte da nossa equipe!</span>
-              <p>
-                Se você é estudante de graduação do CEFET-RJ, se inscreva no
-                nosso processo seletivo para trabalhar junto com o maior projeto
-                de extensão do CEFET-RJ.{' '}
-              </p>
-              <button onClick={handlerButton}>Se inscreva já</button>
-            </div>
-          ) : (
-            <div>
-              <span>Faça parte da nossa equipe!</span>
-              <p>
-                O processo seletivo abrirá em breve, esperamos te ver por aqui
-                novamente!
-              </p>
-              <button onClick={handlerButton} disabled>
-                Em breve
-              </button>
-            </div>
-          )}
+          <div>
+            <span>Faça parte da nossa equipe!</span>
+            <p>
+              Se você é estudante de graduação do CEFET-RJ, inscreva-se no nosso
+              processo seletivo para trabalhar junto com o maior projeto de
+              extensão da instituição.{' '}
+            </p>
+            <button onClick={handlerButton}>Saiba mais</button>
+          </div>
         </article>
       </section>
     </>
