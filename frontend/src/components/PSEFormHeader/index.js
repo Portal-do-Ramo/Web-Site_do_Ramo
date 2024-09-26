@@ -61,7 +61,7 @@ export default function PSEFormHeader({ page, showCircles = true }) {
     <div className={styles.container}>
       <section>
         <img
-          src='/Ramo_logo.svg'
+          src='/logoPrincipal.svg'
           alt='Logo do Ramo'
           onClick={() => router.push('/')}
         />
