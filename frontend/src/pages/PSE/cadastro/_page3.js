@@ -177,7 +177,7 @@ export default function Page3({ dynamicDates }) {
             {dynamicDates && dynamicDates.length > 0 && (
               <>
                 <span>
-                  Datas que está disponível para dinâmica <strong>*</strong>
+                  Datas que está disponível para dinâmica presencial <strong>*</strong>
                 </span>
                 <div className={styles.dynamicDate}>
                   {dynamicDates.map((dynamicDate, idx) => {
