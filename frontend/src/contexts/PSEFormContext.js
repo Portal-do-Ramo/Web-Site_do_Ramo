@@ -63,8 +63,8 @@ export function PSEFormContextProvider({ children }) {
       crew.length >= 3 &&
       area.length > 3 &&
       availableDate.length > 0 &&
-      reason.length > 3 &&
-      experience.length > 3 &&
+      reason.length >= 1 &&
+      experience.length >= 1 &&
       HowFoundIeee.length > 3
     ) {
       setIsThirdPageValidated(true);
