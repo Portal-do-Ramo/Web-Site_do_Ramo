@@ -4,12 +4,13 @@ const fileService = require('../services/fileService');
 module.exports = {
 	async getByName(req, res) {
 		const { name } = req.params;
-
+		console.log(name)
 		try {
-			if (fs.existsSync(`./uploads/${name.toLowerCase()}`)) {
-				return res.sendFile(`/uploads/${name.toLowerCase()}`, { root: '.' });
+			const imageId = await fileService.getByName(name);
+			if (imageId) {
+				return res.send(`https://drive.google.com/file/d/${imageId}/view`);
 			} else {
-				return  res.sendFile('uploads/ramo_logo.svg', { root: '.' });
+				return res.sendFile('uploads/ramo_logo.svg', { root: '.' });
 			}
 
 		} catch (error) {
@@ -19,8 +20,11 @@ module.exports = {
 
 	async uploadOne(req, res) {
 		const image = req.file;
-    
-		const imageURL = await fileService.uploadOne(image);
+		console.log(image);
+		
+		const { name: filename } = req.params;
+		
+		const imageURL = await fileService.uploadOne(image, filename);
 
 		return res.json({imageURL});
 	},
