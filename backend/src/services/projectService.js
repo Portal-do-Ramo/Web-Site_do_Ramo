@@ -2,7 +2,7 @@ const {v4} = require('uuid');
 const knex = require('../database');
 const Joi = require('joi');
 const crewService = require('./crewService');
-const fs = require('fs');
+const fileService = require('./fileService');
 
 module.exports = {
 	async index() {
@@ -138,11 +138,8 @@ module.exports = {
 			throw new Error('Projeto não existe!');
 		}
 
-		if (fs.existsSync(`./uploads/${project.imageURL}`))
-			fs.unlinkSync(`./uploads/${project.imageURL}`);
-
-		if (fs.existsSync(`./uploads/${project.logoURL}`))
-			fs.unlinkSync(`./uploads/${project.logoURL}`);
+		await fileService.removeImage(project.imageURL);
+		await fileService.removeImage(project.logoURL);
 
 		let confirmation = await knex('projects').where({id}).delete();
 		if(confirmation > 1){
