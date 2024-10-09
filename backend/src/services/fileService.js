@@ -21,7 +21,6 @@ module.exports = {
 
 	async getByName(name) {
 		const fileId = await checkImage(name);
-	
 		return fileId
 	},
 
@@ -43,7 +42,6 @@ module.exports = {
 			}   
 
 			const imageDriveID = await checkImage(filename)
-			console.log(imageDriveID);
 			
 			
 			if (imageDriveID) {
