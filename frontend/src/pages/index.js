@@ -10,7 +10,7 @@ import CrewsCard from '../components/CrewsCard';
 import Image from 'next/image';
 import Head from 'next/head';
 import api from '../services/api';
-
+import axios from 'axios'
 import styles from '../styles/index.module.scss';
 
 export default function Home({ crews }) {
@@ -144,7 +144,12 @@ export default function Home({ crews }) {
 //Busca informações sobre as equipes e se o pse está ocorrendo
 export const getStaticProps = async () => {
   let { data: crews } = await api.get('/crews');
-
+  
+  for(const crew of crews){
+    const imageURL = await axios.get(crew.imageURL)
+    crew.imageURL = imageURL.data
+  };
+  
   return {
     props: {
       crews,

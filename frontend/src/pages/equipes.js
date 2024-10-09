@@ -20,6 +20,7 @@ import { ProjectDetail } from '../components/ProjectDetail';
 import styles from '../styles/equipes.module.scss';
 
 import api from '../services/api';
+import axios from 'axios';
 import Head from 'next/head';
 
 export default function Equipes({ crews }) {
@@ -416,6 +417,11 @@ export default function Equipes({ crews }) {
 
 export const getStaticProps = async () => {
   let { data: crewsAllData } = await api.get('/crewsAllData');
+
+  for(const crewAllData of crewsAllData){
+    const imageURL = await axios.get(crewAllData.crew.imageURL)
+    crewAllData.crew.imageURL = imageURL.data
+  };
 
   return {
     props: {
