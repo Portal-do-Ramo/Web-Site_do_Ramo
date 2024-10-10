@@ -9,7 +9,7 @@ module.exports = {
 			await imageUpload.save(image.buffer, { contentType: image.mimetype });
 
 			const imageURL = `https://storage.googleapis.com/${bucket.name}/${imageUpload.name}`
-			
+
 			return imageURL;
 
 		} else {
@@ -19,7 +19,10 @@ module.exports = {
 
 	async removeImage(imgName) {
 		try {
-			await fs.promises.unlink(`./uploads/${imgName.toLowerCase()}`);
+			const image = bucket.file(`uploads/${imgName}`);
+			
+			await image.delete();
+
 			return ('Imagem deletada com sucesso!');
 		} catch (error) {
 			throw new Error('Essa imagem não existe');
