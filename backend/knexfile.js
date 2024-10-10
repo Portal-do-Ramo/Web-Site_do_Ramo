@@ -9,9 +9,9 @@ module.exports = {
 			user: process.env.DATABASE_USERNAME,
 			password: process.env.DATABASE_PASSWORD,
 			port: process.env.DATABASE_PORT,
-			ssl: {
-				rejectUnauthorized: false
-			}
+			ssl: !process.env.DATABASE_HOST ? 
+				false : process.env.DATABASE_HOST == '127.0.0.1' ? 
+				false : { rejectUnauthorized: false }
 		},
 		migrations: {
 			tableName: 'migrations',
