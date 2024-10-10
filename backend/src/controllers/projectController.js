@@ -1,12 +1,13 @@
 const projectService = require('../services/projectService');
+const { bucket } = require('../database/firebase');
 
 module.exports = {
 	async index(req, res) {
 		let projects = await projectService.index();
         
 		for (const project of projects) {
-			project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
-			project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+			project.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.imageURL}?t=${Date.now()}`;
+			project.logoURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.logoURL}?t=${Date.now()}`;
 		}
 
 		return res.status(200).json({'projects': projects});
@@ -18,8 +19,8 @@ module.exports = {
 		try {
 			let project = await projectService.getProject(id);
 
-			project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
-			project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+			project.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.imageURL}?t=${Date.now()}`;
+			project.logoURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.logoURL}?t=${Date.now()}`;
             
 			return res.json(project);
 		} catch (error) {
@@ -34,8 +35,8 @@ module.exports = {
 			let projects = await projectService.getByCrewId(crewId);
 
 			for (const project of projects) {
-				project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
-				project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+				project.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.imageURL}?t=${Date.now()}`;
+				project.logoURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.logoURL}?t=${Date.now()}`;
 			}
             
 			return res.json(projects);
