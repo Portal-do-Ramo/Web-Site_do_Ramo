@@ -53,12 +53,15 @@ module.exports = {
 
 	async delete(id) {
 		let crew = await knex('crews').where({id}).first();
-
 		if(!crew){
 			throw new Error('Equipe não existe!');
 		}
+
+		let project = await knex('projects').where({crew_id: id}).first()
 		
 		await fileService.removeImage(crew.imageURL);
+		await fileService.removeImage(project.imageURL);
+		await fileService.removeImage(project.logoURL);
 		
 		let confirmation = await knex('crews').where({id}).delete();
 
