@@ -18,9 +18,10 @@ module.exports = {
 	},
 
 	async uploadOne(req, res) {
+		const { name } = req.params;
 		const image = req.file;
-    
-		const imageURL = await fileService.uploadOne(image);
+		
+		const imageURL = await fileService.uploadOne(image, name);
 
 		return res.json({imageURL});
 	},
