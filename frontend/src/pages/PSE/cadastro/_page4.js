@@ -59,11 +59,16 @@ export default function Page4() {
     setGender(event.target.value);
   };
 
-    
+  async function enviaEmail() {
+    await fetch("/api/emails", {method: "POST" });
+
+  }
+
   // Função que lida com o clique no botão "Próximo"
   function handleNext() {
     if (isFourthPageValidated) {
       // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
+      enviaEmail();
       setButtonDisabled(true);
       handleSendCSV();
       setError(false);
