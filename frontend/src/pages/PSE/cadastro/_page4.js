@@ -27,7 +27,8 @@ export default function Page4() {
     handleSendCSV,
 
     buttonDisabled,
-    setButtonDisabled
+    setButtonDisabled,
+    email
   } = useContext(PSEFormContext);
 
   const pcdList = [
@@ -60,7 +61,27 @@ export default function Page4() {
   };
 
   async function enviaEmail() {
-    await fetch("/api/emails", {method: "POST" });
+    try {
+      const response = await fetch("/api/emails", {method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email
+      }),
+     });
+
+     if (!response.ok) {
+      throw new Error("Erro ao enviar e-mail.");
+    }
+
+    const data = await response.json();
+    console.log("E-mail enviado com sucesso:", data);
+  }
+  catch (error) {
+    console.error("Erro na chamada da API:", error);
+  }
+
 
   }
 
