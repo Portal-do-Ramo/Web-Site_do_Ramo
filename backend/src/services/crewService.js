@@ -1,6 +1,6 @@
 const knex = require('../database');
 const {v4} = require('uuid');
-const fs = require('fs');
+const fileService = require('./fileService');
 
 module.exports = {
 	async index() {
@@ -53,14 +53,16 @@ module.exports = {
 
 	async delete(id) {
 		let crew = await knex('crews').where({id}).first();
-
 		if(!crew){
 			throw new Error('Equipe não existe!');
 		}
 
-		if (fs.existsSync(`./uploads/${crew.imageURL}`))
-			fs.unlinkSync(`./uploads/${crew.imageURL}`);
-
+		let project = await knex('projects').where({crew_id: id}).first()
+		
+		await fileService.removeImage(crew.imageURL);
+		await fileService.removeImage(project.imageURL);
+		await fileService.removeImage(project.logoURL);
+		
 		let confirmation = await knex('crews').where({id}).delete();
 
 		if(confirmation > 1) {

@@ -1,14 +1,15 @@
 const crewService = require('../services/crewService');
 const projectService = require('../services/projectService');
 const awardService = require('../services/awardService');
+const { bucket } = require('../database/firebase');
 
 module.exports = {
 
 	async index(req, res) {
 		let crews = await crewService.index();
-
+		
 		for (const crew of crews) {
-			crew.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${crew.imageURL}`;
+			crew.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${crew.imageURL}?t=${Date.now()}`;
 		}
 
 		return res.status(200).json(crews);
@@ -20,7 +21,7 @@ module.exports = {
 		try {
 			let crew = await crewService.getCrew(id);
 
-			crew.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${crew.imageURL}`;
+			crew.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${crew.imageURL}?t=${Date.now()}`;
             
 			return res.json(crew);
 		} catch (error) {
@@ -72,11 +73,11 @@ module.exports = {
 				const awards = await awardService.getByCrewId(crew.id);
 
 				for (const project of projects) {
-					project.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.imageURL}`;
-					project.logoURL = `${req.protocol}://${req.get('host')}/api/uploads/${project.logoURL}`;
+					project.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.imageURL}?t=${Date.now()}`;
+					project.logoURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.logoURL}?t=${Date.now()}`;
 				}
 
-				crew.imageURL = `${req.protocol}://${req.get('host')}/api/uploads/${crew.imageURL}`;
+				crew.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${crew.imageURL}?t=${Date.now()}`;
 
 				response.push({crew, projects, awards});
 			}

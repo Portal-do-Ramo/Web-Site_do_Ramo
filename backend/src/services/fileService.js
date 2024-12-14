@@ -1,9 +1,17 @@
 const fs = require('fs');
+const { bucket } = require('../database/firebase');
 
 module.exports = {
-	async uploadOne(image) {
+	async uploadOne(image, name) {
+		
 		if (image) {
-			return `${process.env.BASE_URL}/api/${image.destination}/${(image.filename).toLowerCase()}`;
+			const imageUpload = bucket.file(`uploads/${name}.png`);
+			await imageUpload.save(image.buffer, { contentType: image.mimetype });
+
+			const imageURL = `https://storage.googleapis.com/${bucket.name}/${imageUpload.name}`
+
+			return imageURL;
+
 		} else {
 			throw new Error('Imagem não pode ser enviada!');
 		}
@@ -11,7 +19,10 @@ module.exports = {
 
 	async removeImage(imgName) {
 		try {
-			await fs.promises.unlink(`./uploads/${imgName.toLowerCase()}`);
+			const image = bucket.file(`uploads/${imgName}`);
+			
+			await image.delete();
+
 			return ('Imagem deletada com sucesso!');
 		} catch (error) {
 			throw new Error('Essa imagem não existe');
