@@ -59,15 +59,35 @@ export default function Page2() {
   
   // Função que lida com o clique no botão "Próximo"
   function handleNext() {
-    if (isSecondPageValidated) {
-      // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
-      setError(false);
-      router.push('/PSE/cadastro?page=3');
-    } else {
-      // Campos obrigatórios não preenchidos, exibe mensagem de erro
-      setError(true);
-      toast.error("Campo(s) obrigatório(s) incompleto(s)");
+    const validations = [
+      {
+        field: register,
+        condition: (value) => value.length > 7,
+        errorMessage: "A matrícula deve ter mais de 7 caracteres"
+      },
+      {
+        field: currentPeriod, 
+        condition: (value) => periods.includes(value),
+        errorMessage: "Por favor, selecione um período válido",
+      },
+      {
+        field: course, 
+        condition: (value) => courses.includes(value),
+        errorMessage: "Por favor, selecione um curso válido",
+      },
+    ];
+  
+    const invalidField = validations.find(
+      ({ field, condition }) => !condition(field)
+    );
+  
+    if (invalidField) {
+      toast.error(invalidField.errorMessage);
+      return;
     }
+  
+   
+    router.push("/PSE/cadastro?page=3");
   }
 
   return (

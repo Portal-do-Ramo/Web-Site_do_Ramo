@@ -106,15 +106,47 @@ export default function Page3({ dynamicDates }) {
    
   // Função que lida com o clique no botão "Próximo"
   function handleNext() {
-    if (isThirdPageValidated) {
-      // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
-      setError(false);
-      router.push('/PSE/cadastro?page=4');
-    } else {
-      // Campos obrigatórios não preenchidos, exibe mensagem de erro
+    const validations = [
+      {
+        condition: crew.length >= 3,
+        errorMessage: "Selecione uma equipe",
+      },
+      {
+        condition: area.length > 3,
+        errorMessage: "Selecione uma área",
+      },
+      {
+        condition: availableDate.length > 0,
+        errorMessage: "Selecione pelo menos uma data disponível",
+      },
+      {
+        condition: reason.length >= 1,
+        errorMessage: "O campo 'Motivo' deve ser preenchido",
+      },
+      {
+        condition: experience.length >= 1,
+        errorMessage: "O campo 'Experiência' deve ser preenchido",
+      },
+      {
+        condition: HowFoundIeee.length > 3,
+        errorMessage:
+          "Selecione uma opção em 'Como soube do nosso Processo Seletivo?'",
+      },
+    ];
+  
+    
+    const invalidField = validations.find(({ condition }) => !condition);
+  
+    if (invalidField) {
+    
       setError(true);
-      toast.error("Campo(s) obrigatório(s) incompleto(s)");
+      toast.error(invalidField.errorMessage);
+      return;
     }
+  
+   
+    setError(false);
+    router.push("/PSE/cadastro?page=4");
   }
 
 

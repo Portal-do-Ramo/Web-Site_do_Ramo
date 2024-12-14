@@ -62,16 +62,34 @@ export default function Page4() {
     
   // Função que lida com o clique no botão "Próximo"
   function handleNext() {
-    if (isFourthPageValidated) {
-      // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
-      setButtonDisabled(true);
-      handleSendCSV();
-      setError(false);
-    } else {
-      // Campos obrigatórios não preenchidos, exibe mensagem de erro
-      setError(true);
-      toast.error("Campo(s) obrigatório(s) incompleto(s)");
+    const validations = [
+      {
+        condition: gender.length > 2,
+        errorMessage: "Selecione uma opção para o campo Gênero",
+      },
+      {
+        condition: pcd.length > 1,
+        errorMessage: "Selecione uma opção para o campo PCD",
+      },
+      {
+        condition: neuroatypicality.length > 1,
+        errorMessage: "Selecione uma opção para o campo Neuroatipicidade",
+      },
+      {
+        condition: selfDeclaration.length > 2,
+        errorMessage: "Selecione uma opção para o campo Autodeclaração",
+      },
+    ];
+    const invalidField = validations.find(({ condition }) => !condition);
+
+    if (invalidField) {
+      toast.error(invalidField.errorMessage);
+      return false;
     }
+      handleSendCSV();
+      return true;
+   
+  
   }
 
   return (
@@ -182,7 +200,7 @@ export default function Page4() {
                 type='button'
                 className={styles.next_page2}
                 onClick={handleNext}
-                disabled={buttonDisabled}
+              
               >
                 Finalizar
               </button>
