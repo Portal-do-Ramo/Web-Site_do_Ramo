@@ -293,6 +293,11 @@
                 column-gap: 30px;
                 padding-bottom: 50px;
 
+                @media (max-width: 600px) {
+                    justify-content: space-between;
+                    width: 100%;
+                }
+
                 .cancel, .edit {
                     padding: 15px 60px;
                     border: 0;

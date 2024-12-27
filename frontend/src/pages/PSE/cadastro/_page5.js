@@ -30,7 +30,8 @@ export default function Page5() {
 
         <article>
           <h1>Muito obrigadx!</h1>
-          <p>Em breve entraremos em contato com você.</p>
+          <p>Enviamos um e-mail confirmando sua inscrição.</p>
+          <p>Caso não o encontre verifique a caixa de spam ou entre em contato conosco.</p>
 
           <div className={`${styles.leftForm} ${styles.centered}`}>
             <img
