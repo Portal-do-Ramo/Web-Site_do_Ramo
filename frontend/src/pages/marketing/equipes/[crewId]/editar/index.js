@@ -29,14 +29,28 @@ export default function equipeEditar({ crew }) {
   useEffect(() => {
     //Converte uma URL de imagem em um formato base64
     async function convertImage() {
-      let blob = await fetch(image).then((r) => r.blob());
-      let dataUrl = await new Promise((resolve) => {
-        let reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
-      });
-
-      setImage(dataUrl);
+      try {
+        if (!image) {
+          console.error('Imagem URL não encontrada.');
+          return;
+        }
+    
+        let response = await fetch(image);
+        if (!response.ok) {
+          throw new Error(`HTTP erro! status: ${response.status}`);
+        }
+    
+        let blob = await response.blob();
+        let dataUrl = await new Promise((resolve) => {
+          let reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        });
+    
+        setImage(dataUrl);
+      } catch (error) {
+        console.error('Falha para converter imagem:', error);
+      }
     }
 
     convertImage();
