@@ -5,7 +5,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 async function sendEmail (recipientEmail) {
 	try {
-		const senderEmail = 'sitedoramo@gmail.com';
+		const senderEmail = process.env.SENDGRID_SENDER_EMAIL;
 
 		const message = {
 			to: recipientEmail,
@@ -25,7 +25,7 @@ async function sendEmail (recipientEmail) {
               <p>Este é um e-mail de confirmação para verificar o seu endereço de e-mail.</p>
               <p>Ficamos felizes em informar que a verificação foi concluída com sucesso! Agora, sabemos que podemos entrar em contato com você sempre que necessário.</p>
 			  <p>Desejamos um bom processo seletivo!</p>
-              <p>Atenciosamente,<br>Equipe do Site do Ramo</p>
+              <p>Atenciosamente,<br>Ramo Estudantil IEEE</p>
             </div>
           </body>
         </html>
@@ -38,9 +38,4 @@ async function sendEmail (recipientEmail) {
 	}
 }
 
-(async () => {
-	const recipientEmail = 'marques.a1n1a@gmail.com'; 
-	await sendEmail(recipientEmail);
-})();
-  
 module.exports = sendEmail;
