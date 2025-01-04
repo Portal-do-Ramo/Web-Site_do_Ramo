@@ -2,11 +2,21 @@ const crewService = require('../services/crewService');
 const projectService = require('../services/projectService');
 const awardService = require('../services/awardService');
 const { bucket } = require('../database/firebase');
+require('dotenv').config();
+const isLocal = process.env.IS_LOCAL;
 
 module.exports = {
-
+	
 	async index(req, res) {
 		let crews = await crewService.index();
+		
+		if (isLocal) {
+			for (const crew of crews) {
+				crew.imageURL = `${process.env.BASE_URL}/uploads/${crew.imageURL}`;
+			}
+
+			return res.status(200).json(crews);
+		}
 		
 		for (const crew of crews) {
 			crew.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${crew.imageURL}?t=${Date.now()}`;
@@ -20,6 +30,11 @@ module.exports = {
 
 		try {
 			let crew = await crewService.getCrew(id);
+
+			if (isLocal) {
+				crew.imageURL = `${process.env.BASE_URL}/uploads/${crew.imageURL}`;
+				return res.json(crew);
+			}
 
 			crew.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${crew.imageURL}?t=${Date.now()}`;
             
@@ -68,6 +83,24 @@ module.exports = {
 			const response = [];
 			const crews = await crewService.index();
             
+			if (isLocal) { 
+				for (const crew of crews) {
+					const projects = await projectService.getByCrewId(crew.id);
+					const awards = await awardService.getByCrewId(crew.id);
+	
+					for (const project of projects) {
+						project.imageURL = `${process.env.BASE_URL}/uploads/${project.imageURL}`;
+						project.logoURL = `${process.env.BASE_URL}/uploads/${project.logoURL}`;
+					}
+	
+					crew.imageURL = `${process.env.BASE_URL}/uploads/${crew.imageURL}`;
+	
+					response.push({crew, projects, awards});
+				}
+
+				return res.status(200).json(response);
+			}
+
 			for (const crew of crews) {
 				const projects = await projectService.getByCrewId(crew.id);
 				const awards = await awardService.getByCrewId(crew.id);

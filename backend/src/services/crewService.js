@@ -60,8 +60,11 @@ module.exports = {
 		let project = await knex('projects').where({crew_id: id}).first()
 		
 		await fileService.removeImage(crew.imageURL);
-		await fileService.removeImage(project.imageURL);
-		await fileService.removeImage(project.logoURL);
+		
+		if (project) {
+			await fileService.removeImage(project.imageURL);
+			await fileService.removeImage(project.logoURL);
+		}
 		
 		let confirmation = await knex('crews').where({id}).delete();
 
