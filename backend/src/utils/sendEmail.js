@@ -24,7 +24,8 @@ async function sendEmail (recipientEmail) {
               <p>Olá,</p>
               <p>Este é um e-mail de confirmação para verificar o seu endereço de e-mail.</p>
               <p>Ficamos felizes em informar que a verificação foi concluída com sucesso! Agora, sabemos que podemos entrar em contato com você sempre que necessário.</p>
-			  <p>Desejamos um bom processo seletivo!</p>
+              <p>Os próximos contatos serão feitos por e-mail, então não se esqueça de verificar sua caixa de entrada e também a de spam!</p>
+              <p>Desejamos um bom processo seletivo!</p>
               <p>Atenciosamente,<br>Ramo Estudantil IEEE</p>
             </div>
           </body>
@@ -33,8 +34,10 @@ async function sendEmail (recipientEmail) {
 		};
 
 		await sgMail.send(message);
+		console.log('Processo de envio E-mail de confirmação de inscrição concluído sem erros');
 	} catch (error) {
-		throw new Error(error.message);
+		console.log('Erro no envio do email de confirmação de inscrição: ', { code: error.code, body: error.response.body.errors });
+		throw new Error('Houve um erro interno ao enviar o email de confirmação. Por favor, tente novamente mais tarde ou entre em contato com nossa equipe.');
 	}
 }
 
