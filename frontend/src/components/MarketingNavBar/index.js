@@ -46,9 +46,9 @@ export default function MarketingNavBar({ page, user }) {
     <div className={styles.all}>
       <div className={styles.title}>
         <Image
-          src='/Ramo_logo.svg'
-          width='90px'
-          height='100%'
+          src='/logoPrincipal.svg'
+          width='75px'
+          height='75%'
           onClick={() => router.push('/')}
         />
 

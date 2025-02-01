@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import styles from '../../../styles/pseCadastro.module.scss';
+import { useContext} from 'react';
+import { PSEFormContext } from '../../../contexts/PSEFormContext';
 
 export default function Page5() {
   const router = useRouter();
@@ -23,15 +25,20 @@ export default function Page5() {
   //   }
   // }, [isFistPageValidated, isSecondPageValidated, isThirdPageValidated, isFourthPageValidated]);
 
+  const { persistedData } = useContext(PSEFormContext);
+  
+
   return (
     <>
       <section className={styles.leftSide}>
         <PSEFormHeader page='5' showCircles={false} />
 
         <article>
+          
           <h1>Muito obrigadx!</h1>
-          <p>Em breve entraremos em contato com você.</p>
-
+          <p>Entraremos em contato pelo e-mail <span className={styles.destaqueEmail}>{persistedData.email}</span> em breve.</p>
+          <p>Caso não o encontre verifique a caixa de spam ou entre em contato conosco.</p>
+        
           <div className={`${styles.leftForm} ${styles.centered}`}>
             <img
               src='/check_circle.svg'
@@ -51,6 +58,7 @@ export default function Page5() {
             </div>
           </div>
         </article>
+
       </section>
 
       <section className={styles.rightSide}>

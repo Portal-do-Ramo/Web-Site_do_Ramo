@@ -37,6 +37,8 @@ export function PSEFormContextProvider({ children }) {
 
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
+  const [persistedData, setPersistedData] = useState({});
+
   useEffect(() => {
     if (
       fullname.length > 3 &&
@@ -146,6 +148,9 @@ export function PSEFormContextProvider({ children }) {
           gender: gender.replace(', ', ' -'),
           selfDeclaration: selfDeclaration.replace(', ', ' -')
         });
+      
+        setPersistedData({ email });
+        
 
         toast.success('Cadastro concluído');
         clearAll();
@@ -210,7 +215,8 @@ export function PSEFormContextProvider({ children }) {
         setNeuroatypicality,
 
         buttonDisabled,
-        setButtonDisabled
+        setButtonDisabled,
+        persistedData
       }}
     >
       {children}
