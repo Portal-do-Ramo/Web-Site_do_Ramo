@@ -7,6 +7,7 @@ const { db } = require('../database/firebase');
 const registerPSE = db.collection('registerPSE');
 const sheetController = require('../controllers/sheetController');
 const moment = require('moment');
+const sendEmail = require('../utils/sendEmail');
 
 function validateDate(date) {
 	const currentDate = new Date();
@@ -57,7 +58,7 @@ module.exports = {
 		validateDate(value.birthday);
 		value.birthday = moment.utc(value.birthday).format('DD/MM/YYYY');
 
-		console.log('Dados do formulário de inscrição válidos.')
+		console.log('Dados do formulário de inscrição válidos.');
 
 		const personalInformation = {
 			fullname: value.fullname,
@@ -96,19 +97,20 @@ module.exports = {
 		const subscriberRegister = await registerPSE.where('registrationData.register', '==', value.register).get();
 
 		if (!subscriberEmail.empty) {
-			throw new Error('Email inserido já foi cadastrado!')
-		};
+			throw new Error('Email inserido já foi cadastrado!');
+		}
 
 		if (!subscriberPhone.empty) {
-			throw new Error('Número de telefone inserido já foi cadastrado!')
-		};
+			throw new Error('Número de telefone inserido já foi cadastrado!');
+		}
 
 		if (!subscriberRegister.empty) {
-			throw new Error('Matrícula inserida já foi cadastrada!')
-		};
+			throw new Error('Matrícula inserida já foi cadastrada!');
+		}
 
 		await registerPSE.add(data);
 		await sheetController.insert(data);
+		await sendEmail(personalInformation.email);
 		return { 'message': 'usuário cadastrado!' };
 	},
 
@@ -175,7 +177,7 @@ module.exports = {
 
 	async deleteSubscribersData() {
 		try {
-			console.log('Removendo inscritos do firebase.')
+			console.log('Removendo inscritos do firebase.');
 			const getDocuments = await registerPSE.get();
 			const batch = db.batch();
 
@@ -540,4 +542,4 @@ module.exports = {
 			throw new Error(error.message);
 		}
 	}
-}
+};

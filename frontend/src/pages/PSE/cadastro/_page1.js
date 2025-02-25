@@ -96,15 +96,41 @@ export default function Page1() {
 
   // Função que lida com o clique no botão "Próximo"
   function handleNext() {
-    if (isFistPageValidated) {
-      // Todos os campos obrigatórios estão preenchidos, pode navegar para a próxima página
-      setError(false);
-      router.push('/PSE/cadastro?page=2');
-    } else {
-      // Campos obrigatórios não preenchidos, exibe mensagem de erro
-      setError(true);
-      toast.error("Campo(s) obrigatório(s) incompleto(s)");
+    const validations = [
+      {
+        field: fullname,
+        condition: (value) => value.length > 3,
+        errorMessage: "O nome completo deve ter mais de 3 caracteres",
+      },
+      {
+        field: birthday,
+        condition: (value) => value.length === 10,
+        errorMessage: "A data de nascimento deve estar no formato DD/MM/AAAA",
+      },
+      {
+        field: phone,
+        condition: (value) => value.length > 9,
+        errorMessage: "O telefone deve ter ao menos 10 dígitos",
+      },
+      {
+        field: email,
+        condition: (value) => value.length > 3 &&  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+        errorMessage: "O email deve ser válido (exemplo: usuario@email.com)",
+      },
+    ];
+  
+    
+    const invalidField = validations.find(
+      ({ field, condition }) => !condition(field)
+    );
+  
+    if (invalidField) {
+      toast.error(invalidField.errorMessage);
+      return;
     }
+  
+    // Tudo ok, avança para a próxima página
+    router.push("/PSE/cadastro?page=2");
   }
 
   function handleCancel() {

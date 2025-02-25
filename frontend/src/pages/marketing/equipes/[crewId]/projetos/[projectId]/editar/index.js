@@ -35,14 +35,34 @@ export default function projetoEditar({ crew, project }) {
   useEffect(() => {
     //Converte as URLs das imagens em URLs base64
     async function convertImage(image) {
-      let blob = await fetch(image).then((r) => r.blob());
-      let dataUrl = await new Promise((resolve) => {
-        let reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
-      });
+      try {
+     
+        if (!image) {
+          throw new Error("A URL da imagem é inválida");
+        }
+    
+        const response = await fetch(image);
+        if (!response.ok) {
+          throw new Error(
+            `Erro ao buscar a imagem: ${response.status} - ${response.statusText}`
+          );
+        }
+  
+        const blob = await response.blob();
 
-      return dataUrl;
+        const dataUrl = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = () => reject(new Error("Erro ao ler o arquivo"));
+          reader.readAsDataURL(blob);
+        });
+
+        return dataUrl;
+
+      } catch (error) {
+        console.error("Erro na conversão da imagem:", error.message);
+        return null;
+      }
     }
 
     //Converte imagens, forma data de início do projeto e se concluído a data de término

@@ -544,7 +544,6 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(-50%, -50%);   
-
     row-gap: 5px;
     background-color: white;
     border-radius: 25px;
@@ -558,6 +557,10 @@
     @media (max-width: 800px) {
         width: 90vw;
         padding: 100px 0;
+    }
+
+    @media (max-width: 1000px) {
+        margin-top: 4rem;
     }
 
     img {
@@ -627,7 +630,7 @@
         }
     }
 
-    @media (max-width: 475px) {
+    @media (max-width: 520px) {
         
         width: 95vw;
         padding: 50px 10px;
@@ -653,7 +656,6 @@
 }
 
 .modalAgendamento{
-        
     margin-bottom: -2rem;
 
     h2{
@@ -703,7 +705,7 @@
             padding: 10px 5px;
             align-items: center;
 
-            @media (max-width: 475px) {
+            @media (max-width: 520px) {
                 width: 300px;
             }
             
@@ -771,16 +773,17 @@
             transform: scale(0.95);
         }
 
-        @media (max-width: 475px) {
+        @media (max-width: 520px) {
             gap: 30px;
         }
 
 
     }
     @media (max-width: 600px) {
+        
         h2{
             padding-top: 2rem;
-            
+            font-size: 1.2rem;
             
         }
         .buttonsBox {
@@ -795,6 +798,9 @@
             width: 150px;
             margin-left: -2rem;
           }
+        }
+        .days label{
+            font-size: 1.1rem;
         }
 
 
@@ -903,7 +909,7 @@
         }
     }
 
-    @media (max-width: 475px) {
+    @media (max-width: 520px) {
         
         width: 95vw;
         padding: 50px 0;
@@ -1139,7 +1145,7 @@
     font-size: 14px;
     transition: .2s ease; 
     margin-bottom: 1rem; 
-    @media (max-width: 475px) {
+    @media (max-width: 520px) {
         width: 150px;
     }
 }

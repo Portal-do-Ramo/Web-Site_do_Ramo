@@ -62,7 +62,7 @@ export default function Login() {
         <div className={styles.leftImage}></div>
 
         <div className={styles.loginContent}>
-          <img src='logo_azul.svg' />
+          <img src='logoPrincipalPreto.svg' />
 
           <form className={styles.form} onSubmit={handleSubmit(handleSignIn)}>
             <h3>Bem Vindo!</h3>

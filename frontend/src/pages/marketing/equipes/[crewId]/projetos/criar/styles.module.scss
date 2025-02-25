@@ -34,6 +34,8 @@
                     flex-direction: column;
                 }
 
+                
+
                 span {
                     font-size: 1rem;
                     font-weight: 500;
@@ -289,6 +291,11 @@
                 display: flex;
                 column-gap: 30px;
                 padding-bottom: 50px;
+                
+                @media (max-width: 600px) {
+                    justify-content: space-between;
+                    width: 100%;
+                }
 
                 .cancel, .edit {
                     padding: 15px 60px;

@@ -1,10 +1,21 @@
 const projectService = require('../services/projectService');
 const { bucket } = require('../database/firebase');
+require('dotenv').config();
+const isLocal = process.env.IS_LOCAL;
 
 module.exports = {
 	async index(req, res) {
 		let projects = await projectService.index();
         
+		if (isLocal){
+			for (const project of projects) {
+				project.imageURL = `${process.env.BASE_URL}/uploads/${project.imageURL}`;
+				project.logoURL = `${process.env.BASE_URL}/uploads/${project.logoURL}`;
+			}
+
+			return res.status(200).json({'projects': projects});
+		}
+
 		for (const project of projects) {
 			project.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.imageURL}?t=${Date.now()}`;
 			project.logoURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.logoURL}?t=${Date.now()}`;
@@ -18,6 +29,13 @@ module.exports = {
         
 		try {
 			let project = await projectService.getProject(id);
+			
+			if (isLocal) {
+				project.imageURL = `${process.env.BASE_URL}/uploads/${project.imageURL}`;
+				project.logoURL = `${process.env.BASE_URL}/uploads/${project.logoURL}`;
+            
+				return res.json(project);
+			}
 
 			project.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.imageURL}?t=${Date.now()}`;
 			project.logoURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.logoURL}?t=${Date.now()}`;
@@ -33,6 +51,15 @@ module.exports = {
         
 		try {
 			let projects = await projectService.getByCrewId(crewId);
+
+			if (isLocal) {
+				for (const project of projects) {
+					project.imageURL = `${process.env.BASE_URL}/uploads/${project.imageURL}`;
+					project.logoURL = `${process.env.BASE_URL}/uploads/${project.logoURL}`;
+				}
+				
+				return res.json(projects);
+			}
 
 			for (const project of projects) {
 				project.imageURL = `https://storage.googleapis.com/${bucket.name}/uploads/${project.imageURL}?t=${Date.now()}`;

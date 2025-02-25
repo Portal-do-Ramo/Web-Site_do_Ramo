@@ -94,7 +94,7 @@ export default function index() {
     return (
       <div className={styles.all}>
         <Head>
-          <title>Marketing - Inicio | IEEE CEFET-RJ</title>
+          <title>Marketing - Início | IEEE CEFET-RJ</title>
         </Head>
 
         <MarketingNavBar page='inicio' user={user ? user : null} />
@@ -102,7 +102,7 @@ export default function index() {
         <div className={styles.pageContent}>
           <section className={styles.menuRoutes}>
             <MarketingMenuRoutes
-              routesName={`Inicio/Cadastro`}
+              routesName={`Início/Cadastro`}
               routes={`./cadastro`}
             />
           </section>
