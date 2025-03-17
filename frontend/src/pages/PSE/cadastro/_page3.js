@@ -69,6 +69,7 @@ export default function Page3({ dynamicDates }) {
     SocialWolf: ['Educacional', 'Mecânica', 'Programação', 'Eletrônica'],
     Marketing: ['Marketing'],
     Gestão: ['Assessoria de Gestão']
+    
   };
 
   const [hideFieldArea, setHideFieldArea] = useState(true);
@@ -112,7 +113,7 @@ export default function Page3({ dynamicDates }) {
         errorMessage: "Selecione uma equipe",
       },
       {
-        condition: area.length > 3,
+        condition: (area.length > 3),
         errorMessage: "Selecione uma área",
       },
       {
@@ -202,7 +203,7 @@ export default function Page3({ dynamicDates }) {
                 value={area}
                 set={setArea}
                 defaultValue={'Selecione a área'}
-                list={areaDasEquipes[crew] ? areaDasEquipes[crew] : []}
+                list={areaDasEquipes[crew] ? areaDasEquipes[crew] : [`${crew}`]}
               />
             )}
 
