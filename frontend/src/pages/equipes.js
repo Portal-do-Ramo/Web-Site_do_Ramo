@@ -90,6 +90,11 @@ export default function Equipes({ crews }) {
     }
   }, [projectsTranslateX]);
 
+  // Relação ESTÁTICA de equipes e capítulos
+  const chapter = {
+    RocketWolf:"Aerospace & Electronic Systems Society",
+  }
+
   //Permite alterar a equipe selecionada, para navegar entre as equipes
   function handleChangeCrewSelected(operation) {
     let imageContainerShift = document.querySelector(
@@ -293,6 +298,7 @@ export default function Equipes({ crews }) {
 
               <div className={styles.description}>
                 <h1>{crews[crewIndex].crew.name}</h1>
+                <h3 className={styles.chapter} >{chapter[crews[crewIndex].crew.name]}</h3>
 
                 {crews[crewIndex].crew.about
                   .split(/\r?\n/g)
