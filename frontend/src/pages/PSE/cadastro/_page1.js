@@ -147,7 +147,7 @@ export default function Page1() {
           <h1>Registro</h1>
           <p>Insira suas informações pessoais.</p>
           <br></br>
-          <p><AiFillWarning /> Antes de prosseguir, recomendamos a leitura do <a href='https://drive.google.com/file/d/1tUAWfGk4E88ox5vDUXRj48OL4wonz1xm/view?usp=sharing'>Edital do Candidato</a>.</p>
+          <p><AiFillWarning /> Antes de prosseguir, <u><i>recomendamos</i></u> a leitura do <a href='https://drive.google.com/file/d/1tUAWfGk4E88ox5vDUXRj48OL4wonz1xm/view?usp=sharing' target='_blank'>Edital do Candidato</a>.</p>
 
           <div className={styles.message}>
             <AiFillLock />
