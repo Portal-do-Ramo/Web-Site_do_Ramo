@@ -67,7 +67,7 @@ module.exports =  {
 
 	async deleteSchedulePSE(req, res) {
 		try {
-			console.log('Controller deleteSchedulePSE')
+			console.log('Controller deleteSchedulePSE');
 			const response = await pseService.deleteSchedulePSE();
 			return res.status(200).json(response);
 		} catch(err) {

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
-import { AiFillLock } from 'react-icons/ai';
+import { AiFillLock, AiFillWarning } from 'react-icons/ai';
 import PSEFormHeader from '../../../components/PSEFormHeader';
 import { PSEFormContext } from '../../../contexts/PSEFormContext';
 import styles from '../../../styles/pseCadastro.module.scss';
@@ -146,6 +146,8 @@ export default function Page1() {
         <article>
           <h1>Registro</h1>
           <p>Insira suas informações pessoais.</p>
+          <br></br>
+          <p><AiFillWarning /> Antes de prosseguir, <u><i>recomendamos</i></u> a leitura do <a href='https://drive.google.com/file/d/1tUAWfGk4E88ox5vDUXRj48OL4wonz1xm/view?usp=sharing' target='_blank'>Edital do Candidato</a>.</p>
 
           <div className={styles.message}>
             <AiFillLock />

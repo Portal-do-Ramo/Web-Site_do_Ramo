@@ -69,7 +69,7 @@ async function sendEmail(recipientEmail) {
 		});
 
 		throw new Error(
-			'Houve um erro interno ao enviar o email de confirmação. Por favor, tente novamente mais tarde ou entre em contato com nossa equipe.'
+			'Infelizmente houve um erro no envio do email para confirmação, tente novamente ou entre em contato com nossa equipe de Gestão de processos para garantir que sua inscrição foi realizada.'
 		);
 	}
 }
