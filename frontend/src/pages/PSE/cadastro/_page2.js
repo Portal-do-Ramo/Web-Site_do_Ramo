@@ -62,7 +62,7 @@ export default function Page2() {
     const validations = [
       {
         field: register,
-        condition: (value) => value.length > 7,
+        condition: (value) => !value || value.length > 7,
         errorMessage: "A matrícula deve ter mais de 7 caracteres"
       },
       {
@@ -113,7 +113,7 @@ export default function Page2() {
               id='register'
               type='text'
               placeholder='Digite o número da Matrícula'
-              required={true}
+              required={false}
               value={register}
               set={setRegister}
             />

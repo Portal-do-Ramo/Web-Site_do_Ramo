@@ -30,11 +30,16 @@
       overflow-y: hidden;
       
       h1 {
-        margin-bottom: 2rem;
+        margin-bottom: -1rem;
         letter-spacing: 2px;
         font-weight: 700;
         color: var(--azul-ramo);
         font-size: 40px;
+      }
+
+      h3{
+        padding: 0.5rem 0;
+        color: rgb(188, 188, 196);
       }
 
       p {
@@ -154,8 +159,9 @@
         margin: 0px;
         padding: 50px 80px 10px 80px;
 
-        h1 {
+        h1, h3 {
           align-self: center;
+          text-align: center;
         } 
       }
 
@@ -215,7 +221,11 @@
 
         h1 {
           font-size: 1.8rem;
-          margin-bottom: 10px;
+          margin-bottom: 2px;
+        }
+
+        h3 {
+           font-size: 1rem;
         }
 
         p {
@@ -265,8 +275,10 @@
       .description {
         padding: 50px 40px 10px 40px;
 
-        h1 {
+        h1,h3 {
           align-self: center;
+                    text-align: center;
+
         } 
       }
 
