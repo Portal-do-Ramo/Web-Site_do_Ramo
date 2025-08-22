@@ -93,6 +93,12 @@ export default function Equipes({ crews }) {
   // Relação ESTÁTICA de equipes e capítulos
   const chapter = {
     RocketWolf:"Aerospace & Electronic Systems Society",
+    WIE:"Women in Engineering",
+    WolfBotz:"Robotics and Automation Society",
+    WolfPower:"Power & Energy Society",
+    SocialWolf:"Special Interest Group on Humanitarian Technology",
+    WolfByte:"Computer Society",
+    FótonWolf:"Photonics Society"
   }
 
   //Permite alterar a equipe selecionada, para navegar entre as equipes

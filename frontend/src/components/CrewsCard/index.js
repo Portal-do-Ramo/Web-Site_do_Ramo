@@ -3,6 +3,12 @@ import Link from 'next/link';
 
 const chapter = {
   RocketWolf:"Aerospace & Electronic Systems Society",
+  WIE:"Women in Engineering",
+  WolfBotz:"Robotics and Automation Society",
+  WolfPower:"Power & Energy Society",
+  SocialWolf:"Special Interest Group on Humanitarian Technology",
+  WolfByte:"Computer Society",
+  FótonWolf:"Photonics Society"
 }
 
 //Componente de cartão da equipe que exibe uma imagem e um nome e redireciona para a página /equipes + index quando clicado

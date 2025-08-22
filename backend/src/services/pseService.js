@@ -31,7 +31,7 @@ module.exports = {
 			neuroatypicality: Joi.string().required(),
 			PcD: Joi.string().required(),
 			selfDeclaration: Joi.string().required(),
-			register: Joi.string().required(),
+			register: Joi.string().allow(null, '').optional(),
 			course: Joi.string().required(),
 			currentPeriod: Joi.string().required(),
 			crew: Joi.string().required(),

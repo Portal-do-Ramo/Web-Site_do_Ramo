@@ -53,12 +53,12 @@ export function PSEFormContextProvider({ children }) {
   }, [fullname, birthday, phone, email, instagram, linkedin]);
 
   useEffect(() => {
-    if (register.length > 7 && course.length > 3 && currentPeriod.length >= 1) {
+    if (course.length > 3 && currentPeriod.length >= 1) {
       setIsSecondPageValidated(true);
     } else {
       setIsSecondPageValidated(false);
     }
-  }, [register, course, currentPeriod]);
+  }, [course, currentPeriod]);
 
   useEffect(() => {
     if (
