@@ -94,7 +94,6 @@ module.exports = {
 
 		const subscriberEmail = await registerPSE.where('personalInformation.email', '==', value.email).get();
 		const subscriberPhone = await registerPSE.where('personalInformation.phone', '==', value.phone).get();
-		const subscriberRegister = await registerPSE.where('registrationData.register', '==', value.register).get();
 
 		if (!subscriberEmail.empty) {
 			throw new Error('Email inserido já foi cadastrado!');
@@ -104,9 +103,16 @@ module.exports = {
 			throw new Error('Número de telefone inserido já foi cadastrado!');
 		}
 
-		if (!subscriberRegister.empty) {
-			throw new Error('Matrícula inserida já foi cadastrada!');
+		if (value.register && value.register.trim() !== '') {
+			const subscriberRegister = await registerPSE
+				.where('registrationData.register', '==', value.register)
+				.get();
+
+			if (!subscriberRegister.empty) {
+				throw new Error('Matrícula inserida já foi cadastrada!');
+			}
 		}
+
 
 		await registerPSE.add(data);
 		await sheetController.insert(data);

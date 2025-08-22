@@ -6,7 +6,7 @@ const chapter = {
   WIE:"Women in Engineering",
   WolfBotz:"Robotics and Automation Society",
   WolfPower:"Power & Energy Society",
-  SocialWolf:"Special Interest Group on Humanitarian Technology",
+  SocialWolf:"Society on Social Implications of Technology",
   WolfByte:"Computer Society",
   FótonWolf:"Photonics Society"
 }
